@@ -21,13 +21,12 @@ export const socket = (socket, worker) => {
     }
 
     try {
-      const players = await addPlayer(worker, name);
-      console.log('added', players);
-
+      await addPlayer(worker, name);
       socket.setAuthToken({ playerName: name });
-      emitter.emit(event, player);
+      emitter.emit(event, { worker, player });
+
+    // player already logged in, instead: disconnect this socket
     } catch(e) {
-      console.log('already logged in');
       socket.disconnect();
     }
   };

@@ -28,7 +28,8 @@ var socketCluster = new SocketCluster({
   workerController: __dirname + '/worker.js',
   brokerController: __dirname + '/broker.js',
   socketChannelLimit: 100,
-  rebootWorkerOnCrash: argv['auto-reboot'] != false
+  rebootWorkerOnCrash: argv['auto-reboot'] != false,
+  logLevel: process.env.NODE_ENV === 'production' ? 3 : 1
 });
 
 socketCluster.on('fail', function(e) {

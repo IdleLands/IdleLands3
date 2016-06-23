@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "npm run test:local",
-    "test:local": "eslint src/**",
+    "test:lint": "eslint src/**",
+    "test:local": "npm run test:lint",
     "test:client": "node test/client/client"
   },
   "repository": {

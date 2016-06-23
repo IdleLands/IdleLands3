@@ -28,11 +28,16 @@ const socketOptions = {
 
 const sockets = {};
 
-const play = (name) => {
+const play = (name, index) => {
   sockets[name] = SocketCluster.connect(socketOptions);
   sockets[name].emit('plugin:player:login', { name });
   sockets[name].on('connect', e => console.log(`${name} connected.`));
   sockets[name].on('disconnect', e => console.log(`${name} disconnected.`));
+
+  sockets[name].subscribe('adventurelog').watch(msg => {
+    if(msg.type === 'Global' && index !== 0) return;
+    console.log(msg.text);
+  });
 };
 
 _.each(players.slice(0, numPlayers), play);
