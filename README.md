@@ -1,4 +1,4 @@
-# IdleLands
+# IdleLands [![Build Status](https://travis-ci.org/IdleLands/IdleLands.svg?branch=master)](https://travis-ci.org/IdleLands/IdleLands)
 An idling game of epic proportions.
 
 ## Install
