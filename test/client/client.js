@@ -17,6 +17,8 @@ const players = [
 
 const numPlayers = Math.max(1, Math.min(players.length, argv.players));
 
+console.log(`Testing with ${numPlayers} players.`);
+
 const socketOptions = {
   port: 8080,
   protocol: 'http',
