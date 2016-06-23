@@ -4,6 +4,8 @@
   "description": "An idling game of epic proportions",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run install:assets",
+    "install:assets": "node npm/install-assets",
     "start": "node index.js",
     "test": "npm run test:local",
     "test:lint": "eslint src/**",
@@ -29,6 +31,7 @@
     "babel-register": "^6.9.0",
     "dice.js": "^0.9.0",
     "dotenv": "^2.0.0",
+    "download-github-repo": "^0.1.3",
     "eventemitter2": "^1.0.3",
     "jsonwebtoken": "^7.0.1",
     "lodash": "^4.13.1",
