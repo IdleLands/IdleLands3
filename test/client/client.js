@@ -22,12 +22,17 @@ console.log(`Testing with ${numPlayers} players.`);
 const socketOptions = {
   port: 8080,
   protocol: 'http',
-  hostname: 'localhost'
+  hostname: 'localhost',
+  multiplex: false
 };
 
+const sockets = {};
+
 const play = (name) => {
-  const socket = SocketCluster.connect(socketOptions);
-  socket.emit('plugin:player:login', { name });
+  sockets[name] = SocketCluster.connect(socketOptions);
+  sockets[name].emit('plugin:player:login', { name });
+  sockets[name].on('connect', e => console.log(`${name} connected.`));
+  sockets[name].on('disconnect', e => console.log(`${name} disconnected.`));
 };
 
 _.each(players.slice(0, numPlayers), play);

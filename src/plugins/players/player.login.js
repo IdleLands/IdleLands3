@@ -1,5 +1,5 @@
 
-import { addPlayer } from '../../shared/worker-wrapper';
+import { addPlayer } from './player.worker';
 import { getPlayer, savePlayer } from './player.db';
 
 import { Player } from './player';
@@ -20,9 +20,16 @@ export const socket = (socket, worker) => {
       event = 'player:register';
     }
 
-    emitter.emit(event, player);
-    const players = await addPlayer(worker, name);
-    console.log('added', players);
+    try {
+      const players = await addPlayer(worker, name);
+      console.log('added', players);
+
+      socket.setAuthToken({ playerName: name });
+      emitter.emit(event, player);
+    } catch(e) {
+      console.log('already logged in');
+      socket.disconnect();
+    }
   };
 
   socket.on('plugin:player:login', login);

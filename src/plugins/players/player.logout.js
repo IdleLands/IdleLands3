@@ -1,11 +1,15 @@
 
-export const socket = (socket) => {
+import { removePlayer } from './player.worker';
 
-  const logout = async (player) => {
+export const socket = (socket, worker) => {
+
+  const logout = async () => {
+    console.log('authtoken', socket.getAuthToken());
     if(!socket.getAuthToken()) return;
-    console.log(player);
+    const { playerName } = socket.getAuthToken();
+    removePlayer(worker, playerName);
   };
 
   socket.on('disconnect', logout);
-  socket.on('plugin:player:login', logout);
+  socket.on('plugin:player:logout', logout);
 };
