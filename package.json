@@ -1,0 +1,47 @@
+{
+  "name": "idlelands",
+  "version": "0.0.0",
+  "description": "An idling game of epic proportions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm run test:local",
+    "test:local": "eslint src/**",
+    "test:client": "node test/client/client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IdleLands/IdleLands.git"
+  },
+  "author": "Kyle Kemp <kyle@seiyria.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IdleLands/IdleLands/issues"
+  },
+  "homepage": "https://github.com/IdleLands/IdleLands#readme",
+  "dependencies": {
+    "atob": "^2.0.3",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.9.0",
+    "dice.js": "^0.9.0",
+    "dotenv": "^2.0.0",
+    "eventemitter2": "^1.0.3",
+    "jsonwebtoken": "^7.0.1",
+    "lodash": "^4.13.1",
+    "minimist": "^1.2.0",
+    "mongodb": "^2.1.18",
+    "require-dir": "^0.3.0",
+    "restricted-number": "^1.0.0",
+    "socketcluster": "^4.6.2"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-eslint": "^6.0.5",
+    "eslint": "^2.13.1",
+    "eslint-config-kellyirc": "^3.1.0",
+    "socketcluster-client": "^4.3.19"
+  }
+}
