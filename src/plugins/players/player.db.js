@@ -27,13 +27,8 @@ export const savePlayer = async (playerObject) => {
   const db = await dbPromise();
   const players = db.collection('players');
 
-  return new Promise((resolve, reject) => {
-    players.findOneAndUpdate({ name: playerObject.name }, playerObject, { upsert: true }).then(err => {
-
-      if (err) {
-        return reject({ err, msg: MESSAGES.GENERIC });
-      }
-
+  return new Promise((resolve) => {
+    players.findOneAndUpdate({ name: playerObject.name }, playerObject, { upsert: true }).then(() => {
       resolve(playerObject);
     });
   });

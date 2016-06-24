@@ -9,7 +9,7 @@ export const run = (worker) => {
   const scServer = worker.scServer;
 
   process.on('uncaughtException', (e) => Logger.error('Process:UncaughtException', e));
-  process.on('unhandledRejection', (reason) => Logger.error('Process:UnhandledRejection', new Error(reason)));
+  process.on('unhandledRejection', (reason) => Logger.error('Process:UnhandledRejection', new Error(JSON.stringify(reason))));
 
   scServer.on('error', e => Logger.error('SC:Server', e));
 

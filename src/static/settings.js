@@ -4,7 +4,8 @@ import _ from 'lodash';
 class Settings {
 
   constructor() {
-    this.TimeframeSeconds = 15;
+    this.timeframeSeconds = 15;
+    this.maxLevel = 100;
 
     this.gidMap = {
       1: "StairsDown",

@@ -1,4 +1,5 @@
 
+import _ from 'lodash';
 import { addPlayer } from './player.worker';
 import { getPlayer, savePlayer } from './player.db';
 
@@ -7,7 +8,7 @@ import { emitter } from './_emitter';
 
 export const socket = (socket, worker) => {
 
-  const login = async ({ name }) => {
+  const login = async ({ name, gender, professionName }) => {
     let player = null;
     let event = '';
 
@@ -16,7 +17,15 @@ export const socket = (socket, worker) => {
       event = 'player:login';
 
     } catch(e) {
-      player = await savePlayer(new Player({ name }));
+
+      // 20 char name is reasonable
+      name = _.truncate(name, { length: 20 });
+
+      // sensible defaults
+      if(!_.includes(['male', 'female'], gender)) gender = 'male';
+      if(!_.includes(['Generalist', 'Mage', 'Cleric', 'Fighter'], professionName)) professionName = 'Generalist';
+
+      player = await savePlayer(new Player({ name, gender, professionName }));
       event = 'player:register';
     }
 

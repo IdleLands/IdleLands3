@@ -43,14 +43,13 @@ export class Map {
     });
   }
 
-  // TODO real trainer names
+  // TODO https://github.com/IdleLands/IdleLandsOld/blob/master/src/map/Map.coffee#L41
   nameTrainers() {
     const allTrainers = _.filter(this.map.layers[2], obj => obj.type === 'Trainer');
     _.each(allTrainers, trainer => {
       trainer.properties.realName = `${trainer.name} Trainer`;
     });
   }
-
 
   // layers[0] will always be the terrain
   // layers[1] will always be the blocking tiles
@@ -61,10 +60,10 @@ export class Map {
     const tileObject = _.find(this.map.layers[2].objects, { x: this.tileWidth*x, y: this.tileHeight*(y+1) });
 
     return {
-      terrain: gidMap[this.map.layers[0].data[tilePosition]],
+      terrain: gidMap[this.map.layers[0].data[tilePosition]] || 'Void',
       blocked: _.includes(blockers, this.map.layers[1].data[tilePosition]),
-      blocker: this.gidMap[this.map.layers[1].data[tilePosition]],
-      region: this.regionMap[tilePosition] || 'Wilderness',
+      blocker: gidMap[this.map.layers[1].data[tilePosition]],
+      region: this.regions[tilePosition] || 'Wilderness',
       object: tileObject
     };
   }

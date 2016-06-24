@@ -1,6 +1,6 @@
 
 export const MESSAGES = {
-  GENERIC: 'Generic error messages',
+  GENERIC: 'Generic error message',
 
   NO_PLAYER: 'Player does not exist'
 };

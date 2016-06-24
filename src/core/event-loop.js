@@ -11,18 +11,19 @@ import './emitter-watchers';
 
 Logger.info('Core', 'Starting event loop.');
 
-const timerDelay = SETTINGS.TimeframeSeconds * 1000;
+const timerDelay = SETTINGS.timeframeSeconds * process.env.NODE_ENV === 'production' ? 1000 : 10;
 
 setInterval(() => {
-  _.each(GameState.players, (player, index) => {
+  const players = GameState.getPlayers();
+  _.each(players, (player, index) => {
     const playerName = player.name;
 
     setTimeout(() => {
 
-      if(!_.find(GameState.players, { name: playerName })) return;
+      if(!_.find(GameState.getPlayers(), { name: playerName })) return;
       player.takeTurn();
 
-    }, index * (timerDelay / GameState.players.length));
+    }, index * (timerDelay / players.length));
 
   });
 }, timerDelay);
