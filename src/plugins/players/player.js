@@ -1,6 +1,4 @@
 
-import _ from 'lodash';
-
 import { Character } from '../../core/base/character';
 
 import { savePlayer } from './player.db';

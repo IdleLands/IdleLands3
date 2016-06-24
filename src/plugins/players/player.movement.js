@@ -9,16 +9,16 @@ export class PlayerMovement {
 
   static num2dir(dir, x, y) {
     switch(dir) {
-      case 1:  return { x: x - 1, y: y - 1 };
-      case 2:  return { x: x, y: y - 1 };
-      case 3:  return { x: x + 1, y: y - 1 };
-      case 4:  return { x: x - 1, y: y };
-      case 6:  return { x: x + 1, y: y };
-      case 7:  return { x: x - 1, y: y + 1 };
-      case 8:  return { x: x, y: y + 1 };
-      case 9:  return { x: x + 1, y: y + 1 };
+    case 1:  return { x: x - 1, y: y - 1 };
+    case 2:  return { x: x, y: y - 1 };
+    case 3:  return { x: x + 1, y: y - 1 };
+    case 4:  return { x: x - 1, y: y };
+    case 6:  return { x: x + 1, y: y };
+    case 7:  return { x: x - 1, y: y + 1 };
+    case 8:  return { x: x, y: y + 1 };
+    case 9:  return { x: x + 1, y: y + 1 };
 
-      default: return { x: x, y: y };
+    default: return { x: x, y: y };
     }
   }
 
@@ -74,7 +74,7 @@ export class PlayerMovement {
     }
 
     const randomDir = () => chance.weighted(directions, weight);
-    let dir = randomDir();
+    const dir = randomDir();
 
     return [this.num2dir(dir, player.x, player.y), dir];
 
