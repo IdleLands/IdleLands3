@@ -1,6 +1,4 @@
 
-import _ from 'lodash';
-
 import dbPromise from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
 
