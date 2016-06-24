@@ -38,8 +38,7 @@ export class Player extends Character {
     if(this._xp.atMaximum()) this.levelUp();
   }
 
-  // TODO haste
-  moveAction(currentStep = 1) {
+  moveAction() {
 
     let [newLoc, dir] = PlayerMovement.pickRandomTile(this);
     let tile = PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
@@ -59,11 +58,9 @@ export class Player extends Character {
     PlayerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
-    if(currentStep < 5) {
 
-      // TODO xpGain stat
-      this.gainXp(10);
-    }
+    // TODO xpGain stat
+    this.gainXp(10);
   }
 
   save() {
