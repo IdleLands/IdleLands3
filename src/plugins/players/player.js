@@ -50,7 +50,6 @@ export class Player extends Character {
         }
       });
     }
-    console.log(this.lastDir, weight);
 
     const randomDir = () => chance.weighted(directions, weight);
     let dir = null;
