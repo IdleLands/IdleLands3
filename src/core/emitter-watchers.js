@@ -29,3 +29,11 @@ PlayerEmitter.on('player:logout', ({ worker, playerName }) => {
     highlights: [{ name: playerName }]
   });
 });
+
+PlayerEmitter.on('player:levelup', ({ worker, player }) => {
+  AdventureLog(worker, {
+    text: `${player.name} has reached experience level ${player.level}!`,
+    type: MessageTypes.GLOBAL,
+    highlights: [{ name: player.name }]
+  });
+});

@@ -25,6 +25,7 @@ export class Character {
 
     if(!this.gender)   this.gender = _.sample(['male', 'female']);
     if(!this.professionName) this.professionName = 'Generalist';
+    this.changeProfession(this.professionName);
   }
 
   get hp() { return this._hp.__current; }
@@ -32,6 +33,12 @@ export class Character {
   get xp() { return this._xp.__current; }
   get level() { return this._level.__current; }
   get special() { return this._special.__current; }
+  get profession() { return this.$profession; }
+
+  changeProfession(professionName) {
+    this.$profession = require(`../professions/${professionName}`)[professionName];
+    this.$profession.load(this);
+  }
 
   getFullName() {
     if(this.title) return `${this.name}, the ${this.title}`;

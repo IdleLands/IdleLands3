@@ -1,3 +1,6 @@
+
+import _ from 'lodash';
+
 import dbPromise from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
 
@@ -24,11 +27,12 @@ export const getPlayer = async (name) => {
 };
 
 export const savePlayer = async (playerObject) => {
+  const savePlayerObject = _.omitBy(playerObject, (val, key) => _.startsWith(key, '$'));
   const db = await dbPromise();
   const players = db.collection('players');
 
   return new Promise((resolve) => {
-    players.findOneAndUpdate({ name: playerObject.name }, playerObject, { upsert: true }).then(() => {
+    players.findOneAndUpdate({ name: savePlayerObject.name }, savePlayerObject, { upsert: true }).then(() => {
       resolve(playerObject);
     });
   });

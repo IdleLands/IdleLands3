@@ -1,30 +1,30 @@
 
 export class Profession {
-  baseHp = 10;
-  baseHpPerLevel = 15;
-  baseHpPerCon = 5;
-  baseHpPerInt = 0;
-  baseHpPerDex = 0;
-  baseHpPerWis = 0;
-  baseHpPerStr = 0;
-  baseHpPerAgi = 0;
-  baseHpPerLuk = 0;
+  static baseHpPerLevel = 15;
+  static baseHpPerCon = 5;
+  static baseHpPerInt = 0;
+  static baseHpPerDex = 0;
+  static baseHpPerWis = 0;
+  static baseHpPerStr = 0;
+  static baseHpPerAgi = 0;
+  static baseHpPerLuk = 0;
 
-  baseMp = 5;
-  baseMpPerLevel = 2;
-  baseMpPerInt = 3;
-  baseMpPerCon = 0;
-  baseMpPerDex = 0;
-  baseMpPerWis = 0;
-  baseMpPerStr = 0;
-  baseMpPerAgi = 0;
-  baseMpPerLuk = 0;
+  static baseMpPerLevel = 2;
+  static baseMpPerInt = 3;
+  static baseMpPerCon = 0;
+  static baseMpPerDex = 0;
+  static baseMpPerWis = 0;
+  static baseMpPerStr = 0;
+  static baseMpPerAgi = 0;
+  static baseMpPerLuk = 0;
 
-  baseConPerLevel = 0;
-  baseDexPerLevel = 0;
-  baseAgiPerLevel = 0;
-  baseStrPerLevel = 0;
-  baseIntPerLevel = 0;
-  baseWisPerLevel = 0;
-  baseLukPerLevel = 0;
+  static baseConPerLevel = 0;
+  static baseDexPerLevel = 0;
+  static baseAgiPerLevel = 0;
+  static baseStrPerLevel = 0;
+  static baseIntPerLevel = 0;
+  static baseWisPerLevel = 0;
+  static baseLukPerLevel = 0;
+
+  static load() {}
 }

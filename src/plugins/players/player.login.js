@@ -32,6 +32,9 @@ export const socket = (socket, worker) => {
     try {
       await addPlayer(worker, name);
       socket.setAuthToken({ playerName: name });
+
+      player.$worker = worker;
+
       emitter.emit(event, { worker, player });
 
     // player already logged in, instead: disconnect this socket

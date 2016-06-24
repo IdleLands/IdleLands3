@@ -1,8 +1,12 @@
 
 import { Character } from '../../core/base/character';
 
+import { SETTINGS } from '../../static/settings';
+
 import { savePlayer } from './player.db';
 import { PlayerMovement } from './player.movement';
+
+import { emitter } from './_emitter';
 
 export class Player extends Character {
   constructor(opts) {
@@ -21,15 +25,17 @@ export class Player extends Character {
     this.save();
   }
 
-
   levelUp() {
-    console.log('levelup');
+    if(this.level === SETTINGS.maxLevel) return;
+    this._level.add(1);
+    this.resetMaxXp();
+    this._xp.toMinimum();
+    emitter.emit('player:levelup', { worker: this.$worker, player: this });
   }
 
   gainXp(xp = 1) {
     this._xp.add(xp);
-
-    if(this._xp.atMax()) this.levelUp();
+    if(this._xp.atMaximum()) this.levelUp();
   }
 
   // TODO haste
