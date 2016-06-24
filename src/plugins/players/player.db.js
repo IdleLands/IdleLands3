@@ -26,13 +26,13 @@ export const getPlayer = async (name) => {
       const player = new Player(doc);
 
       if(!player.statisticsLink) {
-        const newStatistics = await saveStatistics({ _id: player.name, stats: { Logins: 1 } });
+        const newStatistics = await saveStatistics({ _id: player.name, stats: {} });
         player.statisticsLink = newStatistics._id;
         player.$statistics = newStatistics;
       } else {
         player.$statistics = await getStatistics(player.statisticsLink);
       }
-      
+
       resolve(player);
     });
   });

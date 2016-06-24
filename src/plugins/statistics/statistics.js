@@ -7,9 +7,19 @@ export class Statistics {
     _.extend(this, opts);
   }
 
-  incrementStat(stat) {
-    this.stats[stat] = this.stats[stat] || 0;
-    this.stats[stat]++;
+  _setStat(stat, value = 1) {
+    let val = _.get(this.stats, stat, 0);
+    val += value;
+    _.set(this.stats, stat, val);
+  }
+
+  incrementStat(stat, value = 1) {
+    this._setStat(stat, value);
+    this.save();
+  }
+
+  batchIncrement(stats) {
+    _.each(stats, stat => this._setStat(stat));
     this.save();
   }
 

@@ -35,6 +35,13 @@ export class Player extends Character {
 
   gainXp(xp = 1) {
     this._xp.add(xp);
+
+    if(xp > 0) {
+      this.$statistics.incrementStat('Character.XP.Gain', xp);
+    } else {
+      this.$statistics.incrementStat('Character.XP.Lose', -xp);
+    }
+
     if(this._xp.atMaximum()) this.levelUp();
   }
 
@@ -58,6 +65,8 @@ export class Player extends Character {
     PlayerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
+
+    this.$statistics.batchIncrement(['Character.Steps', `Character.Terrains.${tile.terrain}`, `Character.Regions.${tile.region}`]);
 
     // TODO xpGain stat
     this.gainXp(10);
