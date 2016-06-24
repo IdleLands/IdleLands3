@@ -6,7 +6,6 @@ const chance = new Chance(Math.random);
 import { Character } from '../../core/base/character';
 import { GameState } from '../../core/game-state';
 
-import { Logger } from '../../shared/logger';
 import { savePlayer } from './player.db';
 
 export class Player extends Character {

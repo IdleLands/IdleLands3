@@ -3,6 +3,7 @@ import _ from 'lodash';
 import RestrictedNumber from 'restricted-number';
 
 import { SETTINGS } from '../../static/settings';
+import { Logger } from '../../shared/logger';
 
 export class Character {
 
@@ -46,25 +47,16 @@ export class Character {
 
   num2dir(dir, x, y) {
     switch(dir) {
-      case 1:
-        return {x: x - 1, y: y - 1};
-      case 2:
-        return {x: x, y: y - 1};
-      case 3:
-        return {x: x + 1, y: y - 1};
-      case 4:
-        return {x: x - 1, y: y};
-      case 6:
-        return {x: x + 1, y: y};
-      case 7:
-        return {x: x - 1, y: y + 1};
-      case 8:
-        return {x: x, y: y + 1};
-      case 9:
-        return {x: x + 1, y: y + 1};
+    case 1:  return { x: x - 1, y: y - 1 };
+    case 2:  return { x: x, y: y - 1 };
+    case 3:  return { x: x + 1, y: y - 1 };
+    case 4:  return { x: x - 1, y: y };
+    case 6:  return { x: x + 1, y: y };
+    case 7:  return { x: x - 1, y: y + 1 };
+    case 8:  return { x: x, y: y + 1 };
+    case 9:  return { x: x + 1, y: y + 1 };
 
-      default:
-        return {x: x, y: y};
+    default: return { x: x, y: y };
     }
   }
 }

@@ -26,6 +26,6 @@ PlayerEmitter.on('player:logout', ({ worker, playerName }) => {
   AdventureLog(worker, {
     text: `${playerName} has departed Idliathlia!`,
     type: MessageTypes.GLOBAL,
-    highlights: [{ name: player.name }]
+    highlights: [{ name: playerName }]
   });
 });

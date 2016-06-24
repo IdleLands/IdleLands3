@@ -30,7 +30,7 @@ export class World {
       const mapRef = new Map(path);
       this.maps[map] = mapRef;
 
-      this.uniqueRegions.push(..._.uniq(_.compact(mapRef.regions)))
+      this.uniqueRegions.push(..._.uniq(_.compact(mapRef.regions)));
     });
   }
 }
