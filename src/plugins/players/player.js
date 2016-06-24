@@ -3,7 +3,7 @@ import _ from 'lodash';
 import Chance from 'chance';
 const chance = new Chance(Math.random);
 
-import { Character } from '../../core/character/character';
+import { Character } from '../../core/base/character';
 import { GameState } from '../../core/game-state';
 
 import { Logger } from '../../shared/logger';
@@ -115,7 +115,7 @@ export class Player extends Character {
     this.lastDir = dir === 5 ? null : dir;
     this.x = newLoc.x;
     this.y = newLoc.y;
-    
+
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
 
