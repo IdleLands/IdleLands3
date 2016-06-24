@@ -5,6 +5,7 @@ import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
 
 PlayerEmitter.on('player:login', ({ worker, player }) => {
   GameState.addPlayer(player);
+  player.$statistics.incrementStat('Logins');
   AdventureLog(worker, {
     text: `Welcome ${player.name} back to Idliathlia!`,
     type: MessageTypes.GLOBAL,

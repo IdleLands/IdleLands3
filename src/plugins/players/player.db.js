@@ -6,12 +6,14 @@ import { MESSAGES } from '../../static/messages';
 
 import { Player } from './player';
 
+import { getStatistics, saveStatistics } from '../statistics/statistics.db';
+
 export const getPlayer = async (name) => {
   const db = await dbPromise();
   const players = db.collection('players');
 
   return new Promise((resolve, reject) => {
-    players.find({ name }).limit(1).next((err, doc) => {
+    players.find({ name }).limit(1).next(async (err, doc) => {
 
       if (err) {
         return reject({ err, msg: MESSAGES.GENERIC });
@@ -21,7 +23,17 @@ export const getPlayer = async (name) => {
         return reject({ err, msg: MESSAGES.NO_PLAYER });
       }
 
-      resolve(new Player(doc));
+      const player = new Player(doc);
+
+      if(!player.statisticsLink) {
+        const newStatistics = await saveStatistics({ _id: player.name, stats: { Logins: 1 } });
+        player.statisticsLink = newStatistics._id;
+        player.$statistics = newStatistics;
+      } else {
+        player.$statistics = await getStatistics(player.statisticsLink);
+      }
+      
+      resolve(player);
     });
   });
 };
