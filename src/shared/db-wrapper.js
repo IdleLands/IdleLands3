@@ -18,7 +18,7 @@ export class DbWrapper {
           return reject(err);
         }
 
-        db.collection('players').createIndex({name: 1}, {unique: true}, _.noop);
+        db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
         db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
 
         Logger.info('Mongo', 'Connected!');

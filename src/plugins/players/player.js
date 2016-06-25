@@ -6,6 +6,8 @@ import { Character } from '../../core/base/character';
 import { Logger } from '../../shared/logger';
 import { SETTINGS } from '../../static/settings';
 
+import { Statistics } from '../statistics/statistics';
+
 import { PlayerMovement } from './player.movement';
 
 import { emitter } from './_emitter';
@@ -16,9 +18,11 @@ export class Player extends Character {
     super();
     const PlayerDb = require('./player.db').PlayerDb;
     try {
-      container.schedulePostConstructor((playerDb) => {
+      container.schedulePostConstructor((playerDb, statistics, playerMovement) => {
         this.PlayerDb = playerDb;
-      }, [PlayerDb]);
+        this.$statistics = statistics;
+        this.PlayerMovement = playerMovement;
+      }, [PlayerDb, Statistics, PlayerMovement]);
     } catch (e) {
       Logger.error('Player', e);
     }
@@ -62,12 +66,12 @@ export class Player extends Character {
 
   moveAction() {
 
-    let [newLoc, dir] = PlayerMovement.pickRandomTile(this);
-    let tile = PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    let [newLoc, dir] = this.PlayerMovement.pickRandomTile(this);
+    let tile = this.PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    while(!PlayerMovement.canEnterTile(this, tile)) {
-      [newLoc, dir] = PlayerMovement.pickRandomTile(this);
-      tile = PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    while(!this.PlayerMovement.canEnterTile(this, tile)) {
+      [newLoc, dir] = this.PlayerMovement.pickRandomTile(this);
+      tile = this.PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
     }
 
     this.lastDir = dir === 5 ? null : dir;
@@ -77,7 +81,7 @@ export class Player extends Character {
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
 
-    PlayerMovement.handleTile(this, tile);
+    this.PlayerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
 
