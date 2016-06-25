@@ -3,7 +3,7 @@ import _ from 'lodash';
 import jwt from 'jsonwebtoken';
 
 import { addPlayer } from './player.worker';
-import { getPlayer, savePlayer, createPlayer } from './player.db';
+import { getPlayer, createPlayer } from './player.db';
 
 import { Player } from './player';
 import { emitter } from './_emitter';
