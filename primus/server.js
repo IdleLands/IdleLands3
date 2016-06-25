@@ -52,3 +52,8 @@ primus.on('connection', spark => {
 
   spark.join('adventurelog');
 });
+
+const path = require('path').join(__dirname, '..', '..', 'Play');
+if(fs.statSync(path)) {
+  primus.save(`${path}/primus.gen.js`);
+}
