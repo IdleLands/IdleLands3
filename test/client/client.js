@@ -30,7 +30,7 @@ const sockets = {};
 
 const play = (name, index) => {
   sockets[name] = SocketCluster.connect(socketOptions);
-  sockets[name].emit('plugin:player:login', { name });
+  sockets[name].emit('plugin:player:login', { name, userId: `local|${name}` });
   sockets[name].on('connect', e => console.log(`${name} connected.`));
   sockets[name].on('disconnect', e => console.log(`${name} disconnected.`));
 

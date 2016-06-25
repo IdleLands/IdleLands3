@@ -8,18 +8,18 @@ import { Player } from './player';
 
 import { getStatistics, saveStatistics } from '../statistics/statistics.db';
 
-export const getPlayer = async (name) => {
+export const getPlayer = async (userId) => {
   const db = await dbPromise();
   const players = db.collection('players');
 
   return new Promise((resolve, reject) => {
-    players.find({ name }).limit(1).next(async (err, doc) => {
+    players.find({ userId }).limit(1).next(async (err, doc) => {
 
-      if (err) {
+      if(err) {
         return reject({ err, msg: MESSAGES.GENERIC });
       }
 
-      if (!doc) {
+      if(!doc) {
         return reject({ err, msg: MESSAGES.NO_PLAYER });
       }
 
@@ -44,7 +44,7 @@ export const savePlayer = async (playerObject) => {
   const players = db.collection('players');
 
   return new Promise((resolve) => {
-    players.findOneAndUpdate({ name: savePlayerObject.name }, savePlayerObject, { upsert: true }).then(() => {
+    players.findOneAndUpdate({ _id: savePlayerObject._id }, savePlayerObject, { upsert: true }).then(() => {
       resolve(playerObject);
     });
   });
