@@ -20,5 +20,7 @@ export const loadPlayer = async (playerName) => {
     player.$statistics = await getStatistics(player.name);
   }
 
+  player.isOnline = true;
+
   return player;
 };

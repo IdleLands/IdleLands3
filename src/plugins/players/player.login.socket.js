@@ -2,17 +2,17 @@
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
 
-import { addPlayer } from './player.worker';
 import { getPlayer, createPlayer } from './player.db';
+import { emitter } from './_emitter';
 
 import { Logger } from '../../shared/logger';
 import { MESSAGES } from '../../static/messages';
 
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
 
-export const socket = (socket, worker) => {
+export const socket = (socket, primus, respond) => {
 
-  const login = async ({ name, gender, professionName, token, userId }, respond) => {
+  const login = async ({ name, gender, professionName, token, userId }) => {
     let player = null;
     let event = '';
 
@@ -58,21 +58,18 @@ export const socket = (socket, worker) => {
       event = 'player:register';
     }
 
-    try {
-      await addPlayer(worker, name);
-      socket.setAuthToken({ playerName: player.name, token });
-
-      worker.playerNameToSocket[player.name] = socket;
-      worker.sendToMaster({ event, playerName: player.name });
-
-      return respond({ ok: true, msg: MESSAGES.LOGIN_SUCCESS });
-
-    // player already logged in, instead: disconnect this socket
-    } catch(e) {
-      Logger.error('Login', e);
+    if(player.isOnline) {
+      // player already logged in, instead: disconnect this socket
       respond({ alreadyLoggedIn: true, msg: MESSAGES.ALREADY_LOGGED_IN });
-      socket.disconnect();
+      socket.end();
+      return;
     }
+
+    socket.authToken = { playerName: player.name, token };
+
+    emitter.emit(event, { playerName: player.name });
+
+    return respond({ ok: true, msg: MESSAGES.LOGIN_SUCCESS });
   };
 
   socket.on('plugin:player:login', login);

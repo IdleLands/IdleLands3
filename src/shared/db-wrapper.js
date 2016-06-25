@@ -6,7 +6,7 @@ import { Logger } from './logger';
 
 const connectionString = process.env.MONGOLAB_URI;
 
-const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`
+const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`;
 
 Logger.info(mongoTag, 'Connecting to database...');
 const connectionPromise = new Promise((resolve, reject) => {
@@ -20,6 +20,8 @@ const connectionPromise = new Promise((resolve, reject) => {
 
     db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
     db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
+
+    db.collection('players').updateMany({}, { $set: { isOnline: false } });
 
     Logger.info(mongoTag, 'Connected!');
     resolve(db);

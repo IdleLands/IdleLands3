@@ -2,7 +2,7 @@
 require('babel-polyfill');
 
 const _ = require('lodash');
-const SocketCluster = require('socketcluster-client');
+const Primus = require('primus');
 
 const argv = require('minimist')(process.argv.slice(2));
 
@@ -19,24 +19,27 @@ const numPlayers = Math.max(1, Math.min(players.length, argv.players));
 
 console.log(`Testing with ${numPlayers} players.`);
 
-const socketOptions = {
-  port: 8080,
-  protocol: 'http',
-  hostname: 'localhost',
-  multiplex: false
-};
-
 const sockets = {};
 
 const play = (name, index) => {
-  sockets[name] = SocketCluster.connect(socketOptions);
-  sockets[name].emit('plugin:player:login', { name, userId: `local|${name}` });
-  sockets[name].on('connect', e => console.log(`${name} connected.`));
-  sockets[name].on('disconnect', e => console.log(`${name} disconnected.`));
+  const Socket = Primus.createSocket({
+    transformer: 'websockets',
+    parser: 'JSON',
+    plugin: {
+      rooms: require('primus-rooms'),
+      emit: require('primus-emit'),
+      multiplex: require('primus-multiplex')
+    }
+  });
+  sockets[name] = new Socket('ws://localhost:8080');
+  sockets[name].on('open', () => {
+    sockets[name].emit('plugin:player:login', { name, userId: `local|${name}` });
+  });
 
-  sockets[name].subscribe('adventurelog').watch(msg => {
+  sockets[name].on('data', msg => {
+    if(!msg.type) return;
     if(msg.type === 'Global' && index !== 0) return;
-    console.log(msg.text);
+    console.log(`[${msg.type}] ${msg.text}`);
   });
 };
 

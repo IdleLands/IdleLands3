@@ -1,9 +1,9 @@
 
 import { getPlayer } from './player.db';
 
-export const socket = (socket) => {
+export const socket = (socket, primus, respond) => {
 
-  const exists = async ({ userId }, respond) => {
+  const exists = async ({ userId }) => {
     try {
       await getPlayer({ userId });
       respond({ exists: true });

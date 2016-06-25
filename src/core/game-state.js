@@ -5,7 +5,6 @@ import { Logger } from '../shared/logger';
 
 import { loadPlayer } from '../plugins/players/player.load';
 
-// TODO store player hash in broker for maximum webscale
 class GameStateInternal {
   constructor() {
     this.players = [];
@@ -28,11 +27,15 @@ class GameStateInternal {
 
       this.players.push(player);
       resolve(player);
-    })
+    });
   }
 
   delPlayer(playerName) {
-    this.players = _.reject(this.players, player => player.name === playerName);
+    const remPlayer = _.find(this.players, { name: playerName });
+    this.players = _.without(this.players, remPlayer);
+
+    remPlayer.isOnline = false;
+    remPlayer.save();
   }
 
   getPlayers() {

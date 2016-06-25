@@ -38,14 +38,17 @@
     "lodash": "^4.13.1",
     "minimist": "^1.2.0",
     "mongodb": "^2.1.18",
+    "primus": "^5.2.2",
+    "primus-emit": "^1.0.0",
+    "primus-multiplex": "^3.2.0",
+    "primus-rooms": "^3.4.1",
     "restricted-number": "^1.1.0",
-    "socketcluster": "^4.6.2"
+    "ws": "^1.1.1"
   },
   "devDependencies": {
     "ava": "^0.15.2",
     "babel-eslint": "^6.0.5",
     "eslint": "^2.13.1",
-    "eslint-config-kellyirc": "^3.1.0",
-    "socketcluster-client": "^4.3.19"
+    "eslint-config-kellyirc": "^3.1.0"
   }
 }

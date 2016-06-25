@@ -1,20 +1,15 @@
 
-import { removePlayer } from './player.worker';
+import { emitter } from './_emitter';
 
-export const socket = (socket, worker) => {
+export const socket = (socket) => {
 
   const logout = async () => {
-    if(!socket.getAuthToken()) return;
-    const { playerName } = socket.getAuthToken();
-    removePlayer(worker, playerName);
+    if(!socket.authToken) return;
+    const { playerName } = socket.authToken;
 
-    worker.playerNameToSocket[playerName] = null;
-    worker.sendToMaster({
-      event: 'player:logout',
-      playerName
-    });
+    emitter.emit('player:logout', { playerName });
   };
 
-  socket.on('disconnect', logout);
+  socket.on('end', logout);
   socket.on('plugin:player:logout', logout);
 };
