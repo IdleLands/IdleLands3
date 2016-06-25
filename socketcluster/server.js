@@ -1,10 +1,10 @@
-var argv = require('minimist')(process.argv.slice(2));
-var SocketCluster = require('socketcluster').SocketCluster;
+const argv = require('minimist')(process.argv.slice(2));
+const SocketCluster = require('socketcluster').SocketCluster;
 
-var _ = require('lodash');
-var os = require('os');
+const _ = require('lodash');
+const os = require('os');
 
-var ip = _(os.networkInterfaces())
+const ip = _(os.networkInterfaces())
   .values()
   .flatten()
   .filter(val => val.family === 'IPv4' && val.internal === false)
@@ -15,11 +15,11 @@ if(ip) {
   console.log(`Your IP is: ${ip}`);
 }
 
-process.on('unhandledRejection', function(reason, p) {
+process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
 });
 
-var socketCluster = new SocketCluster({
+const socketCluster = new SocketCluster({
   workers: Number(argv.w) || 1,
   stores: Number(argv.s) || 1,
   port: Number(argv.p) || process.env.PORT || 8080,
@@ -32,6 +32,10 @@ var socketCluster = new SocketCluster({
   logLevel: process.env.NODE_ENV === 'production' ? 3 : 1
 });
 
-socketCluster.on('fail', function(e) {
+socketCluster.on('fail', (e) => {
   console.error(e);
+});
+
+socketCluster.on('workerMessage', (id, data) => {
+  console.log('WORKER', id, data);
 });

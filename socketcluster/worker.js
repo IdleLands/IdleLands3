@@ -23,6 +23,7 @@ const getAllSocketFunctions = (dir) => {
 };
 
 const allSocketFunctions = getAllSocketFunctions(normalizedPath);
+const allSocketRequires = _.map(allSocketFunctions, require);
 
 export const run = (worker) => {
   const scServer = worker.scServer;
@@ -34,12 +35,10 @@ export const run = (worker) => {
 
   scServer.on('connection', socket => {
 
-    const requireAll = (files) => {
-      _.each(files, file => require(file).socket(socket, worker));
-    };
+    socket.on('masterMessage', data => console.log('MASTER', data));
 
     try {
-      requireAll(allSocketFunctions);
+      _.each(allSocketRequires, inst => inst.socket(socket, worker));
     } catch(e) {
       Logger.error('SC:Socket:Function', e);
     }

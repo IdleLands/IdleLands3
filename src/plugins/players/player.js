@@ -4,7 +4,7 @@ import { Character } from '../../core/base/character';
 import { SETTINGS } from '../../static/settings';
 
 import { savePlayer } from './player.db';
-import { PlayerMovement } from './player.movement';
+// import { PlayerMovement } from './player.movement';
 
 import { emitter } from './_emitter';
 

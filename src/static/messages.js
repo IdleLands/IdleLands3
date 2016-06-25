@@ -6,5 +6,6 @@ export const MESSAGES = {
   INVALID_TOKEN: 'Invalid token',
   INVALID_NAME: 'Invalid name',
   PLAYER_EXISTS: 'A player with that name already exists',
-  ALREADY_LOGGED_IN: 'You are already logged in somewhere else'
+  ALREADY_LOGGED_IN: 'You are already logged in somewhere else',
+  LOGIN_SUCCESS: 'Successful login'
 };

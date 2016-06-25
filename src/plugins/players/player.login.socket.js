@@ -6,7 +6,7 @@ import { addPlayer } from './player.worker';
 import { getPlayer, createPlayer } from './player.db';
 
 import { Player } from './player';
-import { emitter } from './_emitter';
+// import { emitter } from './_emitter';
 
 import { Logger } from '../../shared/logger';
 import { MESSAGES } from '../../static/messages';
@@ -67,9 +67,11 @@ export const socket = (socket, worker) => {
 
       player.$worker = worker;
 
-      emitter.emit(event, { worker, player });
+      worker.sendToMaster({ event, playerName: player.name });
 
-      return respond({ ok: true });
+      // emitter.emit(event, { worker, player });
+
+      return respond({ ok: true, msg: MESSAGES.LOGIN_SUCCESS });
 
     // player already logged in, instead: disconnect this socket
     } catch(e) {
