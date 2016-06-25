@@ -3,7 +3,7 @@ import _ from 'lodash';
 import jwt from 'jsonwebtoken';
 
 import { addPlayer } from './player.worker';
-import { getPlayer, savePlayer } from './player.db';
+import { getPlayer, savePlayer, createPlayer } from './player.db';
 
 import { Player } from './player';
 import { emitter } from './_emitter';
@@ -33,7 +33,7 @@ export const socket = (socket, worker) => {
     }
 
     try {
-      player = await getPlayer(userId);
+      player = await getPlayer({ userId });
       event = 'player:login';
 
     } catch(e) {
@@ -52,18 +52,18 @@ export const socket = (socket, worker) => {
       const playerObject = new Player({ _id: name, name, gender, professionName, userId });
 
       try {
-        await savePlayer(playerObject);
+        await createPlayer(playerObject);
       } catch(e) {
         return respond({ msg: MESSAGES.PLAYER_EXISTS });
       }
 
-      player = await getPlayer(userId);
+      player = await getPlayer({ userId, name });
       event = 'player:register';
     }
 
     try {
       await addPlayer(worker, name);
-      socket.setAuthToken({ playerName: name, token });
+      socket.setAuthToken({ playerName: player.name, token });
 
       player.$worker = worker;
 
@@ -74,6 +74,7 @@ export const socket = (socket, worker) => {
     // player already logged in, instead: disconnect this socket
     } catch(e) {
       Logger.error('Login', e);
+      respond({ alreadyLoggedIn: true, msg: MESSAGES.ALREADY_LOGGED_IN });
       socket.disconnect();
     }
   };

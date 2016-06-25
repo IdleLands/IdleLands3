@@ -4,7 +4,7 @@ import { GameState } from './game-state';
 import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
 
 PlayerEmitter.on('player:login', ({ worker, player }) => {
-  GameState.addPlayer(player);
+  if(!GameState.addPlayer(player)) return;
   player.$statistics.incrementStat('Game.Logins');
   AdventureLog(worker, {
     text: `Welcome ${player.name} back to Idliathlia!`,
@@ -14,7 +14,7 @@ PlayerEmitter.on('player:login', ({ worker, player }) => {
 });
 
 PlayerEmitter.on('player:register', ({ worker, player }) => {
-  GameState.addPlayer(player);
+  if(!GameState.addPlayer(player)) return;
   player.$statistics.incrementStat('Game.Logins');
   AdventureLog(worker, {
     text: `Welcome ${player.name} to Idliathlia!`,

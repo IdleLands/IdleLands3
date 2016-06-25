@@ -1,9 +1,28 @@
 import _ from 'lodash';
 import path from 'path';
+import fs from 'fs';
 
 import { Logger } from '../src/shared/logger';
 
 require('dotenv').config({ silent: true });
+
+const normalizedPath = path.join(__dirname, '..', 'src');
+
+const getAllSocketFunctions = (dir) => {
+  let results = [];
+
+  const list = fs.readdirSync(dir);
+  _.each(list, basefilename => {
+    const filename = `${dir}/${basefilename}`;
+    const stat = fs.statSync(filename);
+    if(stat && stat.isDirectory()) results = results.concat(getAllSocketFunctions(filename));
+    else if(_.includes(basefilename, '.socket')) results.push(filename);
+  });
+
+  return results;
+};
+
+const allSocketFunctions = getAllSocketFunctions(normalizedPath);
 
 export const run = (worker) => {
   const scServer = worker.scServer;
@@ -15,20 +34,12 @@ export const run = (worker) => {
 
   scServer.on('connection', socket => {
 
-    const normalizedPath = path.join(__dirname, '..', 'src');
-
-    const allSocketFunctions = require('require-dir')(normalizedPath, { recurse: true });
-
-    const requireRecursive = (obj) => {
-      _.each(obj, (val) => {
-        if(!_.isObject(val)) return;
-        if(!val.socket) return requireRecursive(val);
-        val.socket(socket, worker);
-      });
+    const requireAll = (files) => {
+      _.each(files, file => require(file).socket(socket, worker));
     };
 
     try {
-      requireRecursive(allSocketFunctions);
+      requireAll(allSocketFunctions);
     } catch(e) {
       Logger.error('SC:Socket:Function', e);
     }

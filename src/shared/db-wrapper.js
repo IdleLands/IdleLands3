@@ -17,6 +17,7 @@ const connectionPromise = new Promise((resolve, reject) => {
     }
 
     db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
+    db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
 
     Logger.info('Mongo', 'Connected!');
     resolve(db);

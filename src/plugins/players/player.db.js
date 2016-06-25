@@ -9,12 +9,12 @@ import { Player } from './player';
 import { Statistics } from '../statistics/statistics';
 import { getStatistics, saveStatistics } from '../statistics/statistics.db';
 
-export const getPlayer = async (userId) => {
+export const getPlayer = async (opts) => {
   const db = await dbPromise();
   const players = db.collection('players');
 
   return new Promise((resolve, reject) => {
-    players.find({ userId }).limit(1).next(async (err, doc) => {
+    players.find(opts).limit(1).next(async (err, doc) => {
 
       if(err) {
         return reject({ err, msg: MESSAGES.GENERIC });
@@ -37,6 +37,17 @@ export const getPlayer = async (userId) => {
 
       resolve(player);
     });
+  });
+};
+
+export const createPlayer = async (playerObject) => {
+  const db = await dbPromise();
+  const players = db.collection('players');
+
+  return new Promise((resolve, reject) => {
+    players.insertOne(playerObject).then(() => {
+      resolve(playerObject);
+    }, reject);
   });
 };
 

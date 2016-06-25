@@ -13,6 +13,7 @@ class GameStateInternal {
   }
 
   addPlayer(player) {
+    if(_.find(this.players, { name: player.name })) return false;
     this.players.push(player);
   }
 
