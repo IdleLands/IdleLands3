@@ -4,5 +4,6 @@ export const MESSAGES = {
 
   NO_PLAYER: 'Player does not exist',
   INVALID_TOKEN: 'Invalid token',
-  INVALID_NAME: 'Invalid name'
+  INVALID_NAME: 'Invalid name',
+  PLAYER_EXISTS: 'A player with that name already exists'
 };

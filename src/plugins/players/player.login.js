@@ -51,7 +51,13 @@ export const socket = (socket, worker) => {
       if(!_.includes(['Generalist', 'Mage', 'Cleric', 'Fighter'], professionName)) professionName = 'Generalist';
 
       const playerObject = new Player({ _id: name, name, gender, professionName, userId });
-      await savePlayer(playerObject);
+
+      try {
+        await savePlayer(playerObject);
+      } catch(e) {
+        return respond({ msg: MESSAGES.PLAYER_EXISTS });
+      }
+
       player = await getPlayer(userId);
       event = 'player:register';
     }

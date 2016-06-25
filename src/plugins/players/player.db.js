@@ -45,9 +45,9 @@ export const savePlayer = async (playerObject) => {
   const db = await dbPromise();
   const players = db.collection('players');
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     players.findOneAndUpdate({ _id: savePlayerObject._id }, savePlayerObject, { upsert: true }).then(() => {
       resolve(playerObject);
-    });
+    }, reject);
   });
 };
