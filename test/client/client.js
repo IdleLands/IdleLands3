@@ -15,7 +15,7 @@ const players = [
   'Azerty'
 ];
 
-const numPlayers = Math.max(1, Math.min(players.length, argv.players));
+const numPlayers = Math.max(1, Math.min(players.length, argv.players)) || 1;
 
 console.log(`Testing with ${numPlayers} players.`);
 

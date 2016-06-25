@@ -1,16 +1,31 @@
 
+import { Dependencies, Container } from 'constitute';
+
 import { Character } from '../../core/base/character';
 
+import { Logger } from '../../shared/logger';
 import { SETTINGS } from '../../static/settings';
 
-import { savePlayer } from './player.db';
 import { PlayerMovement } from './player.movement';
 
 import { emitter } from './_emitter';
 
+@Dependencies(Container)
 export class Player extends Character {
-  constructor(opts) {
-    super(opts);
+  constructor(container) {
+    super();
+    const PlayerDb = require('./player.db').PlayerDb;
+    try {
+      container.schedulePostConstructor((playerDb) => {
+        this.PlayerDb = playerDb;
+      }, [PlayerDb]);
+    } catch (e) {
+      Logger.error('Player', e);
+    }
+  }
+
+  init(opts) {
+    super.init(opts);
 
     if(!this.joinDate)  this.joinDate = Date.now();
     if(!this.region)    this.region = 'Wilderness';
@@ -73,6 +88,6 @@ export class Player extends Character {
   }
 
   save() {
-    savePlayer(this);
+    this.PlayerDb.savePlayer(this);
   }
 }

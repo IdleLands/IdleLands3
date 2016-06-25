@@ -1,9 +1,10 @@
 
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
+import constitute from 'constitute';
 
 import { addPlayer } from './player.worker';
-import { getPlayer, createPlayer } from './player.db';
+import { PlayerDb } from './player.db';
 
 import { Player } from './player';
 import { emitter } from './_emitter';
@@ -18,6 +19,12 @@ export const socket = (socket, worker) => {
   const login = async ({ name, gender, professionName, token, userId }, respond) => {
     let player = null;
     let event = '';
+    const playerDb = constitute(PlayerDb);
+
+    if(!playerDb) {
+      respond({ msg: MESSAGES.GENERIC });
+      Logger.error('Login', new Error('playerDb could not be resolved.'));
+    }
 
     const validateToken = !_.includes(userId, 'local|');
     if(validateToken) {
@@ -33,7 +40,7 @@ export const socket = (socket, worker) => {
     }
 
     try {
-      player = await getPlayer({ userId });
+      player = await playerDb.getPlayer(userId);
       event = 'player:login';
 
     } catch(e) {
@@ -49,15 +56,26 @@ export const socket = (socket, worker) => {
       if(!_.includes(['male', 'female'], gender)) gender = 'male';
       if(!_.includes(['Generalist', 'Mage', 'Cleric', 'Fighter'], professionName)) professionName = 'Generalist';
 
-      const playerObject = new Player({ _id: name, name, gender, professionName, userId });
+      let playerObject = {};
+      try {
+        playerObject = constitute(Player);
+      } catch (e) {
+        Logger.error('Login', e);
+      }
+      playerObject.init({ _id: name, name, gender, professionName, userId });
 
       try {
-        await createPlayer(playerObject);
+        await playerDb.createPlayer(playerObject);
       } catch(e) {
         return respond({ msg: MESSAGES.PLAYER_EXISTS });
       }
 
-      player = await getPlayer({ userId, name });
+      try {
+        player = await playerDb.getPlayer({ userId, name });
+      } catch (e) {
+        Logger.error('Login', e);
+        respond({ msg: MESSAGES.GENERIC });
+      }
       event = 'player:register';
     }
 
