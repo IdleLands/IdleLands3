@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/IdleLands/IdleLands#readme",
   "dependencies": {
-    "atob": "^2.0.3",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",

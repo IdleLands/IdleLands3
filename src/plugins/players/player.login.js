@@ -1,7 +1,6 @@
 
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
-import atob from 'atob';
 
 import { addPlayer } from './player.worker';
 import { getPlayer, savePlayer } from './player.db';
@@ -24,7 +23,7 @@ export const socket = (socket, worker) => {
     if(validateToken) {
       if(AUTH0_SECRET) {
         try {
-          jwt.verify(token, atob(AUTH0_SECRET), { algorithms: ['HS256'] });
+          jwt.verify(token, new Buffer(AUTH0_SECRET, 'base64'), { algorithms: ['HS256'] });
         } catch(e) {
           return respond({ msg: MESSAGES.INVALID_TOKEN });
         }
@@ -69,6 +68,8 @@ export const socket = (socket, worker) => {
       player.$worker = worker;
 
       emitter.emit(event, { worker, player });
+
+      return respond({ ok: true });
 
     // player already logged in, instead: disconnect this socket
     } catch(e) {
