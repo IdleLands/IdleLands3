@@ -25,7 +25,7 @@ export const saveStatistics = async (statsObject) => {
   const statistics = db.collection('statistics');
 
   return new Promise((resolve) => {
-    statistics.findOneAndUpdate({ _id: statsObject._id }, statsObject, { upsert: true }).then((doc) => {
+    statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }).then((doc) => {
       resolve(new Statistics(doc.value));
     });
   });

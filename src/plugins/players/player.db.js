@@ -6,6 +6,7 @@ import { MESSAGES } from '../../static/messages';
 
 import { Player } from './player';
 
+import { Statistics } from '../statistics/statistics';
 import { getStatistics, saveStatistics } from '../statistics/statistics.db';
 
 export const getPlayer = async (userId) => {
@@ -26,11 +27,12 @@ export const getPlayer = async (userId) => {
       const player = new Player(doc);
 
       if(!player.statisticsLink) {
-        const newStatistics = await saveStatistics({ _id: player.name, stats: {} });
+        const statisticsObj = new Statistics({ _id: player.name, stats: {} });
+        const newStatistics = await saveStatistics(statisticsObj);
         player.statisticsLink = newStatistics._id;
-        player.$statistics = newStatistics;
+        player.$statistics = statisticsObj;
       } else {
-        player.$statistics = await getStatistics(player.statisticsLink);
+        player.$statistics = await getStatistics(player.name);
       }
 
       resolve(player);
