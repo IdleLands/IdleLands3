@@ -4,6 +4,8 @@ const SocketCluster = require('socketcluster').SocketCluster;
 const _ = require('lodash');
 const os = require('os');
 
+require('dotenv').config({ silent: true });
+
 const ip = _(os.networkInterfaces())
   .values()
   .flatten()
@@ -19,11 +21,11 @@ process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
 });
 
-const socketCluster = new SocketCluster({
+export const socketCluster = new SocketCluster({
   workers: Number(argv.w) || 1,
   stores: Number(argv.s) || 1,
   port: Number(argv.p) || process.env.PORT || 8080,
-  appName: argv.n || 'reactive-retro',
+  appName: argv.n || 'idlelands',
   initController: __dirname + '/init.js',
   workerController: __dirname + '/worker.js',
   brokerController: __dirname + '/broker.js',
@@ -34,8 +36,4 @@ const socketCluster = new SocketCluster({
 
 socketCluster.on('fail', (e) => {
   console.error(e);
-});
-
-socketCluster.on('workerMessage', (id, data) => {
-  console.log('WORKER', id, data);
 });

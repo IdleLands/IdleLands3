@@ -1,6 +1,5 @@
 
 import { removePlayer } from './player.worker';
-import { emitter } from './_emitter';
 
 export const socket = (socket, worker) => {
 
@@ -8,7 +7,12 @@ export const socket = (socket, worker) => {
     if(!socket.getAuthToken()) return;
     const { playerName } = socket.getAuthToken();
     removePlayer(worker, playerName);
-    emitter.emit('player:logout', { worker, playerName });
+
+    worker.playerNameToSocket[playerName] = null;
+    worker.sendToMaster({
+      event: 'player:logout',
+      playerName
+    });
   };
 
   socket.on('disconnect', logout);

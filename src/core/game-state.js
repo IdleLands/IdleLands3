@@ -3,6 +3,8 @@ import _ from 'lodash';
 import { World } from './world/world';
 import { Logger } from '../shared/logger';
 
+import { loadPlayer } from '../plugins/players/player.load';
+
 // TODO store player hash in broker for maximum webscale
 class GameStateInternal {
   constructor() {
@@ -12,10 +14,21 @@ class GameStateInternal {
     this.world = new World();
   }
 
-  addPlayer(player) {
-    if(_.find(this.players, { name: player.name })) return false;
-    this.players.push(player);
-    return true;
+  getPlayer(playerName) {
+    return _.find(this.players, { name: playerName });
+  }
+
+  addPlayer(playerName) {
+    return new Promise(async resolve => {
+      if(this.getPlayer(playerName)) return resolve(false);
+      const player = await this.retrievePlayer(playerName);
+
+      // double check because async takes time
+      if(this.getPlayer(playerName)) return resolve(false);
+
+      this.players.push(player);
+      resolve(player);
+    })
   }
 
   delPlayer(playerName) {
@@ -24,6 +37,13 @@ class GameStateInternal {
 
   getPlayers() {
     return this.players;
+  }
+
+  retrievePlayer(playerName) {
+    const playerObject = _.find(this.players, { name: playerName });
+    if(playerObject) return playerObject;
+
+    return loadPlayer(playerName);
   }
 }
 

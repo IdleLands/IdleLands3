@@ -4,11 +4,6 @@ import _ from 'lodash';
 import dbPromise from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
 
-import { Player } from './player';
-
-import { Statistics } from '../statistics/statistics';
-import { getStatistics, saveStatistics } from '../statistics/statistics.db';
-
 export const getPlayer = async (opts) => {
   const db = await dbPromise();
   const players = db.collection('players');
@@ -24,18 +19,7 @@ export const getPlayer = async (opts) => {
         return reject({ err, msg: MESSAGES.NO_PLAYER });
       }
 
-      const player = new Player(doc);
-
-      if(!player.statisticsLink) {
-        const statisticsObj = new Statistics({ _id: player.name, stats: {} });
-        const newStatistics = await saveStatistics(statisticsObj);
-        player.statisticsLink = newStatistics._id;
-        player.$statistics = statisticsObj;
-      } else {
-        player.$statistics = await getStatistics(player.name);
-      }
-
-      resolve(player);
+      resolve(doc);
     });
   });
 };

@@ -6,7 +6,9 @@ import { Logger } from './logger';
 
 const connectionString = process.env.MONGOLAB_URI;
 
-Logger.info('Mongo', 'Connecting to database...');
+const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`
+
+Logger.info(mongoTag, 'Connecting to database...');
 const connectionPromise = new Promise((resolve, reject) => {
 
   MongoClient.connect(connectionString, async (err, db) => {
@@ -19,7 +21,7 @@ const connectionPromise = new Promise((resolve, reject) => {
     db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
     db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
 
-    Logger.info('Mongo', 'Connected!');
+    Logger.info(mongoTag, 'Connected!');
     resolve(db);
   });
 });

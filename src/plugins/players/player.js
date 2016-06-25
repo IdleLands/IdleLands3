@@ -4,7 +4,7 @@ import { Character } from '../../core/base/character';
 import { SETTINGS } from '../../static/settings';
 
 import { savePlayer } from './player.db';
-// import { PlayerMovement } from './player.movement';
+import { PlayerMovement } from './player.movement';
 
 import { emitter } from './_emitter';
 
@@ -30,7 +30,7 @@ export class Player extends Character {
     this._level.add(1);
     this.resetMaxXp();
     this._xp.toMinimum();
-    emitter.emit('player:levelup', { worker: this.$worker, player: this });
+    emitter.emit('player:levelup', { player: this });
   }
 
   gainXp(xp = 1) {

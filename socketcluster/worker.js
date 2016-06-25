@@ -33,6 +33,8 @@ export const run = (worker) => {
 
   scServer.on('error', e => Logger.error('SC:Server', e));
 
+  worker.playerNameToSocket = {};
+
   scServer.on('connection', socket => {
 
     socket.on('masterMessage', data => console.log('MASTER', data));

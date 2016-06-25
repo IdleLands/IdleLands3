@@ -5,9 +5,6 @@ import jwt from 'jsonwebtoken';
 import { addPlayer } from './player.worker';
 import { getPlayer, createPlayer } from './player.db';
 
-import { Player } from './player';
-// import { emitter } from './_emitter';
-
 import { Logger } from '../../shared/logger';
 import { MESSAGES } from '../../static/messages';
 
@@ -49,7 +46,7 @@ export const socket = (socket, worker) => {
       if(!_.includes(['male', 'female'], gender)) gender = 'male';
       if(!_.includes(['Generalist', 'Mage', 'Cleric', 'Fighter'], professionName)) professionName = 'Generalist';
 
-      const playerObject = new Player({ _id: name, name, gender, professionName, userId });
+      const playerObject = { _id: name, name, gender, professionName, userId };
 
       try {
         await createPlayer(playerObject);
@@ -65,11 +62,8 @@ export const socket = (socket, worker) => {
       await addPlayer(worker, name);
       socket.setAuthToken({ playerName: player.name, token });
 
-      player.$worker = worker;
-
+      worker.playerNameToSocket[player.name] = socket;
       worker.sendToMaster({ event, playerName: player.name });
-
-      // emitter.emit(event, { worker, player });
 
       return respond({ ok: true, msg: MESSAGES.LOGIN_SUCCESS });
 
