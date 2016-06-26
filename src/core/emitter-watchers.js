@@ -43,3 +43,21 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
     highlights: [{ name: player.name }]
   });
 });
+
+PlayerEmitter.on('player:transfer', ({ player, dest }) => {
+
+  let message = '';
+  switch(dest.movementType) {
+    case 'ascend':    message = `${player.name} has ascended to ${dest.destName}.`; break;
+    case 'descend':   message = `${player.name} has descended to ${dest.destName}.`; break;
+    case 'fall':      message = `${player.name} has fallen to ${dest.destName} from ${dest.fromName}.`; break;
+    case 'teleport':  message = `${player.name} has been teleported to ${dest.destName} from ${dest.fromName}.`; break;
+  }
+
+  AdventureLog({
+    text: message,
+    type: MessageTypes.GLOBAL,
+    highlights: [{ name: player.name }]
+  });
+
+});
