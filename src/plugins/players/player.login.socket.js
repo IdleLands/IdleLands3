@@ -23,7 +23,7 @@ export const socket = (socket, primus, respond) => {
         try {
           jwt.verify(token, new Buffer(AUTH0_SECRET, 'base64'), { algorithms: ['HS256'] });
         } catch(e) {
-          return respond({ notify: MESSAGES.INVALID_TOKEN });
+          return respond(MESSAGES.INVALID_TOKEN);
         }
       } else {
         Logger.error('Login', new Error('Token needs to be validated, but no AUTH0_TOKEN is present.'));
@@ -40,7 +40,7 @@ export const socket = (socket, primus, respond) => {
       name = _.truncate(name, { length: 20 }).trim();
 
       if(name.length === 0) {
-        return respond({ notify: MESSAGES.INVALID_NAME });
+        return respond(MESSAGES.INVALID_NAME);
       }
 
       // sensible defaults
@@ -52,7 +52,7 @@ export const socket = (socket, primus, respond) => {
       try {
         await createPlayer(playerObject);
       } catch(e) {
-        return respond({ notify: MESSAGES.PLAYER_EXISTS });
+        return respond(MESSAGES.PLAYER_EXISTS);
       }
 
       player = await getPlayer({ userId, name });
@@ -61,7 +61,9 @@ export const socket = (socket, primus, respond) => {
 
     if(player.isOnline) {
       // player already logged in, instead: disconnect this socket
-      respond({ alreadyLoggedIn: true, notify: MESSAGES.ALREADY_LOGGED_IN });
+      const msg = _.clone(MESSAGES.ALREADY_LOGGED_IN);
+      msg.alreadyLoggedIn = true;
+      respond(msg);
       socket.end();
       return;
     }
@@ -70,7 +72,9 @@ export const socket = (socket, primus, respond) => {
 
     emitter.emit(event, { playerName: player.name });
 
-    return respond({ ok: true, notify: MESSAGES.LOGIN_SUCCESS });
+    const msg = _.clone(MESSAGES.LOGIN_SUCCESS);
+    msg.ok = true;
+    return respond(msg);
   };
 
   socket.on(event, login);
