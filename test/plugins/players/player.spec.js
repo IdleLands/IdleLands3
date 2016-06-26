@@ -6,18 +6,18 @@ import { PlayerDb } from '../../../src/plugins/players/player.db';
 import { Statistics } from '../../../src/plugins/statistics/statistics';
 import { PlayerMovement } from '../../../src/plugins/players/player.movement';
 
+class MockStatistics {
+  incrementStat() {
+  }
+
+  batchIncrement() {
+
+  }
+}
+
 test.beforeEach(t => {
   class MockDatabase {
 
-  }
-
-  class MockStatistics {
-    incrementStat() {
-    }
-
-    batchIncrement() {
-
-    }
   }
 
   class MockPlayerMovement {
@@ -55,6 +55,7 @@ test.beforeEach(t => {
 test('Xp gain should level up', t => {
   const p = t.context.container.constitute(Player);
   p.init({ name: 'Mr so and so' });
+  p.$statistics = new MockStatistics();
   t.is(p.level, 1);
   p._xp.toMaximum();
   p.gainXp();
@@ -65,6 +66,7 @@ test('Xp gain should level up', t => {
 test('Movement should move player', t => {
   const p = t.context.container.constitute(Player);
   p.init({ name: 'Mr so and so' });
+  p.$statistics = new MockStatistics();
   t.is(p.x, 10);
   t.is(p.y, 10);
   p.moveAction();

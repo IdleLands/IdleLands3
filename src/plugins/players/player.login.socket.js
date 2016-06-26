@@ -3,10 +3,8 @@ import _ from 'lodash';
 import jwt from 'jsonwebtoken';
 import constitute from 'constitute';
 
-import { addPlayer } from './player.worker';
-import { PlayerDb } from './player.db';
-
 import { Player } from './player';
+import { PlayerDb } from './player.db';
 import { emitter } from './_emitter';
 
 import { Logger } from '../../shared/logger';
@@ -14,16 +12,17 @@ import { MESSAGES } from '../../static/messages';
 
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
 
-export const socket = (socket, worker) => {
+export const event = 'plugin:player:login';
+export const socket = (socket, primus, respond) => {
 
-  const login = async ({ name, gender, professionName, token, userId }, respond) => {
+  const login = async({ name, gender, professionName, token, userId }) => {
     let player = null;
     let event = '';
     const playerDb = constitute(PlayerDb);
 
     if(!playerDb) {
-      respond({ msg: MESSAGES.GENERIC });
       Logger.error('Login', new Error('playerDb could not be resolved.'));
+      respond({ msg: MESSAGES.GENERIC });
     }
 
     const validateToken = !_.includes(userId, 'local|');
@@ -32,7 +31,7 @@ export const socket = (socket, worker) => {
         try {
           jwt.verify(token, new Buffer(AUTH0_SECRET, 'base64'), { algorithms: ['HS256'] });
         } catch(e) {
-          return respond({ msg: MESSAGES.INVALID_TOKEN });
+          return respond(MESSAGES.INVALID_TOKEN);
         }
       } else {
         Logger.error('Login', new Error('Token needs to be validated, but no AUTH0_TOKEN is present.'));
@@ -40,7 +39,7 @@ export const socket = (socket, worker) => {
     }
 
     try {
-      player = await playerDb.getPlayer(userId);
+      player = await playerDb.getPlayer({ userId });
       event = 'player:login';
 
     } catch(e) {
@@ -49,7 +48,7 @@ export const socket = (socket, worker) => {
       name = _.truncate(name, { length: 20 }).trim();
 
       if(name.length === 0) {
-        return respond({ msg: MESSAGES.INVALID_NAME });
+        return respond(MESSAGES.INVALID_NAME);
       }
 
       // sensible defaults
@@ -59,43 +58,46 @@ export const socket = (socket, worker) => {
       let playerObject = {};
       try {
         playerObject = constitute(Player);
-      } catch (e) {
+      } catch(e) {
         Logger.error('Login', e);
+        return respond(MESSAGES.GENERIC);
       }
       playerObject.init({ _id: name, name, gender, professionName, userId });
 
       try {
         await playerDb.createPlayer(playerObject);
       } catch(e) {
-        return respond({ msg: MESSAGES.PLAYER_EXISTS });
+        return respond(MESSAGES.PLAYER_EXISTS);
       }
 
       try {
         player = await playerDb.getPlayer({ userId, name });
-      } catch (e) {
+      } catch(e) {
         Logger.error('Login', e);
-        respond({ msg: MESSAGES.GENERIC });
+        respond(MESSAGES.GENERIC);
       }
       event = 'player:register';
     }
 
-    try {
-      await addPlayer(worker, name);
-      socket.setAuthToken({ playerName: player.name, token });
-
-      player.$worker = worker;
-
-      emitter.emit(event, { worker, player });
-
-      return respond({ ok: true });
-
-    // player already logged in, instead: disconnect this socket
-    } catch(e) {
-      Logger.error('Login', e);
-      respond({ alreadyLoggedIn: true, msg: MESSAGES.ALREADY_LOGGED_IN });
-      socket.disconnect();
+    if(player.isOnline) {
+      // player already logged in, instead: disconnect this socket
+      const msg = _.clone(MESSAGES.ALREADY_LOGGED_IN);
+      msg.alreadyLoggedIn = true;
+      respond(msg);
+      socket.end();
+      return;
     }
+
+    socket.authToken = { playerName: player.name, token };
+
+    socket.join(player.name);
+
+    emitter.emit(event, { playerName: player.name });
+
+    const msg = _.clone(MESSAGES.LOGIN_SUCCESS);
+    msg.ok = true;
+    return respond(msg);
   };
 
-  socket.on('plugin:player:login', login);
+  socket.on(event, login);
 };

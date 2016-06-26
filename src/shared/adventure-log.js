@@ -1,5 +1,6 @@
 
 import { Logger } from './logger';
+import { primus } from '../../primus/server';
 
 const verifyMessage = (msg) => {
   if(!msg.type)
@@ -18,12 +19,13 @@ export const MessageTypes = {
   GLOBAL: 'Global'
 };
 
-export const AdventureLog = (worker, message) => {
+export const AdventureLog = (message) => {
   if(!verifyMessage(message)) return;
 
   if(process.env.NODE_ENV !== 'production') {
     Logger.info('AdventureLog', JSON.stringify(message));
   }
 
-  worker.exchange.publish('adventurelog', message);
+  message.event = 'adventurelog';
+  primus.room('adventurelog').write(message);
 };

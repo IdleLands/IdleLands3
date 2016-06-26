@@ -3,7 +3,8 @@ import constitute from 'constitute';
 
 import { PlayerDb } from './player.db';
 
-export const socket = (socket) => {
+export const event = 'plugin:player:exists';
+export const socket = (socket, primus, respond) => {
 
   const playerDb = constitute(PlayerDb);
 
@@ -12,7 +13,7 @@ export const socket = (socket) => {
     throw new Error('PlayerDb could not be resolved.');
   }
 
-  const exists = async ({ userId }, respond) => {
+  const exists = async({ userId }) => {
     try {
       await playerDb.getPlayer({ userId });
       respond({ exists: true });
@@ -21,5 +22,5 @@ export const socket = (socket) => {
     }
   };
 
-  socket.on('plugin:player:exists', exists);
+  socket.on(event, exists);
 };

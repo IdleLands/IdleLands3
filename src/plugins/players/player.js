@@ -1,31 +1,23 @@
 
-import { Dependencies, Container } from 'constitute';
-
+import _ from 'lodash';
+import { Dependencies } from 'constitute';
 import { Character } from '../../core/base/character';
 
-import { Logger } from '../../shared/logger';
 import { SETTINGS } from '../../static/settings';
 
-import { Statistics } from '../statistics/statistics';
-
+import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
+
+import { DataUpdater } from '../../shared/data-updater';
 
 import { emitter } from './_emitter';
 
-@Dependencies(Container)
+@Dependencies(PlayerDb, PlayerMovement)
 export class Player extends Character {
-  constructor(container) {
+  constructor(playerDb, playerMovement) {
     super();
-    const PlayerDb = require('./player.db').PlayerDb;
-    try {
-      container.schedulePostConstructor((playerDb, statistics, playerMovement) => {
-        this.PlayerDb = playerDb;
-        this.$statistics = statistics;
-        this.PlayerMovement = playerMovement;
-      }, [PlayerDb, Statistics, PlayerMovement]);
-    } catch (e) {
-      Logger.error('Player', e);
-    }
+    this.PlayerDb = playerDb;
+    this.PlayerMovement = playerMovement;
   }
 
   init(opts) {
@@ -49,7 +41,7 @@ export class Player extends Character {
     this._level.add(1);
     this.resetMaxXp();
     this._xp.toMinimum();
-    emitter.emit('player:levelup', { worker: this.$worker, player: this });
+    emitter.emit('player:levelup', { player: this });
   }
 
   gainXp(xp = 1) {
@@ -81,6 +73,8 @@ export class Player extends Character {
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
 
+    this.mapPath = tile.path;
+
     this.PlayerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
@@ -91,7 +85,16 @@ export class Player extends Character {
     this.gainXp(10);
   }
 
+  buildSaveObject() {
+    return _.omitBy(this, (val, key) => _.startsWith(key, '$'));
+  }
+
   save() {
     this.PlayerDb.savePlayer(this);
+    this.update();
+  }
+
+  update() {
+    DataUpdater(this.name, 'player', this.buildSaveObject());
   }
 }

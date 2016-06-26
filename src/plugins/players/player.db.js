@@ -1,20 +1,13 @@
 
-import _ from 'lodash';
-import { Dependencies, constitute } from 'constitute';
+import { Dependencies } from 'constitute';
 
 import { DbWrapper } from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
-import { Logger } from '../../shared/logger';
 
-import { Player } from './player';
-
-import { StatisticsDb } from '../statistics/statistics.db';
-
-@Dependencies(DbWrapper, StatisticsDb)
+@Dependencies(DbWrapper)
 export class PlayerDb {
-  constructor(dbWrapper, statisticsDb) {
+  constructor(dbWrapper) {
     this.DbWrapper = dbWrapper;
-    this.StatisticsDb = statisticsDb;
   }
 
   async getPlayer(opts) {
@@ -31,23 +24,7 @@ export class PlayerDb {
           return reject({ err, msg: MESSAGES.NO_PLAYER });
         }
 
-        try {
-          const player = constitute(Player);
-          player.init(doc);
-
-          if(!player.statisticsLink) {
-            player.$statistics.init({ _id: player.name, stats: {} });
-            const newStatistics = await this.StatisticsDb.saveStatistics(player.$statistics);
-            player.statisticsLink = newStatistics._id;
-          } else {
-            player.$statistics = await this.StatisticsDb.getStatistics(player.name);
-          }
-
-          resolve(player);
-        } catch(e) {
-          Logger.error('PlayerDb:getPlayer', e);
-          reject({ e, msg: MESSAGES.GENERIC });
-        }
+        resolve(doc);
       });
     });
   }
@@ -64,7 +41,7 @@ export class PlayerDb {
   }
 
   async savePlayer(playerObject) {
-    const savePlayerObject = _.omitBy(playerObject, (val, key) => _.startsWith(key, '$'));
+    const savePlayerObject = playerObject.buildSaveObject();
     const db = await this.DbWrapper.connectionPromise();
     const players = db.collection('players');
 
