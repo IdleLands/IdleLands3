@@ -1,6 +1,4 @@
 
-import _ from 'lodash';
-
 import dbPromise from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
 
@@ -35,14 +33,14 @@ export const createPlayer = async (playerObject) => {
   });
 };
 
-export const savePlayer = async (playerObject) => {
-  const savePlayerObject = _.omitBy(playerObject, (val, key) => _.startsWith(key, '$'));
+export const savePlayer = async (player) => {
+  const savePlayerObject = player.buildSaveObject();
   const db = await dbPromise();
   const players = db.collection('players');
 
   return new Promise((resolve, reject) => {
     players.findOneAndUpdate({ _id: savePlayerObject._id }, savePlayerObject, { upsert: true }).then(() => {
-      resolve(playerObject);
+      resolve(player);
     }, reject);
   });
 };

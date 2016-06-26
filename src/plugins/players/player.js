@@ -1,10 +1,13 @@
 
+import _ from 'lodash';
 import { Character } from '../../core/base/character';
 
 import { SETTINGS } from '../../static/settings';
 
 import { savePlayer } from './player.db';
 import { PlayerMovement } from './player.movement';
+
+import { DataUpdater } from '../../shared/data-updater';
 
 import { emitter } from './_emitter';
 
@@ -72,7 +75,12 @@ export class Player extends Character {
     this.gainXp(10);
   }
 
+  buildSaveObject() {
+    return _.omitBy(this, (val, key) => _.startsWith(key, '$'));
+  }
+
   save() {
     savePlayer(this);
+    DataUpdater(this.name, 'player', this.buildSaveObject());
   }
 }

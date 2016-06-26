@@ -70,6 +70,8 @@ export const socket = (socket, primus, respond) => {
 
     socket.authToken = { playerName: player.name, token };
 
+    socket.join(player.name);
+
     emitter.emit(event, { playerName: player.name });
 
     const msg = _.clone(MESSAGES.LOGIN_SUCCESS);
