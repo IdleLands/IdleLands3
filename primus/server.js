@@ -68,6 +68,7 @@ primus.on('connection', spark => {
 });
 
 const path = require('path').join(__dirname, '..', '..', 'Play');
-if(fs.statSync(path)) {
+fs.stat(path, e => {
+  if(e) return;
   primus.save(`${path}/primus.gen.js`);
-}
+});
