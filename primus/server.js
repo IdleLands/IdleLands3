@@ -41,6 +41,7 @@ const serve = require('serve-static')('assets');
 const finalhandler = require('finalhandler');
 
 const server = require('http').createServer((req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   serve(req, res, finalhandler(req, res))
 });
 server.listen(8080);
