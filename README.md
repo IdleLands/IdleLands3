@@ -9,7 +9,7 @@ An idling game of epic proportions.
 ## Install
 * `git clone`
 * `npm install`
-* Create a `.env` file with the key `MONGOLAB_URI` set to a URI leading to a local or remote mongodb install
+* Create a `.env` file with the key `MONGODB_URI` set to a URI leading to a local or remote mongodb install
 
 ## Running
 * `npm start` to start the server
