@@ -48,7 +48,10 @@ primus.on('connection', spark => {
     spark.write(data);
   };
 
-  _.each(allSocketRequires, obj => obj.socket(spark, primus, respond));
+  _.each(allSocketRequires, obj => obj.socket(spark, primus, (data) => {
+    data.event = obj.event;
+    respond(data);
+  }));
 
   spark.join('adventurelog');
 });

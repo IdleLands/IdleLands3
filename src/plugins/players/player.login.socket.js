@@ -10,6 +10,7 @@ import { MESSAGES } from '../../static/messages';
 
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
 
+export const event = 'plugin:player:login';
 export const socket = (socket, primus, respond) => {
 
   const login = async ({ name, gender, professionName, token, userId }) => {
@@ -22,7 +23,7 @@ export const socket = (socket, primus, respond) => {
         try {
           jwt.verify(token, new Buffer(AUTH0_SECRET, 'base64'), { algorithms: ['HS256'] });
         } catch(e) {
-          return respond({ msg: MESSAGES.INVALID_TOKEN });
+          return respond({ notify: MESSAGES.INVALID_TOKEN });
         }
       } else {
         Logger.error('Login', new Error('Token needs to be validated, but no AUTH0_TOKEN is present.'));
@@ -39,7 +40,7 @@ export const socket = (socket, primus, respond) => {
       name = _.truncate(name, { length: 20 }).trim();
 
       if(name.length === 0) {
-        return respond({ msg: MESSAGES.INVALID_NAME });
+        return respond({ notify: MESSAGES.INVALID_NAME });
       }
 
       // sensible defaults
@@ -51,7 +52,7 @@ export const socket = (socket, primus, respond) => {
       try {
         await createPlayer(playerObject);
       } catch(e) {
-        return respond({ msg: MESSAGES.PLAYER_EXISTS });
+        return respond({ notify: MESSAGES.PLAYER_EXISTS });
       }
 
       player = await getPlayer({ userId, name });
@@ -60,7 +61,7 @@ export const socket = (socket, primus, respond) => {
 
     if(player.isOnline) {
       // player already logged in, instead: disconnect this socket
-      respond({ alreadyLoggedIn: true, msg: MESSAGES.ALREADY_LOGGED_IN });
+      respond({ alreadyLoggedIn: true, notify: MESSAGES.ALREADY_LOGGED_IN });
       socket.end();
       return;
     }
@@ -69,8 +70,8 @@ export const socket = (socket, primus, respond) => {
 
     emitter.emit(event, { playerName: player.name });
 
-    return respond({ ok: true, msg: MESSAGES.LOGIN_SUCCESS });
+    return respond({ ok: true, notify: MESSAGES.LOGIN_SUCCESS });
   };
 
-  socket.on('plugin:player:login', login);
+  socket.on(event, login);
 };

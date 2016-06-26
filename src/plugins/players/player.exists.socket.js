@@ -1,6 +1,7 @@
 
 import { getPlayer } from './player.db';
 
+export const event = 'plugin:player:exists';
 export const socket = (socket, primus, respond) => {
 
   const exists = async ({ userId }) => {
@@ -12,5 +13,5 @@ export const socket = (socket, primus, respond) => {
     }
   };
 
-  socket.on('plugin:player:exists', exists);
+  socket.on(event, exists);
 };

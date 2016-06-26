@@ -1,6 +1,7 @@
 
 import { emitter } from './_emitter';
 
+export const event = 'plugin:player:logout';
 export const socket = (socket) => {
 
   const logout = async () => {
@@ -11,5 +12,5 @@ export const socket = (socket) => {
   };
 
   socket.on('end', logout);
-  socket.on('plugin:player:logout', logout);
+  socket.on(event, logout);
 };

@@ -26,5 +26,6 @@ export const AdventureLog = (message) => {
     Logger.info('AdventureLog', JSON.stringify(message));
   }
 
+  message.event = 'adventurelog';
   primus.room('adventurelog').write(message);
 };

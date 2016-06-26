@@ -32,6 +32,7 @@ class GameStateInternal {
 
   delPlayer(playerName) {
     const remPlayer = _.find(this.players, { name: playerName });
+    if(!remPlayer) return;
     this.players = _.without(this.players, remPlayer);
 
     remPlayer.isOnline = false;
