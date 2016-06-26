@@ -11,7 +11,7 @@ import './emitter-watchers';
 
 Logger.info('Core', 'Starting event loop.');
 
-const timerDelay = SETTINGS.timeframeSeconds * process.env.NODE_ENV === 'production' ? 1000 : 10;
+const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'production' ? 1000 : 10);
 
 setInterval(() => {
   const players = GameState.getPlayers();
