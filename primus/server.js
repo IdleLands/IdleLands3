@@ -44,7 +44,7 @@ const server = require('http').createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   serve(req, res, finalhandler(req, res))
 });
-server.listen(8080);
+server.listen(process.env.PORT || 8080);
 
 export const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
 
