@@ -18,6 +18,7 @@ export class Map {
     this.width = this.map.width;
 
     this.name = this.map.properties.name;
+    this.path = path.split('assets/maps/world-maps/')[1];
 
     this.nameTrainers();
     this.loadRegions();
@@ -64,7 +65,8 @@ export class Map {
       blocked: _.includes(blockers, this.map.layers[1].data[tilePosition]),
       blocker: gidMap[this.map.layers[1].data[tilePosition]],
       region: this.regions[tilePosition] || 'Wilderness',
-      object: tileObject
+      object: tileObject,
+      path: this.path
     };
   }
 }

@@ -65,6 +65,8 @@ export class Player extends Character {
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
 
+    this.mapPath = tile.path;
+
     PlayerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
