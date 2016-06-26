@@ -81,6 +81,10 @@ export class Player extends Character {
 
   save() {
     savePlayer(this);
+    this.update();
+  }
+
+  update() {
     DataUpdater(this.name, 'player', this.buildSaveObject());
   }
 }

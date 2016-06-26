@@ -6,6 +6,7 @@ import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
 PlayerEmitter.on('player:login', async ({ playerName }) => {
   const player = await GameState.addPlayer(playerName);
   if(!player) return;
+  player.update();
   player.$statistics.incrementStat('Game.Logins');
   AdventureLog({
     text: `Welcome ${player.name} back to Idliathlia!`,
@@ -17,6 +18,7 @@ PlayerEmitter.on('player:login', async ({ playerName }) => {
 PlayerEmitter.on('player:register', async ({ playerName }) => {
   const player = await GameState.addPlayer(playerName);
   if(!player) return;
+  player.update();
   player.$statistics.incrementStat('Game.Logins');
   AdventureLog({
     text: `Welcome ${player.name} to Idliathlia!`,
