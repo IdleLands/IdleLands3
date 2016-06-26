@@ -16,7 +16,7 @@ export class Player extends Character {
     super(opts);
 
     if(!this.joinDate)  this.joinDate = Date.now();
-    if(!this.region)    this.region = 'Wilderness';
+    if(!this.mapRegion) this.mapRegion = 'Wilderness';
     if(!this.gold)      this.gold = 0;
     if(!this.map)       this.map = 'Norkos';
     if(!this.x)         this.x = 10;
