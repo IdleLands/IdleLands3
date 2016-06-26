@@ -37,7 +37,7 @@ const play = (name, index) => {
   });
 
   sockets[name].on('data', msg => {
-    if(!msg.type) return;
+    if(!msg.type || !msg.text) return;
     if(msg.type === 'Global' && index !== 0) return;
     console.log(`[${msg.type}] ${msg.text}`);
   });

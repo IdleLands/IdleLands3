@@ -37,7 +37,15 @@ const getAllSocketFunctions = (dir) => {
 const allSocketFunctions = getAllSocketFunctions(normalizedPath);
 const allSocketRequires = _.map(allSocketFunctions, require);
 
-export const primus = Primus.createServer({ iknowhttpsisbetter: true, port: 8080, transformer: 'websockets' });
+const serve = require('serve-static')('assets');
+const finalhandler = require('finalhandler');
+
+const server = require('http').createServer((req, res) => {
+  serve(req, res, finalhandler(req, res))
+});
+server.listen(8080);
+
+export const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
 
 primus.use('rooms', Rooms);
 primus.use('emit', Emit);
