@@ -63,8 +63,6 @@ primus.on('connection', spark => {
   }));
 
   spark.join('adventurelog');
-
-  // TODO make a separate channel for pushing out "all player" updates - send x, y, gender, name, and title
 });
 
 const path = require('path').join(__dirname, '..', '..', 'Play');

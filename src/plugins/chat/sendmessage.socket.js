@@ -19,7 +19,17 @@ export const socket = (socket, primus) => {
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text || !player || !playerName) return;
 
-    primus.room(route).write({ text, channel, route, title: player.title, playerName, event });
+    const messageObject = { text, channel, route, title: player.title, playerName, event };
+
+    if(_.includes(route, ':pm:')) {
+      const users = route.split(':')[2].split('|');
+      primus.forEach(spark => {
+        if(!_.includes(users, spark.playerName)) return;
+        spark.write(messageObject);
+      });
+    } else {
+      primus.room(route).write(messageObject);
+    }
   };
 
   socket.on(event, sendmessage);
