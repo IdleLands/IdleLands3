@@ -59,12 +59,12 @@ export class PlayerMovement {
     dest.y = +dest.desty;
 
     if(!dest.map) {
-      Logger.error('PlayerMovement', new Error(`No dest.map at ${tile.x}, ${tile.y} in ${player.map}`));
+      Logger.error('PlayerMovement', new Error(`No dest.map at ${player.x}, ${player.y} in ${player.map}`));
       return;
     }
 
     if(!dest.movementType) {
-      Logger.error('PlayerMovement', new Error(`No dest.movementType at ${tile.x}, ${tile.y} in ${player.map}`));
+      Logger.error('PlayerMovement', new Error(`No dest.movementType at ${player.x}, ${player.y} in ${player.map}`));
       return;
     }
 
