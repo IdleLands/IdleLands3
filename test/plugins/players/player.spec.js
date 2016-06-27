@@ -15,39 +15,38 @@ class MockStatistics {
   }
 }
 
+class MockDatabase {
+
+}
+
+class MockPlayerMovement {
+  canEnterTile() {
+    return true;
+  }
+
+  pickRandomTile(player) {
+    return [PlayerMovement.num2dir(1, player.x, player.y), 1];
+  }
+
+  getTileAt() {
+    return {
+      terrain: 'Void',
+      blocked: false,
+      blocker: 0,
+      region: 'Wilderness',
+      object: {}
+    };
+  }
+
+  handleTile() {
+
+  }
+}
+
 test.beforeEach(t => {
-  class MockDatabase {
-
-  }
-
-  class MockPlayerMovement {
-    canEnterTile() {
-      return true;
-    }
-
-    pickRandomTile(player) {
-      return [PlayerMovement.num2dir(1, player.x, player.y), 1];
-    }
-
-    getTileAt() {
-      return {
-        terrain: 'Void',
-        blocked: false,
-        blocker: 0,
-        region: 'Wilderness',
-        object: {}
-      };
-    }
-
-    handleTile() {
-
-    }
-  }
-
   const container = new constitute.Container();
   container.bindClass(PlayerDb, MockDatabase);
   container.bindClass(Statistics, MockStatistics);
-  container.bindClass(PlayerMovement, MockPlayerMovement);
 
   t.context.container = container;
 });
@@ -66,6 +65,7 @@ test('Xp gain should level up', t => {
 test('Movement should move player', t => {
   const p = t.context.container.constitute(Player);
   p.init({ name: 'Mr so and so' });
+  p.$PlayerMovement = new MockPlayerMovement();
   p.$statistics = new MockStatistics();
   t.is(p.x, 10);
   t.is(p.y, 10);

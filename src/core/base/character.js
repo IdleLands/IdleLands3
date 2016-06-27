@@ -10,7 +10,6 @@ export class Character {
   init(opts) {
 
     _.extend(this, opts);
-    this.name = opts.name;
     if(!this.name) Logger.error('Player', new Error('No name specified.'), opts);
 
     if(!this._hp)      this._hp = { minimum: 0, maximum: 20, __current: 20 };

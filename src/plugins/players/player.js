@@ -17,6 +17,7 @@ export class Player extends Character {
   constructor(playerDb) {
     super();
     this.$PlayerDb = playerDb;
+    this.$PlayerMovement = PlayerMovement;
   }
 
   init(opts) {
@@ -58,12 +59,12 @@ export class Player extends Character {
   moveAction() {
 
 
-    let [newLoc, dir] = PlayerMovement.pickRandomTile(this);
-    let tile = PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    let [newLoc, dir] = this.$PlayerMovement.pickRandomTile(this);
+    let tile = this.$PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    while(!PlayerMovement.canEnterTile(this, tile)) {
-      [newLoc, dir] = PlayerMovement.pickRandomTile(this);
-      tile = PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    while(!this.$PlayerMovement.canEnterTile(this, tile)) {
+      [newLoc, dir] = this.$PlayerMovement.pickRandomTile(this);
+      tile = this.$PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
     }
 
     this.lastDir = dir === 5 ? null : dir;
@@ -75,7 +76,7 @@ export class Player extends Character {
 
     this.mapPath = tile.path;
 
-    PlayerMovement.handleTile(this, tile);
+    this.$PlayerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
 
