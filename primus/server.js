@@ -18,6 +18,16 @@ if(ip) {
   console.log(`Your IP is: ${ip}`);
 }
 
+// load primus
+const server = require('http').createServer((req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  serve(req, res, finalhandler(req, res))
+});
+server.listen(process.env.PORT || 8080);
+
+export const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
+
+// load socket functions
 const normalizedPath = require('path').join(__dirname, '..', 'src');
 
 const getAllSocketFunctions = (dir) => {
@@ -39,14 +49,6 @@ const allSocketRequires = _.map(allSocketFunctions, require);
 
 const serve = require('serve-static')('assets');
 const finalhandler = require('finalhandler');
-
-const server = require('http').createServer((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  serve(req, res, finalhandler(req, res))
-});
-server.listen(process.env.PORT || 8080);
-
-export const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
 
 primus.use('rooms', Rooms);
 primus.use('emit', Emit);

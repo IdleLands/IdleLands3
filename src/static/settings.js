@@ -9,6 +9,15 @@ class Settings {
 
     this.chatMessageMaxLength = 500;
 
+    this.externalChat = 'irc';
+
+    this.chatConfig = {};
+    this.chatConfig.irc = {
+      server: 'irc.freenode.net',
+      nick: 'idlelandschat',
+      channel: '##idlebot'
+    };
+
     this.gidMap = {
       1: 'StairsDown',
       2: 'StairsUp',

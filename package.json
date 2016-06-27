@@ -46,6 +46,7 @@
     "primus-rooms": "^3.4.1",
     "restricted-number": "^1.1.0",
     "serve-static": "^1.11.1",
+    "squelch-client": "^0.19.0",
     "ws": "^1.1.1"
   },
   "devDependencies": {
