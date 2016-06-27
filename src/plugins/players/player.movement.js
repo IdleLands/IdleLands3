@@ -49,6 +49,7 @@ export class PlayerMovement {
     // TODO forceEvent
   }
 
+  // TODO support toLoc https://github.com/IdleLands/IdleLandsOld/blob/master/src/character/player/Player.coffee#L278
   static handleTileTeleport(player, tile) {
     if(player.stepCooldown > 0) return;
     player.stepCooldown = 30;
