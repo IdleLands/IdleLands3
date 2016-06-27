@@ -35,7 +35,7 @@ export class ExternalChatMechanism {
           event: 'plugin:chat:sendmessage'
         });
       });
-    })
+    });
   }
 
   sendMessage(msgData) {
