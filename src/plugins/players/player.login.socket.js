@@ -37,7 +37,7 @@ export const socket = (socket, primus, respond) => {
     } catch(e) {
 
       // 20 char name is reasonable
-      name = _.truncate(name, { length: 20 }).trim().replace(/[^\w]/gm, '');
+      name = _.truncate(name, { length: 20 }).trim().replace(/[^\w\d ]/gm, '');
 
       if(name.length === 0) {
         return respond(MESSAGES.INVALID_NAME);
