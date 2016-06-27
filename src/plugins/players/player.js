@@ -16,8 +16,8 @@ import { emitter } from './_emitter';
 export class Player extends Character {
   constructor(playerDb) {
     super();
-    this.$PlayerDb = playerDb;
-    this.$PlayerMovement = PlayerMovement;
+    this.$playerDb = playerDb;
+    this.$playerMovement = PlayerMovement;
   }
 
   init(opts) {
@@ -59,12 +59,12 @@ export class Player extends Character {
   moveAction() {
 
 
-    let [newLoc, dir] = this.$PlayerMovement.pickRandomTile(this);
-    let tile = this.$PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    let [newLoc, dir] = this.$playerMovement.pickRandomTile(this);
+    let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    while(!this.$PlayerMovement.canEnterTile(this, tile)) {
-      [newLoc, dir] = this.$PlayerMovement.pickRandomTile(this);
-      tile = this.$PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    while(!this.$playerMovement.canEnterTile(this, tile)) {
+      [newLoc, dir] = this.$playerMovement.pickRandomTile(this);
+      tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
     }
 
     this.lastDir = dir === 5 ? null : dir;
@@ -76,7 +76,7 @@ export class Player extends Character {
 
     this.mapPath = tile.path;
 
-    this.$PlayerMovement.handleTile(this, tile);
+    this.$playerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
 
@@ -91,7 +91,7 @@ export class Player extends Character {
   }
 
   save() {
-    this.$PlayerDb.savePlayer(this);
+    this.$playerDb.savePlayer(this);
     this.update();
   }
 

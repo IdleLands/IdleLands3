@@ -33,6 +33,8 @@ export class PlayerDb {
     const db = await this.DbWrapper.connectionPromise();
     const players = db.collection('players');
 
+    console.log(playerObject)
+
     return new Promise((resolve, reject) => {
       players.insertOne(playerObject).then(() => {
         resolve(playerObject);

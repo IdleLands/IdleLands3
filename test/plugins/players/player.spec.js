@@ -65,7 +65,7 @@ test('Xp gain should level up', t => {
 test('Movement should move player', t => {
   const p = t.context.container.constitute(Player);
   p.init({ name: 'Mr so and so' });
-  p.$PlayerMovement = new MockPlayerMovement();
+  p.$playerMovement = new MockPlayerMovement();
   p.$statistics = new MockStatistics();
   t.is(p.x, 10);
   t.is(p.y, 10);

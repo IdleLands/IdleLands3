@@ -62,10 +62,11 @@ export const socket = (socket, primus, respond) => {
         Logger.error('Login', e);
         return respond(MESSAGES.GENERIC);
       }
+
       playerObject.init({ _id: name, name, gender, professionName, userId });
 
       try {
-        await playerDb.createPlayer(playerObject);
+        await playerDb.createPlayer(playerObject.buildSaveObject());
       } catch(e) {
         return respond(MESSAGES.PLAYER_EXISTS);
       }

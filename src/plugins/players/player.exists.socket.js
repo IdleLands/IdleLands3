@@ -10,7 +10,7 @@ export const socket = (socket, primus, respond) => {
 
   if(!playerDb) {
     // Logger?
-    throw new Error('$PlayerDb could not be resolved.');
+    throw new Error('$playerDb could not be resolved.');
   }
 
   const exists = async({ userId }) => {
