@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 
 import { Logger } from './logger';
 
-const connectionString = process.env.MONGOLAB_URI;
+const connectionString = process.env.MONGODB_URI;
 
 const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`;
 

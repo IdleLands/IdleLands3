@@ -1,3 +1,4 @@
+
 import fs from 'fs';
 
 import _ from 'lodash';
@@ -64,14 +65,10 @@ new (require('../src/shared/db-wrapper').DbWrapper)().connectionPromise().then((
     }));
 
     spark.join('adventurelog');
+});
 
-    // TODO make a separate channel for pushing out "all player" updates - send x, y, gender, and name
-  });
-
-  const path = require('path').join(__dirname, '..', '..', 'Play');
-  fs.stat(path, (err) => {
-    if(err) return;
-
-    primus.save(`${path}/primus.gen.js`);
-  });
+const path = require('path').join(__dirname, '..', '..', 'Play');
+fs.stat(path, e => {
+  if(e) return;
+  primus.save(`${path}/primus.gen.js`);
 });

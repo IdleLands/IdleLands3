@@ -4,8 +4,10 @@ import _ from 'lodash';
 class Settings {
 
   constructor() {
-    this.timeframeSeconds = 15;
+    this.timeframeSeconds = 10;
     this.maxLevel = 100;
+
+    this.chatMessageMaxLength = 500;
 
     this.gidMap = {
       1: 'StairsDown',

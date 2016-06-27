@@ -45,7 +45,7 @@ export const socket = (socket, primus, respond) => {
     } catch(e) {
 
       // 20 char name is reasonable
-      name = _.truncate(name, { length: 20 }).trim();
+      name = _.truncate(name, { length: 20 }).trim().replace(/[^\w\d ]/gm, '');
 
       if(name.length === 0) {
         return respond(MESSAGES.INVALID_NAME);
@@ -89,6 +89,7 @@ export const socket = (socket, primus, respond) => {
     }
 
     socket.authToken = { playerName: player.name, token };
+    socket.playerName = player.name;
 
     socket.join(player.name);
 

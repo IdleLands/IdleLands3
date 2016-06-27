@@ -2,6 +2,9 @@
 import _ from 'lodash';
 import { GameState } from '../../core/game-state';
 
+import { Logger } from '../../shared/logger';
+import { emitter } from './_emitter';
+
 import Chance from 'chance';
 const chance = new Chance(Math.random);
 
@@ -39,10 +42,42 @@ export class PlayerMovement {
   // TODO https://github.com/IdleLands/IdleLandsOld/blob/master/src/character/player/Player.coffee#L347
   static handleTile(player, tile) {
     const type = _.get(tile, 'object.type');
+
     if(!type || !this[`handleTile${type}`]) return;
-    this[`handleTile${type}`](tile);
+    this[`handleTile${type}`](player, tile);
 
     // TODO forceEvent
+  }
+
+  static handleTileTeleport(player, tile) {
+    if(player.stepCooldown > 0) return;
+    player.stepCooldown = 30;
+
+    const dest = tile.object.properties;
+    dest.x = +dest.destx;
+    dest.y = +dest.desty;
+
+    if(!dest.map) {
+      Logger.error('PlayerMovement', `No dest.map at ${tile.x}, ${tile.y} in ${player.map}`);
+      return;
+    }
+
+    if(!dest.movementType) {
+      Logger.error('PlayerMovement', `No dest.movementType at ${tile.x}, ${tile.y} in ${player.map}`);
+      return;
+    }
+
+    if(!dest.fromName) dest.fromName = player.map;
+    if(!dest.destName) dest.destName = dest.map;
+
+    player.map = dest.map;
+    player.x = dest.x;
+    player.y = dest.y;
+
+    player.oldRegion = player.mapRegion;
+    player.mapRegion = tile.region;
+
+    emitter.emit('player:transfer', { player, dest });
   }
 
   static getTileAt(map, x, y) {
@@ -50,7 +85,7 @@ export class PlayerMovement {
   }
 
   static pickRandomTile(player) {
-    if(!player.stepCooldown) player.stepCooldown = 10;
+    if(!player.stepCooldown) player.stepCooldown = 0;
 
     const directions = [1,  2,  3,  4,  5,  6,  7,  8,  9];
     const weight     = [10, 10, 10, 10, 10, 10, 10, 10, 10];
