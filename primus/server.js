@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 
 import _ from 'lodash';
@@ -65,10 +64,12 @@ new (require('../src/shared/db-wrapper').DbWrapper)().connectionPromise().then((
     }));
 
     spark.join('adventurelog');
-});
 
-const path = require('path').join(__dirname, '..', '..', 'Play');
-fs.stat(path, e => {
-  if(e) return;
-  primus.save(`${path}/primus.gen.js`);
+
+    const path = require('path').join(__dirname, '..', '..', 'Play');
+    fs.stat(path, e => {
+      if(e) return;
+      primus.save(`${path}/primus.gen.js`);
+    })
+  });
 });
