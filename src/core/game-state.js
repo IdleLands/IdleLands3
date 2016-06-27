@@ -5,6 +5,8 @@ import { Logger } from '../shared/logger';
 
 import { loadPlayer } from '../plugins/players/player.load';
 
+const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
+
 class GameStateInternal {
   constructor() {
     this.players = [];
@@ -41,6 +43,19 @@ class GameStateInternal {
 
   getPlayers() {
     return this.players;
+  }
+
+  getPlayerNameSimple(playerName, keys) {
+    return this.getPlayerSimple(this.retrievePlayer(playerName), keys);
+  }
+
+  getPlayerSimple(player, keys = UPDATE_KEYS) {
+    keys.push('isMuted', 'isMod');
+    return _.pick(player, keys);
+  }
+
+  getPlayersSimple() {
+    return _.map(this.players, p => this.getPlayerSimple(p));
   }
 
   retrievePlayer(playerName) {

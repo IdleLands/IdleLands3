@@ -7,6 +7,8 @@ class Settings {
     this.timeframeSeconds = 10;
     this.maxLevel = 100;
 
+    this.chatMessageMaxLength = 500;
+
     this.gidMap = {
       1: 'StairsDown',
       2: 'StairsUp',
