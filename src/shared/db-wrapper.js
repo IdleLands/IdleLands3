@@ -8,16 +8,15 @@ const connectionString = process.env.MONGODB_URI;
 
 const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`;
 
-let globalDb;
+let globalPromise;
 export class DbWrapper {
 
   connectionPromise() {
-    return new Promise((resolve, reject) => {
+    if(globalPromise) {
+      return globalPromise;
+    }
 
-      if(globalDb) {
-        return resolve(globalDb);
-      }
-
+    globalPromise = new Promise((resolve, reject) => {
       Logger.info(mongoTag, 'Connecting to database...');
 
       MongoClient.connect(connectionString, async(err, db) => {
@@ -33,9 +32,10 @@ export class DbWrapper {
         db.collection('players').updateMany({}, { $set: { isOnline: false } });
 
         Logger.info(mongoTag, 'Connected!');
-        globalDb = db;
         resolve(db);
       });
     });
+
+    return globalPromise;
   }
 }
