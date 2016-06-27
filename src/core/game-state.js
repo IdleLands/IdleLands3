@@ -1,15 +1,17 @@
 
 import _ from 'lodash';
+import constitute from 'constitute';
 import { World } from './world/world';
 import { Logger } from '../shared/logger';
 
-import { loadPlayer } from '../plugins/players/player.load';
+import { PlayerLoad } from '../plugins/players/player.load';
 
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
 
 class GameStateInternal {
   constructor() {
     this.players = [];
+    this.PlayerLoad = constitute(PlayerLoad);
 
     Logger.info('GameState', 'Creating world.');
     this.world = new World();
@@ -62,7 +64,7 @@ class GameStateInternal {
     const playerObject = _.find(this.players, { name: playerName });
     if(playerObject) return playerObject;
 
-    return loadPlayer(playerName);
+    return this.PlayerLoad.loadPlayer(playerName);
   }
 }
 

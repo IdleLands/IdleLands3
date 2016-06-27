@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 
 import _ from 'lodash';
@@ -54,21 +53,25 @@ primus.use('rooms', Rooms);
 primus.use('emit', Emit);
 primus.use('multiplex', Multiplex);
 
-primus.on('connection', spark => {
-  const respond = (data) => {
-    spark.write(data);
-  };
+// force setting up the global connection
+new (require('../src/shared/db-wrapper').DbWrapper)().connectionPromise().then(() => {
+  primus.on('connection', spark => {
+    const respond = (data) => {
+      spark.write(data);
+    };
 
-  _.each(allSocketRequires, obj => obj.socket(spark, primus, (data) => {
-    data.event = obj.event;
-    respond(data);
-  }));
+    _.each(allSocketRequires, obj => obj.socket(spark, primus, (data) => {
+      data.event = obj.event;
+      respond(data);
+    }));
 
-  spark.join('adventurelog');
-});
+    spark.join('adventurelog');
 
-const path = require('path').join(__dirname, '..', '..', 'Play');
-fs.stat(path, e => {
-  if(e) return;
-  primus.save(`${path}/primus.gen.js`);
+
+    const path = require('path').join(__dirname, '..', '..', 'Play');
+    fs.stat(path, e => {
+      if(e) return;
+      primus.save(`${path}/primus.gen.js`);
+    })
+  });
 });

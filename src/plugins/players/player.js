@@ -1,19 +1,27 @@
 
 import _ from 'lodash';
+import { Dependencies } from 'constitute';
 import { Character } from '../../core/base/character';
 
 import { SETTINGS } from '../../static/settings';
 
-import { savePlayer } from './player.db';
+import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
 
 import { DataUpdater } from '../../shared/data-updater';
 
 import { emitter } from './_emitter';
 
+@Dependencies(PlayerDb)
 export class Player extends Character {
-  constructor(opts) {
-    super(opts);
+  constructor(playerDb) {
+    super();
+    this.$PlayerDb = playerDb;
+    this.$PlayerMovement = PlayerMovement;
+  }
+
+  init(opts) {
+    super.init(opts);
 
     if(!this.joinDate)  this.joinDate = Date.now();
     if(!this.mapRegion) this.mapRegion = 'Wilderness';
@@ -50,12 +58,13 @@ export class Player extends Character {
 
   moveAction() {
 
-    let [newLoc, dir] = PlayerMovement.pickRandomTile(this);
-    let tile = PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    while(!PlayerMovement.canEnterTile(this, tile)) {
-      [newLoc, dir] = PlayerMovement.pickRandomTile(this);
-      tile = PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    let [newLoc, dir] = this.$PlayerMovement.pickRandomTile(this);
+    let tile = this.$PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+
+    while(!this.$PlayerMovement.canEnterTile(this, tile)) {
+      [newLoc, dir] = this.$PlayerMovement.pickRandomTile(this);
+      tile = this.$PlayerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
     }
 
     this.lastDir = dir === 5 ? null : dir;
@@ -67,7 +76,7 @@ export class Player extends Character {
 
     this.mapPath = tile.path;
 
-    PlayerMovement.handleTile(this, tile);
+    this.$PlayerMovement.handleTile(this, tile);
 
     this.stepCooldown--;
 
@@ -82,7 +91,7 @@ export class Player extends Character {
   }
 
   save() {
-    savePlayer(this);
+    this.$PlayerDb.savePlayer(this);
     this.update();
   }
 

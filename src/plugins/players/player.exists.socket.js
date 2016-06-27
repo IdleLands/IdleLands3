@@ -1,12 +1,21 @@
 
-import { getPlayer } from './player.db';
+import constitute from 'constitute';
+
+import { PlayerDb } from './player.db';
 
 export const event = 'plugin:player:exists';
 export const socket = (socket, primus, respond) => {
 
-  const exists = async ({ userId }) => {
+  const playerDb = constitute(PlayerDb);
+
+  if(!playerDb) {
+    // Logger?
+    throw new Error('$PlayerDb could not be resolved.');
+  }
+
+  const exists = async({ userId }) => {
     try {
-      await getPlayer({ userId });
+      await playerDb.getPlayer({ userId });
       respond({ exists: true });
     } catch(e) {
       respond({ exists: false });

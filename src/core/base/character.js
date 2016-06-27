@@ -7,7 +7,7 @@ import { Logger } from '../../shared/logger';
 
 export class Character {
 
-  constructor(opts) {
+  init(opts) {
 
     _.extend(this, opts);
     if(!this.name) Logger.error('Player', new Error('No name specified.'), opts);

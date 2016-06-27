@@ -1,8 +1,10 @@
 
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
+import constitute from 'constitute';
 
-import { getPlayer, createPlayer } from './player.db';
+import { Player } from './player';
+import { PlayerDb } from './player.db';
 import { emitter } from './_emitter';
 
 import { Logger } from '../../shared/logger';
@@ -13,9 +15,15 @@ const AUTH0_SECRET = process.env.AUTH0_SECRET;
 export const event = 'plugin:player:login';
 export const socket = (socket, primus, respond) => {
 
-  const login = async ({ name, gender, professionName, token, userId }) => {
+  const login = async({ name, gender, professionName, token, userId }) => {
     let player = null;
     let event = '';
+    const playerDb = constitute(PlayerDb);
+
+    if(!playerDb) {
+      Logger.error('Login', new Error('playerDb could not be resolved.'));
+      respond({ msg: MESSAGES.GENERIC });
+    }
 
     const validateToken = !_.includes(userId, 'local|');
     if(validateToken) {
@@ -31,7 +39,7 @@ export const socket = (socket, primus, respond) => {
     }
 
     try {
-      player = await getPlayer({ userId });
+      player = await playerDb.getPlayer({ userId });
       event = 'player:login';
 
     } catch(e) {
@@ -47,15 +55,27 @@ export const socket = (socket, primus, respond) => {
       if(!_.includes(['male', 'female'], gender)) gender = 'male';
       if(!_.includes(['Generalist', 'Mage', 'Cleric', 'Fighter'], professionName)) professionName = 'Generalist';
 
-      const playerObject = { _id: name, name, gender, professionName, userId };
+      let playerObject = {};
+      try {
+        playerObject = constitute(Player);
+      } catch(e) {
+        Logger.error('Login', e);
+        return respond(MESSAGES.GENERIC);
+      }
+      playerObject.init({ _id: name, name, gender, professionName, userId });
 
       try {
-        await createPlayer(playerObject);
+        await playerDb.createPlayer(playerObject);
       } catch(e) {
         return respond(MESSAGES.PLAYER_EXISTS);
       }
 
-      player = await getPlayer({ userId, name });
+      try {
+        player = await playerDb.getPlayer({ userId, name });
+      } catch(e) {
+        Logger.error('Login', e);
+        respond(MESSAGES.GENERIC);
+      }
       event = 'player:register';
     }
 

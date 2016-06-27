@@ -8,24 +8,34 @@ const connectionString = process.env.MONGODB_URI;
 
 const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`;
 
-Logger.info(mongoTag, 'Connecting to database...');
-const connectionPromise = new Promise((resolve, reject) => {
+let globalPromise;
+export class DbWrapper {
 
-  MongoClient.connect(connectionString, async (err, db) => {
-
-    if(err) {
-      Logger.error('DB:Init', err);
-      return reject(err);
+  connectionPromise() {
+    if(globalPromise) {
+      return globalPromise;
     }
 
-    db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
-    db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
+    globalPromise = new Promise((resolve, reject) => {
+      Logger.info(mongoTag, 'Connecting to database...');
 
-    db.collection('players').updateMany({}, { $set: { isOnline: false } });
+      MongoClient.connect(connectionString, async(err, db) => {
 
-    Logger.info(mongoTag, 'Connected!');
-    resolve(db);
-  });
-});
+        if(err) {
+          Logger.error('DB:Init', err);
+          return reject(err);
+        }
 
-export default () => connectionPromise;
+        db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
+        db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
+
+        db.collection('players').updateMany({}, { $set: { isOnline: false } });
+
+        Logger.info(mongoTag, 'Connected!');
+        resolve(db);
+      });
+    });
+
+    return globalPromise;
+  }
+}

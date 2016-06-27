@@ -9,7 +9,7 @@ const blockers = [16, 17, 3, 33, 37, 38, 39, 44, 45, 46, 47, 50, 53, 54, 55];
 
 export class Map {
   constructor(path) {
-    this.map = _.cloneDeep(require(`../../../${path}`));
+    this.map = _.cloneDeep(require(`${path}`));
 
     this.tileHeight = this.map.tileheight;
     this.tileWidth = this.map.tilewidth;

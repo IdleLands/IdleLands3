@@ -1,9 +1,26 @@
 
+import { Dependencies, Container } from 'constitute';
 import _ from 'lodash';
-import { saveStatistics } from './statistics.db';
 
+import { Logger } from '../../shared/logger';
+
+@Dependencies(Container)
 export class Statistics {
-  constructor(opts) {
+  constructor(container) {
+    const StatisticsDb = require('./statistics.db').StatisticsDb;
+    try {
+      container.schedulePostConstructor((statisticsDb) => {
+        this.StatisticsDb = statisticsDb;
+      }, [StatisticsDb]);
+    } catch (e) {
+      Logger.error('Statistics', e);
+    }
+  }
+
+  // clear current variables and set new
+  init(opts) {
+    this._id = undefined;
+    this.stats = undefined;
     _.extend(this, opts);
   }
 
@@ -24,6 +41,6 @@ export class Statistics {
   }
 
   save() {
-    saveStatistics(this);
+    this.StatisticsDb.saveStatistics(this);
   }
 }

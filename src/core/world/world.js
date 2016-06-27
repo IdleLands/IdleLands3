@@ -14,12 +14,12 @@ export class World {
   getMapsInFolder(dir) {
     let results = [];
 
-    const list = fs.readdirSync(dir);
+    const list = fs.readdirSync(__dirname + '/../../../' + dir);
     _.each(list, basefilename => {
       const filename = `${dir}/${basefilename}`;
-      const stat = fs.statSync(filename);
-      if(stat && stat.isDirectory()) results = results.concat(this.getMapsInFolder(filename));
-      else results.push({ map: basefilename.split('.')[0], path: filename });
+      const stat = fs.statSync(__dirname + '/../../../' + filename);
+      if (stat && stat.isDirectory()) results = results.concat(this.getMapsInFolder(filename));
+      else results.push({ map: basefilename.split('.')[0], path: __dirname + '/../../../' + filename });
     });
 
     return results;
