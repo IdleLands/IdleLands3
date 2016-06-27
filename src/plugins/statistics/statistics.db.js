@@ -1,5 +1,5 @@
 
-import { Dependencies, constitute } from 'constitute';
+import { Dependencies, default as constitute } from 'constitute';
 
 import { DbWrapper } from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
