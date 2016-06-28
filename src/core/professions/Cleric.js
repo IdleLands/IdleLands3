@@ -1,10 +1,12 @@
 
 import { Profession } from '../base/profession';
 
-export class Generalist extends Profession {
+export class Cleric extends Profession {
 
-  static baseHpPerLevel = 25;
-  static baseMpPerLevel = 10;
+  static baseHpPerLevel = Profession.baseHpPerLevel + 10;
+  static baseMpPerLevel = Profession.baseMpPerLevel + 10;
+
+  static baseMpPerWis = 5;
 
   static baseConPerLevel = 4;
   static baseDexPerLevel = 2;
@@ -12,5 +14,4 @@ export class Generalist extends Profession {
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 2;
   static baseWisPerLevel = 6;
-  static baseLukPerLevel = 1;
 }

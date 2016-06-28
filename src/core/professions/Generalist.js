@@ -3,8 +3,8 @@ import { Profession } from '../base/profession';
 
 export class Generalist extends Profession {
 
-  static baseHpPerLevel = 20;
-  static baseMpPerLevel = 5;
+  static baseHpPerLevel = Profession.baseHpPerLevel;
+  static baseMpPerLevel = Profession.baseMpPerLevel + 3;
 
   static baseConPerLevel = 3;
   static baseDexPerLevel = 3;
@@ -12,5 +12,4 @@ export class Generalist extends Profession {
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 3;
   static baseWisPerLevel = 3;
-  static baseLukPerLevel = 1;
 }
