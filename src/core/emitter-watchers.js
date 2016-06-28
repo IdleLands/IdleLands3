@@ -63,6 +63,10 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
   case 'fall':      message = `${player.name} has fallen to ${dest.destName} from ${dest.fromName}.`; break;
   case 'teleport':  message = `${player.name} has been teleported to ${dest.destName} from ${dest.fromName}.`; break;
   }
+  
+  if(dest.customMessage) {
+    message = dest.customMessage.split('%playerName').join(player.name).split('%destName').join(dest.destName);
+  }
 
   AdventureLog({
     text: message,
