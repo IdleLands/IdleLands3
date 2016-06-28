@@ -52,7 +52,8 @@ class GameStateInternal {
   }
 
   getPlayerSimple(player, keys = UPDATE_KEYS) {
-    keys.push('isMuted', 'isMod');
+    keys.push('isMuted', 'isMod', 'name');
+    keys = _.uniq(keys);
     return _.pick(player, keys);
   }
 

@@ -20,6 +20,6 @@ export const PlayerLogout = (playerName) => {
   });
 };
 
-export const PlayerUpdate = (playerName, keys) => {
-  primus.room(playerName).write({ playerListOperation: 'update', data: GameState.getPlayerNameSimple(playerName, keys) });
+export const PlayerUpdateAll = (playerName, keys) => {
+  primus.forEach(spark => spark.write({ playerListOperation: 'update', data: GameState.getPlayerNameSimple(playerName, keys) }));
 };

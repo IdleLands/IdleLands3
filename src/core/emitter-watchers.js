@@ -2,7 +2,7 @@
 import { AdventureLog, MessageTypes } from '../shared/adventure-log';
 import { GameState } from './game-state';
 import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
-import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdate } from '../shared/playerlist-updater';
+import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../shared/playerlist-updater';
 
 PlayerEmitter.on('player:login', async ({ playerName }) => {
   const player = await GameState.addPlayer(playerName);
@@ -45,7 +45,7 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
 // TODO update x,y AND title AND changeClass
 
 PlayerEmitter.on('player:levelup', ({ player }) => {
-  PlayerUpdate(player.name, ['name', 'level']);
+  PlayerUpdateAll(player.name, ['name', 'level']);
   AdventureLog({
     text: `${player.name} has reached experience level ${player.level}!`,
     type: MessageTypes.GLOBAL,
@@ -54,7 +54,7 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
 });
 
 PlayerEmitter.on('player:transfer', ({ player, dest }) => {
-  PlayerUpdate(player.name, ['name', 'map']);
+  PlayerUpdateAll(player.name, ['name', 'map']);
 
   let message = '';
   switch(dest.movementType) {

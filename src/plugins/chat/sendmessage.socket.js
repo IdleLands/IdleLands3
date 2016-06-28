@@ -20,6 +20,8 @@ export const socket = (socket, primus) => {
 
     const player = GameState.retrievePlayer(playerName);
 
+    if(player.isMuted) return;
+
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text || !player || !playerName) return;
 
