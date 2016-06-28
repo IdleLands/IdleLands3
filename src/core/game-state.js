@@ -57,8 +57,8 @@ class GameStateInternal {
     return _.pick(player, keys);
   }
 
-  getPlayersSimple() {
-    return _.map(this.players, p => this.getPlayerSimple(p));
+  getPlayersSimple(keys) {
+    return _.map(this.players, p => this.getPlayerSimple(p, keys));
   }
 
   retrievePlayer(playerName) {

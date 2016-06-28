@@ -5,6 +5,8 @@ import { Logger } from '../shared/logger';
 import { GameState } from './game-state';
 import { SETTINGS } from '../static/settings';
 
+import { AllPlayersPostMove } from '../shared/playerlist-updater';
+
 Logger.info('Core', 'Starting emitters.');
 
 import './emitter-watchers';
@@ -15,15 +17,21 @@ const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'produc
 
 setInterval(() => {
   const players = GameState.getPlayers();
-  _.each(players, (player, index) => {
+  const promises = _.map(players, (player, index) => {
     const playerName = player.name;
 
-    setTimeout(() => {
+    return new Promise(resolve => {
+      setTimeout(() => {
 
-      if(!_.find(GameState.getPlayers(), { name: playerName })) return;
-      player.takeTurn();
+        if(!_.find(GameState.getPlayers(), { name: playerName })) return resolve(false);
+        player.takeTurn();
+        resolve(true);
 
-    }, index * (timerDelay / players.length));
+      }, index * (timerDelay / players.length));
+    });
 
   });
+
+  Promise.all(promises).then(AllPlayersPostMove);
+
 }, timerDelay);
