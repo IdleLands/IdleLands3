@@ -1,8 +1,5 @@
 
-import _ from 'lodash';
-
 import { GameState } from '../../core/game-state';
-import { SETTINGS } from '../../static/settings';
 
 import { PlayerUpdateAll } from '../../shared/playerlist-updater';
 
