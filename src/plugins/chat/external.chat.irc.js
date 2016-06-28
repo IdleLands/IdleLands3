@@ -2,7 +2,7 @@
 import IRC from 'squelch-client';
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production' && !process.env.EXT_CHAT;
 
 const { server, nick, channel } = SETTINGS.chatConfig.irc;
 
