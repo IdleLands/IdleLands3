@@ -23,18 +23,18 @@ const parseFile = (filename) => {
   return _(baseContents).compact().reject(line => _.includes(line, '#')).value();
 };
 
-StringAssets.class = _.map(loadDirectory('src/core/professions'), ({ filename }) => {
+StringAssets.class = _.map(loadDirectory(`${__dirname}/../core/professions`), ({ filename }) => {
   return filename.split('/')[3].split('.')[0];
 });
 
 _.each(['events', 'strings'], folder => {
-  _.each(loadDirectory(`assets/content/${folder}`), ({ type, filename }) => {
+  _.each(loadDirectory(`${__dirname}/../../assets/content/${folder}`), ({ type, filename }) => {
     StringAssets[type] = parseFile(filename);
   });
 });
 
 _.each(['items', 'ingredients', 'monsters', 'npcs'], folder => {
-  _.each(loadDirectory(`assets/content/${folder}`), ({ type, filename }) => {
+  _.each(loadDirectory(`${__dirname}/../../assets/content/${folder}`), ({ type, filename }) => {
     // TODO parse these into json
     ObjectAssets[type] = parseFile(filename);
   });
