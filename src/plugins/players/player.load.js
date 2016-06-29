@@ -1,5 +1,5 @@
 
-import { Dependencies, default as constitute } from 'constitute';
+import { Dependencies } from 'constitute';
 
 import { Player } from './player';
 
@@ -9,17 +9,18 @@ import { Statistics } from '../statistics/statistics';
 import { StatisticsDb } from '../statistics/statistics.db';
 
 import { Logger } from '../../shared/logger';
+import { constitute } from '../../shared/di-wrapper';
 
 @Dependencies(PlayerDb, StatisticsDb)
 export class PlayerLoad {
   constructor(playerDb, statisticsDb) {
-    this.PlayerDb = playerDb;
-    this.StatisticsDb = statisticsDb;
+    this.playerDb = playerDb;
+    this.statisticsDb = statisticsDb;
   }
 
   async loadPlayer(playerName) {
 
-    const playerObj = await this.PlayerDb.getPlayer({ name: playerName });
+    const playerObj = await this.playerDb.getPlayer({ name: playerName });
     try {
       const player = constitute(Player);
       player.init(playerObj);
@@ -27,11 +28,11 @@ export class PlayerLoad {
       if(!player.statisticsLink) {
         const statisticsObj = constitute(Statistics);
         statisticsObj.init({ _id: player.name, stats: {} });
-        const newStatistics = await this.StatisticsDb.saveStatistics(statisticsObj);
+        const newStatistics = await this.statisticsDb.saveStatistics(statisticsObj);
         player.statisticsLink = newStatistics._id;
         player.$statistics = statisticsObj;
       } else {
-        player.$statistics = await this.StatisticsDb.getStatistics(player.name);
+        player.$statistics = await this.statisticsDb.getStatistics(player.name);
       }
 
       player.isOnline = true;

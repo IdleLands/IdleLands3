@@ -1,7 +1,7 @@
 
-import constitute from 'constitute';
-
 import { PlayerDb } from './player.db';
+
+import { constitute } from '../../shared/di-wrapper';
 
 export const event = 'plugin:player:exists';
 export const socket = (socket, primus, respond) => {

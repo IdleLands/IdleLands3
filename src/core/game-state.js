@@ -1,20 +1,28 @@
 
 import _ from 'lodash';
-import constitute from 'constitute';
+
 import { World } from './world/world';
 import { Logger } from '../shared/logger';
+import { constitute } from '../shared/di-wrapper';
+import { MESSAGES } from '../static/messages';
 
 import { PlayerLoad } from '../plugins/players/player.load';
 
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
 
-class GameStateInternal {
+let GameStateInstance = null;
+export class GameState {
   constructor() {
+    if(GameStateInstance) {
+      return GameStateInstance;
+    }
+    GameStateInstance = this;
+
     this.players = [];
-    this.PlayerLoad = constitute(PlayerLoad);
+    this.playerLoad = constitute(PlayerLoad);
 
     Logger.info('GameState', 'Creating world.');
-    this.world = new World();
+    this.world = constitute(World);
   }
 
   getPlayer(playerName) {
@@ -22,12 +30,16 @@ class GameStateInternal {
   }
 
   addPlayer(playerName) {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve, reject) => {
       if(this.getPlayer(playerName)) return resolve(false);
       const player = await this.retrievePlayer(playerName);
 
       // double check because async takes time
       if(this.getPlayer(playerName)) return resolve(false);
+
+      if(!player) {
+        return reject({ msg: MESSAGES.NO_PLAYER });
+      }
 
       this.players.push(player);
       resolve(player);
@@ -65,8 +77,6 @@ class GameStateInternal {
     const playerObject = _.find(this.players, { name: playerName });
     if(playerObject) return playerObject;
 
-    return this.PlayerLoad.loadPlayer(playerName);
+    return this.playerLoad.loadPlayer(playerName);
   }
 }
-
-export const GameState = new GameStateInternal();

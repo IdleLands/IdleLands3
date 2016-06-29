@@ -1,5 +1,7 @@
+
 import test from 'ava';
-import constitute from 'constitute';
+import actualConstitute from 'constitute';
+import { constitute, setConstituteContainer } from '../../../src/shared/di-wrapper';
 
 import { Player } from '../../../src/plugins/players/player';
 import { PlayerDb } from '../../../src/plugins/players/player.db';
@@ -43,18 +45,21 @@ class MockPlayerMovement {
   }
 }
 
-test.beforeEach(t => {
-  const container = new constitute.Container();
+test.beforeEach(() => {
+  const container = new actualConstitute.Container();
   container.bindClass(PlayerDb, MockDatabase);
   container.bindClass(Statistics, MockStatistics);
 
-  t.context.container = container;
+  setConstituteContainer(container);
 });
 
 test('Xp gain should level up', t => {
-  const p = t.context.container.constitute(Player);
+  const p = constitute(Player);
   p.init({ name: 'Mr so and so' });
   p.$statistics = new MockStatistics();
+  const test = new MockDatabase();
+  t.is(p.$playerDb instanceof MockDatabase, true);
+  t.is(p.$statistics instanceof MockStatistics, true);
   t.is(p.level, 1);
   p._xp.toMaximum();
   p.gainXp();
@@ -63,7 +68,7 @@ test('Xp gain should level up', t => {
 });
 
 test('Movement should move player', t => {
-  const p = t.context.container.constitute(Player);
+  const p = constitute(Player);
   p.init({ name: 'Mr so and so' });
   p.$playerMovement = new MockPlayerMovement();
   p.$statistics = new MockStatistics();

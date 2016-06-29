@@ -9,8 +9,9 @@ export const socket = (socket) => {
   const togglemute = async ({ playerName, targetName }) => {
     if(!socket.authToken) return;
 
-    const player = GameState.retrievePlayer(playerName);
-    const target = GameState.retrievePlayer(targetName);
+    const gameState = new GameState();
+    const player = gameState.retrievePlayer(playerName);
+    const target = gameState.retrievePlayer(targetName);
 
     if(!player || !player.isMod || !target) return;
     target.isMuted = !target.isMuted;

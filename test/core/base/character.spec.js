@@ -1,5 +1,4 @@
 import test from 'ava';
-import constitute from 'constitute';
 import { Character } from '../../../src/core/base/character';
 
 test('Character opts should be copied', t => {

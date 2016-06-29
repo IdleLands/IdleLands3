@@ -1,13 +1,13 @@
 
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
-import constitute from 'constitute';
 
 import { Player } from './player';
 import { PlayerDb } from './player.db';
 import { emitter } from './_emitter';
 
 import { Logger } from '../../shared/logger';
+import { constitute } from '../../shared/di-wrapper';
 import { MESSAGES } from '../../static/messages';
 
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
