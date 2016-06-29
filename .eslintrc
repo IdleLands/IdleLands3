@@ -16,7 +16,7 @@
     "prefer-const": 2,
     "no-extra-parens": 0,
     "no-sparse-arrays": 0,
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1}],
     "no-undef": 2,
     "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
     "brace-style": [2, "1tbs", { "allowSingleLine": true }]
