@@ -54,19 +54,19 @@ primus.use('emit', Emit);
 primus.use('multiplex', Multiplex);
 
 // force setting up the global connection
-new (require('../src/shared/db-wrapper').DbWrapper)().connectionPromise().then(() => {
-  primus.on('connection', spark => {
-    const respond = (data) => {
-      spark.write(data);
-    };
+new (require('../src/shared/db-wrapper').DbWrapper)().connectionPromise();
 
-    _.each(allSocketRequires, obj => obj.socket(spark, primus, (data) => {
-      data.event = obj.event;
-      respond(data);
-    }));
+primus.on('connection', spark => {
+  const respond = (data) => {
+    spark.write(data);
+  };
 
-    spark.join('adventurelog');
-  });
+  _.each(allSocketRequires, obj => obj.socket(spark, primus, (data) => {
+    data.event = obj.event;
+    respond(data);
+  }));
+
+  spark.join('adventurelog');
 });
 
 const path = require('path').join(__dirname, '..', '..', 'Play');
