@@ -115,7 +115,7 @@ class EventVariableCache {
 
   set(domain, funct, num, val) {
     if(_.isNaN(num)) throw new Error('Cache:set num cannot be NaN');
-    _.set(this.cache, `${domain}.${funct}.${num}`, val)
+    _.set(this.cache, `${domain}.${funct}.${num}`, val);
   }
 }
 
