@@ -41,10 +41,10 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
     type: MessageTypes.GLOBAL,
     highlights: [{ name: playerName }]
   });
-  GameState.delPlayer(playerName);
+  GameState.getInstance().delPlayer(playerName);
 });
 
-// TODO update x,y AND title AND changeClass
+// TODO title AND changeClass
 
 PlayerEmitter.on('player:levelup', ({ player }) => {
   PlayerUpdateAll(player.name, ['name', 'level']);

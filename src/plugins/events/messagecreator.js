@@ -57,16 +57,16 @@ class AllDomains {
 
 class AssetDomainHandler {
   static town() {
-    return _.sample(_.filter(GameState.world.uniqueRegions, r => _.includes(r, 'Town')));
+    return _.sample(_.filter(GameState.getInstance().world.uniqueRegions, r => _.includes(r, 'Town')));
   }
   static class() {
     return _.sample(StringAssets.class);
   }
   static player() {
-    return _.sample(GameState.players).name;
+    return _.sample(GameState.getInstance().players).name;
   }
   static map() {
-    return _.sample(_.keys(GameState.world.maps));
+    return _.sample(_.keys(GameState.getInstance().world.maps));
   }
   static pet() {
     return AllDomains.placeholder();
