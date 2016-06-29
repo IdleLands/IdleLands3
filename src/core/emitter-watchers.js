@@ -1,4 +1,6 @@
 
+import _ from 'lodash';
+
 import { AdventureLog, MessageTypes } from '../shared/adventure-log';
 import { GameState } from './game-state';
 import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
@@ -58,10 +60,10 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
 
   let message = '';
   switch(dest.movementType) {
-  case 'ascend':    message = `${player.name} has ascended to ${dest.destName}.`; break;
-  case 'descend':   message = `${player.name} has descended to ${dest.destName}.`; break;
-  case 'fall':      message = `${player.name} has fallen to ${dest.destName} from ${dest.fromName}.`; break;
-  case 'teleport':  message = `${player.name} has been teleported to ${dest.destName} from ${dest.fromName}.`; break;
+    case 'ascend':    message = `${player.name} has ascended to ${dest.destName}.`; break;
+    case 'descend':   message = `${player.name} has descended to ${dest.destName}.`; break;
+    case 'fall':      message = `${player.name} has fallen to ${dest.destName} from ${dest.fromName}.`; break;
+    case 'teleport':  message = `${player.name} has been teleported to ${dest.destName} from ${dest.fromName}.`; break;
   }
 
   if(dest.customMessage) {
@@ -74,4 +76,13 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
     highlights: [{ name: player.name }]
   });
 
+});
+
+PlayerEmitter.on('player:event', ({ affected, eventText }) => {
+  AdventureLog({
+    text: eventText,
+    type: MessageTypes.SINGLE,
+    targets: _.map(affected, 'name'),
+    highlights: _.map(affected, p => ({ name: p.name }))
+  });
 });

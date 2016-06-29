@@ -51,8 +51,13 @@ const play = (name, index) => {
   socket.on('data', msg => {
 
     if(!msg.type || !msg.text) return;
-    if(msg.type === 'Global' && index !== 0) return;
-    console.log(`[${msg.type}] ${msg.text}`);
+    if(msg.type === 'Global' && index === 0) {
+      console.log(`[${msg.type}] ${msg.text}`);
+    } else if(msg.type === 'Single' && msg.targets[0] === name) {
+      _.each(msg.targets, target => {
+        console.log(`[${target}] ${msg.text}`);
+      });
+    }
   });
 };
 

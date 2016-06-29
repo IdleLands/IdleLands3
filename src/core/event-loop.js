@@ -8,8 +8,13 @@ import { SETTINGS } from '../static/settings';
 import { AllPlayersPostMove } from '../shared/playerlist-updater';
 
 Logger.info('Core', 'Starting emitters.');
-
 import './emitter-watchers';
+
+Logger.info('Core', 'Loading assets.');
+import '../shared/asset-loader';
+
+Logger.info('Core', 'Loading events.');
+import '../plugins/events/eventhandler';
 
 Logger.info('Core', 'Starting event loop.');
 

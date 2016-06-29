@@ -16,7 +16,8 @@ const verifyMessage = (msg) => {
 };
 
 export const MessageTypes = {
-  GLOBAL: 'Global'
+  GLOBAL: 'Global',
+  SINGLE: 'Single'
 };
 
 export const AdventureLog = (message) => {

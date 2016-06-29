@@ -9,6 +9,7 @@ import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
 
 import { DataUpdater } from '../../shared/data-updater';
+import { EventHandler } from '../events/eventhandler';
 
 import { emitter } from './_emitter';
 
@@ -33,6 +34,7 @@ export class Player extends Character {
 
   takeTurn() {
     this.moveAction();
+    EventHandler.tryToDoEvent(this);
     this.save();
   }
 
