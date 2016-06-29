@@ -7,7 +7,7 @@ import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
 import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../shared/playerlist-updater';
 
 PlayerEmitter.on('player:login', async ({ playerName }) => {
-  const player = await GameState.addPlayer(playerName);
+  const player = await GameState.getInstance().addPlayer(playerName);
   if(!player) return;
   player.update();
   player.$statistics.incrementStat('Game.Logins');
@@ -21,7 +21,7 @@ PlayerEmitter.on('player:login', async ({ playerName }) => {
 });
 
 PlayerEmitter.on('player:register', async ({ playerName }) => {
-  const player = await GameState.addPlayer(playerName);
+  const player = await GameState.getInstance().addPlayer(playerName);
   if(!player) return;
   player.update();
   player.$statistics.incrementStat('Game.Logins');

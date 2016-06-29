@@ -18,7 +18,7 @@ export const socket = (socket, primus) => {
   const sendmessage = async ({ text, channel, route, playerName }) => {
     if(!socket.authToken) return;
 
-    const player = GameState.retrievePlayer(playerName);
+    const player = GameState.getInstance().retrievePlayer(playerName);
 
     if(player.isMuted) return;
 

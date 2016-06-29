@@ -10,7 +10,7 @@ export class Statistics {
     const StatisticsDb = require('./statistics.db').StatisticsDb;
     try {
       container.schedulePostConstructor((statisticsDb) => {
-        this.StatisticsDb = statisticsDb;
+        this.statisticsDb = statisticsDb;
       }, [StatisticsDb]);
     } catch (e) {
       Logger.error('Statistics', e);
@@ -41,6 +41,6 @@ export class Statistics {
   }
 
   save() {
-    this.StatisticsDb.saveStatistics(this);
+    this.statisticsDb.saveStatistics(this);
   }
 }

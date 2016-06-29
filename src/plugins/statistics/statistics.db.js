@@ -1,20 +1,21 @@
 
-import { Dependencies, default as constitute } from 'constitute';
+import { Dependencies } from 'constitute';
 
 import { DbWrapper } from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
 import { Logger } from '../../shared/logger';
+import { constitute } from '../../shared/di-wrapper';
 
 import { Statistics } from './statistics';
 
 @Dependencies(DbWrapper)
 export class StatisticsDb {
   constructor(DbWrapper) {
-    this.DbWrapper = DbWrapper;
+    this.dbWrapper = DbWrapper;
   }
 
   async getStatistics(id) {
-    const db = await this.DbWrapper.connectionPromise();
+    const db = await this.dbWrapper.connectionPromise();
     const statistics = db.collection('statistics');
 
     return new Promise((resolve, reject) => {
@@ -37,7 +38,7 @@ export class StatisticsDb {
   }
 
   async saveStatistics(statsObject) {
-    const db = await this.DbWrapper.connectionPromise();
+    const db = await this.dbWrapper.connectionPromise();
     const statistics = db.collection('statistics');
 
     return new Promise((resolve) => {

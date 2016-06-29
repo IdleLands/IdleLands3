@@ -19,6 +19,7 @@ export class Player extends Character {
     super();
     this.$playerDb = playerDb;
     this.$playerMovement = PlayerMovement;
+    this.$dataUpdater = DataUpdater;
   }
 
   init(opts) {
@@ -98,6 +99,6 @@ export class Player extends Character {
   }
 
   update() {
-    DataUpdater(this.name, 'player', this.buildSaveObject());
+    this.$dataUpdater(this.name, 'player', this.buildSaveObject());
   }
 }

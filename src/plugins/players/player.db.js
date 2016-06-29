@@ -7,11 +7,11 @@ import { MESSAGES } from '../../static/messages';
 @Dependencies(DbWrapper)
 export class PlayerDb {
   constructor(dbWrapper) {
-    this.DbWrapper = dbWrapper;
+    this.dbWrapper = dbWrapper;
   }
 
   async getPlayer(opts) {
-    const db = await this.DbWrapper.connectionPromise();
+    const db = await this.dbWrapper.connectionPromise();
     const players = db.collection('players');
 
     return new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ export class PlayerDb {
   }
 
   async createPlayer(playerObject) {
-    const db = await this.DbWrapper.connectionPromise();
+    const db = await this.dbWrapper.connectionPromise();
     const players = db.collection('players');
     
     return new Promise((resolve, reject) => {
@@ -42,7 +42,7 @@ export class PlayerDb {
 
   async savePlayer(playerObject) {
     const savePlayerObject = playerObject.buildSaveObject();
-    const db = await this.DbWrapper.connectionPromise();
+    const db = await this.dbWrapper.connectionPromise();
     const players = db.collection('players');
 
     return new Promise((resolve, reject) => {
