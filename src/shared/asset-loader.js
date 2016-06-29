@@ -7,7 +7,7 @@ export const StringAssets = {};
 export const ObjectAssets = {};
 
 const loadDirectory = (dir) => {
-  let results = [];
+  const results = [];
 
   const list = fs.readdirSync(dir);
   _.each(list, basefilename => {
@@ -19,7 +19,7 @@ const loadDirectory = (dir) => {
 };
 
 const parseFile = (filename) => {
-  const baseContents = fs.readFileSync(filename, 'UTF-8').replace(/  +/g, ' ').split('\n');
+  const baseContents = fs.readFileSync(filename, 'UTF-8').replace(/ {2,}/g, ' ').split('\n');
   return _(baseContents).compact().reject(line => _.includes(line, '#')).value();
 };
 
