@@ -31,12 +31,25 @@ const play = (name, index) => {
       multiplex: require('primus-multiplex')
     }
   });
-  sockets[name] = new Socket('ws://localhost:8080');
-  sockets[name].on('open', () => {
-    sockets[name].emit('plugin:player:login', { name, userId: `local|${name}` });
+
+  const socket = new Socket('ws://localhost:8080');
+
+  const login = () => {
+    socket.emit('plugin:player:login', { name, userId: `local|${name}` });
+  };
+
+  sockets[name] = socket;
+  socket.on('open', () => {
+    console.log(`${name} connected.`);
+    login();
   });
 
-  sockets[name].on('data', msg => {
+  socket.on('close', () => {
+    console.log(`${name} disconnected.`);
+  });
+
+  socket.on('data', msg => {
+
     if(!msg.type || !msg.text) return;
     if(msg.type === 'Global' && index !== 0) return;
     console.log(`[${msg.type}] ${msg.text}`);
