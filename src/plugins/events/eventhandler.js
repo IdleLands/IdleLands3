@@ -24,7 +24,7 @@ export class EventHandler {
       return;
     }
 
-    // player.eventSteps = chance.integer({ min: 15, max: 30 });
+    player.eventSteps = chance.integer({ min: 15, max: 30 });
 
     const events = [];
     const weights = [];
