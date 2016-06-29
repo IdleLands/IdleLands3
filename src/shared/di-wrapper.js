@@ -1,5 +1,5 @@
 
-import { default as actualConstitute, Container } from 'constitute';
+import { default as actualConstitute } from 'constitute';
 
 let container = null;
 

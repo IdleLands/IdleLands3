@@ -54,27 +54,34 @@ test.beforeEach(() => {
 });
 
 test('Xp gain should level up', t => {
+  t.plan(5);
   const p = constitute(Player);
   p.init({ name: 'Mr so and so' });
   p.$statistics = new MockStatistics();
-  const test = new MockDatabase();
+
   t.is(p.$playerDb instanceof MockDatabase, true);
   t.is(p.$statistics instanceof MockStatistics, true);
   t.is(p.level, 1);
+
   p._xp.toMaximum();
   p.gainXp();
+
   t.is(p.level, 2);
   t.is(p.xp, 0);
 });
 
 test('Movement should move player', t => {
+  t.plan(4);
   const p = constitute(Player);
   p.init({ name: 'Mr so and so' });
   p.$playerMovement = new MockPlayerMovement();
   p.$statistics = new MockStatistics();
+
   t.is(p.x, 10);
   t.is(p.y, 10);
+
   p.moveAction();
+
   t.is(p.x, 9);
   t.is(p.y, 9);
 });
