@@ -14,9 +14,8 @@ let GameStateInstance = null;
 export class GameState {
   constructor() {
     if(GameStateInstance) {
-      return GameStateInstance;
+      throw new Error('Can only instantiate GameState once!');
     }
-    GameStateInstance = this;
 
     this.players = [];
     this.playerLoad = constitute(PlayerLoad);
@@ -27,6 +26,14 @@ export class GameState {
 
   getPlayer(playerName) {
     return _.find(this.players, { name: playerName });
+  }
+
+  static getInstance() {
+    if(GameStateInstance) {
+      return GameStateInstance;
+    }
+    GameStateInstance = new GameState();
+    return GameStateInstance;
   }
 
   addPlayer(playerName) {

@@ -82,7 +82,7 @@ export class PlayerMovement {
   }
 
   static getTileAt(map, x, y) {
-    return new GameState().world.maps[map].getTile(x, y);
+    return GameState.getInstance().world.maps[map].getTile(x, y);
   }
 
   static pickRandomTile(player) {

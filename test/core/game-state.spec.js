@@ -34,7 +34,7 @@ test.before(() => {
 });
 
 test.serial('game-state should have proper initial state', t => {
-  const gameState = new GameState();
+  const gameState = GameState.getInstance();
   t.plan(3);
 
   t.is(gameState.getPlayers().length, 0);
@@ -44,7 +44,7 @@ test.serial('game-state should have proper initial state', t => {
 
 test.serial('should be able to retrieve players from state', t => {
   t.plan(3);
-  const gameState = new GameState();
+  const gameState = GameState.getInstance();
   gameState.players = [];
 
   return new Promise((resolve) => {
@@ -59,7 +59,7 @@ test.serial('should be able to retrieve players from state', t => {
 
 test.serial('should not be able to add the same player', t => {
   t.plan(5);
-  const gameState = new GameState();
+  const gameState = GameState.getInstance();
   gameState.players = [];
 
   return new Promise((resolve, reject) => {
@@ -83,7 +83,7 @@ test.serial('should not be able to add the same player', t => {
 
 test.serial('should not be able to add non-existing player', t => {
   t.plan(2);
-  const gameState = new GameState();
+  const gameState = GameState.getInstance();
   gameState.players = [];
 
   return new Promise((resolve) => {
@@ -100,7 +100,7 @@ test.serial('should not be able to add non-existing player', t => {
 
 test.serial('should be able to delete player', t => {
   t.plan(4);
-  const gameState = new GameState();
+  const gameState = GameState.getInstance();
   gameState.players = [];
 
   return new Promise((resolve) => {
