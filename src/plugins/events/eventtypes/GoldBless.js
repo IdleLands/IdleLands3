@@ -1,7 +1,7 @@
 
 import { Event } from '../../../core/base/event';
 
-export const WEIGHT = 75;
+export const WEIGHT = 45;
 
 // Gain 10-1000 Gold
 export class GoldBless extends Event {

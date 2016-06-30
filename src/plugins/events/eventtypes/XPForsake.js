@@ -1,7 +1,7 @@
 
 import { Event } from '../../../core/base/event';
 
-export const WEIGHT = 25;
+export const WEIGHT = 75;
 
 // Lose 3-5% XP
 export class XPForsake extends Event {
