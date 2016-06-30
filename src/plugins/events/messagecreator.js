@@ -40,9 +40,10 @@ class AllDomains {
     return this.dict([{ funct: 'placeholder' }]);
   }
   
-  static chance({ funct, args }) {
+  static chance(props) {
+    const { funct, args } = props[0];
     if(!chance[funct]) return this.placeholder();
-    chance[funct](args);
+    return chance[funct](args);
   }
   
   static combat() {
