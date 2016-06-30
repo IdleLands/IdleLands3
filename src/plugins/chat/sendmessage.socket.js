@@ -6,6 +6,7 @@ import { GameState } from '../../core/game-state';
 import { SETTINGS } from '../../static/settings';
 
 const GENERAL_ROUTE = 'chat:channel:General';
+const EVENTS_ROUTE  = 'chat:general:Global Events';
 
 const extChat = new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism)(primus, GENERAL_ROUTE);
 
@@ -14,6 +15,7 @@ export const socket = (socket, primus) => {
 
   // always join the general chat channel
   socket.join(GENERAL_ROUTE);
+  socket.join(EVENTS_ROUTE);
 
   const sendmessage = async ({ text, channel, route, playerName }) => {
     if(!socket.authToken) return;
