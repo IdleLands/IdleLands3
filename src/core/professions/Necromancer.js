@@ -6,8 +6,7 @@ export class Necromancer extends Profession {
   static baseHpPerLevel = Profession.baseHpPerLevel - 30;
   static baseMpPerLevel = Profession.baseMpPerLevel + 10;
 
-  static baseMpPerInt = 5;
-  static baseMpPerWis = 10;
+  static baseMpPerInt = 12;
 
   static baseConPerLevel = 0;
   static baseDexPerLevel = 3;
