@@ -11,5 +11,4 @@ export class Fighter extends Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 5;
   static baseIntPerLevel = 1;
-  static baseWisPerLevel = 1;
 }

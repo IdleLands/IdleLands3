@@ -4,7 +4,6 @@ export class Profession {
   static baseHpPerCon = 5;
   static baseHpPerInt = 0;
   static baseHpPerDex = 0;
-  static baseHpPerWis = 0;
   static baseHpPerStr = 0;
   static baseHpPerAgi = 0;
   static baseHpPerLuk = 0;
@@ -13,7 +12,6 @@ export class Profession {
   static baseMpPerInt = 0;
   static baseMpPerCon = 0;
   static baseMpPerDex = 0;
-  static baseMpPerWis = 0;
   static baseMpPerStr = 0;
   static baseMpPerAgi = 0;
   static baseMpPerLuk = 0;
@@ -23,8 +21,8 @@ export class Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 3;
-  static baseWisPerLevel = 3;
-  static baseLukPerLevel = 3;
+  static baseLukPerLevel = 1;
 
   static load() {}
+  static unload() {}
 }

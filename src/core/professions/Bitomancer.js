@@ -10,6 +10,5 @@ export class Bitomancer extends Profession {
   static baseDexPerLevel = 3;
   static baseAgiPerLevel = 1;
   static baseStrPerLevel = 1;
-  static baseIntPerLevel = 4;
-  static baseWisPerLevel = 3;
+  static baseIntPerLevel = 7;
 }

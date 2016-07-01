@@ -45,7 +45,6 @@ export class StatCalculator {
         +  prof.baseHpPerCon * this.stat(player, 'con')
         +  prof.baseHpPerDex * this.stat(player, 'dex')
         +  prof.baseHpPerAgi * this.stat(player, 'agi')
-        +  prof.baseHpPerWis * this.stat(player, 'wis')
         +  prof.baseHpPerInt * this.stat(player, 'int')
         +  prof.baseHpPerLuk * this.stat(player, 'luk')
     ;
@@ -59,7 +58,6 @@ export class StatCalculator {
         +  prof.baseMpPerCon * this.stat(player, 'con')
         +  prof.baseMpPerDex * this.stat(player, 'dex')
         +  prof.baseMpPerAgi * this.stat(player, 'agi')
-        +  prof.baseMpPerWis * this.stat(player, 'wis')
         +  prof.baseMpPerInt * this.stat(player, 'int')
         +  prof.baseMpPerLuk * this.stat(player, 'luk')
       ;

@@ -11,5 +11,4 @@ export class Generalist extends Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 3;
-  static baseWisPerLevel = 3;
 }

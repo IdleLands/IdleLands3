@@ -14,6 +14,5 @@ export class Jester extends Profession {
   static baseAgiPerLevel = 0;
   static baseStrPerLevel = 0;
   static baseIntPerLevel = 0;
-  static baseWisPerLevel = 0;
   static baseLukPerLevel = 10;
 }

@@ -14,5 +14,4 @@ export class Archer extends Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 2;
   static baseIntPerLevel = 1;
-  static baseWisPerLevel = 1;
 }

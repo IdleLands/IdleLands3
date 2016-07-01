@@ -9,9 +9,8 @@ export class Mage extends Profession {
   static baseMpPerInt = 5;
 
   static baseConPerLevel = 2;
-  static baseDexPerLevel = 1;
-  static baseAgiPerLevel = 1;
+  static baseDexPerLevel = 2;
+  static baseAgiPerLevel = 2;
   static baseStrPerLevel = 2;
   static baseIntPerLevel = 6;
-  static baseWisPerLevel = 2;
 }

@@ -55,12 +55,13 @@ export class Character {
     const mpVal = StatCalculator.mp(this);
     this._mp.maximum = this._mp.__current = mpVal;
 
-    _.each(['str', 'dex', 'con', 'int', 'wis', 'agi'], stat => {
+    _.each(['str', 'dex', 'con', 'int', 'agi', 'luk'], stat => {
       this.statCache[stat] = this.liveStats[stat];
     });
   }
 
   changeProfession(professionName) {
+    if(this.$profession) this.$profession.unload(this);
     this.$profession = require(`../professions/${professionName}`)[professionName];
     this.$profession.load(this);
     this.recalculateStats();

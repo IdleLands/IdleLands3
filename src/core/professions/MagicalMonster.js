@@ -11,5 +11,4 @@ export class MagicalMonster extends Profession {
   static baseAgiPerLevel = 2;
   static baseStrPerLevel = 2;
   static baseIntPerLevel = 2;
-  static baseWisPerLevel = 2;
 }

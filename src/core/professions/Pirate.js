@@ -15,5 +15,4 @@ export class Pirate extends Profession {
   static baseAgiPerLevel = 2;
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 1;
-  static baseWisPerLevel = 1;
 }

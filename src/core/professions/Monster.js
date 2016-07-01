@@ -11,5 +11,4 @@ export class Monster extends Profession {
   static baseAgiPerLevel = 4;
   static baseStrPerLevel = 4;
   static baseIntPerLevel = 4;
-  static baseWisPerLevel = 4;
 }
