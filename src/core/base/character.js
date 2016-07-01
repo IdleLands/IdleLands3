@@ -5,6 +5,8 @@ import RestrictedNumber from 'restricted-number';
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
 
+import { StatCalculator } from '../../shared/stat-calculator';
+
 export class Character {
 
   init(opts) {
@@ -23,8 +25,17 @@ export class Character {
       this[stat].__proto__ = RestrictedNumber.prototype;
     });
 
-    if(!this.gender)   this.gender = _.sample(['male', 'female']);
-    if(!this.professionName) this.professionName = 'Generalist';
+    if(!this.gender)          this.gender = _.sample(['male', 'female']);
+    if(!this.professionName)  this.professionName = 'Generalist';
+    if(!this.equipment)       this.equipment = {};
+    if(!this.statCache)       this.statCache = {};
+
+    this.$stats = new Proxy({}, {
+      get: (target, name) => {
+        return StatCalculator.stat(this, name);
+      }
+    });
+
     this.changeProfession(this.professionName);
   }
 
@@ -34,10 +45,25 @@ export class Character {
   get level() { return this._level.__current; }
   get special() { return this._special.__current; }
   get profession() { return this.$profession; }
+  get liveStats() { return this.$stats; }
+  get stats() { return this.statCache; }
+
+  recalculateStats() {
+    const hpVal = StatCalculator.hp(this);
+    this._hp.maximum = this._hp.__current = hpVal;
+
+    const mpVal = StatCalculator.mp(this);
+    this._mp.maximum = this._mp.__current = mpVal;
+
+    _.each(['str', 'dex', 'con', 'int', 'wis', 'agi'], stat => {
+      this.statCache[stat] = this.liveStats[stat];
+    });
+  }
 
   changeProfession(professionName) {
     this.$profession = require(`../professions/${professionName}`)[professionName];
     this.$profession.load(this);
+    this.recalculateStats();
   }
 
   getFullName() {

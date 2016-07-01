@@ -44,6 +44,7 @@ export class Player extends Character {
     this._level.add(1);
     this.resetMaxXp();
     this._xp.toMinimum();
+    this.recalculateStats();
     emitter.emit('player:levelup', { player: this });
   }
 
