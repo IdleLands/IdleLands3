@@ -70,6 +70,7 @@ export class Character {
     if(this.title) return `${this.name}, the ${this.title}`;
     return this.name;
   }
+
   resetMaxXp() {
     this._xp.maximum = this.levelUpXpCalc(this.level);
   }
