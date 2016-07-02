@@ -11,6 +11,8 @@ import { PlayerMovement } from './player.movement';
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
 
+import * as Events from '../events/eventtypes/_all';
+
 import { emitter } from './_emitter';
 
 @Dependencies(PlayerDb)
@@ -31,6 +33,8 @@ export class Player extends Character {
     if(!this.map)       this.map = 'Norkos';
     if(!this.x)         this.x = 10;
     if(!this.y)         this.y = 10;
+
+    if(!this.choices)   this.choices = [];
   }
 
   takeTurn() {
@@ -48,21 +52,50 @@ export class Player extends Character {
     emitter.emit('player:levelup', { player: this });
   }
 
+  gainGold(gold = 1) {
+    this.gold += gold;
+    if(this.gold < 0 || _.isNaN(this.gold)) this.gold = 0;
+
+    if(gold > 0) {
+      this.$statistics.incrementStat('Character.Gold.Gain', gold);
+    } else {
+      this.$statistics.incrementStat('Character.Gold.Lose', gold);
+    }
+  }
+
   gainXp(xp = 1) {
     this._xp.add(xp);
 
     if(xp > 0) {
       this.$statistics.incrementStat('Character.XP.Gain', xp);
     } else {
-      this.$statistics.incrementStat('Character.XP.Lose', -xp);
+      this.$statistics.incrementStat('Character.XP.Lose', xp);
     }
 
     if(this._xp.atMaximum()) this.levelUp();
   }
 
+  addChoice(messageData) {
+    if(this.choices.length > SETTINGS.maxChoices) {
+      this.choices.shift();
+      this.$statistics.incrementStat('Character.Choice.Ignore');
+    }
+
+    this.choices.push(messageData);
+    this.$statistics.incrementStat('Character.Choice.Given');
+  }
+
+  handleChoice({ id, response }) {
+    const choice = _.find(this.choices, { id });
+    Events[choice.event].makeChoice(this, id, response);
+    this.$statistics.incrementStat('Character.Choice.Choose');
+  }
+
+  removeChoice(id) {
+    this.choices = _.reject(this.choices, { id });
+  }
+
   moveAction() {
-
-
     let [newLoc, dir] = this.$playerMovement.pickRandomTile(this);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 

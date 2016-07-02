@@ -2,6 +2,8 @@
 import _ from 'lodash';
 import { GameState } from '../../core/game-state';
 
+import { ProfessionChange } from '../events/eventtypes/ProfessionChange';
+
 import { Logger } from '../../shared/logger';
 import { emitter } from './_emitter';
 
@@ -47,6 +49,15 @@ export class PlayerMovement {
     this[`handleTile${type}`](player, tile);
 
     // TODO forceEvent
+  }
+
+  static handleTileTrainer(player, tile) {
+    if(player.stepCooldown > 0) return;
+    player.stepCooldown = 10;
+
+    const professionName = tile.object.name;
+    const trainerName = tile.object.properties.realName || `the ${professionName} trainer`;
+    ProfessionChange.operateOn(player, { professionName, trainerName });
   }
 
   // TODO support toLoc https://github.com/IdleLands/IdleLandsOld/blob/master/src/character/player/Player.coffee#L278

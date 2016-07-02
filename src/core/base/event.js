@@ -13,6 +13,7 @@ export class Event {
 
   static get chance() { return chance; }
   static operateOn() {}
+  static makeChoice() {}
 
   static eventText(eventType, player, extra) {
     return MessageParser.stringFormat(

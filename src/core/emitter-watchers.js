@@ -44,13 +44,23 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
   GameState.getInstance().delPlayer(playerName);
 });
 
-// TODO title AND changeClass
+// TODO title
 
 PlayerEmitter.on('player:levelup', ({ player }) => {
   PlayerUpdateAll(player.name, ['name', 'level']);
   AdventureLog({
     text: `${player.name} has reached experience level ${player.level}!`,
     type: MessageTypes.GLOBAL,
+    highlights: [{ name: player.name }]
+  });
+});
+
+PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
+  PlayerUpdateAll(player.name, ['name', 'professionName']);
+  AdventureLog({
+    text: `${player.name} has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`,
+    type: MessageTypes.SINGLE,
+    targets: [player.name],
     highlights: [{ name: player.name }]
   });
 });

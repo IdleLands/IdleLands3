@@ -10,6 +10,6 @@ export class GoldForsake extends Event {
     const eventText = this.eventText('forsakeGold', player, { gold: goldMod });
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [-${goldMod}gold]` });
-    player.gold -= goldMod;
+    player.gainGold(-goldMod);
   }
 }

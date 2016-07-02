@@ -62,6 +62,7 @@ export class Character {
 
   changeProfession(professionName) {
     if(this.$profession) this.$profession.unload(this);
+    this.professionName = professionName;
     this.$profession = require(`../professions/${professionName}`)[professionName];
     this.$profession.load(this);
     this.recalculateStats();

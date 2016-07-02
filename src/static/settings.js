@@ -5,7 +5,9 @@ class Settings {
 
   constructor() {
     this.timeframeSeconds = 10;
-    this.maxLevel = 100;
+    this.maxLevel = 200;
+
+    this.maxChoices = 10;
 
     this.chatMessageMaxLength = 500;
 
