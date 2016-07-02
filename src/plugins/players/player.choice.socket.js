@@ -1,8 +1,5 @@
 
-import { PlayerDb } from './player.db';
 import { GameState } from '../../core/game-state';
-
-import { constitute } from '../../shared/di-wrapper';
 
 export const event = 'plugin:player:makechoice';
 export const socket = (socket) => {
