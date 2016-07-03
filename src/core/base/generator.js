@@ -8,7 +8,7 @@ export class Generator {
     if(!prop) return;
 
     if(prop.type === 'suffix') {
-      baseItem.name = `${baseItem.name} of the ${prop.name}`
+      baseItem.name = `${baseItem.name} of the ${prop.name}`;
     } else {
       baseItem.name = `${prop.name} ${baseItem.name}`;
     }
