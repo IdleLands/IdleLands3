@@ -31,7 +31,7 @@ export class ItemGenerator extends Generator {
     _.each(_.keys(itemNames), key => {
       const item = new Equipment({
         type: key,
-        class: 'newbie',
+        itemClass: 'newbie',
         name: _.sample(itemNames[key]),
         str: r(), con: r(), dex: r(), int: r(), agi: r(), luk: r()
       });
