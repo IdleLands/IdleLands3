@@ -68,9 +68,32 @@ export class Character {
     this.recalculateStats();
   }
 
-  getFullName() {
-    if(this.title) return `${this.name}, the ${this.title}`;
-    return this.name;
+  calcLuckBonusFromValue(value) {
+    const tiers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 25, 35, 50, 65, 75, 85, 100, 125, 150, 175, 200, 225, 250, 300, 350, 400, 450, 500];
+
+    const postMaxTierDifference = 100;
+
+    let bonus = 0;
+
+    for(let i = 0; i < tiers.length; i++) {
+      if(value >= tiers[i]) {
+        bonus++;
+      }
+    }
+
+    let postmax = tiers[tiers.length - 1] + postMaxTierDifference;
+    if(value >= tiers[tiers.length - 1]) {
+      while(value > postmax) {
+        bonus++;
+        postmax += postMaxTierDifference;
+      }
+    }
+
+    return bonus;
+  }
+
+  equip(item) {
+    this.equipment[item.type] = item;
   }
 
   resetMaxXp() {

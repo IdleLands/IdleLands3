@@ -217,7 +217,7 @@ export class MessageParser {
     string = EventVariableManager.handleVariables(string);
 
     const splitJoins = [
-      { split: '%player',       join: () => player.getFullName() },
+      { split: '%player',       join: () => player.fullname },
       { split: '%pet',          join: () => PlayerOwnedDomainHandler.pet(player) },
       { split: '%guildMember',  join: () => PlayerOwnedDomainHandler.guildMember(player) },
       { split: '%guild',        join: () => PlayerOwnedDomainHandler.guild(player) }

@@ -49,19 +49,19 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
 PlayerEmitter.on('player:levelup', ({ player }) => {
   PlayerUpdateAll(player.name, ['name', 'level']);
   AdventureLog({
-    text: `${player.name} has reached experience level ${player.level}!`,
+    text: `${player.fullname} has reached experience level ${player.level}!`,
     type: MessageTypes.GLOBAL,
-    highlights: [{ name: player.name }]
+    highlights: [{ name: player.fullname }]
   });
 });
 
 PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
   PlayerUpdateAll(player.name, ['name', 'professionName']);
   AdventureLog({
-    text: `${player.name} has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`,
+    text: `${player.fullname} has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`,
     type: MessageTypes.SINGLE,
     targets: [player.name],
-    highlights: [{ name: player.name }]
+    highlights: [{ name: player.fullname }]
   });
 });
 
@@ -70,14 +70,14 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
 
   let message = '';
   switch(dest.movementType) {
-    case 'ascend':    message = `${player.name} has ascended to ${dest.destName}.`; break;
-    case 'descend':   message = `${player.name} has descended to ${dest.destName}.`; break;
-    case 'fall':      message = `${player.name} has fallen to ${dest.destName} from ${dest.fromName}.`; break;
-    case 'teleport':  message = `${player.name} has been teleported to ${dest.destName} from ${dest.fromName}.`; break;
+    case 'ascend':    message = `${player.fullname} has ascended to ${dest.destName}.`; break;
+    case 'descend':   message = `${player.fullname} has descended to ${dest.destName}.`; break;
+    case 'fall':      message = `${player.fullname} has fallen to ${dest.destName} from ${dest.fromName}.`; break;
+    case 'teleport':  message = `${player.fullname} has been teleported to ${dest.destName} from ${dest.fromName}.`; break;
   }
 
   if(dest.customMessage) {
-    message = dest.customMessage.split('%playerName').join(player.name).split('%destName').join(dest.destName);
+    message = dest.customMessage.split('%playerName').join(player.fullname).split('%destName').join(dest.destName);
   }
 
   AdventureLog({

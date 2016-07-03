@@ -18,14 +18,10 @@ export class ProfessionChange extends Event {
   }
 
   static makeChoice(player, id, response) {
-    if(response !== 'Yes') {
-      player.removeChoice(id);
-      return;
-    }
+    if(response !== 'Yes') return;
     const choice = _.find(player.choices, { id });
     player.changeProfession(choice.extraData.professionName);
     emitter.emit('player:changeclass', { player, choice });
-    player.removeChoice(id);
   }
 }
 

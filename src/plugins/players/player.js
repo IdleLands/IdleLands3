@@ -7,6 +7,7 @@ import { SETTINGS } from '../../static/settings';
 
 import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
+import { ItemGenerator } from '../../shared/item-generator';
 
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
@@ -21,6 +22,7 @@ export class Player extends Character {
     super();
     this.$playerDb = playerDb;
     this.$playerMovement = PlayerMovement;
+    this.$itemGenerator = ItemGenerator;
     this.$dataUpdater = DataUpdater;
   }
 
@@ -35,6 +37,17 @@ export class Player extends Character {
     if(!this.y)         this.y = 10;
 
     if(!this.choices)   this.choices = [];
+    if(_.size(this.equipment) < 10) this.generateBaseEquipment();
+  }
+
+  generateBaseEquipment() {
+    const items = this.$itemGenerator.newPlayerEquipment();
+    _.each(items, item => this.equip(item));
+  }
+
+  get fullname() {
+    if(this.title) return `${this.name}, the ${this.title}`;
+    return this.name;
   }
 
   takeTurn() {
@@ -89,6 +102,8 @@ export class Player extends Character {
     const choice = _.find(this.choices, { id });
     Events[choice.event].makeChoice(this, id, response);
     this.$statistics.batchIncrement(['Character.Choice.Choose', `Character.Choice.Choose.${response}`]);
+    this.removeChoice(id);
+    this.update();
   }
 
   removeChoice(id) {

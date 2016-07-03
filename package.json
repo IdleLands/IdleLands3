@@ -11,7 +11,8 @@
     "test": "npm run test:local",
     "test:lint": "eslint src/** test/plugins/**",
     "test:local": "npm run test:lint && ava",
-    "test:client": "node test/client/client"
+    "test:client": "node test/client/client",
+    "gen:items": "node test/gen/items"
   },
   "engines": {
     "node": "6.2.2"
