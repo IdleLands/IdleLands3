@@ -1,7 +1,13 @@
 
 import _ from 'lodash';
+import { SETTINGS } from '../static/settings';
 
 export class StatCalculator {
+
+  static _reduction(stat, args = [], baseValue = 0) {
+    return baseValue + this._baseStat(args[0], stat);
+  }
+
   static _secondPassFunctions(player, stat) {
     const possibleFunctions = [player.$profession];
     return _(possibleFunctions)
@@ -24,7 +30,7 @@ export class StatCalculator {
   }
 
   static classStat(player, stat) {
-    return player.level * player.$profession[`base${_.capitalize(stat)}PerLevel`];
+    return player.level * (player.$profession[`base${_.capitalize(stat)}PerLevel`] || 0);
   }
 
   static stat(player, stat) {
@@ -61,5 +67,23 @@ export class StatCalculator {
         +  prof.baseMpPerInt * this.stat(player, 'int')
         +  prof.baseMpPerLuk * this.stat(player, 'luk')
       ;
+  }
+
+  static itemValueMultiplier(player) {
+    const baseValue = SETTINGS.reductionDefaults.itemValueMultiplier;
+    const reducedValue = this._reduction('itemValueMultiplier', [player], baseValue);
+    return reducedValue;
+
+  }
+
+  static itemFindRange(player) {
+    const baseValue = (player.level+1) * SETTINGS.reductionDefaults.itemFindRange;
+    const reducedValue = this._reduction('itemFindRange', [player], baseValue);
+    return reducedValue * this.itemFindRangeMultiplier(player);
+  }
+
+  static itemFindRangeMultiplier(player) {
+    const baseValue = 1 + (0.2 * Math.floor(player.level/10));
+    return this._reduction('itemFindRangeMultiplier', [player], baseValue);
   }
 }

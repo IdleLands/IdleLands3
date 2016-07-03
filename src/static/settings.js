@@ -7,6 +7,11 @@ class Settings {
     this.timeframeSeconds = 10;
     this.maxLevel = 200;
 
+    this.reductionDefaults = {
+      itemFindRange: 7,
+      itemValueMultiplier: 0.1
+    };
+
     this.maxChoices = 10;
 
     this.chatMessageMaxLength = 500;

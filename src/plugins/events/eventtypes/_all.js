@@ -1,4 +1,5 @@
 
+export { FindItem } from './FindItem';
 export { GoldBless } from './GoldBless';
 export { GoldForsake } from './GoldForsake';
 export { XPBless } from './XPBless';

@@ -5,6 +5,8 @@ import RestrictedNumber from 'restricted-number';
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
 
+import { Equipment } from '../base/equipment';
+
 import { StatCalculator } from '../../shared/stat-calculator';
 
 export class Character {
@@ -25,6 +27,8 @@ export class Character {
       this[stat].__proto__ = RestrictedNumber.prototype;
     });
 
+    _.each(_.values(this.equipment), item => item.__proto__ = Equipment.prototype);
+
     if(!this.gender)          this.gender = _.sample(['male', 'female']);
     if(!this.professionName)  this.professionName = 'Generalist';
     if(!this.equipment)       this.equipment = {};
@@ -32,7 +36,11 @@ export class Character {
 
     this.$stats = new Proxy({}, {
       get: (target, name) => {
-        return StatCalculator.stat(this, name);
+        if(_.includes(['str', 'con', 'dex', 'int', 'agi', 'luk'], name)) {
+          return StatCalculator.stat(this, name);
+        } else {
+          return StatCalculator[name](this);
+        }
       }
     });
 
@@ -92,6 +100,14 @@ export class Character {
     return bonus;
   }
 
+  canEquip(item, rangeBoostMultiplier = 1) {
+    const myItem = this.equipment[item.type];
+    const checkScore = item.score;
+    const myScore = myItem.score;
+
+    return checkScore > (myScore * 0.75) && checkScore < rangeBoostMultiplier * this.liveStats.itemFindRange;
+  }
+
   equip(item) {
     this.equipment[item.type] = item;
   }
@@ -102,5 +118,20 @@ export class Character {
 
   levelUpXpCalc(level) {
     return Math.floor(100 + (400 * Math.pow(level, 1.71)));
+  }
+
+  gainGold(gold = 1) {
+    this.gold += gold;
+    if (this.gold < 0 || _.isNaN(this.gold)) this.gold = 0;
+  }
+
+  gainXp(xp = 1) {
+    this._xp.add(xp);
+  }
+
+  sellItem(item) {
+    const value = Math.floor(item.score * this.liveStats.itemValueMultiplier);
+    this.gainGold(value);
+    return value;
   }
 }

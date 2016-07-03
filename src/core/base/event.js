@@ -15,8 +15,12 @@ export class Event {
   static operateOn() {}
   static makeChoice() {}
 
+  static _parseText(message, player, extra) {
+    return MessageParser.stringFormat(message, player, extra);
+  }
+
   static eventText(eventType, player, extra) {
-    return MessageParser.stringFormat(
+    return this._parseText(
       _.sample(StringAssets[eventType]),
       player,
       extra

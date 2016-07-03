@@ -66,8 +66,7 @@ export class Player extends Character {
   }
 
   gainGold(gold = 1) {
-    this.gold += gold;
-    if(this.gold < 0 || _.isNaN(this.gold)) this.gold = 0;
+    super.gainGold(gold);
 
     if(gold > 0) {
       this.$statistics.incrementStat('Character.Gold.Gain', gold);
@@ -77,7 +76,7 @@ export class Player extends Character {
   }
 
   gainXp(xp = 1) {
-    this._xp.add(xp);
+    super.gainXp(xp);
 
     if(xp > 0) {
       this.$statistics.incrementStat('Character.XP.Gain', xp);
