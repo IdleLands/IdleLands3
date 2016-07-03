@@ -1,7 +1,6 @@
 
 import _ from 'lodash';
 import { Event } from '../../../core/base/event';
-import { emitter } from '../../players/_emitter';
 
 import { Equipment } from '../../../core/base/equipment';
 import { ItemGenerator } from '../../../shared/item-generator';
@@ -14,7 +13,7 @@ export class FindItem extends Event {
 
     const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk));
     if(!player.canEquip(item)) {
-      const message = `%player came across %item, but it was useless to %himher, so %she sold it for %gold gold.`;
+      const message = '%player came across %item, but it was useless to %himher, so %she sold it for %gold gold.';
       const gold = player.sellItem(item);
       const parsedMessage = this._parseText(message, player, { gold, item: item.name });
       this.emitMessage({ affected: [player], eventText: parsedMessage });

@@ -38,9 +38,9 @@ export class Character {
       get: (target, name) => {
         if(_.includes(['str', 'con', 'dex', 'int', 'agi', 'luk'], name)) {
           return StatCalculator.stat(this, name);
-        } else {
-          return StatCalculator[name](this);
         }
+
+        return StatCalculator[name](this);
       }
     });
 
