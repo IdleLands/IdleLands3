@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { GameState } from '../../core/game-state';
 
 import { ProfessionChange } from '../events/eventtypes/ProfessionChange';
+import * as Events from '../events/eventtypes/_all';
 
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
@@ -49,7 +50,14 @@ export class PlayerMovement {
     if(!type || !this[`handleTile${type}`]) return;
     this[`handleTile${type}`](player, tile);
 
-    // TODO forceEvent
+    const forceEvent = _.get(tile, 'object.properties.forceEvent', '');
+    if(forceEvent) {
+      if(!Events[forceEvent]) {
+        Logger.error('PlayerMovement', `forceEvent ${forceEvent} does not exist at ${player.x}, ${player.y} in ${player.map}`);
+        return;
+      }
+      Events[forceEvent].operateOn(player);
+    }
   }
 
   static handleTileTrainer(player, tile) {
