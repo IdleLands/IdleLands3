@@ -4,6 +4,7 @@ import { GameState } from '../../core/game-state';
 
 import { ProfessionChange } from '../events/eventtypes/ProfessionChange';
 
+import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
 import { emitter } from './_emitter';
 
@@ -62,7 +63,6 @@ export class PlayerMovement {
     ProfessionChange.operateOn(player, { professionName, trainerName });
   }
 
-  // TODO support toLoc https://github.com/IdleLands/IdleLandsOld/blob/master/src/character/player/Player.coffee#L278
   static handleTileTeleport(player, tile) {
     if(player.stepCooldown > 0) return;
     player.stepCooldown = 30;
@@ -71,7 +71,7 @@ export class PlayerMovement {
     dest.x = +dest.destx;
     dest.y = +dest.desty;
 
-    if(!dest.map) {
+    if(!dest.map && !dest.toLoc) {
       Logger.error('PlayerMovement', new Error(`No dest.map at ${player.x}, ${player.y} in ${player.map}`));
       return;
     }
@@ -83,6 +83,14 @@ export class PlayerMovement {
 
     if(!dest.fromName) dest.fromName = player.map;
     if(!dest.destName) dest.destName = dest.map;
+
+    if(dest.toLoc) {
+      const toLocData = SETTINGS.locToTeleport(dest.toLoc);
+      dest.x = toLocData.x;
+      dest.y = toLocData.y;
+      dest.map = toLocData.map;
+      dest.destName = toLocData.formalName;
+    }
 
     player.map = dest.map;
     player.x = dest.x;

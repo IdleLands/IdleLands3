@@ -1,7 +1,21 @@
 
 import _ from 'lodash';
 
+import teleports from '../../assets/maps/content/teleports.json';
+const allTeleports = _(teleports)
+  .values()
+  .map(entry => _.map(entry, (loc, key) => {
+    loc.name = key;
+    return loc;
+  }))
+  .flattenDeep()
+  .value();
+
 class Settings {
+
+  locToTeleport(name) {
+    return _.find(allTeleports, { name });
+  }
 
   constructor() {
     this.timeframeSeconds = 10;
