@@ -24,6 +24,10 @@ export class Statistics {
     _.extend(this, opts);
   }
 
+  getStat(stat) {
+    return _.get(this.stats, stat, 0);
+  }
+
   _addStat(stat, value = 1) {
     let val = _.get(this.stats, stat, 0);
     val += value;

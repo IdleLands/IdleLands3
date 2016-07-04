@@ -31,10 +31,10 @@ export class PlayerMovement {
   static canEnterTile(player, tile) {
     const properties = _.get(tile, 'object.properties');
     if(properties) {
-      if(properties.requireMap) return false;
-      if(properties.requireRegion) return false;
-      if(properties.requireBoss) return false;
-      if(properties.requireClass) return false;
+      if(properties.requireMap)         return player.$statistics.getStat(`Character.Maps.${properties.requireMap}`) > 0;
+      if(properties.requireRegion)      return player.$statistics.getStat(`Character.Regions.${properties.requireRegion}`) > 0;
+      if(properties.requireBoss)        return false;
+      if(properties.requireClass)       return player.professionName === properties.requireClass;
       if(properties.requireAchievement) return false;
       if(properties.requireCollectible) return false;
     }

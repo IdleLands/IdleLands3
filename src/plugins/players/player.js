@@ -131,7 +131,12 @@ export class Player extends Character {
 
     this.stepCooldown--;
 
-    this.$statistics.batchIncrement(['Character.Steps', `Character.Terrains.${tile.terrain}`, `Character.Regions.${tile.region}`]);
+    this.$statistics.batchIncrement([
+      'Character.Steps',
+      `Character.Maps.${this.map}`,
+      `Character.Terrains.${tile.terrain}`,
+      `Character.Regions.${tile.region}`
+    ]);
 
     // TODO xpGain stat
     this.gainXp(10);
