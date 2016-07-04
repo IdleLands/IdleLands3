@@ -56,7 +56,9 @@ export class PlayerMovement {
     player.stepCooldown = 10;
 
     const professionName = tile.object.name;
-    const trainerName = tile.object.properties.realName || `the ${professionName} trainer`;
+    const trainerName = tile.object.properties.realName ?
+      `${tile.object.properties.realName}, the ${professionName} trainer` :
+      `the ${professionName} trainer`;
     ProfessionChange.operateOn(player, { professionName, trainerName });
   }
 

@@ -16,6 +16,9 @@ import '../shared/asset-loader';
 Logger.info('Core', 'Loading events.');
 import '../plugins/events/eventhandler';
 
+Logger.info('Core', 'Creating game state.');
+GameState.getInstance();
+
 Logger.info('Core', 'Starting event loop.');
 
 const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'production' ? 1000 : 1);

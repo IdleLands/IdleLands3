@@ -2,6 +2,7 @@
 import _ from 'lodash';
 
 import { SETTINGS } from '../../static/settings';
+import { ObjectAssets } from '../../shared/asset-loader';
 
 const gidMap = SETTINGS.gidMap;
 const blockers = [16, 17, 3, 33, 37, 38, 39, 44, 45, 46, 47, 50, 53, 54, 55];
@@ -44,11 +45,11 @@ export class Map {
     });
   }
 
-  // TODO https://github.com/IdleLands/IdleLandsOld/blob/master/src/map/Map.coffee#L41
   nameTrainers() {
-    const allTrainers = _.filter(this.map.layers[2], obj => obj.type === 'Trainer');
+    const allTrainers = _.filter(this.map.layers[2].objects, obj => obj.type === 'Trainer');
     _.each(allTrainers, trainer => {
-      trainer.properties.realName = `${trainer.name} Trainer`;
+      const validNames = _.reject(ObjectAssets.trainer, npc => npc.class && npc.class !== trainer.name);
+      trainer.properties.realName = _.sample(validNames).name;
     });
   }
 
