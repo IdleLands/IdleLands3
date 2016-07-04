@@ -107,6 +107,6 @@ const parseTable = {
 
 _.each(['items', 'ingredients', 'monsters', 'npcs'], folder => {
   _.each(loadDirectory(`${__dirname}/../../assets/content/${folder}`), ({ type, filename }) => {
-    ObjectAssets[type] = _.map(parseFile(filename), line => parseTable[folder](line, type));
+    ObjectAssets[type] = _.compact(_.map(parseFile(filename), line => parseTable[folder](line, type)));
   });
 });
