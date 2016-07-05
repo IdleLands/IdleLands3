@@ -82,7 +82,8 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
 
   AdventureLog({
     text: message,
-    type: MessageTypes.GLOBAL,
+    type: MessageTypes.SINGLE,
+    targets: [player.name],
     highlights: [{ name: player.name }]
   });
 
