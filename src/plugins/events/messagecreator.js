@@ -7,7 +7,7 @@ import Chance from 'chance';
 const chance = new Chance();
 
 import { GameState } from '../../core/game-state';
-import { StringAssets } from '../../shared/asset-loader';
+import { StringAssets, ObjectAssets } from '../../shared/asset-loader';
 
 import { Logger } from '../../shared/logger';
 
@@ -79,13 +79,13 @@ class AssetDomainHandler {
     return AllDomains.placeholder();
   }
   static item() {
-    return AllDomains.placeholder();
+    return _.sample(_.values(_.sample(GameState.getInstance().players).equipment)).name;
   }
   static monster() {
-    return AllDomains.placeholder();
+    return _.sample(ObjectAssets.monster).name;
   }
   static ingredient() {
-    return AllDomains.placeholder();
+    return _.sample(ObjectAssets[_.sample(['veg', 'meat', 'bread'])]).name;
   }
   static party() {
     return AllDomains.placeholder();
