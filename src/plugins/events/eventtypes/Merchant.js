@@ -36,7 +36,7 @@ export class Merchant extends Event {
   }
 
   static makeChoice(player, id, response) {
-    if(response !== 'Yes' ) return;
+    if(response !== 'Yes') return;
     const choice = _.find(player.choices, { id });
     if(player.gold < choice.extraData.cost) return false;
     player.equip(new Equipment(choice.extraData.item));
