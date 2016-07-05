@@ -4,6 +4,8 @@ import _ from 'lodash';
 import { StringAssets } from '../../shared/asset-loader';
 import { MessageParser } from '../../plugins/events/messagecreator';
 
+import { primus } from '../../../primus/server';
+
 import { emitter } from '../../plugins/players/_emitter';
 
 import Chance from 'chance';
@@ -38,5 +40,9 @@ export class Event {
 
   static emitMessage({ affected, eventText }) {
     emitter.emit('player:event', { affected, eventText });
+  }
+
+  static feedback(player, message) {
+    primus.room(player.name).write({ type: 'error', title: '', notify: message });
   }
 }

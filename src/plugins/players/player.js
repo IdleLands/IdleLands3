@@ -99,7 +99,8 @@ export class Player extends Character {
 
   handleChoice({ id, response }) {
     const choice = _.find(this.choices, { id });
-    Events[choice.event].makeChoice(this, id, response);
+    const result = Events[choice.event].makeChoice(this, id, response);
+    if(result === false) return Events[choice.event].feedback(this);
     this.$statistics.batchIncrement(['Character.Choice.Choose', `Character.Choice.Choose.${response}`]);
     this.removeChoice(id);
     this.update();

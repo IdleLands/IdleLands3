@@ -23,7 +23,9 @@ class Settings {
 
     this.reductionDefaults = {
       itemFindRange: 7,
-      itemValueMultiplier: 0.1
+      itemValueMultiplier: 0.1,
+      merchantCostReductionMultiplier: 0.0,
+      merchantItemGeneratorBonus: 5
     };
 
     this.maxChoices = 10;

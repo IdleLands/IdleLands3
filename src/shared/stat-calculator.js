@@ -86,4 +86,14 @@ export class StatCalculator {
     const baseValue = 1 + (0.2 * Math.floor(player.level/10));
     return this._reduction('itemFindRangeMultiplier', [player], baseValue);
   }
+
+  static merchantItemGeneratorBonus(player) {
+    const baseValue = SETTINGS.reductionDefaults.merchantItemGeneratorBonus;
+    return this._reduction('merchantItemGeneratorBonus', [player], baseValue);
+  }
+
+  static merchantCostReductionMultiplier(player) {
+    const baseValue = SETTINGS.reductionDefaults.merchantCostReductionMultiplier;
+    return this._reduction('merchantCostReductionMultiplier', [player], baseValue);
+  }
 }
