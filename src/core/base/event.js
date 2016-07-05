@@ -27,6 +27,15 @@ export class Event {
     );
   }
 
+  static pickValidItem(player) {
+    const validTargets = _.reject(player.equipment, item => item.type === 'providence');
+    return _.sample(validTargets);
+  }
+
+  static pickStat(item) {
+    return _.sample(['str', 'con', 'dex', 'agi', 'int', 'luk']);
+  }
+
   static emitMessage({ affected, eventText }) {
     emitter.emit('player:event', { affected, eventText });
   }
