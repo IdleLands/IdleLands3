@@ -9,7 +9,7 @@ export class ItemForsake extends Event {
     const item = this.pickValidItem(player);
     const stat = this.pickStat(item);
 
-    let boost = item[stat] === 0 ? 5 : Math.max(3, Math.abs(Math.floor(item[stat]/20)));
+    const boost = item[stat] === 0 ? 5 : Math.max(3, Math.abs(Math.floor(item[stat]/20)));
 
     const eventText = this.eventText('forsakeItem', player, { item: item.name });
 

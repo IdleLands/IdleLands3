@@ -32,7 +32,7 @@ export class Event {
     return _.sample(validTargets);
   }
 
-  static pickStat(item) {
+  static pickStat() {
     return _.sample(['str', 'con', 'dex', 'agi', 'int', 'luk']);
   }
 
