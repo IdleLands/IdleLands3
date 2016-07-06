@@ -1,5 +1,6 @@
 
 import { Event } from '../../../core/base/event';
+import { MessageCategories } from '../../../shared/adventure-log';
 
 export const WEIGHT = 1;
 
@@ -11,7 +12,7 @@ export class Switcheroo extends Event {
 
     const eventText = this.eventText('flipStat', player, { item: item.name });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${-item[stat]}]` });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${-item[stat]}]`, category: MessageCategories.ITEM });
     item[stat] = -item[stat];
     item.score;
   }

@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 
-import { AdventureLog, MessageTypes } from '../shared/adventure-log';
+import { AdventureLog, MessageTypes, MessageCategories } from '../shared/adventure-log';
 import { GameState } from './game-state';
 import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
 import { migrate } from '../plugins/players/player.migration';
@@ -18,7 +18,8 @@ PlayerEmitter.on('player:login', async ({ playerName }) => {
   PlayerLogin(playerName);
   AdventureLog({
     text: MessageParser.stringFormat('Welcome %player back to Idliathlia!', player),
-    type: MessageTypes.GLOBAL
+    type: MessageTypes.GLOBAL,
+    category: MessageTypes.META
   });
 });
 
@@ -31,7 +32,8 @@ PlayerEmitter.on('player:register', async ({ playerName }) => {
   PlayerLogin(playerName);
   AdventureLog({
     text: MessageParser.stringFormat('Welcome %player to Idliathlia!', player),
-    type: MessageTypes.GLOBAL
+    type: MessageTypes.GLOBAL,
+    category: MessageTypes.META
   });
 });
 
@@ -39,7 +41,8 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
   PlayerLogout(playerName);
   AdventureLog({
     text: `«${playerName}» has departed Idliathlia!`,
-    type: MessageTypes.GLOBAL
+    type: MessageTypes.GLOBAL,
+    category: MessageTypes.META
   });
   GameState.getInstance().delPlayer(playerName);
 });
@@ -50,7 +53,8 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
   PlayerUpdateAll(player.name, ['name', 'level']);
   AdventureLog({
     text: MessageParser.stringFormat(`%player has reached experience level ${player.level}!`, player),
-    type: MessageTypes.GLOBAL
+    type: MessageTypes.GLOBAL,
+    category: MessageTypes.LEVELUP
   });
 });
 
@@ -59,6 +63,7 @@ PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
   AdventureLog({
     text: MessageParser.stringFormat(`%player has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`, player),
     type: MessageTypes.SINGLE,
+    category: MessageTypes.PROFESSION,
     targets: [player.name]
   });
 });
@@ -81,15 +86,17 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
   AdventureLog({
     text: MessageParser.stringFormat(message, player),
     type: MessageTypes.SINGLE,
+    category: MessageTypes.EXPLORE,
     targets: [player.name]
   });
 
 });
 
-PlayerEmitter.on('player:event', ({ affected, eventText }) => {
+PlayerEmitter.on('player:event', ({ affected, category, eventText }) => {
   AdventureLog({
     text: eventText,
     type: MessageTypes.SINGLE,
+    category,
     targets: _.map(affected, 'name')
   });
 });

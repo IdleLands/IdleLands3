@@ -7,10 +7,27 @@ const verifyMessage = (msg) => {
     return Logger.error('AdventureLog', new Error('No message type given.'), msg);
   if(!msg.text)
     return Logger.error('AdventureLog', new Error('No message text given.'), msg);
+  if(!msg.category)
+    return Logger.error('AdventureLog', new Error('No message category given.'), msg);
   if(!msg.targets && msg.type !== 'Global')
     return Logger.error('AdventureLog', new Error('No message targets given (message is not global).'), msg);
 
   return true;
+};
+
+export const MessageCategories = {
+  META: 'Meta',
+  EXPLORE: 'Explore',
+  LEVELUP: 'Levelup',
+  ACHIEVEMENT: 'Achievement',
+  COMBAT: 'Combat',
+  PET: 'Pet',
+  GUILD: 'Guild',
+  TOWNCRIER: 'Towncrier',
+  ITEM: 'Item',
+  GOLD: 'Gold',
+  PROFESSION: 'Profession',
+  XP: 'Xp'
 };
 
 export const MessageTypes = {

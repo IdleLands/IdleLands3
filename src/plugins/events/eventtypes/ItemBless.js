@@ -1,5 +1,6 @@
 
 import { Event } from '../../../core/base/event';
+import { MessageCategories } from '../../../shared/adventure-log';
 
 export const WEIGHT = 45;
 
@@ -13,7 +14,7 @@ export class ItemBless extends Event {
 
     const eventText = this.eventText('blessItem', player, { item: item.name });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${item[stat]+boost}]` });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${item[stat]+boost}]`, category: MessageCategories.ITEM });
     item[stat] += boost;
     item.score;
   }

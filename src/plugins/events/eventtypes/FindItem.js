@@ -4,6 +4,7 @@ import { Event } from '../../../core/base/event';
 
 import { Equipment } from '../../../core/base/equipment';
 import { ItemGenerator } from '../../../shared/item-generator';
+import { MessageCategories } from '../../../shared/adventure-log';
 
 export const WEIGHT = 25;
 
@@ -32,7 +33,7 @@ export class FindItem extends Event {
     if(response !== 'Yes') return;
     const choice = _.find(player.choices, { id });
     player.equip(new Equipment(choice.extraData.item));
-    this.emitMessage({ affected: [player], eventText: choice.extraData.eventText });
+    this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.ITEM });
   }
 }
 

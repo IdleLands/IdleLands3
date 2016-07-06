@@ -1,5 +1,6 @@
 
 import { Event } from '../../../core/base/event';
+import { MessageCategories } from '../../../shared/adventure-log';
 
 export const WEIGHT = 100;
 
@@ -10,7 +11,7 @@ export class XPBless extends Event {
     const xpMod = Math.floor(player._xp.maximum * percent);
     const eventText = this.eventText('blessXp', player, { xp: xpMod });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [+${xpMod}xp, ~${(percent*100).toFixed(2)}%]` });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [+${xpMod}xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
     player.gainXp(xpMod);
   }
 }
