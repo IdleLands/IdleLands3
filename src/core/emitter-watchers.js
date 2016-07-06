@@ -4,11 +4,13 @@ import _ from 'lodash';
 import { AdventureLog, MessageTypes } from '../shared/adventure-log';
 import { GameState } from './game-state';
 import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
+import { migrate } from '../plugins/players/player.migration';
 import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../shared/playerlist-updater';
 
 PlayerEmitter.on('player:login', async ({ playerName }) => {
   const player = await GameState.getInstance().addPlayer(playerName);
   if(!player) return;
+  migrate(player);
   player.update();
   player.$statistics.incrementStat('Game.Logins');
   AllPlayers(playerName);
