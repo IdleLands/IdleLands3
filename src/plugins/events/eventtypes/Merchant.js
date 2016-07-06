@@ -14,7 +14,7 @@ export class Merchant extends Event {
     const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus));
     if(!player.canEquip(item)) {
       const message = '%player was offered %item by a wandering merchant, but it was useless to %himher.';
-      const parsedMessage = this._parseText(message, player, { item: item.name });
+      const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage });
       return;
     }
@@ -22,14 +22,14 @@ export class Merchant extends Event {
     const cost = item.score - (item.score*player.liveStats.merchantCostReductionMultiplier);
     if(cost > player.gold) {
       const message = '%player was offered %item by a wandering merchant, but %she doesn\'t have enough gold.';
-      const parsedMessage = this._parseText(message, player, { item: item.name });
+      const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage });
       return;
     }
 
     const id = Event.chance.guid();
-    const message = `Would you like to buy ${item.name} for ${cost} gold?`;
-    const eventText = this.eventText('merchant', player, { item: item.name, shopGold: cost });
+    const message = `Would you like to buy «${item.fullname}» for ${cost} gold?`;
+    const eventText = this.eventText('merchant', player, { item: item.fullname, shopGold: cost });
     const extraData = { item, cost, eventText };
 
     player.addChoice({ id, message, extraData, event: 'Merchant', choices: ['Yes', 'No'] });

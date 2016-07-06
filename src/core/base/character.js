@@ -131,7 +131,7 @@ export class Character {
   }
 
   sellItem(item) {
-    const value = Math.floor(item.score * this.liveStats.itemValueMultiplier);
+    const value = Math.max(1, Math.floor(item.score * this.liveStats.itemValueMultiplier));
     this.gainGold(value);
     return value;
   }

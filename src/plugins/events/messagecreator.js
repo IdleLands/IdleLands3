@@ -209,6 +209,8 @@ export class MessageParser {
   static stringFormat(string, player, extra = {}) {
     string = _.trim(string);
 
+    if(extra.item) extra.item = `«${extra.item}»`;
+
     _.each(_.keys(extra), key => {
       string = string.split(`%${key}`).join(extra[key]);
     });
@@ -216,10 +218,10 @@ export class MessageParser {
     string = EventVariableManager.handleVariables(string);
 
     const splitJoins = [
-      { split: '%player',       join: () => player.fullname },
-      { split: '%pet',          join: () => PlayerOwnedDomainHandler.pet(player) },
-      { split: '%guildMember',  join: () => PlayerOwnedDomainHandler.guildMember(player) },
-      { split: '%guild',        join: () => PlayerOwnedDomainHandler.guild(player) }
+      { split: '%player',       join: () => `«${player.fullname}»` },
+      { split: '%pet',          join: () => `«${PlayerOwnedDomainHandler.pet(player)}»` },
+      { split: '%guildMember',  join: () => `«${PlayerOwnedDomainHandler.guildMember(player)}»` },
+      { split: '%guild',        join: () => `«${PlayerOwnedDomainHandler.guild(player)}»` }
     ];
 
     _.each(['hishers', 'hisher', 'himher', 'she', 'heshe'], pronoun => {

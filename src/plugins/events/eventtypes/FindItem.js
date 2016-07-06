@@ -15,14 +15,14 @@ export class FindItem extends Event {
     if(!player.canEquip(item)) {
       const message = '%player came across %item, but it was useless to %himher, so %she sold it for %gold gold.';
       const gold = player.sellItem(item);
-      const parsedMessage = this._parseText(message, player, { gold, item: item.name });
+      const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage });
       return;
     }
 
     const id = Event.chance.guid();
-    const message = `Would you like to equip ${item.name}?`;
-    const eventText = this.eventText('findItem', player, { item: item.name });
+    const message = `Would you like to equip «${item.fullname}»?`;
+    const eventText = this.eventText('findItem', player, { item: item.fullname });
     const extraData = { item, eventText };
 
     player.addChoice({ id, message, extraData, event: 'FindItem', choices: ['Yes', 'No'] });
