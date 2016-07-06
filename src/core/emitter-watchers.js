@@ -17,7 +17,7 @@ PlayerEmitter.on('player:login', async ({ playerName }) => {
   AllPlayers(playerName);
   PlayerLogin(playerName);
   AdventureLog({
-    text: MessageParser.stringFormat(`Welcome %player back to Idliathlia!`, player),
+    text: MessageParser.stringFormat('Welcome %player back to Idliathlia!', player),
     type: MessageTypes.GLOBAL
   });
 });
@@ -30,7 +30,7 @@ PlayerEmitter.on('player:register', async ({ playerName }) => {
   AllPlayers(playerName);
   PlayerLogin(playerName);
   AdventureLog({
-    text: MessageParser.stringFormat(`Welcome %player to Idliathlia!`, player),
+    text: MessageParser.stringFormat('Welcome %player to Idliathlia!', player),
     type: MessageTypes.GLOBAL
   });
 });
