@@ -16,7 +16,7 @@ export class Merchant extends Event {
     if(!player.canEquip(item)) {
       const message = '%player was offered %item by a wandering merchant, but it was useless to %himher.';
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
-      this.emitMessage({ affected: [player], eventText: parsedMessage });
+      this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
       return;
     }
 
@@ -24,7 +24,7 @@ export class Merchant extends Event {
     if(cost > player.gold) {
       const message = '%player was offered %item by a wandering merchant, but %she doesn\'t have enough gold.';
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
-      this.emitMessage({ affected: [player], eventText: parsedMessage });
+      this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
       return;
     }
 

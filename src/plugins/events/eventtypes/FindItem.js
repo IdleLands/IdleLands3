@@ -17,7 +17,7 @@ export class FindItem extends Event {
       const message = '%player came across %item, but it was useless to %himher, so %she sold it for %gold gold.';
       const gold = player.sellItem(item);
       const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
-      this.emitMessage({ affected: [player], eventText: parsedMessage });
+      this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
       return;
     }
 
