@@ -5,7 +5,7 @@ import { Event } from '../../../core/base/event';
 import { Equipment } from '../../../core/base/equipment';
 import { ItemGenerator } from '../../../shared/item-generator';
 
-export const WEIGHT = 300;
+export const WEIGHT = 15;
 
 // Get given the opportunity to change classes
 export class Merchant extends Event {
