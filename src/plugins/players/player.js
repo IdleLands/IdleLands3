@@ -139,7 +139,6 @@ export class Player extends Character {
       `Character.Regions.${tile.region}`
     ]);
 
-    // TODO xpGain stat
     this.gainXp(10);
   }
 
@@ -154,5 +153,6 @@ export class Player extends Character {
 
   update() {
     this.$dataUpdater(this.name, 'player', this.buildSaveObject());
+    this.$dataUpdater(this.name, 'statistics', this.$statistics.stats);
   }
 }
