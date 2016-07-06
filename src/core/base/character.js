@@ -110,6 +110,7 @@ export class Character {
 
   equip(item) {
     this.equipment[item.type] = item;
+    this.recalculateStats();
   }
 
   resetMaxXp() {
