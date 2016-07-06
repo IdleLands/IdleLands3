@@ -37,5 +37,7 @@ export class EventHandler {
     const chosenEventName = chance.weighted(events, weights);
     const chosenEvent = allEvents[chosenEventName][chosenEventName];
     chosenEvent.operateOn(player);
+
+    player.$statistics.batchIncrement(['Character.Events', `Character.Event.${chosenEventName}`]);
   }
 }

@@ -11,6 +11,6 @@ export class XPBless extends Event {
     const eventText = this.eventText('blessXp', player, { xp: xpMod });
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [+${xpMod}xp, ~${(percent*100).toFixed(2)}%]` });
-    player._xp.add(xpMod);
+    player.gainXp(xpMod);
   }
 }

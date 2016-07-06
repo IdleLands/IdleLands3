@@ -71,7 +71,7 @@ export class Player extends Character {
     if(gold > 0) {
       this.$statistics.incrementStat('Character.Gold.Gain', gold);
     } else {
-      this.$statistics.incrementStat('Character.Gold.Lose', gold);
+      this.$statistics.incrementStat('Character.Gold.Lose', -gold);
     }
   }
 
@@ -81,7 +81,7 @@ export class Player extends Character {
     if(xp > 0) {
       this.$statistics.incrementStat('Character.XP.Gain', xp);
     } else {
-      this.$statistics.incrementStat('Character.XP.Lose', xp);
+      this.$statistics.incrementStat('Character.XP.Lose', -xp);
     }
 
     if(this._xp.atMaximum()) this.levelUp();
