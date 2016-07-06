@@ -94,14 +94,14 @@ export class Player extends Character {
     }
 
     this.choices.push(messageData);
-    this.$statistics.incrementStat('Character.Choice.Given');
+    this.$statistics.incrementStat('Character.Choices');
   }
 
   handleChoice({ id, response }) {
     const choice = _.find(this.choices, { id });
     const result = Events[choice.event].makeChoice(this, id, response);
     if(result === false) return Events[choice.event].feedback(this);
-    this.$statistics.batchIncrement(['Character.Choice.Choose', `Character.Choice.Choose.${response}`]);
+    this.$statistics.batchIncrement(['Character.Choice.Chosen', `Character.Choice.Choose.${response}`]);
     this.removeChoice(id);
     this.update();
   }
