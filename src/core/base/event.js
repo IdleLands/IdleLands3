@@ -38,8 +38,8 @@ export class Event {
     return _.sample(['str', 'con', 'dex', 'agi', 'int', 'luk']);
   }
 
-  static emitMessage({ affected, eventText }) {
-    emitter.emit('player:event', { affected, eventText });
+  static emitMessage({ affected, eventText, category }) {
+    emitter.emit('player:event', { affected, eventText, category });
   }
 
   static feedback(player, message) {
