@@ -5,7 +5,7 @@ import { SETTINGS } from '../../static/settings';
 import { ObjectAssets } from '../../shared/asset-loader';
 
 const gidMap = SETTINGS.gidMap;
-const blockers = [16, 17, 3, 33, 37, 38, 39, 44, 45, 46, 47, 50, 53, 54, 55];
+const blockers = [16, 17, 3, 33, 37, 38, 39, 44, 45, 46, 47, 50, 53, 54, 55, 56, 57, 81, 83];
 // const interactables = [1, 2, 12, 13, 14, 15, 18, 40, 41, 42, 43, 48, 51];
 
 export class Map {
