@@ -19,7 +19,7 @@ PlayerEmitter.on('player:login', async ({ playerName }) => {
   AdventureLog({
     text: MessageParser.stringFormat('Welcome %player back to Idliathlia!', player),
     type: MessageTypes.GLOBAL,
-    category: MessageTypes.META
+    category: MessageCategories.META
   });
 });
 
@@ -33,7 +33,7 @@ PlayerEmitter.on('player:register', async ({ playerName }) => {
   AdventureLog({
     text: MessageParser.stringFormat('Welcome %player to Idliathlia!', player),
     type: MessageTypes.GLOBAL,
-    category: MessageTypes.META
+    category: MessageCategories.META
   });
 });
 
@@ -42,7 +42,7 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
   AdventureLog({
     text: `«${playerName}» has departed Idliathlia!`,
     type: MessageTypes.GLOBAL,
-    category: MessageTypes.META
+    category: MessageCategories.META
   });
   GameState.getInstance().delPlayer(playerName);
 });
@@ -54,7 +54,7 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
   AdventureLog({
     text: MessageParser.stringFormat(`%player has reached experience level ${player.level}!`, player),
     type: MessageTypes.GLOBAL,
-    category: MessageTypes.LEVELUP
+    category: MessageCategories.LEVELUP
   });
 });
 
@@ -63,7 +63,7 @@ PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
   AdventureLog({
     text: MessageParser.stringFormat(`%player has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`, player),
     type: MessageTypes.SINGLE,
-    category: MessageTypes.PROFESSION,
+    category: MessageCategories.PROFESSION,
     targets: [player.name]
   });
 });
@@ -86,7 +86,7 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
   AdventureLog({
     text: MessageParser.stringFormat(message, player),
     type: MessageTypes.SINGLE,
-    category: MessageTypes.EXPLORE,
+    category: MessageCategories.EXPLORE,
     targets: [player.name]
   });
 
