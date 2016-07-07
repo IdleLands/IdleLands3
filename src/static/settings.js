@@ -20,6 +20,7 @@ class Settings {
   constructor() {
     this.timeframeSeconds = 10;
     this.maxLevel = 200;
+    this.xpPerStep = 10;
 
     this.reductionDefaults = {
       itemFindRange: 7,

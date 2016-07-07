@@ -80,6 +80,7 @@ export class Player extends Character {
   }
 
   gainXp(xp = 1) {
+    xp += this.liveStats.xp;
     super.gainXp(xp);
 
     if(xp > 0) {
@@ -155,7 +156,7 @@ export class Player extends Character {
       `Character.Regions.${tile.region}`
     ]);
 
-    this.gainXp(10);
+    this.gainXp(SETTINGS.xpPerStep);
   }
 
   buildSaveObject() {
