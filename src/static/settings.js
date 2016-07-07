@@ -28,6 +28,8 @@ class Settings {
       merchantItemGeneratorBonus: 5
     };
 
+    this.validGenders = ['male', 'female', 'not a bear', 'glowcloud', 'astronomical entity'];
+
     this.maxChoices = 10;
 
     this.chatMessageMaxLength = 500;

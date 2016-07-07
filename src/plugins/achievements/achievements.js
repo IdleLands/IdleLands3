@@ -26,6 +26,16 @@ export class Achievements {
     _.extend(this, opts);
   }
 
+  titles() {
+    return _(this.achievements)
+      .values()
+      .map(achi => achi.rewards)
+      .flattenDeep()
+      .filter(reward => reward.type === 'title')
+      .map(reward => reward.title)
+      .value();
+  }
+
   _allAchievements(player) {
     return _(AllAchievements)
       .values()

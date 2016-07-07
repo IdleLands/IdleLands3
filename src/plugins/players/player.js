@@ -114,6 +114,18 @@ export class Player extends Character {
     this.choices = _.reject(this.choices, { id });
   }
 
+  changeGender(newGender) {
+    if(!_.includes(SETTINGS.validGenders, newGender)) return;
+    this.gender = newGender;
+    emitter.emit('player:changegender', { player: this });
+  }
+
+  changeTitle(newTitle) {
+    if(newTitle && !_.includes(this.$achievements.titles(), newTitle)) return;
+    this.title = newTitle;
+    emitter.emit('player:changetitle', { player: this });
+  }
+
   moveAction() {
     let [newLoc, dir] = this.$playerMovement.pickRandomTile(this);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);

@@ -47,8 +47,6 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
   GameState.getInstance().delPlayer(playerName);
 });
 
-// TODO title
-
 PlayerEmitter.on('player:levelup', ({ player }) => {
   PlayerUpdateAll(player.name, ['name', 'level']);
   AdventureLog({
@@ -57,6 +55,16 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
     category: MessageCategories.LEVELUP,
     targets: [player.name]
   });
+});
+
+PlayerEmitter.on('player:changegender', ({ player }) => {
+  PlayerUpdateAll(player.name, ['name', 'gender']);
+  player.update();
+});
+
+PlayerEmitter.on('player:changetitle', ({ player }) => {
+  PlayerUpdateAll(player.name, ['name', 'title']);
+  player.update();
 });
 
 PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
