@@ -8,5 +8,8 @@ export class Achievement {
 
 export const AchievementTypes = {
   PROGRESS: 'Progress',
-  EXPLORE: 'Explore'
+  EXPLORE: 'Explore',
+  COMBAT: 'Combat',
+  SPECIAL: 'Special',
+  EVENT: 'Event'
 };
