@@ -67,7 +67,7 @@ PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
       category: MessageCategories.ACHIEVEMENT,
       targets: [player.name]
     });
-  })
+  });
 });
 
 PlayerEmitter.on('player:changeclass', ({ player, choice }) => {

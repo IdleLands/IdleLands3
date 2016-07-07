@@ -1,6 +1,6 @@
 
 export class Achievement {
-  static achievementData(){}
+  static achievementData() {}
   static log(base, number) {
     return Math.log(number) / Math.log(base);
   }

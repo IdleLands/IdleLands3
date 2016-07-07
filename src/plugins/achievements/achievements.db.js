@@ -42,7 +42,7 @@ export class AchievementsDb {
     const achievements = db.collection('achievements');
 
     return new Promise((resolve) => {
-      achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: { achievements: achievementsObject.achievements } }, { upsert: true }).then((doc) => {
+      achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: { achievements: achievementsObject.achievements } }, { upsert: true }).then(() => {
         resolve(achievements);
       });
     });
