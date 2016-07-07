@@ -52,7 +52,7 @@ class AllDomains {
 
   static random(props, cache) {
     const { funct, args } = props[0];
-    return AssetDomainHandler[funct](args, props, cache);
+    return `«${AssetDomainHandler[funct](args, props, cache)}»`;
   }
 }
 
