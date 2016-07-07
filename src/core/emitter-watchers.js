@@ -53,9 +53,21 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
   PlayerUpdateAll(player.name, ['name', 'level']);
   AdventureLog({
     text: MessageParser.stringFormat(`%player has reached experience level ${player.level}!`, player),
-    type: MessageTypes.GLOBAL,
-    category: MessageCategories.LEVELUP
+    type: MessageTypes.SINGLE,
+    category: MessageCategories.LEVELUP,
+    targets: [player.name]
   });
+});
+
+PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
+  _.each(achievements, achievement => {
+    AdventureLog({
+      text: MessageParser.stringFormat(`%player has achieved ${achievement.name} ${achievement.tier > 1 ? ` tier ${achievement.tier}` : ''}!`, player),
+      type: MessageTypes.SINGLE,
+      category: MessageCategories.ACHIEVEMENT,
+      targets: [player.name]
+    });
+  })
 });
 
 PlayerEmitter.on('player:changeclass', ({ player, choice }) => {

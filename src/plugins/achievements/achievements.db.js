@@ -6,44 +6,44 @@ import { MESSAGES } from '../../static/messages';
 import { Logger } from '../../shared/logger';
 import { constitute } from '../../shared/di-wrapper';
 
-import { Statistics } from './statistics';
+import { Achievements } from './achievements';
 
 @Dependencies(DbWrapper)
-export class StatisticsDb {
+export class AchievementsDb {
   constructor(DbWrapper) {
     this.dbWrapper = DbWrapper;
   }
 
-  async getStatistics(id) {
+  async getAchievements(id) {
     const db = await this.dbWrapper.connectionPromise();
-    const statistics = db.collection('statistics');
+    const achievements = db.collection('achievements');
 
     return new Promise((resolve, reject) => {
-      statistics.find({ _id: id }).limit(1).next((err, doc) => {
+      achievements.find({ _id: id }).limit(1).next((err, doc) => {
 
         if(err) {
           return reject({ err, msg: MESSAGES.GENERIC });
         }
 
         try {
-          const statistics = constitute(Statistics);
-          statistics.init(doc);
-          resolve(statistics);
+          const achievements = constitute(Achievements);
+          achievements.init(doc);
+          resolve(achievements);
         } catch(e) {
-          Logger.error('StatisticsDb:getStatistics', e);
+          Logger.error('AchievementsDb:getAchievements', e);
           reject({ e, msg: MESSAGES.GENERIC });
         }
       });
     });
   }
 
-  async saveStatistics(statsObject) {
+  async saveAchievements(achievementsObject) {
     const db = await this.dbWrapper.connectionPromise();
-    const statistics = db.collection('statistics');
+    const achievements = db.collection('achievements');
 
     return new Promise((resolve) => {
-      statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }).then((doc) => {
-        resolve(statistics);
+      achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: { achievements: achievementsObject.achievements } }, { upsert: true }).then((doc) => {
+        resolve(achievements);
       });
     });
   }

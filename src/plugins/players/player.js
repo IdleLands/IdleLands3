@@ -53,6 +53,10 @@ export class Player extends Character {
   takeTurn() {
     this.moveAction();
     EventHandler.tryToDoEvent(this);
+    const newAchievements = this.$achievements.checkAchievements(this);
+    if(newAchievements.length > 0) {
+      emitter.emit('player:achieve', { player: this, achievements: newAchievements });
+    }
     this.save();
   }
 
@@ -154,5 +158,6 @@ export class Player extends Character {
   update() {
     this.$dataUpdater(this.name, 'player', this.buildSaveObject());
     this.$dataUpdater(this.name, 'statistics', this.$statistics.stats);
+    this.$dataUpdater(this.name, 'achievements', this.$achievements.achievements);
   }
 }

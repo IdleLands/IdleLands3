@@ -4,7 +4,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 export const WEIGHT = 10;
 
-// Lose 25-2500 Gold
+// Lose 25-2000 Gold
 export class GoldForsake extends Event {
   static operateOn(player) {
     const goldMod = Math.max(player.gold, Math.floor(Event.chance.integer({ min: 25, max: 2000 })));

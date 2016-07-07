@@ -123,7 +123,9 @@ export class Character {
 
   gainGold(gold = 1) {
     this.gold += gold;
-    if (this.gold < 0 || _.isNaN(this.gold)) this.gold = 0;
+    if(this.gold < 0 || _.isNaN(this.gold)) {
+      this.gold = 0;
+    }
   }
 
   gainXp(xp = 1) {
