@@ -28,6 +28,7 @@ PlayerEmitter.on('player:register', async ({ playerName }) => {
   if(!player) return;
   player.update();
   player.$statistics.incrementStat('Game.Logins');
+  player.$statistics.incrementStat(`Character.Professions.${player.professionName}`);
   AllPlayers(playerName);
   PlayerLogin(playerName);
   AdventureLog({
@@ -80,6 +81,7 @@ PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
 });
 
 PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
+  player.$statistics.incrementStat(`Character.Professions.${choice.extraData.professionName}`);
   PlayerUpdateAll(player.name, ['name', 'professionName']);
   AdventureLog({
     text: MessageParser.stringFormat(`%player has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`, player),
