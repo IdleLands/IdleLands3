@@ -50,6 +50,7 @@ export class PlayerLoad {
       }
 
       player.isOnline = true;
+      player.recalculateStats();
 
       return player;
     } catch(e) {

@@ -19,7 +19,8 @@ export class StatCalculator {
 
   static _baseStat(player, stat) {
     return this.classStat(player, stat)
-         + this.equipmentStat(player, stat);
+         + this.equipmentStat(player, stat)
+         + this.achievementStat(player, stat);
   }
 
   static equipmentStat(player, stat) {
@@ -31,6 +32,17 @@ export class StatCalculator {
 
   static classStat(player, stat) {
     return player.level * (player.$profession[`base${_.capitalize(stat)}PerLevel`] || 0);
+  }
+
+  static achievementStat(player, stat) {
+    if(!player.$achievements) return 0;
+    return _(player.$achievements.achievements)
+      .values()
+      .map('rewards')
+      .flattenDeep()
+      .reject(bonus => bonus.type !== 'stats')
+      .reject(bonus => !bonus[stat])
+      .reduce((prev, cur) => prev+cur[stat], 0);
   }
 
   static stat(player, stat) {
