@@ -71,7 +71,7 @@ PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
   player.recalculateStats();
   _.each(achievements, achievement => {
     AdventureLog({
-      text: MessageParser.stringFormat(`%player has achieved ${achievement.name} ${achievement.tier > 1 ? ` tier ${achievement.tier}` : ''}!`, player),
+      text: MessageParser.stringFormat(`%player has achieved ${achievement.name} ${achievement.tier > 1 ? `tier ${achievement.tier}` : ''}!`, player),
       type: MessageTypes.SINGLE,
       category: MessageCategories.ACHIEVEMENT,
       targets: [player.name]
