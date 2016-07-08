@@ -57,6 +57,7 @@ export class Player extends Character {
     if(newAchievements.length > 0) {
       emitter.emit('player:achieve', { player: this, achievements: newAchievements });
     }
+    this.$personalities.checkPersonalities(this);
     this.save();
   }
 
@@ -172,5 +173,6 @@ export class Player extends Character {
     this.$dataUpdater(this.name, 'player', this.buildSaveObject());
     this.$dataUpdater(this.name, 'statistics', this.$statistics.stats);
     this.$dataUpdater(this.name, 'achievements', this.$achievements.achievements);
+    this.$dataUpdater(this.name, 'personalities', this.$personalities.personalities);
   }
 }
