@@ -8,7 +8,7 @@ export class Eventful extends Achievement {
     const baseValue = 100;
 
     let tier = 1;
-    while(totalEvents > baseValue * ((tier-1) * 10)) {
+    while(totalEvents > baseValue * Math.pow(10, tier-1)) {
       tier++;
     }
 
@@ -18,7 +18,7 @@ export class Eventful extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      itemFindRangeMultiplier: tier*0.1
+      itemFindRangeMultiplier: (tier*0.1).toFixed(1)
     }];
 
     if(tier >= 5) {

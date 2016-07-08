@@ -8,7 +8,7 @@ export class Consumerist extends Achievement {
     const baseValue = 1000;
 
     let tier = 1;
-    while(value > baseValue * ((tier-1) * 10)) {
+    while(value > baseValue * Math.pow(10, tier-1)) {
       tier++;
     }
 
@@ -18,7 +18,7 @@ export class Consumerist extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      itemValueMultiplier: tier*0.05,
+      itemValueMultiplier: (tier*0.05).toFixed(1),
       dex: tier*10
     }];
 
