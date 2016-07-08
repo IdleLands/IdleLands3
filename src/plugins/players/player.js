@@ -94,12 +94,27 @@ export class Player extends Character {
   }
 
   addChoice(messageData) {
+    this.choices.push(messageData);
+
     if(this.choices.length > SETTINGS.maxChoices) {
-      this.choices.shift();
-      this.$statistics.incrementStat('Character.Choice.Ignore');
+      if(this.$personalities.isAnyActive(['Affirmer', 'Denier', 'Indecisive'])) {
+        const choice = this.choices[0];
+        if(_.includes(choice.choices, 'Yes') && this.$personalities.isActive('Affirmer')) {
+          this.handleChoice({ id: choice.id, response: 'Yes' });
+
+        } else if(_.includes(choice.choices, 'No') && this.$personalities.isActive('Denier')) {
+          this.handleChoice({ id: choice.id, response: 'No' });
+
+        } else if(this.$personalities.isActive('Indecisive')) {
+          this.handleChoice({ id: choice.id, response: _.sample(choice.choices) });
+        }
+
+      } else {
+        this.choices.shift();
+        this.$statistics.incrementStat('Character.Choice.Ignore');
+      }
     }
 
-    this.choices.push(messageData);
     this.$statistics.incrementStat('Character.Choices');
   }
 
@@ -126,6 +141,12 @@ export class Player extends Character {
     if(newTitle && !_.includes(this.$achievements.titles(), newTitle)) return;
     this.title = newTitle;
     emitter.emit('player:changetitle', { player: this });
+  }
+
+  togglePersonality(personality) {
+    if(!_.find(this.$personalities.earnedPersonalities, { name: personality })) return;
+    this.$personalities.togglePersonality(this, personality);
+    this._updatePersonalities();
   }
 
   moveAction() {
@@ -169,10 +190,26 @@ export class Player extends Character {
     this.update();
   }
 
-  update() {
+  _updatePlayer() {
     this.$dataUpdater(this.name, 'player', this.buildSaveObject());
+  }
+
+  _updateStatistics() {
     this.$dataUpdater(this.name, 'statistics', this.$statistics.stats);
+  }
+
+  _updateAchievements() {
     this.$dataUpdater(this.name, 'achievements', this.$achievements.achievements);
-    this.$dataUpdater(this.name, 'personalities', this.$personalities.personalities);
+  }
+
+  _updatePersonalities() {
+    this.$dataUpdater(this.name, 'personalities', { earned: this.$personalities.earnedPersonalities, active: this.$personalities.activePersonalities });
+  }
+
+  update() {
+    this._updatePlayer();
+    this._updateStatistics();
+    this._updateAchievements();
+    this._updatePersonalities();
   }
 }

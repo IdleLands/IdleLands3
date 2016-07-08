@@ -34,12 +34,17 @@ export class Personalities {
       .value();
   }
 
-  togglePersonality(player, personality, state) {
-    this.activePersonalities[personality] = state;
-    if(state) {
+  togglePersonality(player, personality) {
+    const newState = !this.activePersonalities[personality];
+    this.activePersonalities[personality] = newState;
+    if(newState) {
       AllPersonalities[personality].enable(player);
     }
     this.save();
+  }
+
+  isAnyActive(personalities) {
+    return _.some(personalities, p => this.isActive(p));
   }
 
   isActive(personality) {
@@ -48,16 +53,16 @@ export class Personalities {
 
   checkPersonalities(player) {
     const earned = this._allPersonalities(player);
-    const earnedObjs = _.map(earned, pers => {
+    const earnedObjs = _.sortBy(_.map(earned, pers => {
       return {
         name: pers.name,
         description: pers.description
       };
-    });
+    }), 'name');
 
     this.earnedPersonalities = earnedObjs;
     this.save();
-    
+
     return earnedObjs;
   }
 

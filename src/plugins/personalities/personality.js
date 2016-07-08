@@ -8,7 +8,8 @@ export class Personality {
   static hasEarned() {}
   static enable(player) {
     _.each(this.disableOnActivate, personality => {
-      player.$personalities.personalities[personality] = false;
+      if(!player.$personalities.activePersonalities[personality]) return;
+      player.$personalities.activePersonalities[personality] = false;
     });
   }
 }
