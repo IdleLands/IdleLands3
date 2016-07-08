@@ -32,7 +32,7 @@ export class Statistics {
     let val = _.get(this.stats, stat, 0);
     const oldVal = val;
     val += value;
-    if(_.isNaN(val)) val = oldVal;
+    if(_.isNaN(val)) val = _.isNaN(oldVal) ? 0 : oldVal;
     _.set(this.stats, stat, val);
   }
 
