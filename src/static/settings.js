@@ -22,6 +22,8 @@ class Settings {
     this.maxLevel = 200;
     this.xpPerStep = 10;
 
+    this.merchantMultiplier = 3;
+
     this.reductionDefaults = {
       itemFindRange: 7,
       itemValueMultiplier: 0.1,

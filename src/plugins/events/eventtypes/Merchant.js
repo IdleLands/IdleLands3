@@ -6,6 +6,8 @@ import { Equipment } from '../../../core/base/equipment';
 import { ItemGenerator } from '../../../shared/item-generator';
 import { MessageCategories } from '../../../shared/adventure-log';
 
+import { SETTINGS } from '../../../static/settings';
+
 export const WEIGHT = 15;
 
 // Get given the opportunity to change classes
@@ -20,7 +22,8 @@ export class Merchant extends Event {
       return;
     }
 
-    const cost = item.score - (item.score*player.liveStats.merchantCostReductionMultiplier);
+    const sellScore = item.score * SETTINGS.merchantMultiplier;
+    const cost = sellScore - (sellScore*player.liveStats.merchantCostReductionMultiplier);
     if(cost > player.gold) {
       const message = '%player was offered %item by a wandering merchant, but %she doesn\'t have enough gold.';
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
