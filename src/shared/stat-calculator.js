@@ -42,7 +42,7 @@ export class StatCalculator {
       .flattenDeep()
       .reject(bonus => bonus.type !== 'stats')
       .reject(bonus => !bonus[stat])
-      .reduce((prev, cur) => prev+cur[stat], 0);
+      .reduce((prev, cur) => prev+(+cur[stat]), 0);
   }
 
   static stat(player, stat) {
