@@ -48,6 +48,10 @@ export class Achievements {
     this.achievements[achievement.name] = achievement;
   }
 
+  hasAchievement(achievement) {
+    return this.achievements[achievement];
+  }
+
   checkAchievements(player) {
     const earned = this._allAchievements(player);
     const mine = this.achievements;
