@@ -122,9 +122,9 @@ export class PlayerMovement {
     const directions = [1,  2,  3,  4,  5,  6,  7,  8,  9];
     const weight     = [10, 10, 10, 10, 10, 10, 10, 10, 10];
 
-    // TODO implement drunk
     const MAX_DRUNK = 10;
-    const drunk = Math.max(0, Math.min(MAX_DRUNK, 0));
+    const drunkFromPersonality = player.$personalities.isActive('Drunk') ? 7 : 0;
+    const drunk = Math.max(0, Math.min(MAX_DRUNK, drunkFromPersonality));
 
     // this is a lot of math that someone smarter than me(?) wrote, ported directly from OldIdleLands
     if(player.lastDir) {
