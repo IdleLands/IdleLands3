@@ -13,7 +13,7 @@ export class Personable extends Achievement {
         name: `Personable: ${pers.name}`,
         desc: `Can now use personality ${pers.name}.`,
         type: AchievementTypes.PROGRESS,
-        rewards: [{ type: 'personality', name: pers.name }]
+        rewards: [{ type: 'personality', personality: pers.name }]
       };
     });
   }
