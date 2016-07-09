@@ -38,7 +38,7 @@ export class Character {
 
     this.$stats = new Proxy({}, {
       get: (target, name) => {
-        if(_.includes(['str', 'con', 'dex', 'int', 'agi', 'luk', 'xp'], name)) {
+        if(_.includes(['str', 'con', 'dex', 'int', 'agi', 'luk', 'xp', 'gold'], name)) {
           return StatCalculator.stat(this, name);
         }
 
