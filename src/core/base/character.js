@@ -113,7 +113,10 @@ export class Character {
   equip(item) {
     this.equipment[item.type] = item;
     this.recalculateStats();
-    this.$statistics.incrementStat('Character.Items.Equip');
+
+    if(this.$statistics) {
+      this.$statistics.incrementStat('Character.Items.Equip');
+    }
   }
 
   resetMaxXp() {
