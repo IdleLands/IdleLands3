@@ -115,7 +115,7 @@ export class Character {
     this.recalculateStats();
 
     if(this.$statistics) {
-      this.$statistics.incrementStat('Character.Items.Equip');
+      this.$statistics.incrementStat('Character.Item.Equip');
     }
   }
 
