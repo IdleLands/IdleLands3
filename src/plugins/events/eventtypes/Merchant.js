@@ -16,7 +16,7 @@ export class Merchant extends Event {
 
     const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus));
     if(!player.canEquip(item)) {
-      player.$statistics.incrementStat('Character.Items.Discard');
+      player.$statistics.incrementStat('Character.Item.Discard');
       const message = '%player was offered %item by a wandering merchant, but it was useless to %himher.';
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
@@ -26,7 +26,7 @@ export class Merchant extends Event {
     const sellScore = item.score * SETTINGS.merchantMultiplier;
     const cost = sellScore - (sellScore*player.liveStats.merchantCostReductionMultiplier);
     if(cost > player.gold) {
-      player.$statistics.incrementStat('Character.Items.TooExpensive');
+      player.$statistics.incrementStat('Character.Item.TooExpensive');
       const message = '%player was offered %item by a wandering merchant, but %she doesn\'t have enough gold.';
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
