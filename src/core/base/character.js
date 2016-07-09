@@ -111,6 +111,7 @@ export class Character {
   equip(item) {
     this.equipment[item.type] = item;
     this.recalculateStats();
+    this.$statistics.incrementStat('Character.Items.Equip');
   }
 
   resetMaxXp() {
@@ -134,6 +135,7 @@ export class Character {
 
   sellItem(item) {
     const value = Math.max(1, Math.floor(item.score * this.liveStats.itemValueMultiplier));
+    this.$statistics.incrementStat('Character.Items.Sell');
     this.gainGold(value);
     return value;
   }
