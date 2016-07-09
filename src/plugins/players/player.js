@@ -71,6 +71,7 @@ export class Player extends Character {
   }
 
   gainGold(gold = 1) {
+    gold += this.liveStats.gold;
     super.gainGold(gold);
 
     if(gold > 0) {

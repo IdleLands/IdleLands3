@@ -79,6 +79,9 @@ export class PlayerMovement {
     dest.x = +dest.destx;
     dest.y = +dest.desty;
 
+    if(dest.movementType === 'ascend' && player.$personalities.isActive('Delver')) return;
+    if(dest.movementType === 'descend' && player.$personalities.isActive('ScaredOfTheDark')) return;
+
     if(!dest.map && !dest.toLoc) {
       Logger.error('PlayerMovement', new Error(`No dest.map at ${player.x}, ${player.y} in ${player.map}`));
       return;
