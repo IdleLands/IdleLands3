@@ -19,7 +19,7 @@ export class Golden extends Achievement {
     const rewards = [{
       type: 'stats',
       itemValueMultiplier: (tier*0.05).toFixed(1),
-      agi: tier*10
+      agi: (player, baseValue) => baseValue*0.01*tier
     }];
 
     if(tier >= 3) {
@@ -29,7 +29,7 @@ export class Golden extends Achievement {
     return [{
       tier,
       name: 'Golden',
-      desc: 'Sell items for 5% more for every 20000*(10*tier) gold earned or lost, and +10 AGI per tier.',
+      desc: 'Sell items for 5% more for every 20000*(10*tier) gold earned or lost, and +1% AGI per tier.',
       type: AchievementTypes.EVENT,
       rewards
     }];

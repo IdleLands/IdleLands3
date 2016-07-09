@@ -34,11 +34,20 @@ export class Personalities {
       .value();
   }
 
+  _activePersonalityData() {
+    return _(this.earnedPersonalities)
+      .filter(({ name }) => this.isActive(name))
+      .map(({ name }) => AllPersonalities[name])
+      .value();
+  }
+
   togglePersonality(player, personality) {
     const newState = !this.activePersonalities[personality];
     this.activePersonalities[personality] = newState;
     if(newState) {
       AllPersonalities[personality].enable(player);
+    } else {
+      AllPersonalities[personality].disable(player);
     }
     this.save();
   }

@@ -9,7 +9,10 @@ export class StatCalculator {
   }
 
   static _secondPassFunctions(player, stat) {
-    const possibleFunctions = [player.$profession];
+    const possibleFunctions = [player.$profession]
+      .concat(this._achievementFunctions(player, stat))
+      .concat(this._personalityFunctions(player, stat));
+
     return _(possibleFunctions)
       .map(stat)
       .filter(_.isFunction)
@@ -20,7 +23,8 @@ export class StatCalculator {
   static _baseStat(player, stat) {
     return this.classStat(player, stat)
          + this.equipmentStat(player, stat)
-         + this.achievementStat(player, stat);
+         + this.achievementStat(player, stat)
+         + this.personalityStat(player, stat);
   }
 
   static equipmentStat(player, stat) {
@@ -34,6 +38,17 @@ export class StatCalculator {
     return player.level * (player.$profession[`base${_.capitalize(stat)}PerLevel`] || 0);
   }
 
+  static _achievementFunctions(player, stat) {
+    if(!player.$achievements) return [];
+    return _(player.$achievements.achievements)
+      .values()
+      .map('rewards')
+      .flattenDeep()
+      .reject(bonus => bonus.type !== 'stats')
+      .reject(bonus => !bonus[stat])
+      .value();
+  }
+
   static achievementStat(player, stat) {
     if(!player.$achievements) return 0;
     return _(player.$achievements.achievements)
@@ -41,8 +56,23 @@ export class StatCalculator {
       .map('rewards')
       .flattenDeep()
       .reject(bonus => bonus.type !== 'stats')
-      .reject(bonus => !bonus[stat])
+      .reject(bonus => !bonus[stat] || _.isFunction(bonus[stat]))
       .reduce((prev, cur) => prev+(+cur[stat]), 0);
+  }
+
+  static _personalityFunctions(player) {
+    if(!player.$achievements) return [];
+    return _(player.$personalities._activePersonalityData())
+      .map('stats')
+      .value();
+  }
+
+  static personalityStat(player, stat) {
+    if(!player.$personalities) return 0;
+    return _(player.$personalities._activePersonalityData())
+      .reject(pers => !pers.stats[stat] || _.isFunction(pers.stats[stat]))
+      .map(pers => pers.stats[stat])
+      .sum();
   }
 
   static stat(player, stat) {
@@ -52,7 +82,7 @@ export class StatCalculator {
     const functions = this._secondPassFunctions(player, stat);
     _.each(functions, func => mods += func(player, baseValue));
 
-    return baseValue + mods;
+    return Math.floor(baseValue + mods);
   }
 
   static hp(player) {

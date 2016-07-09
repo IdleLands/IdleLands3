@@ -19,7 +19,7 @@ export class Explorative extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      int: tier*10
+      int: (player, baseValue) => baseValue*0.01*tier
     }];
 
     if(tier >= 5) {
@@ -29,7 +29,7 @@ export class Explorative extends Achievement {
     return [{
       tier,
       name: 'Explorative',
-      desc: 'Gain 10 bonus INT for every 5 unique maps explored.',
+      desc: 'Gain 1% bonus INT for every 5 unique maps explored.',
       type: AchievementTypes.EXPLORE,
       rewards
     }];

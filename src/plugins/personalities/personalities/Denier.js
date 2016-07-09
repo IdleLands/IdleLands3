@@ -1,6 +1,4 @@
 
-import _ from 'lodash';
-
 import { Personality } from '../personality';
 
 export class Denier extends Personality {
@@ -8,6 +6,6 @@ export class Denier extends Personality {
   static description = 'All choices that would be ignored are automatically denied.';
 
   static hasEarned(player) {
-    return _.get(player.$statistics.stats, 'Character.Choice.Choose.No') >= 10;
+    return player.$statistics.getStat('Character.Choice.Choose.No') >= 10;
   }
 }

@@ -19,7 +19,7 @@ export class Territorial extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      str: tier*10
+      str: (player, baseValue) => baseValue*0.01*tier
     }];
 
     if(tier >= 10) {
@@ -29,7 +29,7 @@ export class Territorial extends Achievement {
     return [{
       tier,
       name: 'Territorial',
-      desc: 'Gain 10 bonus STR for every 10 unique regions explored.',
+      desc: 'Gain 1% bonus STR for every 10 unique regions explored.',
       type: AchievementTypes.EXPLORE,
       rewards
     }];
