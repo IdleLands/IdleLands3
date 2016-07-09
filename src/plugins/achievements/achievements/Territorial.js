@@ -19,7 +19,8 @@ export class Territorial extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      str: (player, baseValue) => baseValue*0.01*tier
+      str: (player, baseValue) => baseValue*0.01*tier,
+      strDisplay: `${tier}%`
     }];
 
     if(tier >= 10) {

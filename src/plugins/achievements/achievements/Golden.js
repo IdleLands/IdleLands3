@@ -19,7 +19,8 @@ export class Golden extends Achievement {
     const rewards = [{
       type: 'stats',
       itemValueMultiplier: (tier*0.05).toFixed(1),
-      agi: (player, baseValue) => baseValue*0.01*tier
+      agi: (player, baseValue) => baseValue*0.01*tier,
+      agiDisplay: `${tier}%`
     }];
 
     if(tier >= 3) {
