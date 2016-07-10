@@ -80,6 +80,19 @@ PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
   });
 });
 
+PlayerEmitter.on('player:collectible', ({ player, collectible }) => {
+  const extraData = {
+    collectible: collectible.name
+  };
+
+  AdventureLog({
+    text: MessageParser.stringFormat(`%player stumbled across a rare, shiny, and collectible %collectible in ${player.map} - ${player.mapRegion}!`, player, extraData),
+    type: MessageTypes.SINGLE,
+    category: MessageCategories.EXPLORE,
+    targets: [player.name]
+  });
+});
+
 PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
   player.$statistics.incrementStat(`Character.Professions.${choice.extraData.professionName}`);
   PlayerUpdateAll(player.name, ['name', 'professionName']);

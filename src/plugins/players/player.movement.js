@@ -115,6 +115,29 @@ export class PlayerMovement {
     emitter.emit('player:transfer', { player, dest });
   }
 
+  static handleTileCollectible(player, tile) {
+
+    const collectible = tile.object;
+    const collectibleName = collectible.name;
+    const collectibleRarity = _.get(collectible, 'properties.rarity', 'basic');
+
+    if(player.$collectibles.hasCollectible(collectibleName)) return;
+
+    const collectibleObj = {
+      name: collectibleName,
+      map: player.map,
+      region: player.mapRegion,
+      rarity: collectibleRarity,
+      description: collectible.properties.flavorText,
+      storyline: collectible.properties.storyline,
+      foundAt: Date.now()
+    };
+
+    player.$collectibles.addCollectible(collectibleObj);
+
+    emitter.emit('player:collectible', { player, collectible: collectibleObj });
+  }
+
   static getTileAt(map, x, y) {
     return GameState.getInstance().world.maps[map].getTile(x, y);
   }

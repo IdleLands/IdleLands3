@@ -210,6 +210,7 @@ export class MessageParser {
     string = _.trim(string);
 
     if(extra.item) extra.item = `«${extra.item}»`;
+    if(extra.collectible) extra.collectible = `«${extra.collectible}»`;
 
     _.each(_.keys(extra), key => {
       string = string.split(`%${key}`).join(extra[key]);

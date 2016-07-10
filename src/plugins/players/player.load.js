@@ -14,16 +14,20 @@ import { AchievementsDb } from '../achievements/achievements.db';
 import { Personalities } from '../personalities/personalities';
 import { PersonalitiesDb } from '../personalities/personalities.db';
 
+import { Collectibles } from '../collectibles/collectibles';
+import { CollectiblesDb } from '../collectibles/collectibles.db';
+
 import { Logger } from '../../shared/logger';
 import { constitute } from '../../shared/di-wrapper';
 
-@Dependencies(PlayerDb, StatisticsDb, AchievementsDb, PersonalitiesDb)
+@Dependencies(PlayerDb, StatisticsDb, AchievementsDb, PersonalitiesDb, CollectiblesDb)
 export class PlayerLoad {
-  constructor(playerDb, statisticsDb, achievementsDb, personalitiesDb) {
+  constructor(playerDb, statisticsDb, achievementsDb, personalitiesDb, collectiblesDb) {
     this.playerDb = playerDb;
     this.statisticsDb = statisticsDb;
     this.achievementsDb = achievementsDb;
     this.personalitiesDb = personalitiesDb;
+    this.collectiblesDb = collectiblesDb;
   }
 
   async loadPlayer(playerName) {
@@ -61,6 +65,16 @@ export class PlayerLoad {
         player.$personalities = personalitiesObj;
       } else {
         player.$personalities = await this.personalitiesDb.getPersonalities(player.name);
+      }
+
+      if(!player.collectiblesLink) {
+        const collectiblesObj = constitute(Collectibles);
+        collectiblesObj.init({ _id: player.name, collectibles: {} });
+        await this.collectiblesDb.saveCollectibles(collectiblesObj);
+        player.collectiblesLink = player.name;
+        player.$collectibles = collectiblesObj;
+      } else {
+        player.$collectibles = await this.collectiblesDb.getCollectibles(player.name);
       }
 
       player.isOnline = true;
