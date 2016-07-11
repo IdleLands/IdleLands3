@@ -18,7 +18,7 @@ class Settings {
   }
 
   constructor() {
-    this.timeframeSeconds = 10;
+    this.timeframeSeconds = 7.5;
     this.maxLevel = 200;
     this.xpPerStep = 10;
 
