@@ -24,7 +24,9 @@ export class EventHandler {
       return;
     }
 
-    player.eventSteps = chance.integer({ min: 15, max: 30 });
+    const requiredEventSteps = chance.integer({ min: 25, max: 40 });
+    const modifier = player.calcLuckBonusFromValue();
+    player.eventSteps = Math.max(7, requiredEventSteps - modifier);
 
     const events = [];
     const weights = [];
