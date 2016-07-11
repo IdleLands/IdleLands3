@@ -26,6 +26,7 @@ export class Collectibles {
 
   addCollectible(collectible) {
     this.collectibles[collectible.name] = collectible;
+    this.save();
   }
 
   hasCollectible(collectibleName) {

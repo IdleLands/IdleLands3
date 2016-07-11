@@ -38,6 +38,9 @@ export class Player extends Character {
 
     if(!this.choices)   this.choices = [];
     if(_.size(this.equipment) < 10) this.generateBaseEquipment();
+
+    this.$updateAchievements = true;
+    this.$updateCollectibles = true;
   }
 
   generateBaseEquipment() {
