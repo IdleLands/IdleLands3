@@ -6,9 +6,9 @@ import { Equipment } from '../../../core/base/equipment';
 import { ItemGenerator } from '../../../shared/item-generator';
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 25;
+export const WEIGHT = 70;
 
-// Get given the opportunity to change classes
+// Get given the opportunity to change items
 export class FindItem extends Event {
   static operateOn(player) {
 

@@ -10,7 +10,7 @@ import { SETTINGS } from '../../../static/settings';
 
 export const WEIGHT = 15;
 
-// Get given the opportunity to change classes
+// Get the opportunity to buy an item
 export class Merchant extends Event {
   static operateOn(player) {
 
