@@ -70,6 +70,9 @@ PlayerEmitter.on('player:changetitle', ({ player }) => {
 
 PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
   player.recalculateStats();
+
+  player.$updateAchievements = true;
+
   _.each(achievements, achievement => {
     AdventureLog({
       text: MessageParser.stringFormat(`%player has achieved ${achievement.name}${achievement.tier > 1 ? ` tier ${achievement.tier}` : ''}!`, player),
@@ -84,6 +87,8 @@ PlayerEmitter.on('player:collectible', ({ player, collectible }) => {
   const extraData = {
     collectible: collectible.name
   };
+
+  player.$updateCollectibles = true;
 
   AdventureLog({
     text: MessageParser.stringFormat(`%player stumbled across a rare, shiny, and collectible %collectible in ${player.map} - ${player.mapRegion}!`, player, extraData),

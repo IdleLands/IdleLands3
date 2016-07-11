@@ -203,6 +203,10 @@ export class Player extends Character {
     this.$dataUpdater(this.name, 'achievements', this.$achievements.achievements);
   }
 
+  _updateCollectibles() {
+    this.$dataUpdater(this.name, 'collectibles', this.$collectibles.collectibles);
+  }
+
   _updatePersonalities() {
     this.$dataUpdater(this.name, 'personalities', { earned: this.$personalities.earnedPersonalities, active: this.$personalities.activePersonalities });
   }
@@ -210,7 +214,14 @@ export class Player extends Character {
   update() {
     this._updatePlayer();
     this._updateStatistics();
-    this._updateAchievements();
+    if(this.$updateAchievements) {
+      this._updateAchievements();
+      this.$updateAchievements = false;
+    }
+    if(this.$updateCollectibles) {
+      this._updateCollectibles();
+      this.$updateCollectibles = false;
+    }
     this._updatePersonalities();
   }
 }
