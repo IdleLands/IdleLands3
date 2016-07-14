@@ -22,7 +22,7 @@ export class Equipment {
     agi: 1,
     con: 3.5,
     int: 2,
-    lul: 5,
+    luk: 5,
     enchantLevel: -125
   };
 
