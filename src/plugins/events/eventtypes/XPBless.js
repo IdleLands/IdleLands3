@@ -4,10 +4,10 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 export const WEIGHT = 100;
 
-// Gain 2-4% XP
+// Gain 1-3% XP
 export class XPBless extends Event {
   static operateOn(player) {
-    const percent = Event.chance.floating({ fixed: 5, min: 0.02, max: 0.04 });
+    const percent = Event.chance.floating({ fixed: 5, min: 0.01, max: 0.03 });
     const xpMod = Math.floor(player._xp.maximum * percent);
     const eventText = this.eventText('blessXp', player, { xp: xpMod });
 
