@@ -71,9 +71,11 @@ export class PlayerMovement {
     ProfessionChange.operateOn(player, { professionName, trainerName });
   }
 
-  static handleTileTeleport(player, tile) {
-    if(player.stepCooldown > 0) return;
-    player.stepCooldown = 30;
+  static handleTileTeleport(player, tile, force = false) {
+    if(!force) {
+      if(player.stepCooldown > 0) return;
+      player.stepCooldown = 30;
+    }
 
     const dest = tile.object.properties;
     dest.x = +dest.destx;
