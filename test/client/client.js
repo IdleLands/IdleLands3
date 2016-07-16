@@ -50,6 +50,20 @@ const play = (name, index) => {
 
   socket.on('data', msg => {
 
+    if(msg.update === 'player') {
+      const choices = msg.data.choices;
+      const name = msg.data.name;
+      if(choices.length > 0) {
+        _.each(choices, choice => {
+          socket.emit('plugin:player:makechoice', {
+            playerName: name,
+            id: choice.id,
+            response: 'Yes'
+          });
+        });
+      }
+    }
+
     if(!msg.type || !msg.text) return;
     if(msg.type === 'Global' && index === 0) {
       console.log(`[${msg.type}] ${msg.text}`);
