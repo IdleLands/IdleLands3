@@ -20,6 +20,8 @@ export class GameState {
     this.players = [];
     this.playerLoad = constitute(PlayerLoad);
 
+    this.parties = [];
+
     Logger.info('GameState', 'Creating world.');
     this.world = constitute(World);
   }
@@ -59,6 +61,7 @@ export class GameState {
     this.players = _.without(this.players, remPlayer);
 
     remPlayer.isOnline = false;
+    remPlayer.choices = _.reject(remPlayer.choices, c => c.event === 'Party');
     remPlayer.save();
   }
 
