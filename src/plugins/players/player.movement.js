@@ -47,9 +47,6 @@ export class PlayerMovement {
   static handleTile(player, tile) {
     const type = _.get(tile, 'object.type');
 
-    if(!type || !this[`handleTile${type}`]) return;
-    this[`handleTile${type}`](player, tile);
-
     const forceEvent = _.get(tile, 'object.properties.forceEvent', '');
     if(forceEvent) {
       if(!Events[forceEvent]) {
@@ -58,6 +55,9 @@ export class PlayerMovement {
       }
       Events[forceEvent].operateOn(player);
     }
+
+    if(!type || !this[`handleTile${type}`]) return;
+    this[`handleTile${type}`](player, tile);
   }
 
   static handleTileTrainer(player, tile) {
