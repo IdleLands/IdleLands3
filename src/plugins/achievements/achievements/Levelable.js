@@ -8,7 +8,8 @@ export class Levelable extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      luk: tier
+      luk: tier,
+      xp: tier
     }];
 
     if(tier >= 10) {
@@ -22,7 +23,7 @@ export class Levelable extends Achievement {
     return [{
       tier,
       name: 'Levelable',
-      desc: 'Gain 1 LUK every 10 levels.',
+      desc: 'Gain 1 LUK and 1 XP every 10 levels.',
       type: AchievementTypes.PROGRESS,
       rewards
     }];
