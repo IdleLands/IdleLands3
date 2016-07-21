@@ -17,6 +17,10 @@ export class Event {
   static operateOn() {}
   static makeChoice() {}
 
+  static t0stats = ['dex', 'agi'];
+  static t1stats = ['str', 'int', 'con'];
+  static t2stats = ['luk'];
+
   static _parseText(message, player, extra) {
     return MessageParser.stringFormat(message, player, extra);
   }

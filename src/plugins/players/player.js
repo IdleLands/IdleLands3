@@ -3,6 +3,8 @@ import _ from 'lodash';
 import { Dependencies } from 'constitute';
 import { Character } from '../../core/base/character';
 
+import { GameState } from '../../core/game-state';
+
 import { SETTINGS } from '../../static/settings';
 
 import { PlayerDb } from './player.db';
@@ -41,6 +43,16 @@ export class Player extends Character {
 
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
+
+    if(this.isMod) {
+      this.emitGMData();
+    }
+  }
+
+  emitGMData() {
+    const maps = _.keys(GameState.getInstance().world.maps);
+    const teleNames = _.map(SETTINGS.allTeleports, 'name');
+    this.$dataUpdater(this.name, 'gmdata', { maps, teleNames });
   }
 
   generateBaseEquipment() {
