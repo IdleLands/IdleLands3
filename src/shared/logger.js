@@ -1,4 +1,12 @@
 
+import rollbar from 'rollbar';
+
+const rollbarToken = process.env.ROLLBAR_ACCESS_TOKEN;
+
+if(rollbarToken) {
+  rollbar.init(rollbarToken);
+}
+
 export class Logger {
 
   static _formatMessage(tag, message) {
@@ -13,6 +21,11 @@ export class Logger {
 
     if(payload) {
       console.error('PAYLOAD', payload);
+    }
+
+    if(rollbarToken) {
+      if(payload) rollbar.handleErrorWithPayloadData(error, payload);
+      else        rollbar.handleError(error);
     }
   }
 
