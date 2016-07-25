@@ -8,7 +8,7 @@ import { Party as PartyClass } from '../../../plugins/party/party';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 500;
+export const WEIGHT = 25;
 
 // Create a party
 export class Party extends Event {
