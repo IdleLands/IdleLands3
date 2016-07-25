@@ -22,7 +22,9 @@ export class Character {
     if(!this._level)   this._level = { minimum: 0, maximum: SETTINGS.maxLevel, __current: 1 };
     if(!this._special) this._special = { minimum: 0, maximum: 0, __current: 0 };
 
-    this._level.maximum = SETTINGS.maxLevel;
+    if(this._level.maximum < SETTINGS.maxLevel) {
+      this._level.maximum = SETTINGS.maxLevel;
+    }
 
     _.each(['_hp', '_mp', '_xp', '_level', '_special'], stat => {
       if(_.isNaN(this[stat].__current)) this[stat].__current = 0;
@@ -42,7 +44,11 @@ export class Character {
           return StatCalculator.stat(this, name);
         }
 
-        return StatCalculator[name](this);
+        try {
+          return StatCalculator[name](this);
+        } catch(e) {
+          Logger.error('Character: $stats', e, { name });
+        }
       }
     });
 

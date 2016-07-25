@@ -44,6 +44,8 @@ export class Player extends Character {
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
 
+    this.partyName = null;
+
     if(this.isMod) {
       this.emitGMData();
     }
@@ -65,6 +67,11 @@ export class Player extends Character {
     return this.name;
   }
 
+  get party() {
+    if(!this.partyName) return null;
+    return GameState.getInstance().getParty(this.partyName);
+  }
+
   takeTurn() {
     this.moveAction();
     EventHandler.tryToDoEvent(this);
@@ -72,6 +79,11 @@ export class Player extends Character {
     if(newAchievements.length > 0) {
       emitter.emit('player:achieve', { player: this, achievements: newAchievements });
     }
+
+    if(this.party) {
+      this.party.playerTakeStep(this);
+    }
+
     this.$personalities.checkPersonalities(this);
     this.save();
   }
@@ -136,6 +148,7 @@ export class Player extends Character {
 
   handleChoice({ id, response }) {
     const choice = _.find(this.choices, { id });
+    if(!choice) return;
     const result = Events[choice.event].makeChoice(this, id, response);
     if(result === false) return Events[choice.event].feedback(this);
     this.$statistics.batchIncrement(['Character.Choice.Chosen', `Character.Choice.Choose.${response}`]);
@@ -170,7 +183,7 @@ export class Player extends Character {
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
     while(!this.$playerMovement.canEnterTile(this, tile)) {
-      [newLoc, dir] = this.$playerMovement.pickRandomTile(this);
+      [newLoc, dir] = this.$playerMovement.pickRandomTile(this, true);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
     }
 

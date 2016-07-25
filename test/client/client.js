@@ -55,6 +55,7 @@ const play = (name, index) => {
       const name = msg.data.name;
       if(choices.length > 0) {
         _.each(choices, choice => {
+          if(choice.event === 'PartyLeave') return;
           socket.emit('plugin:player:makechoice', {
             playerName: name,
             id: choice.id,

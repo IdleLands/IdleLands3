@@ -24,6 +24,7 @@ export const MessageCategories = {
   PET: 'Pet',
   GUILD: 'Guild',
   TOWNCRIER: 'Towncrier',
+  PARTY: 'Party',
   ITEM: 'Item',
   GOLD: 'Gold',
   PROFESSION: 'Profession',

@@ -20,10 +20,14 @@ export class GameState {
     this.players = [];
     this.playerLoad = constitute(PlayerLoad);
 
-    this.parties = [];
+    this.parties = {};
 
     Logger.info('GameState', 'Creating world.');
     this.world = constitute(World);
+  }
+
+  getParty(partyName) {
+    return this.parties[partyName];
   }
 
   getPlayer(playerName) {
@@ -62,6 +66,11 @@ export class GameState {
 
     remPlayer.isOnline = false;
     remPlayer.choices = _.reject(remPlayer.choices, c => c.event === 'Party');
+
+    if(remPlayer.partyName) {
+      remPlayer.party.playerLeave(remPlayer);
+    }
+
     remPlayer.save();
   }
 

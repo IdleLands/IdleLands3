@@ -16,4 +16,9 @@ export class StringGenerator {
     const grammar = _.sample(StringAssets.providenceGrammar);
     return this._stringFromGrammar(grammar);
   }
+
+  static party() {
+    const grammar = _.sample(StringAssets.partyGrammar);
+    return this._stringFromGrammar(grammar);
+  }
 }

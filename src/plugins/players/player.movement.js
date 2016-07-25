@@ -144,8 +144,20 @@ export class PlayerMovement {
     return GameState.getInstance().world.maps[map].getTile(x, y);
   }
 
-  static pickRandomTile(player) {
+  static pickFollowTile(player, target) {
+    return [{ x: target.x, y: target.y }, target.lastDir];
+  }
+
+  static pickRandomTile(player, overrideFollow = false) {
     if(!player.stepCooldown) player.stepCooldown = 0;
+
+    if(player.partyName && !overrideFollow) {
+      const party = player.party;
+      const follow = party.getFollowTarget(player);
+      if(follow) {
+        return this.pickFollowTile(player, follow);
+      }
+    }
 
     const directions = [1,  2,  3,  4,  5,  6,  7,  8,  9];
     const weight     = [10, 10, 10, 10, 10, 10, 10, 10, 10];

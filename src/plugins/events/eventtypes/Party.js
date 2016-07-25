@@ -1,39 +1,38 @@
 
+import _ from 'lodash';
+
 import { Event } from '../../../core/base/event';
+import { GameState } from '../../../core/game-state';
 
-// import { MessageCategories } from '../../../shared/adventure-log';
+import { Party as PartyClass } from '../../../plugins/party/party';
 
-export const WEIGHT = 5;
+import { MessageCategories } from '../../../shared/adventure-log';
+
+export const WEIGHT = 500;
 
 // Create a party
 export class Party extends Event {
-  static operateOn(/* player */) {
+  static operateOn(player) {
 
-    /*
-    TODO
-     - pick 3 random people to form a party with (they cant be in a party)
-     - add choices to their event log
-     - auto make this person the leader
-     */
+    if(player.partyName) return;
 
-    /*
-    const id = Event.chance.guid();
-    const message = `Would you like to buy «${item.fullname}» for ${cost} gold?`;
-    const eventText = this.eventText('merchant', player, { item: item.fullname, shopGold: cost });
-    const extraData = { item, cost, eventText };
+    const validPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.partyName || p === player || p.$personalities.isActive('Solo'));
+    if(validPlayers.length < 3) return;
 
-    player.addChoice({ id, message, extraData, event: 'Party', choices: ['Yes', 'No'] });
-    */
-  }
+    const partyInstance = new PartyClass({ leader: player });
 
-  static makeChoice(/* player, id, response */) {
-    /*
-    if(response !== 'Yes') return;
-    const choice = _.find(player.choices, { id });
+    const newPlayers = _.sampleSize(validPlayers, 3);
 
-    player.$statistics.incrementStat('Character.Gold.Spent', choice.extraData.cost);
-    this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.GOLD });
-    */
+    player.$statistics.incrementStat('Character.Party.Create');
+
+    _.each(newPlayers, p => {
+      partyInstance.playerJoin(p);
+    });
+
+    const partyMemberString = _(newPlayers).map('name').join(', ');
+    const eventText = this.eventText('party', player, { partyName: partyInstance.name, partyMembers: partyMemberString });
+
+    this.emitMessage({ affected: partyInstance.players, eventText, category: MessageCategories.PARTY });
   }
 
 }
