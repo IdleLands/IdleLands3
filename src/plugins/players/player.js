@@ -44,7 +44,7 @@ export class Player extends Character {
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
 
-    this.partyName = null;
+    this.$partyName = null;
 
     if(this.isMod) {
       this.emitGMData();
@@ -68,8 +68,8 @@ export class Player extends Character {
   }
 
   get party() {
-    if(!this.partyName) return null;
-    return GameState.getInstance().getParty(this.partyName);
+    if(!this.$partyName) return null;
+    return GameState.getInstance().getParty(this.$partyName);
   }
 
   takeTurn() {

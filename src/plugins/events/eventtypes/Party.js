@@ -14,9 +14,9 @@ export const WEIGHT = 25;
 export class Party extends Event {
   static operateOn(player) {
 
-    if(player.partyName || player.$personalities.isActive('Solo')) return;
+    if(player.$partyName || player.$personalities.isActive('Solo')) return;
 
-    const validPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.partyName || p === player || p.$personalities.isActive('Solo'));
+    const validPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.$partyName || p === player || p.$personalities.isActive('Solo'));
     if(validPlayers.length < 3) return;
 
     const partyInstance = new PartyClass({ leader: player });

@@ -50,7 +50,7 @@ export class Party {
 
   playerJoin(player) {
     this.players.push(player);
-    player.partyName = this.name;
+    player.$partyName = this.name;
     player.$statistics.incrementStat('Character.Party.Join');
     player.partySteps = 0;
     if(this.players.length > 1) {
@@ -60,7 +60,7 @@ export class Party {
 
   playerLeave(player, disbanding = false) {
     this.players = _.without(this.players, player);
-    player.partyName = null;
+    player.$partyName = null;
     player.$statistics.incrementStat('Character.Party.Leave');
     player.choices = _.reject(player.choices, c => c.event === 'PartyLeave');
 
