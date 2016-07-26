@@ -29,7 +29,7 @@ export class Party extends Event {
       partyInstance.playerJoin(p);
     });
 
-    const partyMemberString = _(newPlayers).map('name').join(', ');
+    const partyMemberString = _(newPlayers).map(p => `«${p.fullname}»`).join(', ');
     const eventText = this.eventText('party', player, { partyName: partyInstance.name, partyMembers: partyMemberString });
 
     this.emitMessage({ affected: partyInstance.players, eventText, category: MessageCategories.PARTY });

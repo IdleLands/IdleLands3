@@ -209,7 +209,8 @@ export class MessageParser {
   static stringFormat(string, player, extra = {}) {
     string = _.trim(string);
 
-    if(extra.item) extra.item = `«${extra.item}»`;
+    if(extra.item)        extra.item = `«${extra.item}»`;
+    if(extra.partyName)   extra.partyName = `«${extra.partyName}»`;
     if(extra.collectible) extra.collectible = `«${extra.collectible}»`;
 
     _.each(_.keys(extra), key => {

@@ -7,7 +7,11 @@ const chance = new Chance();
 import { GameState } from '../../core/game-state';
 import { StringGenerator } from '../../shared/string-generator';
 
+import { emitter } from '../../plugins/players/_emitter';
 import { PartyLeave } from '../events/eventtypes/PartyLeave';
+
+import { MessageCategories } from '../../shared/adventure-log';
+import { MessageParser } from '../../plugins/events/messagecreator';
 
 export class Party {
   constructor({ leader }) {
@@ -58,8 +62,17 @@ export class Party {
     this.players = _.without(this.players, player);
     player.partyName = null;
     player.$statistics.incrementStat('Character.Party.Leave');
+    player.choices = _.reject(player.choices, c => c.event === 'PartyLeave');
 
-    if(this.players.length <= 1 && !disbanding) this.disband();
+    if(!disbanding) {
+      emitter.emit('player:event', {
+        affected: [player],
+        eventText: MessageParser.stringFormat('%player has left %partyName.', player, { partyName: this.name }),
+        category: MessageCategories.PARTY
+      });
+    }
+
+    if((this.players.length <= 1 && !disbanding) || player === this.leader) this.disband();
   }
 
   get leader() {
@@ -78,6 +91,12 @@ export class Party {
   }
 
   disband() {
+    emitter.emit('player:event', {
+      affected: this.players,
+      eventText: MessageParser.stringFormat('%player has disbanded %partyName.', this.leader, { partyName: this.name }),
+      category: MessageCategories.PARTY
+    });
+
     _.each(this.players, p => this.playerLeave(p, true));
     GameState.getInstance().parties[this.name] = null;
     delete GameState.getInstance().parties[this.name];
