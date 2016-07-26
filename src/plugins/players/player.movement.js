@@ -154,7 +154,7 @@ export class PlayerMovement {
     if(player.$partyName && !overrideFollow) {
       const party = player.party;
       const follow = party.getFollowTarget(player);
-      if(follow) {
+      if(follow && follow.map === player.map) {
         return this.pickFollowTile(player, follow);
       }
     }
