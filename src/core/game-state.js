@@ -67,7 +67,7 @@ export class GameState {
     remPlayer.isOnline = false;
     remPlayer.choices = _.reject(remPlayer.choices, c => c.event === 'Party');
 
-    if(remPlayer.$partyName) {
+    if(remPlayer.partyName) {
       remPlayer.party.playerLeave(remPlayer);
     }
 
@@ -83,7 +83,7 @@ export class GameState {
   }
 
   getPlayerSimple(player, keys = UPDATE_KEYS) {
-    keys.push('isMuted', 'isMod', 'name');
+    keys.push('_id', 'nameEdit', 'isMuted', 'isMod', 'name');
     keys = _.uniq(keys);
     return _.pick(player, keys);
   }

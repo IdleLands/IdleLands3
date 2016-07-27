@@ -49,7 +49,7 @@ PlayerEmitter.on('player:logout', ({ playerName }) => {
 });
 
 PlayerEmitter.on('player:levelup', ({ player }) => {
-  PlayerUpdateAll(player.name, ['name', 'level']);
+  PlayerUpdateAll(player.name, ['level']);
   AdventureLog({
     text: MessageParser.stringFormat(`%player has reached experience level ${player.level}!`, player),
     type: MessageTypes.SINGLE,
@@ -59,12 +59,17 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
 });
 
 PlayerEmitter.on('player:changegender', ({ player }) => {
-  PlayerUpdateAll(player.name, ['name', 'gender']);
+  PlayerUpdateAll(player.name, ['gender']);
   player.update();
 });
 
 PlayerEmitter.on('player:changetitle', ({ player }) => {
-  PlayerUpdateAll(player.name, ['name', 'title']);
+  PlayerUpdateAll(player.name, ['title']);
+  player.update();
+});
+
+PlayerEmitter.on('player:changename', ({ player }) => {
+  PlayerUpdateAll(player.name, ['name', 'nameEdit']);
   player.update();
 });
 
@@ -100,7 +105,7 @@ PlayerEmitter.on('player:collectible', ({ player, collectible }) => {
 
 PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
   player.$statistics.incrementStat(`Character.Professions.${choice.extraData.professionName}`);
-  PlayerUpdateAll(player.name, ['name', 'professionName']);
+  PlayerUpdateAll(player.name, ['professionName']);
   AdventureLog({
     text: MessageParser.stringFormat(`%player has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`, player),
     type: MessageTypes.SINGLE,

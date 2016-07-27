@@ -30,9 +30,9 @@ export class PlayerLoad {
     this.collectiblesDb = collectiblesDb;
   }
 
-  async loadPlayer(playerName) {
+  async loadPlayer(playerId) {
 
-    const playerObj = await this.playerDb.getPlayer({ name: playerName });
+    const playerObj = await this.playerDb.getPlayer({ _id: playerId });
     try {
       const player = constitute(Player);
       player.init(playerObj);

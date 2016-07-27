@@ -63,8 +63,9 @@ export class Player extends Character {
   }
 
   get fullname() {
-    if(this.title) return `${this.name}, the ${this.title}`;
-    return this.name;
+    const viewName = this.nameEdit ? this.nameEdit : this.name;
+    if(this.title) return `${viewName}, the ${this.title}`;
+    return viewName;
   }
 
   get party() {
@@ -170,6 +171,12 @@ export class Player extends Character {
     if(newTitle && !_.includes(this.$achievements.titles(), newTitle)) return;
     this.title = newTitle;
     emitter.emit('player:changetitle', { player: this });
+  }
+
+  changeName(newName) {
+    if(!newName) return;
+    this.nameEdit = newName;
+    emitter.emit('player:changename', { player: this });
   }
 
   togglePersonality(personality) {

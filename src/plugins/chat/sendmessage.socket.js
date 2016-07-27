@@ -27,7 +27,7 @@ export const socket = (socket, primus) => {
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text || !player || !playerName) return;
 
-    const messageObject = { text, channel, route, title: player.title, playerName, event };
+    const messageObject = { text, channel, route, title: player.title, playerName: player.nameEdit ? player.nameEdit : player.name, event };
 
     if(_.includes(route, ':pm:')) {
       const users = route.split(':')[2].split('|');
