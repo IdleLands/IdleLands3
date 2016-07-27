@@ -12,7 +12,7 @@ export const socket = (socket) => {
     const target = gameState.retrievePlayer(targetName);
 
     if(!player || !player.isMod || !target) return;
-    player.changeName(newName);
+    target.changeName(newName);
   };
 
   socket.on(event, changename);
