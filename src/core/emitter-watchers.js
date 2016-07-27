@@ -54,7 +54,8 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
     text: MessageParser.stringFormat(`%player has reached experience level ${player.level}!`, player),
     type: MessageTypes.SINGLE,
     category: MessageCategories.LEVELUP,
-    targets: [player.name]
+    targets: [player.name],
+    targetsDisplay: [player.fullname]
   });
 });
 
@@ -83,7 +84,8 @@ PlayerEmitter.on('player:achieve', ({ player, achievements }) => {
       text: MessageParser.stringFormat(`%player has achieved ${achievement.name}${achievement.tier > 1 ? ` tier ${achievement.tier}` : ''}!`, player),
       type: MessageTypes.SINGLE,
       category: MessageCategories.ACHIEVEMENT,
-      targets: [player.name]
+      targets: [player.name],
+      targetsDisplay: [player.fullname]
     });
   });
 });
@@ -99,7 +101,8 @@ PlayerEmitter.on('player:collectible', ({ player, collectible }) => {
     text: MessageParser.stringFormat(`%player stumbled across a rare, shiny, and collectible %collectible in ${player.map} - ${player.mapRegion}!`, player, extraData),
     type: MessageTypes.SINGLE,
     category: MessageCategories.EXPLORE,
-    targets: [player.name]
+    targets: [player.name],
+    targetsDisplay: [player.fullname]
   });
 });
 
@@ -110,7 +113,8 @@ PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
     text: MessageParser.stringFormat(`%player has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`, player),
     type: MessageTypes.SINGLE,
     category: MessageCategories.PROFESSION,
-    targets: [player.name]
+    targets: [player.name],
+    targetsDisplay: [player.fullname]
   });
 });
 
@@ -133,7 +137,8 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
     text: MessageParser.stringFormat(message, player),
     type: MessageTypes.SINGLE,
     category: MessageCategories.EXPLORE,
-    targets: [player.name]
+    targets: [player.name],
+    targetsDisplay: [player.fullname]
   });
 
 });
@@ -143,6 +148,7 @@ PlayerEmitter.on('player:event', ({ affected, category, eventText }) => {
     text: eventText,
     type: MessageTypes.SINGLE,
     category,
-    targets: _.map(affected, 'name')
+    targets: _.map(affected, 'name'),
+    targetsDisplay: _.map(affected, 'fullname')
   });
 });
