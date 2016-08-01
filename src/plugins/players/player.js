@@ -15,6 +15,7 @@ import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
 
 import * as Events from '../events/eventtypes/_all';
+import * as Achievements from '../achievements/achievements/_all';
 
 import { emitter } from './_emitter';
 
@@ -54,7 +55,12 @@ export class Player extends Character {
   emitGMData() {
     const maps = _.keys(GameState.getInstance().world.maps);
     const teleNames = _.map(SETTINGS.allTeleports, 'name');
-    this.$dataUpdater(this.name, 'gmdata', { maps, teleNames });
+    const permAchs = _(Achievements)
+      .values()
+      .filter(ach => ach.permanentProp)
+      .map(ach => ({ property: ach.permanentProp, name: ach.name }))
+      .value();
+    this.$dataUpdater(this.name, 'gmdata', { maps, teleNames, permAchs });
   }
 
   generateBaseEquipment() {

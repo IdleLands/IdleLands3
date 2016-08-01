@@ -21,4 +21,9 @@ export class GMCommands {
     player.isMod = !player.isMod;
     player.save();
   }
+
+  static toggleAchievement(player, achievement) {
+    player.permanentAchievements = player.permanentAchievements || {};
+    player.permanentAchievements[achievement] = !player.permanentAchievements[achievement];
+  }
 }

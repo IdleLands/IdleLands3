@@ -65,9 +65,9 @@ export class GameState {
     this.players = _.without(this.players, remPlayer);
 
     remPlayer.isOnline = false;
-    remPlayer.choices = _.reject(remPlayer.choices, c => c.event === 'Party');
+    remPlayer.choices = _.reject(remPlayer.choices, c => c.event === 'Party' || c.event === 'PartyLeave');
 
-    if(remPlayer.partyName) {
+    if(remPlayer.$partyName) {
       remPlayer.party.playerLeave(remPlayer);
     }
 
