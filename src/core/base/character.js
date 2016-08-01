@@ -85,7 +85,7 @@ export class Character {
   }
 
   calcLuckBonusFromValue(value = this.liveStats.luk) {
-    const tiers = [1, 2, 4, 6, 10, 35, 65, 125, 175, 200, 250, 400, 450, 500];
+    const tiers = [1, 2, 4, 6, 10, 20, 35, 65, 125, 175, 200, 250, 400, 450, 500];
 
     const postMaxTierDifference = 150;
 
