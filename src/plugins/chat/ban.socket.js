@@ -1,6 +1,8 @@
 
 import { GameState } from '../../core/game-state';
 
+import { emitter } from '../../plugins/players/_emitter';
+
 export const event = 'plugin:chat:toggleban';
 export const socket = (socket) => {
 
@@ -15,7 +17,7 @@ export const socket = (socket) => {
     target.isBanned = true;
     target.save();
 
-    GameState.getInstance().delPlayer(targetName);
+    emitter.emit('player:logout', { playerName: targetName });
   };
 
   socket.on(event, toggleban);
