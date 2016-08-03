@@ -16,8 +16,6 @@ export const socket = (socket) => {
     target.save();
 
     GameState.getInstance().delPlayer(targetName);
-
-    socket.end();
   };
 
   socket.on(event, toggleban);
