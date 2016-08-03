@@ -89,6 +89,14 @@ export const socket = (socket, primus, respond) => {
       return;
     }
 
+    if(player.isBanned) {
+      const msg = _.clone(MESSAGES.BANNED);
+      msg.alreadyLoggedIn = true;
+      respond(msg);
+      socket.end();
+      return;
+    }
+
     socket.authToken = { playerName: player.name, token };
     socket.playerName = player.name;
 
