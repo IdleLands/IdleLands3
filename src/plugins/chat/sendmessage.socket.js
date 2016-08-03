@@ -22,7 +22,7 @@ export const socket = (socket, primus) => {
 
     const player = GameState.getInstance().retrievePlayer(playerName);
 
-    if(player.isMuted) return;
+    if(player.isMuted || player.isBanned) return;
 
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text || !player || !playerName) return;
