@@ -15,6 +15,8 @@ export const socket = (socket) => {
     target.isBanned = true;
     target.save();
 
+    GameState.getInstance().delPlayer(targetName);
+
     socket.end();
   };
 
