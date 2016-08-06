@@ -2,11 +2,18 @@
 import { Event } from '../../../core/base/event';
 import { MessageCategories } from '../../../shared/adventure-log';
 
+import { GoldBlessParty } from './GoldBlessParty';
+
 export const WEIGHT = 45;
 
 // Gain 10-1000 Gold
 export class GoldBless extends Event {
   static operateOn(player) {
+    if(player.party && Event.chance.bool({ likelihood: 70 })) {
+      GoldBlessParty.operateOn(player);
+      return;
+    }
+
     const goldMod = Math.floor(Event.chance.integer({ min: 10, max: 1000 }));
     const eventText = this.eventText('blessGold', player, { gold: goldMod });
 
