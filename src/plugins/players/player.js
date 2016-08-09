@@ -236,6 +236,10 @@ export class Player extends Character {
     this.$dataUpdater(this.name, 'player', this.buildSaveObject());
   }
 
+  _updateParty() {
+    this.$dataUpdater(this.name, 'party', this.party ? this.party.buildTransmitObject() : {});
+  }
+
   _updateStatistics() {
     this.$dataUpdater(this.name, 'statistics', this.$statistics.stats);
   }
@@ -254,6 +258,7 @@ export class Player extends Character {
 
   update() {
     this._updatePlayer();
+    this._updateParty();
     this._updateStatistics();
     if(this.$updateAchievements) {
       this._updateAchievements();

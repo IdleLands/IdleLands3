@@ -90,6 +90,19 @@ export class Party {
     me.map = target.map;
   }
 
+  buildTransmitObject() {
+    return {
+      name: this.name,
+      players: _.map(this.players, p => {
+        return {
+          name: p.name,
+          level: p.level,
+          profession: p.professionName
+        };
+      })
+    };
+  }
+
   disband() {
     emitter.emit('player:event', {
       affected: this.players,
