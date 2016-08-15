@@ -143,9 +143,10 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
 
 });
 
-PlayerEmitter.on('player:event', ({ affected, category, eventText }) => {
+PlayerEmitter.on('player:event', ({ affected, category, eventText, extraData }) => {
   AdventureLog({
     text: eventText,
+    extraData,
     type: MessageTypes.SINGLE,
     category,
     targets: _.map(affected, 'name'),

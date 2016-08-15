@@ -34,9 +34,9 @@ export class Battle extends Event {
 
     const introText = this.eventText('battle', player, { _eventData: { parties } });
 
-    new BattleClass({ introText, parties });
+    const battle = new BattleClass({ introText, parties });
 
-    this.emitMessage({ affected: player.party.players, eventText: introText, category: MessageCategories.COMBAT });
+    this.emitMessage({ affected: player.party.players, eventText: introText, category: MessageCategories.COMBAT, extraData: { battleName: battle.name } });
   }
 }
 
