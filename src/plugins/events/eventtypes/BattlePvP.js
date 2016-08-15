@@ -9,7 +9,7 @@ import { Party as PartyClass } from '../../party/party';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 300;
+export const WEIGHT = 4;
 
 // Create a pvp battle
 export class BattlePvP extends Event {
