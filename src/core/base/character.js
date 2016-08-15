@@ -6,6 +6,7 @@ import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
 
 import { Equipment } from '../base/equipment';
+import { SpellManager } from '../../plugins/combat/spellmanager';
 
 import { StatCalculator } from '../../shared/stat-calculator';
 
@@ -19,7 +20,7 @@ export class Character {
     if(!this._hp)      this._hp = { minimum: 0, maximum: 20, __current: 20 };
     if(!this._mp)      this._mp = { minimum: 0, maximum: 0, __current: 0 };
     if(!this._xp)      this._xp = { minimum: 0, maximum: this.levelUpXpCalc(1), __current: 0 };
-    if(!this._level)   this._level = { minimum: 0, maximum: SETTINGS.maxLevel, __current: 1 };
+    if(!this._level)   this._level = { minimum: 0, maximum: SETTINGS.maxLevel, __current: this.levelSet || 1 };
     if(!this._special) this._special = { minimum: 0, maximum: 0, __current: 0 };
 
     if(this._level.maximum < SETTINGS.maxLevel) {
@@ -63,13 +64,26 @@ export class Character {
   get profession() { return this.$profession; }
   get liveStats() { return this.$stats; }
   get stats() { return this.statCache; }
+  get fullname() { return this.name; }
+
+  get itemScore() {
+    return _.reduce(_.values(this.equipment), (prev, cur) => {
+      return prev + cur.score;
+    }, 0);
+  }
+
+  get spells() {
+    return SpellManager.validSpells(this);
+  }
+
+  get isPlayer() { return this.joinDate; }
 
   recalculateStats() {
     const hpVal = StatCalculator.hp(this);
-    this._hp.maximum = this._hp.__current = hpVal;
+    this._hp.maximum = this._hp.__current = hpVal + (this.hpBoost || 0);
 
     const mpVal = StatCalculator.mp(this);
-    this._mp.maximum = this._mp.__current = mpVal;
+    this._mp.maximum = this._mp.__current = mpVal + (this.mpBoost || 0);
 
     _.each(['str', 'dex', 'con', 'int', 'agi', 'luk'], stat => {
       this.statCache[stat] = this.liveStats[stat];
@@ -111,7 +125,7 @@ export class Character {
   canEquip(item, rangeBoostMultiplier = 1) {
     const myItem = this.equipment[item.type];
     const checkScore = item.score;
-    const myScore = myItem.score;
+    const myScore = myItem ? myItem.score : -1000;
 
     return checkScore > (myScore * 0.75) && checkScore < rangeBoostMultiplier * this.liveStats.itemFindRange;
   }

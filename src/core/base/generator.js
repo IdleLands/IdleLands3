@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 export class Generator {
   static types = ['body', 'charm', 'feet', 'finger', 'hands', 'head', 'legs', 'neck', 'mainhand', 'offhand'];
+  static stats = ['dex', 'agi', 'con', 'int', 'str', 'luk'];
 
   static mergePropInto(baseItem, prop) {
     if(!prop) return;

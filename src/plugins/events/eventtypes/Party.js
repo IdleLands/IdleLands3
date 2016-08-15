@@ -16,7 +16,12 @@ export class Party extends Event {
 
     if(player.$partyName || player.$personalities.isActive('Solo')) return;
 
-    const validPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.$partyName || p === player || p.$personalities.isActive('Solo'));
+    const validPlayers = _.reject(
+      GameState.getInstance().getPlayers(),
+      p => p.$partyName || p === player
+      || p.$personalities.isActive('Solo')
+      || p.level < 10
+    );
     if(validPlayers.length < 3) return;
 
     const partyInstance = new PartyClass({ leader: player });

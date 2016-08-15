@@ -12,7 +12,7 @@ class Settings {
   constructor() {
     this.timeframeSeconds = 5;
     this.maxLevel = 200;
-    this.xpPerStep = 10;
+    this.xpPerStep = 5;
 
     this.merchantMultiplier = 3;
 

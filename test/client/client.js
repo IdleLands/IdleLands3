@@ -66,7 +66,7 @@ const play = (name, index) => {
     }
 
     if(!msg.type || !msg.text) return;
-    if(msg.type === 'Global' && index === 0) {
+    if(msg.type === 'Global' && index === 1) {
       console.log(`[${msg.type}] ${msg.text}`);
     } else if(msg.type === 'Single' && msg.targets[0] === name) {
       _.each(msg.targets, target => {

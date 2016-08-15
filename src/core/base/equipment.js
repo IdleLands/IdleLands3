@@ -3,7 +3,6 @@ import _ from 'lodash';
 import Chance from 'chance';
 const chance = new Chance();
 
-
 export class Equipment {
   static defaults = {
     itemClass: 'basic',

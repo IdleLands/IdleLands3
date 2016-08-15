@@ -11,6 +11,7 @@ import { PlayerLoad } from '../plugins/players/player.load';
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
 
 let GameStateInstance = null;
+
 export class GameState {
   constructor() {
     if(GameStateInstance) {
@@ -67,8 +68,12 @@ export class GameState {
     remPlayer.isOnline = false;
     remPlayer.choices = _.reject(remPlayer.choices, c => c.event === 'Party' || c.event === 'PartyLeave');
 
+    if(remPlayer.$battle) {
+      remPlayer._hp.set(0);
+    }
+
     if(remPlayer.$partyName) {
-      remPlayer.party.playerLeave(remPlayer);
+      remPlayer.party.playerLeave(remPlayer, true);
     }
 
     remPlayer.save();

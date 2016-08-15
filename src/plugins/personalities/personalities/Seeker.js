@@ -2,6 +2,7 @@
 import { Personality } from '../personality';
 
 export class Seeker extends Personality {
+  static disableOnActivate = ['Seeker'];
   static description = 'Gain more xp, but gain less gold.';
   static stats = {
     xp:   (player, baseValue) => baseValue*0.25,

@@ -111,6 +111,44 @@ export class StatCalculator {
       ;
   }
 
+  static overcomeDodge(player) {
+    return Math.max(10, (
+          this.stat(player, 'str')
+        + this.stat(player, 'dex')
+        + this.stat(player, 'con')
+        + this.stat(player, 'int')
+        + this.stat(player, 'agi')
+        + this.stat(player, 'luk')
+      ));
+  }
+
+  static dodge(player) {
+    return (
+        this.stat(player, 'agi')
+      + this.stat(player, 'luk')
+      ) / 8;
+  }
+
+  static hit(player) {
+    return Math.max(10, (
+        this.stat(player, 'str')
+      + this.stat(player, 'dex')
+    ) / 2);
+  }
+
+  static avoidHit(player) {
+    return (
+          this.stat(player, 'agi')
+        + this.stat(player, 'dex')
+        + this.stat(player, 'con')
+        + this.stat(player, 'int')
+      ) / 16;
+  }
+
+  static deflect(player) {
+    return this.stat(player, 'luk');
+  }
+
   static itemValueMultiplier(player) {
     const baseValue = SETTINGS.reductionDefaults.itemValueMultiplier;
     const reducedValue = this._reduction('itemValueMultiplier', [player], baseValue);

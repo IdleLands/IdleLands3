@@ -84,7 +84,7 @@ const loadDirectory = (dir) => {
 
 const parseFile = (filename) => {
   const baseContents = replaceMultiSpaces(fs.readFileSync(filename, 'UTF-8')).split('\n');
-  return _(baseContents).compact().reject(line => _.includes(line, '#')).value();
+  return _(baseContents).compact() /* .reject(line => _.includes(line, '#')) */ .value();
 };
 
 StringAssets.class = _.map(loadDirectory(`${appRootPath}/src/core/professions`), ({ filename }) => {

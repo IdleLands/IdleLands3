@@ -45,8 +45,25 @@ class AllDomains {
     if(!chance[funct]) return this.placeholder();
     return chance[funct](args);
   }
+
+  static party(props, cache, partyData) {
+    const { funct, cacheNum } = props[0];
+    if(funct === 'member') {
+      return partyData.players[cacheNum].displayName;
+    }
+    return this.placeholder();
+  }
   
-  static combat() {
+  static combat(props, cache, combatData) {
+    const { funct, cacheNum } = props[0];
+    if(props[1]) {
+      return this.party([props[1]], cache, combatData.parties[cacheNum]);
+    }
+
+    if(funct === 'party') {
+      return combatData.parties[cacheNum].name;
+    }
+
     return this.placeholder();
   }
 
@@ -88,7 +105,7 @@ class AssetDomainHandler {
     return _.sample(ObjectAssets[_.sample(['veg', 'meat', 'bread'])]).name;
   }
   static party() {
-    return AllDomains.placeholder();
+    return _.sample(_.values(GameState.getInstance().parties)).name;
   }
 }
 
@@ -122,7 +139,7 @@ class EventVariableCache {
 
 class EventVariableManager {
 
-  static transformVarProps(props, cache) {
+  static transformVarProps(props, cache, eventData) {
     const { domain, funct, cacheNum } = props[0];
 
     let retVal = null;
@@ -130,7 +147,7 @@ class EventVariableManager {
     try {
       const prevCacheData = cache.get(domain, funct, cacheNum);
       if(prevCacheData && funct !== 'party') return prevCacheData;
-      retVal = AllDomains[domain](props, cache);
+      retVal = AllDomains[domain](props, cache, eventData);
       if(funct !== 'party') cache.set(domain, funct, cacheNum, retVal);
     } catch(e) {
       Logger.error('EventVariableManager', e, { props, cache });
@@ -161,11 +178,11 @@ class EventVariableManager {
     return varProps;
   }
 
-  static handleVariables(string) {
+  static handleVariables(string, eventData = {}) {
     return string.replace(/\$([a-zA-Z\:#0-9 {}_,']+)\$/g, (match, p1) => {
       const cache = new EventVariableCache();
       let string = this.getVarProps(p1);
-      string = this.transformVarProps(string, cache);
+      string = this.transformVarProps(string, cache, eventData);
       return string;
     });
   }
@@ -211,13 +228,16 @@ export class MessageParser {
 
     if(extra.item)        extra.item = `«${extra.item}»`;
     if(extra.partyName)   extra.partyName = `«${extra.partyName}»`;
+    if(extra.weaponName)  extra.weaponName = `«${extra.weaponName}»`;
+    if(extra.targetName)  extra.targetName = `«${extra.targetName}»`;
+    if(extra.deflectItem) extra.deflectItem = `«${extra.deflectItem}»`;
     if(extra.collectible) extra.collectible = `«${extra.collectible}»`;
 
     _.each(_.keys(extra), key => {
       string = string.split(`%${key}`).join(extra[key]);
     });
 
-    string = EventVariableManager.handleVariables(string);
+    string = EventVariableManager.handleVariables(string, extra._eventData);
 
     const splitJoins = [
       { split: '%player',       join: () => `«${player.fullname}»` },

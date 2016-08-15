@@ -17,6 +17,11 @@ export class StringGenerator {
     return this._stringFromGrammar(grammar);
   }
 
+  static battle() {
+    const grammar = _.sample(StringAssets.battleGrammar);
+    return this._stringFromGrammar(grammar);
+  }
+
   static party() {
     const grammar = _.sample(StringAssets.partyGrammar);
     return this._stringFromGrammar(grammar);

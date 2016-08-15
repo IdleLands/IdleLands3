@@ -22,6 +22,18 @@ export class Party {
     this.playerJoin(leader);
   }
 
+  get score() {
+    return _.sum(_.map(this.players, 'itemScore')) / this.players.length;
+  }
+
+  get level() {
+    return _.sum(_.map(this.players, 'level')) / this.players.length;
+  }
+
+  get displayName() {
+    return this.players.length === 1 ? this.players[0].fullname : `${this.name} (${_.map(this.players, 'fullname').join(', ')})`;
+  }
+
   generateName() {
     let name = null;
     do {
@@ -51,7 +63,9 @@ export class Party {
   playerJoin(player) {
     this.players.push(player);
     player.$partyName = this.name;
-    player.$statistics.incrementStat('Character.Party.Join');
+    if(player.isPlayer) {
+      player.$statistics.incrementStat('Character.Party.Join');
+    }
     player.partySteps = 0;
     if(this.players.length > 1) {
       this.teleportNear(player, this.players[this.players.length-2]);
@@ -61,10 +75,12 @@ export class Party {
   playerLeave(player, disbanding = false) {
     this.players = _.without(this.players, player);
     player.$partyName = null;
-    player.$statistics.incrementStat('Character.Party.Leave');
+    if(player.isPlayer) {
+      player.$statistics.incrementStat('Character.Party.Leave');
+    }
     player.choices = _.reject(player.choices, c => c.event === 'PartyLeave');
 
-    if(!disbanding) {
+    if(!disbanding && !this.isMonsterParty) {
       emitter.emit('player:event', {
         affected: [player],
         eventText: MessageParser.stringFormat('%player has left %partyName.', player, { partyName: this.name }),
@@ -104,11 +120,13 @@ export class Party {
   }
 
   disband() {
-    emitter.emit('player:event', {
-      affected: this.players,
-      eventText: MessageParser.stringFormat('%player has disbanded %partyName.', this.leader, { partyName: this.name }),
-      category: MessageCategories.PARTY
-    });
+    if(!this.isBattleParty && !this.isMonsterParty) {
+      emitter.emit('player:event', {
+        affected: this.players,
+        eventText: MessageParser.stringFormat('%player has disbanded %partyName.', this.leader, { partyName: this.name }),
+        category: MessageCategories.PARTY
+      });
+    }
 
     _.each(this.players, p => this.playerLeave(p, true));
     GameState.getInstance().parties[this.name] = null;

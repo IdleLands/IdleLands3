@@ -11,6 +11,10 @@ const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`;
 let globalPromise;
 export class DbWrapper {
 
+  static get promise() {
+    return globalPromise;
+  }
+
   connectionPromise() {
     if(globalPromise) {
       return globalPromise;
@@ -30,6 +34,8 @@ export class DbWrapper {
         db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
 
         db.collection('players').updateMany({}, { $set: { isOnline: false } });
+
+        db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 7200 }, _.noop);
 
         Logger.info(mongoTag, 'Connected!');
         resolve(db);

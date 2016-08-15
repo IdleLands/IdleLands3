@@ -1,4 +1,6 @@
 
+export { Battle } from './Battle';
+export { BattlePvP } from './BattlePvP';
 export { FindItem } from './FindItem';
 export { GoldBless } from './GoldBless';
 export { GoldForsake } from './GoldForsake';
