@@ -49,7 +49,7 @@ class AllDomains {
   static party(props, cache, partyData) {
     const { funct, cacheNum } = props[0];
     if(funct === 'member') {
-      return partyData.players[cacheNum].displayName;
+      return partyData.players[cacheNum].fullname;
     }
     return this.placeholder();
   }
@@ -105,7 +105,9 @@ class AssetDomainHandler {
     return _.sample(ObjectAssets[_.sample(['veg', 'meat', 'bread'])]).name;
   }
   static party() {
-    return _.sample(_.values(GameState.getInstance().parties)).name;
+    const party = _.sample(_.values(GameState.getInstance().parties));
+    if(party) return party.name;
+    return AllDomains.placeholder();
   }
 }
 

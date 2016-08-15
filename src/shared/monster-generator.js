@@ -47,7 +47,19 @@ export class MonsterGenerator extends Generator {
     monster.equip(essence);
   }
 
+  static generateVectorMonster(forPlayer) {
+    const profession = _.sample(_.keys(Professions));
+    return {
+      name: `Vector ${profession}`,
+      class: profession,
+      level: forPlayer.level
+    };
+  }
+
+
   static augmentMonster(baseMonster, forPlayer) {
+
+    if(!baseMonster) baseMonster = this.generateVectorMonster(forPlayer);
 
     baseMonster.professionName = baseMonster.class;
     if(baseMonster.professionName === 'Random') {
@@ -57,7 +69,7 @@ export class MonsterGenerator extends Generator {
     // TODO personalities
     // TODO other additions
 
-    if(!baseMonster.name && chance.bool({ likelihood: 1 })) {
+    if(baseMonster.name && chance.bool({ likelihood: 1 })) {
       const chanceOpts = { prefix: chance.bool(), suffix: chance.bool(), middle: chance.bool() };
       if(baseMonster.gender) {
         chanceOpts.gender = baseMonster.gender.toLowerCase();

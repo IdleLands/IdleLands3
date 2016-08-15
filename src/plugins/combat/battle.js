@@ -31,13 +31,13 @@ export class Battle {
     });
   }
 
-  _emitMessage(message, data = {}) {
+  _emitMessage(message, data = null) {
     this.messageData.push({ message, data });
   }
 
   startBattle() {
-    this.startMessage();
     this.setupParties();
+    this.startMessage();
     this.startTakingTurns();
   }
 
@@ -45,16 +45,19 @@ export class Battle {
     this._emitMessage(this.introText);
   }
 
-  roundMessage() {
-    const data = _.map(this.parties, party => {
+  _partyStats() {
+    return _.map(this.parties, party => {
       return {
         name: party.name,
         players: _.map(party.players, p => {
-          return { name: p.fullname, hp: p._hp, mp: p._mp, special: p._special };
+          return { name: p.fullname, hp: _.clone(p._hp), mp: _.clone(p._mp), special: _.clone(p._special) };
         })
       };
     });
-    this._emitMessage('Round start.', data);
+  }
+
+  roundMessage() {
+    this._emitMessage('Round start.', this._partyStats());
   }
 
   tryIncrement(p, stat, value = 1) {
@@ -130,9 +133,9 @@ export class Battle {
   }
 
   endBattle() {
-    persistToDb(this);
-    this._emitMessage('Battle complete.');
+    this._emitMessage('Battle complete.', this._partyStats());
     this.endBattleBonuses();
+    persistToDb(this);
     this.cleanUp();
   }
 
