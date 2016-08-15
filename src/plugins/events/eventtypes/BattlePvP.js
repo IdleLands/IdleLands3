@@ -49,8 +49,8 @@ export class BattlePvP extends Event {
     const introText = this.eventText('battle', player, { _eventData: { parties } });
 
     const battle = new BattleClass({ introText, parties });
-
     this.emitMessage({ affected: players, eventText: introText, category: MessageCategories.COMBAT, extraData: { battleName: battle.name } });
+    battle.startBattle();
   }
 }
 

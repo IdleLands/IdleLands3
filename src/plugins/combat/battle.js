@@ -11,8 +11,6 @@ export class Battle {
     this.introText = introText;
     this.name = this.generateName();
     this.messageData = [];
-
-    this.startBattle();
   }
 
   generateName() {
