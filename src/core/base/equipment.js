@@ -32,6 +32,10 @@ export class Equipment {
     this._baseScore = this.score;
   }
 
+  get isUnderNormalPercent() {
+    return (this._calcScore/this._baseScore) < 5;
+  }
+
   get score() {
     let ret = 0;
     _.each(Equipment.multipliers, (mult, attr) => {

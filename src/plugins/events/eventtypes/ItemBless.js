@@ -7,7 +7,9 @@ export const WEIGHT = 45;
 // Bless an item (random stat +5%)
 export class ItemBless extends Event {
   static operateOn(player) {
-    const item = this.pickValidItem(player);
+    const item = this.pickValidItemForBless(player);
+    if(!item) return;
+
     const stat = this.pickStat(item);
 
     const boost = item[stat] === 0 ? 5 : Math.max(3, Math.abs(Math.floor(item[stat]/20)));
