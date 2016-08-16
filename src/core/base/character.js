@@ -127,7 +127,8 @@ export class Character {
     const checkScore = item.score;
     const myScore = myItem ? myItem.score : -1000;
 
-    return checkScore > (myScore * 0.05) && checkScore < rangeBoostMultiplier * this.liveStats.itemFindRange;
+    const checkRangeMultiplier = this.$personalities.isActive('SharpEye') ? 0.65 : 0.05;
+    return checkScore > (myScore * checkRangeMultiplier) && checkScore < rangeBoostMultiplier * this.liveStats.itemFindRange;
   }
 
   equip(item) {

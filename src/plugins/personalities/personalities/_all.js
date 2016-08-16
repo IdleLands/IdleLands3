@@ -8,5 +8,6 @@ export { Greedy } from './Greedy';
 export { Indecisive } from './Indecisive';
 export { ScaredOfTheDark } from './ScaredOfTheDark';
 export { Seeker } from './Seeker';
+export { SharpEye } from './SharpEye';
 export { Solo } from './Solo';
 export { TreasureHunter } from './TreasureHunter';
