@@ -68,8 +68,13 @@ class AllDomains {
   }
 
   static random(props, cache) {
-    const { funct, args } = props[0];
-    return `«${AssetDomainHandler[funct](args, props, cache)}»`;
+    const { domain, funct, cacheNum, args } = props[0];
+    const got = cache.get(domain, funct, cacheNum);
+    if(got) return `«${got}»`;
+
+    const res = AssetDomainHandler[funct](args, props, cache);
+    cache.set(domain, funct, cacheNum, res);
+    return `«${res}»`;
   }
 }
 
@@ -181,8 +186,8 @@ class EventVariableManager {
   }
 
   static handleVariables(string, eventData = {}) {
+    const cache = new EventVariableCache();
     return string.replace(/\$([a-zA-Z\:#0-9 {}_,']+)\$/g, (match, p1) => {
-      const cache = new EventVariableCache();
       let string = this.getVarProps(p1);
       string = this.transformVarProps(string, cache, eventData);
       return string;
