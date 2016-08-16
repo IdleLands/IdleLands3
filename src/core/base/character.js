@@ -127,7 +127,7 @@ export class Character {
     const checkScore = item.score;
     const myScore = myItem ? myItem.score : -1000;
 
-    return checkScore > (myScore * 0.75) && checkScore < rangeBoostMultiplier * this.liveStats.itemFindRange;
+    return checkScore > (myScore * 0.05) && checkScore < rangeBoostMultiplier * this.liveStats.itemFindRange;
   }
 
   equip(item) {
