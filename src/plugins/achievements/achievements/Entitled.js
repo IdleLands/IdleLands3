@@ -4,7 +4,7 @@ import { Achievement, AchievementTypes } from '../achievement';
 export class Entitled extends Achievement {
   static achievementData(player) {
 
-    const value = player.$achievements.titles();
+    const value = player.$achievements.titles().length;
     const baseValue = 15;
 
     if(value < baseValue) return [];
