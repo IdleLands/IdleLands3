@@ -26,6 +26,7 @@ export class ExternalChatMechanism {
 
     this.client.connect().then(() => {
       Logger.info('ExtChat:IRC', 'Connected!');
+      this.isConnected = true;
       this.client.on('msg', ({ from, msg }) => {
         primus.room(sendRoom).write({
           text: msg,
@@ -39,7 +40,7 @@ export class ExternalChatMechanism {
   }
 
   sendMessage(msgData) {
-    if(!isProd) return;
+    if(!isProd || !this.isConnected) return;
     this.client.msg(channel, `<web:${msgData.playerName}> ${msgData.text}`);
   }
 }
