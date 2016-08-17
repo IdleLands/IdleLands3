@@ -30,9 +30,7 @@ export class Ancient extends Achievement {
       agiDisplay: `${tier}%`
     }];
 
-    if(tier >= 10) {
-      rewards.push({ type: 'title', title: 'Ancient' });
-    }
+    rewards.push({ type: 'title', title: 'Ancient' });
 
     return [{
       tier,
