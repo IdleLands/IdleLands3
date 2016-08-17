@@ -86,7 +86,7 @@ class AssetDomainHandler {
     return _.sample(StringAssets.class);
   }
   static player() {
-    return _.sample(GameState.getInstance().players).name;
+    return _.sample(GameState.getInstance().players).fullname;
   }
   static map() {
     return _.sample(_.keys(GameState.getInstance().world.maps));
@@ -101,7 +101,7 @@ class AssetDomainHandler {
     return AllDomains.placeholder();
   }
   static item() {
-    return _.sample(_.values(_.sample(GameState.getInstance().players).equipment)).name;
+    return _.sample(_.values(_.sample(GameState.getInstance().players).equipment)).fullname;
   }
   static monster() {
     return _.sample(ObjectAssets.monster).name;
