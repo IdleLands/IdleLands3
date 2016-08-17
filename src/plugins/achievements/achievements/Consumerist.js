@@ -30,7 +30,7 @@ export class Consumerist extends Achievement {
     return [{
       tier,
       name: 'Consumerist',
-      desc: 'Sell items for 5% more for every 20000*(10^tier) spent, and +1% DEX per tier.',
+      desc: 'Sell items for 5% more for every 1000*(10^tier) spent, and +1% DEX per tier.',
       type: AchievementTypes.EVENT,
       rewards
     }];
