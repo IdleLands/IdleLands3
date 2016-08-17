@@ -6,6 +6,7 @@ export class Jester extends Profession {
   static baseHpPerLevel = Profession.baseHpPerLevel;
   static baseMpPerLevel = Profession.baseMpPerLevel;
 
+  static baseHpPerCon = 0;
   static baseHpPerLuk = 5;
   static baseMpPerLuk = 5;
 
