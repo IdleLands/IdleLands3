@@ -9,7 +9,7 @@ export class Explorative extends Achievement {
     const totalMaps = _.size(player.$statistics.getStat('Character.Maps'));
 
     let tier = 1;
-    while(totalMaps > tier * 5) {
+    while(totalMaps >= tier * 5) {
       tier++;
     }
 

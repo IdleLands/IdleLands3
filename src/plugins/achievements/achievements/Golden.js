@@ -8,7 +8,7 @@ export class Golden extends Achievement {
     const baseValue = 20000;
 
     let tier = 1;
-    while(value > baseValue * Math.pow(10, tier-1)) {
+    while(value >= baseValue * Math.pow(10, tier-1)) {
       tier++;
     }
 

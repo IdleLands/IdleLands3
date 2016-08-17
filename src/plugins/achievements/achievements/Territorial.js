@@ -9,7 +9,7 @@ export class Territorial extends Achievement {
     const totalRegions = _.size(player.$statistics.getStat('Character.Regions'));
 
     let tier = 1;
-    while(totalRegions > tier * 10) {
+    while(totalRegions >= tier * 10) {
       tier++;
     }
 

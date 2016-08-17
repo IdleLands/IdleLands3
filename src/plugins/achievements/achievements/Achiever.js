@@ -8,7 +8,7 @@ export class Achiever extends Achievement {
     const baseValue = 30;
 
     let tier = 1;
-    while(value > baseValue * tier) {
+    while(value >= baseValue * tier) {
       tier++;
     }
 

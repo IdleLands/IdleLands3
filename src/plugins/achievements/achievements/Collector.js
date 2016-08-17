@@ -7,7 +7,7 @@ export class Collector extends Achievement {
     const totalCollectibles = player.$collectibles.totalCollectibles();
 
     let tier = 1;
-    while(totalCollectibles > tier * 25) {
+    while(totalCollectibles >= tier * 25) {
       tier++;
     }
 

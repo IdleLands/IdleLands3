@@ -7,7 +7,7 @@ export class Walker extends Achievement {
     const playerSteps = player.$statistics.getStat('Character.Steps');
 
     let tier = 1;
-    while(playerSteps > Math.pow(10, tier)) {
+    while(playerSteps >= Math.pow(10, tier)) {
       tier++;
     }
 
