@@ -100,7 +100,7 @@ export class Battle {
   }
 
   takeTurn(player) {
-    if(!this.isPlayerAlive(player)) return;
+    if(!this.isPlayerAlive(player) || !this.shouldGoOn) return;
     this.doPhysicalAttack(player);
   }
 
