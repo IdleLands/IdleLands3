@@ -21,6 +21,7 @@ export class Party extends Event {
       p => p.$partyName || p === player
       || p.$personalities.isActive('Solo')
       || p.level < 10
+      || p.map !== player.map
     );
     if(validPlayers.length < 3) return;
 
