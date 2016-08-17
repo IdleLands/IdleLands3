@@ -16,9 +16,9 @@ export class Jester extends Profession {
   static baseIntPerLevel = 0;
   static baseLukPerLevel = 10;
 
-  static str(player) { return player.liveStats.luk / 2; }
-  static con(player) { return player.liveStats.luk / 3; }
-  static dex(player) { return player.liveStats.luk / 4; }
-  static agi(player) { return player.liveStats.luk / 4; }
-  static int(player) { return player.liveStats.luk / 2; }
+  static str(player) { return player.liveStats.luk / 5; }
+  static con(player) { return player.liveStats.luk / 5; }
+  static dex(player) { return player.liveStats.luk / 5; }
+  static agi(player) { return player.liveStats.luk / 5; }
+  static int(player) { return player.liveStats.luk / 5; }
 }
