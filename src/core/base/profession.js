@@ -21,7 +21,7 @@ export class Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 3;
-  static baseLukPerLevel = 1;
+  static baseLukPerLevel = 0;
 
   static load() {}
   static unload() {}

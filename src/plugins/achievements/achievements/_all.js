@@ -5,6 +5,7 @@ export { Consumerist } from './Consumerist';
 export { Classfluid } from './Classfluid';
 export { Classy } from './Classy';
 export { Collector } from './Collector';
+export { Entitled } from './Entitled';
 export { Eventful } from './Eventful';
 export { Explorative } from './Explorative';
 export { Golden } from './Golden';
