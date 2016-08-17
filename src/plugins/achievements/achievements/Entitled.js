@@ -7,7 +7,7 @@ export class Entitled extends Achievement {
     const value = player.$achievements.titles();
     const baseValue = 15;
 
-    if(value < baseValue) return;
+    if(value < baseValue) return [];
 
     return [{
       tier: 1,
