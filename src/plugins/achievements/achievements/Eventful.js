@@ -28,7 +28,7 @@ export class Eventful extends Achievement {
     return [{
       tier,
       name: 'Eventful',
-      desc: 'Equip items that are 10% better every 100*(10^tier) events.',
+      desc: 'Equip items that are 10% better every 100*(10^N) events.',
       type: AchievementTypes.EVENT,
       rewards
     }];
