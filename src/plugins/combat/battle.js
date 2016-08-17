@@ -179,13 +179,16 @@ export class Battle {
     });
   }
 
-  cleanUp() {
-    _.each(this.parties, party => {
-      if(party.isBattleParty) {
-        party.disband();
-      }
-    });
+  saveObject() {
+    return {
+      name: this.name,
+      happenedAt: Date.now(),
+      messageData: this.messageData,
+      parties: _.map(this.parties, party => party.buildTransmitObject())
+    };
+  }
 
+  cleanUp() {
     _.each(this.allPlayers, p => {
       p.$battle = null;
     });

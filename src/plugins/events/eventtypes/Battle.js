@@ -8,6 +8,8 @@ import { MonsterGenerator } from '../../../shared/monster-generator';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
+import { Logger } from '../../../shared/logger';
+
 export const WEIGHT = 3;
 
 // Create a battle
@@ -36,7 +38,16 @@ export class Battle extends Event {
 
     const battle = new BattleClass({ introText, parties });
     this.emitMessage({ affected: player.party.players, eventText: introText, category: MessageCategories.COMBAT, extraData: { battleName: battle.name } });
-    battle.startBattle();
+
+    try {
+      battle.startBattle();
+    } catch(e) {
+      Logger.error('Battle', e, battle.saveObject());
+    }
+
+    if(player.party.isBattleParty) {
+      player.party.disband();
+    }
   }
 }
 

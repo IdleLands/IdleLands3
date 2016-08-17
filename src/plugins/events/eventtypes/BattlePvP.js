@@ -8,6 +8,7 @@ import { Battle as BattleClass } from '../../combat/battle';
 import { Party as PartyClass } from '../../party/party';
 
 import { MessageCategories } from '../../../shared/adventure-log';
+import { Logger } from '../../../shared/logger';
 
 export const WEIGHT = 4;
 
@@ -50,7 +51,20 @@ export class BattlePvP extends Event {
 
     const battle = new BattleClass({ introText, parties });
     this.emitMessage({ affected: players, eventText: introText, category: MessageCategories.COMBAT, extraData: { battleName: battle.name } });
-    battle.startBattle();
+
+    try {
+      battle.startBattle();
+    } catch(e) {
+      Logger.error('Battle:PvP', e, battle.saveObject());
+    }
+
+    if(player.party.isBattleParty) {
+      player.party.disband();
+    }
+
+    if(opponent.party.isBattleParty) {
+      opponent.party.disband();
+    }
   }
 }
 

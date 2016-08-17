@@ -30,7 +30,7 @@ export class Golden extends Achievement {
     return [{
       tier,
       name: 'Golden',
-      desc: 'Sell items for 5% more for every 20000*(10*tier) gold earned or lost, and +1% AGI per tier.',
+      desc: 'Sell items for 5% more for every 20000*(10^tier) gold earned or lost, and +1% AGI per tier.',
       type: AchievementTypes.EVENT,
       rewards
     }];
