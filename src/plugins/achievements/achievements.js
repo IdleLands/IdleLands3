@@ -36,6 +36,14 @@ export class Achievements {
       .value();
   }
 
+  tiers() {
+    return _(this.achievements)
+      .values()
+      .flattenDeep()
+      .map('tier')
+      .sum();
+  }
+
   _allAchievements(player) {
     return _(AllAchievements)
       .values()

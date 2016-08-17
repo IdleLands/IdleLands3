@@ -1,6 +1,10 @@
 
+export { Achiever } from './Achiever';
 export { Ancient } from './Ancient';
 export { Consumerist } from './Consumerist';
+export { Classfluid } from './Classfluid';
+export { Classy } from './Classy';
+export { Collector } from './Collector';
 export { Eventful } from './Eventful';
 export { Explorative } from './Explorative';
 export { Golden } from './Golden';

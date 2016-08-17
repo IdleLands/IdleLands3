@@ -24,6 +24,10 @@ export class Collectibles {
     _.extend(this, opts);
   }
 
+  totalCollectibles() {
+    return _.size(this.collectibles);
+  }
+
   addCollectible(collectible) {
     this.collectibles[collectible.name] = collectible;
     this.save();

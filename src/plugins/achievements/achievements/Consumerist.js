@@ -23,7 +23,7 @@ export class Consumerist extends Achievement {
       dexDisplay: `${tier}%`
     }];
 
-    if(tier >= 5) {
+    if(tier >= 3) {
       rewards.push({ type: 'title', title: 'Consumerist' });
     }
 
