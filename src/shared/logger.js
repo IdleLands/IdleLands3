@@ -33,3 +33,7 @@ export class Logger {
     console.info(this._formatMessage(tag, message));
   }
 }
+
+process.on('uncaughtException', err => {
+  Logger.error('PROCESS:BAD', err);
+});
