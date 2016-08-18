@@ -73,12 +73,6 @@ export class Party {
   }
 
   playerLeave(player, disbanding = false) {
-    this.players = _.without(this.players, player);
-    player.$partyName = null;
-    if(player.isPlayer) {
-      player.$statistics.incrementStat('Character.Party.Leave');
-    }
-    player.choices = _.reject(player.choices, c => c.event === 'PartyLeave');
 
     if(!disbanding && !this.isMonsterParty) {
       emitter.emit('player:event', {
@@ -88,7 +82,17 @@ export class Party {
       });
     }
 
-    if((this.players.length <= 1 && !disbanding) || player === this.leader) this.disband();
+    let doDisband = false;
+    if((this.players.length <= 2 && !disbanding) || player === this.leader) doDisband = true;
+
+    this.players = _.without(this.players, player);
+    player.$partyName = null;
+    if(player.isPlayer) {
+      player.$statistics.incrementStat('Character.Party.Leave');
+    }
+    player.choices = _.reject(player.choices, c => c.event === 'PartyLeave');
+
+    if(doDisband) this.disband();
   }
 
   get leader() {
