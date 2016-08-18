@@ -23,9 +23,11 @@ export class MonsterGenerator extends Generator {
   }
 
   static pickMonster(player) {
-    return _(ObjectAssets.monster)
-      .reject(mon => mon.level > player.level + 5 || mon.level < player.level - 5)
-      .sample();
+    return _.clone(
+      _(ObjectAssets.monster)
+        .reject(mon => mon.level > player.level + 5 || mon.level < player.level - 5)
+        .sample()
+    );
   }
 
   static equipMonster(monster, baseMonster) {

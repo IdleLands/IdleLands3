@@ -2,9 +2,6 @@
 import { Character } from '../../core/base/character';
 
 export class Monster extends Character {
-  constructor() {
-    super();
-  }
 
   init(opts) {
     opts.levelSet = opts.level;
@@ -15,7 +12,7 @@ export class Monster extends Character {
 
     opts.mpBoost = opts.mp;
     delete opts.mp;
-
+    
     super.init(opts);
   }
 
