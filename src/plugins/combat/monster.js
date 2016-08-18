@@ -12,7 +12,7 @@ export class Monster extends Character {
 
     opts.mpBoost = opts.mp;
     delete opts.mp;
-    
+
     super.init(opts);
   }
 

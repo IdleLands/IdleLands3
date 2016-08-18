@@ -92,7 +92,7 @@ export class Party {
     }
     player.choices = _.reject(player.choices, c => c.event === 'PartyLeave');
 
-    if(doDisband) this.disband();
+    if(doDisband && !disbanding) this.disband();
   }
 
   get leader() {
