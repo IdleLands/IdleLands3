@@ -1,5 +1,6 @@
 
 export { Affirmer } from './Affirmer';
+export { Coward } from './Coward';
 export { Delver } from './Delver';
 export { Denier } from './Denier';
 export { Drunk } from './Drunk';

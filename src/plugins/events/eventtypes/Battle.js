@@ -17,6 +17,8 @@ export class Battle extends Event {
   static operateOn(player) {
     if(player.level <= 5) return;
 
+    if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;
+
     if(!player.party) {
       const partyInstance = new PartyClass({ leader: player });
       partyInstance.isBattleParty = true;

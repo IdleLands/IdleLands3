@@ -16,6 +16,7 @@ export const WEIGHT = 4;
 export class BattlePvP extends Event {
   static operateOn(player) {
     if(player.level <= 5) return;
+    if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;
 
     const allPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.$battle);
     let opponent = null;
@@ -38,6 +39,7 @@ export class BattlePvP extends Event {
     } else {
       opponent = _(allPlayers)
         .reject(p => p.level < player.level - 5 || p.level > player.level + 5)
+        .reject(p => p.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 }))
         .reject(p => !p.party || p.party === player.party)
         .sample();
       if(!opponent) return;
