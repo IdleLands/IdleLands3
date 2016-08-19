@@ -1,6 +1,5 @@
 
-import { Event } from '../../../core/base/event';
-
+import { Event } from '../event';
 import { Battle as BattleClass } from '../../combat/battle';
 import { Party as PartyClass } from '../../party/party';
 

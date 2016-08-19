@@ -1,6 +1,6 @@
 
 import _ from 'lodash';
-import { Event } from '../../../core/base/event';
+import { Event } from '../event';
 
 export const WEIGHT = -1;
 

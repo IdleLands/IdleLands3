@@ -8,7 +8,7 @@ import { GameState } from '../../core/game-state';
 import { StringGenerator } from '../../shared/string-generator';
 
 import { emitter } from '../../plugins/players/_emitter';
-import { PartyLeave } from '../events/eventtypes/PartyLeave';
+import { PartyLeave } from '../events/events/PartyLeave';
 
 import { MessageCategories } from '../../shared/adventure-log';
 import { MessageParser } from '../../plugins/events/messagecreator';

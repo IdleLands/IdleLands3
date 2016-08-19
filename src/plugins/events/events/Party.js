@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 
-import { Event } from '../../../core/base/event';
+import { Event } from '../event';
 import { GameState } from '../../../core/game-state';
 
 import { Party as PartyClass } from '../../../plugins/party/party';

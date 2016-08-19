@@ -33,7 +33,7 @@ export class Equipment {
   }
 
   get isUnderNormalPercent() {
-    return (this._calcScore/this._baseScore) < 5;
+    return (this._calcScore/this._baseScore) < 3;
   }
 
   get score() {

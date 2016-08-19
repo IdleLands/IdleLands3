@@ -8,9 +8,9 @@ const chance = new Chance();
 const allEvents = {};
 
 const loadAllEvents = () => {
-  const list = fs.readdirSync(`${__dirname}/eventtypes`);
+  const list = fs.readdirSync(`${__dirname}/events`);
   _.each(list, basefilename => {
-    allEvents[basefilename.split('.')[0]] = require(`${__dirname}/eventtypes/${basefilename}`);
+    allEvents[basefilename.split('.')[0]] = require(`${__dirname}/events/${basefilename}`);
   });
 };
 

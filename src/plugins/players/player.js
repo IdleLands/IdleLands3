@@ -14,7 +14,7 @@ import { ItemGenerator } from '../../shared/item-generator';
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
 
-import * as Events from '../events/eventtypes/_all';
+import * as Events from '../events/events/_all';
 import * as Achievements from '../achievements/achievements/_all';
 
 import { emitter } from './_emitter';

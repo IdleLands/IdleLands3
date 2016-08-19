@@ -2,8 +2,8 @@
 import _ from 'lodash';
 import { GameState } from '../../core/game-state';
 
-import { ProfessionChange } from '../events/eventtypes/ProfessionChange';
-import * as Events from '../events/eventtypes/_all';
+import { ProfessionChange } from '../events/events/ProfessionChange';
+import * as Events from '../events/events/_all';
 
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';

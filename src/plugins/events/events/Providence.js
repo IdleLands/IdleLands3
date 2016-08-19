@@ -1,6 +1,6 @@
 
 import _ from 'lodash';
-import { Event } from '../../../core/base/event';
+import { Event } from '../event';
 
 import { Equipment } from '../../../core/base/equipment';
 import { MessageCategories } from '../../../shared/adventure-log';

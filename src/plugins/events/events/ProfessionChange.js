@@ -1,6 +1,6 @@
 
 import _ from 'lodash';
-import { Event } from '../../../core/base/event';
+import { Event } from '../event';
 import { emitter } from '../../players/_emitter';
 
 export const WEIGHT = -1;
