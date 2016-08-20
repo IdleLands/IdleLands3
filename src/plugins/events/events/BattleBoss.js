@@ -66,8 +66,6 @@ export class BattleBoss extends Event {
           FindItem.operateOn(player, item);
         });
       }
-
-      process.exit(0);
     }
 
     if(player.party.isBattleParty) {
