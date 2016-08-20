@@ -113,6 +113,7 @@ export class Party {
   buildTransmitObject() {
     return {
       name: this.name,
+      isBattleParty: this.isBattleParty,
       players: _.map(this.players, p => {
         return {
           name: p.fullname,

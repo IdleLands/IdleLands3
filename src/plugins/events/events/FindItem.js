@@ -10,15 +10,19 @@ export const WEIGHT = 70;
 
 // Get given the opportunity to change items
 export class FindItem extends Event {
-  static operateOn(player) {
+  static operateOn(player, forceItem) {
 
-    const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk));
-    if(!player.canEquip(item)) {
-      const message = '%player came across %item, but it was useless to %himher, so %she sold it for %gold gold.';
-      const gold = player.sellItem(item);
-      const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
-      this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
-      return;
+    let item = forceItem;
+
+    if(!forceItem) {
+      item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk));
+      if(!player.canEquip(item)) {
+        const message = '%player came across %item, but it was useless to %himher, so %she sold it for %gold gold.';
+        const gold = player.sellItem(item);
+        const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
+        this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
+        return;
+      }
     }
 
     const id = Event.chance.guid();

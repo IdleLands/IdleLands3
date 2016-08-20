@@ -3,11 +3,14 @@ import _ from 'lodash';
 import { GameState } from '../../core/game-state';
 
 import { ProfessionChange } from '../events/events/ProfessionChange';
+import { BattleBoss } from '../events/events/BattleBoss';
 import * as Events from '../events/events/_all';
 
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
 import { emitter } from './_emitter';
+
+import { MonsterGenerator } from '../../shared/monster-generator';
 
 import Chance from 'chance';
 const chance = new Chance(Math.random);
@@ -29,16 +32,15 @@ export class PlayerMovement {
     }
   }
 
-  // TODO https://github.com/IdleLands/IdleLandsOld/blob/master/src/character/player/Player.coffee#L478
   static canEnterTile(player, tile) {
     const properties = _.get(tile, 'object.properties');
     if(properties) {
       if(properties.requireMap)         return player.$statistics.getStat(`Character.Maps.${properties.requireMap}`) > 0;
       if(properties.requireRegion)      return player.$statistics.getStat(`Character.Regions.${properties.requireRegion}`) > 0;
-      if(properties.requireBoss)        return false;
+      if(properties.requireBoss)        return player.$statistics.getStat(`Character.BossKills.${properties.requireBoss}`) > 0;
       if(properties.requireClass)       return player.professionName === properties.requireClass;
-      if(properties.requireAchievement) return false;
-      if(properties.requireCollectible) return false;
+      if(properties.requireAchievement) return player.$achievements.hasAchievement(properties.requireAchievement);
+      if(properties.requireCollectible) return player.$collectibles.hasCollectible(properties.requireCollectible);
     }
     return !tile.blocked && tile.terrain !== 'Void';
   }
@@ -58,6 +60,18 @@ export class PlayerMovement {
 
     if(!type || !this[`handleTile${type}`]) return;
     this[`handleTile${type}`](player, tile);
+  }
+
+  static handleTileBoss(player, tile) {
+    const boss = MonsterGenerator.generateBoss(tile.object.name);
+    if(!boss) return;
+    BattleBoss.operateOn(player, { bossName: tile.object.name, bosses: boss });
+  }
+
+  static handleTileBossParty(player, tile) {
+    const bossparty = MonsterGenerator.generateBossParty(tile.object.name);
+    if(!bossparty) return;
+    BattleBoss.operateOn(player, { bossName: tile.object.name, bosses: bossparty });
   }
 
   static handleTileTrainer(player, tile) {

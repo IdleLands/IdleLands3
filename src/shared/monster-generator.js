@@ -14,7 +14,54 @@ import { Generator } from '../core/base/generator';
 import { Equipment } from '../core/base/equipment';
 import { ObjectAssets } from '../shared/asset-loader';
 
+import Bosses from '../../assets/maps/content/boss.json';
+import BossParties from '../../assets/maps/content/bossparties.json';
+import BossItems from '../../assets/maps/content/bossitems.json';
+
+const bossTimers = {};
+
 export class MonsterGenerator extends Generator {
+
+  static _setBossTimer(name) {
+    const respawn = Bosses[name] ? Bosses[name].respawn : BossParties[name].respawn;
+    bossTimers[name] = Date.now() + (1000 * respawn);
+  }
+
+  static _isBossAlive(name) {
+    return bossTimers[name] ? bossTimers[name] - Date.now() < 0 : true;
+  }
+
+  static generateBoss(name) {
+    const boss = _.cloneDeep(Bosses[name]);
+    if(!this._isBossAlive(name)) return;
+    boss.stats.name = name;
+    const monster = this.augmentMonster(boss.stats);
+    this.equipBoss(monster, boss.items);
+    return [monster];
+  }
+
+  static generateBossParty(name) {
+    const bossparty = BossParties[name];
+    if(!this._isBossAlive(name)) return;
+    return _.map(bossparty.members, member => {
+      const boss = _.cloneDeep(Bosses[member]);
+      boss.stats.name = name;
+      const monster = this.augmentMonster(boss.stats);
+      this.equipBoss(monster, boss.items);
+      return monster;
+    });
+  }
+
+  static equipBoss(monster, items) {
+    if(!items || !items.length) return;
+    _.each(items, item => {
+      const itemInst = new Equipment(BossItems[item.name]);
+      itemInst.name = item.name;
+      itemInst.itemClass = 'idle';
+      itemInst.dropPercent = item.dropPercent;
+      monster.equip(itemInst);
+    });
+  }
 
   static generateMonsters(party) {
     return _.map(party.players, p => {
@@ -82,7 +129,7 @@ export class MonsterGenerator extends Generator {
     const monster = new Monster();
     monster.init(baseMonster);
 
-    this.equipMonster(monster, baseMonster, forPlayer);
+    this.equipMonster(monster, baseMonster);
 
     return monster;
   }
