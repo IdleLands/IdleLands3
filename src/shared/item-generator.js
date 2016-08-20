@@ -8,6 +8,9 @@ import { Generator } from '../core/base/generator';
 import { Equipment } from '../core/base/equipment';
 import { ObjectAssets } from '../shared/asset-loader';
 
+import Chests from '../../assets/maps/content/chests.json';
+import Treasures from '../../assets/maps/content/treasure.json';
+
 export class ItemGenerator extends Generator {
   
   static newPlayerEquipment() {
@@ -39,6 +42,15 @@ export class ItemGenerator extends Generator {
     });
 
     return equipment;
+  }
+
+  static getAllTreasure(chestName) {
+    return _.map(Chests[chestName].items, itemName => {
+      const item = new Equipment(Treasures[itemName]);
+      item.name = itemName;
+      item.itemClass = 'guardian';
+      return item;
+    });
   }
   
   static getItemClass(item) {

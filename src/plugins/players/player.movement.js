@@ -4,6 +4,7 @@ import { GameState } from '../../core/game-state';
 
 import { ProfessionChange } from '../events/events/ProfessionChange';
 import { BattleBoss } from '../events/events/BattleBoss';
+import { FindTreasure } from '../events/events/FindTreasure';
 import * as Events from '../events/events/_all';
 
 import { SETTINGS } from '../../static/settings';
@@ -60,6 +61,10 @@ export class PlayerMovement {
 
     if(!type || !this[`handleTile${type}`]) return;
     this[`handleTile${type}`](player, tile);
+  }
+
+  static handleTileTreasure(player, tile) {
+    FindTreasure.operateOn(player, { treasureName: tile.object.name });
   }
 
   static handleTileBoss(player, tile) {
