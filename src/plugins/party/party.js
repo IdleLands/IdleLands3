@@ -92,7 +92,7 @@ export class Party {
     }
     player.choices = _.reject(player.choices, c => c.event === 'PartyLeave');
 
-    if(doDisband && !disbanding) this.disband();
+    if(doDisband && !disbanding) this.disband(player);
   }
 
   get leader() {
@@ -124,11 +124,11 @@ export class Party {
     };
   }
 
-  disband() {
+  disband(player) {
     if(!this.isBattleParty && !this.isMonsterParty) {
       emitter.emit('player:event', {
         affected: this.players,
-        eventText: MessageParser.stringFormat('%player has disbanded %partyName.', this.leader, { partyName: this.name }),
+        eventText: MessageParser.stringFormat('%player has disbanded %partyName.', player || this.leader, { partyName: this.name }),
         category: MessageCategories.PARTY
       });
     }
