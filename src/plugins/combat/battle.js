@@ -157,7 +157,8 @@ export class Battle {
 
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Win');
-          const gainedXp = Math.round(p._xp.maximum * (levelDiff / 100));
+          let gainedXp = Math.round(p._xp.maximum * (levelDiff / 100));
+          if(compareLevel < level - 5) gainedXp = 0;
           this._emitMessage(`${p.fullname} gained ${gainedXp}xp and ${goldGainedInParty}gold!`);
           p.gainXp(gainedXp);
           p.gainGold(goldGainedInParty);
