@@ -57,7 +57,7 @@ export class MonsterGenerator extends Generator {
     _.each(items, item => {
       const itemInst = new Equipment(BossItems[item.name]);
       itemInst.name = item.name;
-      itemInst.itemClass = 'idle';
+      itemInst.itemClass = 'guardian';
       itemInst.dropPercent = item.dropPercent;
       monster.equip(itemInst);
     });
