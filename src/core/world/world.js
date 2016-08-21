@@ -11,6 +11,7 @@ export class World {
     this.uniqueRegions = [];
 
     this.loadAllMaps();
+    this.loadAllCollectibles();
   }
 
   getMapsInFolder(dir) {
