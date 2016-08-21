@@ -37,6 +37,7 @@ export class MonsterGenerator extends Generator {
     boss.stats.name = name;
     const monster = this.augmentMonster(boss.stats);
     this.equipBoss(monster, boss.items);
+    monster._collectibles = boss.collectibles;
     return [monster];
   }
 
@@ -48,6 +49,7 @@ export class MonsterGenerator extends Generator {
       boss.stats.name = name;
       const monster = this.augmentMonster(boss.stats);
       this.equipBoss(monster, boss.items);
+      monster._collectibles = boss.collectibles;
       return monster;
     });
   }

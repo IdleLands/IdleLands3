@@ -61,9 +61,38 @@ export class BattleBoss extends Event {
         });
       })));
 
+      const dropCollectibles = _.compact(_.flattenDeep(_.map(bosses, boss => {
+        return _.map(boss._collectibles, coll => {
+          if(!coll.dropPercent) return null;
+          if(!Event.chance.bool({ likelihood: coll.dropPercent })) return null;
+          return coll;
+        });
+      })));
+
       if(dropItems.length > 0) {
         _.each(dropItems, item => {
-          FindItem.operateOn(player, item);
+          _.each(player.party.players, p => {
+            FindItem.operateOn(p, item);
+          });
+        });
+      }
+
+      if(dropCollectibles.length > 0) {
+        _.each(dropCollectibles, coll => {
+
+          const collectibleObj = {
+            name: coll.name,
+            map: player.map,
+            region: player.mapRegion,
+            rarity: 'guardian',
+            description: coll.flavorText,
+            storyline: coll.storyline,
+            foundAt: Date.now()
+          };
+
+          _.each(player.party.players, p => {
+            p.$collectibles.addCollectible(collectibleObj);
+          });
         });
       }
     }
