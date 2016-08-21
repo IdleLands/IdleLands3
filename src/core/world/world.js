@@ -3,6 +3,8 @@ import _ from 'lodash';
 import { Map } from './map';
 import fs from 'fs';
 
+import Bosses from '../../../assets/maps/content/boss.json';
+
 export class World {
   constructor() {
     this.maps = {};
@@ -31,6 +33,21 @@ export class World {
       this.maps[map] = mapRef;
 
       this.uniqueRegions.push(..._.uniq(_.compact(mapRef.regions)));
+    });
+  }
+
+  loadAllCollectibles() {
+    this.allCollectibles = {};
+
+    _.each(_.values(Bosses), boss => {
+      if(!boss.collectibles) return;
+      _.each(boss.collectibles, coll => {
+        this.allCollectibles[coll.name] = coll;
+      });
+    });
+
+    _.each(_.values(this.maps), map => {
+      _.extend(this.allCollectibles, map.collectibles);
     });
   }
 }

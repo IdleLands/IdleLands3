@@ -3,6 +3,7 @@ import { Dependencies, Container } from 'constitute';
 import _ from 'lodash';
 
 import { Logger } from '../../shared/logger';
+import { GameState } from '../../core/game-state';
 
 @Dependencies(Container)
 export class Collectibles {
@@ -21,6 +22,15 @@ export class Collectibles {
   init(opts) {
     this._id = undefined;
     this.collectibles = undefined;
+    const allCollectibles = GameState.getInstance().world.allCollectibles;
+
+    // update collectibles on login
+    _.each(_.values(opts.collectibles), coll => {
+      coll.rarity = allCollectibles[coll.name].rarity || 'basic';
+      coll.description = allCollectibles[coll.name].flavorText;
+      coll.storyline = allCollectibles[coll.name].storyline;
+    });
+
     _.extend(this, opts);
   }
 

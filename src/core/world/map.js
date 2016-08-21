@@ -23,6 +23,15 @@ export class Map {
 
     this.nameTrainers();
     this.loadRegions();
+    this.loadCollectibles();
+  }
+
+  loadCollectibles() {
+    this.collectibles = {};
+    _.each(this.map.layers[2].objects, object => {
+      if(object.type !== 'Collectible') return;
+      this.collectibles[object.name] = object.properties;
+    });
   }
 
   loadRegions() {
