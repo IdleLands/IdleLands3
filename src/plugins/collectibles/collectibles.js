@@ -26,6 +26,7 @@ export class Collectibles {
 
     // update collectibles on login
     _.each(_.values(opts.collectibles), coll => {
+      if(!allCollectibles[coll.name]) return;
       coll.rarity = allCollectibles[coll.name].rarity || 'basic';
       coll.description = allCollectibles[coll.name].flavorText;
       coll.storyline = allCollectibles[coll.name].storyline;
