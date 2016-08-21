@@ -191,6 +191,7 @@ export class PlayerMovement {
       _.each(directions, num => {
         const point2 = [num % 3, Math.floor(num / 3)]; // list -> matrix
         const distance = Math.abs(point1[0] - point2[0]) + Math.abs(point1[1] - point2[1]);
+        // const distance = Math.sqrt(Math.pow(point1[0] - point2[0], 2) + Math.pow(point1[1] - point2[1], 2));
         if(distance === 0) {
           weight[num - 1] = 40 - 3.6 * drunk;
         } else {
