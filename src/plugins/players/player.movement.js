@@ -178,26 +178,18 @@ export class PlayerMovement {
       }
     }
 
-    const directions = [1,  2,  3,  4,  5,  6,  7,  8,  9];
-    const weight     = [10, 10, 10, 10, 10, 10, 10, 10, 10];
+    const directions = [1,   2,  3,  6,  9,  8,  7,  4];
+    let weight       = [300, 40, 7,  3,  1,  3,  7,  40];
 
     const MAX_DRUNK = 10;
     const drunkFromPersonality = player.$personalities.isActive('Drunk') ? 7 : 0;
     const drunk = Math.max(0, Math.min(MAX_DRUNK, drunkFromPersonality));
 
-    // this is a lot of math that someone smarter than me(?) wrote, ported directly from OldIdleLands
-    if(player.lastDir) {
-      const point1 = [player.lastDir % 3, Math.floor(player.lastDir / 3)]; // list -> matrix
-      _.each(directions, num => {
-        const point2 = [num % 3, Math.floor(num / 3)]; // list -> matrix
-        const distance = Math.abs(point1[0] - point2[0]) + Math.abs(point1[1] - point2[1]);
-        // const distance = Math.sqrt(Math.pow(point1[0] - point2[0], 2) + Math.pow(point1[1] - point2[1], 2));
-        if(distance === 0) {
-          weight[num - 1] = 40 - 3.6 * drunk;
-        } else {
-          weight[num - 1] = Math.max(1, 4 - distance * (1 - drunk / MAX_DRUNK)); // each point of drunkenness makes the distance matter less
-        }
-      });
+    if(player.lastDir && !drunk) {
+      const lastDirIndex = directions.indexOf(player.lastDir);
+      weight = weight.slice(weight.length - lastDirIndex).concat(weight.slice(0, weight.length - lastDirIndex));
+    } else if(drunk) {
+      weight = _.map(weight, s => Math.max(1, 200 - (s * (1 - drunk / MAX_DRUNK))));
     }
 
     const randomDir = () => chance.weighted(directions, weight);
