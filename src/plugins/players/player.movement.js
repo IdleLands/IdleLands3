@@ -160,7 +160,13 @@ export class PlayerMovement {
   }
 
   static getTileAt(map, x, y) {
-    return GameState.getInstance().world.maps[map].getTile(x, y);
+    let mapInstance = GameState.getInstance().world.maps[map];
+    if(!mapInstance) {
+      mapInstance = GameState.getInstance().world.maps.Norkos;
+      x = 10;
+      y = 10;
+    }
+    return mapInstance.getTile(x, y);
   }
 
   static pickFollowTile(player, target) {
