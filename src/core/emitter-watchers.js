@@ -138,7 +138,10 @@ PlayerEmitter.on('player:transfer', ({ player, dest }) => {
     type: MessageTypes.SINGLE,
     category: MessageCategories.EXPLORE,
     targets: [player.name],
-    targetsDisplay: [player.fullname]
+    targetsDisplay: [player.fullname],
+    map: player.map,
+    x: player.x,
+    y: player.y
   });
 
 });
