@@ -36,6 +36,11 @@ export class Statistics {
     _.set(this.stats, stat, val);
   }
 
+  countChild(stat) {
+    const obj = _.get(this.stats, stat, {});
+    return _.sum(_.values(obj)) || 0;
+  }
+
   incrementStat(stat, value = 1) {
     this._addStat(stat, value);
     this.save();
