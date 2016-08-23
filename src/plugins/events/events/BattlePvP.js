@@ -22,7 +22,7 @@ export class BattlePvP extends Event {
     let opponent = null;
 
     // 1v1
-    if(!player.party) {
+    if(!player.party || player.party.players.length === 1) {
       const partyInstance = new PartyClass({ leader: player });
       partyInstance.isBattleParty = true;
 
@@ -40,7 +40,7 @@ export class BattlePvP extends Event {
       opponent = _(allPlayers)
         .reject(p => p.level < player.level - 5 || p.level > player.level + 5)
         .reject(p => p.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 }))
-        .reject(p => !p.party || p.party === player.party)
+        .reject(p => !p.party || p.party === player.party || p.party.players.length === 1)
         .sample();
       if(!opponent) return;
 
