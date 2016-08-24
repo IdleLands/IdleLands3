@@ -37,8 +37,5 @@ export class SweepingGeneralization extends Spell {
         targets: [target]
       });
     });
-
-    console.log('SWEEP GEN');
-    process.exit(0);
   }
 }
