@@ -1,4 +1,6 @@
 
+const isBattleDebug = process.env.BATTLE_DEBUG;
+
 import _ from 'lodash';
 
 import { StringGenerator } from '../../shared/string-generator';
@@ -35,7 +37,9 @@ export class Battle {
   }
 
   _emitMessage(message, data = null) {
-    console.log(message);
+    if(isBattleDebug) {
+      console.log(message);
+    }
     this.messageData.push({ message, data });
   }
 

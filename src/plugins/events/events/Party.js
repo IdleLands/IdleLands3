@@ -1,4 +1,6 @@
 
+const isBattleDebug = process.env.BATTLE_DEBUG;
+
 import _ from 'lodash';
 
 import { Event } from '../event';
@@ -8,7 +10,7 @@ import { Party as PartyClass } from '../../../plugins/party/party';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 25;
+export const WEIGHT = isBattleDebug ? 250 : 25;
 
 // Create a party
 export class Party extends Event {

@@ -1,4 +1,6 @@
 
+const isBattleDebug = process.env.BATTLE_DEBUG;
+
 import { Event } from '../event';
 import { Battle as BattleClass } from '../../combat/battle';
 import { Party as PartyClass } from '../../party/party';
@@ -9,7 +11,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { Logger } from '../../../shared/logger';
 
-export const WEIGHT = 3;
+export const WEIGHT = isBattleDebug ? 300 : 3;
 
 // Create a battle
 export class Battle extends Event {
