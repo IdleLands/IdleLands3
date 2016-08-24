@@ -2,6 +2,7 @@
 import _ from 'lodash';
 
 import { SpellTargetStrategy } from '../../plugins/combat/spelltargetstrategy';
+import { SpellTargetPossibilities } from '../../plugins/combat/spelltargetpossibilities';
 import { MessageParser } from '../../plugins/events/messagecreator';
 
 import Chance from 'chance';
@@ -10,13 +11,32 @@ const chance = new Chance();
 export class Spell {
   static get chance() { return chance; }
   static tiers = [];
+  static $canTarget = SpellTargetPossibilities;
 
-  stat = 'mp';
-  oper = 'sub';
+  static stat = 'mp';
+  static oper = 'sub';
+
+  static bestTier(caster) {
+    return _.last(_.filter(this.tiers, tier => {
+      const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !caster.$collectibles || caster.$collectibles.hasCollectible(c)) : true;
+      return tier.profession === caster.professionName && tier.level <= caster.level && meetsCollectibleReqs;
+    }));
+  }
 
   get tier() {
     const tiers = this.constructor.tiers;
-    return _.sample(_.filter(tiers, tier => tier.profession === this.caster.professionName && tier.level <= this.caster.level));
+    return _.last(_.filter(tiers, tier => {
+      const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !this.caster.$collectibles || this.caster.$collectibles.hasCollectible(c)) : true;
+      return tier.profession === this.caster.professionName && tier.level <= this.caster.level && meetsCollectibleReqs;
+    }));
+  }
+
+  get stat() {
+    return this.constructor.stat;
+  }
+
+  get oper() {
+    return this.constructor.oper;
   }
 
   get element() {
@@ -52,7 +72,7 @@ export class Spell {
     return MessageParser.stringFormat(message, player, extraData);
   }
 
-  cast({ damage, targets, message, messageData }) {
+  cast({ damage, targets, message, messageData = {} }) {
 
     this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
 
@@ -67,6 +87,7 @@ export class Spell {
       this.caster.$battle.tryIncrement(target, 'Combat.Receive.Damage', damage);
 
       messageData.targetName = target.fullname;
+      messageData.spellName = this.tier.name;
 
       // TODO mark an attack as fatal somewhere else in metadata and display metadata on site
       this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));

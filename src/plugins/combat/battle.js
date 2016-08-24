@@ -5,6 +5,9 @@ import { StringGenerator } from '../../shared/string-generator';
 
 import { persistToDb } from './battle.db';
 
+import Chance from 'chance';
+const chance = new Chance();
+
 export class Battle {
   constructor({ parties, introText }) {
     this.parties = parties;
@@ -32,6 +35,7 @@ export class Battle {
   }
 
   _emitMessage(message, data = null) {
+    console.log(message);
     this.messageData.push({ message, data });
   }
 
@@ -101,26 +105,29 @@ export class Battle {
 
   takeTurn(player) {
     if(!this.isPlayerAlive(player) || !this.shouldGoOn) return;
-    this.doPhysicalAttack(player);
+    this.doAttack(player);
   }
 
-  doPhysicalAttack(player) {
-    const attackSpell = _.find(player.spells, spell => spell.name === 'Attack');
-    const attackRef = new attackSpell(player);
-    attackRef.preCast();
-    attackRef.cast();
+  doAttack(player) {
+    const validSpells = this.validAttacks(player);
+    const spellChoice = chance.weighted(_.map(validSpells, 'name'), _.map(validSpells, s => s.bestTier(player).weight));
+    const spell = _.find(player.spells, { name: spellChoice });
+    const spellRef = new spell(player);
+    spellRef.preCast();
+    spellRef.cast();
   }
 
-  validMagicalAttacks(player) {
-    // TODO: tiers, mp cost
-    return _.filter(player.spells, spell => spell.name !== 'Attack');
-  }
-
-  doMagicalAttack(player) {
-    const nonAttackSpell = _.sample(this.validMagicalAttacks(player));
-    const attackRef = new nonAttackSpell(player);
-    attackRef.preCast();
-    attackRef.cast();
+  validAttacks(player) {
+    return _(player.spells)
+      .filter(spell => spell.shouldCast(player))
+      .filter(spell => {
+        const tier = spell.bestTier(player);
+        if(!tier) return false;
+        if(_.isFunction(tier.cost) && !tier.cost(player)) return false;
+        if(_.isNumber(tier.cost) && player[`_${spell.stat}`].lessThan(tier.cost)) return false;
+        return true;
+      })
+      .value();
   }
 
   get winningTeam() {

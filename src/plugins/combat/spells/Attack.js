@@ -22,6 +22,10 @@ export class Attack extends Spell {
     { name: 'attack', spellPower: 1.0, weight: 50, cost: 0, level: 1, profession: 'SandwichArtist' }
   ];
 
+  static shouldCast() {
+    return this.$canTarget.yes();
+  }
+
   calcDamage() {
     const min = this.caster.liveStats.str / 3;
     const max = this.caster.liveStats.str;
