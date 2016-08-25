@@ -20,9 +20,7 @@ export class Revive extends Spell {
   cast() {
     const message = '%player cast %spellName at %targetName!';
     const targets = this.determineTargets();
-
-    console.log(_.map(targets, 'fullname'));
-
+    
     _.each(targets, target => {
       const damage = -Math.round(target._hp.maximum * this.spellPower/100);
 
