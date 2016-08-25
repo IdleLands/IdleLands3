@@ -97,17 +97,25 @@ export class Spell {
       messageData.targetName = target.fullname;
       messageData.spellName = this.tier.name;
 
+      if(damage !== 0) {
+        this.dealDamage(target, damage);
+
+        if(target.hp === 0) {
+          this.caster.$battle.tryIncrement(this.caster, `Combat.Kills.${target.isPlayer ? 'Player' : 'Monster'}`);
+          this.caster.$battle.tryIncrement(target, `Combat.Deaths.${this.caster.isPlayer ? 'Player' : 'Monster'}`);
+        }
+      }
+
       // TODO mark an attack as fatal somewhere else in metadata and display metadata on site
       this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));
 
-      if(damage !== 0) {
-        this.dealDamage(target, damage);
-      }
-
       if(applyEffect) {
         const effect = new applyEffect({ target, potency: this.calcPotency(), duration: this.calcDuration() });
+        effect.origin = { name: this.caster.fullname, spell: this.tier.name };
         target.$effects.add(effect);
         effect.affect(target);
+        this.caster.$battle.tryIncrement(this.caster, `Combat.Give.Effect.${this.element}`);
+        this.caster.$battle.tryIncrement(target, `Combat.Receive.Effect.${this.element}`);
       }
     });
   }

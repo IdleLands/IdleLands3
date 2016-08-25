@@ -6,6 +6,9 @@ export class Fighter extends Profession {
   static baseHpPerLevel = Profession.baseHpPerLevel + 25;
   static baseMpPerLevel = Profession.baseMpPerLevel + 3;
 
+  static baseMpPerStr = 1;
+  static baseMpPerInt = 1;
+
   static baseConPerLevel = 2;
   static baseDexPerLevel = 4;
   static baseAgiPerLevel = 3;

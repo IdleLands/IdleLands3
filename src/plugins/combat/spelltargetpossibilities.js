@@ -13,5 +13,11 @@ export class SpellTargetPossibilities {
       .value().length > 1;
   }
 
-
+  static allyWithoutEffect(caster, effect) {
+    return _(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.party !== caster.party)
+        .reject(p => p.$effects.hasEffect(effect))
+        .value().length >= 1;
+  }
 }

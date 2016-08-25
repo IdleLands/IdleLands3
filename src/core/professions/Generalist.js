@@ -6,6 +6,8 @@ export class Generalist extends Profession {
   static baseHpPerLevel = Profession.baseHpPerLevel;
   static baseMpPerLevel = Profession.baseMpPerLevel + 3;
 
+  static baseMpPerInt = 3;
+
   static baseConPerLevel = 3;
   static baseDexPerLevel = 3;
   static baseAgiPerLevel = 3;

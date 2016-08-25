@@ -11,6 +11,10 @@ export class EffectManager {
     return _.some(this.effects, effect => effect.constructor.name === effectName);
   }
 
+  clear() {
+    this.effects = [];
+  }
+
   add(effect) {
     this.effects.push(effect);
   }

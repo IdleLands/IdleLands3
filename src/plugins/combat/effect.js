@@ -15,7 +15,10 @@ export class Effect {
   }
 
   _emitMessage(player, message, extraData = {}) {
-    return MessageParser.stringFormat(message, player, extraData);
+    extraData.casterName = this.origin.name;
+    extraData.spellName = this.origin.spell;
+    const parsedMessage = MessageParser.stringFormat(message, player, extraData);
+    this.target.$battle._emitMessage(parsedMessage);
   }
 
   statByPercent(player, stat, percent) {

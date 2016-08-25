@@ -6,7 +6,7 @@ export class Mage extends Profession {
   static baseHpPerLevel = Profession.baseHpPerLevel - 25;
   static baseMpPerLevel = Profession.baseMpPerLevel + 25;
 
-  static baseMpPerInt = 5;
+  static baseMpPerInt = 7;
 
   static baseConPerLevel = 2;
   static baseDexPerLevel = 2;

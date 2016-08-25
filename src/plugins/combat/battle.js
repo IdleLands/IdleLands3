@@ -149,6 +149,10 @@ export class Battle {
     this.endBattleBonuses();
     persistToDb(this);
     this.cleanUp();
+
+    if(isBattleDebug && this.kill) {
+      process.exit(0);
+    }
   }
 
   endBattleBonuses() {
@@ -204,6 +208,7 @@ export class Battle {
   cleanUp() {
     _.each(this.allPlayers, p => {
       p.$battle = null;
+      p.$effects.clear();
     });
   }
 }

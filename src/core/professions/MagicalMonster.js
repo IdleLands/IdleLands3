@@ -6,6 +6,8 @@ export class MagicalMonster extends Profession {
   static baseHpPerLevel = Profession.baseHpPerLevel;
   static baseMpPerLevel = Profession.baseMpPerLevel + 15;
 
+  static baseMpPerInt = 3;
+
   static baseConPerLevel = 2;
   static baseDexPerLevel = 2;
   static baseAgiPerLevel = 2;

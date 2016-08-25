@@ -239,6 +239,7 @@ export class MessageParser {
     if(extra.spellName)   extra.spellName = `«${extra.spellName}»`;
     if(extra.weaponName)  extra.weaponName = `«${extra.weaponName}»`;
     if(extra.targetName)  extra.targetName = `«${extra.targetName}»`;
+    if(extra.casterName)  extra.casterName = `«${extra.casterName}»`;
     if(extra.deflectItem) extra.deflectItem = `«${extra.deflectItem}»`;
     if(extra.collectible) extra.collectible = `«${extra.collectible}»`;
 
