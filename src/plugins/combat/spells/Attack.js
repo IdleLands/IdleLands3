@@ -41,6 +41,10 @@ export class Attack extends Spell {
     const weaponName = _.get(this.caster.equipment, 'mainhand.fullname', 'claw');
     const targets = this.determineTargets();
 
+    if(targets.length === 0) {
+      return;
+    }
+
     _.each(targets, target => {
       let done = false;
       let damage = this.calcDamage();

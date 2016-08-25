@@ -41,6 +41,14 @@ export class SpellTargetStrategy {
       .sample()];
   }
 
+  static randomAllyBelowMaxHealth(caster) {
+    return [_(caster.$battle.allPlayers)
+      .reject(p => p.hp === 0)
+      .reject(p => p.party !== caster.party)
+      .reject(p => p._hp.atMaximum())
+      .sample()];
+  }
+
   static randomAllyWithoutEffect(caster) {
     return function(effect) {
       return [_(caster.$battle.allPlayers)

@@ -110,6 +110,7 @@ export class Spell {
       }
 
       messageData.damage = damage;
+      messageData.healed = Math.abs(damage);
 
       // TODO mark an attack as fatal somewhere else in metadata and display metadata on site
       this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));
