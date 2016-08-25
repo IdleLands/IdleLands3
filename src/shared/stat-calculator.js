@@ -183,4 +183,8 @@ export class StatCalculator {
     const baseValue = SETTINGS.reductionDefaults.merchantCostReductionMultiplier;
     return this._reduction('merchantCostReductionMultiplier', [player], baseValue);
   }
+
+  static damageReduction(player) {
+    return this._reduction('damageReduction', [player], 0);
+  }
 }

@@ -85,7 +85,6 @@ export class Spell {
     this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
 
     damage = Math.round(damage);
-    messageData.damage = damage;
 
     this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.Damage', damage);
 
@@ -98,13 +97,15 @@ export class Spell {
       messageData.spellName = this.tier.name;
 
       if(damage !== 0) {
-        this.dealDamage(target, damage);
+        damage = this.dealDamage(target, damage);
 
         if(target.hp === 0) {
           this.caster.$battle.tryIncrement(this.caster, `Combat.Kills.${target.isPlayer ? 'Player' : 'Monster'}`);
           this.caster.$battle.tryIncrement(target, `Combat.Deaths.${this.caster.isPlayer ? 'Player' : 'Monster'}`);
         }
       }
+
+      messageData.damage = damage;
 
       // TODO mark an attack as fatal somewhere else in metadata and display metadata on site
       this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));
@@ -123,7 +124,7 @@ export class Spell {
   preCast() {}
 
   dealDamage(target, damage) {
-    target._hp.sub(damage);
+    return this.caster.$battle.dealDamage(target, damage);
   }
 
   minMax(min, max) {

@@ -196,6 +196,14 @@ export class Battle {
     });
   }
 
+  dealDamage(target, damage) {
+    if(damage > 0) {
+      damage = Math.max(0, damage - target.liveStats.damageReduction);
+    }
+    target._hp.sub(damage);
+    return damage;
+  }
+
   saveObject() {
     return {
       name: this.name,

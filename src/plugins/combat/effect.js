@@ -31,6 +31,8 @@ export class Effect {
 
   affect() {}
 
-  unaffect() {}
+  unaffect() {
+    this._emitMessage(this.target, 'The effect of %casterName\'s %spellName on %player has dissipated.');
+  }
 
 }

@@ -30,7 +30,7 @@ export class Treatment extends Spell {
   }
 
   cast() {
-    const message = '%player used %spellName on %targetName!';
+    const message = '%player cast %spellName on %targetName!';
     const targets = this.determineTargets();
 
     _.each(targets, target => {
