@@ -7,6 +7,7 @@ import { Logger } from '../../shared/logger';
 
 import { Equipment } from '../base/equipment';
 import { SpellManager } from '../../plugins/combat/spellmanager';
+import { EffectManager } from '../../plugins/combat/effectmanager';
 
 import { StatCalculator } from '../../shared/stat-calculator';
 
@@ -38,6 +39,8 @@ export class Character {
     if(!this.professionName)  this.professionName = 'Generalist';
     if(!this.equipment)       this.equipment = {};
     if(!this.statCache)       this.statCache = {};
+
+    this.$effects = new EffectManager();
 
     this.$stats = new Proxy({}, {
       get: (target, name) => {

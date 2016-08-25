@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 
-import { Spell, SpellType } from '../../../core/base/spell';
+import { Spell, SpellType } from '../spell';
 
 export class SweepingGeneralization extends Spell {
   static element = SpellType.PHYSICAL;

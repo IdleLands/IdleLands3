@@ -22,6 +22,7 @@ export class StatCalculator {
 
   static _baseStat(player, stat) {
     return this.classStat(player, stat)
+         + this.effectStat(player, stat)
          + this.equipmentStat(player, stat)
          + this.achievementStat(player, stat)
          + this.personalityStat(player, stat);
@@ -31,6 +32,12 @@ export class StatCalculator {
     return _(player.equipment)
       .values()
       .map(item => _.isNumber(item[stat]) ? item[stat] : 0)
+      .sum();
+  }
+
+  static effectStat(player, stat) {
+    return _(player.$effects.effects)
+      .map(effect => effect[stat] || 0)
       .sum();
   }
 

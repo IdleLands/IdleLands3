@@ -110,6 +110,7 @@ export class Battle {
   takeTurn(player) {
     if(!this.isPlayerAlive(player) || !this.shouldGoOn) return;
     this.doAttack(player);
+    player.$effects.tick();
   }
 
   doAttack(player) {
@@ -162,7 +163,7 @@ export class Battle {
 
         const level = party.level;
         const compareLevel = _.sum(_.map(this.losers, 'level')) / this.losers.length;
-        const levelDiff = Math.max(-5, Math.min(5, level - compareLevel)) + 6;
+        const levelDiff = Math.max(-5, Math.min(5, compareLevel - level)) + 6;
 
         const goldGainedInParty = Math.round((compareLevel * 230) / party.players.length);
 

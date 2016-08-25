@@ -1,6 +1,6 @@
 
 import _ from 'lodash';
-import { Spell, SpellType } from '../../../core/base/spell';
+import { Spell, SpellType } from '../spell';
 
 export class Attack extends Spell {
   static element = SpellType.PHYSICAL;

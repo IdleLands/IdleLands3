@@ -12,4 +12,6 @@ export class SpellTargetPossibilities {
       .reject(p => p.party === caster.party)
       .value().length > 1;
   }
+
+
 }

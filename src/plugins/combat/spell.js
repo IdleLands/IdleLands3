@@ -1,8 +1,8 @@
 
 import _ from 'lodash';
 
-import { SpellTargetStrategy } from '../../plugins/combat/spelltargetstrategy';
-import { SpellTargetPossibilities } from '../../plugins/combat/spelltargetpossibilities';
+import { SpellTargetStrategy } from './spelltargetstrategy';
+import { SpellTargetPossibilities } from './spelltargetpossibilities';
 import { MessageParser } from '../../plugins/events/messagecreator';
 
 import Chance from 'chance';
@@ -64,6 +64,14 @@ export class Spell {
     return 0;
   }
 
+  calcDuration() {
+    return 0;
+  }
+
+  calcPotency() {
+    return 0;
+  }
+
   determineTargets() {
     return [];
   }
@@ -72,7 +80,7 @@ export class Spell {
     return MessageParser.stringFormat(message, player, extraData);
   }
 
-  cast({ damage, targets, message, messageData = {} }) {
+  cast({ damage, targets, message, applyEffect, messageData = {} }) {
 
     this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
 
@@ -96,7 +104,11 @@ export class Spell {
         this.dealDamage(target, damage);
       }
 
-      this.affect(target);
+      if(applyEffect) {
+        const effect = new applyEffect({ target, potency: this.calcPotency(), duration: this.calcDuration() });
+        target.$effects.add(effect);
+        effect.affect(target);
+      }
     });
   }
 
@@ -105,8 +117,6 @@ export class Spell {
   dealDamage(target, damage) {
     target._hp.sub(damage);
   }
-
-  affect() {}
 
   minMax(min, max) {
     return Math.max(1, Spell.chance.integer({ min: min, max: Math.max(min+1, max) }));
