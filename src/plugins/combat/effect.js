@@ -2,12 +2,17 @@
 import { MessageParser } from '../../plugins/events/messagecreator';
 import { Logger } from '../../shared/logger';
 
+import Chance from 'chance';
+const chance = new Chance();
+
 export class Effect {
+
+  static get chance() { return chance; }
 
   constructor({ target, duration, potency }) {
     this.target = target;
-    this.potency = potency;
-    this.duration = duration;
+    this.potency = this._potency = potency;
+    this.duration = this._duration = duration;
 
     if(duration <= 0 || potency <= 0) {
       Logger.error('Effect', new Error('Bad duration or potency given for effect.'), { name: this.constructor.name, duration, potency });
@@ -23,6 +28,10 @@ export class Effect {
 
   statByPercent(player, stat, percent) {
     return Math.round(player.liveStats[stat] * percent/100);
+  }
+
+  dealDamage(player, damage) {
+    player.$battle.dealDamage(player, damage);
   }
 
   tick() {

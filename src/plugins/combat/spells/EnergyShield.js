@@ -36,7 +36,6 @@ export class EnergyShield extends Spell {
   }
 
   cast() {
-    this.caster.$battle.kill = true;
     const message = '%player cast %spellName on %targetName!';
     const targets = this.determineTargets();
 

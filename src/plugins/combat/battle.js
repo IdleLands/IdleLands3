@@ -109,7 +109,12 @@ export class Battle {
 
   takeTurn(player) {
     if(!this.isPlayerAlive(player) || !this.shouldGoOn) return;
-    this.doAttack(player);
+    const stunned = player.liveStats.isStunned;
+    if(stunned) {
+      this._emitMessage(stunned);
+    } else {
+      this.doAttack(player);
+    }
     player.$effects.tick();
   }
 

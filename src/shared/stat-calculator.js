@@ -187,4 +187,11 @@ export class StatCalculator {
   static damageReduction(player) {
     return this._reduction('damageReduction', [player], 0);
   }
+
+  static isStunned(player) {
+    const isStunned = _.filter(player.$effects.effects, effect => effect.stun);
+    if(isStunned.length > 0) {
+      return isStunned[0].stunMessage || 'NO STUN MESSAGE';
+    }
+  }
 }

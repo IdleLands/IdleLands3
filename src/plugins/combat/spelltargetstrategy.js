@@ -16,6 +16,17 @@ export class SpellTargetStrategy {
       .sample()];
   }
 
+  static randomEnemies(caster) {
+    return function(numEnemies) {
+      const validTargets = _(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.party === caster.party)
+        .value();
+
+      return _.map(new Array(numEnemies), () => _.sample(validTargets));
+    };
+  }
+
   static allAllies(caster) {
     return _(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)
@@ -35,6 +46,16 @@ export class SpellTargetStrategy {
       return [_(caster.$battle.allPlayers)
         .reject(p => p.hp === 0)
         .reject(p => p.party !== caster.party)
+        .reject(p => p.$effects.hasEffect(effect))
+        .sample()];
+    };
+  }
+
+  static randomEnemyWithoutEffect(caster) {
+    return function(effect) {
+      return [_(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.party === caster.party)
         .reject(p => p.$effects.hasEffect(effect))
         .sample()];
     };
