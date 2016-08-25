@@ -12,7 +12,7 @@ export class CureGroup extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.allyBelow50PercentHealth(caster) && caster.party.players.length > 1;
+    return this.$canTarget.allyBelow50PercentHealth(caster) && caster.party && caster.party.players.length > 1;
   }
 
   calcDamage() {

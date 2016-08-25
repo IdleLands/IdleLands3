@@ -91,10 +91,6 @@ export class PlayerMovement {
   }
 
   static handleTileTeleport(player, tile, force = false) {
-    if(!force) {
-      if(player.stepCooldown > 0) return;
-      player.stepCooldown = 30;
-    }
 
     const dest = tile.object.properties;
     dest.x = +dest.destx;
@@ -102,6 +98,11 @@ export class PlayerMovement {
 
     if(dest.movementType === 'ascend' && player.$personalities.isActive('Delver')) return;
     if(dest.movementType === 'descend' && player.$personalities.isActive('ScaredOfTheDark')) return;
+
+    if(!force) {
+      if(player.stepCooldown > 0) return;
+      player.stepCooldown = 30;
+    }
 
     if(!dest.map && !dest.toLoc) {
       Logger.error('PlayerMovement', new Error(`No dest.map at ${player.x}, ${player.y} in ${player.map}`));

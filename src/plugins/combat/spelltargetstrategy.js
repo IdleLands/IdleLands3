@@ -2,6 +2,11 @@
 import _ from 'lodash';
 
 export class SpellTargetStrategy {
+
+  static all(caster) {
+    return caster.$battle.allPlayers;
+  }
+
   static allEnemies(caster) {
     return _(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)
@@ -37,6 +42,13 @@ export class SpellTargetStrategy {
   static randomAlly(caster) {
     return [_(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)
+      .reject(p => p.party !== caster.party)
+      .sample()];
+  }
+
+  static randomDeadAlly(caster) {
+    return [_(caster.$battle.allPlayers)
+      .reject(p => p.hp > 0)
       .reject(p => p.party !== caster.party)
       .sample()];
   }
