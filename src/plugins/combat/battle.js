@@ -118,10 +118,17 @@ export class Battle {
     player.$effects.tick();
   }
 
-  doAttack(player) {
-    const validSpells = this.validAttacks(player);
-    const spellChoice = chance.weighted(_.map(validSpells, 'name'), _.map(validSpells, s => s.bestTier(player).weight));
-    const spell = _.find(player.spells, { name: spellChoice });
+  doAttack(player, forceSkill) {
+    let spell = null;
+
+    if(!forceSkill) {
+      const validSpells = this.validAttacks(player);
+      const spellChoice = chance.weighted(_.map(validSpells, 'name'), _.map(validSpells, s => s.bestTier(player).weight));
+      spell = _.find(player.spells, { name: spellChoice });
+    } else {
+      spell = _.find(player.spells, { name: forceSkill });
+    }
+
     const spellRef = new spell(player);
     spellRef.preCast();
     spellRef.cast();

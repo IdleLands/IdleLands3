@@ -85,16 +85,20 @@ export class Spell {
     this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
 
     damage = Math.round(damage);
-
     this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.Damage', damage);
-
     this.caster[`_${this.stat}`][this.oper](this.cost);
+
+    messageData.spellName = this.tier.name;
+
+    if(!targets.length) {
+      this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));
+      return;
+    }
 
     _.each(targets, target => {
       this.caster.$battle.tryIncrement(target, 'Combat.Receive.Damage', damage);
 
       messageData.targetName = target.fullname;
-      messageData.spellName = this.tier.name;
 
       if(damage !== 0) {
         damage = this.dealDamage(target, damage);
