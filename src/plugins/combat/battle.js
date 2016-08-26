@@ -78,6 +78,9 @@ export class Battle {
       p.$battle = this;
       p._hp.toMaximum();
       p._mp.toMaximum();
+
+      // TODO set special stat for profession here
+
       this.tryIncrement(p, 'Combats');
     });
   }
@@ -181,7 +184,7 @@ export class Battle {
         const compareLevel = _.sum(_.map(this.losers, 'level')) / this.losers.length;
         const levelDiff = Math.max(-5, Math.min(5, compareLevel - level)) + 6;
 
-        const goldGainedInParty = Math.round((compareLevel * 230) / party.players.length);
+        const goldGainedInParty = Math.round((compareLevel * 1560) / party.players.length);
 
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Win');
