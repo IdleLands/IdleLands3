@@ -2,6 +2,8 @@
 import _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
+import { ATTACK_STATS } from '../../../shared/stat-calculator';
+
 export class Attack extends Spell {
   static element = SpellType.PHYSICAL;
   static tiers = [
@@ -53,7 +55,7 @@ export class Attack extends Spell {
         damage
       };
 
-      if(Spell.chance.bool({ likelihood: 0.01 })) {
+      if(Spell.chance.bool({ likelihood: 0.01 + (0.1 * this.caster.liveStats.critical) })) {
         this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.CriticalHit');
         this.caster.$battle.tryIncrement(target, 'Combat.Receive.CriticalHit');
         damage = this.caster.liveStats.str * this.spellPower;
@@ -98,6 +100,28 @@ export class Attack extends Spell {
         message,
         messageData,
         targets: [target]
+      });
+
+      _.each(ATTACK_STATS, stat => {
+        const canUse = this.caster.liveStats[stat];
+        if(canUse <= 0) return;
+
+        const chance = Spell.chance.bool({ likelihood: Math.max(0, Math.min(100, canUse * 10)) });
+        if(!chance) return;
+
+        const properEffect = _.capitalize(stat);
+
+        if(target.$effects.hasEffect(properEffect)) return;
+
+        const effectProto = require(`../effects/${properEffect}`)[properEffect];
+
+        const effect = new effectProto({ target, potency: canUse, duration: 0 });
+        effect.origin = { name: this.caster.fullname, ref: this.caster, spell: stat };
+        target.$effects.add(effect);
+        effect.affect(target);
+
+        this.caster.$battle.tryIncrement(this.caster, `Combat.Give.CombatEffect.${properEffect}`);
+        this.caster.$battle.tryIncrement(target, `Combat.Receive.CombatEffect.${properEffect}`);
       });
     });
   }

@@ -14,4 +14,10 @@ export class Archer extends Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 2;
   static baseIntPerLevel = 1;
+
+  static classStats = {
+    dex: (target, baseValue) => baseValue * 0.25,
+    shatter: 1,
+    critical: 10
+  }
 }

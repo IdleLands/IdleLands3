@@ -13,4 +13,8 @@ export class Generalist extends Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 3;
+
+  static classStats = {
+    mpregen: (target) => target._mp.maximum * 0.005
+  }
 }

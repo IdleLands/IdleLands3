@@ -13,4 +13,8 @@ export class Bard extends Profession {
   static baseAgiPerLevel = 3;
   static baseStrPerLevel = 2;
   static baseIntPerLevel = 3;
+
+  static classStats = {
+    mpregen: (target) => target._mp.maximum * 0.005
+  }
 }

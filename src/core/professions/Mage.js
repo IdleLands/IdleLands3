@@ -13,4 +13,8 @@ export class Mage extends Profession {
   static baseAgiPerLevel = 2;
   static baseStrPerLevel = 2;
   static baseIntPerLevel = 6;
+
+  static classStats = {
+    mpregen: (target) => target._mp.maximum * 0.01
+  }
 }

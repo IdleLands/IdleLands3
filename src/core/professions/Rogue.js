@@ -14,4 +14,12 @@ export class Rogue extends Profession {
   static baseAgiPerLevel = 4;
   static baseStrPerLevel = 2;
   static baseIntPerLevel = 1;
+
+  static classStats = {
+    poison: 1,
+    venom: 1,
+    shatter: 1,
+    vampire: 1,
+    prone: 1
+  }
 }

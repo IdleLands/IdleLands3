@@ -2,6 +2,10 @@
 import _ from 'lodash';
 import { SETTINGS } from '../static/settings';
 
+export const BASE_STATS = ['str', 'con', 'dex', 'int', 'agi', 'luk', 'xp', 'gold'];
+export const SPECIAL_STATS = ['hpregen', 'mpregen', 'damageReduction'];
+export const ATTACK_STATS = ['prone', 'venom', 'poison', 'shatter', 'vampire', 'critical'];
+
 export class StatCalculator {
 
   static _reduction(stat, args = [], baseValue = 0) {
@@ -9,7 +13,7 @@ export class StatCalculator {
   }
 
   static _secondPassFunctions(player, stat) {
-    const possibleFunctions = [player.$profession]
+    const possibleFunctions = [player.$profession.classStats]
       .concat(this._achievementFunctions(player, stat))
       .concat(this._personalityFunctions(player, stat));
 
@@ -24,6 +28,7 @@ export class StatCalculator {
     return this.classStat(player, stat)
          + this.effectStat(player, stat)
          + this.equipmentStat(player, stat)
+         + this.professionStat(player, stat)
          + this.achievementStat(player, stat)
          + this.personalityStat(player, stat);
   }
@@ -33,6 +38,12 @@ export class StatCalculator {
       .values()
       .map(item => _.isNumber(item[stat]) ? item[stat] : 0)
       .sum();
+  }
+
+  static professionStat(player, stat) {
+    const base = player.$profession.classStats[stat];
+    if(!base || _.isFunction(base)) return 0;
+    return base;
   }
 
   static effectStat(player, stat) {
@@ -184,10 +195,6 @@ export class StatCalculator {
   static merchantCostReductionMultiplier(player) {
     const baseValue = SETTINGS.reductionDefaults.merchantCostReductionMultiplier;
     return this._reduction('merchantCostReductionMultiplier', [player], baseValue);
-  }
-
-  static damageReduction(player) {
-    return this._reduction('damageReduction', [player], 0);
   }
 
   static isStunned(player) {

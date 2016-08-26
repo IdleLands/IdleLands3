@@ -13,4 +13,8 @@ export class SandwichArtist extends Profession {
   static baseAgiPerLevel = 1;
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 1;
+
+  static classStats = {
+    mpregen: (target) => target._mp.maximum * 0.025
+  }
 }

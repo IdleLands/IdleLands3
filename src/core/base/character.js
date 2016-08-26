@@ -9,7 +9,7 @@ import { Equipment } from '../base/equipment';
 import { SpellManager } from '../../plugins/combat/spellmanager';
 import { EffectManager } from '../../plugins/combat/effectmanager';
 
-import { StatCalculator } from '../../shared/stat-calculator';
+import { StatCalculator, BASE_STATS, SPECIAL_STATS, ATTACK_STATS } from '../../shared/stat-calculator';
 
 export class Character {
 
@@ -44,7 +44,7 @@ export class Character {
 
     this.$stats = new Proxy({}, {
       get: (target, name) => {
-        if(_.includes(['str', 'con', 'dex', 'int', 'agi', 'luk', 'xp', 'gold'], name)) {
+        if(_.includes(BASE_STATS.concat(SPECIAL_STATS).concat(ATTACK_STATS), name)) {
           return StatCalculator.stat(this, name);
         }
 

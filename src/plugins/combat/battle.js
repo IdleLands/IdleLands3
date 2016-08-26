@@ -10,12 +10,15 @@ import { persistToDb } from './battle.db';
 import Chance from 'chance';
 const chance = new Chance();
 
+const MAX_ROUND = 300;
+
 export class Battle {
   constructor({ parties, introText }) {
     this.parties = parties;
     this.introText = introText;
     this.name = this.generateName();
     this.messageData = [];
+    this.currentRound = 0;
   }
 
   generateName() {
@@ -31,7 +34,7 @@ export class Battle {
   }
 
   get shouldGoOn() {
-    return _.every(this.parties, party => {
+    return this.currentRound < MAX_ROUND && _.every(this.parties, party => {
       return _.some(party.players, p => this.isPlayerAlive(p));
     });
   }
@@ -71,7 +74,7 @@ export class Battle {
         console.log(party.players);
       });
     }
-    this._emitMessage('Round start.', this._partyStats());
+    this._emitMessage(`Round ${this.currentRound} start.`, this._partyStats());
   }
 
   tryIncrement(p, stat, value = 1) {
@@ -108,6 +111,8 @@ export class Battle {
       return;
     }
 
+    this.currentRound++;
+
     this.roundMessage();
 
     this.calculateTurnOrder();
@@ -123,6 +128,10 @@ export class Battle {
     } else {
       this.doAttack(player);
     }
+
+    player._hp.add(player.liveStats.hpregen);
+    player._mp.add(player.liveStats.mpregen);
+
     player.$effects.tick();
   }
 
@@ -176,6 +185,11 @@ export class Battle {
   }
 
   endBattleBonuses() {
+    if(this.currentRound >= MAX_ROUND) {
+      this._emitMessage('No one wins! It was a tie! Give it up already, people!');
+      return;
+    }
+
     _.each(this.parties, party => {
       // no monster bonuses
       if(!party.leader.isPlayer) return;

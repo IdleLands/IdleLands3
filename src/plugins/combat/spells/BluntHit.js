@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
-import { BluntHit as BluntHitEffect } from '../effects/BluntHit';
+import { Prone as BluntHitEffect } from '../effects/Prone';
 
 export class BluntHit extends Spell {
   static element = SpellType.PHYSICAL;

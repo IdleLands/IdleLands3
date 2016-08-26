@@ -23,6 +23,8 @@ export class Profession {
   static baseIntPerLevel = 3;
   static baseLukPerLevel = 0;
 
+  static classStats = {};
+
   static load() {}
   static unload() {}
 
