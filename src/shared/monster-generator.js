@@ -129,9 +129,23 @@ export class MonsterGenerator extends Generator {
     }
 
     const monster = new Monster();
+
+    if(baseMonster.mirror) {
+      baseMonster.professionName = forPlayer.professionName;
+      baseMonster.level = forPlayer.level;
+    }
+
     monster.init(baseMonster);
 
-    this.equipMonster(monster, baseMonster);
+    if(baseMonster.mirror) {
+      _.each(_.values(forPlayer.equipment), item => {
+        const cloned = _.cloneDeep(item);
+        monster.equip(cloned);
+      });
+
+    } else {
+      this.equipMonster(monster, baseMonster);
+    }
 
     return monster;
   }
