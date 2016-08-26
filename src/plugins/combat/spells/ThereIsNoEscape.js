@@ -39,7 +39,7 @@ export class ThereIsNoEscape extends Spell {
         damage: 0,
         message,
         applyEffect: DEXBoost,
-        applyEffectPotency: Math.round(this.caster.liveStats.dex * this.spellPower/100),
+        applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.dex * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (DEX)`,
         targets: [target]
       });
@@ -48,7 +48,7 @@ export class ThereIsNoEscape extends Spell {
         damage: 0,
         message: '',
         applyEffect: AGIBoost,
-        applyEffectPotency: Math.round(this.caster.liveStats.agi * this.spellPower/100),
+        applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.agi * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (AGI)`,
         targets: [target]
       });

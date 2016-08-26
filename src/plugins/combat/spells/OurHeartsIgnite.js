@@ -39,7 +39,7 @@ export class OurHeartsIgnite extends Spell {
         damage: 0,
         message,
         applyEffect: STRBoost,
-        applyEffectPotency: Math.round(this.caster.liveStats.str * this.spellPower/100),
+        applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.str * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (STR)`,
         targets: [target]
       });
@@ -48,7 +48,7 @@ export class OurHeartsIgnite extends Spell {
         damage: 0,
         message: '',
         applyEffect: INTBoost,
-        applyEffectPotency: Math.round(this.caster.liveStats.int * this.spellPower/100),
+        applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.int * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (INT)`,
         targets: [target]
       });

@@ -13,6 +13,8 @@ export class Monster extends Character {
     opts.mpBoost = opts.mp;
     delete opts.mp;
 
+    this.gold = Math.round(Math.random() * 10000);
+
     super.init(opts);
   }
 

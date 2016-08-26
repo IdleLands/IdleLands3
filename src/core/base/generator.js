@@ -5,13 +5,15 @@ export class Generator {
   static types = ['body', 'charm', 'feet', 'finger', 'hands', 'head', 'legs', 'neck', 'mainhand', 'offhand'];
   static stats = ['dex', 'agi', 'con', 'int', 'str', 'luk'];
 
-  static mergePropInto(baseItem, prop) {
+  static mergePropInto(baseItem, prop, handleName = true) {
     if(!prop) return;
 
-    if(prop.type === 'suffix') {
-      baseItem.name = `${baseItem.name} of the ${prop.name}`;
-    } else {
-      baseItem.name = `${prop.name} ${baseItem.name}`;
+    if(handleName) {
+      if(prop.type === 'suffix') {
+        baseItem.name = `${baseItem.name} of the ${prop.name}`;
+      } else {
+        baseItem.name = `${prop.name} ${baseItem.name}`;
+      }
     }
 
     _.each(prop, (val, attr) => {

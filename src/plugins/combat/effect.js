@@ -9,8 +9,9 @@ export class Effect {
 
   static get chance() { return chance; }
 
-  constructor({ target, duration, potency }) {
+  constructor({ target, extra, duration, potency }) {
     this.target = target;
+    this.extra = extra;
     this.potency = this._potency = potency;
     this.duration = this._duration = duration;
 

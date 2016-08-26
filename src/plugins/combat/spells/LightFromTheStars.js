@@ -39,7 +39,7 @@ export class LightFromTheStars extends Spell {
         damage: 0,
         message,
         applyEffect: CONBoost,
-        applyEffectPotency: Math.round(this.caster.liveStats.con * this.spellPower/100),
+        applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.con * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (CON)`,
         targets: [target]
       });
@@ -48,7 +48,7 @@ export class LightFromTheStars extends Spell {
         damage: 0,
         message: '',
         applyEffect: LUKBoost,
-        applyEffectPotency: Math.round(this.caster.liveStats.luk * this.spellPower/100),
+        applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.luk * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (LUK)`,
         targets: [target]
       });

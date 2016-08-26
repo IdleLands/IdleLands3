@@ -80,7 +80,7 @@ export class Spell {
     return MessageParser.stringFormat(message, player, extraData);
   }
 
-  cast({ damage, targets, message, applyEffect, applyEffectPotency, applyEffectName, messageData = {} }) {
+  cast({ damage, targets, message, applyEffect, applyEffectDuration, applyEffectPotency, applyEffectName, applyEffectExtra, messageData = {} }) {
 
     this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
 
@@ -118,7 +118,7 @@ export class Spell {
       }
 
       if(applyEffect) {
-        const effect = new applyEffect({ target, potency: applyEffectPotency || this.calcPotency(), duration: this.calcDuration() });
+        const effect = new applyEffect({ target, extra: applyEffectExtra, potency: applyEffectPotency || this.calcPotency(), duration: applyEffectDuration || this.calcDuration() });
         effect.origin = { name: this.caster.fullname, spell: applyEffectName || this.tier.name };
         target.$effects.add(effect);
         effect.affect(target);

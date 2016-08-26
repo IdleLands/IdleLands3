@@ -6,7 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { LitanyOfPain as LitanyOfPainEffect } from '../effects/LitanyOfPain';
 
 export class LitanyOfPain extends Spell {
-  static element = SpellType.BUFF;
+  static element = SpellType.DEBUFF;
   static tiers = [
     { name: 'Litany of Pain',        spellPower: 1, weight: 25, cost: 200,   profession: 'Bard', level: 1 },
     { name: 'Hymn of Torment',       spellPower: 2, weight: 25, cost: 2000,  profession: 'Bard', level: 50 },
