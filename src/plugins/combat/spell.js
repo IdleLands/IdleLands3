@@ -80,7 +80,7 @@ export class Spell {
     return MessageParser.stringFormat(message, player, extraData);
   }
 
-  cast({ damage, targets, message, applyEffect, messageData = {} }) {
+  cast({ damage, targets, message, applyEffect, applyEffectPotency, applyEffectName, messageData = {} }) {
 
     this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
 
@@ -113,11 +113,13 @@ export class Spell {
       messageData.healed = Math.abs(damage);
 
       // TODO mark an attack as fatal somewhere else in metadata and display metadata on site
-      this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));
+      if(message) {
+        this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));
+      }
 
       if(applyEffect) {
-        const effect = new applyEffect({ target, potency: this.calcPotency(), duration: this.calcDuration() });
-        effect.origin = { name: this.caster.fullname, spell: this.tier.name };
+        const effect = new applyEffect({ target, potency: applyEffectPotency || this.calcPotency(), duration: this.calcDuration() });
+        effect.origin = { name: this.caster.fullname, spell: applyEffectName || this.tier.name };
         target.$effects.add(effect);
         effect.affect(target);
         this.caster.$battle.tryIncrement(this.caster, `Combat.Give.Effect.${this.element}`);
