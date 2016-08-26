@@ -95,27 +95,29 @@ export class StatCalculator {
   static hp(player) {
     const level = player.level;
     const prof = player.$profession;
-    return prof.baseHpPerLevel * level
+    return Math.max(1,
+           prof.baseHpPerLevel * level
         +  prof.baseHpPerStr * this.stat(player, 'str')
         +  prof.baseHpPerCon * this.stat(player, 'con')
         +  prof.baseHpPerDex * this.stat(player, 'dex')
         +  prof.baseHpPerAgi * this.stat(player, 'agi')
         +  prof.baseHpPerInt * this.stat(player, 'int')
         +  prof.baseHpPerLuk * this.stat(player, 'luk')
-    ;
+    );
   }
 
   static mp(player) {
     const level = player.level;
     const prof = player.$profession;
-    return prof.baseMpPerLevel * level
+    return Math.max(0,
+           prof.baseMpPerLevel * level
         +  prof.baseMpPerStr * this.stat(player, 'str')
         +  prof.baseMpPerCon * this.stat(player, 'con')
         +  prof.baseMpPerDex * this.stat(player, 'dex')
         +  prof.baseMpPerAgi * this.stat(player, 'agi')
         +  prof.baseMpPerInt * this.stat(player, 'int')
         +  prof.baseMpPerLuk * this.stat(player, 'luk')
-      ;
+      );
   }
 
   static overcomeDodge(player) {
