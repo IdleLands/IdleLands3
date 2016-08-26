@@ -25,4 +25,9 @@ export class Profession {
 
   static load() {}
   static unload() {}
+
+  static setupSpecial() {}
+  static resetSpecial(target) {
+    target._special.name = '';
+  }
 }

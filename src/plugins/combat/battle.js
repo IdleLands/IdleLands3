@@ -65,6 +65,12 @@ export class Battle {
   }
 
   roundMessage() {
+    if(isBattleDebug) {
+      _.each(this._partyStats(), party => {
+        console.log(party.name);
+        console.log(party.players);
+      });
+    }
     this._emitMessage('Round start.', this._partyStats());
   }
 
@@ -78,8 +84,7 @@ export class Battle {
       p.$battle = this;
       p._hp.toMaximum();
       p._mp.toMaximum();
-
-      // TODO set special stat for profession here
+      p.$profession.setupSpecial(p);
 
       this.tryIncrement(p, 'Combats');
     });
@@ -231,6 +236,7 @@ export class Battle {
   cleanUp() {
     _.each(this.allPlayers, p => {
       p.$battle = null;
+      p.$profession.resetSpecial(p);
       p.$effects.clear();
     });
   }
