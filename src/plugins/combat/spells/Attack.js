@@ -49,6 +49,7 @@ export class Attack extends Spell {
 
     _.each(targets, target => {
       let done = false;
+      let connected = true;
       let damage = this.calcDamage();
       const messageData = {
         weaponName,
@@ -69,6 +70,7 @@ export class Attack extends Spell {
 
       if(!done && canDodge && dodgeRoll <= 0) {
         done = true;
+        connected = false;
         this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.Dodge');
         this.caster.$battle.tryIncrement(target, 'Combat.Receive.Dodge');
         message = '%player attacked %targetName with %hisher %weaponName, but %targetName dodged!';
@@ -82,6 +84,7 @@ export class Attack extends Spell {
       if(!done && canAvoidHit && deflect <= hitRoll && hitRoll <= 0) {
         message = '%player attacked %targetName with %hisher %weaponName, but %player missed!';
         damage = 0;
+        connected = false;
 
         if(hitRoll < deflect) {
           this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.Deflect');
@@ -101,6 +104,8 @@ export class Attack extends Spell {
         messageData,
         targets: [target]
       });
+
+      if(!connected) return;
 
       _.each(ATTACK_STATS, stat => {
         const canUse = this.caster.liveStats[stat];
