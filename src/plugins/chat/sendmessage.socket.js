@@ -8,11 +8,13 @@ const GENERAL_ROUTE = 'chat:channel:General';
 const EVENTS_ROUTE  = 'chat:general:Global Events';
 
 let extChat = null;
+let setChat = false;
 
 export const event = 'plugin:chat:sendmessage';
 export const socket = (socket, primus) => {
 
-  if(!extChat) {
+  if(!setChat) {
+    setChat = true;
     extChat = (new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism)).connect(primus, GENERAL_ROUTE);
   }
 
