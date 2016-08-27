@@ -22,23 +22,35 @@ docString += '\n\n';
 _.each(_.sortBy(_.keys(Professions)), (profession) => {
 
   docString += `## ${profession}\n\n`;
-  docString += 'Name | Level | Required Collectibles\n';
-  docString += '---- | ----- | ---------------------\n';
+  docString += 'Name | Element | Level | Required Collectibles\n';
+  docString += '---- | ------- | ----- | ---------------------\n';
 
   const professionSpellsSorted = _(Spells)
     .values()
-    /* .tap(spell => {
-      console.log(spell, spell.name, spell.constructor.name);
-      _.each(spell.tiers, tier => tier._spellName = spell.constructor.name);
-    }) */
-    .map('tiers')
+    .tap(arr => {
+      _.each(arr, spell => {
+        _.each(spell.tiers, tier => {
+          tier._spellName = spell.name;
+          tier._element = spell.element;
+        });
+      });
+    })
+    .map(spell => spell.tiers)
     .flattenDeep()
     .reject(tier => tier.profession !== profession)
+    .tap(arr => {
+      const tiers = {};
+      _.each(arr, tier => {
+        if(!tiers[tier._spellName]) tiers[tier._spellName] = 1;
+        tier._level = tiers[tier._spellName];
+        tiers[tier._spellName]++;
+      });
+    })
     .sortBy(['level', 'name'])
     .value();
 
   _.each(professionSpellsSorted, tier => {
-    docString += `${tier.name} | ${tier.level} | ${tier.collectibles ? tier.collectibles.join(', ') : ''}\n`;
+    docString += `${tier.name} ([${tier._spellName} ${tier._level}](../src/plugins/combat/spells/${tier._spellName}.js)) | ${tier._element} | ${tier.level} | ${tier.collectibles ? tier.collectibles.join(', ') : ''}\n`;
   });
 
   docString += '\n\n';
