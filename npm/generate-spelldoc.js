@@ -22,8 +22,8 @@ docString += '\n\n';
 _.each(_.sortBy(_.keys(Professions)), (profession) => {
 
   docString += `## ${profession}\n\n`;
-  docString += 'Name | Level\n';
-  docString += '---- | -----\n';
+  docString += 'Name | Level | Required Collectibles\n';
+  docString += '---- | ----- | ---------------------\n';
 
   const professionSpellsSorted = _(Spells)
     .values()
@@ -38,7 +38,7 @@ _.each(_.sortBy(_.keys(Professions)), (profession) => {
     .value();
 
   _.each(professionSpellsSorted, tier => {
-    docString += `${tier.name} | ${tier.level}\n`;
+    docString += `${tier.name} | ${tier.level} | ${tier.collectibles ? tier.collectibles.join(', ') : ''}\n`;
   });
 
   docString += '\n\n';
