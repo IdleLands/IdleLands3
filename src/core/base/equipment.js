@@ -22,7 +22,18 @@ export class Equipment {
     con: 3.5,
     int: 2,
     luk: 5,
-    enchantLevel: -125
+    enchantLevel: -125,
+    hp: 0.5,
+    mp: 0.2,
+    hpregen: 4,
+    mpregen: 2,
+    crit: 100,
+    prone: 100,
+    venom: 100,
+    poison: 100,
+    shatter: 100,
+    vampire: 100,
+    damageReduction: 25
   };
 
   constructor(opts) {
