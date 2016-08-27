@@ -7,15 +7,12 @@ import { SETTINGS } from '../../static/settings';
 const GENERAL_ROUTE = 'chat:channel:General';
 const EVENTS_ROUTE  = 'chat:general:Global Events';
 
-let extChat = null;
-let setChat = false;
-
 export const event = 'plugin:chat:sendmessage';
 export const socket = (socket, primus) => {
 
-  if(!setChat) {
-    setChat = true;
-    extChat = (new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism)).connect(primus, GENERAL_ROUTE);
+  if(!primus.extChat) {
+    primus.extChat = new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism);
+    primus.extChat.connect(primus, GENERAL_ROUTE);
   }
 
   // always join the general chat channel
@@ -44,7 +41,7 @@ export const socket = (socket, primus) => {
       primus.room(route).write(messageObject);
 
       if(route === GENERAL_ROUTE) {
-        extChat.sendMessage(messageObject);
+        primus.extChat.sendMessage(messageObject);
       }
     }
   };
