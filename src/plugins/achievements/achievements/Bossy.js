@@ -17,6 +17,7 @@ export class Bossy extends Achievement {
     if(tier === 0) return [];
 
     const rewards = [{
+      type: 'stats',
       str: tier*10,
       con: tier*10
     }];

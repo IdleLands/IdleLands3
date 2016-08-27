@@ -17,6 +17,7 @@ export class Boxer extends Achievement {
     if(tier === 0) return [];
 
     const rewards = [{
+      type: 'stats',
       dex: tier*10,
       agi: tier*10
     }];
