@@ -10,6 +10,8 @@ import { persistToDb } from './battle.db';
 import Chance from 'chance';
 const chance = new Chance();
 
+// TODO add a "fake" event delegator that emits "events" which actually correspond to defineable functions on professions
+
 const MAX_ROUND = 300;
 
 export class Battle {

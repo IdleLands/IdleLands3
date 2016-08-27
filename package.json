@@ -13,6 +13,7 @@
     "test:lint": "eslint src/** test/plugins/**",
     "test:local": "npm run test:lint",
     "test:client": "node test/client/client",
+    "generate:spelldoc": "NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-spelldoc",
     "gen:items": "node test/gen/items"
   },
   "engines": {
@@ -52,7 +53,8 @@
     }
   },
   "pre-commit": [
-    "test"
+    "test",
+    "generate:spelldoc"
   ],
   "dependencies": {
     "app-root-path": "^1.2.1",
