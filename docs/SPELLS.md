@@ -32,6 +32,7 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | 
 
 
 ## Bard
@@ -89,7 +90,9 @@ Name | Element | Level | Required Collectibles
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
 double strike ([MultiStrike 1](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 1 | 
 blunt hit ([BluntHit 1](../src/plugins/combat/spells/BluntHit.js)) | Physical | 15 | 
+strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | 
 triple strike ([MultiStrike 2](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 50 | 
+assault ([Attack 3](../src/plugins/combat/spells/Attack.js)) | Physical | 100 | 
 
 
 ## Generalist
@@ -115,6 +118,7 @@ energy greatwall ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 90 | 
 
 
 ## Mage
@@ -169,6 +173,7 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 75 | 
 
 
 ## Rogue
@@ -176,6 +181,7 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 25 | 
 
 
 ## SandwichArtist
