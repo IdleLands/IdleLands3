@@ -3,8 +3,8 @@ import _ from 'lodash';
 import { SETTINGS } from '../static/settings';
 
 export const BASE_STATS = ['str', 'con', 'dex', 'int', 'agi', 'luk', 'xp', 'gold'];
-export const SPECIAL_STATS = ['hpregen', 'mpregen', 'damageReduction'];
-export const ATTACK_STATS = ['prone', 'venom', 'poison', 'shatter', 'vampire', 'critical'];
+export const SPECIAL_STATS = ['hpregen', 'mpregen', 'damageReduction', 'critical'];
+export const ATTACK_STATS = ['prone', 'venom', 'poison', 'shatter', 'vampire'];
 
 export class StatCalculator {
 
