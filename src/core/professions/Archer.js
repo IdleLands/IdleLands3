@@ -18,6 +18,6 @@ export class Archer extends Profession {
   static classStats = {
     dex: (target, baseValue) => baseValue * 0.25,
     shatter: 1,
-    critical: 10
+    crit: 10
   }
 }

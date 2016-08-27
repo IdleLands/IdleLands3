@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { SETTINGS } from '../static/settings';
 
 export const BASE_STATS = ['str', 'con', 'dex', 'int', 'agi', 'luk', 'xp', 'gold'];
-export const SPECIAL_STATS = ['hpregen', 'mpregen', 'damageReduction', 'critical'];
+export const SPECIAL_STATS = ['hpregen', 'mpregen', 'damageReduction', 'crit'];
 export const ATTACK_STATS = ['prone', 'venom', 'poison', 'shatter', 'vampire'];
 
 export class StatCalculator {
@@ -114,6 +114,7 @@ export class StatCalculator {
         +  prof.baseHpPerAgi * this.stat(player, 'agi')
         +  prof.baseHpPerInt * this.stat(player, 'int')
         +  prof.baseHpPerLuk * this.stat(player, 'luk')
+        +  this.stat(player, 'hp')
     );
   }
 
@@ -128,6 +129,7 @@ export class StatCalculator {
         +  prof.baseMpPerAgi * this.stat(player, 'agi')
         +  prof.baseMpPerInt * this.stat(player, 'int')
         +  prof.baseMpPerLuk * this.stat(player, 'luk')
+        +  this.stat(player, 'mp')
       );
   }
 
