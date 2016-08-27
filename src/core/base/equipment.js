@@ -29,10 +29,10 @@ export class Equipment {
     mpregen: 2,
     crit: 100,
     prone: 100,
-    venom: 100,
-    poison: 100,
-    shatter: 100,
-    vampire: 100,
+    venom: 200,
+    poison: 200,
+    shatter: 300,
+    vampire: 300,
     damageReduction: 25
   };
 
