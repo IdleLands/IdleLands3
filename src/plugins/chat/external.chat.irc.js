@@ -7,7 +7,7 @@ const isProd = process.env.NODE_ENV === 'production' && !process.env.EXT_CHAT;
 const { server, nick, channel } = SETTINGS.chatConfig.irc;
 
 export class ExternalChatMechanism {
-  constructor(primus, sendRoom) {
+  connect(primus, sendRoom) {
     if(!isProd) return;
 
     if(!primus) {

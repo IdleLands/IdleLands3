@@ -1,17 +1,18 @@
 
 import _ from 'lodash';
 
-import { primus } from '../../../primus/server';
 import { GameState } from '../../core/game-state';
 import { SETTINGS } from '../../static/settings';
 
 const GENERAL_ROUTE = 'chat:channel:General';
 const EVENTS_ROUTE  = 'chat:general:Global Events';
 
-const extChat = new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism)(primus, GENERAL_ROUTE);
+let extChat = null;
 
 export const event = 'plugin:chat:sendmessage';
 export const socket = (socket, primus) => {
+
+  extChat = (new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism)).connect(primus, GENERAL_ROUTE);
 
   // always join the general chat channel
   socket.join(GENERAL_ROUTE);
