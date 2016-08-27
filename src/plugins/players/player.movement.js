@@ -101,7 +101,7 @@ export class PlayerMovement {
 
     if(!force) {
       if(player.stepCooldown > 0) return;
-      player.stepCooldown = 30;
+      player.stepCooldown = 10;
     }
 
     if(!dest.map && !dest.toLoc) {
