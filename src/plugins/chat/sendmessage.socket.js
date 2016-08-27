@@ -12,7 +12,9 @@ let extChat = null;
 export const event = 'plugin:chat:sendmessage';
 export const socket = (socket, primus) => {
 
-  extChat = (new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism)).connect(primus, GENERAL_ROUTE);
+  if(!extChat) {
+    extChat = (new (require(`./external.chat.${SETTINGS.externalChat}`).ExternalChatMechanism)).connect(primus, GENERAL_ROUTE);
+  }
 
   // always join the general chat channel
   socket.join(GENERAL_ROUTE);
