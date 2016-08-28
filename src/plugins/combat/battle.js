@@ -186,6 +186,10 @@ export class Battle {
     }
   }
 
+  emitEvents(target, event) {
+    target.$profession.handleEvent(target, event, { battle: this });
+  }
+
   endBattleBonuses() {
     if(this.currentRound >= MAX_ROUND) {
       this._emitMessage('No one wins! It was a tie! Give it up already, people!');

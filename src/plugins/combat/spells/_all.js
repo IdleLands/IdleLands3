@@ -1,6 +1,8 @@
 
 export { Attack } from './Attack';
+export { Berserk } from './Berserk';
 export { BluntHit } from './BluntHit';
+export { Cleave } from './Cleave';
 export { ClericStrength } from './ClericStrength';
 export { Cure } from './Cure';
 export { CureGroup } from './CureGroup';

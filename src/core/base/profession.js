@@ -1,4 +1,6 @@
 
+import _ from 'lodash';
+
 export class Profession {
   static baseHpPerLevel = 45;
   static baseHpPerCon = 5;
@@ -28,8 +30,27 @@ export class Profession {
   static load() {}
   static unload() {}
 
+  static handleEvent(target, event, args) {
+    _.each(args.battle.allPlayers, player => {
+      let func = '';
+      if(player === target) {
+        func = `_eventSelf${event}`;
+      } else if(player.party === target.party) {
+        func = `_eventAlly${event}`;
+      } else {
+        func = `_eventEnemy${event}`;
+      }
+
+      const eventFunc = target.$profession[func];
+
+      if(!eventFunc) return;
+      eventFunc(target, args);
+    });
+  }
+
   static setupSpecial() {}
   static resetSpecial(target) {
     target._special.name = '';
+    target._special.maximum = target.minimum = target.__current = 0;
   }
 }

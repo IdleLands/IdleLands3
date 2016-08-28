@@ -19,6 +19,33 @@ export class Barbarian extends Profession {
     hpregen: (target) => target._hp.maximum * 0.01,
     damageReduction: (target) => target.level * 10,
     dex: (target, baseValue) => -baseValue * 0.5,
-    agi: (target, baseValue) => -baseValue * 0.5
+    agi: (target, baseValue) => -baseValue * 0.5,
+    str: (target, baseValue) => baseValue * target.special / 100
+  }
+
+  static setupSpecial(target) {
+    target._special.name = 'Rage';
+    target._special.set(0);
+    target._special.maximum = 100;
+  }
+
+  static _eventSelfAttacked(target) {
+    target._special.add(5);
+  }
+
+  static _eventSelfAttack(target) {
+    target._special.sub(2);
+  }
+
+  static _eventAllyKilled(target) {
+    target._special.add(10);
+  }
+
+  static _eventSelfKilled(target) {
+    target._special.toMinimum();
+  }
+
+  static _eventSelfKill(target) {
+    target._special.sub(15);
   }
 }

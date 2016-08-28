@@ -100,12 +100,18 @@ export class Spell {
 
       messageData.targetName = target.fullname;
 
+      this.caster.$battle.emitEvents(this.caster, 'Attack');
+      this.caster.$battle.emitEvents(target, 'Attacked');
+
       if(damage !== 0) {
         damage = this.dealDamage(target, damage);
 
         if(target.hp === 0) {
           this.caster.$battle.tryIncrement(this.caster, `Combat.Kills.${target.isPlayer ? 'Player' : 'Monster'}`);
           this.caster.$battle.tryIncrement(target, `Combat.Deaths.${this.caster.isPlayer ? 'Player' : 'Monster'}`);
+
+          this.caster.$battle.emitEvents(this.caster, 'Kill');
+          this.caster.$battle.emitEvents(target, 'Killed');
         }
       }
 

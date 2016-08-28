@@ -32,7 +32,11 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+berserk ([Berserk 1](../src/plugins/combat/spells/Berserk.js)) | Physical | 1 | 
+crazy ([Berserk 2](../src/plugins/combat/spells/Berserk.js)) | Physical | 35 | 
+cleave ([Cleave 1](../src/plugins/combat/spells/Cleave.js)) | Physical | 50 | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | 
+out of control ([Berserk 3](../src/plugins/combat/spells/Berserk.js)) | Physical | 75 | 
 
 
 ## Bard
