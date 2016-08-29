@@ -6,7 +6,7 @@ export class Freeleech extends Spell {
   static element = SpellType.DIGITAL;
   static stat = 'special';
   static tiers = [
-    { name: 'freelech', spellPower: 1, weight: 10, cost: 0, level: 1, profession: 'Bitomancer' }
+    { name: 'freeleech', spellPower: 1, weight: 10, cost: 0, level: 1, profession: 'Bitomancer' }
   ];
 
   static shouldCast(caster) {
