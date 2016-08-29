@@ -24,6 +24,7 @@
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 60 | 10 | 2 | 4 | 2 | 3 | 1 | 0
@@ -46,6 +47,7 @@ STR | DEX | CON | AGI | INT | LUK
 ## Barbarian
 
 ### Stats Per Level
+
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -70,6 +72,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 40 | 5 | 2 | 1 | 1 | 3 | 3 | 0
@@ -92,6 +95,7 @@ STR | DEX | CON | AGI | INT | LUK
 ## Bitomancer
 
 ### Stats Per Level
+
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -116,6 +120,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 55 | 10 | 3 | 2 | 4 | 2 | 6 | 0
@@ -138,6 +143,7 @@ STR | DEX | CON | AGI | INT | LUK
 ## Fighter
 
 ### Stats Per Level
+
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -162,6 +168,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 45 | 3 | 3 | 3 | 3 | 3 | 3 | 0
@@ -184,6 +191,7 @@ STR | DEX | CON | AGI | INT | LUK
 ## Jester
 
 ### Stats Per Level
+
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -208,6 +216,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 20 | 25 | 2 | 2 | 2 | 2 | 6 | 0
@@ -230,6 +239,7 @@ STR | DEX | CON | AGI | INT | LUK
 ## MagicalMonster
 
 ### Stats Per Level
+
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -254,6 +264,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 85 | 5 | 4 | 4 | 4 | 4 | 4 | 0
@@ -276,6 +287,7 @@ STR | DEX | CON | AGI | INT | LUK
 ## Necromancer
 
 ### Stats Per Level
+
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -300,6 +312,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 75 | 5 | 3 | 2 | 3 | 2 | 1 | 0
@@ -323,6 +336,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
 40 | 5 | 2 | 4 | 2 | 4 | 1 | 0
@@ -345,6 +359,7 @@ STR | DEX | CON | AGI | INT | LUK
 ## SandwichArtist
 
 ### Stats Per Level
+
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
