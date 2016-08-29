@@ -1,17 +1,23 @@
 
 export { Attack } from './Attack';
 export { Berserk } from './Berserk';
+export { Bit } from './Bit';
 export { BluntHit } from './BluntHit';
+export { Byte } from './Byte';
 export { Cleave } from './Cleave';
 export { ClericStrength } from './ClericStrength';
 export { Cure } from './Cure';
 export { CureGroup } from './CureGroup';
 export { DayOldBread } from './DayOldBread';
+export { DoS } from './DoS';
+export { DownloadRAM } from './DownloadRAM';
 export { EnergyMissile } from './EnergyMissile';
 export { EnergyShield } from './EnergyShield';
 export { FeedAlly } from './FeedAlly';
 export { FoodFight } from './FoodFight';
 export { Fortify } from './Fortify';
+export { FlipTheBit } from './FlipTheBit';
+export { Freeleech } from './Freeleech';
 export { Frostbite } from './Frostbite';
 export { HolyBolt } from './HolyBolt';
 export { LightFromTheStars } from './LightFromTheStars';
@@ -28,3 +34,4 @@ export { Thunderstrike } from './Thunderstrike';
 export { ToastedSandwich } from './ToastedSandwich';
 export { Tranquility } from './Tranquility';
 export { Treatment } from './Treatment';
+export { ZeroDay } from './ZeroDay';

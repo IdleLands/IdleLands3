@@ -14,6 +14,16 @@ export class SpellTargetStrategy {
       .value();
   }
 
+  static randomEnemyNotProfession(caster) {
+    return function(profession) {
+      return [_(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.professionName === profession)
+        .reject(p => p.party === caster.party)
+        .sample()];
+    };
+  }
+
   static randomEnemy(caster) {
     return [_(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)

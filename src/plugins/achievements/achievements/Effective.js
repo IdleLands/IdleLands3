@@ -5,7 +5,7 @@ export class Effective extends Achievement {
   static achievementData(player) {
 
     const value = player.$statistics.countChild('Combat.Give.Effect');
-    const baseValue = 50;
+    const baseValue = 200;
 
     let tier = 1;
     while(value >= baseValue * tier) {

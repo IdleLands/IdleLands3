@@ -60,6 +60,30 @@ Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPai
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+bit ([Bit 1](../src/plugins/combat/spells/Bit.js)) | Digital | 1 | 
+byte ([Byte 1](../src/plugins/combat/spells/Byte.js)) | Digital | 1 | 
+flip the bit ([FlipTheBit 1](../src/plugins/combat/spells/FlipTheBit.js)) | Digital | 1 | 
+freelech ([Freeleech 1](../src/plugins/combat/spells/Freeleech.js)) | Digital | 1 | 
+kilobit ([Bit 2](../src/plugins/combat/spells/Bit.js)) | Digital | 8 | 
+kilobyte ([Byte 2](../src/plugins/combat/spells/Byte.js)) | Digital | 8 | 
+single-channel RAM ([DownloadRAM 1](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 8 | 
+dual-channel RAM ([DownloadRAM 2](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 16 | 
+megabit ([Bit 3](../src/plugins/combat/spells/Bit.js)) | Digital | 16 | 
+megabyte ([Byte 3](../src/plugins/combat/spells/Byte.js)) | Digital | 16 | 
+DoS ([DoS 1](../src/plugins/combat/spells/DoS.js)) | Digital | 32 | 
+gigabit ([Bit 4](../src/plugins/combat/spells/Bit.js)) | Digital | 32 | 
+gigabyte ([Byte 4](../src/plugins/combat/spells/Byte.js)) | Digital | 32 | 
+triple-channel RAM ([DownloadRAM 3](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 32 | 
+zero-day threat ([ZeroDay 1](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 32 | 
+DDoS ([DoS 2](../src/plugins/combat/spells/DoS.js)) | Digital | 64 | 
+quad-channel RAM ([DownloadRAM 4](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 64 | 
+terabit ([Bit 5](../src/plugins/combat/spells/Bit.js)) | Digital | 64 | 
+terabyte ([Byte 5](../src/plugins/combat/spells/Byte.js)) | Digital | 64 | 
+zero-day attack ([ZeroDay 2](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 64 | 
+persistent DDoS ([DoS 3](../src/plugins/combat/spells/DoS.js)) | Digital | 128 | 
+petabit ([Bit 6](../src/plugins/combat/spells/Bit.js)) | Digital | 128 | 
+petabyte ([Byte 6](../src/plugins/combat/spells/Byte.js)) | Digital | 128 | 
+zero-day assault ([ZeroDay 3](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 128 | 
 
 
 ## Cleric

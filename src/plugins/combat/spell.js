@@ -154,6 +154,7 @@ export const SpellType = {
 
   HEAL: 'Heal',
 
+  DIGITAL: 'Digital',
   ENERGY: 'Energy',
   HOLY: 'Holy',
 
