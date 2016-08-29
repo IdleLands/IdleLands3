@@ -15,7 +15,7 @@ export class Effect {
     this.potency = this._potency = potency;
     this.duration = this._duration = duration;
 
-    if(duration <= 0 || potency <= 0) {
+    if(duration <= 0 || !potency) {
       Logger.error('Effect', new Error('Bad duration or potency given for effect.'), { name: this.constructor.name, duration, potency });
     }
   }

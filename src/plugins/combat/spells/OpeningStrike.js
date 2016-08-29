@@ -24,7 +24,6 @@ export class OpeningStrike extends Spell {
   }
 
   cast() {
-    this.caster.$battle.kill = true;
     this.caster.$profession.updateSkillCombo(this.caster, this.tier.name);
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
