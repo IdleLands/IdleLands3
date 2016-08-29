@@ -24,7 +24,7 @@ _.each(_.sortBy(_.keys(Professions)), (professionKey) => {
   const profession = Professions[professionKey];
 
   docString += `## ${professionKey}\n\n`;
-  docString += '### Stats Per Level\n';
+  docString += '### Stats Per Level\n\n';
   docString += 'HP | MP | STR | DEX | CON | AGI | INT | LUK\n';
   docString += '-- | -- | --- | --- | --- | --- | --- | ---\n';
   docString += `${profession.baseHpPerLevel} | ${profession.baseMpPerLevel} | ${profession.baseStrPerLevel} | ${profession.baseDexPerLevel} | ${profession.baseConPerLevel} | ${profession.baseAgiPerLevel} | ${profession.baseIntPerLevel} | ${profession.baseLukPerLevel}\n`;
@@ -32,7 +32,7 @@ _.each(_.sortBy(_.keys(Professions)), (professionKey) => {
   docString += '\n\n';
 
   docString += '### HP Modifiers\n';
-  docString += 'You get X HP for every point in a particular stat.\n';
+  docString += 'You get X HP for every point in a particular stat.\n\n';
   docString += 'STR | DEX | CON | AGI | INT | LUK\n';
   docString += '--- | --- | --- | --- | --- | ---\n';
   docString += `${profession.baseHpPerStr} | ${profession.baseHpPerDex} | ${profession.baseHpPerCon} | ${profession.baseHpPerAgi} | ${profession.baseHpPerInt} | ${profession.baseHpPerLuk}`;
@@ -40,7 +40,7 @@ _.each(_.sortBy(_.keys(Professions)), (professionKey) => {
   docString += '\n\n';
 
   docString += '### MP Modifiers\n';
-  docString += 'You get X MP for every point in a particular stat.\n';
+  docString += 'You get X MP for every point in a particular stat.\n\n';
   docString += 'STR | DEX | CON | AGI | INT | LUK\n';
   docString += '--- | --- | --- | --- | --- | ---\n';
   docString += `${profession.baseMpPerStr} | ${profession.baseMpPerDex} | ${profession.baseMpPerCon} | ${profession.baseMpPerAgi} | ${profession.baseMpPerInt} | ${profession.baseMpPerLuk}`;
