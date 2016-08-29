@@ -8,7 +8,7 @@ export class Venom extends Effect {
   }
 
   affect() {
-    this._emitMessage(this.target, '%player had a dangerous venom run through %hisher veins!');
+    this._emitMessage(this.target, '%player had a dangerous venom injected into %hisher veins!');
   }
 
   tick() {

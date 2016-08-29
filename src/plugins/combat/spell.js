@@ -125,7 +125,7 @@ export class Spell {
 
       if(applyEffect) {
         const effect = new applyEffect({ target, extra: applyEffectExtra, potency: applyEffectPotency || this.calcPotency(), duration: applyEffectDuration || this.calcDuration() });
-        effect.origin = { name: this.caster.fullname, spell: applyEffectName || this.tier.name };
+        effect.origin = { name: this.caster.fullname, ref: this.caster, spell: applyEffectName || this.tier.name };
         target.$effects.add(effect);
         effect.affect(target);
         this.caster.$battle.tryIncrement(this.caster, `Combat.Give.Effect.${this.element}`);

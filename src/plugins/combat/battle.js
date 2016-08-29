@@ -131,6 +131,8 @@ export class Battle {
       this.doAttack(player);
     }
 
+    this.emitEvents(player, 'TakeTurn');
+
     player._hp.add(player.liveStats.hpregen);
     player._mp.add(player.liveStats.mpregen);
 

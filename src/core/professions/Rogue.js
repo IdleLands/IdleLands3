@@ -22,4 +22,26 @@ export class Rogue extends Profession {
     vampire: 1,
     prone: 1
   }
+
+  static setupSpecial(target) {
+    target._special.name = 'Stamina';
+    target._special.maximum = 100;
+    target._special.toMaximum();
+    this.resetSkillCombo(target);
+  }
+
+  static _eventSelfTakeTurn(target) {
+    target._special.add(2);
+    if(target.$lastComboSkillTurn > 0) target.$lastComboSkillTurn--;
+  }
+
+  static updateSkillCombo(target, skillName) {
+    target.$lastComboSkill = skillName;
+    target.$lastComboSkillTurn = 4;
+  }
+
+  static resetSkillCombo(target) {
+    target.$lastComboSkill = null;
+    target.$lastComboSkillTurn = 0;
+  }
 }

@@ -215,6 +215,9 @@ chain stab ([ChainStab 1](../src/plugins/combat/spells/ChainStab.js)) | Physical
 fade away ([FadeAway 1](../src/plugins/combat/spells/FadeAway.js)) | Physical | 10 | 
 heartbleed ([Heartbleed 1](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 15 | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 25 | 
+wombo combo ([WomboCombo 1](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 25 | 
+finishing blow ([FinishingBlow 1](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 38 | 
+savage stab ([SavageStab 1](../src/plugins/combat/spells/SavageStab.js)) | Physical | 45 | 
 
 
 ## SandwichArtist
