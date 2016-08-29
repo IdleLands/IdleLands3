@@ -11,6 +11,8 @@ import { MonsterGenerator } from '../../../shared/monster-generator';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
+import { emitter } from '../../players/_emitter';
+
 import { Logger } from '../../../shared/logger';
 
 export const WEIGHT = -1;
@@ -92,6 +94,7 @@ export class BattleBoss extends Event {
 
           _.each(player.party.players, p => {
             p.$collectibles.addCollectible(collectibleObj);
+            emitter.emit('player:collectible', { player: p, collectible: collectibleObj });
           });
         });
       }

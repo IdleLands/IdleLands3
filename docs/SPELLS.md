@@ -201,7 +201,15 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+bottle toss ([BottleToss 1](../src/plugins/combat/spells/BottleToss.js)) | Debuff | 1 | 
+death glare ([DeathGlare 1](../src/plugins/combat/spells/DeathGlare.js)) | Debuff | 7 | 
+pirate shanty ([PirateShanty 1](../src/plugins/combat/spells/PirateShanty.js)) | Buff | 25 | 
+drunken frenzy ([DrunkenFrenzy 1](../src/plugins/combat/spells/DrunkenFrenzy.js)) | Physical | 30 | 
+grog dance ([GrogDance 1](../src/plugins/combat/spells/GrogDance.js)) | Physical | 37 | 
+retch ([Retch 1](../src/plugins/combat/spells/Retch.js)) | Physical | 40 | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 75 | 
+vomit ([Retch 2](../src/plugins/combat/spells/Retch.js)) | Physical | 80 | 
+explosive vomit ([Retch 3](../src/plugins/combat/spells/Retch.js)) | Physical | 120 | 
 
 
 ## Rogue
