@@ -24,6 +24,7 @@
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -48,6 +49,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -72,6 +74,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -96,6 +99,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -120,6 +124,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -144,6 +149,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -168,6 +174,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -192,6 +199,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -216,6 +224,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -240,6 +249,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -264,6 +274,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -288,6 +299,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -312,6 +324,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -336,6 +349,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---
@@ -360,6 +374,7 @@ STR | DEX | CON | AGI | INT | LUK
 
 ### Stats Per Level
 
+These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 -- | -- | --- | --- | --- | --- | --- | ---

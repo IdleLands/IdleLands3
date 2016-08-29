@@ -24,7 +24,8 @@ _.each(_.sortBy(_.keys(Professions)), (professionKey) => {
   const profession = Professions[professionKey];
 
   docString += `## ${professionKey}\n\n`;
-  docString += '### Stats Per Level\n\n\n';
+  docString += '### Stats Per Level\n\n';
+  docString += 'These are the stat gains per level.\n\n';
   docString += 'HP | MP | STR | DEX | CON | AGI | INT | LUK\n';
   docString += '-- | -- | --- | --- | --- | --- | --- | ---\n';
   docString += `${profession.baseHpPerLevel} | ${profession.baseMpPerLevel} | ${profession.baseStrPerLevel} | ${profession.baseDexPerLevel} | ${profession.baseConPerLevel} | ${profession.baseAgiPerLevel} | ${profession.baseIntPerLevel} | ${profession.baseLukPerLevel}\n`;
