@@ -26,7 +26,7 @@ export class Frostbite extends Spell {
   }
 
   calcPotency() {
-    return this.spellPower/4;
+    return this.spellPower*25;
   }
 
   calcDuration() {
