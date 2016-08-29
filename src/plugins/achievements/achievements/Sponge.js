@@ -4,7 +4,7 @@ import { Achievement, AchievementTypes } from '../achievement';
 export class Sponge extends Achievement {
   static achievementData(player) {
 
-    const value = player.$statistics.getStat('Combat.Take.Damage');
+    const value = player.$statistics.getStat('Combat.Receive.Damage');
     const baseValue = 1000;
 
     let tier = 1;

@@ -63,7 +63,7 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 bit ([Bit 1](../src/plugins/combat/spells/Bit.js)) | Digital | 1 | 
 byte ([Byte 1](../src/plugins/combat/spells/Byte.js)) | Digital | 1 | 
 flip the bit ([FlipTheBit 1](../src/plugins/combat/spells/FlipTheBit.js)) | Digital | 1 | 
-freelech ([Freeleech 1](../src/plugins/combat/spells/Freeleech.js)) | Digital | 1 | 
+freeleech ([Freeleech 1](../src/plugins/combat/spells/Freeleech.js)) | Digital | 1 | 
 kilobit ([Bit 2](../src/plugins/combat/spells/Bit.js)) | Digital | 8 | 
 kilobyte ([Byte 2](../src/plugins/combat/spells/Byte.js)) | Digital | 8 | 
 single-channel RAM ([DownloadRAM 1](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 8 | 
