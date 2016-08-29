@@ -209,6 +209,11 @@ strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 75 |
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+opening strike ([OpeningStrike 1](../src/plugins/combat/spells/OpeningStrike.js)) | Physical | 1 | 
+backstab ([Backstab 1](../src/plugins/combat/spells/Backstab.js)) | Physical | 8 | 
+chain stab ([ChainStab 1](../src/plugins/combat/spells/ChainStab.js)) | Physical | 8 | 
+fade away ([FadeAway 1](../src/plugins/combat/spells/FadeAway.js)) | Physical | 10 | 
+heartbleed ([Heartbleed 1](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 15 | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 25 | 
 
 

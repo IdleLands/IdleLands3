@@ -84,7 +84,7 @@ export class BattleBoss extends Event {
             name: coll.name,
             map: player.map,
             region: player.mapRegion,
-            rarity: 'guardian',
+            rarity: coll.itemClass || 'guardian',
             description: coll.flavorText,
             storyline: coll.storyline,
             foundAt: Date.now()
