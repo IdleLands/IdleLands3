@@ -8,7 +8,7 @@ export class RelentlessAssault extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'relentless assault',  spellPower: 1, weight: 30, cost: 0,  level: 10,  profession: 'Archer' }
+    { name: 'relentless assault',  spellPower: 1, weight: 30, cost: 0,  level: 50,  profession: 'Archer' }
   ];
 
   static shouldCast(caster) {
