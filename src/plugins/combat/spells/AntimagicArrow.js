@@ -33,7 +33,7 @@ export class AntimagicArrow extends Spell {
 
       const lostMp = target._mp.maximum * (25 * (this.spellPower+1)/100);
       target._mp.sub(lostMp);
-      const message = `%player used an %spellName on %targetName and dealt %damage damage and reducing %targetName\'s mp by ${lostMp}!`;
+      const message = `%player used an %spellName on %targetName and dealt %damage damage and reduced %targetName\'s mp by ${lostMp}!`;
 
       super.cast({
         damage,
