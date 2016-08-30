@@ -15,7 +15,7 @@ export class Retch extends Spell {
   }
 
   calcDamage() {
-    const drunkMultiplier = this.caster.$personalities.isActive('Drunk') ? 2 : 1;
+    const drunkMultiplier = this.caster.$personalities && this.caster.$personalities.isActive('Drunk') ? 2 : 1;
     const min = this.caster.liveStats.str * 0.50 * drunkMultiplier;
     const max = this.caster.liveStats.str * 0.75 * drunkMultiplier;
     return this.minMax(min, max) * this.spellPower;
