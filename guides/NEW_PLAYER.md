@@ -1,4 +1,5 @@
 # How To Play IdleLands
+_written by Yngvildr_
 
 In a way, you don't. There are many idle games. This one is VERY idle.
 
