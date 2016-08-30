@@ -51,7 +51,7 @@ test.serial('should be able to retrieve players from state', t => {
     gameState.addPlayer('Johnson').then((player) => {
       t.is(gameState.players.length, 1);
       t.is(player.name, 'Johnson');
-      t.is(gameState.getPlayer('Johnson').name, 'Johnson')
+      t.is(gameState.getPlayer('Johnson').name, 'Johnson');
       resolve();
     });
   });

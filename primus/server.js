@@ -24,7 +24,7 @@ export const primus = (() => {
 // load primus
   const server = require('http').createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    serve(req, res, finalhandler(req, res))
+    serve(req, res, finalhandler(req, res));
   });
   server.listen(process.env.PORT || 8080);
 

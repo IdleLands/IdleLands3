@@ -1,9 +1,6 @@
 
 import { Profession } from '../base/profession';
 
-// TODO needs to be an attack that steals other peoples bandwidth (and if they're a bitomancer, drains their special)
-// TODO call it freeleech, make it hit everyone, costs 0
-
 export class Bitomancer extends Profession {
 
   static baseHpPerLevel = Profession.baseHpPerLevel - 10;
