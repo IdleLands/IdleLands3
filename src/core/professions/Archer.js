@@ -20,4 +20,18 @@ export class Archer extends Profession {
     shatter: 1,
     crit: 10
   }
+
+  static setupSpecial(target) {
+    target._special.name = 'Focus';
+    target._special.maximum = 100 * (Math.floor(target.level / 100) + 1);
+    target._special.set(0);
+  }
+
+  static _eventSelfAttacked(target) {
+    target._special.sub(5);
+  }
+
+  static _eventSelfTakeTurn(target) {
+    target._special.add(10);
+  }
 }

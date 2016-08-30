@@ -14,6 +14,15 @@ export class SpellTargetStrategy {
       .value();
   }
 
+  static enemyWithMostMp(caster) {
+    return [_(caster.$battle.allPlayers)
+      .reject(p => p.hp === 0)
+      .reject(p => p.party === caster.party)
+      .sortBy(p => p.mp)
+      .reverse()
+      .value()[0]];
+  }
+
   static randomEnemyNotProfession(caster) {
     return function(profession) {
       return [_(caster.$battle.allPlayers)

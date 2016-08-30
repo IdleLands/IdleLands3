@@ -25,6 +25,22 @@
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+smoke bomb ([SmokeBomb 1](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 5 | 
+take aim ([TakeAim 1](../src/plugins/combat/spells/TakeAim.js)) | Physical | 7 | 
+relentless assault ([RelentlessAssault 1](../src/plugins/combat/spells/RelentlessAssault.js)) | Physical | 10 | 
+venom coating ([VenomCoating 1](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 15 | 
+double shot ([Multishot 1](../src/plugins/combat/spells/Multishot.js)) | Physical | 25 | 
+shattershot ([Shattershot 1](../src/plugins/combat/spells/Shattershot.js)) | Physical | 25 | 
+anti-magic arrow ([AntimagicArrow 1](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 30 | 
+smoke grenade ([SmokeBomb 2](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 35 | 
+triple shot ([Multishot 2](../src/plugins/combat/spells/Multishot.js)) | Physical | 55 | 
+venom slathering ([VenomCoating 2](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 55 | 
+anti-magic burst ([AntimagicArrow 2](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 65 | 
+shatterblast ([Shattershot 2](../src/plugins/combat/spells/Shattershot.js)) | Physical | 65 | 
+trance focus ([TakeAim 2](../src/plugins/combat/spells/TakeAim.js)) | Physical | 65 | 
+quadruple shot ([Multishot 3](../src/plugins/combat/spells/Multishot.js)) | Physical | 85 | 
+smoke missile ([SmokeBomb 3](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 85 | 
+anti-magic blast ([AntimagicArrow 3](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 100 | 
 
 
 ## Barbarian
@@ -226,6 +242,7 @@ strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 25 |
 wombo combo ([WomboCombo 1](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 25 | 
 finishing blow ([FinishingBlow 1](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 38 | 
 savage stab ([SavageStab 1](../src/plugins/combat/spells/SavageStab.js)) | Physical | 45 | 
+shadowstep ([FadeAway 2](../src/plugins/combat/spells/FadeAway.js)) | Physical | 50 | 
 
 
 ## SandwichArtist

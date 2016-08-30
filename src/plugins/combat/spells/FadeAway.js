@@ -6,7 +6,8 @@ export class FadeAway extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'fade away',  spellPower: 1, weight: 30, cost: 0,  level: 10,  profession: 'Rogue' }
+    { name: 'fade away',  spellPower: 30, weight: 30, cost: 0,  level: 10,  profession: 'Rogue' },
+    { name: 'shadowstep', spellPower: 50, weight: 30, cost: 0,  level: 50,  profession: 'Rogue' }
   ];
 
   static shouldCast(caster) {
@@ -18,7 +19,7 @@ export class FadeAway extends Spell {
   }
 
   calcDamage() {
-    return 30;
+    return this.spellPower;
   }
 
   cast() {
