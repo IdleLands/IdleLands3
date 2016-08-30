@@ -33,7 +33,7 @@ export class Heartbleed extends Spell {
     return 1;
   }
 
-  cast() {
+  preCast() {
     this.caster.$profession.updateSkillCombo(this.caster, this.tier.name);
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();

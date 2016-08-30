@@ -29,7 +29,7 @@ export class ZeroDay extends Spell {
     return this.spellPower * 100;
   }
 
-  cast() {
+  preCast() {
     const message = '%player executed a %spellName on %targetName!';
     const targets = this.determineTargets();
 

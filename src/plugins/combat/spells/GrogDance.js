@@ -28,7 +28,7 @@ export class GrogDance extends Spell {
     return this.caster._special.maximum - this.caster.special;
   }
 
-  cast() {
+  preCast() {
     const message = '%player does a %spellName!';
     const targets = this.determineTargets();
 

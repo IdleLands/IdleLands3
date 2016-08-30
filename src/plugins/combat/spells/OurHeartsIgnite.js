@@ -29,7 +29,7 @@ export class OurHeartsIgnite extends Spell {
     return this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player begins singing %spellName at %targetName!';
     const targets = this.determineTargets();
 

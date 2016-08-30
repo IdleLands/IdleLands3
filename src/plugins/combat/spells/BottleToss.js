@@ -26,7 +26,7 @@ export class BottleToss extends Spell {
     return this.minMax(min, max) * this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player begins singing "99 bottles of ale on the wall..."!';
     const targets = this.determineTargets();
 

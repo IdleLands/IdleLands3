@@ -22,7 +22,7 @@ export class Cleave extends Spell {
     return this.minMax(min, max) * this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
 

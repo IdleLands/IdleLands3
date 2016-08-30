@@ -33,7 +33,7 @@ export class Frostbite extends Spell {
     return 2 + this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName at %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
 

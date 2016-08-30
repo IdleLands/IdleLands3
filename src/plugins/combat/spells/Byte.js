@@ -28,7 +28,7 @@ export class Byte extends Spell {
     return this.$targetting.randomEnemy;
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
 
     _.each(targets, target => {

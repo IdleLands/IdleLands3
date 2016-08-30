@@ -22,7 +22,7 @@ export class FadeAway extends Spell {
     return this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const restoredStamina = this.calcDamage();
     const message = `%player used %spellName and recovered ${restoredStamina} stamina!`;
     const targets = this.determineTargets();

@@ -36,6 +36,7 @@ export class MonsterGenerator extends Generator {
     if(!this._isBossAlive(name)) return;
     boss.stats.name = name;
     const monster = this.augmentMonster(boss.stats);
+    monster.$isBoss = true;
     this.equipBoss(monster, boss.items);
     monster._collectibles = boss.collectibles;
     return [monster];

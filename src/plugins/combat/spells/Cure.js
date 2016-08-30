@@ -27,7 +27,7 @@ export class Cure extends Spell {
     return this.$targetting.randomAllyBelowMaxHealth;
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName at %targetName and healed %healed hp!';
     const targets = this.determineTargets();
 

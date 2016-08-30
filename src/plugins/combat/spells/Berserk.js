@@ -19,7 +19,7 @@ export class Berserk extends Spell {
     return this.$targetting.self;
   }
 
-  cast() {
+  preCast() {
     const message = '%player is going %spellName!';
     const targets = this.determineTargets();
 

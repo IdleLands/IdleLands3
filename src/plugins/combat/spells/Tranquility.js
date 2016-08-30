@@ -27,7 +27,7 @@ export class Tranquility extends Spell {
     return this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName on %targetName!';
     const targets = this.determineTargets();
 

@@ -23,7 +23,7 @@ export class Freeleech extends Spell {
     return this.minMax(min, max) * this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
     const message = '%player started a %spellName, stealing %bandwidth bandwidth from %targetName!';
 

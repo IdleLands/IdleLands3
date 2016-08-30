@@ -210,6 +210,14 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
+siphon ([Siphon 1](../src/plugins/combat/spells/Siphon.js)) | Debuff | 1 | 
+drain ([Siphon 2](../src/plugins/combat/spells/Siphon.js)) | Debuff | 15 | 
+poisontouch ([DebuffTouch 1](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 15 | 
+deteriorate ([Siphon 3](../src/plugins/combat/spells/Siphon.js)) | Debuff | 35 | 
+stuntouch ([DebuffTouch 2](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 35 | 
+venomtouch ([DebuffTouch 3](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 55 | 
+wither ([Siphon 4](../src/plugins/combat/spells/Siphon.js)) | Debuff | 75 | 
+deathtouch ([DebuffTouch 4](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 85 | Forbidden Cleric's Text
 
 
 ## Pirate

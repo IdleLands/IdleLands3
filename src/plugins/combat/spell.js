@@ -144,6 +144,21 @@ export class Spell {
     return Math.max(1, Spell.chance.integer({ min: min, max: Math.max(min+1, max) }));
   }
 
+  applyCombatEffects(effects, target) {
+    _.each(effects, stat => {
+      const properEffect = _.capitalize(stat);
+      const effect = require(`./effects/${properEffect}`)[properEffect];
+
+      this.cast({
+        damage: 0,
+        message: '',
+        applyEffect: effect,
+        applyEffectName: stat,
+        targets: [target]
+      });
+    });
+  }
+
 }
 
 export const SpellType = {

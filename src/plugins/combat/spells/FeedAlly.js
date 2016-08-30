@@ -36,7 +36,7 @@ export class FeedAlly extends Spell {
     return this.spellPower + 3;
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
 
     _.each(targets, target => {

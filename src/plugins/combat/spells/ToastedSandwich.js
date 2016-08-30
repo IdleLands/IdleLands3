@@ -36,7 +36,7 @@ export class ToastedSandwich extends Spell {
     return 2 + this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
 
     _.each(targets, target => {

@@ -33,7 +33,7 @@ export class SavageStab extends Spell {
     return 1;
   }
 
-  cast() {
+  preCast() {
     this.caster.$profession.updateSkillCombo(this.caster, this.tier.name);
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
@@ -47,18 +47,7 @@ export class SavageStab extends Spell {
         targets: [target]
       });
 
-      _.each(ATTACK_STATS, stat => {
-        const properEffect = _.capitalize(stat);
-        const effect = require(`../effects/${properEffect}`)[properEffect];
-
-        super.cast({
-          damage: 0,
-          message: '',
-          applyEffect: effect,
-          applyEffectName: stat,
-          targets: [target]
-        });
-      });
+      super.applyCombatEffects(ATTACK_STATS, target);
     });
   }
 }

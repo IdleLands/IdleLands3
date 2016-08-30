@@ -44,7 +44,7 @@ export class Attack extends Spell {
     return this.$targetting.randomEnemy;
   }
 
-  cast() {
+  preCast() {
     let message = '%player attacked %targetName with %hisher %weaponName and dealt %damage damage!';
     const weaponName = _.get(this.caster.equipment, 'mainhand.fullname', 'claw');
     const targets = this.determineTargets();

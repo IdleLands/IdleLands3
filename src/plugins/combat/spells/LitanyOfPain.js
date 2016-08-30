@@ -31,7 +31,7 @@ export class LitanyOfPain extends Spell {
     return this.minMax(min, max) * this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player begins singing %spellName at %targetName!';
     const targets = this.determineTargets();
 

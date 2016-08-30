@@ -32,7 +32,7 @@ export class BluntHit extends Spell {
     return 1;
   }
 
-  cast() {
+  preCast() {
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
 

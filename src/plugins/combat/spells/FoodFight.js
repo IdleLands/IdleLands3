@@ -37,7 +37,7 @@ export class FoodFight extends Spell {
     return Spell.chance.integer({ min: 2, max: 5 }) + this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
 
     _.each(targets, target => {

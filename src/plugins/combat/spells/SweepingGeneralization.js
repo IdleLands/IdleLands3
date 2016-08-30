@@ -25,7 +25,7 @@ export class SweepingGeneralization extends Spell {
     return this.$targetting.allEnemies;
   }
 
-  cast() {
+  preCast() {
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
     const damage = this.calcDamage();

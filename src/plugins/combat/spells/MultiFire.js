@@ -25,7 +25,7 @@ export class MultiFire extends Spell {
     return this.$targetting.randomEnemies(this.spellPower);
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName at %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
 

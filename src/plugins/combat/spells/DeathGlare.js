@@ -28,7 +28,7 @@ export class DeathGlare extends Spell {
     return 20 + 3 * Math.floor(this.caster.special / 9);
   }
 
-  cast() {
+  preCast() {
     const message = '%player shoots a %spellName at %targetName!';
     const targets = this.determineTargets();
     this.caster.$drunk.add(15);

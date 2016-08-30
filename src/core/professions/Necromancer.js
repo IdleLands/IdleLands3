@@ -20,9 +20,9 @@ export class Necromancer extends Profession {
     agi: (target, baseValue) => -baseValue * 0.1,
     con: (target, baseValue) => -baseValue * 0.25,
     prone: 1,
-    venom: 2,
-    poison: 2,
-    vampire: 2
+    venom: 1,
+    poison: 1,
+    vampire: 1
   }
 
   static setupSpecial(target) {

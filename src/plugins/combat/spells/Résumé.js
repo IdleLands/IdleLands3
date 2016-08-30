@@ -30,7 +30,7 @@ export class Résumé extends Spell {
     return 1;
   }
 
-  cast() {
+  preCast() {
     let message = 'Out of desperation, %player gave a %spellName to %targetName!';
     const targets = this.determineTargets();
 

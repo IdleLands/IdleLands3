@@ -25,7 +25,7 @@ export class Retch extends Spell {
     return this.$targetting.allEnemies;
   }
 
-  cast() {
+  preCast() {
     const message = '%player %spellName\'d all over %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
     this.caster.$drunk.toMinimum();

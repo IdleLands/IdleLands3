@@ -23,7 +23,7 @@ export class DrunkenFrenzy extends Spell {
     return this.$targetting.randomEnemy;
   }
 
-  cast() {
+  preCast() {
     const message = '%player went off on a %spellName at %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
     this.caster._special.add(Spell.chance.integer({ min: 30, max: 40 }));

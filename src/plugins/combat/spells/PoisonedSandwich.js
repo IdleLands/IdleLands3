@@ -30,7 +30,7 @@ export class PoisonedSandwich extends Spell {
     return this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
 
     _.each(targets, target => {

@@ -27,7 +27,7 @@ export class RelentlessAssault extends Spell {
     return 1;
   }
 
-  cast() {
+  preCast() {
     const message = '%player begins a %spellName!';
     const targets = this.determineTargets();
 

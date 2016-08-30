@@ -26,7 +26,7 @@ export class EnergyMissile extends Spell {
     return this.$targetting.randomEnemy;
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName at %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
 

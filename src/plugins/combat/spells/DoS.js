@@ -29,7 +29,7 @@ export class DoS extends Spell {
     return this.spellPower * 30;
   }
 
-  cast() {
+  preCast() {
     const message = '%player executed a %spellName attack on %targetName!';
     const targets = this.determineTargets();
 

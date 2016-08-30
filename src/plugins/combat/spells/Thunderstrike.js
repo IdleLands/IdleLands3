@@ -29,7 +29,7 @@ export class Thunderstrike extends Spell {
     return this.minMax(min, max) * this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName at %targetName!';
     const targets = this.determineTargets();
 

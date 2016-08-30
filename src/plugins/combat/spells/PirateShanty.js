@@ -29,7 +29,7 @@ export class PirateShanty extends Spell {
     return 20 + 3 * Math.floor(11 - this.caster.special / 9);
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
 
     _.each(targets, target => {

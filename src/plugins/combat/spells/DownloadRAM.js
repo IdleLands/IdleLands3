@@ -30,7 +30,7 @@ export class DownloadRAM extends Spell {
     return this.$targetting.self;
   }
 
-  cast() {
+  preCast() {
     const message = '%player downloaded some %spellName!';
     const targets = this.determineTargets();
 

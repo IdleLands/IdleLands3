@@ -25,7 +25,7 @@ export class CureGroup extends Spell {
     return this.$targetting.allAllies;
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName at %targetName and healed %healed hp!';
     const targets = this.determineTargets();
     const totalHeal = this.calcDamage();

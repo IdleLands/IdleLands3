@@ -29,7 +29,7 @@ export class SmokeBomb extends Spell {
     return 25 * this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const message = '%player throws a %spellName at %targetName!';
     const targets = this.determineTargets();
 

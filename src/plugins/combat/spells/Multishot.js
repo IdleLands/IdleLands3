@@ -25,7 +25,7 @@ export class Multishot extends Spell {
     return this.$targetting.randomEnemies(this.spellPower);
   }
 
-  cast() {
+  preCast() {
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();
 

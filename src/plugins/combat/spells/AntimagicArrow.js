@@ -25,7 +25,7 @@ export class AntimagicArrow extends Spell {
     return this.$targetting.enemyWithMostMp;
   }
 
-  cast() {
+  preCast() {
     const targets = this.determineTargets();
 
     _.each(targets, target => {

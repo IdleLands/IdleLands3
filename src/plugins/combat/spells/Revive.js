@@ -17,7 +17,7 @@ export class Revive extends Spell {
     return this.$targetting.randomDeadAlly;
   }
 
-  cast() {
+  preCast() {
     const message = '%player cast %spellName at %targetName!';
     const targets = this.determineTargets();
 

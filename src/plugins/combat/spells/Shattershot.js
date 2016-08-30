@@ -34,7 +34,8 @@ export class Shattershot extends Spell {
     return 1;
   }
 
-  cast() {
+  preCast() {
+    this.caster.$battle.kill = true;
     const message = '%player knocked %targetName to the floor using a %spellName, dealing %damage damage!';
     const targets = this.determineTargets();
 
@@ -47,18 +48,7 @@ export class Shattershot extends Spell {
         targets: [target]
       });
 
-      _.each(_.sampleSize(ATTACK_STATS, this.spellPower), stat => {
-        const properEffect = _.capitalize(stat);
-        const effect = require(`../effects/${properEffect}`)[properEffect];
-
-        super.cast({
-          damage: 0,
-          message: '',
-          applyEffect: effect,
-          applyEffectName: stat,
-          targets: [target]
-        });
-      });
+      super.applyCombatEffects(_.sampleSize(ATTACK_STATS, this.spellPower), target);
     });
   }
 }

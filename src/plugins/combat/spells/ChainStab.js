@@ -23,7 +23,7 @@ export class ChainStab extends Spell {
     return this.minMax(min, max) * this.spellPower;
   }
 
-  cast() {
+  preCast() {
     this.caster.$profession.updateSkillCombo(this.caster, this.tier.name);
     const message = '%player used %spellName on %targetName and dealt %damage damage!';
     const targets = this.determineTargets();

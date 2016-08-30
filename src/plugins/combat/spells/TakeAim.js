@@ -21,7 +21,7 @@ export class TakeAim extends Spell {
     return this.spellPower;
   }
 
-  cast() {
+  preCast() {
     const restoredFocus = this.calcDamage();
     const message = `%player used %spellName and recovered ${restoredFocus} focus!`;
     const targets = this.determineTargets();

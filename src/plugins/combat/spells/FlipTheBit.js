@@ -17,7 +17,7 @@ export class FlipTheBit extends Spell {
     return this.$targetting.randomEnemy;
   }
 
-  cast() {
+  preCast() {
     const message = '%player executed %spellName on %targetName!';
     const targets = this.determineTargets();
 

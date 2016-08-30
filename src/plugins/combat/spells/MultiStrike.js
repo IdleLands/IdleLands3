@@ -14,7 +14,7 @@ export class MultiStrike extends Spell {
     return this.$canTarget.yes();
   }
 
-  cast() {
+  preCast() {
     const message = '%player used %spellName!';
 
     super.cast({
