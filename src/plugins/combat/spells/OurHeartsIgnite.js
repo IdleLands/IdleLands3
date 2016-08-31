@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 import { Spell, SpellType } from '../spell';
 
-import { STRBoost } from '../effects/STRBoost';
-import { INTBoost } from '../effects/INTBoost';
+import { STRBoostValue } from '../effects/STRBoostValue';
+import { INTBoostValue } from '../effects/INTBoostValue';
 
 export class OurHeartsIgnite extends Spell {
   static element = SpellType.BUFF;
@@ -14,7 +14,7 @@ export class OurHeartsIgnite extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.allyWithoutEffect(caster, 'STRBoost') && this.$canTarget.allyWithoutEffect(caster, 'INTBoost');
+    return this.$canTarget.allyWithoutEffect(caster, 'STRBoostValue') && this.$canTarget.allyWithoutEffect(caster, 'INTBoostValue');
   }
 
   determineTargets() {
@@ -38,7 +38,7 @@ export class OurHeartsIgnite extends Spell {
       super.cast({
         damage: 0,
         message,
-        applyEffect: STRBoost,
+        applyEffect: STRBoostValue,
         applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.str * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (STR)`,
         targets: [target]
@@ -47,7 +47,7 @@ export class OurHeartsIgnite extends Spell {
       super.cast({
         damage: 0,
         message: '',
-        applyEffect: INTBoost,
+        applyEffect: INTBoostValue,
         applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.int * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (INT)`,
         targets: [target]

@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 import { Spell, SpellType } from '../spell';
 
-import { CONBoost } from '../effects/CONBoost';
-import { LUKBoost } from '../effects/LUKBoost';
+import { CONBoostValue } from '../effects/CONBoostValue';
+import { LUKBoostValue } from '../effects/LUKBoostValue';
 
 export class LightFromTheStars extends Spell {
   static element = SpellType.BUFF;
@@ -14,7 +14,7 @@ export class LightFromTheStars extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.allyWithoutEffect(caster, 'CONBoost') && this.$canTarget.allyWithoutEffect(caster, 'LUKBoost');
+    return this.$canTarget.allyWithoutEffect(caster, 'CONBoostValue') && this.$canTarget.allyWithoutEffect(caster, 'LUKBoostValue');
   }
 
   determineTargets() {
@@ -38,7 +38,7 @@ export class LightFromTheStars extends Spell {
       super.cast({
         damage: 0,
         message,
-        applyEffect: CONBoost,
+        applyEffect: CONBoostValue,
         applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.con * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (CON)`,
         targets: [target]
@@ -47,7 +47,7 @@ export class LightFromTheStars extends Spell {
       super.cast({
         damage: 0,
         message: '',
-        applyEffect: LUKBoost,
+        applyEffect: LUKBoostValue,
         applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.luk * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (LUK)`,
         targets: [target]

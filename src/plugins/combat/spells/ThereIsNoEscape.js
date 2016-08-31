@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 import { Spell, SpellType } from '../spell';
 
-import { DEXBoost } from '../effects/DEXBoost';
-import { AGIBoost } from '../effects/AGIBoost';
+import { DEXBoostValue } from '../effects/DEXBoostValue';
+import { AGIBoostValue } from '../effects/AGIBoostValue';
 
 export class ThereIsNoEscape extends Spell {
   static element = SpellType.BUFF;
@@ -14,7 +14,7 @@ export class ThereIsNoEscape extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.allyWithoutEffect(caster, 'DEXBoost') && this.$canTarget.allyWithoutEffect(caster, 'AGIBoost');
+    return this.$canTarget.allyWithoutEffect(caster, 'DEXBoostValue') && this.$canTarget.allyWithoutEffect(caster, 'AGIBoostValue');
   }
 
   determineTargets() {
@@ -38,7 +38,7 @@ export class ThereIsNoEscape extends Spell {
       super.cast({
         damage: 0,
         message,
-        applyEffect: DEXBoost,
+        applyEffect: DEXBoostValue,
         applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.dex * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (DEX)`,
         targets: [target]
@@ -47,7 +47,7 @@ export class ThereIsNoEscape extends Spell {
       super.cast({
         damage: 0,
         message: '',
-        applyEffect: AGIBoost,
+        applyEffect: AGIBoostValue,
         applyEffectPotency: Math.max(1, Math.round(this.caster.liveStats.agi * this.spellPower/100)),
         applyEffectName: `${this.tier.name} (AGI)`,
         targets: [target]
