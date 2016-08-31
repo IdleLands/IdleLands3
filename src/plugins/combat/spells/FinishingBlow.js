@@ -18,8 +18,8 @@ export class FinishingBlow extends Spell {
   }
 
   calcDamage() {
-    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 1.25;
-    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 2;
+    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 1.45;
+    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 2.25;
     return this.minMax(min, max) * this.spellPower;
   }
 

@@ -20,8 +20,8 @@ export class SavageStab extends Spell {
   }
 
   calcDamage() {
-    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.05;
-    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.075;
+    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.15;
+    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.25;
     return this.minMax(min, max) * this.spellPower;
   }
 

@@ -18,8 +18,8 @@ export class Backstab extends Spell {
   }
 
   calcDamage() {
-    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.4;
-    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.6;
+    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.7;
+    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 1.1;
     return this.minMax(min, max) * this.spellPower;
   }
 

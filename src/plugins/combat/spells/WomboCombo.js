@@ -18,8 +18,8 @@ export class WomboCombo extends Spell {
   }
 
   calcDamage() {
-    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.25;
-    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.3;
+    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.5;
+    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.8;
     return this.minMax(min, max) * this.spellPower;
   }
 
