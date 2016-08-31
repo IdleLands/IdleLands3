@@ -24,7 +24,7 @@ export class Archer extends Profession {
   static setupSpecial(target) {
     target._special.name = 'Focus';
     target._special.maximum = 100 * (Math.floor(target.level / 100) + 1);
-    target._special.set(0);
+    target._special.set(Math.round(target._special.maximum / 2));
   }
 
   static _eventSelfAttacked(target) {
