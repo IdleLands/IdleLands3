@@ -256,6 +256,7 @@ backstab ([Backstab 2](../src/plugins/combat/spells/Backstab.js)) | Physical | 6
 chain stab ([ChainStab 2](../src/plugins/combat/spells/ChainStab.js)) | Physical | 68 | 
 heartbleed ([Heartbleed 2](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 75 | 
 wombo combo ([WomboCombo 2](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 85 | 
+vanish from sight ([FadeAway 3](../src/plugins/combat/spells/FadeAway.js)) | Physical | 90 | 
 finishing blow ([FinishingBlow 2](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 98 | 
 savage stab ([SavageStab 2](../src/plugins/combat/spells/SavageStab.js)) | Physical | 105 | 
 
