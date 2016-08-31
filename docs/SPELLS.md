@@ -251,6 +251,13 @@ wombo combo ([WomboCombo 1](../src/plugins/combat/spells/WomboCombo.js)) | Physi
 finishing blow ([FinishingBlow 1](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 38 | 
 savage stab ([SavageStab 1](../src/plugins/combat/spells/SavageStab.js)) | Physical | 45 | 
 shadowstep ([FadeAway 2](../src/plugins/combat/spells/FadeAway.js)) | Physical | 50 | 
+opening strike ([OpeningStrike 2](../src/plugins/combat/spells/OpeningStrike.js)) | Physical | 61 | 
+backstab ([Backstab 2](../src/plugins/combat/spells/Backstab.js)) | Physical | 68 | 
+chain stab ([ChainStab 2](../src/plugins/combat/spells/ChainStab.js)) | Physical | 68 | 
+heartbleed ([Heartbleed 2](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 75 | 
+wombo combo ([WomboCombo 2](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 85 | 
+finishing blow ([FinishingBlow 2](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 98 | 
+savage stab ([SavageStab 2](../src/plugins/combat/spells/SavageStab.js)) | Physical | 105 | 
 
 
 ## SandwichArtist

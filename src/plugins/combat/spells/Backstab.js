@@ -6,7 +6,8 @@ export class Backstab extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'backstab',  spellPower: 1, weight: 30, cost: 15,  level: 8,  profession: 'Rogue' }
+    { name: 'backstab',  spellPower: 1, weight: 30, cost: 15,  level: 8,  profession: 'Rogue' },
+    { name: 'backstab',  spellPower: 2, weight: 30, cost: 15,  level: 68,  profession: 'Rogue' }
   ];
 
   static shouldCast(caster) {

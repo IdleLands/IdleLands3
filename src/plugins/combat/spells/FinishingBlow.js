@@ -6,7 +6,8 @@ export class FinishingBlow extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'finishing blow',  spellPower: 1, weight: 30, cost: 30,  level: 38,  profession: 'Rogue' }
+    { name: 'finishing blow',  spellPower: 1, weight: 30, cost: 30,  level: 38,  profession: 'Rogue' },
+    { name: 'finishing blow',  spellPower: 2, weight: 30, cost: 30,  level: 98,  profession: 'Rogue' }
   ];
 
   static shouldCast(caster) {

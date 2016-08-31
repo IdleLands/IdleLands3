@@ -8,7 +8,8 @@ export class Heartbleed extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'heartbleed',  spellPower: 1, weight: 30, cost: 15,  level: 15,  profession: 'Rogue' }
+    { name: 'heartbleed',  spellPower: 1, weight: 30, cost: 15,  level: 15,  profession: 'Rogue' },
+    { name: 'heartbleed',  spellPower: 2, weight: 30, cost: 15,  level: 75,  profession: 'Rogue' }
   ];
 
   static shouldCast(caster) {

@@ -6,7 +6,8 @@ export class OpeningStrike extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'opening strike',  spellPower: 1, weight: 30, cost: 10,  level: 1,  profession: 'Rogue' }
+    { name: 'opening strike',  spellPower: 1, weight: 30, cost: 10,  level: 1,   profession: 'Rogue' },
+    { name: 'opening strike',  spellPower: 2, weight: 30, cost: 10,  level: 61,  profession: 'Rogue' }
   ];
 
   static shouldCast(caster) {

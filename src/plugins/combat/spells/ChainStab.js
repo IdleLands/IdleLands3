@@ -6,7 +6,8 @@ export class ChainStab extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'chain stab',  spellPower: 1, weight: 20, cost: 7,  level: 8,  profession: 'Rogue' }
+    { name: 'chain stab',  spellPower: 1, weight: 20, cost: 7,  level: 8,   profession: 'Rogue' },
+    { name: 'chain stab',  spellPower: 2, weight: 20, cost: 7,  level: 68,  profession: 'Rogue' }
   ];
 
   static shouldCast(caster) {

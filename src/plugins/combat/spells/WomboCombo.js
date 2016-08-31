@@ -6,7 +6,8 @@ export class WomboCombo extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'wombo combo',  spellPower: 1, weight: 30, cost: 25,  level: 25,  profession: 'Rogue' }
+    { name: 'wombo combo',  spellPower: 1, weight: 30, cost: 25,  level: 25,  profession: 'Rogue' },
+    { name: 'wombo combo',  spellPower: 2, weight: 30, cost: 25,  level: 85,  profession: 'Rogue' }
   ];
 
   static shouldCast(caster) {
