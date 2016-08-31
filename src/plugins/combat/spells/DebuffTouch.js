@@ -22,8 +22,8 @@ export class DebuffTouch extends Spell {
 
   calcDamage(target) {
     if(this.spellPower < 4 || target.$isBoss) return 0;
-    const min = target._hp.maximum * 0.25;
-    const max = target._hp.maximum * 0.5;
+    const min = target.hp * 0.15;
+    const max = target.hp * 0.25;
     return this.minMax(min, max);
   }
 
