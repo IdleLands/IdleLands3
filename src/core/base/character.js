@@ -1,6 +1,8 @@
 
 import _ from 'lodash';
 import RestrictedNumber from 'restricted-number';
+import { GameState } from '../game-state';
+
 
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
@@ -68,6 +70,11 @@ export class Character {
   get liveStats() { return this.$stats; }
   get stats() { return this.statCache; }
   get fullname() { return this.name; }
+
+  get party() {
+    if(!this.$partyName) return null;
+    return GameState.getInstance().getParty(this.$partyName);
+  }
 
   get itemScore() {
     return _.reduce(_.values(this.equipment), (prev, cur) => {

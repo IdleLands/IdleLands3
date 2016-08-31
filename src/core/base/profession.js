@@ -41,10 +41,13 @@ export class Profession {
         func = `_eventEnemy${event}`;
       }
 
-      const eventFunc = target.$profession[func];
+      if(target.$profession[func]) {
+        target.$profession[func](target, args);
+      }
 
-      if(!eventFunc) return;
-      eventFunc(target, args);
+      if(target[func]) {
+        target[func](target, args);
+      }
     });
   }
 

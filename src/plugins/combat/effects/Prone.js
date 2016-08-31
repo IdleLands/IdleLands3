@@ -8,14 +8,14 @@ export class Prone extends Effect {
   }
 
   affect() {
-    this.stun = true;
+    this.stun = !this.target.$isBoss;
     this.stunMessage = `${this.target.fullname} is stunned!`;
     this._emitMessage(this.target, '%player was knocked prone!');
   }
 
   tick() {
     super.tick();
-    this.stun = true;
+    this.stun = !this.target.$isBoss;
     this.stunMessage = `${this.target.fullname} is stunned!`;
   }
 }

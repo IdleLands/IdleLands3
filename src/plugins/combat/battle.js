@@ -82,14 +82,18 @@ export class Battle {
     p.$statistics.incrementStat(stat, value);
   }
 
+  _setupPlayer(player) {
+    player.$battle = this;
+    player._hp.toMaximum();
+    player._mp.toMaximum();
+    player.$profession.setupSpecial(player);
+
+    this.tryIncrement(player, 'Combats');
+  }
+
   setupParties() {
     _.each(this.allPlayers, p => {
-      p.$battle = this;
-      p._hp.toMaximum();
-      p._mp.toMaximum();
-      p.$profession.setupSpecial(p);
-
-      this.tryIncrement(p, 'Combats');
+      this._setupPlayer(p);
     });
   }
 
@@ -257,6 +261,10 @@ export class Battle {
       p.$battle = null;
       p.$profession.resetSpecial(p);
       p.$effects.clear();
+
+      if(p.isPet) {
+        p.party.playerLeave(p);
+      }
     });
   }
 }

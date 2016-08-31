@@ -1,9 +1,11 @@
 
 import _ from 'lodash';
 
+import { BASE_STATS, SPECIAL_STATS, ATTACK_STATS } from '../../shared/stat-calculator';
+
 export class Generator {
   static types = ['body', 'charm', 'feet', 'finger', 'hands', 'head', 'legs', 'neck', 'mainhand', 'offhand'];
-  static stats = ['dex', 'agi', 'con', 'int', 'str', 'luk'];
+  static stats = BASE_STATS.concat(SPECIAL_STATS).concat(ATTACK_STATS);
 
   static mergePropInto(baseItem, prop, handleName = true) {
     if(!prop) return;

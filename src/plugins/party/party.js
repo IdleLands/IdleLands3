@@ -65,16 +65,17 @@ export class Party {
     player.$partyName = this.name;
     if(player.isPlayer) {
       player.$statistics.incrementStat('Character.Party.Join');
-    }
-    player.partySteps = 0;
-    if(this.players.length > 1) {
-      this.teleportNear(player, this.players[this.players.length-2]);
+
+      player.partySteps = 0;
+      if(this.players.length > 1) {
+        this.teleportNear(player, this.players[this.players.length-2]);
+      }
     }
   }
 
   playerLeave(player, disbanding = false) {
 
-    if(!disbanding && !this.isMonsterParty) {
+    if(!disbanding && !this.isMonsterParty && !player.$battle && !player.isPet) {
       emitter.emit('player:event', {
         affected: [player],
         eventText: MessageParser.stringFormat('%player has left %partyName.', player, { partyName: this.name }),
@@ -83,7 +84,7 @@ export class Party {
     }
 
     let doDisband = false;
-    if((this.players.length <= 2 && !disbanding) || player === this.leader) doDisband = true;
+    if(!player.$battle && !player.isPet && ((this.players.length <= 2 && !disbanding) || player === this.leader)) doDisband = true;
 
     this.players = _.without(this.players, player);
     player.$partyName = null;

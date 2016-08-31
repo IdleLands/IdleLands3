@@ -74,11 +74,6 @@ export class Player extends Character {
     return viewName;
   }
 
-  get party() {
-    if(!this.$partyName) return null;
-    return GameState.getInstance().getParty(this.$partyName);
-  }
-
   takeTurn() {
     this.moveAction();
     EventHandler.tryToDoEvent(this);

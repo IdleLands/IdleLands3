@@ -23,6 +23,15 @@ export class SpellTargetStrategy {
       .value()[0]];
   }
 
+  static strongestEnemyScore(caster) {
+    return _(caster.$battle.allPlayers)
+      .reject(p => p.hp === 0)
+      .reject(p => p.party === caster.party)
+      .sortBy(p => p.itemScore)
+      .reverse()
+      .value()[0];
+  }
+
   static randomEnemyNotProfession(caster) {
     return function(profession) {
       return [_(caster.$battle.allPlayers)
@@ -50,6 +59,13 @@ export class SpellTargetStrategy {
 
       return _.map(new Array(numEnemies), () => _.sample(validTargets));
     };
+  }
+
+  static randomDeadEnemy(caster) {
+    return [_(caster.$battle.allPlayers)
+      .reject(p => p.hp > 0)
+      .reject(p => p.party === caster.party)
+      .sample()];
   }
 
   static allAllies(caster) {

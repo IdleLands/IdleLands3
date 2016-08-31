@@ -6,7 +6,7 @@ const chance = new Chance();
 
 import * as Professions from '../core/professions/_all';
 
-import { Monster } from '../plugins/combat/monster';
+// import { Monster } from ;
 
 import { ItemGenerator } from './item-generator';
 
@@ -114,7 +114,7 @@ export class MonsterGenerator extends Generator {
     if(!baseMonster) baseMonster = this.generateVectorMonster(forPlayer);
 
     baseMonster.professionName = baseMonster.class;
-    if(baseMonster.professionName === 'Random') {
+    if(!baseMonster.professionName || baseMonster.professionName === 'Random') {
       baseMonster.professionName = _.sample(_.keys(Professions));
     }
 
@@ -129,6 +129,7 @@ export class MonsterGenerator extends Generator {
       baseMonster.name = `${chance.name(chanceOpts)}, the ${baseMonster.name}`;
     }
 
+    const Monster = require('../plugins/combat/monster').Monster;
     const monster = new Monster();
 
     if(baseMonster.mirror) {
