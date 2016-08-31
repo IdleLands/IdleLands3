@@ -43,6 +43,7 @@ export class World {
     _.each(_.values(Bosses), boss => {
       if(!boss.collectibles) return;
       _.each(boss.collectibles, coll => {
+        coll.rarity = 'guardian';
         this.allCollectibles[coll.name] = coll;
       });
     });
