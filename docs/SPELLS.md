@@ -196,6 +196,10 @@ double prod ([MultiStrike 1](../src/plugins/combat/spells/MultiStrike.js)) | Phy
 energy prod ([EnergyMissile 1](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 15 | Mage's Tome
 mini cure ([Cure 1](../src/plugins/combat/spells/Cure.js)) | Heal | 15 | Cleric's Text
 sweepo generalizo ([SweepingGeneralization 1](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 15 | Generalist's Guidebook
+Song of Hurt ([LitanyOfPain 1](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 25 | Ancient Lute
+second-old ([DayOldBread 1](../src/plugins/combat/spells/DayOldBread.js)) | Physical | 30 | Funny Fungus
+colander ([Siphon 1](../src/plugins/combat/spells/Siphon.js)) | Debuff | 35 | Evil Pebble
+venom layer ([VenomCoating 1](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 35 | Feathered Cap
 
 
 ## Monster

@@ -268,7 +268,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 3 | 0
+0 | 0 | 0 | 0 | 20 | 0
 
 ## Monster
 

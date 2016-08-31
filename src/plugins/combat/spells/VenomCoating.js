@@ -9,7 +9,9 @@ export class VenomCoating extends Spell {
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'venom coating',    spellPower: 1,  weight: 25, cost: 200,   profession: 'Archer', level: 15 },
-    { name: 'venom slathering', spellPower: 2,  weight: 25, cost: 800,   profession: 'Archer', level: 55 }
+    { name: 'venom slathering', spellPower: 2,  weight: 25, cost: 800,   profession: 'Archer', level: 55 },
+    { name: 'venom layer',      spellPower: 1,  weight: 25, cost: 600,   profession: 'MagicalMonster', level: 35,
+      collectibles: ['Feathered Cap'] }
   ];
 
   static shouldCast(caster) {

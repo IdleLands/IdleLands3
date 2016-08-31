@@ -10,7 +10,9 @@ export class LitanyOfPain extends Spell {
   static tiers = [
     { name: 'Litany of Pain',        spellPower: 1, weight: 25, cost: 200,   profession: 'Bard', level: 1 },
     { name: 'Hymn of Torment',       spellPower: 2, weight: 25, cost: 2000,  profession: 'Bard', level: 50 },
-    { name: 'Chant of Obliteration', spellPower: 3, weight: 25, cost: 7500,  profession: 'Bard', level: 100 }
+    { name: 'Chant of Obliteration', spellPower: 3, weight: 25, cost: 7500,  profession: 'Bard', level: 100 },
+    { name: 'Song of Hurt',          spellPower: 1, weight: 25, cost: 1000,  profession: 'MagicalMonster', level: 25,
+      collectibles: ['Ancient Lute'] }
   ];
 
   static shouldCast(caster) {
