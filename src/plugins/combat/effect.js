@@ -33,6 +33,14 @@ export class Effect {
 
   dealDamage(player, damage) {
     player.$battle.dealDamage(player, damage);
+
+    if(player.hp === 0) {
+      this.target.$battle.tryIncrement(this.origin.ref, `Combat.Kills.${this.target.isPlayer ? 'Player' : 'Monster'}`);
+      this.target.$battle.tryIncrement(player, `Combat.Deaths.${this.origin.ref.isPlayer ? 'Player' : 'Monster'}`);
+
+      this.target.$battle.emitEvents(this.origin.ref, 'Kill');
+      this.target.$battle.emitEvents(player, 'Killed');
+    }
   }
 
   tick() {

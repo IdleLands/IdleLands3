@@ -35,7 +35,6 @@ export class Shattershot extends Spell {
   }
 
   preCast() {
-    this.caster.$battle.kill = true;
     const message = '%player knocked %targetName to the floor using a %spellName, dealing %damage damage!';
     const targets = this.determineTargets();
 

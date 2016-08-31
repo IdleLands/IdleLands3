@@ -12,6 +12,7 @@ export class EffectManager {
   }
 
   clear() {
+    _.each(this.effects, effect => effect.duration = 0);
     this.effects = [];
   }
 
@@ -25,6 +26,8 @@ export class EffectManager {
 
   tick() {
     _.each(this.effects, effect => {
+      if(effect.duration <= 0) return;
+
       effect.tick();
 
       if(effect.duration <= 0) {

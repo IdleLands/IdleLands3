@@ -8,6 +8,11 @@ import { MessageParser } from '../../plugins/events/messagecreator';
 import Chance from 'chance';
 const chance = new Chance();
 
+const isValidSpellTierProfession = (tier, caster) => {
+  return (tier.profession === caster.professionName
+  || (caster.$secondaryProfessions && _.includes(caster.$secondaryProfessions, tier.profession)));
+};
+
 export class Spell {
   static get chance() { return chance; }
   static tiers = [];
@@ -19,7 +24,7 @@ export class Spell {
   static bestTier(caster) {
     return _.last(_.filter(this.tiers, tier => {
       const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !caster.$collectibles || caster.$collectibles.hasCollectible(c)) : true;
-      return tier.profession === caster.professionName && tier.level <= caster.level && meetsCollectibleReqs;
+      return isValidSpellTierProfession(tier, caster) && tier.level <= caster.level && meetsCollectibleReqs;
     }));
   }
 
@@ -27,7 +32,7 @@ export class Spell {
     const tiers = this.constructor.tiers;
     return _.last(_.filter(tiers, tier => {
       const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !this.caster.$collectibles || this.caster.$collectibles.hasCollectible(c)) : true;
-      return tier.profession === this.caster.professionName && tier.level <= this.caster.level && meetsCollectibleReqs;
+      return isValidSpellTierProfession(tier, this.caster) && tier.level <= this.caster.level && meetsCollectibleReqs;
     }));
   }
 

@@ -8,7 +8,9 @@ export class SpellManager {
       .values()
       .filter(spellData => {
         return _.filter(spellData.tiers, tier => {
-          return tier.profession === player.professionName && tier.level <= player.level;
+          return (tier.profession === player.professionName
+                    || (player.$secondaryProfessions && _.includes(player.$secondaryProfessions, tier.profession)))
+                 && tier.level <= player.level;
         }).length > 0;
       })
       .value();

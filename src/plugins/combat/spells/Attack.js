@@ -20,6 +20,7 @@ export class Attack extends Spell {
     { name: 'attack',  spellPower: 1.0, weight: 50, cost: 0, level: 1,   profession: 'Generalist' },
     { name: 'attack',  spellPower: 1.0, weight: 50, cost: 0, level: 1,   profession: 'Jester' },
     { name: 'strike',  spellPower: 1.5, weight: 50, cost: 0, level: 90,  profession: 'Jester' },
+    { name: 'attack',  spellPower: 0.5, weight: 50, cost: 0, level: 1,   profession: 'Lich' },
     { name: 'attack',  spellPower: 0.6, weight: 30, cost: 0, level: 1,   profession: 'Mage' },
     { name: 'attack',  spellPower: 0.9, weight: 40, cost: 0, level: 1,   profession: 'MagicalMonster' },
     { name: 'attack',  spellPower: 1.0, weight: 50, cost: 0, level: 1,   profession: 'Monster' },

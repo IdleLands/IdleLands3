@@ -34,6 +34,7 @@ export class SpellTargetStrategy {
   }
 
   static randomEnemy(caster) {
+    if(caster.professionName === 'Lich') return this.allEnemies(caster);
     return [_(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)
       .reject(p => p.party === caster.party)
