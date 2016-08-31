@@ -11,7 +11,8 @@ export class Byte extends Spell {
     { name: 'megabyte', spellPower: 3, weight: 40, cost: 64,   level: 16,  profession: 'Bitomancer' },
     { name: 'gigabyte', spellPower: 4, weight: 40, cost: 128,  level: 32,  profession: 'Bitomancer' },
     { name: 'terabyte', spellPower: 5, weight: 40, cost: 256,  level: 64,  profession: 'Bitomancer' },
-    { name: 'petabyte', spellPower: 6, weight: 40, cost: 512,  level: 128, profession: 'Bitomancer' }
+    { name: 'petabyte', spellPower: 6, weight: 40, cost: 512,  level: 128, profession: 'Bitomancer',
+      collectibles: ['Giant Sized Flask'] }
   ];
 
   static shouldCast() {

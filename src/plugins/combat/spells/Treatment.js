@@ -10,7 +10,8 @@ export class Treatment extends Spell {
   static tiers = [
     { name: 'treatment',          spellPower: 5,  weight: 25, cost: 300,  profession: 'Generalist', level: 20 },
     { name: 'greater treatment',  spellPower: 10, weight: 25, cost: 1200, profession: 'Generalist', level: 60 },
-    { name: 'ultimate treatment', spellPower: 15, weight: 25, cost: 2700, profession: 'Generalist', level: 120 }
+    { name: 'ultimate treatment', spellPower: 15, weight: 25, cost: 2700, profession: 'Generalist', level: 120,
+      collectibles: ['Doctor\'s Floating Device'] }
   ];
 
   static shouldCast(caster) {

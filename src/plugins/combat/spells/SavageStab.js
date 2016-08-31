@@ -9,7 +9,8 @@ export class SavageStab extends Spell {
   static stat = 'special';
   static tiers = [
     { name: 'savage stab',  spellPower: 1, weight: 30, cost: 30,  level: 45,  profession: 'Rogue' },
-    { name: 'savage stab',  spellPower: 2, weight: 30, cost: 30,  level: 105, profession: 'Rogue' }
+    { name: 'savage stab',  spellPower: 2, weight: 30, cost: 30,  level: 105, profession: 'Rogue',
+      collectibles: ['Thief\'s Locket'] }
   ];
 
   static shouldCast(caster) {

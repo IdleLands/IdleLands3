@@ -8,7 +8,8 @@ export class AntimagicArrow extends Spell {
   static tiers = [
     { name: 'anti-magic arrow', spellPower: 1, weight: 40, cost: 25, level: 30,  profession: 'Archer' },
     { name: 'anti-magic burst', spellPower: 2, weight: 40, cost: 35, level: 65,  profession: 'Archer' },
-    { name: 'anti-magic blast', spellPower: 3, weight: 40, cost: 45, level: 100, profession: 'Archer' }
+    { name: 'anti-magic blast', spellPower: 3, weight: 40, cost: 45, level: 100, profession: 'Archer',
+      collectibles: ['Ivory Arrow'] }
   ];
 
   static shouldCast(caster) {

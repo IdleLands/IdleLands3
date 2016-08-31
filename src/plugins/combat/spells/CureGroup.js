@@ -8,7 +8,8 @@ export class CureGroup extends Spell {
     { name: 'cure group',       spellPower: 0.5, weight: 40, cost: 50,    level: 30,  profession: 'Cleric' },
     { name: 'heal group',       spellPower: 1.0, weight: 40, cost: 5800,  level: 55,  profession: 'Cleric' },
     { name: 'restore group',    spellPower: 1.5, weight: 40, cost: 13500, level: 95,  profession: 'Cleric' },
-    { name: 'revitalize group', spellPower: 2.5, weight: 40, cost: 30000, level: 145, profession: 'Cleric' }
+    { name: 'revitalize group', spellPower: 2.5, weight: 40, cost: 30000, level: 145, profession: 'Cleric',
+      collectibles: ['Gauntlet'] }
   ];
 
   static shouldCast(caster) {

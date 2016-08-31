@@ -7,7 +7,8 @@ export class Retch extends Spell {
   static tiers = [
     { name: 'retch',           spellPower: 1, weight: 80, cost: 0, level: 40,  profession: 'Pirate' },
     { name: 'vomit',           spellPower: 2, weight: 80, cost: 0, level: 80,  profession: 'Pirate' },
-    { name: 'explosive vomit', spellPower: 3, weight: 80, cost: 0, level: 120, profession: 'Pirate' }
+    { name: 'explosive vomit', spellPower: 3, weight: 80, cost: 0, level: 120, profession: 'Pirate',
+      collectibles: ['Unpleasant Glass of Water'] }
   ];
 
   static shouldCast(caster) {

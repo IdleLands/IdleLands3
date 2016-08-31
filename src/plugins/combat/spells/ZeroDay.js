@@ -10,7 +10,8 @@ export class ZeroDay extends Spell {
   static tiers = [
     { name: 'zero-day threat',  spellPower: 1,  weight: 40, cost: 64,     level: 32,    profession: 'Bitomancer' },
     { name: 'zero-day attack',  spellPower: 5,  weight: 40, cost: 128,    level: 64,    profession: 'Bitomancer' },
-    { name: 'zero-day assault', spellPower: 10, weight: 40, cost: 512,    level: 128,   profession: 'Bitomancer' }
+    { name: 'zero-day assault', spellPower: 10, weight: 40, cost: 512,    level: 128,   profession: 'Bitomancer',
+      collectibles: ['Vial of Liquid Fate'] }
   ];
 
   static shouldCast(caster) {

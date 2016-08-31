@@ -11,7 +11,8 @@ export class DayOldBread extends Spell {
   static tiers = [
     { name: 'day-old',    spellPower: 1, weight: 30, cost: 35,   level: 5,    profession: 'SandwichArtist' },
     { name: 'week-old',   spellPower: 2, weight: 30, cost: 650,  level: 50,   profession: 'SandwichArtist' },
-    { name: 'month-old',  spellPower: 3, weight: 30, cost: 2500, level: 100,  profession: 'SandwichArtist' },
+    { name: 'month-old',  spellPower: 3, weight: 30, cost: 2500, level: 100,  profession: 'SandwichArtist',
+      collectibles: ['Funny Fungus'] },
     { name: 'second-old', spellPower: 1, weight: 30, cost: 500,   level: 30,  profession: 'MagicalMonster',
       collectibles: ['Funny Fungus'] }
   ];

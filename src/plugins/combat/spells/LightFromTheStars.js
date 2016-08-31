@@ -9,8 +9,10 @@ import { LUKBoostValue } from '../effects/LUKBoostValue';
 export class LightFromTheStars extends Spell {
   static element = SpellType.BUFF;
   static tiers = [
-    { name: 'Light From The Stars',   spellPower: 15, weight: 25, cost: 200,   profession: 'Bard', level: 1 },
-    { name: 'Purity From The Stars',  spellPower: 30, weight: 25, cost: 2000,  profession: 'Bard', level: 50 }
+    { name: 'Light From The Stars',   spellPower: 15, weight: 25, cost: 200,   profession: 'Bard', level: 1,
+      collectibles: ['Soaked Sitar'] },
+    { name: 'Purity From The Stars',  spellPower: 30, weight: 25, cost: 2000,  profession: 'Bard', level: 50,
+      collectibles: ['Soaked Sitar'] }
   ];
 
   static shouldCast(caster) {

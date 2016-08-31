@@ -40,7 +40,7 @@ shatterblast ([Shattershot 2](../src/plugins/combat/spells/Shattershot.js)) | Ph
 trance focus ([TakeAim 2](../src/plugins/combat/spells/TakeAim.js)) | Physical | 65 | 
 quadruple shot ([Multishot 3](../src/plugins/combat/spells/Multishot.js)) | Physical | 85 | 
 smoke missile ([SmokeBomb 3](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 85 | 
-anti-magic blast ([AntimagicArrow 3](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 100 | 
+anti-magic blast ([AntimagicArrow 3](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 100 | Ivory Arrow
 
 
 ## Barbarian
@@ -59,16 +59,16 @@ out of control ([Berserk 3](../src/plugins/combat/spells/Berserk.js)) | Physical
 
 Name | Element | Level | Required Collectibles
 ---- | ------- | ----- | ---------------------
-Light From The Stars ([LightFromTheStars 1](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 1 | 
+Light From The Stars ([LightFromTheStars 1](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 1 | Soaked Sitar
 Litany of Pain ([LitanyOfPain 1](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 1 | 
 Our Hearts Ignite ([OurHeartsIgnite 1](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 1 | 
 There Is No Escape ([ThereIsNoEscape 1](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 1 | 
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
 Hymn of Torment ([LitanyOfPain 2](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 50 | 
 Our Hearts Blaze ([OurHeartsIgnite 2](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 50 | 
-Purity From The Stars ([LightFromTheStars 2](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 50 | 
+Purity From The Stars ([LightFromTheStars 2](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 50 | Soaked Sitar
 You Shant Get Away ([ThereIsNoEscape 2](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 50 | 
-Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 100 | 
+Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 100 | Ancient Lute
 
 
 ## Bitomancer
@@ -96,10 +96,10 @@ quad-channel RAM ([DownloadRAM 4](../src/plugins/combat/spells/DownloadRAM.js)) 
 terabit ([Bit 5](../src/plugins/combat/spells/Bit.js)) | Digital | 64 | 
 terabyte ([Byte 5](../src/plugins/combat/spells/Byte.js)) | Digital | 64 | 
 zero-day attack ([ZeroDay 2](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 64 | 
-persistent DDoS ([DoS 3](../src/plugins/combat/spells/DoS.js)) | Digital | 128 | 
-petabit ([Bit 6](../src/plugins/combat/spells/Bit.js)) | Digital | 128 | 
-petabyte ([Byte 6](../src/plugins/combat/spells/Byte.js)) | Digital | 128 | 
-zero-day assault ([ZeroDay 3](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 128 | 
+persistent DDoS ([DoS 3](../src/plugins/combat/spells/DoS.js)) | Digital | 128 | Gauntlet
+petabit ([Bit 6](../src/plugins/combat/spells/Bit.js)) | Digital | 128 | Steel Flower
+petabyte ([Byte 6](../src/plugins/combat/spells/Byte.js)) | Digital | 128 | Giant Sized Flask
+zero-day assault ([ZeroDay 3](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 128 | Vial of Liquid Fate
 
 
 ## Cleric
@@ -123,8 +123,8 @@ restore ([Cure 3](../src/plugins/combat/spells/Cure.js)) | Heal | 65 |
 resurrect ([Revive 2](../src/plugins/combat/spells/Revive.js)) | Heal | 65 | 
 restore group ([CureGroup 3](../src/plugins/combat/spells/CureGroup.js)) | Heal | 95 | 
 titan strength ([ClericStrength 4](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 95 | 
-revitalize ([Cure 4](../src/plugins/combat/spells/Cure.js)) | Heal | 115 | 
-revitalize group ([CureGroup 4](../src/plugins/combat/spells/CureGroup.js)) | Heal | 145 | 
+revitalize ([Cure 4](../src/plugins/combat/spells/Cure.js)) | Heal | 115 | Strand of Fate
+revitalize group ([CureGroup 4](../src/plugins/combat/spells/CureGroup.js)) | Heal | 145 | Gauntlet
 
 
 ## Fighter
@@ -136,7 +136,7 @@ double strike ([MultiStrike 1](../src/plugins/combat/spells/MultiStrike.js)) | P
 blunt hit ([BluntHit 1](../src/plugins/combat/spells/BluntHit.js)) | Physical | 15 | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | 
 triple strike ([MultiStrike 2](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 50 | 
-assault ([Attack 3](../src/plugins/combat/spells/Attack.js)) | Physical | 100 | 
+assault ([Attack 3](../src/plugins/combat/spells/Attack.js)) | Physical | 100 | Broken Katana
 
 
 ## Generalist
@@ -153,8 +153,8 @@ greater fortify ([Fortify 2](../src/plugins/combat/spells/Fortify.js)) | Buff | 
 greater treatment ([Treatment 2](../src/plugins/combat/spells/Treatment.js)) | Buff | 60 | 
 ultimate fortify ([Fortify 3](../src/plugins/combat/spells/Fortify.js)) | Buff | 90 | 
 energy wall ([EnergyShield 3](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 95 | 
-ultimate treatment ([Treatment 3](../src/plugins/combat/spells/Treatment.js)) | Buff | 120 | 
-energy greatwall ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 165 | 
+ultimate treatment ([Treatment 3](../src/plugins/combat/spells/Treatment.js)) | Buff | 120 | Doctor's Floating Device
+energy greatwall ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 165 | Jar of Magic Dust
 
 
 ## Jester
@@ -183,8 +183,8 @@ cold snap ([Frostbite 2](../src/plugins/combat/spells/Frostbite.js)) | Ice | 65 
 energy towershield ([EnergyShield 3](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 65 | 
 quadruple fire ([MultiFire 3](../src/plugins/combat/spells/MultiFire.js)) | Fire | 85 | 
 thunderstorm ([Thunderstrike 2](../src/plugins/combat/spells/Thunderstrike.js)) | Thunder | 85 | 
-energy omegashield ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 125 | 
-fire star ([MultiFire 4](../src/plugins/combat/spells/MultiFire.js)) | Fire | 185 | 
+energy omegashield ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 125 | Jar of Magic Dust
+fire star ([MultiFire 4](../src/plugins/combat/spells/MultiFire.js)) | Fire | 185 | Bucket of Lava
 
 
 ## MagicalMonster
@@ -237,7 +237,7 @@ grog dance ([GrogDance 1](../src/plugins/combat/spells/GrogDance.js)) | Physical
 retch ([Retch 1](../src/plugins/combat/spells/Retch.js)) | Physical | 40 | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 75 | 
 vomit ([Retch 2](../src/plugins/combat/spells/Retch.js)) | Physical | 80 | 
-explosive vomit ([Retch 3](../src/plugins/combat/spells/Retch.js)) | Physical | 120 | 
+explosive vomit ([Retch 3](../src/plugins/combat/spells/Retch.js)) | Physical | 120 | Unpleasant Glass of Water
 
 
 ## Rogue
@@ -262,7 +262,7 @@ heartbleed ([Heartbleed 2](../src/plugins/combat/spells/Heartbleed.js)) | Physic
 wombo combo ([WomboCombo 2](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 85 | 
 vanish from sight ([FadeAway 3](../src/plugins/combat/spells/FadeAway.js)) | Physical | 90 | 
 finishing blow ([FinishingBlow 2](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 98 | 
-savage stab ([SavageStab 2](../src/plugins/combat/spells/SavageStab.js)) | Physical | 105 | 
+savage stab ([SavageStab 2](../src/plugins/combat/spells/SavageStab.js)) | Physical | 105 | Thief's Locket
 
 
 ## SandwichArtist
@@ -282,6 +282,6 @@ stuff ally ([FeedAlly 2](../src/plugins/combat/spells/FeedAlly.js)) | Physical |
 week-old ([DayOldBread 2](../src/plugins/combat/spells/DayOldBread.js)) | Physical | 50 | 
 food brawl ([FoodFight 3](../src/plugins/combat/spells/FoodFight.js)) | Physical | 75 | 
 well-done ([ToastedSandwich 3](../src/plugins/combat/spells/ToastedSandwich.js)) | Fire | 90 | 
-month-old ([DayOldBread 3](../src/plugins/combat/spells/DayOldBread.js)) | Physical | 100 | 
+month-old ([DayOldBread 3](../src/plugins/combat/spells/DayOldBread.js)) | Physical | 100 | Funny Fungus
 
 

@@ -10,7 +10,8 @@ export class DoS extends Spell {
   static tiers = [
     { name: 'DoS',                spellPower: 1, weight: 40, cost: 64,     level: 32,    profession: 'Bitomancer' },
     { name: 'DDoS',               spellPower: 2, weight: 40, cost: 128,    level: 64,    profession: 'Bitomancer' },
-    { name: 'persistent DDoS',    spellPower: 3, weight: 40, cost: 512,    level: 128,   profession: 'Bitomancer' }
+    { name: 'persistent DDoS',    spellPower: 3, weight: 40, cost: 512,    level: 128,   profession: 'Bitomancer',
+      collectibles: ['Gauntlet'] }
   ];
 
   static shouldCast(caster) {
