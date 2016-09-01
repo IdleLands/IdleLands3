@@ -16,7 +16,8 @@ export class Battle {
   constructor({ parties, introText }) {
     this.parties = parties;
     this.introText = introText;
-    this.name = this.generateName();
+    this.happenedAt = Date.now();
+    this.name = `${this.happenedAt} ${this.generateName()}`;
     this.messageData = [];
     this.currentRound = 0;
   }
@@ -250,7 +251,7 @@ export class Battle {
   saveObject() {
     return {
       name: this.name,
-      happenedAt: Date.now(),
+      happenedAt: this.happenedAt,
       messageData: this.messageData,
       parties: _.map(this.parties, party => party.buildTransmitObject())
     };
