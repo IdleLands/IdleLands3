@@ -109,7 +109,6 @@ Name | Element | Level | Required Collectibles
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
 cure ([Cure 1](../src/plugins/combat/spells/Cure.js)) | Heal | 1 | 
 holy bolt ([HolyBolt 1](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 1 | 
-tranquility ([Tranquility 1](../src/plugins/combat/spells/Tranquility.js)) | Buff | 10 | 
 boar strength ([ClericStrength 1](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 15 | 
 divine bolt ([HolyBolt 2](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 25 | 
 heal ([Cure 2](../src/plugins/combat/spells/Cure.js)) | Heal | 25 | 
@@ -121,6 +120,7 @@ heal group ([CureGroup 2](../src/plugins/combat/spells/CureGroup.js)) | Heal | 5
 dragon strength ([ClericStrength 3](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 60 | 
 restore ([Cure 3](../src/plugins/combat/spells/Cure.js)) | Heal | 65 | 
 resurrect ([Revive 2](../src/plugins/combat/spells/Revive.js)) | Heal | 65 | 
+tranquility ([Tranquility 1](../src/plugins/combat/spells/Tranquility.js)) | Buff | 75 | 
 restore group ([CureGroup 3](../src/plugins/combat/spells/CureGroup.js)) | Heal | 95 | 
 titan strength ([ClericStrength 4](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 95 | 
 revitalize ([Cure 4](../src/plugins/combat/spells/Cure.js)) | Heal | 115 | Strand of Fate
