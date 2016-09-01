@@ -43,6 +43,11 @@ export class GameState {
     return GameStateInstance;
   }
 
+  reAddPlayersInOrder(players) {
+    this.players = _.reject(this.players, player => _.includes(_.map(players, 'name'), player.name));
+    this.players.push(..._.filter(players, player => player.isPlayer));
+  }
+
   addPlayer(playerName) {
     return new Promise(async (resolve, reject) => {
       if(this.getPlayer(playerName)) return resolve(false);

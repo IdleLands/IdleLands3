@@ -63,12 +63,17 @@ export class Party {
   playerJoin(player) {
     this.players.push(player);
     player.$partyName = this.name;
+
     if(player.isPlayer) {
       player.$statistics.incrementStat('Character.Party.Join');
 
       player.partySteps = 0;
       if(this.players.length > 1) {
         this.teleportNear(player, this.players[this.players.length-2]);
+      }
+
+      if(this.players.length > 1) {
+        GameState.getInstance().reAddPlayersInOrder(this.players);
       }
     }
   }
