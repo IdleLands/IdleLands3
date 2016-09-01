@@ -98,7 +98,7 @@ export class Battle {
   }
 
   calculateTurnOrder() {
-    this.turnOrder = _.sortBy(this.allPlayers, p => p.liveStats.agi);
+    this.turnOrder = _.sortBy(this.allPlayers, p => -p.liveStats.agi);
   }
 
   startTakingTurns() {
