@@ -10,7 +10,7 @@ export class PartyLeave extends Event {
     const otherOfSame = _.find(player.choices, choice => choice.event === 'PartyLeave');
     if(otherOfSame) return;
     const id = Event.chance.guid();
-    const message = `Would you like to leave your party, ${player.$partyName}?`;
+    const message = 'Would you like to leave your party?';
 
     player.addChoice({ id, message, extraData: {}, event: 'PartyLeave', choices: ['Yes', 'No'] });
   }
