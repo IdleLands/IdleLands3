@@ -52,6 +52,15 @@ export class Player extends Character {
     }
   }
 
+  quickLogin() {
+    this.$updateAchievements = true;
+    this.$updateCollectibles = true;
+
+    if(this.isMod) {
+      this.emitGMData();
+    }
+  }
+
   emitGMData() {
     const maps = _.keys(GameState.getInstance().world.maps);
     const teleNames = _.map(SETTINGS.allTeleports, 'name');

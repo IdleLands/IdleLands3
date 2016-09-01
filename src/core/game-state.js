@@ -22,9 +22,23 @@ export class GameState {
     this.playerLoad = constitute(PlayerLoad);
 
     this.parties = {};
+    this.playerTimeouts = {};
 
     Logger.info('GameState', 'Creating world.');
     this.world = constitute(World);
+  }
+
+  _hasTimeout(playerName) {
+    return this.playerTimeouts[playerName];
+  }
+
+  _setTimeout(playerName, timeoutId) {
+    this.playerTimeouts[playerName] = timeoutId;
+  }
+
+  _clearTimeout(playerName) {
+    clearTimeout(this.playerTimeouts[playerName]);
+    delete this.playerTimeouts[playerName];
   }
 
   getParty(partyName) {

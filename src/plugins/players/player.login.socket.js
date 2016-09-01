@@ -10,6 +10,8 @@ import { Logger } from '../../shared/logger';
 import { constitute } from '../../shared/di-wrapper';
 import { MESSAGES } from '../../static/messages';
 
+import { GameState } from '../../core/game-state';
+
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
 
 export const event = 'plugin:player:login';
@@ -80,7 +82,9 @@ export const socket = (socket, primus, respond) => {
       event = 'player:register';
     }
 
-    if(player.isOnline) {
+    const gameState = GameState.getInstance();
+
+    if(player.isOnline && !gameState._hasTimeout(player.name)) {
       // player already logged in, instead: disconnect this socket
       const msg = _.clone(MESSAGES.ALREADY_LOGGED_IN);
       msg.alreadyLoggedIn = true;
@@ -102,7 +106,17 @@ export const socket = (socket, primus, respond) => {
 
     socket.join(player.name);
 
-    emitter.emit(event, { playerName: player.name });
+    if(gameState._hasTimeout(player.name)) {
+      gameState._clearTimeout(player.name);
+
+      const oldPlayer = _.find(gameState.players, { name: player.name });
+      oldPlayer.quickLogin();
+      oldPlayer.update();
+      emitter.emit('player:semilogin', { playerName: player.name });
+
+    } else {
+      emitter.emit(event, { playerName: player.name });
+    }
 
     const msg = _.clone(MESSAGES.LOGIN_SUCCESS);
     msg.ok = true;

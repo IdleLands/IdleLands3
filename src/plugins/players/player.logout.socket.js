@@ -1,5 +1,6 @@
 
 import { emitter } from './_emitter';
+import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:logout';
 export const socket = (socket) => {
@@ -8,7 +9,16 @@ export const socket = (socket) => {
     if(!socket.authToken) return;
     const { playerName } = socket.authToken;
 
-    emitter.emit('player:logout', { playerName });
+    const gameState = GameState.getInstance();
+
+    const timeoutId = setTimeout(() => {
+      if(!gameState._hasTimeout(playerName)) return;
+      gameState._clearTimeout(playerName);
+      emitter.emit('player:logout', { playerName });
+    }, 10000);
+
+    gameState._setTimeout(playerName, timeoutId);
+
   };
 
   socket.on('end', logout);

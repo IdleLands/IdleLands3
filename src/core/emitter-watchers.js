@@ -8,6 +8,11 @@ import { migrate } from '../plugins/players/player.migration';
 import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../shared/playerlist-updater';
 import { MessageParser } from '../plugins/events/messagecreator';
 
+PlayerEmitter.on('player:semilogin', ({ playerName }) => {
+  AllPlayers(playerName);
+  PlayerLogin(playerName);
+});
+
 PlayerEmitter.on('player:login', async ({ playerName }) => {
   const player = await GameState.getInstance().addPlayer(playerName);
   if(!player) return;
