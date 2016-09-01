@@ -33,7 +33,7 @@ const monsters = {
 export class Summon extends Spell {
   static element = SpellType.PHYSICAL;
   static tiers = [
-    { name: 'summon',  spellPower: 1, weight: 30, cost: 15,  level: 8,  profession: 'Necromancer' }
+    { name: 'summon',  spellPower: 1, weight: 30, cost: 350,  level: 25,  profession: 'Necromancer' }
   ];
 
   static shouldCast(caster) {
@@ -54,7 +54,7 @@ export class Summon extends Spell {
 
   preCast() {
     const baseMonster = _.cloneDeep(this.chooseValidMonster());
-    baseMonster.level = this.caster.level;
+    baseMonster.level = Math.floor(this.caster.level / 2);
     _.extend(baseMonster, baseMonster.baseStats);
 
     if(baseMonster.restrictClasses) {
