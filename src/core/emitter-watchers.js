@@ -10,7 +10,6 @@ import { MessageParser } from '../plugins/events/messagecreator';
 
 PlayerEmitter.on('player:semilogin', ({ playerName }) => {
   AllPlayers(playerName);
-  PlayerLogin(playerName);
 });
 
 PlayerEmitter.on('player:login', async ({ playerName }) => {
