@@ -32,7 +32,7 @@ export class PKer extends Achievement {
 
     return [{
       tier,
-      name: 'Unstoppable',
+      name: 'PKer',
       desc: 'Gain 5 STR/CON/DEX/INT/AGI and +10% better item find for every 10*(10^tier) players killed.',
       type: AchievementTypes.COMBAT,
       rewards
