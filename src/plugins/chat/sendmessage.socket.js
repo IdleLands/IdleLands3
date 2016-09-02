@@ -30,7 +30,7 @@ export const socket = (socket, primus) => {
     if(!playerName) return;
 
     const player = GameState.getInstance().retrievePlayer(playerName);
-    if(!player) return;
+    if(!player || !player.isOnline || player.isMuted || player.isBanned) return;
 
     if(!player.lastSentMessage) player.lastSentMessage = Date.now();
 
@@ -47,11 +47,9 @@ export const socket = (socket, primus) => {
     }
 
     player.lastSentMessage = Date.now();
-
-    if(player.isMuted || player.isBanned) return;
-
+    
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
-    if(!text || !player || !playerName) return;
+    if(!text) return;
 
     const messageObject = { text, timestamp, channel, route, title: player.title, playerName: player.nameEdit ? player.nameEdit : player.name, event };
 
