@@ -21,10 +21,11 @@ export const socket = (socket, primus) => {
 
   const sendmessage = async ({ text, channel, route, playerName }) => {
     if(!socket.authToken) return;
+    if(!playerName) return;
 
     const player = GameState.getInstance().retrievePlayer(playerName);
 
-    if(player.isMuted || player.isBanned) return;
+    if(!player || player.isMuted || player.isBanned) return;
 
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text || !player || !playerName) return;
