@@ -49,6 +49,6 @@ If the leader leaves the party (by choice, or if they leave IdleLands), then the
 
 If you're in the party, you can switch on the "Scared Of The Dark" or "Delver" personalities to stop you from going down into a dungeon or upstairs out of one. If you do this, you won't follow the leader down (or up) stairs, but you will still fight any battles that the party has. 
 
-You have to be on the same level as the other adventurers to join a party with them. Which means if you're in a dungeon and your party breaks up, you likely won't join another until you get out of the dungeon.
+You have to be on the same map as the other adventurers to join a party with them. Which means if you're in a dungeon and your party breaks up, you likely won't join another until you get out of the dungeon.
 
 When you join a party, you will be auto-teleported to where the leader is. This is unavoidable.
