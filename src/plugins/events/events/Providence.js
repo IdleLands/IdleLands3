@@ -99,7 +99,7 @@ export class Providence extends Event {
       xp: Event.chance.integer({ min: -player._xp.maximum, max: player._xp.maximum }),
       level: Event.chance.integer({ min: -3, max: 2 }),
       gender: _.sample(this._genders),
-      profession: _.sample(this._professions(player)),
+      profession: _.sample(this._professions(player)) || 'Generalist',
       gold: Event.chance.integer({ min: -Math.min(30000, player.gold), max: 20000 })
     };
 
