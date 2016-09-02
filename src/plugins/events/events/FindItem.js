@@ -16,8 +16,12 @@ export class FindItem extends Event {
 
     if(!forceItem) {
       item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk));
+
+      const playerItem = player.equipment[item.type];
+      const text = playerItem.score > item.score ? 'weak' : 'strong';
+
       if(!player.canEquip(item)) {
-        const message = '%player came across %item, but it was useless to %himher, so %she sold it for %gold gold.';
+        const message = `%player came across %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
         const gold = player.sellItem(item);
         const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
         this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });

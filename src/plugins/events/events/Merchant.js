@@ -16,8 +16,11 @@ export class Merchant extends Event {
 
     const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus));
     if(!player.canEquip(item)) {
+      const playerItem = player.equipment[item.type];
+      const text = playerItem.score > item.score ? 'weak' : 'strong';
+
       player.$statistics.incrementStat('Character.Item.Discard');
-      const message = '%player was offered %item by a wandering merchant, but it was useless to %himher.';
+      const message = `%player was offered %item by a wandering merchant, but it was too ${text} for %himher.`;
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
       return;
