@@ -17,7 +17,8 @@ class Settings {
     this.merchantMultiplier = 3;
 
     this.reductionDefaults = {
-      itemFindRange: 7,
+      itemFindRange: 12,
+      itemFindRangeMultiplier: 0.5,
       itemValueMultiplier: 0.1,
       merchantCostReductionMultiplier: 0.0,
       merchantItemGeneratorBonus: 5
