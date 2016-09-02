@@ -21,8 +21,10 @@ export const primus = (() => {
     console.log(`Your IP is: ${ip}`);
   }
 
-
-  const serve = require('serve-static')('assets');
+  const express = require('express');
+  const compression = require('compression');
+  const serve = express();
+  serve.use(compression(), express.static('assets'));
   const finalhandler = require('finalhandler');
 
 // load primus
