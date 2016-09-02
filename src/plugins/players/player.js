@@ -263,15 +263,15 @@ export class Player extends Character {
   update() {
     this._updatePlayer();
     this._updateParty();
-    this._updateStatistics();
-    if(this.$updateAchievements) {
+    // this._updateStatistics();
+    /* if(this.$updateAchievements) {
       this._updateAchievements();
       this.$updateAchievements = false;
-    }
-    if(this.$updateCollectibles) {
+    } */
+    /* if(this.$updateCollectibles) {
       this._updateCollectibles();
       this.$updateCollectibles = false;
-    }
+    } */
     this._updatePersonalities();
   }
 }
