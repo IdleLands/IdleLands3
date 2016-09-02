@@ -32,7 +32,7 @@ export const primus = (() => {
   });
   server.listen(process.env.PORT || 8080);
 
-  const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
+  const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets', compression: true });
 
 // load socket functions
   const normalizedPath = require('path').join(__dirname, '..', 'src');
