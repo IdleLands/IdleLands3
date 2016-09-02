@@ -23,8 +23,10 @@ export const socket = (socket, primus) => {
   socket.join(GENERAL_ROUTE);
   socket.join(EVENTS_ROUTE);
 
-  const sendmessage = async ({ text, channel, route, playerName }) => {
+  const sendmessage = async ({ text, channel, route }) => {
     if(!socket.authToken) return;
+    
+    const { playerName } = socket.authToken;
     if(!playerName) return;
 
     const player = GameState.getInstance().retrievePlayer(playerName);
