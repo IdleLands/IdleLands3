@@ -25,7 +25,7 @@ export const socket = (socket, primus) => {
 
   const sendmessage = async ({ text, channel, route }) => {
     if(!socket.authToken) return;
-    
+
     const { playerName } = socket.authToken;
     if(!playerName) return;
 

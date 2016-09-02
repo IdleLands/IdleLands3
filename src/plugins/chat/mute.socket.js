@@ -6,8 +6,11 @@ import { PlayerUpdateAll } from '../../shared/playerlist-updater';
 export const event = 'plugin:chat:togglemute';
 export const socket = (socket) => {
 
-  const togglemute = async ({ playerName, targetName }) => {
+  const togglemute = async ({ targetName }) => {
     if(!socket.authToken) return;
+
+    const { playerName } = socket.authToken;
+    if(!playerName) return;
 
     const gameState = GameState.getInstance();
     const player = gameState.retrievePlayer(playerName);
