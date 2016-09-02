@@ -7,6 +7,10 @@ import { SETTINGS } from '../../static/settings';
 const GENERAL_ROUTE = 'chat:channel:General';
 const EVENTS_ROUTE  = 'chat:general:Global Events';
 
+const CHAT_SPAM_DELAY = process.env.CHAT_SPAM_DELAY || 2000;
+const MAX_SPAM_MESSAGES = process.env.MAX_SPAM_MESSAGES || 5;
+const SPAM_IGNORE_LEVEL = process.env.SPAM_IGNORE_LEVEL || 25;
+
 export const event = 'plugin:chat:sendmessage';
 export const socket = (socket, primus) => {
 
@@ -24,13 +28,29 @@ export const socket = (socket, primus) => {
     if(!playerName) return;
 
     const player = GameState.getInstance().retrievePlayer(playerName);
+    if(!player) return;
 
-    if(!player || player.isMuted || player.isBanned) return;
+    if(!player.lastSentMessage) player.lastSentMessage = Date.now();
+
+    const timestamp = Date.now();
+    if(!player.spamMessages || _.isNaN(player.spamMessages)) player.spamMessages = 0;
+    if(timestamp - player.lastSentMessage < CHAT_SPAM_DELAY) player.spamMessages++;
+    else                                                     player.spamMessages = Math.max(player.spamMessages-1, 0);
+
+    if(player.spamMessages > MAX_SPAM_MESSAGES && player.level < SPAM_IGNORE_LEVEL) {
+      player.isMuted = true;
+      if(!player.autoMutes) player.autoMutes = 0;
+      player.autoMutes++;
+    }
+
+    player.lastSentMessage = Date.now();
+
+    if(player.isMuted || player.isBanned) return;
 
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text || !player || !playerName) return;
 
-    const messageObject = { text, channel, route, title: player.title, playerName: player.nameEdit ? player.nameEdit : player.name, event };
+    const messageObject = { text, timestamp, channel, route, title: player.title, playerName: player.nameEdit ? player.nameEdit : player.name, event };
 
     if(_.includes(route, ':pm:')) {
       const users = route.split(':')[2].split('|');
