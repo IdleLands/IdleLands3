@@ -41,6 +41,7 @@ export const socket = (socket, primus) => {
       player.isMuted = true;
       if(!player.autoMutes) player.autoMutes = 0;
       player.autoMutes++;
+      player.spamMessages = 0;
     }
 
     player.lastSentMessage = Date.now();
