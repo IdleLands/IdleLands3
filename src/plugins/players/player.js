@@ -231,17 +231,27 @@ export class Player extends Character {
     return _.omitBy(this, (val, key) => _.startsWith(key, '$'));
   }
 
+  buildTransmitObject() {
+    return _.omitBy(this, (val, key) => {
+      return _.startsWith(key, '$') || _.includes(key, 'Link') || key === 'equipment';
+    });
+  }
+
   save() {
     this.$playerDb.savePlayer(this);
     this.update();
   }
 
   _updatePlayer() {
-    this.$dataUpdater(this.name, 'player', this.buildSaveObject());
+    this.$dataUpdater(this.name, 'player', this.buildTransmitObject());
   }
 
   _updateParty() {
     this.$dataUpdater(this.name, 'party', this.party ? this.party.buildTransmitObject() : {});
+  }
+
+  _updateEquipment() {
+    this.$dataUpdater(this.name, 'equipment', this.equipment);
   }
 
   _updateStatistics() {
