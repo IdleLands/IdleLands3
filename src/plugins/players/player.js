@@ -232,8 +232,9 @@ export class Player extends Character {
   }
 
   buildTransmitObject() {
+    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir', 'eventSteps', 'partySteps'];
     return _.omitBy(this, (val, key) => {
-      return _.startsWith(key, '$') || _.includes(key, 'Link') || key === 'equipment';
+      return _.startsWith(key, '$') || _.includes(key, 'Link') || _.includes(badKeys, key);
     });
   }
 
@@ -282,6 +283,6 @@ export class Player extends Character {
       this._updateCollectibles();
       this.$updateCollectibles = false;
     } */
-    this._updatePersonalities();
+    // this._updatePersonalities();
   }
 }

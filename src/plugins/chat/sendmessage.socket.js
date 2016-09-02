@@ -47,7 +47,7 @@ export const socket = (socket, primus) => {
     }
 
     player.lastSentMessage = Date.now();
-    
+
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text) return;
 
