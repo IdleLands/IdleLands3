@@ -49,6 +49,7 @@ export const socket = (socket, primus, respond) => {
       // 20 char name is reasonable
       name = _.truncate(name, { length: 20 }).trim().replace(/[^\w\d ]/gm, '');
       name = name.split(' the ').join('');
+      name = name.trim();
 
       if(name.length === 0) {
         return respond(MESSAGES.INVALID_NAME);
