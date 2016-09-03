@@ -17,5 +17,6 @@ export class ItemForsake extends Event {
     this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${item[stat]-boost}]`, category: MessageCategories.ITEM });
     item[stat] -= boost;
     item.score;
+    player.recalculateStats();
   }
 }
