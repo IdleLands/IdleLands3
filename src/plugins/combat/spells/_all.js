@@ -40,6 +40,7 @@ export { Multishot } from './Multishot';
 export { MultiStrike } from './MultiStrike';
 export { OpeningStrike } from './OpeningStrike';
 export { OurHeartsIgnite } from './OurHeartsIgnite';
+export { PaleMoonlight } from './PaleMoonlight';
 export { PirateShanty } from './PirateShanty';
 export { PoisonedSandwich } from './PoisonedSandwich';
 export { RelentlessAssault } from './RelentlessAssault';
