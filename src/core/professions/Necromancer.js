@@ -7,10 +7,11 @@ export class Necromancer extends Profession {
   static baseMpPerLevel = Profession.baseMpPerLevel + 10;
 
   static baseMpPerInt = 12;
+  static baseHpPerCon = 7
 
-  static baseConPerLevel = 0;
+  static baseConPerLevel = 1;
   static baseDexPerLevel = 3;
-  static baseAgiPerLevel = -2;
+  static baseAgiPerLevel = -3;
   static baseStrPerLevel = 3;
   static baseIntPerLevel = 8;
   static baseLukPerLevel = -1;

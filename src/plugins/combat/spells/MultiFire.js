@@ -5,10 +5,10 @@ import { Spell, SpellType } from '../spell';
 export class MultiFire extends Spell {
   static element = SpellType.FIRE;
   static tiers = [
-    { name: 'double fire',    spellPower: 2, weight: 40, cost: 250,  level: 25,  profession: 'Mage' },
-    { name: 'triple fire',    spellPower: 3, weight: 40, cost: 750,  level: 55,  profession: 'Mage' },
-    { name: 'quadruple fire', spellPower: 4, weight: 40, cost: 1250, level: 85,  profession: 'Mage' },
-    { name: 'fire star',      spellPower: 5, weight: 40, cost: 1700, level: 185, profession: 'Mage',
+    { name: 'double fire',    spellPower: 4,  weight: 40, cost: 250,  level: 25,  profession: 'Mage' },
+    { name: 'triple fire',    spellPower: 7,  weight: 40, cost: 750,  level: 55,  profession: 'Mage' },
+    { name: 'quadruple fire', spellPower: 10, weight: 40, cost: 1250, level: 85,  profession: 'Mage' },
+    { name: 'fire star',      spellPower: 15, weight: 40, cost: 1700, level: 185, profession: 'Mage',
       collectibles: ['Bucket of Lava'] }
   ];
 

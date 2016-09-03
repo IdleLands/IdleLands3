@@ -20,8 +20,8 @@ export class Frostbite extends Spell {
   }
 
   calcDamage() {
-    const min = this.caster.liveStats.int / 8;
-    const max = this.caster.liveStats.int / 6;
+    const min = this.caster.liveStats.int / 4;
+    const max = this.caster.liveStats.int / 3;
     return this.minMax(min, max) * this.spellPower;
   }
 

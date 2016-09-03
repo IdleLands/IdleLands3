@@ -7,8 +7,8 @@ import { Thunderstrike as ThunderstrikeEffect } from '../effects/Thunderstrike';
 export class Thunderstrike extends Spell {
   static element = SpellType.THUNDER;
   static tiers = [
-    { name: 'thunderstrike',  spellPower: 1, weight: 40, cost: 500,   level: 35,  profession: 'Mage' },
-    { name: 'thunderstorm',   spellPower: 2, weight: 40, cost: 1500,  level: 85,  profession: 'Mage' }
+    { name: 'thunderstrike',  spellPower: 2, weight: 40, cost: 500,   level: 35,  profession: 'Mage' },
+    { name: 'thunderstorm',   spellPower: 4, weight: 40, cost: 1500,  level: 85,  profession: 'Mage' }
   ];
 
   static shouldCast(caster) {
@@ -24,7 +24,7 @@ export class Thunderstrike extends Spell {
   }
 
   calcPotency() {
-    const min = this.caster.liveStats.int / 16;
+    const min = this.caster.liveStats.int / 8;
     const max = this.caster.liveStats.int / 4;
     return this.minMax(min, max) * this.spellPower;
   }

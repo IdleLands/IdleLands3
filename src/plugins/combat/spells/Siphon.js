@@ -7,10 +7,10 @@ import { AllStatsDown } from '../effects/AllStatsDown';
 export class Siphon extends Spell {
   static element = SpellType.DEBUFF;
   static tiers = [
-    { name: 'siphon',      spellPower: 1, weight: 30, cost: 100,   level: 1,   profession: 'Necromancer' },
-    { name: 'drain',       spellPower: 2, weight: 30, cost: 500,   level: 15,  profession: 'Necromancer' },
-    { name: 'deteriorate', spellPower: 3, weight: 30, cost: 3000,  level: 35,  profession: 'Necromancer' },
-    { name: 'wither',      spellPower: 4, weight: 30, cost: 7500,  level: 75,  profession: 'Necromancer' },
+    { name: 'siphon',      spellPower: 2, weight: 30, cost: 100,   level: 1,   profession: 'Necromancer' },
+    { name: 'drain',       spellPower: 3, weight: 30, cost: 500,   level: 15,  profession: 'Necromancer' },
+    { name: 'deteriorate', spellPower: 4, weight: 30, cost: 3000,  level: 35,  profession: 'Necromancer' },
+    { name: 'wither',      spellPower: 5, weight: 30, cost: 7500,  level: 75,  profession: 'Necromancer' },
     { name: 'colander',    spellPower: 1, weight: 30, cost: 1000,  level: 35,  profession: 'MagicalMonster',
       collectibles: ['Evil Pebble'] }
   ];

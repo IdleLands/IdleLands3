@@ -34,6 +34,7 @@ export { Heartbleed } from './Heartbleed';
 export { HolyBolt } from './HolyBolt';
 export { LightFromTheStars } from './LightFromTheStars';
 export { LitanyOfPain } from './LitanyOfPain';
+export { MageIntelligence } from './MageIntelligence';
 export { MultiFire } from './MultiFire';
 export { Multishot } from './Multishot';
 export { MultiStrike } from './MultiStrike';

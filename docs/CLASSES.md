@@ -303,7 +303,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-15 | 10 | 3 | 3 | 0 | -2 | 8 | -1
+15 | 10 | 3 | 3 | 1 | -3 | 8 | -1
 
 
 ### HP Modifiers
@@ -311,7 +311,7 @@ You get X HP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 5 | 0 | 0 | 0
+0 | 0 | 7 | 0 | 0 | 0
 
 ### MP Modifiers
 You get X MP for every point in a particular stat.

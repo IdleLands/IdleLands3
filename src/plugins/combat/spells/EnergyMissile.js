@@ -5,10 +5,10 @@ import { Spell, SpellType } from '../spell';
 export class EnergyMissile extends Spell {
   static element = SpellType.ENERGY;
   static tiers = [
-    { name: 'energy missile', spellPower: 0.5, weight: 40, cost: 10,   level: 1,  profession: 'Mage' },
-    { name: 'energy blast',   spellPower: 1.5, weight: 40, cost: 450,  level: 25, profession: 'Mage' },
-    { name: 'astral flare',   spellPower: 2.5, weight: 40, cost: 2300, level: 65, profession: 'Mage' },
-    { name: 'energy prod',    spellPower: 0.8, weight: 35, cost: 100,  level: 15, profession: 'MagicalMonster',
+    { name: 'energy missile', spellPower: 3, weight: 40, cost: 10,   level: 1,  profession: 'Mage' },
+    { name: 'energy blast',   spellPower: 5, weight: 40, cost: 450,  level: 25, profession: 'Mage' },
+    { name: 'astral flare',   spellPower: 7, weight: 40, cost: 2300, level: 65, profession: 'Mage' },
+    { name: 'energy prod',    spellPower: 1, weight: 35, cost: 100,  level: 15, profession: 'MagicalMonster',
       collectibles: ['Mage\'s Tome'] }
   ];
 

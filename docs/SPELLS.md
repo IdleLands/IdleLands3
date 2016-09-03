@@ -173,16 +173,20 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 |
 energy missile ([EnergyMissile 1](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 1 | 
 energy shield ([EnergyShield 1](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 5 | 
 frostbite ([Frostbite 1](../src/plugins/combat/spells/Frostbite.js)) | Ice | 15 | 
+magic intelligence ([MageIntelligence 1](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 15 | 
 double fire ([MultiFire 1](../src/plugins/combat/spells/MultiFire.js)) | Fire | 25 | 
 energy blast ([EnergyMissile 2](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 25 | 
 energy buckler ([EnergyShield 2](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 25 | 
+magic brilliance ([MageIntelligence 2](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 30 | 
 thunderstrike ([Thunderstrike 1](../src/plugins/combat/spells/Thunderstrike.js)) | Thunder | 35 | 
 triple fire ([MultiFire 2](../src/plugins/combat/spells/MultiFire.js)) | Fire | 55 | 
+arcane intelligence ([MageIntelligence 3](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 60 | 
 astral flare ([EnergyMissile 3](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 65 | 
 cold snap ([Frostbite 2](../src/plugins/combat/spells/Frostbite.js)) | Ice | 65 | 
 energy towershield ([EnergyShield 3](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 65 | 
 quadruple fire ([MultiFire 3](../src/plugins/combat/spells/MultiFire.js)) | Fire | 85 | 
 thunderstorm ([Thunderstrike 2](../src/plugins/combat/spells/Thunderstrike.js)) | Thunder | 85 | 
+arcane brilliance ([MageIntelligence 4](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 95 | 
 energy omegashield ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 125 | Jar of Magic Dust
 fire star ([MultiFire 4](../src/plugins/combat/spells/MultiFire.js)) | Fire | 185 | Bucket of Lava
 
