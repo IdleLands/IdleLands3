@@ -1,4 +1,6 @@
 
+import _ from 'lodash';
+
 import { primus } from '../../primus/server';
 import { GameState } from '../core/game-state';
 
@@ -23,8 +25,13 @@ export const PlayerLogout = (playerName) => {
 
 // these are global updater functions
 export const AllPlayersPostMove = () => {
-  const data = GameState.getInstance().getPlayersSimple(['x', 'y', 'map']);
-  primus.forEach(spark => spark.write({ playerListOperation: 'updateMass', data }));
+  const gameState = GameState.getInstance();
+  const data = gameState.getPlayersSimple(['x', 'y', 'map']);
+  primus.forEach(spark => {
+    const player = gameState.getPlayer(spark.authToken.playerName);
+    const filteredData = _.filter(data, pt => pt.map === player.map);
+    spark.write({ playerListOperation: 'updateMass', data: filteredData });
+  });
 };
 
 export const PlayerUpdateAll = (playerId, keys) => {
