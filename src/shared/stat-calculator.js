@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import { SETTINGS } from '../static/settings';
 
-export const BASE_STATS = ['str', 'con', 'dex', 'int', 'agi', 'luk', 'xp', 'gold'];
+export const BASE_STATS = ['str', 'con', 'dex', 'int', 'agi', 'luk'];
 export const SPECIAL_STATS = ['hpregen', 'mpregen', 'damageReduction', 'crit'];
 export const ATTACK_STATS = ['prone', 'venom', 'poison', 'shatter', 'vampire'];
 
@@ -101,6 +101,14 @@ export class StatCalculator {
     _.each(functions, func => mods += func(player, baseValue));
 
     return Math.floor(baseValue + mods);
+  }
+
+  static gold(player) {
+    return this._baseStat(player, 'gold');
+  }
+
+  static xp(player) {
+    return this._baseStat(player, 'xp');
   }
 
   static hp(player) {
