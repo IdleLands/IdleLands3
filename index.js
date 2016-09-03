@@ -1,4 +1,7 @@
-require('newrelic');
+
+if(process.env.NODE_ENV === 'production' && !process.env.IGNORE_NEWRELIC) {
+  require('newrelic');
+}
 
 process.on('uncaughtException', e => console.error(e));
 process.on('unhandledRejection', reason => console.error(reason));

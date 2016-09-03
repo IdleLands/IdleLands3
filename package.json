@@ -9,7 +9,7 @@
     "start": "node index.js",
     "start:inspect": "node --inspect=9222 index.js",
     "start:battletest": "BATTLE_DEBUG=1 node index.js",
-    "start:prod": "NODE_ENV=production EXT_CHAT=0 node index.js",
+    "start:prod": "NODE_ENV=production IGNORE_NEWRELIC=1 EXT_CHAT=0 node index.js",
     "test": "npm run test:local",
     "test:lint": "eslint src/** test/plugins/**",
     "test:local": "npm run test:lint",
