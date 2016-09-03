@@ -1,4 +1,6 @@
 
+import _ from 'lodash';
+
 import { Logger } from './logger';
 import { primus } from '../../primus/server';
 
@@ -44,5 +46,7 @@ export const AdventureLog = (message) => {
   }
 
   message.event = 'adventurelog';
-  primus.room('adventurelog').write(message);
+  _.each(message.targets, target => {
+    primus.room(target).write(message);
+  });
 };
