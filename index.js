@@ -1,3 +1,4 @@
+require('newrelic');
 
 process.on('uncaughtException', e => console.error(e));
 process.on('unhandledRejection', reason => console.error(reason));
