@@ -6,7 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { PercentageHPHeal } from '../effects/PercentageHPHeal';
 
 export class PaleMoonlight extends Spell {
-  static element = SpellType.DEBUFF;
+  static element = SpellType.BUFF;
   static tiers = [
     { name: 'Through the Pale Moonlight',        spellPower: 3,   weight: 25, cost: 200,   profession: 'Bard', level: 1 },
     { name: 'Shining Bright Against the Night',  spellPower: 7.5, weight: 25, cost: 2000,  profession: 'Bard', level: 50 }

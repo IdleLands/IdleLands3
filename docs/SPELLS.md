@@ -63,12 +63,12 @@ Light From The Stars ([LightFromTheStars 1](../src/plugins/combat/spells/LightFr
 Litany of Pain ([LitanyOfPain 1](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 1 | 
 Our Hearts Ignite ([OurHeartsIgnite 1](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 1 | 
 There Is No Escape ([ThereIsNoEscape 1](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 1 | 
-Through the Pale Moonlight ([PaleMoonlight 1](../src/plugins/combat/spells/PaleMoonlight.js)) | Debuff | 1 | 
+Through the Pale Moonlight ([PaleMoonlight 1](../src/plugins/combat/spells/PaleMoonlight.js)) | Buff | 1 | 
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | 
 Hymn of Torment ([LitanyOfPain 2](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 50 | 
 Our Hearts Blaze ([OurHeartsIgnite 2](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 50 | 
 Purity From The Stars ([LightFromTheStars 2](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 50 | Soaked Sitar
-Shining Bright Against the Night ([PaleMoonlight 2](../src/plugins/combat/spells/PaleMoonlight.js)) | Debuff | 50 | 
+Shining Bright Against the Night ([PaleMoonlight 2](../src/plugins/combat/spells/PaleMoonlight.js)) | Buff | 50 | 
 You Shant Get Away ([ThereIsNoEscape 2](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 50 | 
 Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 100 | Ancient Lute
 
