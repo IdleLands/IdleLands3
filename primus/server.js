@@ -21,10 +21,8 @@ export const primus = (() => {
     console.log(`Your IP is: ${ip}`);
   }
 
-  const express = require('express');
-  const compression = require('compression');
-  const serve = express();
-  serve.use(compression(), express.static('assets'));
+
+  const serve = require('serve-static')('assets');
   const finalhandler = require('finalhandler');
 
 // load primus
@@ -34,7 +32,7 @@ export const primus = (() => {
   });
   server.listen(process.env.PORT || 8080);
 
-  const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
+  const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets', compression: true });
 
 // load socket functions
   const normalizedPath = require('path').join(__dirname, '..', 'src');

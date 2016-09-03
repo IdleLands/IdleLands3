@@ -49,8 +49,6 @@ const play = (name, index) => {
   });
 
   socket.on('data', msg => {
-    console.log(msg);
-
     if(msg.update === 'player') {
       const choices = msg.data.choices;
       const name = msg.data.name;

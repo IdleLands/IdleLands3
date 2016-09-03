@@ -7,6 +7,7 @@
     "postinstall": "npm run install:assets",
     "install:assets": "node npm/install-assets",
     "start": "node index.js",
+    "start:inspect": "node --inspect=9222 index.js",
     "start:battletest": "BATTLE_DEBUG=1 node index.js",
     "start:prod": "NODE_ENV=production EXT_CHAT=0 node index.js",
     "test": "npm run test:local",
@@ -20,7 +21,7 @@
     "gen:items": "node test/gen/items"
   },
   "engines": {
-    "node": "6.2.2"
+    "node": "6.5.0"
   },
   "repository": {
     "type": "git",
