@@ -28,7 +28,9 @@ export const AllPlayersPostMove = () => {
   const gameState = GameState.getInstance();
   const data = gameState.getPlayersSimple(['x', 'y', 'map']);
   primus.forEach(spark => {
+    if(!spark.authToken) return;
     const player = gameState.getPlayer(spark.authToken.playerName);
+    if(!player) return;
     const filteredData = _.filter(data, pt => pt.map === player.map);
     spark.write({ playerListOperation: 'updateMass', data: filteredData });
   });
