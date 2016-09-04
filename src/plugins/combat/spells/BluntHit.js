@@ -7,7 +7,7 @@ import { Prone as BluntHitEffect } from '../effects/Prone';
 export class BluntHit extends Spell {
   static element = SpellType.PHYSICAL;
   static tiers = [
-    { name: 'blunt hit',  spellPower: 1, weight: 30, cost: 100,  level: 15,  profession: 'Fighter' }
+    { name: 'blunt hit',  spellPower: 1, weight: 10, cost: 300,  level: 15,  profession: 'Fighter' }
   ];
 
   static shouldCast(caster) {
