@@ -86,14 +86,14 @@ export const socket = (socket, primus, respond) => {
 
     const gameState = GameState.getInstance();
 
-    if(player.isOnline && !gameState._hasTimeout(player.name)) {
+    /* if(player.isOnline && !gameState._hasTimeout(player.name)) {
       // player already logged in, instead: disconnect this socket
       const msg = _.clone(MESSAGES.ALREADY_LOGGED_IN);
       msg.alreadyLoggedIn = true;
       respond(msg);
       socket.end();
       return;
-    }
+    } */
 
     if(player.isBanned) {
       const msg = _.clone(MESSAGES.BANNED);
