@@ -26,17 +26,17 @@ const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'produc
 setInterval(() => {
   const gameState = GameState.getInstance();
   const players = gameState.getPlayers();
-  const promises = _.map(players, (player, index) => {
+  const promises = _.map(players, (player) => {
     const playerName = player.name;
 
     return new Promise(resolve => {
-      setTimeout(() => {
+      // setTimeout(() => {
 
-        if(!_.find(gameState.getPlayers(), { name: playerName })) return resolve(false);
-        player.takeTurn();
-        resolve(true);
+      if(!_.find(gameState.getPlayers(), { name: playerName })) return resolve(false);
+      player.takeTurn();
+      resolve(true);
 
-      }, index * (timerDelay / players.length));
+      // }, index * (timerDelay / players.length));
     });
 
   });
