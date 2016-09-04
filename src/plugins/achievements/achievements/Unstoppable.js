@@ -8,8 +8,7 @@ export class Unstoppable extends Achievement {
     const baseValue = 1000;
 
     let tier = 1;
-    let calcValue = 0;
-    while(value >= (calcValue = baseValue * Math.pow(10, tier-1))) {
+    while(value >= baseValue * Math.pow(10, tier-1)) {
       tier++;
     }
 
@@ -31,7 +30,7 @@ export class Unstoppable extends Achievement {
     return [{
       tier,
       name: 'Unstoppable',
-      desc: `Gain +${tier}% HP and +${20*tier} STR for dealing ${calcValue} damage.`,
+      desc: `Gain +${tier}% HP and +${20*tier} STR for dealing ${baseValue * Math.pow(10, tier-1)} damage.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];

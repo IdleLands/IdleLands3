@@ -7,8 +7,7 @@ export class Walker extends Achievement {
     const playerSteps = player.$statistics.getStat('Character.Steps');
 
     let tier = 1;
-    let calcValue = 0;
-    while(playerSteps >= (calcValue = Math.pow(10, tier))) {
+    while(playerSteps >= Math.pow(10, tier)) {
       tier++;
     }
 
@@ -28,7 +27,7 @@ export class Walker extends Achievement {
     return [{
       tier,
       name: 'Walker',
-      desc: `Gain +${tier} Bonus XP (added every time XP is gained) for taking ${calcValue} steps.`,
+      desc: `Gain +${tier} Bonus XP (added every time XP is gained) for taking ${Math.pow(10, tier)} steps.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];

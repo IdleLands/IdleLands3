@@ -8,8 +8,7 @@ export class Golden extends Achievement {
     const baseValue = 20000;
 
     let tier = 1;
-    let calcValue = 0;
-    while(value >= (calcValue = baseValue * Math.pow(10, tier-1))) {
+    while(value >= baseValue * Math.pow(10, tier-1)) {
       tier++;
     }
 
@@ -31,7 +30,7 @@ export class Golden extends Achievement {
     return [{
       tier,
       name: 'Golden',
-      desc: `Sell items for ${tier*5}% more for gaining and losing at least ${calcValue} gold, and +${tier}% AGI.`,
+      desc: `Sell items for ${tier*5}% more for gaining and losing at least ${baseValue * Math.pow(10, tier)} gold, and +${tier}% AGI.`,
       type: AchievementTypes.EVENT,
       rewards
     }];
