@@ -49,7 +49,7 @@ export class BattleBoss extends Event {
       Logger.error('BattleBoss', e, battle.saveObject());
     }
 
-    if(player.party === battle.winningTeam) {
+    if(!battle.isLoser(player.party)) {
       _.each(player.party.players, p => {
         p.$statistics.incrementStat(`Character.BossKills.${bossName}`);
       });

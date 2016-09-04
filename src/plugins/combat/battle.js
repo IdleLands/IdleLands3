@@ -179,6 +179,10 @@ export class Battle {
     return _.filter(this.allPlayers, p => !_.includes(winners, p));
   }
 
+  isLoser(party) {
+    return _.all(party.players, p => p.hp === 0);
+  }
+
   endBattle() {
     this._emitMessage('Battle complete.', this._partyStats());
     this.endBattleBonuses();
