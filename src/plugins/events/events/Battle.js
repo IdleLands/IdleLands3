@@ -10,13 +10,14 @@ import { MonsterGenerator } from '../../../shared/monster-generator';
 import { MessageCategories } from '../../../shared/adventure-log';
 
 import { Logger } from '../../../shared/logger';
+import { SETTINGS } from '../../../static/settings';
 
 export const WEIGHT = isBattleDebug ? 300 : 3;
 
 // Create a battle
 export class Battle extends Event {
   static operateOn(player) {
-    if(player.level <= 5) return;
+    if(player.level <= SETTINGS.minBattleLevel) return;
 
     if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;
 

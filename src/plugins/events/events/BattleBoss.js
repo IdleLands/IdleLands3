@@ -14,13 +14,14 @@ import { MessageCategories } from '../../../shared/adventure-log';
 import { emitter } from '../../players/_emitter';
 
 import { Logger } from '../../../shared/logger';
+import { SETTINGS } from '../../../static/settings';
 
 export const WEIGHT = -1;
 
 // Create a battle
 export class BattleBoss extends Event {
   static operateOn(player, { bossName, bosses }) {
-    if(player.level <= 5) return;
+    if(player.level <= SETTINGS.minBattleLevel) return;
     if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;
 
     if(!player.party) {

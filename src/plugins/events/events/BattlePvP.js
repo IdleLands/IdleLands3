@@ -9,13 +9,14 @@ import { Party as PartyClass } from '../../party/party';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 import { Logger } from '../../../shared/logger';
+import { SETTINGS } from '../../../static/settings';
 
 export const WEIGHT = 4;
 
 // Create a pvp battle
 export class BattlePvP extends Event {
   static operateOn(player) {
-    if(player.level <= 5) return;
+    if(player.level <= SETTINGS.minBattleLevel) return;
     if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;
 
     const allPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.$battle);
@@ -28,7 +29,7 @@ export class BattlePvP extends Event {
 
       opponent = _(allPlayers)
         .reject(p => p.party)
-        .reject(p => p.level < player.level - 5 || p.level > player.level + 5)
+        .reject(p => p.level < player.level - SETTINGS.pvpBattleRange || p.level > player.level + SETTINGS.pvpBattleRange)
         .sample();
       if(!opponent) return;
 
@@ -38,7 +39,7 @@ export class BattlePvP extends Event {
     // XvX
     } else {
       opponent = _(allPlayers)
-        .reject(p => p.level < player.level - 5 || p.level > player.level + 5)
+        .reject(p => p.level < player.level - SETTINGS.pvpBattleRange || p.level > player.level + SETTINGS.pvpBattleRange)
         .reject(p => p.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 }))
         .reject(p => !p.party || p.party === player.party || p.party.players.length === 1)
         .sample();
