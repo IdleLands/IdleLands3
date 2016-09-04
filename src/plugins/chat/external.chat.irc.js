@@ -41,6 +41,6 @@ export class ExternalChatMechanism {
 
   sendMessage(msgData) {
     if(!isProd || !this.isConnected) return;
-    this.client.msg(channel, `<web:${msgData.playerName}> ${msgData.text}`);
+    this.client.msg(channel, `<web:${msgData.playerName} [${msgData.level}]> ${msgData.text}`);
   }
 }
