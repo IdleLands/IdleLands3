@@ -20,11 +20,11 @@ PlayerEmitter.on('player:login', async ({ playerName }) => {
   player.$statistics.incrementStat('Game.Logins');
   AllPlayers(playerName);
   PlayerLogin(playerName);
-  AdventureLog({
+  /* AdventureLog({
     text: MessageParser.stringFormat('Welcome %player back to Idliathlia!', player),
     type: MessageTypes.GLOBAL,
     category: MessageCategories.META
-  });
+  }); */
 });
 
 PlayerEmitter.on('player:register', async ({ playerName }) => {
@@ -44,11 +44,11 @@ PlayerEmitter.on('player:register', async ({ playerName }) => {
 
 PlayerEmitter.on('player:logout', ({ playerName }) => {
   PlayerLogout(playerName);
-  AdventureLog({
+  /* AdventureLog({
     text: `«${playerName}» has departed Idliathlia!`,
     type: MessageTypes.GLOBAL,
     category: MessageCategories.META
-  });
+  }); */
   GameState.getInstance().delPlayer(playerName);
 });
 
