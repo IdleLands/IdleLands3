@@ -180,7 +180,7 @@ export class Battle {
   }
 
   isLoser(party) {
-    return _.all(party.players, p => p.hp === 0);
+    return _.every(party.players, p => p.hp === 0);
   }
 
   endBattle() {
