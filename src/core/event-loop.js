@@ -21,7 +21,7 @@ GameState.getInstance();
 
 Logger.info('Core', 'Starting event loop.');
 
-const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'production' ? 1000 : 1);
+const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'production' ? 1000 : 5);
 
 setInterval(() => {
   const gameState = GameState.getInstance();
