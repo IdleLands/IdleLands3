@@ -18,7 +18,7 @@ export class Golden extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      itemValueMultiplier: (tier*0.05).toFixed(1),
+      itemValueMultiplier: (tier*0.05).toFixed(2),
       agi: (player, baseValue) => baseValue*0.01*tier,
       agiDisplay: `${tier}%`
     }];
@@ -30,7 +30,7 @@ export class Golden extends Achievement {
     return [{
       tier,
       name: 'Golden',
-      desc: `Sell items for ${tier*5}% more for gaining and losing at least ${baseValue * Math.pow(10, tier)} gold, and +${tier}% AGI.`,
+      desc: `Sell items for ${tier*5}% more for gaining and losing at least ${baseValue * Math.pow(10, tier-1)} gold, and +${tier}% AGI.`,
       type: AchievementTypes.EVENT,
       rewards
     }];

@@ -10,19 +10,21 @@ import { Party as PartyClass } from '../../../plugins/party/party';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
+import { SETTINGS } from '../../../static/settings';
+
 export const WEIGHT = isBattleDebug ? 250 : 25;
 
 // Create a party
 export class Party extends Event {
   static operateOn(player) {
 
-    if(player.$partyName || player.$personalities.isActive('Solo')) return;
+    if(player.$partyName || player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) return;
 
     const validPlayers = _.reject(
       GameState.getInstance().getPlayers(),
       p => p.$partyName || p === player
       || p.$personalities.isActive('Solo')
-      || p.level < 10
+      || p.level < SETTINGS.minPartyLevel
       || p.map !== player.map
     );
     if(validPlayers.length < 3) return;

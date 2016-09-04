@@ -10,7 +10,7 @@ import { persistToDb } from './battle.db';
 import Chance from 'chance';
 const chance = new Chance();
 
-const MAX_ROUND = 300;
+const MAX_ROUND = 100;
 
 export class Battle {
   constructor({ parties, introText }) {
@@ -177,6 +177,10 @@ export class Battle {
   get losers() {
     const winners = this.winningTeam.players;
     return _.filter(this.allPlayers, p => !_.includes(winners, p));
+  }
+
+  isLoser(party) {
+    return _.every(party.players, p => p.hp === 0);
   }
 
   endBattle() {

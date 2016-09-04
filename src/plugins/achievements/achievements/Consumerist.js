@@ -18,7 +18,7 @@ export class Consumerist extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      itemValueMultiplier: (tier*0.05).toFixed(1),
+      itemValueMultiplier: (tier*0.05).toFixed(2),
       dex: (player, baseValue) => baseValue*0.01*tier,
       dexDisplay: `${tier}%`
     }];
@@ -30,7 +30,7 @@ export class Consumerist extends Achievement {
     return [{
       tier,
       name: 'Consumerist',
-      desc: `Sell items for ${tier*5}% more for spending ${baseValue * Math.pow(10, tier)} gold, and gain +${tier*0.01}% DEX.`,
+      desc: `Sell items for ${tier*5}% more for spending ${baseValue * Math.pow(10, tier)} gold, and gain +${tier}% DEX.`,
       type: AchievementTypes.EVENT,
       rewards
     }];

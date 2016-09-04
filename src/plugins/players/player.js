@@ -248,7 +248,11 @@ export class Player extends Character {
   }
 
   _updateParty() {
-    this.$dataUpdater(this.name, 'party', this.party ? this.party.buildTransmitObject() : {});
+    const transmitObject = this.party ? this.party.buildTransmitObject() : {};
+    if(this.$lastPartyObject && _.isEqual(transmitObject, this.$lastPartyObject)) return;
+    this.$lastPartyObject = transmitObject;
+
+    this.$dataUpdater(this.name, 'party', transmitObject);
   }
 
   _updateEquipment() {
