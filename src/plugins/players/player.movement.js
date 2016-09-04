@@ -99,7 +99,7 @@ export class PlayerMovement {
     if(dest.movementType === 'ascend' && player.$personalities.isActive('Delver')) return;
     if(dest.movementType === 'descend' && player.$personalities.isActive('ScaredOfTheDark')) return;
 
-    if(!force) {
+    if(!force && (dest.movementType === 'ascend' || dest.movementType === 'descend')) {
       if(player.stepCooldown > 0) return;
       player.stepCooldown = 10;
     }
