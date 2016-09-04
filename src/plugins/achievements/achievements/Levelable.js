@@ -23,7 +23,7 @@ export class Levelable extends Achievement {
     return [{
       tier,
       name: 'Levelable',
-      desc: 'Gain 1 LUK and 1 XP every 10 levels.',
+      desc: `Gain +${tier} LUK and +${tier} Bonus XP (added every time XP is gained) for being level ${tier*10}.`,
       type: AchievementTypes.PROGRESS,
       rewards
     }];

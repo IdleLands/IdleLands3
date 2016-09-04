@@ -12,7 +12,7 @@ export class Entitled extends Achievement {
     return [{
       tier: 1,
       name: 'Entitled',
-      desc: 'Gain a title for getting so many titles.',
+      desc: 'Gain a title for getting 15 titles.',
       type: AchievementTypes.EVENT,
       rewards: [{
         type: 'title',

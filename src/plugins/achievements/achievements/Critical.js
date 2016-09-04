@@ -29,7 +29,7 @@ export class Critical extends Achievement {
     return [{
       tier,
       name: 'Critical',
-      desc: 'Gain 1% bonus DEX for every 50 critical hits.',
+      desc: `Gain ${tier}% DEX for having ${tier*50} critical hits.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];

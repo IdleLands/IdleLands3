@@ -36,7 +36,7 @@ export class Collector extends Achievement {
     return [{
       tier,
       name: 'Collector',
-      desc: `Gain +${tier}% AGI/CON/DEX/INT/STR by having ${tier*25} collectibles.`,
+      desc: `Gain +${tier}% AGI/CON/DEX/INT/STR for having ${tier*25} collectibles.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];

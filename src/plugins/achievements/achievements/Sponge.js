@@ -8,7 +8,8 @@ export class Sponge extends Achievement {
     const baseValue = 1000;
 
     let tier = 1;
-    while(value >= baseValue * Math.pow(10, tier-1)) {
+    let calcValue = 0;
+    while(value >= (calcValue = baseValue * Math.pow(10, tier-1))) {
       tier++;
     }
 
@@ -30,7 +31,7 @@ export class Sponge extends Achievement {
     return [{
       tier,
       name: 'Sponge',
-      desc: 'Gain 1% HP and 20 CON for every 1000*(10^tier) damage taken.',
+      desc: `Gain +${tier}% HP and +${tier*20} CON for taking ${calcValue} damage.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];

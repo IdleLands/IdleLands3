@@ -27,7 +27,7 @@ export class Classy extends Achievement {
       return {
         tier: 1,
         name: `Classy: ${prof}`,
-        desc: `You've been a ${prof}.`,
+        desc: `You've been a ${prof}. Gain their base stats as a bonus!`,
         type: AchievementTypes.PROGRESS,
         rewards: [statReward]
       };

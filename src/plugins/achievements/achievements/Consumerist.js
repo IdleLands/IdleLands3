@@ -6,9 +6,10 @@ export class Consumerist extends Achievement {
 
     const value = player.$statistics.getStat('Character.Gold.Spent');
     const baseValue = 1000;
+    let calcValue = 0;
 
     let tier = 1;
-    while(value >= baseValue * Math.pow(10, tier-1)) {
+    while(value >= (calcValue = baseValue * Math.pow(10, tier-1))) {
       tier++;
     }
 
@@ -30,7 +31,7 @@ export class Consumerist extends Achievement {
     return [{
       tier,
       name: 'Consumerist',
-      desc: 'Sell items for 5% more for every 1000*(10^tier) spent, and +1% DEX per tier.',
+      desc: `Sell items for ${tier*5}% more for spending ${calcValue} gold, and gain +${tier*0.01}% DEX.`,
       type: AchievementTypes.EVENT,
       rewards
     }];

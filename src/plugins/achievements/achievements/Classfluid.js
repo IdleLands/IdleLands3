@@ -22,7 +22,7 @@ export class Classfluid extends Achievement {
     return [{
       tier,
       name: 'Classfluid',
-      desc: 'You have been every possible profession, maybe even multiple times.',
+      desc: `+${3*tier}% STR/CON/DEX/INT/AGI/LUK for being each profession ${tier} times.`,
       type: AchievementTypes.PROGRESS,
       rewards: [{
         type: 'title',

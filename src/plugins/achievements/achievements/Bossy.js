@@ -29,7 +29,7 @@ export class Bossy extends Achievement {
     return [{
       tier,
       name: 'Bossy',
-      desc: '+10 STR/CON every 15 boss kills.',
+      desc: `+${tier*10} STR/CON for killing ${baseValue*tier} bosses.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];

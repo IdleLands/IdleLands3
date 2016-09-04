@@ -8,7 +8,9 @@ export class Eventful extends Achievement {
     const baseValue = 100;
 
     let tier = 1;
-    while(totalEvents >= baseValue * Math.pow(10, tier-1)) {
+    let calcValue = 0;
+
+    while(totalEvents >= (calcValue = baseValue * Math.pow(10, tier-1))) {
       tier++;
     }
 
@@ -28,7 +30,7 @@ export class Eventful extends Achievement {
     return [{
       tier,
       name: 'Eventful',
-      desc: 'Equip items that are 10% better every 100*(10^N) events.',
+      desc: `Equip items that are ${10*tier}% better for experiencing ${calcValue} events.`,
       type: AchievementTypes.EVENT,
       rewards
     }];

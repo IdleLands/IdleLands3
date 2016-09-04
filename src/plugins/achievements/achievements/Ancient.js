@@ -35,7 +35,7 @@ export class Ancient extends Achievement {
     return [{
       tier,
       name: 'Ancient',
-      desc: 'Gain bonus stats for playing the original IdleLands.',
+      desc: 'Gain +1% STR/CON/DEX/AGI/INT/LUK for playing the original IdleLands.',
       type: AchievementTypes.SPECIAL,
       rewards
     }];

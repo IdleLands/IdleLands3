@@ -29,7 +29,7 @@ export class Boxer extends Achievement {
     return [{
       tier,
       name: 'Boxer',
-      desc: '+10 DEX/AGI every 15 chests opened.',
+      desc: `+${tier*10} DEX/AGI for opening ${baseValue*tier} chests.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];

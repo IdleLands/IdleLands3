@@ -30,7 +30,7 @@ export class Explorative extends Achievement {
     return [{
       tier,
       name: 'Explorative',
-      desc: 'Gain 1% bonus INT for every 5 unique maps explored.',
+      desc: `Gain +${tier}% INT for exploring ${tier*5} unique maps.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];

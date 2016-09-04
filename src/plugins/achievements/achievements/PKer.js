@@ -8,7 +8,8 @@ export class PKer extends Achievement {
     const baseValue = 10;
 
     let tier = 1;
-    while(value >= baseValue * Math.pow(10, tier-1)) {
+    let calcValue = 0;
+    while(value >= (calcValue = baseValue * Math.pow(10, tier-1))) {
       tier++;
     }
 
@@ -33,7 +34,7 @@ export class PKer extends Achievement {
     return [{
       tier,
       name: 'PKer',
-      desc: 'Gain 5 STR/CON/DEX/INT/AGI and +10% better item find for every 10*(10^tier) players killed.',
+      desc: `Gain +${tier*5} STR/CON/DEX/INT/AGI and +${tier*10}% better item find for killing ${calcValue} players.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];
