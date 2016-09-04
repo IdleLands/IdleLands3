@@ -26,6 +26,8 @@ const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'produc
 setInterval(() => {
   const gameState = GameState.getInstance();
   const players = gameState.getPlayers();
+
+  /*
   const promises = _.map(players, (player) => {
     const playerName = player.name;
 
@@ -40,7 +42,14 @@ setInterval(() => {
     });
 
   });
+  */
 
-  Promise.all(promises).then(AllPlayersPostMove);
+  _.each(players, player => {
+    player.takeTurn();
+  });
+
+  AllPlayersPostMove();
+
+  // Promise.all(promises).then(AllPlayersPostMove);
 
 }, timerDelay);

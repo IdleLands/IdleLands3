@@ -10,7 +10,7 @@ import { persistToDb } from './battle.db';
 import Chance from 'chance';
 const chance = new Chance();
 
-const MAX_ROUND = 300;
+const MAX_ROUND = 100;
 
 export class Battle {
   constructor({ parties, introText }) {
