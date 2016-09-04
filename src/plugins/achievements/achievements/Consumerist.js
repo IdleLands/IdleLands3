@@ -18,7 +18,7 @@ export class Consumerist extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      itemValueMultiplier: (tier*0.05).toFixed(1),
+      itemValueMultiplier: (tier*0.05).toFixed(2),
       dex: (player, baseValue) => baseValue*0.01*tier,
       dexDisplay: `${tier}%`
     }];

@@ -30,7 +30,7 @@ export class Sponge extends Achievement {
     return [{
       tier,
       name: 'Sponge',
-      desc: `Gain +${tier}% HP and +${tier*20} CON for taking ${baseValue * Math.pow(10, tier)} damage.`,
+      desc: `Gain +${tier}% HP and +${tier*20} CON for taking ${baseValue * Math.pow(10, tier-1)} damage.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];
