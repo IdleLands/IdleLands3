@@ -104,17 +104,17 @@ export const socket = (socket, primus, respond) => {
     }
 
     try {
-      socket.authToken = { playerName: player.name, token };
-      socket.playerName = player.name;
+      socket.join(player.name);
     } catch(e) {
-      Logger.error('login.socket.auth/name', e);
+      // Logger.error('login.socket.join', e);
       return respond(MESSAGES.GENERIC);
     }
 
     try {
-      socket.join(player.name);
+      socket.authToken = { playerName: player.name, token };
+      socket.playerName = player.name;
     } catch(e) {
-      Logger.error('login.socket.join', e);
+      Logger.error('login.socket.auth/name', e);
       return respond(MESSAGES.GENERIC);
     }
 
