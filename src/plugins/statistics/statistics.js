@@ -46,9 +46,11 @@ export class Statistics {
     this.save();
   }
 
-  batchIncrement(stats) {
+  batchIncrement(stats, doSave = true) {
     _.each(stats, stat => this._addStat(stat));
-    this.save();
+    if (doSave) {
+      this.save();
+    }
   }
 
   save() {
