@@ -27,7 +27,7 @@ setInterval(() => {
   const gameState = GameState.getInstance();
   const players = gameState.getPlayers();
 
-  /*
+  
   const promises = _.map(players, (player) => {
     const playerName = player.name;
 
@@ -44,12 +44,5 @@ setInterval(() => {
   });
 
   Promise.all(promises).then(AllPlayersPostMove);
-  */
-
-  _.each(players, player => {
-    player.takeTurn();
-  });
-
-  AllPlayersPostMove();
 
 }, timerDelay);
