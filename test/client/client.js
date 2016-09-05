@@ -43,7 +43,7 @@ const play = (name, index) => {
     }
   });
 
-  const socket = new Socket('ws://localhost:8080');
+  const socket = new Socket('ws://localhost:' + (process.env.PORT || 8080));
 
   const login = () => {
     socket.emit('plugin:player:login', { name, userId: `local|${name}` });
