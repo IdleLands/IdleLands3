@@ -239,7 +239,13 @@ export class Player extends Character {
   }
 
   save() {
-    this.$playerDb.savePlayer(this);
+    if(!this.saveSteps) this.saveSteps = 10;
+    this.saveSteps--;
+
+    if(this.saveSteps <= 0) {
+      this.$playerDb.savePlayer(this);
+      this.saveSteps = 10;
+    }
     this.update();
   }
 
