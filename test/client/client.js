@@ -1,10 +1,12 @@
 
+require('babel-register');
 require('babel-polyfill');
 
 const _ = require('lodash');
 const Primus = require('primus');
 
 const argv = require('minimist')(process.argv.slice(2));
+const isQuiet = process.env.QUIET;
 
 var al = require("../../src/shared/asset-loader");
 
@@ -27,8 +29,10 @@ const players = [].concat.apply([], names);
 names = {};
 
 const numPlayers = Math.max(1, Math.min(players.length, argv.players)) || 1;
+var numConnected = 0;
+var doDisplayConnections = false;
 
-console.log(`Testing with ${numPlayers} players.`);
+console.log(`Testing with ${numPlayers} players.` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
 
 const sockets = {};
 
@@ -43,7 +47,7 @@ const play = (name, index) => {
     }
   });
 
-  const socket = new Socket('ws://localhost:8080');
+  const socket = new Socket('ws://localhost:' + (process.env.PORT || 8080));
 
   const login = () => {
     socket.emit('plugin:player:login', { name, userId: `local|${name}` });
@@ -51,12 +55,16 @@ const play = (name, index) => {
 
   sockets[name] = socket;
   socket.on('open', () => {
-    console.log(`${name} connected.`);
+    numConnected++;
+    if (!isQuiet || doDisplayConnections) {
+      console.log(`${name} connected.`);
+    }
     login();
   });
 
   socket.on('close', () => {
     console.log(`${name} disconnected.`);
+    numConnected--;
   });
 
   socket.on('data', msg => {
@@ -76,6 +84,7 @@ const play = (name, index) => {
     }
 
     if(!msg.type || !msg.text) return;
+    if(isQuiet) return;
     if(msg.type === 'Global' && index === 1) {
       console.log(`[${msg.type}] ${msg.text}`);
     } else if(msg.type === 'Single' && msg.targets[0] === name) {
@@ -86,4 +95,14 @@ const play = (name, index) => {
   });
 };
 
-_.each(players.slice(0, numPlayers), play);
+_.each(_.sampleSize(players, numPlayers), play);
+
+// expect 50 players a second to join. Do it this way so quiet mode is quieter
+setTimeout(() => {
+  if(numConnected == numPlayers) {
+    console.log("all players connected")
+  } else {
+    console.log(numConnected + ' of ' + numPlayers + ' connected.')
+  }
+  doDisplayConnections = true;
+}, 1000 * Math.ceil(numPlayers/50));
