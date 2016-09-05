@@ -18,10 +18,10 @@ export const primus = (() => {
     .first();
 
   if(ip) {
-    console.log(`Your IP is: ${ip}`);
+    console.log(`Your IP is: ${ip}` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
   }
 
-
+  
   const express = require('express');
   const compression=require("compression");
   const serve = express();
@@ -33,6 +33,7 @@ export const primus = (() => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     serve(req, res, finalhandler(req, res));
   });
+
   server.listen(process.env.PORT || 8080);
 
   const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });

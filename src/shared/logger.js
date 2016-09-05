@@ -2,6 +2,7 @@
 import rollbar from 'rollbar';
 
 const rollbarToken = process.env.ROLLBAR_ACCESS_TOKEN;
+const isQuiet = process.env.QUIET;
 
 if(rollbarToken) {
   rollbar.init(rollbarToken);
@@ -30,6 +31,7 @@ export class Logger {
   }
 
   static info(tag, message) {
+    if (isQuiet) return;
     console.info(this._formatMessage(tag, message));
   }
 }
