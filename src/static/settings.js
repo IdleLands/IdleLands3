@@ -21,6 +21,7 @@ class Settings {
     this.merchantMultiplier = 3;
 
     this.saveSteps = 10;
+    this.achievementSteps = 60; // once every 5 minutes
 
     this.reductionDefaults = {
       itemFindRange: 12,

@@ -86,11 +86,6 @@ export class Player extends Character {
   takeTurn() {
     this.moveAction();
     EventHandler.tryToDoEvent(this);
-    const newAchievements = this.$achievements.checkAchievements(this);
-    if(newAchievements.length > 0) {
-      emitter.emit('player:achieve', { player: this, achievements: newAchievements });
-      this.$personalities.checkPersonalities(this);
-    }
 
     if(this.party) {
       this.party.playerTakeStep(this);
@@ -232,13 +227,15 @@ export class Player extends Character {
   }
 
   buildTransmitObject() {
-    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir', 'eventSteps', 'partySteps'];
+    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir'];
     return _.omitBy(this, (val, key) => {
-      return _.startsWith(key, '$') || _.includes(key, 'Link') || _.includes(badKeys, key);
+      return _.startsWith(key, '$') || _.includes(key, 'Link') || _.includes(key, 'Steps') || _.includes(badKeys, key);
     });
   }
 
   save() {
+    this.checkAchievements();
+
     if(!this.saveSteps) this.saveSteps = SETTINGS.saveSteps;
     this.saveSteps--;
 
@@ -247,6 +244,21 @@ export class Player extends Character {
       this.saveSteps = SETTINGS.saveSteps;
     }
     this.update();
+  }
+
+  checkAchievements() {
+    if(!this.achievementSteps) this.achievementSteps = SETTINGS.achievementSteps;
+    this.achievementSteps--;
+
+    if(this.achievementSteps <= 0) {
+      const newAchievements = this.$achievements.checkAchievements(this);
+      if(newAchievements.length > 0) {
+        emitter.emit('player:achieve', { player: this, achievements: newAchievements });
+        this.$personalities.checkPersonalities(this);
+      }
+
+      this.achievementSteps = SETTINGS.achievementSteps;
+    }
   }
 
   _updatePlayer() {
