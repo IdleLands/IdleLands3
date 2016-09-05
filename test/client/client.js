@@ -6,6 +6,8 @@ const Primus = require('primus');
 
 const argv = require('minimist')(process.argv.slice(2));
 
+var al = require("../../src/shared/asset-loader");
+
 // get a big list of names (don't really care what)
 var names = [
   'Jombocom', 'Carple', 'Danret', 'Swilia', 'Bripz', 'Goop',
