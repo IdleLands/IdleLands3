@@ -267,7 +267,6 @@ export class Battle {
       p.$battle = null;
       p.$profession.resetSpecial(p);
       p.$effects.clear();
-      p.recalculateStats();
 
       if(p.isPet) {
         p.party.playerLeave(p);
