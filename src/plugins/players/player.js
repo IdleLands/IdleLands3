@@ -222,7 +222,7 @@ export class Player extends Character {
       `Character.Maps.${this.map}`,
       `Character.Terrains.${tile.terrain}`,
       `Character.Regions.${tile.region}`
-    ]);
+    ], false);
 
     this.gainXp(SETTINGS.xpPerStep);
   }
