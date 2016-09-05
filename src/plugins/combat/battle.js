@@ -1,5 +1,6 @@
 
 const isBattleDebug = process.env.BATTLE_DEBUG;
+const isQuiet = process.env.QUIET;
 
 import _ from 'lodash';
 
@@ -41,7 +42,7 @@ export class Battle {
   }
 
   _emitMessage(message, data = null) {
-    if(isBattleDebug) {
+    if(isBattleDebug && !isQuiet) {
       console.log(message);
     }
     this.messageData.push({ message, data });
@@ -69,7 +70,7 @@ export class Battle {
   }
 
   roundMessage() {
-    if(isBattleDebug) {
+    if(isBattleDebug && !isQuiet) {
       _.each(this._partyStats(), party => {
         console.log(party.name);
         console.log(party.players);
