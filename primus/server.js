@@ -22,7 +22,10 @@ export const primus = (() => {
   }
 
 
-  const serve = require('serve-static')('assets');
+  const express = require('express');
+  const compression=require("compression");
+  const serve = express();
+  serve.use(compression(), express.static('assets'));
   const finalhandler = require('finalhandler');
 
 // load primus
@@ -32,7 +35,7 @@ export const primus = (() => {
   });
   server.listen(process.env.PORT || 8080);
 
-  const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets', compression: true });
+  const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
 
 // load socket functions
   const normalizedPath = require('path').join(__dirname, '..', 'src');
