@@ -159,7 +159,7 @@ export class Spell {
         message: '',
         applyEffect: effect,
         applyEffectName: stat,
-        applyEffectPotency: stat === 'prone' ? 1 : this.calcPotency(),
+        applyEffectDuration: stat === 'prone' ? 1 : this.calcDuration(),
         targets: [target]
       });
     });
