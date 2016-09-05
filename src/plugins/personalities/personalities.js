@@ -70,7 +70,7 @@ export class Personalities {
     }), 'name');
 
     this.earnedPersonalities = earnedObjs;
-    this.save();
+    // this.save(); - these are regenerated a lot, this is not really necessary except on toggle
 
     return earnedObjs;
   }

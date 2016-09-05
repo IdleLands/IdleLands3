@@ -89,13 +89,13 @@ export class Player extends Character {
     const newAchievements = this.$achievements.checkAchievements(this);
     if(newAchievements.length > 0) {
       emitter.emit('player:achieve', { player: this, achievements: newAchievements });
+      this.$personalities.checkPersonalities(this);
     }
 
     if(this.party) {
       this.party.playerTakeStep(this);
     }
 
-    this.$personalities.checkPersonalities(this);
     this.save();
   }
 
@@ -239,12 +239,12 @@ export class Player extends Character {
   }
 
   save() {
-    if(!this.saveSteps) this.saveSteps = 10;
+    if(!this.saveSteps) this.saveSteps = SETTINGS.saveSteps;
     this.saveSteps--;
 
     if(this.saveSteps <= 0) {
       this.$playerDb.savePlayer(this);
-      this.saveSteps = 10;
+      this.saveSteps = SETTINGS.saveSteps;
     }
     this.update();
   }

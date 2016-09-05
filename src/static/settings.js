@@ -20,6 +20,8 @@ class Settings {
 
     this.merchantMultiplier = 3;
 
+    this.saveSteps = 10;
+
     this.reductionDefaults = {
       itemFindRange: 12,
       itemFindRangeMultiplier: 0.5,

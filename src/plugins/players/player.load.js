@@ -67,6 +67,8 @@ export class PlayerLoad {
         player.$personalities = await this.personalitiesDb.getPersonalities(player.name);
       }
 
+      player.$personalities.checkPersonalities(player);
+
       if(!player.collectiblesLink) {
         const collectiblesObj = constitute(Collectibles);
         collectiblesObj.init({ _id: player.name, collectibles: {} });
