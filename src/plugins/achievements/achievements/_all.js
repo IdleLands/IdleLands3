@@ -10,6 +10,7 @@ export { Consumerist } from './Consumerist';
 export { Contributor } from './Contributor';
 export { Critical } from './Critical';
 export { DigitalMagician } from './DigitalMagician';
+export { Donator } from './Donator';
 export { Effective } from './Effective';
 export { Entitled } from './Entitled';
 export { Eventful } from './Eventful';
