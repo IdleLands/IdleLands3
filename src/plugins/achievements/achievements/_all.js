@@ -7,6 +7,7 @@ export { Classfluid } from './Classfluid';
 export { Classy } from './Classy';
 export { Collector } from './Collector';
 export { Consumerist } from './Consumerist';
+export { Contributor } from './Contributor';
 export { Critical } from './Critical';
 export { DigitalMagician } from './DigitalMagician';
 export { Effective } from './Effective';
