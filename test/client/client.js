@@ -6,7 +6,8 @@ const Primus = require('primus');
 
 const argv = require('minimist')(process.argv.slice(2));
 
-const players = [
+// get a big list of names (don't really care what)
+var names = [
   'Jombocom', 'Carple', 'Danret', 'Swilia', 'Bripz', 'Goop',
   'Jeut', 'Axce', 'Groat', 'Jack', 'Xefe', 'Ooola', 'Getry',
   'Seripity', 'Tence', 'Rawgle', 'Plez', 'Zep', 'Shet', 'Jezza',
@@ -14,6 +15,14 @@ const players = [
   'El Shibe', 'La Gpoy', 'Wizzrobu', 'Banana', 'Chelpe', 'Q',
   'Azerty'
 ];
+_.each(['mainhand', 'offhand', 'monster', 'trainer', 'bread', 'meat', 'veg'], type => {
+  names.push(_.map(al.ObjectAssets[type], o => o.name));
+});
+_.each(['deity'], type => {
+  names.push(al.StringAssets[type]);
+});
+const players = [].concat.apply([], names);
+names = {};
 
 const numPlayers = Math.max(1, Math.min(players.length, argv.players)) || 1;
 
