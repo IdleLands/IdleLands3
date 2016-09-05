@@ -103,10 +103,20 @@ export const socket = (socket, primus, respond) => {
       return;
     }
 
-    socket.authToken = { playerName: player.name, token };
-    socket.playerName = player.name;
+    try {
+      socket.authToken = { playerName: player.name, token };
+      socket.playerName = player.name;
+    } catch(e) {
+      Logger.error('login.socket.auth/name', e);
+      return respond(MESSAGES.GENERIC);
+    }
 
-    socket.join(player.name);
+    try {
+      socket.join(player.name);
+    } catch(e) {
+      Logger.error('login.socket.join', e);
+      return respond(MESSAGES.GENERIC);
+    }
 
     if(gameState._hasTimeout(player.name)) {
       gameState._clearTimeout(player.name);
