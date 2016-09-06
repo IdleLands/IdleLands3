@@ -27,7 +27,7 @@ export const primus = (() => {
   const serve = express();
   serve.use(compression(), express.static('assets'));
   serve.get('/online', (req, res) => {
-    res.send('ok');
+    res.send(`${GameState.getInstance().getPlayers().length}`);
   });
   const finalhandler = require('finalhandler');
 
