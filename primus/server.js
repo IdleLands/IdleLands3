@@ -87,6 +87,11 @@ export const primus = (() => {
       respond(data);
     }));
 
+    setTimeout(() => {
+      if(spark.authToken) return;
+      spark.end();
+    }, 10000);
+
     // spark.join('adventurelog');
   });
 
