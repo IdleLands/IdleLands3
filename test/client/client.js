@@ -6,12 +6,13 @@ const _ = require('lodash');
 const Primus = require('primus');
 
 const argv = require('minimist')(process.argv.slice(2));
+
 const isQuiet = process.env.QUIET;
 
-var al = require("../../src/shared/asset-loader");
+const al = require('../../src/shared/asset-loader');
 
 // get a big list of names (don't really care what)
-var names = [
+let names = [
   'Jombocom', 'Carple', 'Danret', 'Swilia', 'Bripz', 'Goop',
   'Jeut', 'Axce', 'Groat', 'Jack', 'Xefe', 'Ooola', 'Getry',
   'Seripity', 'Tence', 'Rawgle', 'Plez', 'Zep', 'Shet', 'Jezza',
@@ -29,8 +30,8 @@ const players = [].concat.apply([], names);
 names = {};
 
 const numPlayers = Math.max(1, Math.min(players.length, argv.players)) || 1;
-var numConnected = 0;
-var doDisplayConnections = false;
+let numConnected = 0;
+let doDisplayConnections = false;
 
 console.log(`Testing with ${numPlayers} players.` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
 
@@ -95,14 +96,18 @@ const play = (name, index) => {
   });
 };
 
-_.each(_.sampleSize(players, numPlayers), play);
+if (argv.random) {
+  _.each(_.sampleSize(players, numPlayers), play);
+} else {
+  _.each(players.slice(0, numPlayers), play);
+}
 
 // expect 50 players a second to join. Do it this way so quiet mode is quieter
 setTimeout(() => {
   if(numConnected == numPlayers) {
-    console.log("all players connected")
+    console.log('all players connected');
   } else {
-    console.log(numConnected + ' of ' + numPlayers + ' connected.')
+    console.log(numConnected + ' of ' + numPlayers + ' connected.');
   }
   doDisplayConnections = true;
 }, 1000 * Math.ceil(numPlayers/50));
