@@ -30,13 +30,8 @@ export class PlayerLoad {
     this.collectiblesDb = collectiblesDb;
   }
 
-  async loadPlayer(playerId) {
-
-    const playerObj = await this.playerDb.getPlayer({ _id: playerId });
-    try {
-      const player = constitute(Player);
-      player.init(playerObj);
-
+  async loadStatistics(player) {
+    return new Promise(async resolve => {
       if(!player.statisticsLink) {
         const statisticsObj = constitute(Statistics);
         statisticsObj.init({ _id: player.name, stats: {} });
@@ -46,7 +41,12 @@ export class PlayerLoad {
       } else {
         player.$statistics = await this.statisticsDb.getStatistics(player.name);
       }
+      resolve();
+    });
+  }
 
+  async loadAchievements(player) {
+    return new Promise(async resolve => {
       if(!player.achievementsLink) {
         const achievementsObj = constitute(Achievements);
         achievementsObj.init({ _id: player.name, achievements: {} });
@@ -56,7 +56,12 @@ export class PlayerLoad {
       } else {
         player.$achievements = await this.achievementsDb.getAchievements(player.name);
       }
+      resolve();
+    });
+  }
 
+  async loadPersonalities(player) {
+    return new Promise(async resolve => {
       if(!player.personalitiesLink) {
         const personalitiesObj = constitute(Personalities);
         personalitiesObj.init({ _id: player.name, activePersonalities: {}, earnedPersonalities: [] });
@@ -66,9 +71,12 @@ export class PlayerLoad {
       } else {
         player.$personalities = await this.personalitiesDb.getPersonalities(player.name);
       }
+      resolve();
+    });
+  }
 
-      player.$personalities.checkPersonalities(player);
-
+  async loadCollectibles(player) {
+    return new Promise(async resolve => {
       if(!player.collectiblesLink) {
         const collectiblesObj = constitute(Collectibles);
         collectiblesObj.init({ _id: player.name, collectibles: {} });
@@ -78,6 +86,26 @@ export class PlayerLoad {
       } else {
         player.$collectibles = await this.collectiblesDb.getCollectibles(player.name);
       }
+      resolve();
+    });
+  }
+
+  async loadPlayer(playerId) {
+
+    const playerObj = await this.playerDb.getPlayer({ _id: playerId });
+
+    try {
+      const player = constitute(Player);
+      player.init(playerObj);
+
+      await Promise.all([
+        this.loadStatistics(player),
+        this.loadAchievements(player),
+        this.loadPersonalities(player),
+        this.loadCollectibles(player)
+      ]);
+
+      player.$personalities.checkPersonalities(player);
 
       player.isOnline = true;
       player.recalculateStats();

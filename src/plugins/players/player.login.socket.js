@@ -18,6 +18,7 @@ export const event = 'plugin:player:login';
 export const socket = (socket, primus, respond) => {
 
   const login = async({ name, gender, professionName, token, userId }) => {
+
     let player = null;
     let event = '';
     const playerDb = constitute(PlayerDb);
@@ -25,6 +26,7 @@ export const socket = (socket, primus, respond) => {
     if(!playerDb) {
       Logger.error('Login', new Error('playerDb could not be resolved.'));
       respond({ msg: MESSAGES.GENERIC });
+      return;
     }
 
     const validateToken = !_.includes(userId, 'local|');
