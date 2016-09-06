@@ -21,6 +21,7 @@ export const socket = (socket) => {
 
   };
 
+  socket.on('close', logout);
   socket.on('end', logout);
   socket.on(event, logout);
 };
