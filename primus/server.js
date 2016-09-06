@@ -7,6 +7,8 @@ import Emit from 'primus-emit';
 import Rooms from 'primus-rooms';
 import Multiplex from 'primus-multiplex';
 
+import { GameState } from '../src/core/game-state';
+
 export const primus = (() => {
   if(process.env.NO_START_GAME) return;
 
@@ -23,11 +25,15 @@ export const primus = (() => {
 
   
   const express = require('express');
-  const compression=require("compression");
+  const compression=require('compression');
   const serve = express();
   serve.use(compression(), express.static('assets'));
   serve.get('/online', (req, res) => {
-    res.send(`${GameState.getInstance().getPlayers().length}`);
+    try {
+      res.send(`${GameState.getInstance().getPlayers().length}`);
+    } catch (e) {
+      res.send(e);
+    }
   });
   const finalhandler = require('finalhandler');
 
