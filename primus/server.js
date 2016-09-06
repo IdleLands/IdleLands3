@@ -73,7 +73,7 @@ export const primus = (() => {
 
   primus.use('rooms', Rooms);
   primus.use('emit', Emit);
-  primus.use('multiplex', Multiplex);
+  // primus.use('multiplex', Multiplex);
 
 // force setting up the global connection
   new (require('../src/shared/db-wrapper').DbWrapper)().connectionPromise();
