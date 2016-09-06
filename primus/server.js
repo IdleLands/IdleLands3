@@ -26,6 +26,9 @@ export const primus = (() => {
   const compression=require("compression");
   const serve = express();
   serve.use(compression(), express.static('assets'));
+  serve.get('/online', (req, res) => {
+    res.send('ok');
+  });
   const finalhandler = require('finalhandler');
 
 // load primus
