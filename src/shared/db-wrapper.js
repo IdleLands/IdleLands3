@@ -23,12 +23,20 @@ export class DbWrapper {
     globalPromise = new Promise((resolve, reject) => {
       Logger.info(mongoTag, 'Connecting to database...');
 
-      MongoClient.connect(connectionString, { server: { poolSize: 100 } }, async(err, db) => {
+      MongoClient.connect(connectionString, { server: { poolSize: 50, auto_reconnect: true, socketOptions: { keepAlive: 1, connectTimeoutMS: 120000, socketTimeoutMS: 120000 } } }, async(err, db) => {
 
         if(err) {
           Logger.error('DB:Init', err);
           return reject(err);
         }
+
+        db.on('close', function() {
+          try {
+            db.open();
+          } catch (e) {
+            Logger.error('DB:close, reopen attempt', e);
+          }
+        });
 
         db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
         db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
