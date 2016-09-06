@@ -104,13 +104,6 @@ export const socket = (socket, primus, respond) => {
     }
 
     try {
-      socket.join(player.name);
-    } catch(e) {
-      // Logger.error('login.socket.join', e);
-      return respond(MESSAGES.GENERIC);
-    }
-
-    try {
       socket.authToken = { playerName: player.name, token };
       socket.playerName = player.name;
     } catch(e) {

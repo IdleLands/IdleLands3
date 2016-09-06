@@ -75,7 +75,7 @@ export const primus = (() => {
       respond(data);
     }));
 
-    spark.join('adventurelog');
+    // spark.join('adventurelog');
   });
 
   const path = require('path').join(__dirname, '..', '..', 'Play');

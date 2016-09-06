@@ -5,7 +5,7 @@ import { GameState } from '../../core/game-state';
 import { SETTINGS } from '../../static/settings';
 
 const GENERAL_ROUTE = 'chat:channel:General';
-const EVENTS_ROUTE  = 'chat:general:Global Events';
+// const EVENTS_ROUTE  = 'chat:general:Global Events';
 
 const CHAT_SPAM_DELAY = process.env.CHAT_SPAM_DELAY || 2000;
 const MAX_SPAM_MESSAGES = process.env.MAX_SPAM_MESSAGES || 5;
@@ -21,7 +21,7 @@ export const socket = (socket, primus) => {
 
   // always join the general chat channel
   socket.join(GENERAL_ROUTE);
-  socket.join(EVENTS_ROUTE);
+  // socket.join(EVENTS_ROUTE);
 
   const sendmessage = async ({ text, channel, route }) => {
     if(!socket.authToken) return;
