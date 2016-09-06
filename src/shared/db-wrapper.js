@@ -23,7 +23,7 @@ export class DbWrapper {
     globalPromise = new Promise((resolve, reject) => {
       Logger.info(mongoTag, 'Connecting to database...');
 
-      MongoClient.connect(connectionString, async(err, db) => {
+      MongoClient.connect(connectionString, { server: { poolSize: 100 } }, async(err, db) => {
 
         if(err) {
           Logger.error('DB:Init', err);
