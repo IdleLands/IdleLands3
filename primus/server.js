@@ -30,7 +30,10 @@ export const primus = (() => {
   serve.use(compression(), express.static('assets'));
   serve.get('/online', (req, res) => {
     try {
-      res.send(`${GameState.getInstance().getPlayers().length}`);
+      res.json({
+        players: GameState.getInstance().getPlayers().length,
+        sparks: primus.connected
+      });
     } catch (e) {
       res.send(e);
     }
