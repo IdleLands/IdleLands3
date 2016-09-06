@@ -31,63 +31,51 @@ export class PlayerLoad {
   }
 
   async loadStatistics(player) {
-    return new Promise(async resolve => {
-      if(!player.statisticsLink) {
-        const statisticsObj = constitute(Statistics);
-        statisticsObj.init({ _id: player.name, stats: {} });
-        await this.statisticsDb.saveStatistics(statisticsObj);
-        player.statisticsLink = player.name;
-        player.$statistics = statisticsObj;
-      } else {
-        player.$statistics = await this.statisticsDb.getStatistics(player.name);
-      }
-      resolve();
-    });
+    if(!player.statisticsLink) {
+      const statisticsObj = constitute(Statistics);
+      statisticsObj.init({ _id: player.name, stats: {} });
+      await this.statisticsDb.saveStatistics(statisticsObj);
+      player.statisticsLink = player.name;
+      player.$statistics = statisticsObj;
+    } else {
+      player.$statistics = await this.statisticsDb.getStatistics(player.name);
+    }
   }
 
   async loadAchievements(player) {
-    return new Promise(async resolve => {
-      if(!player.achievementsLink) {
-        const achievementsObj = constitute(Achievements);
-        achievementsObj.init({ _id: player.name, achievements: {} });
-        await this.achievementsDb.saveAchievements(achievementsObj);
-        player.achievementsLink = player.name;
-        player.$achievements = achievementsObj;
-      } else {
-        player.$achievements = await this.achievementsDb.getAchievements(player.name);
-      }
-      resolve();
-    });
+    if(!player.achievementsLink) {
+      const achievementsObj = constitute(Achievements);
+      achievementsObj.init({ _id: player.name, achievements: {} });
+      await this.achievementsDb.saveAchievements(achievementsObj);
+      player.achievementsLink = player.name;
+      player.$achievements = achievementsObj;
+    } else {
+      player.$achievements = await this.achievementsDb.getAchievements(player.name);
+    }
   }
 
   async loadPersonalities(player) {
-    return new Promise(async resolve => {
-      if(!player.personalitiesLink) {
-        const personalitiesObj = constitute(Personalities);
-        personalitiesObj.init({ _id: player.name, activePersonalities: {}, earnedPersonalities: [] });
-        await this.personalitiesDb.savePersonalities(personalitiesObj);
-        player.personalitiesLink = player.name;
-        player.$personalities = personalitiesObj;
-      } else {
-        player.$personalities = await this.personalitiesDb.getPersonalities(player.name);
-      }
-      resolve();
-    });
+    if(!player.personalitiesLink) {
+      const personalitiesObj = constitute(Personalities);
+      personalitiesObj.init({ _id: player.name, activePersonalities: {}, earnedPersonalities: [] });
+      await this.personalitiesDb.savePersonalities(personalitiesObj);
+      player.personalitiesLink = player.name;
+      player.$personalities = personalitiesObj;
+    } else {
+      player.$personalities = await this.personalitiesDb.getPersonalities(player.name);
+    }
   }
 
   async loadCollectibles(player) {
-    return new Promise(async resolve => {
-      if(!player.collectiblesLink) {
-        const collectiblesObj = constitute(Collectibles);
-        collectiblesObj.init({ _id: player.name, collectibles: {} });
-        await this.collectiblesDb.saveCollectibles(collectiblesObj);
-        player.collectiblesLink = player.name;
-        player.$collectibles = collectiblesObj;
-      } else {
-        player.$collectibles = await this.collectiblesDb.getCollectibles(player.name);
-      }
-      resolve();
-    });
+    if(!player.collectiblesLink) {
+      const collectiblesObj = constitute(Collectibles);
+      collectiblesObj.init({ _id: player.name, collectibles: {} });
+      await this.collectiblesDb.saveCollectibles(collectiblesObj);
+      player.collectiblesLink = player.name;
+      player.$collectibles = collectiblesObj;
+    } else {
+      player.$collectibles = await this.collectiblesDb.getCollectibles(player.name);
+    }
   }
 
   async loadPlayer(playerId) {
