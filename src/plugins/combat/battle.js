@@ -137,8 +137,15 @@ export class Battle {
 
     this.emitEvents(player, 'TakeTurn');
 
-    player._hp.add(player.liveStats.hpregen);
-    player._mp.add(player.liveStats.mpregen);
+    const hpRegen = player.liveStats.hpregen;
+    const mpRegen = player.liveStats.mpregen;
+
+    player._hp.add(hpRegen);
+    player._mp.add(mpRegen);
+
+    if(hpRegen > 0 || mpRegen > 0) {
+      this._emitMessage(`${player.fullname} regenerated ${hpRegen} hp and ${mpRegen} mp!`);
+    }
 
     player.$effects.tick();
   }
