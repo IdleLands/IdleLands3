@@ -30,7 +30,7 @@ _.each(_.sortBy(_.keys(Professions)), (profession) => {
     .tap(arr => {
       _.each(arr, spell => {
         _.each(spell.tiers, tier => {
-          tier._description = spell.description;
+          tier._description = spell.description || '';
           tier._spellName = spell.name;
           tier._element = spell.element;
         });
