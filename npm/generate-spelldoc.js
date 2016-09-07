@@ -51,7 +51,7 @@ _.each(_.sortBy(_.keys(Professions)), (profession) => {
     .value();
 
   _.each(professionSpellsSorted, tier => {
-    docString += `${tier.name} ([${tier._spellName} ${tier._level}](../src/plugins/combat/spells/${tier._spellName}.js)) | ${tier._element} | ${tier.level} | ${tier.description} | ${tier.collectibles ? tier.collectibles.join(', ') : ''}\n`;
+    docString += `${tier.name} ([${tier._spellName} ${tier._level}](../src/plugins/combat/spells/${tier._spellName}.js)) | ${tier._element} | ${tier.level} | ${tier._description} | ${tier.collectibles ? tier.collectibles.join(', ') : ''}\n`;
   });
 
   docString += '\n\n';
