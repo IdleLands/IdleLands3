@@ -202,6 +202,7 @@ export class Battle {
   endBattleBonuses() {
     if(this.currentRound >= MAX_ROUND) {
       this._emitMessage('No one wins! It was a tie! Give it up already, people!');
+      this._isTie = true;
       return;
     }
 
