@@ -1,7 +1,6 @@
 
 import fs from 'fs';
 import _ from 'lodash';
-import appRootPath from 'app-root-path';
 
 // auto-populated
 export const StringAssets = {};
@@ -87,7 +86,7 @@ const parseFile = (filename) => {
   return _(baseContents).compact() /* .reject(line => _.includes(line, '#')) */ .value();
 };
 
-StringAssets.class = _.map(loadDirectory(`${appRootPath}/src/core/professions`), ({ filename }) => {
+StringAssets.class = _.map(loadDirectory(`${__dirname}/../core/professions`), ({ filename }) => {
   const split = filename.split('/');
   return split[split.length - 1].split('.')[0];
 });
