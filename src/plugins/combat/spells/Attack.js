@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { ATTACK_STATS } from '../../../shared/stat-calculator';
 
 export class Attack extends Spell {
+  static description = 'A simple attack that uses STR to deal damage.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'attack',  spellPower: 1.0, weight: 50, cost: 0, level: 1,   profession: 'Archer' },
