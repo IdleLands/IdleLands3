@@ -10,7 +10,7 @@ export const persistToDb = async (battleInstance) => {
   const battles = db.collection('battles');
 
   return new Promise((resolve, reject) => {
-    battles.findOneAndUpdate({ _id: saveData.name }, saveData, { upsert: true }).then(() => {
+    battles.findOneAndUpdate({ _id: saveData._id }, saveData, { upsert: true }).then(() => {
       resolve(saveData);
     }, reject);
   });
