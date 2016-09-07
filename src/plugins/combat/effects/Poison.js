@@ -14,7 +14,11 @@ export class Poison extends Effect {
   tick() {
     super.tick();
     const damage = Math.round(this.origin.ref.liveStats.int * 0.25 * this.potency);
-    this._emitMessage(this.target, `%player suffered ${damage} damage from %casterName's %spellName!`);
-    this.dealDamage(this.target, damage);
+    if(damage > 0) {
+      this._emitMessage(this.target, `%player suffered ${damage} damage from %casterName's %spellName!`);
+      this.dealDamage(this.target, damage);
+    } else {
+      this._emitMessage(this.target, '%casterName\'s %spellName was ineffective against %player!');
+    }
   }
 }
