@@ -26,6 +26,9 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
+# directory for babel-cli output (optimised js for run on prod)
+dist
+
 # Dependency directories
 node_modules
 jspm_packages
