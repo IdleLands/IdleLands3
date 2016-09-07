@@ -46,8 +46,14 @@ export class PlayerDb {
     const players = db.collection('players');
 
     return new Promise((resolve, reject) => {
-      players.findOneAndUpdate({ _id: savePlayerObject._id }, savePlayerObject, { upsert: true }).then(() => {
-        resolve(playerObject);
+      players.findOneAndUpdate({ _id: savePlayerObject._id }, savePlayerObject, { upsert: true }, (err) =>{
+        if (!err) {
+          resolve(playerObject);
+        } else {
+          // process.stdout.write('-');
+          // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
+          // MONGOERRORIGNORE
+        }
       }, reject);
     });
   }
