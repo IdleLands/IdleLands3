@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 
-import { primus } from '../../primus/server';
+import { primus } from '../primus/server';
 import { GameState } from '../core/game-state';
 
 // these functions pertain to one person logging in and out

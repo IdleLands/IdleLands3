@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { StringAssets } from '../../shared/asset-loader';
 import { MessageParser } from '../../plugins/events/messagecreator';
 
-import { primus } from '../../../primus/server';
+import { primus } from '../../primus/server';
 
 import { emitter } from '../../plugins/players/_emitter';
 

@@ -5,10 +5,10 @@ import _ from 'lodash';
 import Primus from 'primus';
 import Emit from 'primus-emit';
 import Rooms from 'primus-rooms';
-import Multiplex from 'primus-multiplex';
+// import Multiplex from 'primus-multiplex';
 
-import { GameState } from '../src/core/game-state';
-import { Logger } from '../src/shared/logger';
+import { GameState } from '../core/game-state';
+import { Logger } from '../shared/logger';
 
 export const primus = (() => {
   if(process.env.NO_START_GAME) return;
@@ -52,7 +52,7 @@ export const primus = (() => {
   const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
 
 // load socket functions
-  const normalizedPath = require('path').join(__dirname, '..', 'src');
+  const normalizedPath = require('path').join(__dirname, '..');
 
   const getAllSocketFunctions = (dir) => {
     let results = [];
@@ -76,7 +76,7 @@ export const primus = (() => {
   // primus.use('multiplex', Multiplex);
 
 // force setting up the global connection
-  new (require('../src/shared/db-wrapper').DbWrapper)().connectionPromise();
+  new (require('../shared/db-wrapper').DbWrapper)().connectionPromise();
 
   primus.on('connection', spark => {
     const respond = (data) => {
