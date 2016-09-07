@@ -27,7 +27,8 @@ export class ExternalChatMechanism {
     this.client.connect().then(() => {
       Logger.info('ExtChat:IRC', 'Connected!');
       this.isConnected = true;
-      this.client.on('msg', ({ from, msg }) => {
+      this.client.on('msg', ({ from, to, msg }) => {
+        if(to !== '##idlebot') return;
         primus.room(sendRoom).write({
           text: msg,
           playerName: `<irc:${from}>`,
