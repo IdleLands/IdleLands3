@@ -10,7 +10,7 @@ export class GoldForsake extends Event {
     const goldMod = Math.min(player.gold, Math.floor(Event.chance.integer({ min: 25, max: 2000 })));
     const eventText = this.eventText('forsakeGold', player, { gold: goldMod });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [-${goldMod}gold]`, category: MessageCategories.GOLD });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [-${goldMod} gold]`, category: MessageCategories.GOLD });
     player.gainGold(-goldMod);
   }
 }

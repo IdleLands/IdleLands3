@@ -17,7 +17,7 @@ export class GoldBless extends Event {
     const goldMod = Math.floor(Event.chance.integer({ min: 10, max: 1000 }));
     const eventText = this.eventText('blessGold', player, { gold: goldMod });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [+${goldMod}gold]`, category: MessageCategories.GOLD });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [+${goldMod} gold]`, category: MessageCategories.GOLD });
     player.gainGold(goldMod);
   }
 }
