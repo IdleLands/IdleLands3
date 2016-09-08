@@ -33,7 +33,7 @@ const monsters = {
 export class Summon extends Spell {
   static element = SpellType.PHYSICAL;
   static tiers = [
-    { name: 'summon',  spellPower: 1, weight: 30, cost: 350,  level: 25,  profession: 'Necromancer' }
+    { name: 'summon',  spellPower: 1, weight: 90, cost: 350,  level: 25,  profession: 'Necromancer' }
   ];
 
   static shouldCast(caster) {
