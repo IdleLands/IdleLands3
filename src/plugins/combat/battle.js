@@ -19,6 +19,7 @@ export class Battle {
     this.introText = introText;
     this.happenedAt = Date.now();
     this.name = this.generateName();
+    this.setId();
     this.messageData = [];
     this.currentRound = 0;
   }
@@ -261,9 +262,13 @@ export class Battle {
     return damage;
   }
 
+  setId() {
+    this._id = `${this.happenedAt}-${this.name.split(' ').join('_')}`;
+  }
+
   saveObject() {
     return {
-      _id: `${this.happenedAt}-${this.name.split(' ').join('_')}`,
+      _id: this._id,
       name: this.name,
       happenedAt: this.happenedAt,
       messageData: this.messageData,
