@@ -19,10 +19,10 @@ export class BottleToss extends Spell {
   }
 
   calcDamage() {
-    const drunkMultiplier = this.caster.$personalities && this.caster.$personalities.isActive('Drunk') ? 2 : 1;
+    const drunkMultiplier = this.caster.$personalities && this.caster.$personalities.isActive('Drunk') ? 1.5 : 1;
     const bottlesBonus = (this.caster._special.asPercent()/100) * this.caster.liveStats.con;
     const min = (bottlesBonus + this.caster.liveStats.str) * 0.35 * drunkMultiplier;
-    const max = (bottlesBonus + this.caster.liveStats.str) * 1.15 * drunkMultiplier;
+    const max = (bottlesBonus + this.caster.liveStats.str) * 0.85 * drunkMultiplier;
     return this.minMax(min, max) * this.spellPower;
   }
 
@@ -37,7 +37,7 @@ export class BottleToss extends Spell {
         targets: [target]
       });
 
-      while(this.caster.special > 9 && Spell.chance.bool({ likelihood: 75 })) {
+      while(this.caster.special > 9 && Spell.chance.bool({ likelihood: 50 })) {
         super.cast({
           damage: this.calcDamage(),
           message: '%player threw 9 bottles at %targetName, dealing %damage damage!',
