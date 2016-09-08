@@ -16,7 +16,7 @@ export class Fighter extends Profession {
   static baseIntPerLevel = 1;
 
   static classStats = {
-    hpregen: (target) => target._hp.maximum * 0.075,
+    hpregen: (target) => target._hp.maximum * 0.0075,
     prone: 1
   }
 }
