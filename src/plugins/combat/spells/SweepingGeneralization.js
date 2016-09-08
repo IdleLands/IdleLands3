@@ -6,7 +6,8 @@ import { Spell, SpellType } from '../spell';
 export class SweepingGeneralization extends Spell {
   static element = SpellType.PHYSICAL;
   static tiers = [
-    { name: 'sweeping generalization', spellPower: 1.0, weight: 35, cost: 100, profession: 'Generalist', level: 5 },
+    { name: 'sweeping generalization', spellPower: 1.0, weight: 35, cost: 50, profession: 'Generalist', level: 5 },
+    { name: 'broad generalization',    spellPower: 3.0, weight: 35, cost: 500, profession: 'Generalist', level: 50 },
     { name: 'sweepo generalizo',       spellPower: 0.8, weight: 35, cost: 300, profession: 'MagicalMonster', level: 15,
       collectibles: ['Generalist\'s Guidebook'] }
   ];

@@ -147,16 +147,17 @@ Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
 sweeping generalization ([SweepingGeneralization 1](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 5 |  | 
-energy barrier ([EnergyShield 1](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 15 |  | 
+energy barrier ([EnergyWall 1](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 15 |  | 
 fortify ([Fortify 1](../src/plugins/combat/spells/Fortify.js)) | Buff | 15 |  | 
 treatment ([Treatment 1](../src/plugins/combat/spells/Treatment.js)) | Buff | 20 |  | 
-energy barricade ([EnergyShield 2](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 45 |  | 
+energy barricade ([EnergyWall 2](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 45 |  | 
 greater fortify ([Fortify 2](../src/plugins/combat/spells/Fortify.js)) | Buff | 45 |  | 
+broad generalization ([SweepingGeneralization 2](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 50 |  | 
 greater treatment ([Treatment 2](../src/plugins/combat/spells/Treatment.js)) | Buff | 60 |  | 
 ultimate fortify ([Fortify 3](../src/plugins/combat/spells/Fortify.js)) | Buff | 90 |  | 
-energy wall ([EnergyShield 3](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 95 |  | 
+energy wall ([EnergyWall 3](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 95 |  | 
 ultimate treatment ([Treatment 3](../src/plugins/combat/spells/Treatment.js)) | Buff | 120 |  | Doctor's Floating Device
-energy greatwall ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 165 |  | Jar of Magic Dust
+energy greatwall ([EnergyWall 4](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 165 |  | Jar of Magic Dust
 
 
 ## Jester

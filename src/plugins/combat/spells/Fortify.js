@@ -8,21 +8,21 @@ import { PhysicalStatBoost } from '../effects/PhysicalStatBoost';
 export class Fortify extends Spell {
   static element = SpellType.BUFF;
   static tiers = [
-    { name: 'fortify',          spellPower: 5,  weight: 25, cost: 200,  profession: 'Generalist', level: 15 },
-    { name: 'greater fortify',  spellPower: 10, weight: 25, cost: 900,  profession: 'Generalist', level: 45 },
-    { name: 'ultimate fortify', spellPower: 15, weight: 25, cost: 2200, profession: 'Generalist', level: 90 }
+    { name: 'fortify',          spellPower: 10, weight: 25, cost: 200,  profession: 'Generalist', level: 15 },
+    { name: 'greater fortify',  spellPower: 15, weight: 25, cost: 900,  profession: 'Generalist', level: 45 },
+    { name: 'ultimate fortify', spellPower: 20, weight: 25, cost: 2200, profession: 'Generalist', level: 90 }
   ];
 
   static shouldCast(caster) {
-    return !caster.$effects.hasEffect('PhysicalStatBoost');
+    return this.$canTarget.allyWithoutEffect(caster, 'PhysicalStatBoost');
   }
 
   determineTargets() {
-    return this.$targetting.self;
+    return this.$targetting.allAllies;
   }
 
   calcDuration() {
-    return this.spellPower;
+    return Math.floor(this.spellPower / 2);
   }
 
   calcPotency() {

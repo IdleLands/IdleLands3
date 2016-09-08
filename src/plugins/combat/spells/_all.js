@@ -21,6 +21,7 @@ export { DownloadRAM } from './DownloadRAM';
 export { DrunkenFrenzy } from './DrunkenFrenzy';
 export { EnergyMissile } from './EnergyMissile';
 export { EnergyShield } from './EnergyShield';
+export { EnergyWall } from './EnergyWall';
 export { FadeAway } from './FadeAway';
 export { FeedAlly } from './FeedAlly';
 export { FoodFight } from './FoodFight';
