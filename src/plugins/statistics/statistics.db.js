@@ -42,8 +42,14 @@ export class StatisticsDb {
     const statistics = db.collection('statistics');
 
     return new Promise((resolve) => {
-      statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }).then(() => {
-        resolve(statistics);
+      statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }, (err) =>{
+        if (!err) {
+          resolve(statistics);
+        } else {
+          // process.stdout.write('s');
+          // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
+          // MONGOERRORIGNORE
+        }
       });
     });
   }
