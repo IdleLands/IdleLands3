@@ -8,9 +8,9 @@ import { DamageReductionBoost } from '../effects/DamageReductionBoost';
 export class EnergyWall extends Spell {
   static element = SpellType.BUFF;
   static tiers = [
-    { name: 'energy barrier',      spellPower: 100,   weight: 25, cost: 400,  profession: 'Generalist', level: 15 },
-    { name: 'energy barricade',    spellPower: 300,   weight: 25, cost: 1300, profession: 'Generalist', level: 45 },
-    { name: 'energy wall',         spellPower: 900,   weight: 25, cost: 3000, profession: 'Generalist', level: 95 },
+    { name: 'energy barrier',      spellPower: 100,   weight: 25, cost: 300,  profession: 'Generalist', level: 15 },
+    { name: 'energy barricade',    spellPower: 300,   weight: 25, cost: 1100, profession: 'Generalist', level: 45 },
+    { name: 'energy wall',         spellPower: 900,   weight: 25, cost: 2500, profession: 'Generalist', level: 95 },
     { name: 'energy greatwall',    spellPower: 4500,  weight: 25, cost: 9000, profession: 'Generalist', level: 165,
       collectibles: ['Jar of Magic Dust']  }
   ];
