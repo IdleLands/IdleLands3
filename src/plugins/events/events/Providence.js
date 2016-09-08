@@ -11,7 +11,6 @@ import { SETTINGS } from '../../../static/settings';
 export const WEIGHT = -1;
 
 // Get the gift of the divine
-// TODO change title and personalities?
 export class Providence extends Event {
 
   static generateProvidenceItem(multiplier = 1, t0shift = 0, t1shift = 0, t2shift = 0) {
@@ -55,7 +54,9 @@ export class Providence extends Event {
     gold: 50,
     profession: 10,
     clearProvidence: 20,
-    newProvidence: 75
+    newProvidence: 75,
+    personality: 50,
+    title: 75
   };
 
   static _genders = SETTINGS.validGenders;
@@ -91,6 +92,19 @@ export class Providence extends Event {
     if(profession !== player.professionName && Event.chance.bool({ likelihood: this.probabilities.profession })) {
       player.changeProfession(profession);
       message = `${message} Profession is now ${profession}!`;
+    }
+
+    if(Event.chance.bool({ likelihood: this.probabilities.personality })) {
+      _.each(player.$personalities.earnedPersonalities, ({ name }) => {
+        if(Event.chance.bool({ likelihood: 50 }))  return;
+        player.$personalities.togglePersonality(player, name);
+      });
+      message = `${message} Personality shift!`;
+    }
+
+    if(Event.chance.bool({ likelihood: this.probabilities.title })) {
+      player.changeTitle(_.sample(player.$achievements.titles()));
+      message = `${message} Title change!`;
     }
 
     return message;
