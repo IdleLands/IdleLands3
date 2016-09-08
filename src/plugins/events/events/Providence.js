@@ -6,6 +6,8 @@ import { Equipment } from '../../../core/base/equipment';
 import { MessageCategories } from '../../../shared/adventure-log';
 import { StringGenerator } from '../../../shared/string-generator';
 
+import { SETTINGS } from '../../../static/settings';
+
 export const WEIGHT = -1;
 
 // Get the gift of the divine
@@ -56,7 +58,7 @@ export class Providence extends Event {
     newProvidence: 75
   };
 
-  static _genders = ['male', 'female', 'not a bear', 'glowcloud', 'astronomical entity'];
+  static _genders = SETTINGS.validGenders;
   static _professions = (player) => {
     return _.keys(player.$statistics.getStat('Character.Professions')) || ['Generalist'];
   };
