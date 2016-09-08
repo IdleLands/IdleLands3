@@ -122,6 +122,7 @@ export class Providence extends Event {
   static operateOn(player) {
     const eventText = this.eventText('providence', player);
     this.fatePoolProvidence(player, eventText);
+    player.$statistics.batchIncrement(['Character.Events', 'Character.Event.Providence']);
   }
 
 }

@@ -15,6 +15,7 @@ export { Effective } from './Effective';
 export { Entitled } from './Entitled';
 export { Eventful } from './Eventful';
 export { Explorative } from './Explorative';
+export { Fateful } from './Fateful';
 export { Golden } from './Golden';
 export { Impossible } from './Impossible';
 export { Levelable } from './Levelable';
