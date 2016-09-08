@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class Berserk extends Spell {
+  static description = 'A spell that increases Rage by a set amount.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'berserk',        spellPower: 15,  weight: 25, cost: 0,   profession: 'Barbarian', level: 1 },
