@@ -2,7 +2,7 @@
 import _ from 'lodash';
 
 import { Logger } from './logger';
-import { primus } from '../../primus/server';
+import { primus } from '../primus/server';
 
 const verifyMessage = (msg) => {
   if(!msg.type)

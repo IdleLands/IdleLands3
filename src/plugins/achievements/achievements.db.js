@@ -42,8 +42,14 @@ export class AchievementsDb {
     const achievements = db.collection('achievements');
 
     return new Promise((resolve) => {
-      achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: { achievements: achievementsObject.achievements } }, { upsert: true }).then(() => {
-        resolve(achievements);
+      achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: { achievements: achievementsObject.achievements } }, { upsert: true }, (err) =>{
+        if (!err) {
+          resolve(achievements);
+        } else {
+          // process.stdout.write('a');
+          // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
+          // MONGOERRORIGNORE
+        }
       });
     });
   }
