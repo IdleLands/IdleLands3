@@ -29,6 +29,7 @@ export class BattlePvP extends Event {
 
       opponent = _(allPlayers)
         .reject(p => p.party)
+        .reject(p => p.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 }))
         .reject(p => p.level < player.level - SETTINGS.pvpBattleRange || p.level > player.level + SETTINGS.pvpBattleRange)
         .sample();
       if(!opponent) return;
