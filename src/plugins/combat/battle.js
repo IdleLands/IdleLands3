@@ -183,13 +183,13 @@ export class Battle {
     return _.filter(this.parties, party => _.some(party.players, p => this.isPlayerAlive(p)))[0];
   }
 
-  get losers() {
-    const winners = this.winningTeam.players;
-    return _.filter(this.allPlayers, p => !_.includes(winners, p));
-  }
-
   get winners() {
     return this.winningTeam.players;
+  }
+
+  get losers() {
+    const winners = this.winners;
+    return _.filter(this.allPlayers, p => !_.includes(winners, p));
   }
 
   isLoser(party) {
@@ -293,7 +293,7 @@ export class Battle {
       p.$profession.resetSpecial(p);
       p.$effects.clear();
 
-      if(p.isPet) {
+      if(!p.isPlayer) {
         p.party.playerLeave(p);
       }
     });

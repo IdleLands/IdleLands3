@@ -80,7 +80,7 @@ export class Party {
 
   playerLeave(player, disbanding = false) {
 
-    if(!disbanding && !this.isMonsterParty && !player.$battle && !player.isPet) {
+    if(!disbanding && !this.isMonsterParty && !player.$battle && player.isPlayer) {
       emitter.emit('player:event', {
         affected: [player],
         eventText: MessageParser.stringFormat('%player has left %partyName.', player, { partyName: this.name }),
@@ -89,7 +89,7 @@ export class Party {
     }
 
     let doDisband = false;
-    if(!player.$battle && !player.isPet && ((this.players.length <= 2 && !disbanding) || player === this.leader)) doDisband = true;
+    if(!player.$battle && player.isPlayer && ((this.players.length <= 2 && !disbanding) || player === this.leader)) doDisband = true;
 
     this.players = _.without(this.players, player);
     player.$partyName = null;
