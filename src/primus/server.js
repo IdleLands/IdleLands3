@@ -41,7 +41,8 @@ export const primus = (() => {
   });
   serve.get('/hello', (req, res) => {
     try {
-      res.send(fs.readFileSync('dist/hello.txt', 'UTF-8'));
+      const test = require('../../dist/test.js');
+      res.send(test.output());
     } catch (e) {
       res.send(e);
     }
