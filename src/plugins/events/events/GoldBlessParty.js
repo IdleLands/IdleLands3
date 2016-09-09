@@ -11,7 +11,7 @@ export class GoldBlessParty extends Event {
     const goldMod = Math.floor(Event.chance.integer({ min: 10, max: 1000 }));
     const eventText = this.eventText('blessGoldParty', player, { gold: goldMod, partyName: player.party.name });
 
-    this.emitMessage({ affected: player.party.players, eventText: `${eventText} [+${goldMod}gold]`, category: MessageCategories.GOLD });
+    this.emitMessage({ affected: player.party.players, eventText: `${eventText} [+${goldMod} gold]`, category: MessageCategories.GOLD });
 
     _.each(player.party.players, member => {
       member.gainGold(goldMod);
