@@ -11,5 +11,5 @@
 echo 'hello' > dist/hello.txt
 
 # delete the dist line from .gitignore, so git->heroku will auto pick up the dist dir
-sed -i.bak '/dist/d' .gitignore
+# sed -i.bak '/dist/d' .gitignore
 
