@@ -1,3 +1,4 @@
 #!/bin/bash
 
-mv .gitignore.bak .gitignore
+#nothing here right now, but we could use this later
+#mv .gitignore.bak .gitignore
