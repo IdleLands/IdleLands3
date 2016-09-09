@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # change to root
-cd ..
+#cd ..
 
 # obviously we could also put our babel command in here, to create the dist subtree, thusly:
 #babel -q --compact true --minified -d dist src
@@ -11,5 +11,5 @@ cd ..
 echo 'hello' dist/hello.txt
 
 # delete the dist line from .gitignore, so git->heroku will auto pick up the dist dir
-sed -i '' '/dist/d' .gitignore
+sed -i '.bak' '/dist/d' .gitignore
 
