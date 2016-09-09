@@ -44,6 +44,14 @@ export class SpellTargetPossibilities {
         .value().length >= 1;
   }
 
+  static allyBelowHealthPercent(caster, percent) {
+    return _(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.party !== caster.party)
+      .reject(p => p._hp.greaterThanPercent(percent))
+        .value().length >= 1;
+  }
+
   static allyBelowMaxHealth(caster) {
     return _(caster.$battle.allPlayers)
         .reject(p => p.hp === 0)
