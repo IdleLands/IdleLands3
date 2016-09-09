@@ -31,6 +31,16 @@ export class SpellTargetStrategy {
       .reverse()
       .value()[0];
   }
+  
+  static randomAllyBelowHealthPercent(caster) {
+    return function(percent) {
+      return [_(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.party !== caster.party)
+        .reject(p => p._hp.greaterThanPercent(percent))
+        .sample()];
+    };
+  }
 
   static randomEnemyNotProfession(caster) {
     return function(profession) {
