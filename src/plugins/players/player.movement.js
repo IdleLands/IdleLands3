@@ -132,11 +132,7 @@ export class PlayerMovement {
     player.oldRegion = player.mapRegion;
     player.mapRegion = tile.region;
 
-    if(player.$personalities.isActive('Drunk')) {
-      player.$statistics.batchIncrement([`Character.Movement.${_.capitalize(dest.movementType)}`, 'Character.Movement.Drunk']);
-    } else {
-      player.$statistics.incrementStat(`Character.Movement.${_.capitalize(dest.movementType)}`);
-    }
+    player.$statistics.incrementStat(`Character.Movement.${_.capitalize(dest.movementType)}`);
 
     emitter.emit('player:transfer', { player, dest });
   }

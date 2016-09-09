@@ -212,12 +212,18 @@ export class Player extends Character {
 
     this.stepCooldown--;
 
-    this.$statistics.batchIncrement([
+    const incrementStats = [
       'Character.Steps',
       `Character.Maps.${this.map}`,
       `Character.Terrains.${tile.terrain}`,
       `Character.Regions.${tile.region}`
-    ], false);
+    ];
+
+    if(this.$personalities.isActive('Drunk')) {
+      incrementStats.push('Character.Movement.Drunk');
+    }
+
+    this.$statistics.batchIncrement(incrementStats, false);
 
     this.gainXp(SETTINGS.xpPerStep);
   }
