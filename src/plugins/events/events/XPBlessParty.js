@@ -12,7 +12,7 @@ export class XPBlessParty extends Event {
     const xpMod = Math.floor(player._xp.maximum * percent);
     const eventText = this.eventText('blessXpParty', player, { xp: xpMod, partyName: player.party.name });
 
-    this.emitMessage({ affected: player.party.players, eventText: `${eventText} [+${xpMod}xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
+    this.emitMessage({ affected: player.party.players, eventText: `${eventText} [+${xpMod} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
 
     _.each(player.party.players, member => {
       member.gainXp(xpMod);
