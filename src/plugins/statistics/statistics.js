@@ -41,12 +41,14 @@ export class Statistics {
     return _.sum(_.values(obj)) || 0;
   }
 
-  incrementStat(stat, value = 1) {
+  incrementStat(stat, value = 1, doSave = false) {
     this._addStat(stat, value);
-    this.save();
+    if (doSave) {
+      this.save();
+    }
   }
 
-  batchIncrement(stats, doSave = true) {
+  batchIncrement(stats, doSave = false) {
     _.each(stats, stat => this._addStat(stat));
     if (doSave) {
       this.save();

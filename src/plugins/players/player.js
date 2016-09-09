@@ -223,7 +223,7 @@ export class Player extends Character {
       incrementStats.push('Character.Movement.Drunk');
     }
 
-    this.$statistics.batchIncrement(incrementStats, false);
+    this.$statistics.batchIncrement(incrementStats);
 
     this.gainXp(SETTINGS.xpPerStep);
   }
@@ -247,6 +247,7 @@ export class Player extends Character {
 
     if(this.saveSteps <= 0) {
       this.$playerDb.savePlayer(this);
+      this.$statistics.save();
       this.saveSteps = SETTINGS.saveSteps;
     }
     this.update();
