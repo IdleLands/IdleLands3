@@ -289,6 +289,12 @@ export class Battle {
 
   cleanUp() {
     _.each(this.allPlayers, p => {
+
+      if(p.$prevParty) {
+        p.party.playerLeave(p);
+        p.$prevParty.playerJoin(p);
+      }
+
       p.$battle = null;
       p.$profession.resetSpecial(p);
       p.$effects.clear();
