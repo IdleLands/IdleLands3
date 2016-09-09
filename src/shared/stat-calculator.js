@@ -11,8 +11,8 @@ export const SPECIAL_STATS_BASE = [
 
 export const ATTACK_STATS_BASE = [
   { name: 'prone',           desc: '+10% chance of stunning an opponent for 1 round.' },
-  { name: 'venom',           desc: '+10% chance of inflicting venom (DoT) on an enemy. Stacks intensity.' },
-  { name: 'poison',          desc: '+10% chance of inflicting poison (DoT) on an enemy. Stacks intensity.' },
+  { name: 'venom',           desc: '+10% chance of inflicting venom (DoT, % of target HP) on an enemy. Stacks intensity.' },
+  { name: 'poison',          desc: '+10% chance of inflicting poison (DoT, based on caster INT) on an enemy. Stacks intensity.' },
   { name: 'shatter',         desc: '+10% chance of inflicting shatter (-30% CON/DEX/AGI) on an enemy.' },
   { name: 'vampire',         desc: '+10% chance of inflicting vampire (health drain) on an enemy. Stacks intensity.' }
 ];
