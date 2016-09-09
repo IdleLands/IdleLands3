@@ -48,11 +48,11 @@ anti-magic blast ([AntimagicArrow 3](../src/plugins/combat/spells/AntimagicArrow
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-berserk ([Berserk 1](../src/plugins/combat/spells/Berserk.js)) | Physical | 1 |  | 
-crazy ([Berserk 2](../src/plugins/combat/spells/Berserk.js)) | Physical | 35 |  | 
+berserk ([Berserk 1](../src/plugins/combat/spells/Berserk.js)) | Physical | 1 | A spell that increases Rage by a set amount. | 
+crazy ([Berserk 2](../src/plugins/combat/spells/Berserk.js)) | Physical | 35 | A spell that increases Rage by a set amount. | 
 cleave ([Cleave 1](../src/plugins/combat/spells/Cleave.js)) | Physical | 50 |  | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | A simple attack that uses STR to deal damage. | 
-out of control ([Berserk 3](../src/plugins/combat/spells/Berserk.js)) | Physical | 75 |  | 
+out of control ([Berserk 3](../src/plugins/combat/spells/Berserk.js)) | Physical | 75 | A spell that increases Rage by a set amount. | 
 
 
 ## Bard
