@@ -48,7 +48,7 @@ export class SpellTargetPossibilities {
     return _(caster.$battle.allPlayers)
         .reject(p => p.hp === 0)
         .reject(p => p.party !== caster.party)
-      .reject(p => p._hp.greaterThanPercent(percent))
+        .reject(p => p._hp.greaterThanPercent(percent))
         .value().length >= 1;
   }
 
