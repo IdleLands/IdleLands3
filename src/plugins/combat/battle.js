@@ -255,7 +255,7 @@ export class Battle {
           if(compareLevel > party.level + 5) {
             lostXp = 0;
           }
-          
+
           this._emitMessage(`${p.fullname} lost ${lostXp}xp and ${lostGold}gold!`);
 
           p.gainXp(-lostXp);

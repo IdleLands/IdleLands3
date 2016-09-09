@@ -100,7 +100,7 @@ export const primus = (() => {
     });
 
     setTimeout(() => {
-      if(spark.authToken) return;
+      if(spark.authToken || spark._registering) return;
       spark.end();
     }, 10000);
 
