@@ -15,6 +15,8 @@ import { GameState } from '../../core/game-state';
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
 
 export const event = 'plugin:player:login';
+export const description = 'Log in or register a new character. Login only requires userId.';
+export const args = 'name, gender, professionName, token, userId';
 export const socket = (socket, primus, respond) => {
 
   const login = async({ name, gender, professionName, token, userId }) => {

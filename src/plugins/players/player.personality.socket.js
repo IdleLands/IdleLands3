@@ -2,6 +2,8 @@
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:togglepersonality';
+export const description = 'Turn a personality on or off.';
+export const args = 'personality';
 export const socket = (socket) => {
 
   const togglepersonality = async({ personality }) => {

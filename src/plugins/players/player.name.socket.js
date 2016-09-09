@@ -2,6 +2,8 @@
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:changename';
+export const description = 'Mod only. Change targets name to something else.';
+export const args = 'targetName, newName';
 export const socket = (socket) => {
 
   const changename = async({ targetName, newName }) => {

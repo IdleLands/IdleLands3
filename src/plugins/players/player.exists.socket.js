@@ -4,6 +4,8 @@ import { PlayerDb } from './player.db';
 import { constitute } from '../../shared/di-wrapper';
 
 export const event = 'plugin:player:exists';
+export const description = 'Unauthenticated. Check if a particular player exists for auto-login purposes.';
+export const args = 'userId';
 export const socket = (socket, primus, respond) => {
 
   const playerDb = constitute(PlayerDb);

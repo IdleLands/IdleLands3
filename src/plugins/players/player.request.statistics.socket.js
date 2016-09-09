@@ -2,6 +2,8 @@
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:request:statistics';
+export const description = 'Request statistics data. Generally used only when looking at statistics.';
+export const args = '';
 export const socket = (socket) => {
 
   const requeststatistics = async() => {

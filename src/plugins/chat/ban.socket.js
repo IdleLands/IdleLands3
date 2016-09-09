@@ -4,6 +4,8 @@ import { GameState } from '../../core/game-state';
 import { emitter } from '../../plugins/players/_emitter';
 
 export const event = 'plugin:chat:toggleban';
+export const description = 'Mod only. Toggle banned status for a particular user. Generally only used to ban, as they get kicked immediately.';
+export const args = 'targetName';
 export const socket = (socket) => {
 
   const toggleban = async ({ targetName }) => {

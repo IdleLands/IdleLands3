@@ -14,9 +14,10 @@
     "test:lint": "eslint src/** test/plugins/**",
     "test:local": "npm run test:lint",
     "test:client": "node test/client/client",
-    "generate:all": "npm run generate:spelldoc && npm run generate:classdoc",
+    "generate:all": "npm run generate:spelldoc && npm run generate:classdoc && npm run generate:apidoc",
     "generate:spelldoc": "NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-spelldoc",
     "generate:classdoc": "NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-classdoc",
+    "generate:apidoc": "NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-apidoc",
     "gitfix": "git add docs",
     "gen:items": "node test/gen/items"
   },

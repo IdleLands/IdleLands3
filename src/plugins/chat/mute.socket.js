@@ -4,6 +4,8 @@ import { GameState } from '../../core/game-state';
 import { PlayerUpdateAll } from '../../shared/playerlist-updater';
 
 export const event = 'plugin:chat:togglemute';
+export const description = 'Mod only. Toggle muted status for a particular user.';
+export const args = 'targetName';
 export const socket = (socket) => {
 
   const togglemute = async ({ targetName }) => {

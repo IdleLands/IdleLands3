@@ -2,6 +2,8 @@
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:changetitle';
+export const description = 'Change your title.';
+export const args = 'title';
 export const socket = (socket) => {
 
   const changetitle = async({ title }) => {

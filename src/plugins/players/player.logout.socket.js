@@ -3,6 +3,8 @@ import { emitter } from './_emitter';
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:logout';
+export const description = 'Log out of the game.';
+export const args = '';
 export const socket = (socket) => {
 
   const logout = async () => {

@@ -12,6 +12,8 @@ const MAX_SPAM_MESSAGES = process.env.MAX_SPAM_MESSAGES || 5;
 const SPAM_IGNORE_LEVEL = process.env.SPAM_IGNORE_LEVEL || 25;
 
 export const event = 'plugin:chat:sendmessage';
+export const description = 'Send a chat message.';
+export const args = 'text, channel, route';
 export const socket = (socket, primus) => {
 
   if(!primus.extChat) {

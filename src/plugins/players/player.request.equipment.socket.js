@@ -2,6 +2,8 @@
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:request:equipment';
+export const description = 'Request equipment data. Generally used only when looking at equipment.';
+export const args = '';
 export const socket = (socket) => {
 
   const requestequipment = async() => {

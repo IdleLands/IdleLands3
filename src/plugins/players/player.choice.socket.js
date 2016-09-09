@@ -2,6 +2,8 @@
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:makechoice';
+export const description = 'Make a choice from the choice log.';
+export const args = 'id, response';
 export const socket = (socket) => {
 
   const makechoice = async({ id, response }) => {

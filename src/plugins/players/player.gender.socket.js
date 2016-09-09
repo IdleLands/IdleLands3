@@ -2,6 +2,8 @@
 import { GameState } from '../../core/game-state';
 
 export const event = 'plugin:player:changegender';
+export const description = 'Change your gender based on the existing gender list.';
+export const args = 'gender';
 export const socket = (socket) => {
 
   const changegender = async({ gender }) => {

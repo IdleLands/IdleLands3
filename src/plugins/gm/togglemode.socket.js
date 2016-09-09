@@ -3,6 +3,8 @@ import { GameState } from '../../core/game-state';
 import { GMCommands } from './commands';
 
 export const event = 'plugin:gm:togglemod';
+export const description = 'Mod only. Toggle moderator status for the target.';
+export const args = 'targetName';
 export const socket = (socket) => {
 
   const togglemod = async({ targetName }) => {
