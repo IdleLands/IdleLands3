@@ -3,50 +3,33 @@ import _ from 'lodash';
 
 import fs from 'fs';
 
-import * as Professions from '../src/core/professions/_all';
+import { SPECIAL_STATS_BASE, ATTACK_STATS_BASE } from '../src/shared/stat-calculator';
 
 let docString = `
-# IdleLands Classes
-
-## Table of Contents
-
+# IdleLands Equipment Effects
 `;
 
-_.each(_.sortBy(_.keys(Professions)), (profession, index) => {
-  docString += `${index + 1}. ${profession}\n`;
+docString += '\n\n';
+
+docString += '## Special Stats\n\n';
+
+docString += 'Name | Description\n';
+docString += '---- | -----------\n';
+
+_.each(SPECIAL_STATS_BASE, ({ name, desc }) => {
+  docString += `${name} | ${desc}\n`;
 });
 
 docString += '\n\n';
 
-_.each(_.sortBy(_.keys(Professions)), (professionKey) => {
+docString += '## Attack Stats\n\n';
 
-  const profession = Professions[professionKey];
+docString += 'Name | Description\n';
+docString += '---- | -----------\n';
 
-  docString += `## ${professionKey}\n\n`;
-  docString += '### Stats Per Level\n\n';
-  docString += 'These are the stat gains per level.\n\n';
-  docString += 'HP | MP | STR | DEX | CON | AGI | INT | LUK\n';
-  docString += '--- | --- | --- | --- | --- | --- | --- | ---\n';
-  docString += `${profession.baseHpPerLevel} | ${profession.baseMpPerLevel} | ${profession.baseStrPerLevel} | ${profession.baseDexPerLevel} | ${profession.baseConPerLevel} | ${profession.baseAgiPerLevel} | ${profession.baseIntPerLevel} | ${profession.baseLukPerLevel}\n`;
-
-  docString += '\n\n';
-
-  docString += '### HP Modifiers\n';
-  docString += 'You get X HP for every point in a particular stat.\n\n';
-  docString += 'STR | DEX | CON | AGI | INT | LUK\n';
-  docString += '--- | --- | --- | --- | --- | ---\n';
-  docString += `${profession.baseHpPerStr} | ${profession.baseHpPerDex} | ${profession.baseHpPerCon} | ${profession.baseHpPerAgi} | ${profession.baseHpPerInt} | ${profession.baseHpPerLuk}`;
-
-  docString += '\n\n';
-
-  docString += '### MP Modifiers\n';
-  docString += 'You get X MP for every point in a particular stat.\n\n';
-  docString += 'STR | DEX | CON | AGI | INT | LUK\n';
-  docString += '--- | --- | --- | --- | --- | ---\n';
-  docString += `${profession.baseMpPerStr} | ${profession.baseMpPerDex} | ${profession.baseMpPerCon} | ${profession.baseMpPerAgi} | ${profession.baseMpPerInt} | ${profession.baseMpPerLuk}`;
-
-  docString += '\n\n';
-
+_.each(ATTACK_STATS_BASE, ({ name, desc }) => {
+  docString += `${name} | ${desc}\n`;
 });
 
-fs.writeFileSync('docs/CLASSES.md', docString);
+
+fs.writeFileSync('docs/EFFECTS.md', docString);
