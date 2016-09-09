@@ -96,7 +96,7 @@ export class SpellTargetStrategy {
         .reject(p => p.party !== caster.party)
         .reject(p => p._hp.greaterThanPercent(percent))
         .sample()];
-    }
+    };
   }
 
   static randomAllyBelowMaxHealth(caster) {
