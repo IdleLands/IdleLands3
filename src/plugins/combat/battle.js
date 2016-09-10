@@ -291,6 +291,7 @@ export class Battle {
     _.each(this.allPlayers, p => {
 
       if(p.$prevParty) {
+        p._hp.toMinimum();
         p.party.playerLeave(p);
         p.$prevParty.playerJoin(p);
         delete p.$prevParty;
