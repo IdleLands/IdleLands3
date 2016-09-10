@@ -65,7 +65,7 @@ export class Attack extends Spell {
         damage
       };
 
-      if(Spell.chance.bool({ likelihood: 0.01 + (0.1 * this.caster.liveStats.crit) })) {
+      if(Spell.chance.bool({ likelihood: 0.01 + this.caster.liveStats.crit })) {
         this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.CriticalHit');
         this.caster.$battle.tryIncrement(target, 'Combat.Receive.CriticalHit');
         damage = this.caster.liveStats.str * this.spellPower;
