@@ -25,6 +25,8 @@ export { Mapceptional } from './Mapceptional';
 export { Personable } from './Personable';
 export { PKer } from './PKer';
 export { Slayer } from './Slayer';
+export { SoleFoot } from './SoleFoot';
+export { Soloer } from './Soloer';
 export { Sponge } from './Sponge';
 export { Territorial } from './Territorial';
 export { Unstoppable } from './Unstoppable';
