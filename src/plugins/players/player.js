@@ -311,6 +311,10 @@ export class Player extends Character {
   update() {
     this._updatePlayer();
     this._updateParty();
+
+    if(this.$updateEquipment) {
+      this._updateEquipment();
+    }
     // this._updateStatistics();
     /* if(this.$updateAchievements) {
       this._updateAchievements();

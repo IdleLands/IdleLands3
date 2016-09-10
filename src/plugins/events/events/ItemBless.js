@@ -20,5 +20,6 @@ export class ItemBless extends Event {
     item[stat] += boost;
     item.score;
     player.recalculateStats();
+    player.$updateEquipment = true;
   }
 }

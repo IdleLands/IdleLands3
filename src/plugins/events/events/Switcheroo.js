@@ -15,5 +15,7 @@ export class Switcheroo extends Event {
     this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${-item[stat]}]`, category: MessageCategories.ITEM });
     item[stat] = -item[stat];
     item.score;
+    player.recalculateStats();
+    player.$updateEquipment = true;
   }
 }

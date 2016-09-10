@@ -39,5 +39,6 @@ export class Enchant extends Event {
     this.emitMessage({ affected: [player], eventText, category: MessageCategories.ITEM });
     item.score;
     player.recalculateStats();
+    player.$updateEquipment = true;
   }
 }
