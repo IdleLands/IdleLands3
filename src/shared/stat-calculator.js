@@ -5,8 +5,18 @@ import { SETTINGS } from '../static/settings';
 export const SPECIAL_STATS_BASE = [
   { name: 'hpregen',         desc: 'Regenerate HP every combat round.', enchantMax: 100 },
   { name: 'mpregen',         desc: 'Regenerate MP every combat round.', enchantMax: 100 },
-  { name: 'damageReduction', desc: 'Take 1 fewer damage per point from some sources.', enchantMax: 100 },
-  { name: 'crit',            desc: '+1% crit chance.', enchantMax: 1 }
+  { name: 'damageReduction', desc: 'Take 1 fewer damage per point from some sources. Stacks intensity.', enchantMax: 100 },
+  { name: 'crit',            desc: '+1% crit chance. Stacks intensity.', enchantMax: 1 },
+  { name: 'dance',           desc: '+50% dodge chance.', enchantMax: 1 },
+  { name: 'deadeye',         desc: '+50% chance to beat opponent dodge.', enchantMax: 1 },
+  { name: 'offense',         desc: '+10% offensive combat rolls. Stacks intensity.', enchantMax: 1 },
+  { name: 'defense',         desc: '+10% defensive combat rolls. Stacks intensity.', enchantMax: 1 },
+  { name: 'lethal',          desc: '+50% critical damage.', enchantMax: 1 },
+  { name: 'aegis',           desc: 'Negates critical hits.', enchantMax: 1 },
+  { name: 'silver',          desc: '+10% minimum attack damage.', enchantMax: 1 },
+  { name: 'power',           desc: '+10% maximum attack damage.', enchantMax: 1 },
+  { name: 'vorpal',          desc: '+10% critical chance.', enchantMax: 1 },
+  { name: 'glowing',         desc: '+5% to all physical combat rolls. Stacks intensity.', enchantMax: 1 }
 ];
 
 export const ATTACK_STATS_BASE = [
@@ -157,7 +167,10 @@ export class StatCalculator {
   }
 
   static overcomeDodge(player) {
-    return Math.max(10, (
+    return (1 + (this.stat(player, 'deadeye') > 0 ? 1.5 : 1) +
+                (this.stat(player, 'glowing') * 0.05) +
+                (this.stat(player, 'offense') * 0.1)) *
+      Math.max(10, (
           this.stat(player, 'str')
         + this.stat(player, 'dex')
         + this.stat(player, 'con')
@@ -168,21 +181,28 @@ export class StatCalculator {
   }
 
   static dodge(player) {
-    return (
+    return (1 + (this.stat(player, 'dance') > 0 ? 1.5 : 1) +
+                (this.stat(player, 'glowing') * 0.05) +
+                (this.stat(player, 'defense') * 0.1)) *
+      (
         this.stat(player, 'agi')
       + this.stat(player, 'luk')
       ) / 8;
   }
 
   static hit(player) {
-    return Math.max(10, (
+    return (1 + (this.stat(player, 'offense') * 0.1) +
+                (this.stat(player, 'glowing') * 0.05)) *
+      Math.max(10, (
         this.stat(player, 'str')
       + this.stat(player, 'dex')
     ) / 2);
   }
 
   static avoidHit(player) {
-    return (
+    return (1 + (this.stat(player, 'defense') * 0.1) +
+                (this.stat(player, 'glowing') * 0.05)) *
+      (
           this.stat(player, 'agi')
         + this.stat(player, 'dex')
         + this.stat(player, 'con')
