@@ -38,6 +38,11 @@ export class Event {
     return _.sample(validTargets);
   }
 
+  static pickValidItemForEnchant(player) {
+    const validTargets = _.reject(player.equipment, item => item.type === 'providence' && item.isNormallyEnchantable);
+    return _.sample(validTargets);
+  }
+
   static pickValidItemForBless(player) {
     const validTargets = _.filter(player.equipment, item => item.type !== 'providence' && item.isUnderNormalPercent);
     return _.sample(validTargets);

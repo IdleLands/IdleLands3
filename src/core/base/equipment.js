@@ -44,6 +44,10 @@ export class Equipment {
     this._baseScore = this.score;
   }
 
+  get isNormallyEnchantable() {
+    return this.enchantLevel < 10;
+  }
+
   get isUnderNormalPercent() {
     return (this._calcScore/this._baseScore) < 3;
   }

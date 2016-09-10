@@ -3,18 +3,18 @@ import _ from 'lodash';
 import { SETTINGS } from '../static/settings';
 
 export const SPECIAL_STATS_BASE = [
-  { name: 'hpregen',         desc: 'Regenerate HP every combat round.' },
-  { name: 'mpregen',         desc: 'Regenerate MP every combat round.' },
-  { name: 'damageReduction', desc: 'Take 1 fewer damage per point from some sources.' },
-  { name: 'crit',            desc: '+1% crit chance.' }
+  { name: 'hpregen',         desc: 'Regenerate HP every combat round.', enchantMax: 100 },
+  { name: 'mpregen',         desc: 'Regenerate MP every combat round.', enchantMax: 100 },
+  { name: 'damageReduction', desc: 'Take 1 fewer damage per point from some sources.', enchantMax: 100 },
+  { name: 'crit',            desc: '+1% crit chance.', enchantMax: 1 }
 ];
 
 export const ATTACK_STATS_BASE = [
-  { name: 'prone',           desc: '+10% chance of stunning an opponent for 1 round.' },
-  { name: 'venom',           desc: '+10% chance of inflicting venom (DoT, % of target HP) on an enemy. Stacks intensity.' },
-  { name: 'poison',          desc: '+10% chance of inflicting poison (DoT, based on caster INT) on an enemy. Stacks intensity.' },
-  { name: 'shatter',         desc: '+10% chance of inflicting shatter (-30% CON/DEX/AGI) on an enemy.' },
-  { name: 'vampire',         desc: '+10% chance of inflicting vampire (health drain) on an enemy. Stacks intensity.' }
+  { name: 'prone',           desc: '+10% chance of stunning an opponent for 1 round.', enchantMax: 1 },
+  { name: 'venom',           desc: '+10% chance of inflicting venom (DoT, % of target HP) on an enemy. Stacks intensity.', enchantMax: 1 },
+  { name: 'poison',          desc: '+10% chance of inflicting poison (DoT, based on caster INT) on an enemy. Stacks intensity.', enchantMax: 1 },
+  { name: 'shatter',         desc: '+10% chance of inflicting shatter (-30% CON/DEX/AGI) on an enemy.', enchantMax: 1 },
+  { name: 'vampire',         desc: '+10% chance of inflicting vampire (health drain) on an enemy. Stacks intensity.', enchantMax: 1 }
 ];
 
 export const BASE_STATS = ['str', 'con', 'dex', 'int', 'agi', 'luk'];

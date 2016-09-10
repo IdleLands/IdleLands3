@@ -10,7 +10,7 @@ export class Switcheroo extends Event {
     const item = this.pickValidItem(player);
     const stat = this.pickStat(item);
 
-    const eventText = this.eventText('flipStat', player, { item: item.name });
+    const eventText = this.eventText('flipStat', player, { item: item.fullname });
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${-item[stat]}]`, category: MessageCategories.ITEM });
     item[stat] = -item[stat];
