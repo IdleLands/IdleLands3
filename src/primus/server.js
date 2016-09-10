@@ -39,14 +39,14 @@ export const primus = (() => {
       res.send(e);
     }
   });
-  serve.get('/hello', (req, res) => {
-    try {
-      const test = require('../../dist/test.js');
-      res.send(test.output());
-    } catch (e) {
-      res.send(e);
-    }
-  });
+  // serve.get('/hello', (req, res) => {
+  //   try {
+  //     const test = require('../../dist/test.js');
+  //     res.send(test.output());
+  //   } catch (e) {
+  //     res.send(e);
+  //   }
+  // });
   const finalhandler = require('finalhandler');
 
 // load primus
