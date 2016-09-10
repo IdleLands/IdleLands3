@@ -23,7 +23,7 @@ export class Equipment {
     int: 2,
     luk: 5,
     enchantLevel: -125,
-    xp: 10,
+    xp: 50,
     hp: 0.5,
     mp: 0.2,
     hpregen: 4,
