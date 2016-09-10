@@ -29,6 +29,7 @@ export class BattlePvP extends Event {
 
       opponent = _(allPlayers)
         .reject(p => p.party)
+        .reject(p => p.$personalities.isActive('Camping'))
         .reject(p => p.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 }))
         .reject(p => p.level < player.level - SETTINGS.pvpBattleRange || p.level > player.level + SETTINGS.pvpBattleRange)
         .sample();
@@ -41,6 +42,7 @@ export class BattlePvP extends Event {
     } else {
       opponent = _(allPlayers)
         .reject(p => p.level < player.level - SETTINGS.pvpBattleRange || p.level > player.level + SETTINGS.pvpBattleRange)
+        .reject(p => p.$personalities.isActive('Camping'))
         .reject(p => p.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 }))
         .reject(p => !p.party || p.party === player.party || p.party.players.length === 1)
         .sample();

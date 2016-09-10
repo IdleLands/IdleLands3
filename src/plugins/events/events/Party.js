@@ -24,6 +24,7 @@ export class Party extends Event {
       GameState.getInstance().getPlayers(),
       p => p.$partyName || p === player
       || p.$personalities.isActive('Solo')
+      || p.$personalities.isActive('Camping')
       || p.level < SETTINGS.minPartyLevel
       || p.map !== player.map
     );

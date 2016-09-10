@@ -84,6 +84,7 @@ export class Player extends Character {
   }
 
   takeTurn() {
+    if(this.$personalities.isActive('Camping')) return;
     this.moveAction();
     EventHandler.tryToDoEvent(this);
 

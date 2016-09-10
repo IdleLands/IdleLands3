@@ -96,7 +96,7 @@ export class Providence extends Event {
 
     if(Event.chance.bool({ likelihood: this.probabilities.personality })) {
       _.each(player.$personalities.earnedPersonalities, ({ name }) => {
-        if(Event.chance.bool({ likelihood: 50 }))  return;
+        if(name === 'Camping' || Event.chance.bool({ likelihood: 50 })) return;
         player.$personalities.togglePersonality(player, name);
       });
       message = `${message} Personality shift!`;
