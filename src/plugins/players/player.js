@@ -223,6 +223,10 @@ export class Player extends Character {
       incrementStats.push('Character.Movement.Drunk');
     }
 
+    if(this.$personalities.isActive('Solo')) {
+      incrementStats.push('Character.Movement.Solo');
+    }
+
     this.$statistics.batchIncrement(incrementStats);
 
     this.gainXp(SETTINGS.xpPerStep);

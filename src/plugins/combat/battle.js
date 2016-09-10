@@ -298,8 +298,12 @@ export class Battle {
       p.$battle = null;
       p.$profession.resetSpecial(p);
       p.$effects.clear();
-      if (p.$statistics) {
+      if(p.$statistics) {
         p.$statistics.save();
+      }
+
+      if(p.$personalities && p.$personalities.isActive('Solo')) {
+        this.tryIncrement(p, 'CombatSolo');
       }
 
       if(!p.isPlayer) {
