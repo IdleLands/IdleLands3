@@ -14,6 +14,7 @@ export { DigitalMagician } from './DigitalMagician';
 export { Donator } from './Donator';
 export { Drunk } from './Drunk';
 export { Effective } from './Effective';
+export { Enchanted } from './Enchanted';
 export { Entitled } from './Entitled';
 export { Eventful } from './Eventful';
 export { Explorative } from './Explorative';

@@ -39,7 +39,7 @@ export class Event {
   }
 
   static pickValidItemForEnchant(player) {
-    const validTargets = _.reject(player.equipment, item => item.type === 'providence' && item.isNormallyEnchantable);
+    const validTargets = _.filter(player.equipment, item => item.type !== 'providence' && item.isNormallyEnchantable);
     return _.sample(validTargets);
   }
 
