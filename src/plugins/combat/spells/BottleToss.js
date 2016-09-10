@@ -37,7 +37,9 @@ export class BottleToss extends Spell {
         targets: [target]
       });
 
-      while(this.caster.special > 9 && Spell.chance.bool({ likelihood: 50 })) {
+      let tosses = 0;
+      while(tosses === 0 || (this.caster.special > 9 && Spell.chance.bool({ likelihood: 50 }))) {
+        tosses++;
         super.cast({
           damage: this.calcDamage(),
           message: '%player threw 9 bottles at %targetName, dealing %damage damage!',
