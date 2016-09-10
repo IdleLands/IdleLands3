@@ -4,7 +4,7 @@ import { Achievement, AchievementTypes } from '../achievement';
 export class DigitalMagician extends Achievement {
   static achievementData(player) {
 
-    const totalDigitals = player.$statistics.getStat('Combat.Give.Effect.Digital');
+    const totalDigitals = player.$statistics.getStat('Combat.Utilize.Digital');
 
     if(totalDigitals < 100000) return [];
 

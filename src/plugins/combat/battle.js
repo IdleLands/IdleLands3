@@ -298,6 +298,9 @@ export class Battle {
       p.$battle = null;
       p.$profession.resetSpecial(p);
       p.$effects.clear();
+      if (p.$statistics) {
+        p.$statistics.save();
+      }
 
       if(!p.isPlayer) {
         p.party.playerLeave(p);

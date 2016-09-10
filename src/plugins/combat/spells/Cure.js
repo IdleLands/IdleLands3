@@ -15,7 +15,7 @@ export class Cure extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.allyBelowMaxHealth(caster);
+    return this.$canTarget.allyBelowHealthPercent(caster, 80);
   }
 
   calcDamage() {
@@ -25,7 +25,7 @@ export class Cure extends Spell {
   }
 
   determineTargets() {
-    return this.$targetting.randomAllyBelowMaxHealth;
+    return this.$targetting.randomAllyBelowHealthPercent(80);
   }
 
   preCast() {

@@ -98,6 +98,9 @@ const play = (name, index) => {
 
 if (argv.random) {
   _.each(_.sampleSize(players, numPlayers), play);
+} else if (argv.name){
+  console.log(`Playing with ${argv.name}`);
+  play(argv.name, 0);
 } else {
   _.each(players.slice(0, numPlayers), play);
 }

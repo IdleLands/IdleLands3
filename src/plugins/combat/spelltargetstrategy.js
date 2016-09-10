@@ -89,6 +89,16 @@ export class SpellTargetStrategy {
       .sample()];
   }
 
+  static randomAllyBelowHealthPercent(caster) {
+    return function(percent) {
+      return [_(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.party !== caster.party)
+        .reject(p => p._hp.greaterThanPercent(percent))
+        .sample()];
+    };
+  }
+
   static randomAllyBelowMaxHealth(caster) {
     return [_(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)
