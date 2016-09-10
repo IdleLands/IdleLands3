@@ -37,6 +37,13 @@ class Settings {
 
     this.chatMessageMaxLength = 500;
 
+    this.holidays = {
+      winter: {
+        start: new Date('Dec 1'),
+        end:   new Date('Dec 31')
+      }
+    };
+
     this.externalChat = 'irc';
 
     this.chatConfig = {};

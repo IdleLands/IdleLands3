@@ -42,6 +42,14 @@ export class PlayerMovement {
       if(properties.requireClass)       return player.professionName === properties.requireClass;
       if(properties.requireAchievement) return player.$achievements.hasAchievement(properties.requireAchievement);
       if(properties.requireCollectible) return player.$collectibles.hasCollectible(properties.requireCollectible);
+      if(properties.requireHoliday) {
+        const { start, end } = SETTINGS.holidays[properties.requireHoliday];
+        const today = new Date();
+        return today.getMonth() >= start.getMonth()
+            && today.getDate()  >= start.getDate()
+            && today.getMonth() <= end.getMonth()
+            && today.getDate()  <= end.getDate();
+      }
     }
     return !tile.blocked && tile.terrain !== 'Void';
   }
