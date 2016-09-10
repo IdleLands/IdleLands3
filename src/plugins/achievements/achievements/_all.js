@@ -3,6 +3,7 @@ export { Achiever } from './Achiever';
 export { Ancient } from './Ancient';
 export { Bossy } from './Bossy';
 export { Boxer } from './Boxer';
+export { Camper } from './Camper';
 export { Classfluid } from './Classfluid';
 export { Classy } from './Classy';
 export { Collector } from './Collector';
