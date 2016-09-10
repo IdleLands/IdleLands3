@@ -14,10 +14,10 @@ export class Enchant extends Event {
     const item = this.pickValidItemForEnchant(player);
     if(!item) return;
 
+    let eventText = this.eventText('enchant', player, { item: item.fullname });
+
     item.enchantLevel = item.enchantLevel || 0;
     item.enchantLevel++;
-
-    let eventText = this.eventText('enchant', player, { item: item.fullname });
 
     if(Event.chance.bool({ likelihood: 75 })) {
       const stat = this.pickStat(item);
