@@ -293,6 +293,7 @@ export class Battle {
       if(p.$prevParty) {
         p.party.playerLeave(p);
         p.$prevParty.playerJoin(p);
+        delete p.$prevParty;
       }
 
       p.$battle = null;
