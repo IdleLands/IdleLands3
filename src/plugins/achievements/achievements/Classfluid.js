@@ -19,6 +19,8 @@ export class Classfluid extends Achievement {
       if(!_.every(allProfessions, prof => allProfessionsBeen[prof] >= tier)) break;
     }
 
+    tier--;
+
     return [{
       tier,
       name: 'Classfluid',
