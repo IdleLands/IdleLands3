@@ -58,6 +58,7 @@ export class Map {
     const allTrainers = _.filter(this.map.layers[2].objects, obj => obj.type === 'Trainer');
     _.each(allTrainers, trainer => {
       const validNames = _.reject(ObjectAssets.trainer, npc => npc.class && npc.class !== trainer.name);
+      trainer.properties = trainer.properties || {};
       trainer.properties.realName = _.sample(validNames).name;
     });
   }
