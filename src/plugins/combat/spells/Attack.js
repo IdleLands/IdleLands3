@@ -1,5 +1,6 @@
 
 import _ from 'lodash';
+
 import { Spell, SpellType } from '../spell';
 
 import { ATTACK_STATS } from '../../../shared/stat-calculator';
