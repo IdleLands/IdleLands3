@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class BottleToss extends Spell {
+  static description = 'Throw a bottle at a target, dealing damage based on STR, CON, and # of Bottles. Has a chance of throwing multiple bottles. Requires and consumes 9 bottles each throw. Deals 1.5x damage if the Drunk personality is activated.';
   static element = SpellType.DEBUFF;
   static stat = 'special';
   static tiers = [

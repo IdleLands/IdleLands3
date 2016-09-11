@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class DrunkenFrenzy extends Spell {
+  static description = 'Drunkenly ravages a random enemy, dealing 2x damage if the personality Drunk is activated. Reduces drunkenness by 10% and replenishes bottle count by 30-40.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'drunken frenzy', spellPower: 1, weight: 60, cost: 0, level: 30,  profession: 'Pirate' }
