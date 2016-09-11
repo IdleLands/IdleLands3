@@ -51,6 +51,7 @@ export class Battle {
 
   startBattle() {
     this.setupParties();
+    this._initialParties = _.cloneDeep(this._partyStats());
     this.startMessage();
     this.startTakingTurns();
   }
@@ -283,6 +284,7 @@ export class Battle {
       name: this.name,
       happenedAt: this.happenedAt,
       messageData: this.messageData,
+      initialParties: this._initialParties,
       parties: _.map(this.parties, party => party.buildTransmitObject())
     };
   }

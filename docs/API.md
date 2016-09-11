@@ -13,7 +13,11 @@ plugin:combat:retrieve | battleName, playerName | Retrieve a battle from the dat
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.
+plugin:pet:attr | newAttr | Change your pets attribute.
 plugin:pet:buy | petType, petName | Buy a new pet.
+plugin:pet:profession | newProfession | Change your pets profession.
+plugin:pet:smart | setting | Toggle a smart pet setting.
+plugin:pet:swap | petType | Swap to a different pet.
 plugin:player:makechoice | id, response | Make a choice from the choice log.
 plugin:player:exists | userId | Unauthenticated. Check if a particular player exists for auto-login purposes.
 plugin:player:changegender | gender | Change your gender based on the existing gender list.
