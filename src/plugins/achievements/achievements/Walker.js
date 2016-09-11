@@ -27,7 +27,7 @@ export class Walker extends Achievement {
     return [{
       tier,
       name: 'Walker',
-      desc: `Gain +${tier} Bonus XP (added every time XP is gained) for taking ${Math.pow(10, tier)} steps.`,
+      desc: `Gain +${tier} Bonus XP (added every time XP is gained) for taking ${(Math.pow(10, tier)).toLocaleString()} steps.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];

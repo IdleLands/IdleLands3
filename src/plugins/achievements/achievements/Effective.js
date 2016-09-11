@@ -29,7 +29,7 @@ export class Effective extends Achievement {
     return [{
       tier,
       name: 'Effective',
-      desc: `+${tier}% MP for ${tier*200} combat effect usages.`,
+      desc: `+${tier}% MP for ${(tier*200).toLocaleString()} combat effect usages.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];
