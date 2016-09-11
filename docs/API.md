@@ -13,6 +13,7 @@ plugin:combat:retrieve | battleName, playerName | Retrieve a battle from the dat
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.
+plugin:pet:buy | petType, petName | Buy a new pet.
 plugin:player:makechoice | id, response | Make a choice from the choice log.
 plugin:player:exists | userId | Unauthenticated. Check if a particular player exists for auto-login purposes.
 plugin:player:changegender | gender | Change your gender based on the existing gender list.
@@ -25,5 +26,6 @@ plugin:player:request:achievements |  | Request achievement data. Generally used
 plugin:player:request:collectibles |  | Request collectible data. Generally used only when looking at collectibles.
 plugin:player:request:equipment |  | Request equipment data. Generally used only when looking at equipment.
 plugin:player:request:personalities |  | Request personality data. Generally used only when looking at personalities.
+plugin:player:request:pets |  | Request pet data.
 plugin:player:request:statistics |  | Request statistics data. Generally used only when looking at statistics.
 plugin:player:changetitle | title | Change your title.

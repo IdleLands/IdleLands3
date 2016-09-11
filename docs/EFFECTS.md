@@ -29,5 +29,5 @@ Name | Description
 prone | +10% chance of stunning an opponent for 1 round.
 venom | +10% chance of inflicting venom (DoT, % of target HP) on an enemy. Stacks intensity.
 poison | +10% chance of inflicting poison (DoT, based on caster INT) on an enemy. Stacks intensity.
-shatter | +10% chance of inflicting shatter (-30% CON/DEX/AGI) on an enemy.
+shatter | +10% chance of inflicting shatter (-10% CON/DEX/AGI) on an enemy. Stacks intensity.
 vampire | +10% chance of inflicting vampire (health drain) on an enemy. Stacks intensity.
