@@ -33,7 +33,7 @@ export class Slayer extends Achievement {
     return [{
       tier,
       name: 'Slayer',
-      desc: `Gain +${tier*5} STR/CON/DEX/INT/AGI and +${tier*10}% better item find for killing ${baseValue * Math.pow(10, tier-1)} monsters.`,
+      desc: `Gain +${(tier*5).toLocaleString()} STR/CON/DEX/INT/AGI and +${(tier*10).toLocaleString()}% better item find for killing ${(baseValue * Math.pow(10, tier-1)).toLocaleString()} monsters.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];

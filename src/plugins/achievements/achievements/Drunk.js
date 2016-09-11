@@ -11,7 +11,7 @@ export class Drunk extends Achievement {
     return [{
       tier: 1,
       name: 'Drunk',
-      desc: 'Gain a special title for 100000 drunken steps.',
+      desc: `Gain a special title for ${(100000).toLocaleString()} drunken steps.`,
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',

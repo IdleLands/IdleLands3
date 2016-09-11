@@ -30,7 +30,7 @@ export class Territorial extends Achievement {
     return [{
       tier,
       name: 'Territorial',
-      desc: `Gain +${tier}% STR for every ${tier*10} unique regions explored.`,
+      desc: `Gain +${tier}% STR for every ${(tier*10).toLocaleString()} unique regions explored.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];

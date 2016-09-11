@@ -30,7 +30,7 @@ export class Explorative extends Achievement {
     return [{
       tier,
       name: 'Explorative',
-      desc: `Gain +${tier}% INT for exploring ${tier*5} unique maps.`,
+      desc: `Gain +${tier}% INT for exploring ${(tier*5).toLocaleString()} unique maps.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];
