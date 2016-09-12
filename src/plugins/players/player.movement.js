@@ -197,8 +197,7 @@ export class PlayerMovement {
 
     const indexes = [0, 1, 2, 3, 4, 5, 6, 7];
 
-    let randomIndex = 0;
-    randomIndex = chance.weighted(indexes, weight);
+    const randomIndex = chance.weighted(indexes, weight);
     const dir = directions[randomIndex];
 
     return [randomIndex, this.num2dir(dir, player.x, player.y), dir];

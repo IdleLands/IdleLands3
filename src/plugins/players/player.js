@@ -201,16 +201,16 @@ export class Player extends Character {
     let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    let attempts = 0;
+    let attempts = 1;
     while(!this.$playerMovement.canEnterTile(this, tile)) {
+      if (attempts > 8) {
+        Logger.error('Player', `Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`);
+        break;
+      }
       weight[index] = 0;
       [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight, true);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
       attempts++;
-      if (attempts >7) {
-        Logger.error('Player', `Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`);
-        break;
-      }
     }
 
     this.lastDir = dir === 5 ? null : dir;
