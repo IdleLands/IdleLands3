@@ -196,16 +196,19 @@ export class Player extends Character {
   }
 
   moveAction() {
-    let [newLoc, dir] = this.$playerMovement.pickRandomTile(this);
+    const weight = this.$playerMovement.getInitialWeight(this);
+
+    let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
     let attempts = 0;
     while(!this.$playerMovement.canEnterTile(this, tile)) {
-      [newLoc, dir] = this.$playerMovement.pickRandomTile(this, true);
+      weight[index] = 0;
+      [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight, true);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
       attempts++;
-      if (attempts > 5) {
-        [newLoc, dir] = this._getNextValidLocDir();
+      if (attempts >7) {
+        Logger.error('Player', `Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`);
         break;
       }
     }
@@ -241,27 +244,6 @@ export class Player extends Character {
     this.$statistics.batchIncrement(incrementStats);
 
     this.gainXp(SETTINGS.xpPerStep);
-  }
-
-  _getNextValidLocDir() {
-    // this is the weighted order, from player.movement.js:196
-    // const directions = [1,   2,  3,  6,  9,  8,  7,  4];
-    // let weight       = [300, 40, 7,  3,  1,  3,  7,  40];
-    const allLocsDirs = _.map([1, 2,  4, 3, 7, 6, 8, 9], (dir) => { 
-      return [this.$playerMovement.num2dir(dir, this.x, this.y), dir]; 
-    });
-    
-    for(let i=0; i<allLocsDirs.length; i++) {
-      const [loc, dir] = allLocsDirs[i];
-      const tile = this.$playerMovement.getTileAt(this.map, loc.x, loc.y);
-      if (this.$playerMovement.canEnterTile(this, tile)) {
-        return [loc, dir];
-      }
-    }
-
-    // if we see this, the entire game will lock up. don't move the player
-    Logger.error('Player', `Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`);
-    return [{ x:this.x, y:this.y }, 5];
   }
 
   buildSaveObject() {
