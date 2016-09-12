@@ -16,6 +16,8 @@ import { MonsterGenerator } from '../../shared/monster-generator';
 import Chance from 'chance';
 const chance = new Chance(Math.random);
 
+const directions = [1, 2, 3, 6, 9, 8, 7, 4];
+
 export class PlayerMovement {
 
   static num2dir(dir, x, y) {
@@ -182,7 +184,7 @@ export class PlayerMovement {
     return [{ x: target.x, y: target.y }, target.lastDir];
   }
 
-  static pickRandomTile(player, overrideFollow = false) {
+  static pickRandomTile(player, weight, overrideFollow = false) {
     if(!player.stepCooldown) player.stepCooldown = 0;
 
     if(player.$partyName && !overrideFollow) {
@@ -193,9 +195,19 @@ export class PlayerMovement {
       }
     }
 
-    const directions = [1,   2,  3,  6,  9,  8,  7,  4];
-    let weight       = [300, 40, 7,  3,  1,  3,  7,  40];
+    const indexes = [0, 1, 2, 3, 4, 5, 6, 7];
 
+    let randomIndex = 0;
+    randomIndex = chance.weighted(indexes, weight);
+    const dir = directions[randomIndex];
+
+    return [randomIndex, this.num2dir(dir, player.x, player.y), dir];
+  }
+
+  static getInitialWeight(player) {
+  
+    let weight = [300, 40, 7,  3,  1,  3,  7,  40];
+    
     const MAX_DRUNK = 10;
     const drunkFromPersonality = player.$personalities.isActive('Drunk') ? 7 : 0;
     const drunk = Math.max(0, Math.min(MAX_DRUNK, drunkFromPersonality));
@@ -207,10 +219,8 @@ export class PlayerMovement {
       weight = _.map(weight, s => Math.max(1, 200 - (s * (1 - drunk / MAX_DRUNK))));
     }
 
-    const randomDir = () => chance.weighted(directions, weight);
-    const dir = randomDir();
-
-    return [this.num2dir(dir, player.x, player.y), dir];
+    return weight;
 
   }
+
 }
