@@ -33,6 +33,9 @@ export class GameState {
   }
 
   _setTimeout(playerName, timeoutId) {
+    if (this.playerTimeouts[playerName]) {
+      clearTimeout(this.playerTimeouts[playerName]);
+    }
     this.playerTimeouts[playerName] = timeoutId;
   }
 
