@@ -37,7 +37,7 @@ export class Summon extends Spell {
   ];
 
   static shouldCast(caster) {
-    return caster.isPlayer && !caster._special.atMaximum();
+    return !caster.$isMinion && !caster._special.atMaximum();
   }
 
   determineTargets() {
@@ -65,7 +65,7 @@ export class Summon extends Spell {
 
     const summonedMonster = MonsterGenerator.augmentMonster(baseMonster, mimicTarget);
     summonedMonster.name = `${this.caster.fullname}'s ${summonedMonster.name}`;
-    summonedMonster.isPet = true;
+    summonedMonster.$isMinion = true;
 
     this.caster.party.playerJoin(summonedMonster);
     this.caster.$battle._setupPlayer(summonedMonster);
