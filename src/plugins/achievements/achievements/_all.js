@@ -20,6 +20,7 @@ export { Eventful } from './Eventful';
 export { Explorative } from './Explorative';
 export { Fateful } from './Fateful';
 export { Golden } from './Golden';
+export { Herder } from './Herder';
 export { Impossible } from './Impossible';
 export { Levelable } from './Levelable';
 export { Mapceptional } from './Mapceptional';

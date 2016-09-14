@@ -27,6 +27,9 @@ export class Enchanted extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Enchanted'
+      }, {
+        type: 'petattr',
+        petattr: 'a blob of arcane dust'
       }]
     }];
   }

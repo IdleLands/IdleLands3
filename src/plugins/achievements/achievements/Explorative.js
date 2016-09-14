@@ -27,6 +27,10 @@ export class Explorative extends Achievement {
       rewards.push({ type: 'title', title: 'Explorative' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a map that only works when held upside down' });
+    }
+
     return [{
       tier,
       name: 'Explorative',

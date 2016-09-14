@@ -16,6 +16,9 @@ export class Fateful extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Fateful'
+      }, {
+        type: 'petattr',
+        petattr: 'a miniature pool with a question mark in it'
       }]
     }];
   }

@@ -26,6 +26,10 @@ export class Critical extends Achievement {
       rewards.push({ type: 'stats', crit: 1 });
     }
 
+    if(tier >= 11) {
+      rewards.push({ type: 'petattr', petattr: 'a giant bullseye with a few arrows in it' });
+    }
+
     return [{
       tier,
       name: 'Critical',

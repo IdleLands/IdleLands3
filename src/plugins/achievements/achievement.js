@@ -11,5 +11,6 @@ export const AchievementTypes = {
   EXPLORE: 'Explore',
   COMBAT: 'Combat',
   SPECIAL: 'Special',
-  EVENT: 'Event'
+  EVENT: 'Event',
+  PET: 'Pet'
 };

@@ -25,6 +25,10 @@ export class Eventful extends Achievement {
       rewards.push({ type: 'title', title: 'Center of Attention' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a megaphone' });
+    }
+
     return [{
       tier,
       name: 'Eventful',

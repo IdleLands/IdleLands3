@@ -14,7 +14,7 @@ export class Donator extends Achievement {
 
     const tier = 1;
 
-    const rewards = [{ type: 'title', title: 'Donator' }];
+    const rewards = [{ type: 'title', title: 'Donator' }, { type: 'petattr', petattr: 'a platinum bar that says thank you so much, literally' }];
 
     return [{
       tier,

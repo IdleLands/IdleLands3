@@ -24,6 +24,10 @@ export class Walker extends Achievement {
       rewards.push({ type: 'title', title: 'Tired Foot' });
     }
 
+    if(tier >= 7) {
+      rewards.push({ type: 'petattr', petattr: 'a pair of sneakers that are a size too small' });
+    }
+
     return [{
       tier,
       name: 'Walker',

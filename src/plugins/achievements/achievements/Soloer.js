@@ -16,6 +16,9 @@ export class Soloer extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Soloer'
+      }, {
+        type: 'petattr',
+        petattr: 'a shield that you probably need by now'
       }]
     }];
   }

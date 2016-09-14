@@ -27,6 +27,10 @@ export class Golden extends Achievement {
       rewards.push({ type: 'title', title: 'Golden Child' });
     }
 
+    if(tier >= 4) {
+      rewards.push({ type: 'petattr', petattr: 'a chunk of metal that is painted gold' });
+    }
+
     return [{
       tier,
       name: 'Golden',

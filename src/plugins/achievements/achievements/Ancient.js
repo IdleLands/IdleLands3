@@ -32,6 +32,8 @@ export class Ancient extends Achievement {
 
     rewards.push({ type: 'title', title: 'Ancient' });
 
+    rewards.push({ type: 'petattr', petattr: 'an old rock' });
+
     return [{
       tier,
       name: 'Ancient',

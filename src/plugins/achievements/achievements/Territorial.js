@@ -27,6 +27,10 @@ export class Territorial extends Achievement {
       rewards.push({ type: 'title', title: 'Territorial' });
     }
 
+    if(tier >= 11) {
+      rewards.push({ type: 'petattr', petattr: 'a dog to help guard your territory' });
+    }
+
     return [{
       tier,
       name: 'Territorial',

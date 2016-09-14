@@ -16,6 +16,9 @@ export class DigitalMagician extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Digital Magician'
+      }, {
+        type: 'petattr',
+        petattr: 'a digitally signed certificate'
       }]
     }];
   }

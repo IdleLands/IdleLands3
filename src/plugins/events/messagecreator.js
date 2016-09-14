@@ -92,10 +92,14 @@ class AssetDomainHandler {
     return _.sample(_.keys(GameState.getInstance().world.maps));
   }
   static pet() {
-    return AllDomains.placeholder();
+    const player = _.sample(GameState.getInstance().players);
+    const pet = _.sample(player.$pets.$pets);
+    return pet ? pet.fullname : AllDomains.placeholder();
   }
   static activePet() {
-    return AllDomains.placeholder();
+    const player = _.sample(GameState.getInstance().players);
+    const pet = player.activePet;
+    return pet ? pet.fullname : AllDomains.placeholder();
   }
   static guild() {
     return AllDomains.placeholder();

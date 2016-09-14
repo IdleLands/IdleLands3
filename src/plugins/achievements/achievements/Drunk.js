@@ -16,6 +16,9 @@ export class Drunk extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Drunk'
+      }, {
+        type: 'petattr',
+        petattr: 'a bottle of booze'
       }]
     }];
   }

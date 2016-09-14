@@ -33,6 +33,10 @@ export class Collector extends Achievement {
       rewards.push({ type: 'title', title: 'Collector' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a bauble' });
+    }
+
     return [{
       tier,
       name: 'Collector',

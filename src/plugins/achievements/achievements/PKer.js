@@ -30,6 +30,10 @@ export class PKer extends Achievement {
       rewards.push({ type: 'title', title: 'PKer' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a talking sword that only says mean things to you' });
+    }
+
     return [{
       tier,
       name: 'PKer',

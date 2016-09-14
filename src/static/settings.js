@@ -32,6 +32,30 @@ class Settings {
     };
 
     this.validGenders = ['male', 'female', 'not a bear', 'glowcloud', 'astronomical entity'];
+    this.validPetAttributes = [
+      'a top hat',
+      'a monocle',
+      'a fedora',
+      'a bag of chips',
+      'a giant keychain',
+      'a rubber duck',
+      'a glowing leek',
+      'a YBox controller',
+      'a Gandum minifig',
+      'a pocket watch',
+      'a cumberbund',
+      'a funky tie',
+      'a doily',
+      'a polka-dot pillowcase',
+      'a giant stack of sticky notes',
+      'a miniature replica of the worlds biggest roller-coaster',
+      'a spork with a knife on the other side',
+      'a shiny medallion',
+      'a used drinking straw',
+      'a popping filter',
+      'a giant rock used to stop doors dead in their tracks',
+      'a tab formerly attached to a Dosa Can'
+    ];
 
     this.maxChoices = 10;
 

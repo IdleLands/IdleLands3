@@ -16,6 +16,9 @@ export class Camper extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Camper'
+      }, {
+        type: 'petattr',
+        petattr: 'a flaming log'
       }]
     }];
   }

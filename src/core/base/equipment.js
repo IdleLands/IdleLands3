@@ -63,6 +63,10 @@ export class Equipment {
     return (this._calcScore/this._baseScore) < 3;
   }
 
+  get isNothing() {
+    return this.name === 'nothing';
+  }
+
   get score() {
     let ret = 0;
     _.each(Equipment.multipliers, (mult, attr) => {

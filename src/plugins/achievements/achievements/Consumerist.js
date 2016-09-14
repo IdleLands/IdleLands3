@@ -27,6 +27,10 @@ export class Consumerist extends Achievement {
       rewards.push({ type: 'title', title: 'Consumerist' });
     }
 
+    if(tier >= 4) {
+      rewards.push({ type: 'petattr', petattr: 'a bronze coin that looks like it got chewed on' });
+    }
+
     return [{
       tier,
       name: 'Consumerist',

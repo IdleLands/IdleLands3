@@ -30,6 +30,9 @@ export class Classfluid extends Achievement {
         type: 'title',
         title: 'Fluidic'
       }, {
+        type: 'petattr',
+        petattr: 'a drop of water'
+      }, {
         type: 'stats',
         agi: (player, baseValue) => baseValue*0.03*tier,
         agiDisplay: `${tier*3}%`,

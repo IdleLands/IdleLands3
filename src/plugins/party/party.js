@@ -130,6 +130,14 @@ export class Party {
     };
   }
 
+  prepareForCombat() {
+    _.each(this.players, p => {
+      const pet = p.$pets ? p.$pets.activePet : null;
+      if(!pet || !chance.bool({ likelihood: pet.$_scale.battleJoinPercent })) return;
+      this.playerJoin(pet);
+    });
+  }
+
   disband(player) {
     if(!this.isBattleParty && !this.isMonsterParty) {
       emitter.emit('player:event', {

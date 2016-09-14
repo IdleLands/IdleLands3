@@ -26,6 +26,10 @@ export class Bossy extends Achievement {
       rewards.push({ type: 'title', title: 'Bossy' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a goblin head on a spear' });
+    }
+
     return [{
       tier,
       name: 'Bossy',

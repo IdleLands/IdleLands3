@@ -16,6 +16,9 @@ export class SoleFoot extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Sole Foot'
+      }, {
+        type: 'petattr',
+        petattr: 'a literal rabbit foot'
       }]
     }];
   }

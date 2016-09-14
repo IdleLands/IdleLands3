@@ -17,17 +17,33 @@ import { PersonalitiesDb } from '../personalities/personalities.db';
 import { Collectibles } from '../collectibles/collectibles';
 import { CollectiblesDb } from '../collectibles/collectibles.db';
 
+import { Pets } from '../pets/pets';
+import { PetsDb } from '../pets/pets.db';
+
 import { Logger } from '../../shared/logger';
 import { constitute } from '../../shared/di-wrapper';
 
-@Dependencies(PlayerDb, StatisticsDb, AchievementsDb, PersonalitiesDb, CollectiblesDb)
+@Dependencies(PlayerDb, StatisticsDb, AchievementsDb, PersonalitiesDb, CollectiblesDb, PetsDb)
 export class PlayerLoad {
-  constructor(playerDb, statisticsDb, achievementsDb, personalitiesDb, collectiblesDb) {
+  constructor(playerDb, statisticsDb, achievementsDb, personalitiesDb, collectiblesDb, petsDb) {
     this.playerDb = playerDb;
     this.statisticsDb = statisticsDb;
     this.achievementsDb = achievementsDb;
     this.personalitiesDb = personalitiesDb;
     this.collectiblesDb = collectiblesDb;
+    this.petsDb = petsDb;
+  }
+
+  async loadPets(player) {
+    if(!player.petsLink) {
+      const petsObj = constitute(Pets);
+      petsObj.init({ _id: player.name, activePetId: '', earnedPets: [], earnedPetData: {} });
+      await this.petsDb.savePets(petsObj);
+      player.petsLink = player.name;
+      player.$pets = petsObj;
+    } else {
+      player.$pets = await this.petsDb.getPets(player.name);
+    }
   }
 
   async loadStatistics(player) {
@@ -90,10 +106,14 @@ export class PlayerLoad {
         this.loadStatistics(player),
         this.loadAchievements(player),
         this.loadPersonalities(player),
-        this.loadCollectibles(player)
+        this.loadCollectibles(player),
+        this.loadPets(player)
       ]);
 
       player.$personalities.checkPersonalities(player);
+
+      player.$pets.restorePetData(this);
+      player.$pets.checkPets(player);
 
       player.isOnline = true;
       player.recalculateStats();

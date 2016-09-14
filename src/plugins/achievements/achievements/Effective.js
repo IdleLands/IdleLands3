@@ -26,6 +26,10 @@ export class Effective extends Achievement {
       rewards.push({ type: 'title', title: 'Effective' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a warped painting of the Mona Liza' });
+    }
+
     return [{
       tier,
       name: 'Effective',

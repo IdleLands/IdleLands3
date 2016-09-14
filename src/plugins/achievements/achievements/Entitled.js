@@ -17,6 +17,9 @@ export class Entitled extends Achievement {
       rewards: [{
         type: 'title',
         title: 'Entitled'
+      }, {
+        type: 'petattr',
+        petattr: 'a small child who wants a lot of things'
       }]
     }];
   }

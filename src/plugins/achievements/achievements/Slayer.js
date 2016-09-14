@@ -30,6 +30,10 @@ export class Slayer extends Achievement {
       rewards.push({ type: 'title', title: 'Slayer' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a talking hammer that talks about nailing monsters' });
+    }
+
     return [{
       tier,
       name: 'Slayer',

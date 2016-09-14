@@ -27,6 +27,10 @@ export class Sponge extends Achievement {
       rewards.push({ type: 'title', title: 'Sponge' });
     }
 
+    if(tier >= 5) {
+      rewards.push({ type: 'petattr', petattr: 'a sponge' });
+    }
+
     return [{
       tier,
       name: 'Sponge',

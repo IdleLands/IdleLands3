@@ -23,7 +23,7 @@ export const ATTACK_STATS_BASE = [
   { name: 'prone',           desc: '+10% chance of stunning an opponent for 1 round.', enchantMax: 1 },
   { name: 'venom',           desc: '+10% chance of inflicting venom (DoT, % of target HP) on an enemy. Stacks intensity.', enchantMax: 1 },
   { name: 'poison',          desc: '+10% chance of inflicting poison (DoT, based on caster INT) on an enemy. Stacks intensity.', enchantMax: 1 },
-  { name: 'shatter',         desc: '+10% chance of inflicting shatter (-30% CON/DEX/AGI) on an enemy.', enchantMax: 1 },
+  { name: 'shatter',         desc: '+10% chance of inflicting shatter (-10% CON/DEX/AGI) on an enemy. Stacks intensity.', enchantMax: 1 },
   { name: 'vampire',         desc: '+10% chance of inflicting vampire (health drain) on an enemy. Stacks intensity.', enchantMax: 1 }
 ];
 
@@ -61,6 +61,7 @@ export class StatCalculator {
   static equipmentStat(player, stat) {
     return _(player.equipment)
       .values()
+      .flatten()
       .map(item => _.isNumber(item[stat]) ? item[stat] : 0)
       .sum();
   }

@@ -27,6 +27,10 @@ export class Unstoppable extends Achievement {
       rewards.push({ type: 'title', title: 'Unstoppable' });
     }
 
+    if(tier >= 5) {
+      rewards.push({ type: 'petattr', petattr: 'an unstoppable force' });
+    }
+
     return [{
       tier,
       name: 'Unstoppable',

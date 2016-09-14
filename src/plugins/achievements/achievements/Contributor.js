@@ -14,7 +14,7 @@ export class Contributor extends Achievement {
 
     const tier = 1;
 
-    const rewards = [{ type: 'title', title: 'Contributor' }];
+    const rewards = [{ type: 'title', title: 'Contributor' }, { type: 'petattr', petattr: 'a gold coin that says thank you' }];
 
     return [{
       tier,

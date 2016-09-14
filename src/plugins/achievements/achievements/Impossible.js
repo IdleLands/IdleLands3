@@ -14,6 +14,8 @@ export class Impossible extends Achievement {
       type: AchievementTypes.SPECIAL,
       rewards: [{
         type: 'title', title: 'l33t h4x0r'
+      }, {
+        type: 'petattr', petattr: 'a big cheater'
       }]
     }];
   }

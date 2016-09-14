@@ -15,9 +15,17 @@ plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a perma
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.
 plugin:pet:attr | newAttr | Change your pets attribute.
 plugin:pet:buy | petType, petName | Buy a new pet.
+plugin:pet:unequip | itemId | Unequip an item from your pets gear.
+plugin:pet:feed | gold | Feed your pet gold.
+plugin:pet:equip | itemId | Equip an item from your pets inventory.
+plugin:pet:sell | itemId | Sell an item from your pets inventory.
+plugin:pet:giveitem | itemId | Give your pet an item from your equipment.
+plugin:pet:takeitem | itemId | Take an item from your pet and equip it.
 plugin:pet:profession | newProfession | Change your pets profession.
 plugin:pet:smart | setting | Toggle a smart pet setting.
 plugin:pet:swap | petType | Swap to a different pet.
+plugin:pet:takegold |  | Take your pets gold.
+plugin:pet:upgrade | upgradeAttr | Upgrade a facet of your pet.
 plugin:player:makechoice | id, response | Make a choice from the choice log.
 plugin:player:exists | userId | Unauthenticated. Check if a particular player exists for auto-login purposes.
 plugin:player:changegender | gender | Change your gender based on the existing gender list.

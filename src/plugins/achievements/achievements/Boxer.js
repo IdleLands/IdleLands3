@@ -26,6 +26,10 @@ export class Boxer extends Achievement {
       rewards.push({ type: 'title', title: 'Boxer' });
     }
 
+    if(tier >= 6) {
+      rewards.push({ type: 'petattr', petattr: 'a mini treasure chest containing an even smaller treasure chest' });
+    }
+
     return [{
       tier,
       name: 'Boxer',
