@@ -266,6 +266,10 @@ export class Pets {
       return 'Cannot unequip nothing.';
     }
 
+    if(item.type === 'soul') {
+      return 'Souls are irreplaceable.';
+    }
+
     pet.unequip(item, true);
     pet.inventory.push(item);
 
