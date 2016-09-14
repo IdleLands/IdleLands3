@@ -225,7 +225,7 @@ export class StatCalculator {
   static itemFindRange(player) {
     const baseValue = (player.level+1) * SETTINGS.reductionDefaults.itemFindRange;
     const reducedValue = this._reduction('itemFindRange', [player], baseValue);
-    return reducedValue * this.itemFindRangeMultiplier(player);
+    return Math.floor(reducedValue * this.itemFindRangeMultiplier(player));
   }
 
   static itemFindRangeMultiplier(player) {
