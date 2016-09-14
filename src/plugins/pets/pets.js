@@ -322,6 +322,10 @@ export class Pets {
       return 'Cannot equip over something.';
     }
 
+    if(!player.canEquip(item)) {
+      return 'Item too powerful for you.';
+    }
+
     player.equip(item);
     pet.removeFromInventory(item);
 
