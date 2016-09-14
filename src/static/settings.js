@@ -14,7 +14,7 @@ class Settings {
     this.maxLevel = 200;
     this.xpPerStep = 5;
 
-    this.pvpBattleRange = 5;
+    this.pvpBattleRange = 10;
     this.minBattleLevel = 5;
     this.minPartyLevel = 10;
 
