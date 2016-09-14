@@ -234,7 +234,7 @@ export class Pets {
 
     if(bosses) {
       _.each(bosses, boss => {
-        if(!player.$statistics.getStat(`Character.BossKill.${boss}`)) earned = false;
+        if(!player.$statistics.getStat(`Character.BossKills.${boss}`)) earned = false;
       });
     }
 
