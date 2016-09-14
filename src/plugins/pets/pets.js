@@ -287,6 +287,7 @@ export class Pets {
     }
 
     pet.equip(item, true);
+    pet.removeFromInventory(item);
 
     player.__updatePetActive();
   }
