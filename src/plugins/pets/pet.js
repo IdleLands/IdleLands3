@@ -124,7 +124,7 @@ export class Pet extends Character {
         // something in inventory is worse than the current sell item
         if(compareItem.score < sellItem.score) {
           sellItem = compareItem;
-          this.inventory.push(item);
+          this.addToInventory(item);
           this.removeFromInventory(sellItem);
         }
       }
@@ -138,7 +138,7 @@ export class Pet extends Character {
         return;
       }
 
-      this.inventory.push(item);
+      this.addToInventory(item);
     }
 
     this.updatePlayer();
@@ -189,6 +189,11 @@ export class Pet extends Character {
         this.unequip(nothing);
       }
     }
+  }
+
+  addToInventory(item) {
+    this.inventory.push(item);
+    this.inventory = _.sortBy(this.inventory, 'score');
   }
 
   canGainXp() {

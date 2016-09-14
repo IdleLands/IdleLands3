@@ -55,7 +55,7 @@ export class Pets {
       }
 
       while(pet.equipment[key].length > value) {
-        pet.inventory.push(pet.equipment[key].shift());
+        pet.addToInventory(pet.equipment[key].shift());
       }
     });
 
@@ -274,7 +274,7 @@ export class Pets {
     }
 
     pet.unequip(item, true);
-    pet.inventory.push(item);
+    pet.addToInventory(item);
 
     player.__updatePetActive();
   }
@@ -318,7 +318,7 @@ export class Pets {
     item._wasEquipped = true;
 
     player.unequip(item, this.__emptyGear({ slot: item.type }));
-    pet.inventory.push(item);
+    pet.addToInventory(item);
 
     player._updateEquipment();
     player.__updatePetActive();
