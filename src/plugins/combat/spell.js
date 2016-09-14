@@ -22,16 +22,22 @@ export class Spell {
   static oper = 'sub';
 
   static bestTier(caster) {
+
+    const collectibleCheck = caster.$ownerRef ? caster.$ownerRef : caster;
+
     return _.last(_.filter(this.tiers, tier => {
-      const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !caster.$collectibles || caster.$collectibles.hasCollectible(c)) : true;
+      const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !collectibleCheck.$collectibles || collectibleCheck.$collectibles.hasCollectible(c)) : true;
       return isValidSpellTierProfession(tier, caster) && tier.level <= caster.level && meetsCollectibleReqs;
     }));
   }
 
   get tier() {
     const tiers = this.constructor.tiers;
+
+    const collectibleCheck = this.caster.$ownerRef ? this.caster.$ownerRef : this.caster;
+
     return _.last(_.filter(tiers, tier => {
-      const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !this.caster.$collectibles || this.caster.$collectibles.hasCollectible(c)) : true;
+      const meetsCollectibleReqs = tier.collectibles ? _.every(tier.collectibles, c => !collectibleCheck.$collectibles || collectibleCheck.$collectibles.hasCollectible(c)) : true;
       return isValidSpellTierProfession(tier, this.caster) && tier.level <= this.caster.level && meetsCollectibleReqs;
     }));
   }
