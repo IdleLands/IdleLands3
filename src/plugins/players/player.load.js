@@ -112,7 +112,7 @@ export class PlayerLoad {
 
       player.$personalities.checkPersonalities(player);
 
-      player.$pets.restorePetData(this);
+      player.$pets.restorePetData(player);
       player.$pets.checkPets(player);
 
       player.isOnline = true;
