@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { STRLoss } from '../effects/STRLoss';
 
 export class DeathGlare extends Spell {
+  static description = 'Glares at a target, reducing STR of the entire enemy team. Lasts up to 4 turns and reduces up to 50 STR based on # of bottles.';
   static element = SpellType.DEBUFF;
   static stat = 'special';
   static tiers = [

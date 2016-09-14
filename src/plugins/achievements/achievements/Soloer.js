@@ -11,7 +11,7 @@ export class Soloer extends Achievement {
     return [{
       tier: 1,
       name: 'Soloer',
-      desc: 'Gain a special title for 5000 solo battles.',
+      desc: `Gain a special title for ${(5000).toLocaleString()} solo battles.`,
       type: AchievementTypes.COMBAT,
       rewards: [{
         type: 'title',

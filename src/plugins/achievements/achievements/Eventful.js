@@ -32,7 +32,7 @@ export class Eventful extends Achievement {
     return [{
       tier,
       name: 'Eventful',
-      desc: `Equip items that are ${10*tier}% better for experiencing ${baseValue * Math.pow(10, tier-1)} events.`,
+      desc: `Equip items that are ${(10*tier).toLocaleString()}% better for experiencing ${(baseValue * Math.pow(10, tier)).toLocaleString()} events.`,
       type: AchievementTypes.EVENT,
       rewards
     }];

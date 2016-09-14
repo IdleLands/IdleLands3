@@ -7,6 +7,7 @@ import { STRBoost } from '../effects/STRBoost';
 import { DrunkenStupor } from '../effects/DrunkenStupor';
 
 export class PirateShanty extends Spell {
+  static description = 'Sings an inspirational sea shanty with an ally, increasing STR and drunkenness. STR boost scales on # of Bottles. The "DrunkenStupor" effect is gained when drunknness reaches 100%.';
   static element = SpellType.BUFF;
   static stat = 'special';
   static tiers = [

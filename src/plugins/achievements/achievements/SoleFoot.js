@@ -11,7 +11,7 @@ export class SoleFoot extends Achievement {
     return [{
       tier: 1,
       name: 'Sole Foot',
-      desc: 'Gain a special title for taking 100000 solo steps.',
+      desc: `Gain a special title for taking ${(100000).toLocaleString()} solo steps.`,
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',

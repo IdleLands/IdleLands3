@@ -11,7 +11,7 @@ export class Camper extends Achievement {
     return [{
       tier: 1,
       name: 'Camper',
-      desc: 'Gain a special title for camping for 100000 steps.',
+      desc: `Gain a special title for camping for ${(100000).toLocaleString()} steps.`,
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',

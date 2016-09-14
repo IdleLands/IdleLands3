@@ -6,6 +6,7 @@ import { Character } from '../../core/base/character';
 import { GameState } from '../../core/game-state';
 
 import { SETTINGS } from '../../static/settings';
+import { Logger } from '../../shared/logger';
 
 import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
@@ -204,12 +205,21 @@ export class Player extends Character {
   }
 
   moveAction() {
-    let [newLoc, dir] = this.$playerMovement.pickRandomTile(this);
+    const weight = this.$playerMovement.getInitialWeight(this);
+
+    let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
+    let attempts = 1;
     while(!this.$playerMovement.canEnterTile(this, tile)) {
-      [newLoc, dir] = this.$playerMovement.pickRandomTile(this, true);
+      if (attempts > 8) {
+        Logger.error('Player', `Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`);
+        break;
+      }
+      weight[index] = 0;
+      [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight, true);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+      attempts++;
     }
 
     this.lastDir = dir === 5 ? null : dir;

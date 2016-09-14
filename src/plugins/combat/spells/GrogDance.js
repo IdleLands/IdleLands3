@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { DEXBoost } from '../effects/DEXBoost';
 
 export class GrogDance extends Spell {
+  static description = 'Dances like a pirate, increasing DEX and replenishing bottle count by 15-45. Also increases drunkenness by 25%';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [

@@ -238,11 +238,11 @@ deathtouch ([DebuffTouch 4](../src/plugins/combat/spells/DebuffTouch.js)) | Debu
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-bottle toss ([BottleToss 1](../src/plugins/combat/spells/BottleToss.js)) | Debuff | 1 |  | 
-death glare ([DeathGlare 1](../src/plugins/combat/spells/DeathGlare.js)) | Debuff | 7 |  | 
-pirate shanty ([PirateShanty 1](../src/plugins/combat/spells/PirateShanty.js)) | Buff | 25 |  | 
-drunken frenzy ([DrunkenFrenzy 1](../src/plugins/combat/spells/DrunkenFrenzy.js)) | Physical | 30 |  | 
-grog dance ([GrogDance 1](../src/plugins/combat/spells/GrogDance.js)) | Physical | 37 |  | 
+bottle toss ([BottleToss 1](../src/plugins/combat/spells/BottleToss.js)) | Debuff | 1 | Throw a bottle at a target, dealing damage based on STR, CON, and # of Bottles. Has a chance of throwing multiple bottles. Requires and consumes 9 bottles each throw. Deals 1.5x damage if the Drunk personality is activated. | 
+death glare ([DeathGlare 1](../src/plugins/combat/spells/DeathGlare.js)) | Debuff | 7 | Glares at a target, reducing STR of the entire enemy team. Lasts up to 4 turns and reduces up to 50 STR based on # of bottles. | 
+pirate shanty ([PirateShanty 1](../src/plugins/combat/spells/PirateShanty.js)) | Buff | 25 | Sings an inspirational sea shanty with an ally, increasing STR and drunkenness. STR boost scales on # of Bottles. The "DrunkenStupor" effect is gained when drunknness reaches 100%. | 
+drunken frenzy ([DrunkenFrenzy 1](../src/plugins/combat/spells/DrunkenFrenzy.js)) | Physical | 30 | Drunkenly ravages a random enemy, dealing 2x damage if the personality Drunk is activated. Reduces drunkenness by 10% and replenishes bottle count by 30-40. | 
+grog dance ([GrogDance 1](../src/plugins/combat/spells/GrogDance.js)) | Physical | 37 | Dances like a pirate, increasing DEX and replenishing bottle count by 15-45. Also increases drunkenness by 25% | 
 retch ([Retch 1](../src/plugins/combat/spells/Retch.js)) | Physical | 40 |  | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 75 | A simple attack that uses STR to deal damage. | 
 vomit ([Retch 2](../src/plugins/combat/spells/Retch.js)) | Physical | 80 |  | 
