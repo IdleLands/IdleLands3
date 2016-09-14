@@ -334,6 +334,7 @@ export class Player extends Character {
   }
 
   _updatePet() {
+    if(!this.$pets.activePet) return;
     this.__updatePetBuyData();
     this.__updatePetBasic();
     this.__updatePetActive();

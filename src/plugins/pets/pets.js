@@ -243,6 +243,8 @@ export class Pets {
 
   sellPetItem(player, itemId) {
     const pet = this.activePet;
+    if(!this.activePet) return;
+
     const item = _.find(pet.inventory, { id: itemId });
     if(!item) return;
 
@@ -254,6 +256,7 @@ export class Pets {
 
   unequipPetItem(player, itemId) {
     const pet = this.activePet;
+    if(!this.activePet) return;
 
     if(pet.inventoryFull()) {
       return 'Pet inventory full.';
@@ -278,6 +281,7 @@ export class Pets {
 
   equipPetItem(player, itemId) {
     const pet = this.activePet;
+    if(!this.activePet) return;
 
     const item = _.find(pet.inventory, { id: itemId });
     if(!item) return;
@@ -298,6 +302,7 @@ export class Pets {
 
   giveItemToPet(player, itemId) {
     const pet = this.activePet;
+    if(!this.activePet) return;
 
     if(pet.inventoryFull()) {
       return 'Pet inventory full.';
@@ -321,6 +326,7 @@ export class Pets {
 
   takeItemFromPet(player, itemId) {
     const pet = this.activePet;
+    if(!this.activePet) return;
 
     const item = _.find(pet.inventory, { id: itemId });
     if(!item) return;
