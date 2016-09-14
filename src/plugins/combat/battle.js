@@ -65,7 +65,7 @@ export class Battle {
       return {
         name: party.name,
         players: _.map(party.players, p => {
-          return { name: p.fullname, hp: _.clone(p._hp), mp: _.clone(p._mp), special: _.clone(p._special) };
+          return { name: p.fullname, hp: _.clone(p._hp), mp: _.clone(p._mp), special: _.clone(p._special), level: p.level, profession: p.professionName };
         })
       };
     });
