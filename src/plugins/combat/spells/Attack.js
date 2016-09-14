@@ -123,7 +123,7 @@ export class Attack extends Spell {
         const canUse = this.caster.liveStats[stat];
         if(canUse <= 0) return;
 
-        const chance = Spell.chance.bool({ likelihood: Math.max(0, Math.min(100, canUse * 10)) });
+        const chance = Spell.chance.bool({ likelihood: Math.max(0, Math.min(100, canUse * 5)) });
         if(!chance) return;
 
         const properEffect = _.capitalize(stat);
