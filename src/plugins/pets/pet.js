@@ -46,7 +46,7 @@ export class Pet extends Character {
     });
 
     if(!this.smart) this.smart = { self: false, sell: true, equip: true };
-    if(!this.gold)  this._mp = { minimum: 0, maximum: this.$_scale.goldStorage, __current: 0 };
+    if(!this.gold)  this.gold = { minimum: 0, maximum: this.$_scale.goldStorage, __current: 0 };
 
     this.gold.__proto__ = RestrictedNumber.prototype;
 
