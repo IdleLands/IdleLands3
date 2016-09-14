@@ -306,6 +306,8 @@ export class Pets {
       return 'Cannot unequip nothing.';
     }
 
+    item._wasEquipped = true;
+
     player.unequip(item, this.__emptyGear({ slot: item.type }));
     pet.inventory.push(item);
 
@@ -323,7 +325,7 @@ export class Pets {
       return 'Cannot equip over something.';
     }
 
-    if(!player.canEquip(item)) {
+    if(!player.canEquip(item) && !item._wasEquipped) {
       return 'Item too powerful for you.';
     }
 
