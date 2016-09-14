@@ -70,10 +70,6 @@ export class BattlePvP extends Event {
       player.party.disband();
     }
 
-    if(player.party.isBattleParty) {
-      player.party.disband();
-    }
-
     if(opponent.party.isBattleParty) {
       opponent.party.disband();
     }
