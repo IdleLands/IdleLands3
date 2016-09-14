@@ -132,12 +132,6 @@ export class Pet extends Character {
       this.sellItem(sellItem);
 
     } else {
-
-      if(!this.canEquip(item)) {
-        this.sellItem(item);
-        return;
-      }
-
       this.inventory.push(item);
     }
 
