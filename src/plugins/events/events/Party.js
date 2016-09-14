@@ -44,6 +44,8 @@ export class Party extends Event {
     const eventText = this.eventText('party', player, { partyName: partyInstance.name, partyMembers: partyMemberString });
 
     this.emitMessage({ affected: partyInstance.players, eventText, category: MessageCategories.PARTY });
+
+    return player.party.players;
   }
 
 }

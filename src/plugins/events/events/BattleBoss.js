@@ -101,9 +101,13 @@ export class BattleBoss extends Event {
       }
     }
 
+    const affected = player.party.players;
+
     if(player.party.isBattleParty) {
       player.party.disband();
     }
+
+    return affected;
   }
 }
 

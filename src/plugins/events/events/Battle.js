@@ -52,6 +52,8 @@ export class Battle extends Event {
     if(player.party.isBattleParty) {
       player.party.disband();
     }
+
+    return [player];
   }
 }
 

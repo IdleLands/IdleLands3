@@ -17,5 +17,7 @@ export class Switcheroo extends Event {
     item.score;
     player.recalculateStats();
     player.$updateEquipment = true;
+
+    return [player];
   }
 }

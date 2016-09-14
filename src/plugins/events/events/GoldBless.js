@@ -11,7 +11,7 @@ export class GoldBless extends Event {
   static operateOn(player) {
     if(player.party && Event.chance.bool({ likelihood: 70 })) {
       GoldBlessParty.operateOn(player);
-      return;
+      return player.party.members;
     }
 
     const goldMod = Math.floor(Event.chance.integer({ min: 10, max: 1000 }));
@@ -19,5 +19,7 @@ export class GoldBless extends Event {
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [+${goldMod} gold]`, category: MessageCategories.GOLD });
     player.gainGold(goldMod);
+
+    return [player];
   }
 }

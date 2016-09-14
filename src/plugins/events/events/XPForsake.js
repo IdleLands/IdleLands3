@@ -13,5 +13,7 @@ export class XPForsake extends Event {
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [-${xpMod} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
     player.gainXp(-xpMod);
+
+    return [player];
   }
 }

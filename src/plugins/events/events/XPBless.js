@@ -11,7 +11,7 @@ export class XPBless extends Event {
   static operateOn(player) {
     if(player.party && Event.chance.bool({ likelihood: 70 })) {
       XPBlessParty.operateOn(player);
-      return;
+      return player.party.players;
     }
 
     const percent = Event.chance.floating({ fixed: 5, min: 0.01, max: 0.03 });
@@ -20,5 +20,7 @@ export class XPBless extends Event {
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [+${xpMod} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
     player.gainXp(xpMod);
+
+    return [player];
   }
 }

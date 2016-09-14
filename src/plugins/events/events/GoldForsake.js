@@ -12,5 +12,7 @@ export class GoldForsake extends Event {
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [-${goldMod} gold]`, category: MessageCategories.GOLD });
     player.gainGold(-goldMod);
+
+    return [player];
   }
 }

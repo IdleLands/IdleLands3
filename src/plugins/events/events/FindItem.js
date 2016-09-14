@@ -35,6 +35,8 @@ export class FindItem extends Event {
     const extraData = { item, eventText };
 
     player.addChoice({ id, message, extraData, event: 'FindItem', choices: ['Yes', 'No'] });
+
+    return [player];
   }
 
   static makeChoice(player, id, response) {

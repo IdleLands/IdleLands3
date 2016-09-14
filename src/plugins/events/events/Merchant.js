@@ -23,7 +23,7 @@ export class Merchant extends Event {
       const message = `%player was offered %item by a wandering merchant, but it was too ${text} for %himher.`;
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
-      return;
+      return [player];
     }
 
     const sellScore = item.score * SETTINGS.merchantMultiplier;
@@ -33,7 +33,7 @@ export class Merchant extends Event {
       const message = '%player was offered %item by a wandering merchant, but %she doesn\'t have enough gold.';
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
-      return;
+      return [player];
     }
 
     const id = Event.chance.guid();
@@ -42,6 +42,8 @@ export class Merchant extends Event {
     const extraData = { item, cost, eventText };
 
     player.addChoice({ id, message, extraData, event: 'Merchant', choices: ['Yes', 'No'] });
+
+    return [player];
   }
 
   static makeChoice(player, id, response) {

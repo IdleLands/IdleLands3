@@ -64,6 +64,12 @@ export class BattlePvP extends Event {
       Logger.error('Battle:PvP', e, battle.saveObject());
     }
 
+    const affected = player.party.players.concat(opponent.party.players);
+
+    if(player.party.isBattleParty) {
+      player.party.disband();
+    }
+
     if(player.party.isBattleParty) {
       player.party.disband();
     }
@@ -71,6 +77,8 @@ export class BattlePvP extends Event {
     if(opponent.party.isBattleParty) {
       opponent.party.disband();
     }
+
+    return affected;
   }
 }
 
