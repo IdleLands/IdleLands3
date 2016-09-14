@@ -192,7 +192,6 @@ export class Pet extends Character {
   }
 
   canGainXp() {
-    console.log(this.level, this.$ownerRef.name, this.$ownerRef.level);
     return this.level < this.$ownerRef.level;
   }
 
