@@ -310,6 +310,10 @@ export class Pets {
 
     const item = _.find(_.values(player.equipment), { id: itemId });
     if(!item) return;
+    
+    if(item.type === 'providence') {
+      return 'Providences are gifts from the gods, you cannot forsake them like this.';
+    }
 
     if(item.isNothing) {
       return 'Cannot unequip nothing.';
