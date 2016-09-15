@@ -129,7 +129,7 @@ export const socket = (socket, primus, respond) => {
     }
 
     if(!oldPlayer) {
-      emitter.emit(event, { playerName: player.name });
+      emitter.emit(event, { playerName: player.name, fromIp: socket.address.ip });
     }
 
     const msg = _.clone(MESSAGES.LOGIN_SUCCESS);

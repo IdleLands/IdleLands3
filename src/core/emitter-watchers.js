@@ -5,6 +5,7 @@ import { AdventureLog, MessageTypes, MessageCategories } from '../shared/adventu
 import { GameState } from './game-state';
 import { emitter as PlayerEmitter } from '../plugins/players/_emitter';
 import { migrate } from '../plugins/players/player.migration';
+import { handleIp } from '../plugins/players/player.handleip';
 import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../shared/playerlist-updater';
 import { MessageParser } from '../plugins/events/messagecreator';
 
@@ -12,24 +13,21 @@ PlayerEmitter.on('player:semilogin', ({ playerName }) => {
   AllPlayers(playerName);
 });
 
-PlayerEmitter.on('player:login', async ({ playerName }) => {
+PlayerEmitter.on('player:login', async ({ playerName, fromIp }) => {
   const player = await GameState.getInstance().addPlayer(playerName);
   if(!player) return;
   migrate(player);
+  handleIp(player, fromIp);
   player.update();
   player.$statistics.incrementStat('Game.Logins');
   AllPlayers(playerName);
   PlayerLogin(playerName);
-  /* AdventureLog({
-    text: MessageParser.stringFormat('Welcome %player back to Idliathlia!', player),
-    type: MessageTypes.GLOBAL,
-    category: MessageCategories.META
-  }); */
 });
 
-PlayerEmitter.on('player:register', async ({ playerName }) => {
+PlayerEmitter.on('player:register', async ({ playerName, fromIp }) => {
   const player = await GameState.getInstance().addPlayer(playerName);
   if(!player) return;
+  handleIp(player, fromIp);
   player.update();
   player.$statistics.incrementStat('Game.Logins');
   player.$statistics.incrementStat(`Character.Professions.${player.professionName}`);
@@ -44,11 +42,6 @@ PlayerEmitter.on('player:register', async ({ playerName }) => {
 
 PlayerEmitter.on('player:logout', ({ playerName }) => {
   PlayerLogout(playerName);
-  /* AdventureLog({
-    text: `«${playerName}» has departed Idliathlia!`,
-    type: MessageTypes.GLOBAL,
-    category: MessageCategories.META
-  }); */
   GameState.getInstance().delPlayer(playerName);
 });
 
