@@ -195,7 +195,7 @@ export class Pet extends Character {
         this.unequip(nothing);
       }
     }
-    
+
     this.recalculateStats();
   }
 

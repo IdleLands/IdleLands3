@@ -20,6 +20,7 @@ silver | +10% minimum attack damage.
 power | +10% maximum attack damage.
 vorpal | +10% critical chance.
 glowing | +5% to all physical combat rolls. Stacks intensity.
+sentimentality | 1 sentimentality = 1 score
 
 
 ## Attack Stats

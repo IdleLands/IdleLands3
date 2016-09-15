@@ -16,7 +16,8 @@ export const SPECIAL_STATS_BASE = [
   { name: 'silver',          desc: '+10% minimum attack damage.', enchantMax: 1 },
   { name: 'power',           desc: '+10% maximum attack damage.', enchantMax: 1 },
   { name: 'vorpal',          desc: '+10% critical chance.', enchantMax: 1 },
-  { name: 'glowing',         desc: '+5% to all physical combat rolls. Stacks intensity.', enchantMax: 1 }
+  { name: 'glowing',         desc: '+5% to all physical combat rolls. Stacks intensity.', enchantMax: 1 },
+  { name: 'sentimentality',  desc: '1 sentimentality = 1 score', enchantMax: 500 }
 ];
 
 export const ATTACK_STATS_BASE = [
