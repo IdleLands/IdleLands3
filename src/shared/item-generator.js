@@ -73,6 +73,7 @@ export class ItemGenerator extends Generator {
 
     this.addPropertiesToItem(itemInst, bonus);
 
+    itemInst._baseScore = itemInst.score;
     itemInst.type = type;
     itemInst.itemClass = this.getItemClass(itemInst);
     itemInst.score;
