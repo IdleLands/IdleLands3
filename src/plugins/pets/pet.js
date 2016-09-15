@@ -182,6 +182,8 @@ export class Pet extends Character {
     if(replace) {
       this.equipment[item.type].push(this.$manager.__emptyGear({ slot: item.type }));
     }
+
+    this.recalculateStats();
   }
 
   equip(item, removeANothing = false) {
@@ -193,6 +195,8 @@ export class Pet extends Character {
         this.unequip(nothing);
       }
     }
+    
+    this.recalculateStats();
   }
 
   addToInventory(item) {
