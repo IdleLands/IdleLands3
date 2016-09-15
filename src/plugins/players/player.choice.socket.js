@@ -13,6 +13,7 @@ export const socket = (socket) => {
     if(!playerName) return;
 
     const player = GameState.getInstance().getPlayer(playerName);
+    if (!player) return;
     player.handleChoice({ id, response });
   };
 

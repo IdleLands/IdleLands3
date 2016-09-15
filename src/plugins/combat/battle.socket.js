@@ -10,6 +10,7 @@ export const socket = (socket, primus, respond) => {
   const retrieve = async({ battleName, playerName }) => {
     try {
       const battle = await retrieveFromDb(battleName);
+      if (!battle) return;
       DataUpdater(playerName, 'battle', battle);
     } catch(e) {
       respond(e);
