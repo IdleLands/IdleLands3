@@ -29,6 +29,20 @@ export class PlayerDb {
     });
   }
 
+  async getOffenses(ip) {
+    const db = await this.dbWrapper.connectionPromise();
+    const players = db.collection('players');
+
+    return new Promise((resolve, reject) => {
+      players.find({ allIps: ip, isMuted: true }).limit(1).next(async(err, doc) => {
+        if(err) {
+          return reject({ err, msg: MESSAGES.GENERIC });
+        }
+        resolve(doc);
+      });
+    });
+  }
+
   async createPlayer(playerObject) {
     const db = await this.dbWrapper.connectionPromise();
     const players = db.collection('players');
