@@ -119,6 +119,10 @@ export class GameState {
     return _.map(this.players, p => this.getPlayerSimple(p, keys));
   }
 
+  getSomePlayersSimple(playerNames, keys) {
+    return _.compact(_.map(this.players, p => playerNames[p.name] ? this.getPlayerSimple(p, keys) : null));
+  }
+
   retrievePlayer(playerName) {
     const playerObject = _.find(this.players, { name: playerName });
     if(playerObject) return playerObject;

@@ -41,6 +41,18 @@ export const AllPlayersPostMove = () => {
   });
 };
 
+export const SomePlayersPostMove = (updatedPlayers) => {
+  const gameState = GameState.getInstance();
+  const data = gameState.getSomePlayersSimple(updatedPlayers, ['x', 'y', 'map']);
+  primus.forEach(spark => {
+    if(!spark.authToken) return;
+    const player = gameState.getPlayer(spark.authToken.playerName);
+    if(!player) return;
+    const filteredData = _.filter(data, pt => pt.map === player.map);
+    spark.write({ playerListOperation: 'updateMass', data: filteredData });
+  });
+};
+
 export const PlayerUpdateAll = (playerId, keys) => {
   const data = GameState.getInstance().getPlayerNameSimple(playerId, keys);
   primus.forEach(spark => spark.write({ playerListOperation: 'update', data }));
