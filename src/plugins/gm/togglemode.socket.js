@@ -13,7 +13,7 @@ export const socket = (socket) => {
     const { playerName } = socket.authToken;
 
     const player = GameState.getInstance().getPlayer(playerName);
-    if(!player.isMod) return;
+    if(!player || !player.isMod) return;
 
     const target = GameState.getInstance().getPlayer(targetName);
     GMCommands.toggleMod(target);

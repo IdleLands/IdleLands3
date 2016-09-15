@@ -13,7 +13,8 @@ export const socket = (socket, primus, respond) => {
     if(!playerName) return;
 
     const player = GameState.getInstance().getPlayer(playerName);
-
+    if(!player) return;
+    
     const message = player.$pets.equipPetItem(player, itemId);
 
     if(message) {
