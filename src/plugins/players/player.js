@@ -257,6 +257,7 @@ export class Player extends Character {
 
   unequip(item, replaceWith) {
     this.equipment[item.type] = replaceWith;
+    this.recalculateStats();
   }
 
   buildSaveObject() {
