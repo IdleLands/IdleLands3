@@ -37,7 +37,7 @@ export class Bossy extends Achievement {
     return [{
       tier,
       name: 'Bossy',
-      desc: `+${(tier*10).toLocaleString()} STR/CON for killing ${baseValue*tier} bosses.`,
+      desc: `Gain +${(tier*10).toLocaleString()} STR/CON for killing ${baseValue*tier} bosses.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];

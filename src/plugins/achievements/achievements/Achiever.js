@@ -29,7 +29,7 @@ export class Achiever extends Achievement {
     return [{
       tier,
       name: 'Achiever',
-      desc: `+${tier} achievement${tier > 1 ? 's': ''}`,
+      desc: `Gain +${tier} achievement${tier > 1 ? 's': ''}.`,
       type: AchievementTypes.EVENT,
       rewards
     }];
