@@ -187,7 +187,7 @@ export class PlayerMovement {
   static pickRandomTile(player, weight, overrideFollow = false) {
     if(!player.stepCooldown) player.stepCooldown = 0;
 
-    if(player.$partyName && !overrideFollow) {
+    if(player.party && !overrideFollow) {
       const party = player.party;
       const follow = party.getFollowTarget(player);
       if(follow && follow.map === player.map) {
