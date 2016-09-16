@@ -110,7 +110,7 @@ export class GameState {
   }
 
   getPlayerSimple(player, keys = UPDATE_KEYS) {
-    keys.push('_id', 'nameEdit', 'isMuted', 'isMod', 'name', '$currentIp');
+    keys.push('_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$currentIp');
     keys = _.uniq(keys);
     return _.pick(player, keys);
   }

@@ -9,6 +9,7 @@ export const handleIp = (player, fromIp) => {
   player.allIps = _.compact(_.uniq(player.allIps));
 
   player.$currentIp = fromIp;
+  if(player.isPardoned) return;
 
   const playerLoad = GameState.getInstance().playerLoad;
   playerLoad.playerDb.getOffenses(fromIp).then(offenses => {

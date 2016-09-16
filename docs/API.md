@@ -8,6 +8,7 @@ API Call | Arguments | Description
 -------- | --------- | -----------
 plugin:chat:toggleban | targetName | Mod only. Toggle banned status for a particular user. Generally only used to ban, as they get kicked immediately.
 plugin:chat:togglemute | targetName | Mod only. Toggle muted status for a particular user.
+plugin:chat:togglepardon | targetName | Mod only. Toggle pardoned status for a particular user.
 plugin:chat:sendmessage | text, channel, route | Send a chat message.
 plugin:combat:retrieve | battleName, playerName | Retrieve a battle from the database.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
