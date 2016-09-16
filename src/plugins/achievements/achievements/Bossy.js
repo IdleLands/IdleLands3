@@ -22,6 +22,10 @@ export class Bossy extends Achievement {
       con: tier*10
     }];
 
+    if(tier >= 4) {
+      rewards.push({ type: 'stats', itemFindRange: 100 });
+    }
+
     if(tier >= 5) {
       rewards.push({ type: 'title', title: 'Bossy' });
     }

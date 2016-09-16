@@ -11,7 +11,7 @@ export class Fateful extends Achievement {
     return [{
       tier: 1,
       name: 'Fateful',
-      desc: 'Gain a special title for 500 fate pool uses.',
+      desc: 'Gain a special title (and +5% max item score) for 500 fate pool uses.',
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
@@ -19,6 +19,9 @@ export class Fateful extends Achievement {
       }, {
         type: 'petattr',
         petattr: 'a miniature pool with a question mark in it'
+      }, {
+        type: 'stats',
+        itemFindRangeMultiplier: 0.05
       }]
     }];
   }

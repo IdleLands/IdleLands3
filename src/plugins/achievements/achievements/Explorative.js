@@ -23,6 +23,10 @@ export class Explorative extends Achievement {
       intDisplay: `${tier}%`
     }];
 
+    if(tier >= 4) {
+      rewards.push({ type: 'stats', itemFindRange: 100 });
+    }
+
     if(tier >= 5) {
       rewards.push({ type: 'title', title: 'Explorative' });
     }

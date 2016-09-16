@@ -22,7 +22,7 @@ export class Enchanted extends Achievement {
     return [{
       tier: 1,
       name: 'Enchanted',
-      desc: 'Gain a special title for having 100 concurrent enchantments.',
+      desc: 'Gain a special title (and +10% max item score) for having 100 concurrent enchantments.',
       type: AchievementTypes.PROGRESS,
       rewards: [{
         type: 'title',
@@ -30,6 +30,9 @@ export class Enchanted extends Achievement {
       }, {
         type: 'petattr',
         petattr: 'a blob of arcane dust'
+      }, {
+        type: 'stats',
+        itemFindRangeMultiplier: 0.1
       }]
     }];
   }

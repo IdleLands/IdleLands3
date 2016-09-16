@@ -11,7 +11,7 @@ export class SoleFoot extends Achievement {
     return [{
       tier: 1,
       name: 'Sole Foot',
-      desc: `Gain a special title for taking ${(100000).toLocaleString()} solo steps.`,
+      desc: `Gain a special title (and +5% max item score) for taking ${(100000).toLocaleString()} solo steps.`,
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
@@ -19,6 +19,9 @@ export class SoleFoot extends Achievement {
       }, {
         type: 'petattr',
         petattr: 'a literal rabbit foot'
+      }, {
+        type: 'stats',
+        itemFindRangeMultiplier: 0.05
       }]
     }];
   }

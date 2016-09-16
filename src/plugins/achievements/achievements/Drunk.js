@@ -11,7 +11,7 @@ export class Drunk extends Achievement {
     return [{
       tier: 1,
       name: 'Drunk',
-      desc: `Gain a special title for ${(100000).toLocaleString()} drunken steps.`,
+      desc: `Gain a special title (and +5% max item score) for ${(100000).toLocaleString()} drunken steps.`,
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
@@ -19,6 +19,9 @@ export class Drunk extends Achievement {
       }, {
         type: 'petattr',
         petattr: 'a bottle of booze'
+      }, {
+        type: 'stats',
+        itemFindRangeMultiplier: 0.05
       }]
     }];
   }

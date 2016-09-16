@@ -24,7 +24,7 @@ export class Classfluid extends Achievement {
     return [{
       tier,
       name: 'Classfluid',
-      desc: `+${3*tier}% STR/CON/DEX/INT/AGI/LUK for being each profession ${tier} times.`,
+      desc: `+${3*tier}% STR/CON/DEX/INT/AGI/LUK and +${tier*100} max item score for being each profession ${tier} times.`,
       type: AchievementTypes.PROGRESS,
       rewards: [{
         type: 'title',
@@ -45,7 +45,8 @@ export class Classfluid extends Achievement {
         int: (player, baseValue) => baseValue*0.03*tier,
         intDisplay: `${tier*3}%`,
         luk: (player, baseValue) => baseValue*0.03*tier,
-        lukDisplay: `${tier*3}%`
+        lukDisplay: `${tier*3}%`,
+        itemFindRange: tier*100
       }]
     }];
   }

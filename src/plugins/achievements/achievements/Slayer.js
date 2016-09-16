@@ -26,6 +26,10 @@ export class Slayer extends Achievement {
       itemFindRangeMultiplier: (tier*0.1).toFixed(1)
     }];
 
+    if(tier >= 4) {
+      rewards.push({ type: 'stats', itemFindRange: 100 });
+    }
+
     if(tier >= 5) {
       rewards.push({ type: 'title', title: 'Slayer' });
     }
