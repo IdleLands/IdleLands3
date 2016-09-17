@@ -108,11 +108,15 @@ export const primus = (() => {
     // spark.join('adventurelog');
   });
 
-  const path = require('path').join(__dirname, '..', '..', 'Play');
-  fs.stat(path, e => {
-    if(e) return;
-    primus.save(`${path}/primus.gen.js`);
-  });
+  if(process.env.NODE_ENV !== 'production') {
+    _.each(['Play', 'Global'], root => {
+      const path = require('path').join(__dirname, '..', '..', root);
+      fs.stat(path, e => {
+        if(e) return;
+        primus.save(`${path}/primus.gen.js`);
+      });
+    });
+  }
 
   return primus;
 })();
