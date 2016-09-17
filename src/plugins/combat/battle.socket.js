@@ -1,20 +1,18 @@
 
 import { retrieveFromDb } from './battle.db';
-import { DataUpdater } from '../../shared/data-updater';
 
 export const event = 'plugin:combat:retrieve';
 export const description = 'Retrieve a battle from the database.';
 export const args = 'battleName, playerName';
 export const socket = (socket, primus, respond) => {
 
-  const retrieve = async({ battleName, playerName }) => {
+  const retrieve = async({ battleName }) => {
     try {
       const battle = await retrieveFromDb(battleName);
       if (!battle) return;
-      DataUpdater(playerName, 'battle', battle);
+      respond({ data: battle, update: 'battle' });
     } catch(e) {
-      respond(e);
-      DataUpdater(playerName, 'battle', { msg: 'This battle does not exist or has expired.' });
+      respond({ data: { msg: 'This battle does not exist or has expired.' }, update: 'battle' });
     }
   };
 
