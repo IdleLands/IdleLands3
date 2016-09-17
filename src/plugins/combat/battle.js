@@ -286,7 +286,7 @@ export class Battle {
     return {
       _id: this._id,
       name: this.name,
-      happenedAt: this.happenedAt,
+      happenedAt: new Date(this.happenedAt),
       messageData: this.messageData,
       initialParties: this._initialParties,
       parties: _.map(this.parties, party => party.buildTransmitObject())
