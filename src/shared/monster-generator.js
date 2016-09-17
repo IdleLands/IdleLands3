@@ -124,7 +124,7 @@ export class MonsterGenerator extends Generator {
     if(baseMonster.name && chance.bool({ likelihood: 1 })) {
       const chanceOpts = { prefix: chance.bool(), suffix: chance.bool(), middle: chance.bool() };
       if(baseMonster.gender) {
-        chanceOpts.gender = baseMonster.gender.toLowerCase();
+        chanceOpts.gender = _.sample(['male', 'female']);
       }
       baseMonster.name = `${chance.name(chanceOpts)}, the ${baseMonster.name}`;
     }
