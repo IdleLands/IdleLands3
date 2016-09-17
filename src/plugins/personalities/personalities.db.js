@@ -16,7 +16,7 @@ export class PersonalitiesDb {
 
   async getPersonalities(id) {
     const db = await this.dbWrapper.connectionPromise();
-    const personalities = db.collection('personalities');
+    const personalities = db.$$collections.personalities;
 
     return new Promise((resolve, reject) => {
       personalities.find({ _id: id }).limit(1).next((err, doc) => {
@@ -39,7 +39,7 @@ export class PersonalitiesDb {
 
   async savePersonalities(personalitiesObject) {
     const db = await this.dbWrapper.connectionPromise();
-    const personalities = db.collection('personalities');
+    const personalities = db.$$collections.personalities;
 
     return new Promise((resolve) => {
       personalities.findOneAndUpdate({ _id: personalitiesObject._id }, 

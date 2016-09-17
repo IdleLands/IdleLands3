@@ -16,7 +16,7 @@ export class CollectiblesDb {
 
   async getCollectibles(id) {
     const db = await this.dbWrapper.connectionPromise();
-    const collectibles = db.collection('collectibles');
+    const collectibles = db.$$collections.collectibles;
 
     return new Promise((resolve, reject) => {
       collectibles.find({ _id: id }).limit(1).next((err, doc) => {
@@ -39,7 +39,7 @@ export class CollectiblesDb {
 
   async saveCollectibles(collectiblesObject) {
     const db = await this.dbWrapper.connectionPromise();
-    const collectibles = db.collection('collectibles');
+    const collectibles = db.$$collections.collectibles;
 
     return new Promise((resolve) => {
       collectibles.findOneAndUpdate({ _id: collectiblesObject._id }, { $set: { collectibles: collectiblesObject.collectibles } }, { upsert: true }, (err) =>{

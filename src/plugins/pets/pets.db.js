@@ -16,7 +16,7 @@ export class PetsDb {
 
   async getPets(id) {
     const db = await this.dbWrapper.connectionPromise();
-    const pets = db.collection('pets');
+    const pets = db.$$collections.pets;
 
     return new Promise((resolve, reject) => {
       pets.find({ _id: id }).limit(1).next((err, doc) => {
@@ -39,7 +39,7 @@ export class PetsDb {
 
   async savePets(petsObject) {
     const db = await this.dbWrapper.connectionPromise();
-    const pets = db.collection('pets');
+    const pets = db.$$collections.pets;
 
     return new Promise((resolve) => {
       pets.findOneAndUpdate({ _id: petsObject._id },

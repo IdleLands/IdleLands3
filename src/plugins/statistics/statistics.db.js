@@ -16,7 +16,7 @@ export class StatisticsDb {
 
   async getStatistics(id) {
     const db = await this.dbWrapper.connectionPromise();
-    const statistics = db.collection('statistics');
+    const statistics = db.$$collections.statistics;
 
     return new Promise((resolve, reject) => {
       statistics.find({ _id: id }).limit(1).next((err, doc) => {
@@ -39,7 +39,7 @@ export class StatisticsDb {
 
   async saveStatistics(statsObject) {
     const db = await this.dbWrapper.connectionPromise();
-    const statistics = db.collection('statistics');
+    const statistics = db.$$collections.statistics;
 
     return new Promise((resolve) => {
       statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }, (err) =>{

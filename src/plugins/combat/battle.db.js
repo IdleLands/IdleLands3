@@ -7,7 +7,7 @@ export const persistToDb = async (battleInstance) => {
   const saveData = battleInstance.saveObject();
 
   const db = await DbWrapper.promise;
-  const battles = db.collection('battles');
+  const battles = db.$$collections.battles;
 
   return new Promise((resolve, reject) => {
     battles.findOneAndUpdate({ _id: saveData._id }, saveData, { upsert: true }, (err) =>{
@@ -25,7 +25,7 @@ export const persistToDb = async (battleInstance) => {
 export const retrieveFromDb = async (battleName) => {
 
   const db = await DbWrapper.promise;
-  const battles = db.collection('battles');
+  const battles = db.$$collections.battles;
 
   return new Promise((resolve, reject) => {
     battles.find({ _id: battleName }).limit(1).next(async(err, doc) => {

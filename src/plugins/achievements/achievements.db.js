@@ -16,7 +16,7 @@ export class AchievementsDb {
 
   async getAchievements(id) {
     const db = await this.dbWrapper.connectionPromise();
-    const achievements = db.collection('achievements');
+    const achievements = db.$$collections.achievements;
 
     return new Promise((resolve, reject) => {
       achievements.find({ _id: id }).limit(1).next((err, doc) => {
@@ -39,7 +39,7 @@ export class AchievementsDb {
 
   async saveAchievements(achievementsObject) {
     const db = await this.dbWrapper.connectionPromise();
-    const achievements = db.collection('achievements');
+    const achievements = db.$$collections.achievements;
 
     return new Promise((resolve) => {
       achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: { achievements: achievementsObject.achievements } }, { upsert: true }, (err) =>{

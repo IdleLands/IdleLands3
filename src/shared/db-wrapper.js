@@ -46,6 +46,17 @@ export class DbWrapper {
         db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 7200 }, _.noop);
 
         Logger.info(mongoTag, 'Connected!');
+
+        db.$$collections = {
+          achievements:       db.collection('achievements'),
+          battles:            db.collection('battles'),
+          collectibles:       db.collection('collectibles'),
+          personalities:      db.collection('personalities'),
+          pets:               db.collection('pets'),
+          players:            db.collection('players'),
+          statistics:         db.collection('statistics')
+        };
+
         resolve(db);
       });
     });
