@@ -246,7 +246,7 @@ export class Player extends Character {
       incrementStats.push('Character.Movement.Drunk');
     }
 
-    if(this.$personalities.isActive('Solo')) {
+    if(this.$personalities.isActive('Solo') && !this.party) {
       incrementStats.push('Character.Movement.Solo');
     }
 
