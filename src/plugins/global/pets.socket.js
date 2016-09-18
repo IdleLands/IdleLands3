@@ -12,14 +12,15 @@ export const socket = (socket, primus, respond) => {
     if(socket.authToken) return;
 
     const allPets = _(GameState.getInstance().getPlayers())
-      .filter(p => p.activePet)
-      .map('activePet')
+      .map(p => p.$pets.activePet)
+      .compact()
       .map(pet => {
         const base = _.pick(pet, ['name', 'level', 'professionName']);
         base.owner = pet.$ownerRef.name;
+        return base;
       })
       .value();
-
+    
     respond({
       update: 'pets',
       data: allPets
