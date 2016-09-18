@@ -265,7 +265,7 @@ export class Player extends Character {
   }
 
   buildTransmitObject() {
-    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir'];
+    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir', 'allIps'];
     return _.omitBy(this, (val, key) => {
       return _.startsWith(key, '$') || _.includes(key, 'Link') || _.includes(key, 'Steps') || _.includes(badKeys, key);
     });
