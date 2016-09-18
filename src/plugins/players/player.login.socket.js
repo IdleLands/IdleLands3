@@ -115,6 +115,9 @@ export const socket = (socket, primus, respond) => {
       return respond(MESSAGES.GENERIC);
     }
 
+    // closed
+    if(socket.readyState === 2) return;
+
     const oldPlayer = _.find(gameState.players, { name: player.name });
 
     if(gameState._hasTimeout(player.name)) {
