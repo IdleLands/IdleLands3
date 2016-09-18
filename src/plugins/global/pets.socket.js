@@ -16,7 +16,7 @@ export const socket = (socket, primus, respond) => {
       .compact()
       .map(pet => {
         const base = _.pick(pet, ['name', 'level', 'professionName']);
-        base.owner = pet.$ownerRef.name;
+        base.owner = pet.$ownerRef.nameEdit || pet.$ownerRef.name;
         base.type = pet.$petId;
         return base;
       })
