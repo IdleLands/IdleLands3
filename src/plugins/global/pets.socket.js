@@ -17,10 +17,11 @@ export const socket = (socket, primus, respond) => {
       .map(pet => {
         const base = _.pick(pet, ['name', 'level', 'professionName']);
         base.owner = pet.$ownerRef.name;
+        base.type = pet.$petId;
         return base;
       })
       .value();
-    
+
     respond({
       update: 'pets',
       data: allPets
