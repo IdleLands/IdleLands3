@@ -11,6 +11,8 @@ plugin:chat:togglemute | targetName | Mod only. Toggle muted status for a partic
 plugin:chat:togglepardon | targetName | Mod only. Toggle pardoned status for a particular user.
 plugin:chat:sendmessage | text, channel, route | Send a chat message.
 plugin:combat:retrieve | battleName, playerName | Retrieve a battle from the database.
+plugin:global:allmaps |  | Get all maps for the global page display. Cannot be logged in to execute this function.
+plugin:global:allplayers |  | Get all players for the global page display. Cannot be logged in to execute this function.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.

@@ -94,6 +94,13 @@ export const primus = (() => {
     _.each(allSocketRequires, obj => obj.socket(spark, primus, (data) => {
       data.event = obj.event;
       respond(data);
+
+      // kill global sparks after 5 seconds
+      if(_.includes(obj.event, 'plugin:global')) {
+        setTimeout(() => {
+          spark.end();
+        }, 5000);
+      }
     }));
 
     spark.on('error', e => {
