@@ -3,6 +3,10 @@ import _ from 'lodash';
 
 import { GameState } from '../../core/game-state';
 
+import allteleports from '../../../assets/maps/content/teleports.json';
+
+const compressedTeleports = _.extend({}, allteleports.towns, allteleports.bosses, allteleports.dungeons, allteleports.trainers, allteleports.other);
+
 export const event = 'plugin:global:allmaps';
 export const description = 'Get all maps for the global page display. Cannot be logged in to execute this function.';
 export const args = '';
@@ -17,7 +21,7 @@ export const socket = (socket, primus, respond) => {
 
     respond({
       update: 'maps',
-      data: mapData
+      data: { maps: mapData, teleports: compressedTeleports }
     });
 
   };
