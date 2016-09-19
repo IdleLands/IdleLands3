@@ -9,12 +9,12 @@ export class FlipTheBit extends Spell {
     { name: 'flip the bit', spellPower: 1, weight: 40, cost: 512, level: 1, profession: 'Bitomancer' }
   ];
 
-  static shouldCast() {
-    return this.$canTarget.yes();
+  static shouldCast(caster) {
+    return this.$canTarget.enemyNotProfession(caster, 'Bitomancer');
   }
 
   determineTargets() {
-    return this.$targetting.randomEnemy;
+    return this.$targetting.randomEnemyNotProfession('Bitomancer');
   }
 
   preCast() {
