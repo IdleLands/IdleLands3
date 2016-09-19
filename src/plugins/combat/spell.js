@@ -123,6 +123,8 @@ export class Spell {
 
           this.caster.$battle.emitEvents(this.caster, 'Kill');
           this.caster.$battle.emitEvents(target, 'Killed');
+
+          target.$effects.clear();
         }
       }
 
