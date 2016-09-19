@@ -263,9 +263,15 @@ export class Player extends Character {
     this.gainXp(SETTINGS.xpPerStep);
   }
 
+  equip(item) {
+    super.equip(item);
+    this.save();
+  }
+
   unequip(item, replaceWith) {
     this.equipment[item.type] = replaceWith;
     this.recalculateStats();
+    this.save();
   }
 
   buildSaveObject() {
