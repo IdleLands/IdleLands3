@@ -228,7 +228,7 @@ export class Player extends Character {
 
     const mapInstance = GameState.getInstance().world.maps[this.map];
 
-    if(this.x <= 0 || this.y <= 0 || this.y*16 > mapInstance.height || this.x*16 > mapInstance.width) {
+    if(this.x <= 0 || this.y <= 0 || this.y > mapInstance.height || this.x > mapInstance.width) {
       this.map = 'Norkos';
       this.x = 10;
       this.y = 10;
