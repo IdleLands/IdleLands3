@@ -15,6 +15,8 @@ export class GMCommands {
     };
 
     player.$playerMovement.handleTileTeleport(player, tileData, true);
+    const tile = player.$playerMovement.getTileAt(player.map, player.x, player.y);
+    player.$playerMovement.handleTile(player, tile);
   }
 
   static toggleMod(player) {
