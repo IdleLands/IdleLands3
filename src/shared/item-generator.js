@@ -94,6 +94,10 @@ export class ItemGenerator extends Generator {
       }
     }
 
+    if(chance.integer({ min: 0, max: 100 }) === 0) {
+      this.mergePropInto(item, _.sample(ObjectAssets['prefix-special']));
+    }
+
     if(chance.integer({ min: 0, max: 85 }) <= 1+bonus) {
       this.mergePropInto(item, _.sample(ObjectAssets.suffix));
     }
