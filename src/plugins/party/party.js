@@ -138,8 +138,8 @@ export class Party {
     });
   }
 
-  disband(player) {
-    if(!this.isBattleParty && !this.isMonsterParty) {
+  disband(player, showMessage = true) {
+    if(!this.isBattleParty && !this.isMonsterParty && showMessage) {
       emitter.emit('player:event', {
         affected: this.players,
         eventText: MessageParser.stringFormat('%player has disbanded %partyName.', player || this.leader, { partyName: this.name }),

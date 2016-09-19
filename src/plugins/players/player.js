@@ -100,6 +100,8 @@ export class Player extends Character {
       return;
     }
 
+    this.attemptToDisbandSoloParty();
+
     this.moveAction();
 
     EventHandler.tryToDoEvent(this);
@@ -109,6 +111,15 @@ export class Player extends Character {
     }
 
     this.save();
+  }
+
+  attemptToDisbandSoloParty() {
+    if(!this.$partyName) return;
+
+    const party = this.party;
+    if(party.players.length > 1) return;
+
+    party.disband(this, false);
   }
 
   levelUp() {
