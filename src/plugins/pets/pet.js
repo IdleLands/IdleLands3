@@ -253,6 +253,7 @@ export class Pet extends Character {
     base.$scale = this.$scale;
     base.$scaleCost = this.$scaleCost;
     base.$slots = this.$slots;
+    base.ownerEdit = this.$ownerRef.nameEdit;
     return base;
   }
 
