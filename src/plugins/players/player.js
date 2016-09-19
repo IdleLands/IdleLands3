@@ -226,6 +226,14 @@ export class Player extends Character {
     this.x = newLoc.x;
     this.y = newLoc.y;
 
+    const mapInstance = GameState.getInstance().world.maps[this.map];
+
+    if(this.x <= 0 || this.y <= 0 || this.y*16 > mapInstance.height || this.x*16 > mapInstance.width) {
+      this.map = 'Norkos';
+      this.x = 10;
+      this.y = 10;
+    }
+
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
 
