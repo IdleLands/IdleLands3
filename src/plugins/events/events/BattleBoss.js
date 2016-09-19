@@ -75,6 +75,7 @@ export class BattleBoss extends Event {
       if(dropItems.length > 0) {
         _.each(dropItems, item => {
           _.each(player.party.players, p => {
+            if(!p.canEquip(item)) return;
             FindItem.operateOn(p, item);
           });
         });
