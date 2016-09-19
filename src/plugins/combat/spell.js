@@ -162,11 +162,15 @@ export class Spell {
       const properEffect = _.capitalize(stat);
       const effect = require(`./effects/${properEffect}`)[properEffect];
 
+      let potencyBonus = this.caster.liveStats[stat];
+      if(potencyBonus < 0) potencyBonus = 0;
+
       this.cast({
         damage: 0,
         message: '',
         applyEffect: effect,
         applyEffectName: stat,
+        applyEffectPotency: 1 + potencyBonus,
         applyEffectDuration: stat === 'prone' ? 1 : this.calcDuration(),
         targets: [target]
       });
