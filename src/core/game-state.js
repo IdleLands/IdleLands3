@@ -77,6 +77,8 @@ export class GameState {
         return reject({ msg: MESSAGES.NO_PLAYER });
       }
 
+      player.choices = _.reject(player.choices, c => c.event === 'Party' || c.event === 'PartyLeave');
+
       this.players.push(player);
       resolve(player);
     });
