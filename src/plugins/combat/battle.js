@@ -254,7 +254,7 @@ export class Battle {
           this.tryIncrement(p, 'Combat.Lose');
 
           const compareLevel = _.sum(_.map(this.winners, 'level')) / this.winners.length;
-          const lostGold = Math.round(p.gold / 100);
+          const lostGold = Math.round((p.gold.__current ? p.gold.__current : p.gold) / 100);
           let lostXp = Math.round(p._xp.maximum / 20);
 
           if(compareLevel > party.level + 5) {
