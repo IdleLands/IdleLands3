@@ -11,6 +11,7 @@ export class ItemBless extends Event {
     if(!item) return;
 
     const stat = this.pickStat(item);
+    if(!stat) return;
 
     const boost = item[stat] === 0 ? 5 : Math.max(3, Math.abs(Math.floor(item[stat]/20)));
 
