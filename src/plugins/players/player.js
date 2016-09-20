@@ -276,13 +276,13 @@ export class Player extends Character {
 
   equip(item) {
     super.equip(item);
-    this.save();
+    this._saveSelf();
   }
 
   unequip(item, replaceWith) {
     this.equipment[item.type] = replaceWith;
     this.recalculateStats();
-    this.save();
+    this._saveSelf();
   }
 
   buildSaveObject() {
@@ -296,6 +296,10 @@ export class Player extends Character {
     });
   }
 
+  _saveSelf() {
+    this.$playerDb.savePlayer(this);
+  }
+
   save() {
     this.checkAchievements();
 
@@ -303,7 +307,7 @@ export class Player extends Character {
     this.saveSteps--;
 
     if(this.saveSteps <= 0) {
-      this.$playerDb.savePlayer(this);
+      this._saveSelf();
       this.$statistics.save();
       this.$pets.save();
       this.saveSteps = SETTINGS.saveSteps;
