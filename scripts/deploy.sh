@@ -48,8 +48,11 @@ git config user.email "travis@travis-ci.org"
 # fi
 
 ls -al
+mkdir ../tempgit
+mv .git ../tempgit/.git
 
-find . -path ./.git -prune -o \( \! -path ./dist \) -exec rm -rf {} \; 2> /dev/null
+shopt -s extglob
+rm -rf !(dist)
 
 ls -al
 
@@ -59,6 +62,8 @@ cd ../
 rm -rf dist
 
 echo 'web: node src/index.js' > Procfile
+
+mv ../tempgit/.git .
 
 ls -al
 
