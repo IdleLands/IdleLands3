@@ -1,4 +1,6 @@
 
+console.log('Starting IdleLands!');
+
 if(process.env.NODE_ENV === 'production' && !process.env.IGNORE_NEWRELIC) {
   require('newrelic');
 }

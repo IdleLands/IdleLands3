@@ -38,27 +38,21 @@ git config user.name "Travis CI"
 git config user.email "travis@travis-ci.org"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-# if [ -z `git diff --exit-code` ]; then
-#    echo "No changes to the output on this push; exiting."
-#    exit 0
-# fi
-
-ls -al
+if [ -z `git diff --exit-code` ]; then
+   echo "No changes to the output on this push; exiting."
+   exit 0
+fi
 
 rm -rf .babelrc .editorconfig .eslintignore .eslintrc .gitignore .travis.yml LICENSE README.md
 rm -rf docs npm scripts src test node_modules
 
 echo 'web: node dist/index.js' > Procfile
 
-ls -al
-
 git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.git > /dev/null 2>&1
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 git add --all .
-
-git status
 
 git commit -m "Deploy to GitHub/Heroku: ${SHA}"
 
