@@ -65,13 +65,13 @@ export const primus = (() => {
       try {
         const test = require('../../src/test.js');
         output += test.output();
-      } catch (e)
+      } catch (e) {
         output += `src/test.js: ${e.message}`;
       }
       try {
         const test = require('../../dist/test.js');
         output += test.output();
-      } catch (e)
+      } catch (e) {
         output += `dist/test.js: ${e.message}`;
       }
       res.send(output);
