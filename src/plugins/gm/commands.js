@@ -1,5 +1,6 @@
 
 import { EventHandler } from '../events/eventhandler';
+import { FindItem } from '../events/events/FindItem';
 
 export class GMCommands {
   static teleport(player, { map, x, y, toLoc }) {
@@ -37,5 +38,9 @@ export class GMCommands {
 
   static giveEvent(player, event) {
     EventHandler.doEvent(player, event);
+  }
+
+  static giveItem(player, item) {
+    FindItem.operateOn(player, item);
   }
 }

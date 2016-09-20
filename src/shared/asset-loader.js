@@ -10,7 +10,7 @@ const replaceMultiSpaces = (string) => {
   return string.replace(/ {2,}/g, ' ');
 };
 
-class JSONParser {
+export class JSONParser {
   static _parseInitialArgs(string) {
     if(!string || _.includes(string, '#')) return [];
     string = replaceMultiSpaces(string);
@@ -29,7 +29,7 @@ class JSONParser {
       let newVal = 0;
       if(_.isNaN(testVal) && _.isUndefined(arr[1])) {
         newVal = 1;
-      } else if(_.includes(['class','gender','link','expiration','zone'], arr[0])) {
+      } else if(_.includes(['class','gender','link','expiration','zone','type'], arr[0])) {
         newVal = arr[1];
       } else {
         newVal = testVal;
@@ -41,8 +41,7 @@ class JSONParser {
     });
 
     return _.reduce(paramData, (cur, prev) => {
-      _.extend(prev, cur);
-      return prev;
+      return _.extend({}, cur, prev);
     }, baseObj);
   }
 
