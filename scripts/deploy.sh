@@ -44,7 +44,7 @@ git config user.email "travis@travis-ci.org"
 # fi
 
 rm -rf .babelrc .editorconfig .eslintignore .eslintrc .gitignore .travis.yml LICENSE README.md
-rm -rf docs scripts src test node_modules
+rm -rf docs scripts src test node_modules assets
 
 echo 'web: node dist/index.js' > Procfile
 
