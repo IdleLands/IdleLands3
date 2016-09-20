@@ -42,16 +42,18 @@ git config user.name "Travis CI"
 git config user.email "travis@travis-ci.org"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-if [ -z `git diff --exit-code` ]; then
-    echo "No changes to the output on this push; exiting."
-    exit 0
-fi
+# if [ -z `git diff --exit-code` ]; then
+#    echo "No changes to the output on this push; exiting."
+#    exit 0
+# fi
 
 shopt -s extglob
 rm -rf !(dist)
 
 cp -r dist/* .
 rm -rf dist
+
+echo 'web: node src/index.js' > Procfile
 
 ls -al
 
