@@ -38,10 +38,10 @@ git config user.name "Travis CI"
 git config user.email "travis@travis-ci.org"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-if [ -z `git diff --exit-code` ]; then
-   echo "No changes to the output on this push; exiting."
-   exit 0
-fi
+# if [ -z `git diff --exit-code` ]; then
+#    echo "No changes to the output on this push; exiting."
+#    exit 0
+# fi
 
 rm -rf .babelrc .editorconfig .eslintignore .eslintrc .gitignore .travis.yml LICENSE README.md
 rm -rf docs npm scripts src test node_modules
