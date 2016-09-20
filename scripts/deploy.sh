@@ -57,7 +57,7 @@ rm -rf !(dist)
 ls -al
 
 cd dist/
-cp -r * ../
+cp -r . ../
 cd ../
 rm -rf dist
 
