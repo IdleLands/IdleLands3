@@ -30,6 +30,8 @@ cd ..
 # Clean out existing contents
 rm -rf dist/**/* || exit 0
 
+chmod a+x ./scripts/*
+
 # Run our compile script
 doCompile
 
