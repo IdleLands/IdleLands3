@@ -53,7 +53,7 @@ mv .git ../tempgit/.git
 
 shopt -s extglob
 rm -rf !(dist)
-rm -rf .*
+rm -rf .[^.] .??*
 
 ls -al
 
