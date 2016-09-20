@@ -8,6 +8,8 @@ export const WEIGHT = 15;
 
 // Gain 1-3% XP
 export class XPBless extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     if(player.party && Event.chance.bool({ likelihood: 70 })) {
       XPBlessParty.operateOn(player);

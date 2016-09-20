@@ -6,6 +6,8 @@ export const WEIGHT = 5;
 
 // Lose 3-5% XP
 export class XPForsake extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     const percent = Event.chance.floating({ fixed: 5, min: 0.03, max: 0.05 });
     const xpMod = Math.floor(player._xp.maximum * percent);

@@ -6,6 +6,8 @@ export const WEIGHT = 10;
 
 // Lose 25-2000 Gold
 export class GoldForsake extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     const goldMod = Math.min(player.gold, Math.floor(Event.chance.integer({ min: 25, max: 2000 })));
     const eventText = this.eventText('forsakeGold', player, { gold: goldMod });

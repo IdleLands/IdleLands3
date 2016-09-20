@@ -6,6 +6,8 @@ export const WEIGHT = 25;
 
 // Forsake an item (random stat -5%)
 export class ItemForsake extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     const item = this.pickValidItem(player);
     if(!item) return;

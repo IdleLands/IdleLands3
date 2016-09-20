@@ -6,6 +6,8 @@ export const WEIGHT = -1;
 
 // Get given the opportunity to leave party
 export class PartyLeave extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     const otherOfSame = _.find(player.choices, choice => choice.event === 'PartyLeave');
     if(otherOfSame) return;

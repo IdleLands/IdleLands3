@@ -6,6 +6,8 @@ export const WEIGHT = 45;
 
 // Bless an item (random stat +5%)
 export class ItemBless extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     const item = this.pickValidItemForBless(player);
     if(!item) return;

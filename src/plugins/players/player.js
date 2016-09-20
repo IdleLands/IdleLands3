@@ -70,7 +70,11 @@ export class Player extends Character {
       .filter(ach => ach.permanentProp)
       .map(ach => ({ property: ach.permanentProp, name: ach.name }))
       .value();
-    this.$dataUpdater(this.name, 'gmdata', { maps, teleNames, permAchs });
+    const allEvents = _(Events)
+      .keys()
+      .reject(key => Events[key].WEIGHT <= 0)
+      .value();
+    this.$dataUpdater(this.name, 'gmdata', { maps, teleNames, permAchs, allEvents });
   }
 
   generateBaseEquipment() {

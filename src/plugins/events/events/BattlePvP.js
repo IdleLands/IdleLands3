@@ -15,6 +15,8 @@ export const WEIGHT = 4;
 
 // Create a pvp battle
 export class BattlePvP extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     if(player.level <= SETTINGS.minBattleLevel) return;
     if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;

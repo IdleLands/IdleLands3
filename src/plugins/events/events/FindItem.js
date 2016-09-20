@@ -10,6 +10,8 @@ export const WEIGHT = 70;
 
 // Get given the opportunity to change items
 export class FindItem extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player, forceItem) {
 
     let item = forceItem;

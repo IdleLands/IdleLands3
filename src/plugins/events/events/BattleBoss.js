@@ -20,6 +20,8 @@ export const WEIGHT = -1;
 
 // Create a battle
 export class BattleBoss extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player, { bossName, bosses }) {
     if(player.level <= SETTINGS.minBattleLevel) return;
     if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;

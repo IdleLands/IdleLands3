@@ -16,6 +16,7 @@ plugin:global:pet | playerName | Get all pet information for the global page dis
 plugin:global:allpets |  | Get all pets for the global page display. Cannot be logged in to execute this function.
 plugin:global:player | playerName | Get all player information for the global page display. Cannot be logged in to execute this function.
 plugin:global:allplayers |  | Get all players for the global page display. Cannot be logged in to execute this function.
+plugin:gm:giveevent | targetName, targetEvent | Mod only. Give an event to a particular player.
 plugin:gm:setlevel | targetName, targetLevel | Mod only. Set a players level.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.

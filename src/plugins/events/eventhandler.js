@@ -5,7 +5,7 @@ import fs from 'fs';
 import Chance from 'chance';
 const chance = new Chance();
 
-const allEvents = {};
+export const allEvents = {};
 
 const loadAllEvents = () => {
   const list = fs.readdirSync(`${__dirname}/events`);
@@ -17,6 +17,17 @@ const loadAllEvents = () => {
 loadAllEvents();
 
 export class EventHandler {
+
+  static doEvent(player, eventName) {
+    if(!allEvents[eventName]) return;
+    const chosenEvent = allEvents[eventName][eventName];
+    const affected = chosenEvent.operateOn(player);
+
+    _.each(affected, affect => {
+      affect.$statistics.batchIncrement(['Character.Events', `Character.Event.${eventName}`]);
+    });
+  }
+
   static tryToDoEvent(player) {
 
     if(player.eventSteps > 0) {
@@ -37,11 +48,6 @@ export class EventHandler {
     });
 
     const chosenEventName = chance.weighted(events, weights);
-    const chosenEvent = allEvents[chosenEventName][chosenEventName];
-    const affected = chosenEvent.operateOn(player);
-
-    _.each(affected, affect => {
-      affect.$statistics.batchIncrement(['Character.Events', `Character.Event.${chosenEventName}`]);
-    });
+    this.doEvent(player, chosenEventName);
   }
 }

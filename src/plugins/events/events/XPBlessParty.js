@@ -7,6 +7,8 @@ export const WEIGHT = -1;
 
 // Gain 1-3% XP
 export class XPBlessParty extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     const percent = Event.chance.floating({ fixed: 5, min: 0.01, max: 0.03 });
     const xpMod = Math.floor(player._xp.maximum * percent);

@@ -7,6 +7,8 @@ export const WEIGHT = -1;
 
 // Get given the opportunity to change classes
 export class ProfessionChange extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player, { professionName, trainerName }) {
     const otherOfSame = _.find(player.choices, choice => choice.event === 'ProfessionChange' && choice.extraData.professionName === professionName);
     if(player.professionName === professionName || otherOfSame) return;

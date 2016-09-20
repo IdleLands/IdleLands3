@@ -16,6 +16,8 @@ export const WEIGHT = isBattleDebug ? 300 : 3;
 
 // Create a battle
 export class Battle extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     if(player.level <= SETTINGS.minBattleLevel) return;
 

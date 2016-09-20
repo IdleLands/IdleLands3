@@ -8,6 +8,8 @@ export const WEIGHT = 45;
 
 // Gain 10-1000 Gold
 export class GoldBless extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     if(player.party && Event.chance.bool({ likelihood: 70 })) {
       GoldBlessParty.operateOn(player);

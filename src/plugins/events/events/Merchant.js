@@ -12,6 +12,8 @@ export const WEIGHT = 15;
 
 // Get the opportunity to buy an item
 export class Merchant extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
 
     const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus));

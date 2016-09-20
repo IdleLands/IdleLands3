@@ -12,6 +12,7 @@ export const WEIGHT = -1;
 
 // Get the gift of the divine
 export class Providence extends Event {
+  static WEIGHT = WEIGHT;
 
   static generateProvidenceItem(multiplier = 1, t0shift = 0, t1shift = 0, t2shift = 0) {
     const baseItem = {

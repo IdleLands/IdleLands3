@@ -16,6 +16,8 @@ export const WEIGHT = isBattleDebug ? 250 : 25;
 
 // Create a party
 export class Party extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
 
     if(player.$partyName || player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) return;

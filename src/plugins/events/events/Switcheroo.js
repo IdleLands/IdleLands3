@@ -6,6 +6,8 @@ export const WEIGHT = 1;
 
 // Switcheroo an item (flip any stat between positive and negative)
 export class Switcheroo extends Event {
+  static WEIGHT = WEIGHT;
+
   static operateOn(player) {
     const item = this.pickValidItem(player);
     const stat = this.pickStat(item);

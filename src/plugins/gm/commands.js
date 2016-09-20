@@ -1,4 +1,5 @@
 
+import { EventHandler } from '../events/eventhandler';
 
 export class GMCommands {
   static teleport(player, { map, x, y, toLoc }) {
@@ -32,5 +33,9 @@ export class GMCommands {
   static setLevel(player, level) {
     player._level.set(level - 1);
     player.levelUp();
+  }
+
+  static giveEvent(player, event) {
+    EventHandler.doEvent(player, event);
   }
 }
