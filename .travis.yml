@@ -4,8 +4,5 @@ node_js:
   - "6.0"
   - "stable"
 
-before_script:
-  - ./scripts/prod-prep.sh
-
-after_script:
-  - ./scripts/prod-cleanup.sh
+after_success:
+  - scripts/deploy.sh

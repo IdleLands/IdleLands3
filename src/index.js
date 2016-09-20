@@ -22,6 +22,6 @@ require('dotenv').config({ silent: true });
 require('babel-register');
 require('babel-polyfill');
 
-require('./src/primus/server');
+require('./primus/server');
 
-require('./src/core/event-loop');
+require('./core/event-loop');
