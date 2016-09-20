@@ -49,12 +49,13 @@ git config user.email "travis@travis-ci.org"
 
 ls -al
 
-shopt -s extglob
-rm -rf !(dist)
+find . -path ./.git -prune -o \( \! -path ./dist \) -exec rm -rf {} \; 2> /dev/null
 
 ls -al
 
-cp -r dist/* .
+cd dist/
+cp -r * ../
+cd ../
 rm -rf dist
 
 echo 'web: node src/index.js' > Procfile
