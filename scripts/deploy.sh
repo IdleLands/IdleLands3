@@ -76,9 +76,12 @@ rm -rf .[^.] .??*
 
 cp -r dist/* .
 
-echo 'web: node src/index.js' > Procfile
+echo 'web: node index.js' > Procfile
 
 ls -al
+
+git config user.name "Travis CI"
+git config user.email "travis@travis-ci.org"
 
 git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.git > /dev/null 2>&1
 
