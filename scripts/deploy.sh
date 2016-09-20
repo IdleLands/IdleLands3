@@ -56,7 +56,10 @@ git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
-git add .
+git add --all .
+
+git status
+
 git commit -m "Deploy to GitHub/Heroku: ${SHA}"
 
 # Now that we're all set up, we can push.
