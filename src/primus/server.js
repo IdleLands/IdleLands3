@@ -39,47 +39,7 @@ export const primus = (() => {
       res.send(e);
     }
   });
-  const path2 = require('path');
-  const getDirListing = (dir, isDir) => {
-    const files = fs.readdirSync(dir);
 
-    return files.map((file) => {
-      return path2.join(dir, file);
-    }).filter((file) => {
-      return isDir ? fs.statSync(file).isDirectory() : fs.statSync(file).isFile();
-    }).join('<br/>');
-  };
-  serve.get('/hello', (req, res) => {
-    try {
-      let output = `filename: ${__filename}<br/>dirname: ${__dirname}<br/>`;
-      output += `${path2.join(__dirname, '..', '..', 'dist')}<br/>`;
-      output += getDirListing(path2.join(__dirname, '..', '..',), true);
-      output += '<br/><br/>';
-
-      fs.exists(path2.join(__dirname, '..', '..', 'dist'), (exists2) => {
-        output += exists2 ? 'dist is there<br/>' : 'dist not found!<br/>';
-
-        if (exists2) output += getDirListing(path2.join(__dirname, '..', '..', 'dist'), false);
-        output += '<br/><br/>';
-      });
-      try {
-        const test = require('../../src/test.js');
-        output += test.output();
-      } catch (e) {
-        output += `src/test.js: ${e.message}`;
-      }
-      try {
-        const test = require('../../dist/test.js');
-        output += test.output();
-      } catch (e) {
-        output += `dist/test.js: ${e.message}`;
-      }
-      res.send(output);
-    } catch (e) {
-      res.send(e.message);
-    }
-
-  });
   const finalhandler = require('finalhandler');
 
 // load primus
