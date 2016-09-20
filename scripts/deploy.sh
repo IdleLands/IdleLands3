@@ -55,14 +55,10 @@ shopt -s extglob
 rm -rf !(dist)
 rm -rf .[^.] .??*
 
-ls -al
-
 cd dist/
 cp -r . ../
 cd ../
 rm -rf dist
-
-ls -al
 
 echo 'web: node src/index.js' > Procfile
 
@@ -73,12 +69,23 @@ mv ../tempgit/.git .
 ls -al
 
 git checkout -b ${TARGET_BRANCH}
+
+shopt -s extglob
+rm -rf !(dist)
+rm -rf .[^.] .??*
+
+cp -r dist/* .
+
+echo 'web: node src/index.js' > Procfile
+
+ls -al
+
 git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.git > /dev/null 2>&1
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 git add .
-git commit -m "Deploy to GitHub Pages: ${SHA}"
+git commit -m "Deploy to GitHub/Heroku: ${SHA}"
 
 git remote -v
 
