@@ -50,6 +50,6 @@ export const AdventureLog = (message) => {
     primus.forEach(spark => {
       if(!spark.authToken || spark.authToken.playerName !== target) return;
       spark.write(message);
-    });
+    }, _.noop);
   });
 };

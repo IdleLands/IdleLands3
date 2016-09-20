@@ -10,7 +10,7 @@ export const AllPlayers = (playerName) => {
   primus.forEach(spark => {
     if(!spark.authToken || spark.authToken.playerName !== playerName) return;
     spark.write({ playerListOperation: 'set', data: allPlayers });
-  });
+  }, _.noop);
 };
 
 export const PlayerLogin = (playerName) => {
@@ -18,14 +18,14 @@ export const PlayerLogin = (playerName) => {
   primus.forEach(spark => {
     if(!spark.authToken || spark.authToken.playerName === playerName) return;
     spark.write({ playerListOperation: 'add', data: simplePlayerToAdd });
-  });
+  }, _.noop);
 };
 
 export const PlayerLogout = (playerName) => {
   primus.forEach(spark => {
     if(!spark.authToken || spark.authToken.playerName === playerName) return;
     spark.write({ playerListOperation: 'del', data: playerName });
-  });
+  }, _.noop);
 };
 
 // these are global updater functions
@@ -38,7 +38,7 @@ export const AllPlayersPostMove = () => {
     if(!player) return;
     const filteredData = _.filter(data, pt => pt.map === player.map);
     spark.write({ playerListOperation: 'updateMass', data: filteredData });
-  });
+  }, _.noop);
 };
 
 export const SomePlayersPostMove = (updatedPlayers) => {
@@ -50,10 +50,12 @@ export const SomePlayersPostMove = (updatedPlayers) => {
     if(!player) return;
     const filteredData = _.filter(data, pt => pt.map === player.map);
     spark.write({ playerListOperation: 'updateMass', data: filteredData });
-  });
+  }, _.noop);
 };
 
 export const PlayerUpdateAll = (playerId, keys) => {
   const data = GameState.getInstance().getPlayerNameSimple(playerId, keys);
-  primus.forEach(spark => spark.write({ playerListOperation: 'update', data }));
+  primus.forEach(spark => {
+    spark.write({ playerListOperation: 'update', data });
+  }, _.noop);
 };

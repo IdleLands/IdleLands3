@@ -60,6 +60,6 @@ export class Event {
     primus.forEach(spark => {
       if(!spark.authToken || spark.authToken.playerName !== player.name) return;
       spark.write({ type: 'error', title: '', notify: message });
-    });
+    }, _.noop);
   }
 }
