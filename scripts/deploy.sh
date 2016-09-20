@@ -53,6 +53,7 @@ mv .git ../tempgit/.git
 
 shopt -s extglob
 rm -rf !(dist)
+rm -rf .*
 
 ls -al
 
@@ -61,7 +62,11 @@ cp -r . ../
 cd ../
 rm -rf dist
 
+ls -al
+
 echo 'web: node src/index.js' > Procfile
+
+cp -r ../dist .
 
 mv ../tempgit/.git .
 
