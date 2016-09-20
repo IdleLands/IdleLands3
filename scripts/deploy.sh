@@ -36,12 +36,6 @@ chmod a+x ./scripts/compile.sh
 # Run our compile script
 doCompile
 
-shopt -s extglob
-rm -rf !(dist)
-
-cp -r dist/* .
-rm -rf dist
-
 # Now let's go have some fun with the cloned repo
 cd out
 git config user.name "Travis CI"
@@ -52,6 +46,12 @@ if [ -z `git diff --exit-code` ]; then
     echo "No changes to the output on this push; exiting."
     exit 0
 fi
+
+shopt -s extglob
+rm -rf !(dist)
+
+cp -r dist/* .
+rm -rf dist
 
 git checkout -b ${TARGET_BRANCH}
 git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.git > /dev/null 2>&1
