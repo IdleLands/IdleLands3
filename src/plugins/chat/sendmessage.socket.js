@@ -71,7 +71,7 @@ export const socket = (socket, primus) => {
       primus.forEach(spark => {
         if(!_.includes(users, spark.playerName)) return;
         spark.write(messageObject);
-      }, _.noop);
+      });
     } else {
       primus.room(route).write(messageObject);
 
