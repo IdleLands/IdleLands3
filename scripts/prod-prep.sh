@@ -4,4 +4,4 @@
 #babel -q --compact true --minified -d dist src
 
 # put a temp file in there, for the /hello endpoint (so we know it's all working)
-cp test.js dist/
+cp /app/test.js /app/dist/
