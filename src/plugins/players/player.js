@@ -228,7 +228,7 @@ export class Player extends Character {
         break;
       }
       weight[index] = 0;
-      [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight, true);
+      [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
       attempts++;
     }

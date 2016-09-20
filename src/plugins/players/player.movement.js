@@ -181,7 +181,7 @@ export class PlayerMovement {
   }
 
   static pickFollowTile(player, target) {
-    return [{ x: target.x, y: target.y }, target.lastDir];
+    return [0, { x: target.x, y: target.y }, target.lastDir];
   }
 
   static pickRandomTile(player, weight, overrideFollow = false) {
@@ -190,6 +190,7 @@ export class PlayerMovement {
     if(player.party && !overrideFollow) {
       const party = player.party;
       const follow = party.getFollowTarget(player);
+
       if(follow && follow.map === player.map) {
         return this.pickFollowTile(player, follow);
       }

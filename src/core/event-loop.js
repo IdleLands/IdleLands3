@@ -21,10 +21,10 @@ GameState.getInstance();
 
 Logger.info('Core', 'Starting event loop.');
 
-const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'production' ? 200 : 5);
+const timerDelay = SETTINGS.timeframeSeconds * (process.env.NODE_ENV === 'production' ? 200 : 1);
 
 const flagNextTurn = (player) => {
-  player.$nextTurn = Date.now() + (1000 * SETTINGS.timeframeSeconds);
+  player.$nextTurn = Date.now() + ((process.env.NODE_ENV === 'production' ? 1000 : 10) * SETTINGS.timeframeSeconds);
 };
 
 const canTakeTurn = (now, player) => {
