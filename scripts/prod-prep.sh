@@ -1,5 +1,7 @@
 #!/bin/bash
 
+npm install --save babel-cli
+
 # obviously we could also put our babel command in here, to create the dist subtree, thusly:
 babel -q --compact true --minified -d /app/dist /app/src
 
