@@ -28,4 +28,9 @@ export class GMCommands {
     player.permanentAchievements = player.permanentAchievements || {};
     player.permanentAchievements[achievement] = !player.permanentAchievements[achievement];
   }
+
+  static setLevel(player, level) {
+    player._level.set(level - 1);
+    player.levelUp();
+  }
 }
