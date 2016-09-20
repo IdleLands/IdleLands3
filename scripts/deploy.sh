@@ -37,7 +37,6 @@ chmod a+x ./scripts/compile.sh
 doCompile
 
 # Now let's go have some fun with the cloned repo
-cd out
 git config user.name "Travis CI"
 git config user.email "travis@travis-ci.org"
 
@@ -48,33 +47,13 @@ git config user.email "travis@travis-ci.org"
 # fi
 
 ls -al
-mkdir ../tempgit
-mv .git ../tempgit/.git
 
-shopt -s extglob
-rm -rf !(dist)
-rm -rf .[^.] .??*
-
-cd dist/
-cp -r . ../
-cd ../
-rm -rf dist
-
-echo 'web: node src/index.js' > Procfile
-
-cp -r ../dist .
-
-mv ../tempgit/.git .
-
-ls -al
+echo 'web: node dist/index.js' > Procfile
 
 git checkout -b ${TARGET_BRANCH}
 
-shopt -s extglob
-rm -rf .[^.] .??*
+rm -rf .babelrc .editorconfig .eslintignore .eslintrc .gitignore .travis.yml LICENSE package.json README.md
 rm -rf docs npm scripts src test
-
-cp -r dist/* .
 
 echo 'web: node dist/index.js' > Procfile
 
