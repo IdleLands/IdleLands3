@@ -57,4 +57,4 @@ git add --all .
 git commit -m "Deploy to GitHub/Heroku: ${SHA}"
 
 # Now that we're all set up, we can push.
-git push --set-upstream origin-heroku $TARGET_BRANCH
+git push --force --set-upstream origin-heroku $TARGET_BRANCH
