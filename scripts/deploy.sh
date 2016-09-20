@@ -30,7 +30,8 @@ cd ..
 # Clean out existing contents
 rm -rf dist/**/* || exit 0
 
-chmod a+x ./scripts/*
+chmod a+x ./scripts/deploy.sh
+chmod a+x ./scripts/compile.sh
 
 # Run our compile script
 doCompile
