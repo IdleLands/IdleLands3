@@ -49,8 +49,8 @@ export class Providence extends Event {
   }
 
   static probabilities = {
-    xp: 60,
-    level: 15,
+    xp: 40,
+    level: 30,
     gender: 80,
     gold: 50,
     profession: 10,
