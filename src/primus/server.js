@@ -62,8 +62,18 @@ export const primus = (() => {
         if (exists2) output += getDirListing(path2.join(__dirname, '..', '..', 'dist'), false);
         output += '<br/><br/>';
       });
-      const test = require('../../dist/test.js');
-      output += test.output();
+      try {
+        const test = require('../../src/test.js');
+        output += test.output();
+      } catch (e)
+        output += `src/test.js: ${e.message}`);
+      }
+      try {
+        const test = require('../../dist/test.js');
+        output += test.output();
+      } catch (e)
+        output += `dist/test.js: ${e.message}`);
+      }
       res.send(output);
     } catch (e) {
       res.send(e.message);
