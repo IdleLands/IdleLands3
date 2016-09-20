@@ -53,6 +53,8 @@ rm -rf !(dist)
 cp -r dist/* .
 rm -rf dist
 
+ls -al
+
 git checkout -b ${TARGET_BRANCH}
 git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.git > /dev/null 2>&1
 
@@ -61,8 +63,7 @@ git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.
 git add .
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
-ls .
-
+git remote -v
 
 # Now that we're all set up, we can push.
 git push --set-upstream origin-heroku $TARGET_BRANCH
