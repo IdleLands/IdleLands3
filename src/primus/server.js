@@ -61,24 +61,8 @@ export const primus = (() => {
 
         if (exists2) output += getDirListing(path2.join(__dirname, '..', '..', 'dist'), false);
         output += '<br/><br/>';
-
-        output += `${path2.join(__dirname, '..', '..', 'dist', 'test.js')}<br/>`;
-        fs.exists(path2.join(__dirname, '..', '..', 'dist', 'test.js'), (exists) => {
-          output += exists ? 'dist/test.js is there<br/>' : 'dist/test.js not found!<br/>';
-          if (exists) {
-            const test = require('../../dist/test.js');
-            output += test.output();
-          } else {
-            try {
-              const test = require('../../dist/test.js');
-              output += test.output();
-            } catch (e) {
-              output += e.message;
-            }
-          }
-          res.send(output);
-        });      
-      });      
+      });
+      res.send(output);
     } catch (e) {
       res.send(e.message);
     }
