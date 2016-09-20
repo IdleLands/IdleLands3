@@ -106,7 +106,7 @@ export class Player extends Character {
 
     EventHandler.tryToDoEvent(this);
 
-    if(this.party) {
+    if(this.$partyName) {
       this.party.playerTakeStep(this);
     }
 
