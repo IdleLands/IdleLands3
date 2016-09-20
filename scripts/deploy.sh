@@ -47,8 +47,12 @@ git config user.email "travis@travis-ci.org"
 #    exit 0
 # fi
 
+ls -al
+
 shopt -s extglob
 rm -rf !(dist)
+
+ls -al
 
 cp -r dist/* .
 rm -rf dist
