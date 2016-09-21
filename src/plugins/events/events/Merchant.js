@@ -19,7 +19,7 @@ export class Merchant extends Event {
     let { merchantBonus } = opts || {};
 
     merchantBonus = +merchantBonus;
-    if(_.isNaN(merchantBonus)) merchantBonus = 0;
+    if(_.isNaN(merchantBonus)) merchantBonus = Event.chance.integer({ min: -3, max: 15 });
 
     const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus + merchantBonus));
     if(!player.canEquip(item)) {
