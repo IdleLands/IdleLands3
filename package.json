@@ -11,7 +11,7 @@
     "start:battletest": "BATTLE_DEBUG=1 node src/index.js",
     "start:prod": "NODE_ENV=production IGNORE_NEWRELIC=1 EXT_CHAT=0 node src/index.js",
     "test": "npm run test:local",
-    "test:lint": "eslint src/** test/plugins/**",
+    "test:lint": "eslint --quiet src/** test/plugins/**",
     "test:local": "npm run test:lint",
     "test:client": "node test/client/client",
     "generate:all": "npm run generate:spelldoc && npm run generate:classdoc && npm run generate:apidoc && npm run generate:effectdoc",
