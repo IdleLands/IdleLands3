@@ -1,2 +1,2 @@
 npm install -g babel-cli
-babel -q --compact true --minified -d dist src
+babel -q --compact true -d dist src
