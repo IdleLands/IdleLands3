@@ -132,6 +132,7 @@ export class Player extends Character {
   levelUp() {
     if(this.level === this._level.maximum) return;
     super.levelUp();
+    this._saveSelf();
     emitter.emit('player:levelup', { player: this });
   }
 
