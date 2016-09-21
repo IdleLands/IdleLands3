@@ -101,6 +101,7 @@ export class Player extends Character {
 
     if(this.$personalities.isActive('Camping')) {
       this.$statistics.incrementStat('Character.Movement.Camping');
+      this.save();
       return;
     }
 
