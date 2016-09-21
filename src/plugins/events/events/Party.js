@@ -20,8 +20,6 @@ export class Party extends Event {
 
   static operateOn(player) {
 
-    if(player.$partyName || player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) return;
-
     const validPlayers = _.reject(
       GameState.getInstance().getPlayers(),
       p => p.$partyName || p === player
@@ -30,6 +28,19 @@ export class Party extends Event {
       || p.level < SETTINGS.minPartyLevel
       || p.map !== player.map
     );
+
+    if(player.$partyName || player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) {
+      if(player.party.players.length < SETTINGS.maxPartyMembers && validPlayers.length >= 1 && player.party.canInvite()) {
+        const newPlayer = _.sample(validPlayers);
+        player.party.playerJoin(newPlayer);
+        this.emitMessage({
+          affected: player.party.players,
+          eventText: this._parseText('%partyName picked up a stray %player on their travels!', newPlayer, { partyName: player.party.name }),
+          category: MessageCategories.PARTY
+        });
+      }
+      return;
+    }
     if(validPlayers.length < 3) return;
 
     const partyInstance = new PartyClass({ leader: player });
