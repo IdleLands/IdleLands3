@@ -57,9 +57,10 @@ export class Event {
   }
 
   static feedback(player, message) {
-    primus.forEach(spark => {
-      if(!spark.authToken || spark.authToken.playerName !== player.name) return;
+    primus.forEach((spark, next) => {
+      if(!spark.authToken || spark.authToken.playerName !== player.name) return next();
       spark.write({ type: 'error', title: '', notify: message });
-    });
+      next();
+    }, () => {});
   }
 }

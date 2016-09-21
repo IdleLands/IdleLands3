@@ -68,10 +68,11 @@ export const socket = (socket, primus) => {
 
     if(_.includes(route, ':pm:')) {
       const users = route.split(':')[2].split('|');
-      primus.forEach(spark => {
-        if(!_.includes(users, spark.playerName)) return;
+      primus.forEach((spark, next) => {
+        if(!_.includes(users, spark.playerName)) return next();
         spark.write(messageObject);
-      });
+        next();
+      }, () => {});
     } else {
       primus.room(route).write(messageObject);
 

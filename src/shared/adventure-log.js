@@ -47,9 +47,10 @@ export const AdventureLog = (message) => {
 
   message.event = 'adventurelog';
   _.each(message.targets, target => {
-    primus.forEach(spark => {
-      if(!spark.authToken || spark.authToken.playerName !== target) return;
+    primus.forEach((spark, next) => {
+      if(!spark.authToken || spark.authToken.playerName !== target) return next();
       spark.write(message);
-    });
+      next();
+    }, () => {});
   });
 };
