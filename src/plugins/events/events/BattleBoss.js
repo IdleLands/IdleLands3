@@ -53,6 +53,7 @@ export class BattleBoss extends Event {
 
     if(!battle.isLoser(player.party) && !battle._isTie) {
       _.each(player.party.players, p => {
+        if(!p.$statistics) return;
         p.$statistics.incrementStat(`Character.BossKills.${bossName}`);
       });
 
