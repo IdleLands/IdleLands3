@@ -120,9 +120,9 @@ export class StatCalculator {
       .sum();
   }
 
-  static stat(player, stat) {
+  static stat(player, stat, baseValueMod = 0) {
     let mods = 0;
-    const baseValue = this._baseStat(player, stat);
+    const baseValue = baseValueMod + this._baseStat(player, stat);
 
     const functions = this._secondPassFunctions(player, stat);
     _.each(functions, func => mods += func(player, baseValue));
@@ -218,20 +218,20 @@ export class StatCalculator {
 
   static itemValueMultiplier(player) {
     const baseValue = SETTINGS.reductionDefaults.itemValueMultiplier;
-    const reducedValue = this._reduction('itemValueMultiplier', [player], baseValue);
+    const reducedValue = this.stat(player, 'itemValueMultiplier', baseValue);
     return reducedValue;
 
   }
 
   static itemFindRange(player) {
     const baseValue = (player.level+1) * SETTINGS.reductionDefaults.itemFindRange;
-    const reducedValue = this._reduction('itemFindRange', [player], baseValue);
+    const reducedValue = this.stat(player, 'itemFindRange', baseValue);
     return Math.floor(reducedValue * this.itemFindRangeMultiplier(player));
   }
 
   static itemFindRangeMultiplier(player) {
     const baseValue = 1 + (0.2 * Math.floor(player.level/10)) + SETTINGS.reductionDefaults.itemFindRangeMultiplier;
-    return this._reduction('itemFindRangeMultiplier', [player], baseValue);
+    return this.stat(player, 'itemFindRangeMultiplier', baseValue);
   }
 
   static merchantItemGeneratorBonus(player) {
