@@ -8,15 +8,20 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { SETTINGS } from '../../../static/settings';
 
-export const WEIGHT = 15;
+export const WEIGHT = 1500;
 
 // Get the opportunity to buy an item
 export class Merchant extends Event {
   static WEIGHT = WEIGHT;
 
-  static operateOn(player) {
+  static operateOn(player, opts) {
 
-    const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus));
+    let { merchantBonus } = opts || {};
+
+    merchantBonus = +merchantBonus;
+    if(_.isNaN(merchantBonus)) merchantBonus = 0;
+
+    const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus + merchantBonus));
     if(!player.canEquip(item)) {
       const playerItem = player.equipment[item.type];
       const text = playerItem.score > item.score ? 'weak' : 'strong';

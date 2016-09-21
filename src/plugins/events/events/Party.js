@@ -30,7 +30,7 @@ export class Party extends Event {
     );
 
     if(player.$partyName || player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) {
-      if(player.party.players.length < SETTINGS.maxPartyMembers && validPlayers.length >= 1 && player.party.canInvite()) {
+      if(player.party.players.length < SETTINGS.maxPartyMembers && validPlayers.length >= 1) {
         const newPlayer = _.sample(validPlayers);
         player.party.playerJoin(newPlayer);
         this.emitMessage({
@@ -41,6 +41,7 @@ export class Party extends Event {
       }
       return;
     }
+
     if(validPlayers.length < 3) return;
 
     const partyInstance = new PartyClass({ leader: player });

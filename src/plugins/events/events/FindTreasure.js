@@ -16,7 +16,7 @@ export class FindTreasure extends Event {
     player.$statistics.incrementStat(`Character.Treasure.${treasureName}`);
     _.each(ItemGenerator.getAllTreasure(treasureName), item => {
       if(!player.canEquip(item)) return;
-      FindItem.operateOn(player, item);
+      FindItem.operateOn(player, null, item);
     });
   }
 }

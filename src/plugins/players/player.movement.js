@@ -66,7 +66,7 @@ export class PlayerMovement {
         Logger.error('PlayerMovement', `forceEvent ${forceEvent} does not exist at ${player.x}, ${player.y} in ${player.map}`);
         return;
       }
-      Events[forceEvent].operateOn(player);
+      Events[forceEvent].operateOn(player, tile.object.properties);
     }
 
     if(!type || !this[`handleTile${type}`]) return;

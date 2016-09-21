@@ -12,7 +12,7 @@ export const WEIGHT = 70;
 export class FindItem extends Event {
   static WEIGHT = WEIGHT;
 
-  static operateOn(player, forceItem) {
+  static operateOn(player, opts = {}, forceItem) {
 
     let item = forceItem;
 

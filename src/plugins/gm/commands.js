@@ -41,6 +41,6 @@ export class GMCommands {
   }
 
   static giveItem(player, item) {
-    FindItem.operateOn(player, item);
+    FindItem.operateOn(player, null, item);
   }
 }
