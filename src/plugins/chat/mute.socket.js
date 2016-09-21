@@ -22,6 +22,8 @@ export const socket = (socket) => {
     target.isMuted = !target.isMuted;
     if(target.isMuted && target.isPardoned) target.isPardoned = false;
 
+    target._saveSelf();
+
     PlayerUpdateAll(target._id, ['isMuted', 'isPardoned']);
   };
 

@@ -20,7 +20,7 @@ export const socket = (socket) => {
 
     if(!player || !player.isMod || !target) return;
     target.isBanned = true;
-    target.save();
+    target._saveSelf();
 
     emitter.emit('player:logout', { playerName: targetName });
   };

@@ -16,6 +16,6 @@ export const handleIp = (player, fromIp) => {
     if(!offenses) return;
 
     player.isMuted = true;
-    player.save();
+    player._saveSelf();
   });
 };

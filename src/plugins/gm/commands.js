@@ -23,7 +23,7 @@ export class GMCommands {
 
   static toggleMod(player) {
     player.isMod = !player.isMod;
-    player.save();
+    player._saveSelf();
   }
 
   static toggleAchievement(player, achievement) {
