@@ -31,7 +31,7 @@ const canTakeTurn = (now, player) => {
   return player.$nextTurn - now <= 0;
 };
 
-setInterval(() => {
+const playerInterval = () => {
   const gameState = GameState.getInstance();
   const players = gameState.getPlayers();
 
@@ -39,7 +39,7 @@ setInterval(() => {
 
   const ranPlayerNames = {};
 
-  _.each(players, player => {
+  const playerTakeTurn = (player) => {
     if(!player.$nextTurn) flagNextTurn(player);
     if(!canTakeTurn(now, player)) return;
 
@@ -47,28 +47,12 @@ setInterval(() => {
     flagNextTurn(player);
 
     player.takeTurn();
-      // PlayerUpdateAll(player.name, ['x', 'y', 'map']);
-  });
+    // PlayerUpdateAll(player.name, ['x', 'y', 'map']);
+  };
+
+  _.each(players, playerTakeTurn);
 
   SomePlayersPostMove(ranPlayerNames);
+};
 
-  /*
-  const promises = _.map(players, (player) => {
-    const playerName = player.name;
-
-    return new Promise(resolve => {
-      // setTimeout(() => {
-
-      if(!_.find(gameState.getPlayers(), { name: playerName })) return resolve(false);
-      player.takeTurn();
-      resolve(true);
-
-      // }, index * (timerDelay / players.length));
-    });
-
-  });
-
-  Promise.all(promises).then(AllPlayersPostMove);
-  */
-
-}, timerDelay);
+setInterval(playerInterval, timerDelay);
