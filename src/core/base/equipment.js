@@ -19,7 +19,7 @@ export class Equipment {
     str: 1.5,
     dex: 1,
     agi: 1,
-    con: 3.5,
+    con: 2.5,
     int: 2,
     luk: 5,
     enchantLevel: -125,

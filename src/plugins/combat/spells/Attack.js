@@ -66,7 +66,7 @@ export class Attack extends Spell {
         damage
       };
 
-      const critChance = 1 + this.caster.liveStats.crit + (this.caster.liveStats.vorpal ? 10 : 0);
+      const critChance = Math.min(100, Math.max(0, 1 + this.caster.liveStats.crit + (this.caster.liveStats.vorpal ? 10 : 0)));
 
       if(Spell.chance.bool({ likelihood: critChance }) && target.liveStats.aegis <= 0) {
         this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.CriticalHit');
