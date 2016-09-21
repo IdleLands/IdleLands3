@@ -143,7 +143,7 @@ export class Character {
   }
 
   equip(item) {
-    item._hasEquipped = true;
+    item._wasEquipped = true;
     this.equipment[item.type] = item;
     this.recalculateStats();
 
