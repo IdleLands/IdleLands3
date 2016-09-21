@@ -20,6 +20,8 @@ export class Party extends Event {
 
   static operateOn(player) {
 
+    if(player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) return;
+
     const validPlayers = _.reject(
       GameState.getInstance().getPlayers(),
       p => p.$partyName || p === player
@@ -29,7 +31,7 @@ export class Party extends Event {
       || p.map !== player.map
     );
 
-    if(player.$partyName || player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) {
+    if(player.$partyName) {
       if(player.party.players.length < SETTINGS.maxPartyMembers && validPlayers.length >= 1) {
         const newPlayer = _.sample(validPlayers);
         player.party.playerJoin(newPlayer);
