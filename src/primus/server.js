@@ -26,11 +26,14 @@ export const primus = (() => {
 
   
   const express = require('express');
-  const compression=require('compression');
+  const compression = require('compression');
   const serve = express();
   serve.use(compression(), express.static('assets'));
   serve.get('/online', (req, res) => {
     try {
+      res.set({
+        'Cache-Control': 'public, max-age=86400'
+      });
       res.json({
         players: GameState.getInstance().getPlayers().length,
         sparks: primus.connected
