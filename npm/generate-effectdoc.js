@@ -1,6 +1,4 @@
 
-process.env.NO_START_GAME = 1;
-
 import _ from 'lodash';
 
 import fs from 'fs';
