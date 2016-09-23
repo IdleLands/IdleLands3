@@ -43,7 +43,7 @@ export class DbWrapper {
 
         db.collection('players').updateMany({}, { $set: { isOnline: false } });
 
-        db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 7200 }, _.noop);
+        db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 21600 }, _.noop);
 
         Logger.info(mongoTag, 'Connected!');
 
