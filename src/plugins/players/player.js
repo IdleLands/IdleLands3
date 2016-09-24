@@ -142,8 +142,12 @@ export class Player extends Character {
   }
 
   gainGold(gold = 1, calc = true) {
+
+    let isPositive = false;
+    if(gold > 0) isPositive = true;
+
     gold = calc ? this.liveStats.gold(gold) : gold;
-    if(_.isNaN(gold)) gold = 0;
+    if(_.isNaN(gold) || (isPositive && gold < 0)) gold = 0;
     super.gainGold(gold);
 
     if(gold > 0) {
@@ -156,8 +160,12 @@ export class Player extends Character {
   }
 
   gainXp(xp = 1, calc = true) {
+
+    let isPositive = false;
+    if(xp > 0) isPositive = true;
+
     xp = calc ? this.liveStats.xp(xp) : xp;
-    if(_.isNaN(xp)) xp = 0;
+    if(_.isNaN(xp) || (isPositive && xp < 0)) xp = 0;
     super.gainXp(xp);
 
     if(xp > 0) {
