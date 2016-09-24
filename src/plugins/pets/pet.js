@@ -211,7 +211,7 @@ export class Pet extends Character {
   }
 
   gainXp(xp) {
-    if(_.isNaN(xp) || !this.canGainXp()) return;
+    if(_.isNaN(xp) || !this.canGainXp()) return 0;
     super.gainXp(xp);
 
     if(this._xp.atMaximum()) this.levelUp();
@@ -219,7 +219,7 @@ export class Pet extends Character {
   }
 
   gainGold(gold) {
-    if(_.isNaN(gold)) return;
+    if(_.isNaN(gold)) return 0;
     this.gold.add(gold);
 
     this.checkSelfSmartUpgrades();

@@ -89,14 +89,14 @@ export class Character {
 
   get isPlayer() { return this.joinDate; }
 
-  recalculateStats() {
+  recalculateStats(otherStats = ALL_STATS.concat(['itemFindRange', 'itemFindRangeMultiplier'])) {
     const hpVal = StatCalculator.hp(this);
     this._hp.maximum = this._hp.__current = hpVal + (this.hpBoost || 0);
 
     const mpVal = StatCalculator.mp(this);
     this._mp.maximum = this._mp.__current = mpVal + (this.mpBoost || 0);
 
-    _.each(ALL_STATS.concat(['itemFindRange', 'itemFindRangeMultiplier']), stat => {
+    _.each(otherStats, stat => {
       const val = this.liveStats[stat];
       if(_.includes(['xp', 'gold'], stat)) return;
       this.statCache[stat] = val;

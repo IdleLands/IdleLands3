@@ -31,5 +31,7 @@ export class Personality {
     _.each(stats, stat => {
       player.$dirty.flags[stat] = true;
     });
+
+    player.recalculateStats(stats);
   }
 }
