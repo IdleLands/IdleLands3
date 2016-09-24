@@ -57,14 +57,6 @@ export class StatCalculator {
   }
 
   static _baseStat(player, stat) {
-    if(player.$dirty && !player.$dirty.flags[stat] && player.stats[stat]) {
-      return player.stats[stat];
-    }
-
-    if(player.$dirty) {
-      player.$dirty.flags[stat] = false;
-    }
-
     return this.classStat(player, stat)
          + this.effectStat(player, stat)
          + this.equipmentStat(player, stat)
@@ -135,6 +127,14 @@ export class StatCalculator {
   }
 
   static stat(player, stat, baseValueMod = 0, doRound = true) {
+    if(player.$dirty && !player.$dirty.flags[stat] && player.stats[stat]) {
+      return player.stats[stat];
+    }
+
+    if(player.$dirty) {
+      player.$dirty.flags[stat] = false;
+    }
+    
     let mods = 0;
     const baseValue = baseValueMod + this._baseStat(player, stat);
 
