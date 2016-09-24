@@ -14,7 +14,7 @@ export class Enchant extends Event {
 
   static operateOn(player) {
     const item = this.pickValidItemForEnchant(player);
-    if(!item) return;
+    if(!item) return [];
 
     let eventText = this.eventText('enchant', player, { item: item.fullname });
 

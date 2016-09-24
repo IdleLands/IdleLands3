@@ -8,6 +8,8 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { SETTINGS } from '../../../static/settings';
 
+import { MerchantEnchant } from './MerchantEnchant';
+
 export const WEIGHT = 15;
 
 // Get the opportunity to buy an item
@@ -20,6 +22,11 @@ export class Merchant extends Event {
 
     merchantBonus = +merchantBonus;
     if(_.isNaN(merchantBonus)) merchantBonus = Event.chance.integer({ min: -3, max: 15 });
+
+    if(Event.chance.bool({ likelihood: Math.max(0, Math.min(100, merchantBonus/10)) })) {
+      MerchantEnchant.operateOn(player);
+      return [player];
+    }
 
     const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus + merchantBonus));
     if(!player.canEquip(item)) {

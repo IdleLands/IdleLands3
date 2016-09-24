@@ -18,6 +18,8 @@ export class XPBlessParty extends Event {
 
     _.each(player.party.players, member => {
       member.gainXp(xpMod, false);
+      if(!member.$statistics) return;
+      member.$statistics.batchIncrement(['Character.Events', 'Character.Event.XPBlessParty']);
     });
   }
 }

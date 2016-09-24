@@ -17,6 +17,8 @@ export class GoldBlessParty extends Event {
 
     _.each(player.party.players, member => {
       member.gainGold(goldMod, false);
+      if(!member.$statistics) return;
+      member.$statistics.batchIncrement(['Character.Events', 'Character.Event.GoldBlessParty']);
     });
   }
 }

@@ -10,6 +10,7 @@ export { ItemForsake } from './ItemForsake';
 export { Party } from './Party';
 export { Providence } from './Providence';
 export { Merchant } from './Merchant';
+export { MerchantEnchant } from './MerchantEnchant';
 export { Switcheroo } from './Switcheroo';
 export { XPBless } from './XPBless';
 export { XPForsake } from './XPForsake';
