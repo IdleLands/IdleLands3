@@ -172,10 +172,12 @@ export class Character {
     if(this.gold < 0 || _.isNaN(this.gold)) {
       this.gold = 0;
     }
+    return gold;
   }
 
   gainXp(xp = 1) {
     this._xp.add(xp);
+    return xp;
   }
 
   sellItem(item) {

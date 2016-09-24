@@ -125,17 +125,23 @@ export class StatCalculator {
     const baseValue = baseValueMod + this._baseStat(player, stat);
 
     const functions = this._secondPassFunctions(player, stat);
-    _.each(functions, func => mods += func(player, baseValue));
+    _.each(functions, func => {
+      mods += func(player, baseValue);
+    });
 
     return doRound ? Math.floor(baseValue + mods) : baseValue + mods;
   }
 
   static gold(player) {
-    return this._baseStat(player, 'gold');
+    return (baseVal) => {
+      return this.stat(player, 'gold', baseVal, true);
+    };
   }
 
   static xp(player) {
-    return this._baseStat(player, 'xp');
+    return (baseVal) => {
+      return this.stat(player, 'xp', baseVal, true);
+    };
   }
 
   static hp(player) {

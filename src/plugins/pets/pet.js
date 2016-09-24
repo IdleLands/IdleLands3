@@ -215,6 +215,7 @@ export class Pet extends Character {
     super.gainXp(xp);
 
     if(this._xp.atMaximum()) this.levelUp();
+    return xp;
   }
 
   gainGold(gold) {
@@ -222,6 +223,7 @@ export class Pet extends Character {
     this.gold.add(gold);
 
     this.checkSelfSmartUpgrades();
+    return gold;
   }
 
   checkSelfSmartUpgrades() {

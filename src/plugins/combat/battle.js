@@ -242,9 +242,11 @@ export class Battle {
           this.tryIncrement(p, 'Combat.Win');
           let gainedXp = Math.round(p._xp.maximum * (levelDiff / 100));
           if(compareLevel < level - 5) gainedXp = 0;
-          this._emitMessage(`${p.fullname} gained ${gainedXp}xp and ${goldGainedInParty}gold!`);
-          p.gainXp(gainedXp);
-          p.gainGold(goldGainedInParty);
+
+          const modXp = p.gainXp(gainedXp);
+          const modGold = p.gainGold(goldGainedInParty);
+
+          this._emitMessage(`${p.fullname} gained ${modXp}xp and ${modGold}gold!`);
         });
 
       } else {
@@ -262,10 +264,12 @@ export class Battle {
             lostXp = 0;
           }
 
-          this._emitMessage(`${p.fullname} lost ${lostXp}xp and ${lostGold}gold!`);
+          const modXp = Math.abs(p.gainXp(-Math.abs(lostXp)));
+          const modGold = Math.abs(p.gainGold(-Math.abs(lostGold)));
 
-          p.gainXp(-lostXp);
-          p.gainGold(-lostGold);
+          console.log('LOSS', modXp);
+
+          this._emitMessage(`${p.fullname} lost ${modXp}xp and ${modGold}gold!`);
         });
       }
     });
