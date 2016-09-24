@@ -141,8 +141,8 @@ export class Player extends Character {
     emitter.emit('player:levelup', { player: this });
   }
 
-  gainGold(gold = 1) {
-    gold = this.liveStats.gold(gold);
+  gainGold(gold = 1, calc = true) {
+    gold = calc ? this.liveStats.gold(gold) : gold;
     if(_.isNaN(gold)) gold = 0;
     super.gainGold(gold);
 

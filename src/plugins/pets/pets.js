@@ -198,7 +198,7 @@ export class Pets {
     const pet = this.activePet;
     const gold = pet.gold.getValue();
 
-    player.gainGold(gold);
+    player.gainGold(gold, false);
     pet.gainGold(-gold);
 
     player.$statistics.incrementStat('Character.Pet.GoldTaken', gold);

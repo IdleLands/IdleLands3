@@ -134,7 +134,7 @@ export class StatCalculator {
     if(player.$dirty) {
       player.$dirty.flags[stat] = false;
     }
-    
+
     let mods = 0;
     const baseValue = baseValueMod + this._baseStat(player, stat);
 
