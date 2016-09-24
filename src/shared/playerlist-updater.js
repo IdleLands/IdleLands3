@@ -53,7 +53,7 @@ export const SomePlayersPostMove = (updatedPlayers) => {
     const player = gameState.getPlayer(spark.authToken.playerName);
     if(!player) return next();
     const filteredData = _.filter(data, pt => pt.map === player.map);
-    if(!filteredData.length) return [];
+    if(!filteredData.length) return next();
     spark.write({ playerListOperation: 'updateMass', data: filteredData });
     next();
   }, () => {});
