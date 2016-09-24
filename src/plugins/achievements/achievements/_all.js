@@ -30,6 +30,7 @@ export { Slayer } from './Slayer';
 export { SoleFoot } from './SoleFoot';
 export { Soloer } from './Soloer';
 export { Sponge } from './Sponge';
+export { TempterOfFate } from './TempterOfFate';
 export { Territorial } from './Territorial';
 export { Unstoppable } from './Unstoppable';
 export { Walker } from './Walker';
