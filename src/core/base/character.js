@@ -189,7 +189,7 @@ export class Character {
       this.$statistics.incrementStat('Character.Item.Sell');
     }
 
-    this.gainGold(value);
-    return value;
+    const gold = this.gainGold(value);
+    return gold;
   }
 }

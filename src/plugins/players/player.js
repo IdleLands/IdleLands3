@@ -155,8 +155,8 @@ export class Player extends Character {
     return gold;
   }
 
-  gainXp(xp = 1) {
-    xp = this.liveStats.xp(xp);
+  gainXp(xp = 1, calc = true) {
+    xp = calc ? this.liveStats.xp(xp) : xp;
     if(_.isNaN(xp)) xp = 0;
     super.gainXp(xp);
 
