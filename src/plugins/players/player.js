@@ -143,6 +143,7 @@ export class Player extends Character {
 
   gainGold(gold = 1) {
     gold = this.liveStats.gold(gold);
+    if(_.isNaN(gold)) gold = 0;
     super.gainGold(gold);
 
     if(gold > 0) {
@@ -156,6 +157,7 @@ export class Player extends Character {
 
   gainXp(xp = 1) {
     xp = this.liveStats.xp(xp);
+    if(_.isNaN(xp)) xp = 0;
     super.gainXp(xp);
 
     if(xp > 0) {

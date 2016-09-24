@@ -57,7 +57,7 @@ export class StatCalculator {
   }
 
   static _baseStat(player, stat) {
-    if(player.$dirty && !player.$dirty.flags[stat]) {
+    if(player.$dirty && !player.$dirty.flags[stat] && player.stats[stat]) {
       return player.stats[stat];
     }
 
