@@ -11,7 +11,7 @@ export class TempterOfFate extends Achievement {
     return [{
       tier: 1,
       name: 'Tempter of Fate',
-      desc: 'Gain a special title (and +5% max item score) for 100,000 fate pool uses.',
+      desc: 'Gain a special title for 100,000 fate pool uses (AKA: being literally insane).',
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
