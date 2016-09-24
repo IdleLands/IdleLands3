@@ -25,8 +25,11 @@ export class Logger {
     }
 
     if(rollbarToken) {
-      if(payload) rollbar.handleErrorWithPayloadData(error, payload);
-      else        rollbar.handleError(error);
+      if(payload) {
+        rollbar.handleErrorWithPayloadData(error, payload);
+      } else {
+        rollbar.handleError(error);
+      }
     }
   }
 
