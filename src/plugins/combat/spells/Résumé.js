@@ -44,8 +44,8 @@ export class Résumé extends Spell {
 
       if(target.gold > goldRequired) {
         message = `${message} %targetName hired %player and gave %himher a part-time gig! [+${goldRequired} gold]`;
-        target.gainGold(-goldRequired);
-        this.caster.gainGold(goldRequired);
+        target.gainGold(-goldRequired, false);
+        this.caster.gainGold(goldRequired, false);
       } else {
         message = `${message} %targetName declined, and got shoved into the ground by %player!`;
         castOpts.applyEffect = StillAngry;

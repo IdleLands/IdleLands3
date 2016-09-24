@@ -79,7 +79,7 @@ export class Pets {
     const cost = petdata[type].cost;
     if(player.gold < cost) return;
 
-    player.gainGold(-cost);
+    player.gainGold(-cost, false);
     player.$statistics.incrementStat('Character.Gold.Spent', cost);
 
     const pet = new Pet();
@@ -134,7 +134,7 @@ export class Pets {
 
     if(!pet.canGainXp()) return 'Pet cannot gain XP at this time.';
 
-    player.gainGold(-amount);
+    player.gainGold(-amount, false);
     player.$statistics.incrementStat('Character.Pet.GoldFed', amount);
     pet.gainXp(xpGained);
 
@@ -183,7 +183,7 @@ export class Pets {
     const cost = pet.$scaleCost[scaleAttr][pet.scaleLevel[scaleAttr]];
     if(player.gold < cost) return;
 
-    player.gainGold(-cost);
+    player.gainGold(-cost, false);
     player.$statistics.incrementStat('Character.Gold.Spent', cost);
     player.$statistics.incrementStat('Character.Pet.Upgrades');
 
