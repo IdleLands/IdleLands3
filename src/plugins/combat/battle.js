@@ -266,9 +266,7 @@ export class Battle {
 
           const modXp = Math.abs(p.gainXp(-Math.abs(lostXp)));
           const modGold = Math.abs(p.gainGold(-Math.abs(lostGold)));
-
-          console.log('LOSS', modXp);
-
+          
           this._emitMessage(`${p.fullname} lost ${modXp}xp and ${modGold}gold!`);
         });
       }

@@ -140,7 +140,7 @@ export class Player extends Character {
   gainGold(gold = 1) {
     gold = this.liveStats.gold(gold);
     super.gainGold(gold);
-    
+
     if(gold > 0) {
       this.$statistics.incrementStat('Character.Gold.Gain', gold);
     } else {
