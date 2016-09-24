@@ -92,6 +92,10 @@ export class Achievements {
 
     this.save();
 
+    if(newAchievements.length > 0) {
+      player.recalculateStats();
+    }
+
     return newAchievements;
   }
 

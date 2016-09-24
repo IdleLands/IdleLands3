@@ -11,7 +11,7 @@ export class Shatter extends Effect {
 
   affect(target) {
     _.each(['str', 'dex', 'con'], stat => {
-      this[stat] = this.statByPercent(target, stat, this.potency * 10);
+      this.setStat(target, 'agi', -this.statByPercent(target, stat, this.potency * 10));
     });
 
     this._emitMessage(this.target, '%player\'s defenses were shattered!');

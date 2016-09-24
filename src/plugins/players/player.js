@@ -18,6 +18,8 @@ import { EventHandler } from '../events/eventhandler';
 import * as Events from '../events/events/_all';
 import * as Achievements from '../achievements/achievements/_all';
 
+import { DirtyChecker } from './player.dirtychecker';
+
 import { emitter } from './_emitter';
 
 @Dependencies(PlayerDb)
@@ -31,6 +33,8 @@ export class Player extends Character {
   }
 
   init(opts) {
+    this.$dirty = new DirtyChecker();
+
     super.init(opts);
 
     if(!this.joinDate)  this.joinDate = Date.now();
@@ -296,6 +300,11 @@ export class Player extends Character {
     this.equipment[item.type] = replaceWith;
     this.recalculateStats();
     this._saveSelf();
+  }
+
+  recalculateStats() {
+    super.recalculateStats();
+    this.$dirty.reset();
   }
 
   buildSaveObject() {

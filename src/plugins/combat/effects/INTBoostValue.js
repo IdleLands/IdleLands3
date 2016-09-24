@@ -2,7 +2,7 @@
 import { Effect } from '../effect';
 
 export class INTBoostValue extends Effect {
-  affect() {
-    this.int = this.potency;
+  affect(target) {
+    this.setStat(target, 'int', this.potency);
   }
 }

@@ -2,7 +2,7 @@
 import { Effect } from '../effect';
 
 export class STRBoostValue extends Effect {
-  affect() {
-    this.str = this.potency;
+  affect(target) {
+    this.setStat(target, 'str', this.potency);
   }
 }

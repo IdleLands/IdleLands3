@@ -11,7 +11,7 @@ import { Equipment } from '../base/equipment';
 import { SpellManager } from '../../plugins/combat/spellmanager';
 import { EffectManager } from '../../plugins/combat/effectmanager';
 
-import { StatCalculator } from '../../shared/stat-calculator';
+import { StatCalculator, ALL_STATS } from '../../shared/stat-calculator';
 import { Generator } from './generator.js';
 
 export class Character {
@@ -47,7 +47,7 @@ export class Character {
 
     this.$stats = new Proxy({}, {
       get: (target, name) => {
-        if(_.includes(Generator.stats, name)) {
+        if(_.includes(Generator.stats, name) && !_.includes(['gold', 'xp'], name)) {
           return StatCalculator.stat(this, name);
         }
 
@@ -96,8 +96,10 @@ export class Character {
     const mpVal = StatCalculator.mp(this);
     this._mp.maximum = this._mp.__current = mpVal + (this.mpBoost || 0);
 
-    _.each(['str', 'dex', 'con', 'int', 'agi', 'luk', 'itemFindRange'], stat => {
-      this.statCache[stat] = this.liveStats[stat];
+    _.each(ALL_STATS.concat(['itemFindRange', 'itemFindRangeMultiplier']), stat => {
+      const val = this.liveStats[stat];
+      if(_.includes(['xp', 'gold'], stat)) return;
+      this.statCache[stat] = val;
     });
   }
 

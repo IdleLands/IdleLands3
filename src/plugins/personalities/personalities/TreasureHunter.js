@@ -10,11 +10,11 @@ export class TreasureHunter extends Personality {
   };
 
   static disable(player) {
-    player.recalculateStats();
+    this.flagDirty(player, ['xp', 'gold', 'itemFindRange']);
   }
 
   static enable(player) {
-    player.recalculateStats();
+    this.flagDirty(player, ['xp', 'gold', 'itemFindRange']);
   }
 
   static hasEarned(player) {

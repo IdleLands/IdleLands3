@@ -17,7 +17,11 @@ export const SPECIAL_STATS_BASE = [
   { name: 'power',           desc: '+10% maximum attack damage.', enchantMax: 1 },
   { name: 'vorpal',          desc: '+10% critical chance.', enchantMax: 1 },
   { name: 'glowing',         desc: '+5% to all physical combat rolls. Stacks intensity.', enchantMax: 1 },
-  { name: 'sentimentality',  desc: '1 sentimentality = 1 score', enchantMax: 500 }
+  { name: 'sentimentality',  desc: '+1 score. Stacks intensity.', enchantMax: 500 },
+  { name: 'hp',              desc: '+1 hp. Stacks intensity.', enchantMax: 2000 },
+  { name: 'mp',              desc: '+1 mp. Stacks intensity.', enchantMax: 2000 },
+  { name: 'xp',              desc: 'Gain +1 xp every time xp is gained.', enchantMax: 1 },
+  { name: 'gold',            desc: 'Gain +1 gold every time gold is gained.', enchantMax: 500 }
 ];
 
 export const ATTACK_STATS_BASE = [
@@ -31,6 +35,8 @@ export const ATTACK_STATS_BASE = [
 export const BASE_STATS = ['str', 'con', 'dex', 'int', 'agi', 'luk'];
 export const SPECIAL_STATS = _.map(SPECIAL_STATS_BASE, 'name');
 export const ATTACK_STATS = _.map(ATTACK_STATS_BASE, 'name');
+
+export const ALL_STATS = BASE_STATS.concat(SPECIAL_STATS).concat(ATTACK_STATS);
 
 export class StatCalculator {
 
@@ -51,6 +57,14 @@ export class StatCalculator {
   }
 
   static _baseStat(player, stat) {
+    if(player.$dirty && !player.$dirty.flags[stat]) {
+      return player.stats[stat];
+    }
+
+    if(player.$dirty) {
+      player.$dirty.flags[stat] = false;
+    }
+
     return this.classStat(player, stat)
          + this.effectStat(player, stat)
          + this.equipmentStat(player, stat)
@@ -116,7 +130,7 @@ export class StatCalculator {
     if(!player.$personalities) return 0;
     return _(player.$personalities._activePersonalityData())
       .reject(pers => !pers.stats[stat] || _.isFunction(pers.stats[stat]))
-      .map(pers => pers.stats[stat])
+      .map(pers => pers.stats[stat] || 0)
       .sum();
   }
 
@@ -232,6 +246,7 @@ export class StatCalculator {
   static itemFindRange(player) {
     const baseValue = (player.level+1) * SETTINGS.reductionDefaults.itemFindRange;
     const reducedValue = this.stat(player, 'itemFindRange', baseValue, false);
+
     return Math.floor(reducedValue * this.itemFindRangeMultiplier(player));
   }
 

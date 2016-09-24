@@ -53,4 +53,11 @@ export class Effect {
     this._emitMessage(this.target, 'The effect of %casterName\'s %spellName on %player has dissipated.');
   }
 
+  setStat(target, stat, value) {
+    this[stat] = value;
+    if(target.$dirty) {
+      target.$dirty.flags[stat] = true;
+    }
+  }
+
 }

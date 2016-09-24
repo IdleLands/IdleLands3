@@ -2,8 +2,8 @@
 import { Effect } from '../effect';
 
 export class VenomCoating extends Effect {
-  affect() {
-    this.venom = this.potency;
-    this.poison = this.potency * 2;
+  affect(target) {
+    this.setStat(target, 'venom', this.potency);
+    this.setStat(target, 'poison', this.potency * 2);
   }
 }

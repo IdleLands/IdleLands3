@@ -12,6 +12,14 @@ export class Explorer extends Personality {
     int: (player, baseValue) => -baseValue*0.03
   };
 
+  static disable(player) {
+    this.flagDirty(player, ['xp', 'str', 'con', 'agi', 'dex', 'int']);
+  }
+
+  static enable(player) {
+    this.flagDirty(player, ['xp', 'str', 'con', 'agi', 'dex', 'int']);
+  }
+
   static hasEarned(player) {
     return player.$statistics.getStat('Character.Steps') >= 100000;
   }
