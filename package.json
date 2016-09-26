@@ -98,6 +98,7 @@
     "ava": "^0.15.2",
     "babel-eslint": "^6.0.5",
     "bithound": "^1.7.0",
+    "cross-env": "^3.0.0",
     "eslint": "^2.13.1",
     "eslint-config-kellyirc": "^3.1.0",
     "pre-commit": "^1.1.3"
