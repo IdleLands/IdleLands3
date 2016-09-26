@@ -114,7 +114,7 @@ export class MonsterGenerator extends Generator {
     if(!baseMonster) baseMonster = this.generateVectorMonster(forPlayer);
 
     baseMonster.professionName = baseMonster.class;
-    if(!baseMonster.professionName || baseMonster.professionName === 'Random') {
+    if(!baseMonster.professionName || baseMonster.professionName.toLowerCase() === 'Random') {
       baseMonster.professionName = _.sample(_.keys(Professions));
     }
 
