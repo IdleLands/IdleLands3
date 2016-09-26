@@ -56,3 +56,8 @@ const playerInterval = () => {
 };
 
 setInterval(playerInterval, timerDelay);
+
+if(global.gc) {
+  Logger.info('Core', 'Running GC every 30 seconds.');
+  setInterval(global.gc, 30000);
+}

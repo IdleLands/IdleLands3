@@ -6,8 +6,8 @@
   "scripts": {
     "postinstall": "npm run install:assets",
     "install:assets": "node npm/install-assets",
-    "start": "node src/index.js",
-    "start:inspect": "node --inspect=9222 src/index.js",
+    "start": "node --expose-gc src/index.js",
+    "start:inspect": "node --expose-gc --inspect=9222 src/index.js",
     "start:battletest": "cross-env BATTLE_DEBUG=1 node src/index.js",
     "start:prod": "cross-env NODE_ENV=production IGNORE_NEWRELIC=1 EXT_CHAT=0 node src/index.js",
     "test": "npm run test:local",
