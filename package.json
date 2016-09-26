@@ -18,6 +18,7 @@
     "generate:effectdoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-effectdoc",
     "generate:spelldoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-spelldoc",
     "generate:classdoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-classdoc",
+	"generate:petdoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-petdoc",
     "generate:apidoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-apidoc",
     "gitfix": "git add docs",
     "gen:items": "node test/gen/items"
