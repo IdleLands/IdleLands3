@@ -53,7 +53,7 @@ _.each(sortedPets, (petKey) => {
 		
 		_.each(_.sortBy(_.keys(reqs)), (req) => {
 			if (reqType == "achievements") {
-				docString += `* ${reqs[req].name} ${reqs[req].tier}\n`;
+				docString += `* ${reqs[req].name} (tier ${reqs[req].tier})\n`;
 			}
 			
 			if (reqType == "bosses" || reqType == "collectibles") {
@@ -67,27 +67,58 @@ _.each(sortedPets, (petKey) => {
 		
 		docString += `\n`;
 	});
-		
+	
+	const maxLength = _.max(_.map(_.values(pet.scale), (array) => {
+		return _.size(array);
+	}));
+	
 	docString += `### Upgrades\n`;
+	//docString += `All Tier 1 upgrades come free with your pet.\n`;
+	//docString += `Any further upgrades must be purchased.\n\n`;
+	
+	docString += `| Upgrade/Cost |`;
+	
+	var tempString = `|---:|`;
+	
+	for (var i = 0; i < maxLength; i++) {
+		docString += ` Tier ${i+1} |`;
+		tempString += `:---:|`;
+	}
+	
+	docString += `\n`;
+	tempString += `\n`;
+	
+	docString += tempString;
+	
 	_.each(_.keys(pet.scale), (upgradeKey) => {
 		
 		const upgrade = pet.scale[upgradeKey];
 		const cost = pet.scaleCost[upgradeKey];
+				
+		docString += `| ${upgradeKey} |`;
+		var costString = `| Cost |`;
 		
-		docString += `| ${upgradeKey} | `;
-		
-		_.each(_.values(upgrade), (value) => {
-			docString += ` ${value} |`;
-		});
+		for (var i = 0; i < maxLength; i++) {
+			if (i < _.size(upgrade)) {
+				docString += ` ${upgrade[i]} |`;
+				
+				if (cost[i] > 0) {
+					costString += ` ${cost[i]} |`;
+				}
+				else {
+					costString += ` --- |`;
+				}
+			}
+			else {
+				docString += ` --- |`;
+				costString += ` --- |`;
+			}
+		}
 		
 		docString += `\n`;
-		docString += `|----|`;
+		costString += `\n`;
 		
-		for(var i = 0; i < _.size(upgrade); i++) {
-			docString += `----|`;
-		};
-		
-		docString += `\n\n`;
+		docString += costString;
 	});
 });
 
