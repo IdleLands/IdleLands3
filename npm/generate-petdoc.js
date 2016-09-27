@@ -4,122 +4,125 @@ import fs from 'fs';
 
 import PETDATA from '../assets/maps/content/pets.json';
 
-let docString = `# IdleLands Pets\n\n`;
-	docString += `## Table of Contents\n\n`;
+let indexString = `# IdleLands Pets\n\n`;
+	indexString += `## Table of Contents\n\n`;
+	
+let petString = ``;
 
 const sortedPets = _.sortBy(_.keys(PETDATA));
 
-_.each(sortedPets, (pet, index) => {
-	docString += `${index + 1}. ${pet}\n`
-});
-
-docString += '\n';
-
-_.each(sortedPets, (petKey) => {
+_.each(sortedPets, (petKey, index) => {
 	
 	const pet = PETDATA[petKey];
-
-	docString += `## ${petKey}\n\n`;
 	
-	docString += `### Cost\n`;
-	docString += `${pet.cost} gold\n\n`;
+	indexString += `${index + 1}. [${petKey}](#${_.kebabCase(petKey)})\n`;
 	
-	docString += `### Category\n`;
-	docString += `${pet.category}\n\n`;
+	if (index > 0) {
+		petString += `\n######[\\[top\\]](#idlelands-pets)`;
+	}
 	
-	docString += `### Description\n`;
-	docString += `${pet.description}\n\n`;
+	petString += `\n---\n\n`;
 	
-	docString += `### Gear Slots\n`;
+	petString += `## ${petKey}\n\n`;
+	
+	petString += `### Cost\n`;
+	petString += `${pet.cost} gold\n\n`;
+	
+	petString += `### Category\n`;
+	petString += `${pet.category}\n\n`;
+	
+	petString += `### Description\n`;
+	petString += `${pet.description}\n\n`;
+	
+	petString += `### Gear Slots\n`;
 	_.each(_.keys(pet.slots), (slot) => {
-		docString += `* ${slot}: ${pet.slots[slot]}\n`;
+		petString += `* ${slot}: ${pet.slots[slot]}\n`;
 	});
 	
-	docString += `\n`;
+	petString += `\n`;
 	
-	docString += `### Special Stats\n`;
+	petString += `### Special Stats\n`;
 	_.each(_.keys(pet.specialStats), (stat) => {
-		docString += `* ${stat}: ${pet.specialStats[stat]}\n`;
+		petString += `* ${stat}: ${pet.specialStats[stat]}\n`;
 	});
 	
-	docString += `\n`;
+	petString += `\n`;
 	
-	docString += `### Unlock Requirements\n`;
+	petString += `### Unlock Requirements\n`;
 	_.each(_.keys(pet.requirements), (reqType) => {
 		
 		const reqs = pet.requirements[reqType];
 		
-		docString += `#### ${_.upperFirst(reqType)}\n`;
+		petString += `#### ${_.upperFirst(reqType)}\n`;
 		
 		_.each(_.sortBy(_.keys(reqs)), (req) => {
 			if (reqType == "achievements") {
-				docString += `* ${reqs[req].name} (tier ${reqs[req].tier})\n`;
+				petString += `* ${reqs[req].name} (tier ${reqs[req].tier})\n`;
 			}
 			
 			if (reqType == "bosses" || reqType == "collectibles") {
-				docString += `* ${reqs[req]}\n`;
+				petString += `* ${reqs[req]}\n`;
 			}
 			
 			if (reqType == "statistics") {
-				docString += `* ${req}: ${reqs[req]}\n`;
+				petString += `* ${req}: ${reqs[req]}\n`;
 			}
 		});
 		
-		docString += `\n`;
+		petString += `\n`;
 	});
 	
 	const maxLength = _.max(_.map(_.values(pet.scale), (array) => {
 		return _.size(array);
 	}));
 	
-	docString += `### Upgrades\n`;
-	//docString += `All Tier 1 upgrades come free with your pet.\n`;
-	//docString += `Any further upgrades must be purchased.\n\n`;
+	petString += `### Upgrades\n`;
+	//petString += `All Tier 1 upgrades come free with your pet.\n`;
+	//petString += `Any further upgrades must be purchased.\n\n`;
 	
-	docString += `| Upgrade/Cost |`;
+	petString += `Upgrade/Cost`;
 	
-	var tempString = `|---:|`;
+	var tableString = `---:`;
 	
 	for (var i = 0; i < maxLength; i++) {
-		docString += ` Tier ${i+1} |`;
-		tempString += `:---:|`;
+		petString += `|Tier ${i+1}`;
+		tableString += `|:---:`;
 	}
 	
-	docString += `\n`;
-	tempString += `\n`;
+	petString += `\n`;
+	tableString += `\n`;
 	
-	docString += tempString;
+	petString += tableString;
 	
 	_.each(_.keys(pet.scale), (upgradeKey) => {
 		
 		const upgrade = pet.scale[upgradeKey];
 		const cost = pet.scaleCost[upgradeKey];
 				
-		docString += `| ${upgradeKey} |`;
-		var costString = `| Cost |`;
+		var upgradeString = `${upgradeKey}`;
+		var costString = `Cost`;
 		
 		for (var i = 0; i < maxLength; i++) {
 			if (i < _.size(upgrade)) {
-				docString += ` ${upgrade[i]} |`;
-				
-				if (cost[i] > 0) {
-					costString += ` ${cost[i]} |`;
-				}
-				else {
-					costString += ` --- |`;
-				}
+				upgradeString += `|${upgrade[i]}`;
+				costString += `|${cost[i]}`;
 			}
 			else {
-				docString += ` --- |`;
-				costString += ` --- |`;
+				upgradeString += `|---`;
+				costString += `|---`;
 			}
 		}
 		
-		docString += `\n`;
+		upgradeString += `\n`;
 		costString += `\n`;
 		
-		docString += costString;
+		petString += upgradeString;
+		petString += costString;
 	});
 });
+
+	var docString = ``;
+	docString += indexString;
+	docString += petString;
 
 fs.writeFileSync('docs/PETS.md', docString);
