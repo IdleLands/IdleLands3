@@ -77,6 +77,26 @@ export const primus = (() => {
 
   primus.use('rooms', Rooms);
   primus.use('emit', Emit);
+
+  primus.players = {};
+
+  primus.addPlayer = (playerName, spark) => {
+    if(!primus.players[playerName]) primus.players[playerName] = [];
+    primus.players[playerName].push(spark);
+  };
+
+  primus.delPlayer = (playerName, spark) => {
+    primus.players[playerName] = _.without(primus.players[playerName], spark);
+  };
+
+  primus.emitToPlayers = (players = [], data) => {
+    _.each(players, player => {
+      _.each(primus.players[player], spark => {
+        spark.write(data);
+      });
+    });
+  };
+
   // primus.use('multiplex', Multiplex);
 
 // force setting up the global connection

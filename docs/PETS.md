@@ -4,17 +4,13 @@
 
 1. [Chimera Dragon](#chimera-dragon)
 2. [Corgi](#corgi)
-3. [Digipet](#digipet)
-4. [Dolphin](#dolphin)
-5. [Ghostly Shield](#ghostly-shield)
-6. [Ghostly Sword](#ghostly-sword)
-7. [Minitaur](#minitaur)
-8. [Moose](#moose)
-9. [Octopus](#octopus)
-10. [Parrot](#parrot)
-11. [Pet Rock](#pet-rock)
-12. [Raven](#raven)
-13. [Spellbook](#spellbook)
+3. [Dolphin](#dolphin)
+4. [Minitaur](#minitaur)
+5. [Moose](#moose)
+6. [Octopus](#octopus)
+7. [Parrot](#parrot)
+8. [Pet Rock](#pet-rock)
+9. [Raven](#raven)
 
 ---
 
@@ -36,9 +32,10 @@ Unlocked by being a connoisseur of all matters draconic.
 * head: 3
 
 ### Special Stats
+* prone: 1
 * defense: 5
 * offense: 5
-* int: 1500
+* int: 1000
 
 ### Unlock Requirements
 #### Collectibles
@@ -101,9 +98,6 @@ Unlocked by being a collector of fine items.
 
 ### Special Stats
 * offense: 2
-* str: 200
-* dex: 200
-* int: 200
 
 ### Unlock Requirements
 #### Achievements
@@ -122,7 +116,7 @@ goldStorage|2000|20000|100000|---|---|---|---|---
 Cost|0|10000|75000|---|---|---|---|---
 battleJoinPercent|0|15|30|45|60|75|---|---
 Cost|0|15000|25000|35000|45000|60000|---|---
-itemFindTimeDuration|0|86400|43200|21600|10800|3600|1800|450
+itemFindTimeDuration|0|43200|21600|10800|3600|1800|450|275
 Cost|0|20000|25000|30000|35000|40000|50000|65000
 itemSellMultiplier|0.07|0.13|---|---|---|---|---|---
 Cost|0|25000|---|---|---|---|---|---
@@ -132,78 +126,6 @@ itemFindRangeMultiplier|0.05|0.1|0.15|---|---|---|---|---
 Cost|0|20000|30000|---|---|---|---|---
 xpPerGold|5|15|25|40|---|---|---|---
 Cost|0|10000|25000|50000|---|---|---|---
-
-######[\[top\]](#idlelands-pets)
----
-
-## Digipet
-
-### Cost
-1500000 gold
-
-### Category
-Hybrid
-
-### Description
-Unlocked by doing the digital dance.
-
-### Gear Slots
-* body: 1
-* charm: 1
-* feet: 1
-* finger: 1
-* legs: 1
-* hands: 1
-* head: 1
-* mainhand: 1
-* neck: 1
-* offhand: 1
-
-### Special Stats
-* dance: 1
-* deadeye: 1
-* lethal: 1
-* sentimentality: 100000
-* str: 200
-* dex: 200
-* con: 200
-* agi: 200
-* luk: 200
-* int: 200
-
-### Unlock Requirements
-#### Collectibles
-* Giant Sized Flask
-* Vial of Liquid Fate
-
-#### Achievements
-* Digital Magician (tier 1)
-* Fateful (tier 1)
-* Classfluid (tier 1)
-
-### Upgrades
-Upgrade/Cost|Tier 1|Tier 2
----:|:---:|:---:
-maxLevel|50|200
-Cost|0|20000000
-maxItemScore|0|5000
-Cost|0|10000000
-inventory|1|20
-Cost|0|15000000
-goldStorage|0|150000
-Cost|0|15000000
-battleJoinPercent|0|50
-Cost|0|10000000
-itemFindTimeDuration|0|1800
-Cost|0|5000000
-itemSellMultiplier|0.01|0.3
-Cost|0|5000000
-itemFindBonus|0|100
-Cost|0|10000000
-itemFindRangeMultiplier|0|0.5
-Cost|0|50000000
-xpPerGold|1|100
-Cost|0|1000000
 
 ######[\[top\]](#idlelands-pets)
 ---
@@ -245,166 +167,16 @@ goldStorage|10000|100000|250000|---|---|---|---
 Cost|0|50000|125000|---|---|---|---
 battleJoinPercent|0|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---
-itemFindTimeDuration|0|10800|3600|1800|900|---|---
+itemFindTimeDuration|0|21600|10800|3600|1800|---|---
 Cost|0|30000|40000|65000|85000|---|---
 itemSellMultiplier|0.18|0.27|0.36|---|---|---|---
 Cost|0|20000|40000|---|---|---|---
-itemFindBonus|0|15|20|25|30|35|40
+itemFindBonus|0|5|10|15|20|25|30
 Cost|0|5000|7500|15000|30000|55000|100000
 itemFindRangeMultiplier|0|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---
 xpPerGold|10|25|50|---|---|---|---
 Cost|0|10000|15000|---|---|---|---
-
-######[\[top\]](#idlelands-pets)
----
-
-## Ghostly Shield
-
-### Cost
-200000 gold
-
-### Category
-Combat
-
-### Description
-Unlocked by pursuing the defensive arts.
-
-### Gear Slots
-* offhand: 3
-
-### Special Stats
-* con: 5000
-* defense: 10
-* damageReduction: 5000
-* dance: 1
-* aegis: 1
-
-### Unlock Requirements
-#### Statistics
-* Combat.Receive.CriticalHit: 50
-* Combat.Receive.Dodge: 500
-* Combat.Receive.Miss: 500
-* Combat.Utilize.Physical: 3000
-
-#### Collectibles
-* Black Shroud
-* Guardian Fragment
-* Norkian Buckler
-
-#### Bosses
-* Basilisk
-* Necromancer Guardian
-* Mage Guardian
-* Fighter Guardian
-* Generalist Guardian
-* Cleric Guardian
-* Guardian Lord
-
-#### Achievements
-* Sponge (tier 6)
-
-### Upgrades
-Upgrade/Cost|Tier 1|Tier 2|Tier 3|Tier 4|Tier 5|Tier 6|Tier 7|Tier 8|Tier 9|Tier 10
----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-maxLevel|50|100|150|---|---|---|---|---|---|---
-Cost|0|1000000|1500000|---|---|---|---|---|---|---
-maxItemScore|2000|3000|4000|---|---|---|---|---|---|---
-Cost|0|200000|300000|---|---|---|---|---|---|---
-inventory|3|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-goldStorage|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-battleJoinPercent|10|20|30|40|50|60|70|80|90|100
-Cost|0|20000|30000|40000|50000|60000|70000|80000|90000|100000
-itemFindTimeDuration|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemSellMultiplier|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemFindBonus|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemFindRangeMultiplier|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-xpPerGold|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-
-######[\[top\]](#idlelands-pets)
----
-
-## Ghostly Sword
-
-### Cost
-200000 gold
-
-### Category
-Combat
-
-### Description
-Unlocked by pursuing the physical arts.
-
-### Gear Slots
-* mainhand: 3
-
-### Special Stats
-* str: 3000
-* offense: 3
-* vorpal: 1
-* crit: 5
-* silver: 1
-* power: 1
-* lethal: 1
-* deadeye: 1
-
-### Unlock Requirements
-#### Statistics
-* Combat.Give.CriticalHit: 50
-* Combat.Kills.Monster: 300
-* Combat.Utilize.Physical: 3000
-
-#### Collectibles
-* Orcish Blade
-* Pretty Cool Looking Dagger
-* Shattered Shortsword
-* Smashed Mace
-
-#### Bosses
-* Cloud Giant
-* Ghostly Pirate Captain
-* Goblin Lord
-* King Minotaur
-* Lord Waxington
-* Warden of Norkos
-* Maelian Ninja Master
-* Smasher
-* Slicer
-* Fire Giant
-
-#### Achievements
-* Unstoppable (tier 6)
-
-### Upgrades
-Upgrade/Cost|Tier 1|Tier 2|Tier 3|Tier 4|Tier 5|Tier 6|Tier 7|Tier 8|Tier 9|Tier 10
----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-maxLevel|50|100|150|---|---|---|---|---|---|---
-Cost|0|1000000|1500000|---|---|---|---|---|---|---
-maxItemScore|2000|3000|4000|---|---|---|---|---|---|---
-Cost|0|200000|300000|---|---|---|---|---|---|---
-inventory|3|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-goldStorage|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-battleJoinPercent|10|20|30|40|50|60|70|80|90|100
-Cost|0|20000|30000|40000|50000|60000|70000|80000|90000|100000
-itemFindTimeDuration|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemSellMultiplier|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemFindBonus|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemFindRangeMultiplier|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-xpPerGold|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
 
 ######[\[top\]](#idlelands-pets)
 ---
@@ -435,9 +207,8 @@ Unlocked by being a slayer of the ancients and a purveyor of their goods.
 * power: 1
 * silver: 1
 * shatter: 1
-* str: 700
-* dex: 700
-* con: 700
+* str: 200
+* dex: 200
 
 ### Unlock Requirements
 #### Collectibles
@@ -499,8 +270,6 @@ Unlocked by seeing the finest herbivore food in great quantities.
 * offense: 1
 * vorpal: 1
 * crit: 5
-* str: 400
-* con: 400
 
 ### Unlock Requirements
 #### Collectibles
@@ -552,11 +321,9 @@ Unlocked by observing the rules of the sea.
 * offhand: 4
 
 ### Special Stats
-* int: 1200
-* str: 1200
-* con: 1200
-* dex: 600
-* agi: -1200
+* int: 800
+* str: 800
+* con: 800
 
 ### Unlock Requirements
 #### Statistics
@@ -609,10 +376,6 @@ Unlocked by getting some booty.
 
 ### Special Stats
 * crit: 5
-* int: 500
-* str: 100
-* dex: 100
-* luk: 50
 
 ### Unlock Requirements
 #### Collectibles
@@ -721,7 +484,6 @@ Unlocked by keeping an eye out for shiny things.
 * deadeye: 1
 * venom: 1
 * poison: 1
-* int: 500
 
 ### Unlock Requirements
 #### Collectibles
@@ -758,73 +520,3 @@ itemFindRangeMultiplier|0|0.05|0.1|0.15|---|---|---|---|---|---|---
 Cost|0|20000|40000|75000|---|---|---|---|---|---|---
 xpPerGold|7|17|27|37|---|---|---|---|---|---|---
 Cost|0|10000|25000|50000|---|---|---|---|---|---|---
-
-######[\[top\]](#idlelands-pets)
----
-
-## Spellbook
-
-### Cost
-150000 gold
-
-### Category
-Combat
-
-### Description
-Unlocked by pursuing the magical arts.
-
-### Gear Slots
-* charm: 3
-
-### Special Stats
-* int: 3000
-* mpregen: 1000
-* glowing: 3
-
-### Unlock Requirements
-#### Statistics
-* Combat.Give.CombatEffect.Poison: 100
-* Combat.Give.CombatEffect.Prone: 100
-* Combat.Give.CombatEffect.Shatter: 100
-* Combat.Give.CombatEffect.Vampire: 100
-* Combat.Give.CombatEffect.Venom: 100
-* Combat.Utilize.Energy: 100
-* Combat.Utilize.Fire: 100
-* Combat.Utilize.Ice: 100
-* Combat.Utilize.Thunder: 100
-
-#### Collectibles
-* Norkian Spellbook
-* Jar of Magic Dust
-
-#### Bosses
-* Lich Brother of Anger
-* Lich Brother of Death
-* Lich Brother of Fear
-* Lich Brother of Decay
-* Lich Brother of Insanity
-* The Lich Lord
-
-### Upgrades
-Upgrade/Cost|Tier 1|Tier 2|Tier 3|Tier 4|Tier 5|Tier 6|Tier 7|Tier 8|Tier 9|Tier 10
----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-maxLevel|50|100|150|---|---|---|---|---|---|---
-Cost|0|1000000|1500000|---|---|---|---|---|---|---
-maxItemScore|2000|3000|4000|---|---|---|---|---|---|---
-Cost|0|200000|300000|---|---|---|---|---|---|---
-inventory|3|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-goldStorage|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-battleJoinPercent|10|20|30|40|50|60|70|80|90|100
-Cost|0|20000|30000|40000|50000|60000|70000|80000|90000|100000
-itemFindTimeDuration|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemSellMultiplier|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemFindBonus|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-itemFindRangeMultiplier|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
-xpPerGold|0|---|---|---|---|---|---|---|---|---
-Cost|0|---|---|---|---|---|---|---|---|---
