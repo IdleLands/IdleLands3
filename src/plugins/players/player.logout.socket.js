@@ -5,7 +5,7 @@ import { GameState } from '../../core/game-state';
 export const event = 'plugin:player:logout';
 export const description = 'Log out of the game.';
 export const args = '';
-export const socket = (socket) => {
+export const socket = (socket, primus) => {
 
   const logout = async () => {
     if(!socket.authToken) return;
@@ -16,6 +16,7 @@ export const socket = (socket) => {
     const timeoutId = setTimeout(() => {
       if(!gameState._hasTimeout(playerName)) return;
       gameState._clearTimeout(playerName);
+      primus.delPlayer(playerName, socket);
       emitter.emit('player:logout', { playerName });
     }, 10000);
 

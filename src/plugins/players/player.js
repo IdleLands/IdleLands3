@@ -251,7 +251,7 @@ export class Player extends Character {
     let attempts = 1;
     while(!this.$playerMovement.canEnterTile(this, tile)) {
       if (attempts > 8) {
-        Logger.error('Player', `Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`);
+        // Logger.error('Player', `Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`);
         break;
       }
       weight[index] = 0;

@@ -134,6 +134,8 @@ export const socket = (socket, primus, respond) => {
     if(!oldPlayer) {
       emitter.emit(event, { playerName: player.name, fromIp: socket.address.ip });
     }
+    
+    primus.addPlayer(player.name, socket);
 
     const msg = _.clone(MESSAGES.LOGIN_SUCCESS);
     msg.ok = true;

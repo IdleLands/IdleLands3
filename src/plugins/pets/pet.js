@@ -202,7 +202,7 @@ export class Pet extends Character {
 
   addToInventory(item) {
     this.inventory.push(item);
-    this.inventory = _.sortBy(this.inventory, 'score');
+    this.inventory = _.reverse(_.sortBy(this.inventory, 'score'));
     this.save();
   }
 
