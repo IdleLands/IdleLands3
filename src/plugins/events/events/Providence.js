@@ -71,6 +71,9 @@ export class Providence extends Event {
     const { xp, level, gender, profession, gold } = provData;
 
     if(xp && Event.chance.bool({ likelihood: this.probabilities.xp })) {
+      const curPlayerXp = player.xp;
+      const lostXp = curPlayerXp - xp;
+
       player._xp.add(xp);
       message = `${message} ${xp > 0 ? 'Gained' : 'Lost'} ${Math.abs(xp)} xp!`;
 
@@ -78,7 +81,7 @@ export class Providence extends Event {
         message = `${message} Lost 1 level!`;
         player._level.sub(1);
         player.resetMaxXp();
-        player._xp.toMinimum();
+        player._xp.set(player._xp.maximum + lostXp);
       }
 
     } else if(level && Event.chance.bool({ likelihood: this.probabilities.level })) {
