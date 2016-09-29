@@ -44,12 +44,15 @@ export const AllPlayersPostMove = () => {
 export const SomePlayersPostMove = (updatedPlayers) => {
   const gameState = GameState.getInstance();
   const data = gameState.getSomePlayersSimple(updatedPlayers, ['x', 'y', 'map']);
+
+  const groupedByMap = _.groupBy(data, 'map');
+
   primus.forEach((spark, next) => {
     if(!spark.authToken) return next();
     const player = gameState.getPlayer(spark.authToken.playerName);
     if(!player) return next();
-    const filteredData = _.filter(data, pt => pt.map === player.map);
-    if(!filteredData.length) return next();
+    const filteredData = groupedByMap[player.map];
+    if(!filteredData || !filteredData.length) return next();
     spark.write({ playerListOperation: 'updateMass', data: filteredData });
     next();
   }, () => {});
