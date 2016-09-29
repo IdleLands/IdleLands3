@@ -23,11 +23,11 @@ export class Party {
   }
 
   get score() {
-    return _.sum(_.map(this.players, 'itemScore')) / this.players.length;
+    return _.sum(_.map(_.filter(this.players, player => player.isPlayer), 'itemScore')) / this.players.length;
   }
 
   get level() {
-    return _.sum(_.map(this.players, 'level')) / this.players.length;
+    return _.sum(_.map(_.filter(this.players, player => player.isPlayer), 'level')) / this.players.length;
   }
 
   get displayName() {
