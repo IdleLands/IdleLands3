@@ -55,9 +55,9 @@ export class BattleBoss extends Event {
       _.each(player.party.players, p => {
         if(!p.$statistics) return;
     
-      _.each(_.keys(bosses), (boss) => {
-        p.$statistics.incrementStat(`Character.BossKills.${boss}`);
-      });
+        _.each(_.keys(bosses), (boss) => {
+          p.$statistics.incrementStat(`Character.BossKills.${boss}`);
+        });
       });
 
       MonsterGenerator._setBossTimer(bossName);
