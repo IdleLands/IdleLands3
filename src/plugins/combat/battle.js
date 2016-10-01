@@ -187,14 +187,9 @@ export class Battle {
   get winningTeam() {
     return _.filter(this.parties, party => _.some(party.players, p => this.isPlayerAlive(p)))[0];
   }
-
-  get winners() {
-    return this.winningTeam.players;
-  }
-
-  get losers() {
-    const winners = this.winners;
-    return _.filter(this.allPlayers, p => !_.includes(winners, p));
+  
+  get losingTeam() {
+    return _.filter(this.parties, party => party !== this.winningTeam)[0];
   }
 
   isLoser(party) {
@@ -232,7 +227,7 @@ export class Battle {
 
         this._emitMessage(`${party.displayName} won!`);
 
-        const compareLevel = _.sum(_.map(this.losers, 'level')) / this.losers.length;
+        const compareLevel = this.losingTeam.level;
         const level = party.level;
         const levelDiff = Math.max(-5, Math.min(5, compareLevel - level)) + 6;
 
@@ -255,7 +250,7 @@ export class Battle {
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Lose');
 
-          const compareLevel = _.sum(_.map(this.winners, 'level')) / this.winners.length;
+          const compareLevel = this.winningTeam.level;
           const currentGold = _.isNumber(p.gold) ? p.gold : p.gold.__current;
           const lostGold = Math.round(currentGold / 100);
           let lostXp = Math.round(p._xp.maximum / 20);
