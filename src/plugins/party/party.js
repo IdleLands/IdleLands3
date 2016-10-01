@@ -27,21 +27,27 @@ export class Party {
   }
 
   get score() {
-    if (leader.isPlayer) {
-      return _.sum(_.map(this.humanPlayers, 'itemScore')) / this.humanPlayers.length;
+    let score = 0;
+    
+    if (this.leader.isPlayer) {
+      score = _.sum(_.map(this.humanPlayers, 'itemScore')) / this.humanPlayers.length;
+    } else {
+      score = _.sum(_.map(this.players, 'itemScore')) / this.players.length;
     }
-    else {
-      return _.sum(_.map(this.players, 'itemScore')) / this.players.length;
-    }
+    
+    return score;
   }
 
   get level() {
-    if (leader.isPlayer) {
-      return _.sum(_.map(this.humanPlayers, 'level')) / this.humanPlayers.length;
+    let level = 0;
+    
+    if (this.leader.isPlayer) {
+      level = _.sum(_.map(this.humanPlayers, 'level')) / this.humanPlayers.length;
+    } else {
+      level = _.sum(_.map(this.players, 'level')) / this.players.length;
     }
-    else {
-      return _.sum(_.map(this.players, 'level')) / this.players.length;
-    }
+    
+    return level;
   }
 
   get displayName() {
