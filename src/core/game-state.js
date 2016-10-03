@@ -114,7 +114,7 @@ export class GameState {
   getPlayerSimple(player, keys = UPDATE_KEYS, override = false) {
     if(!override) {
       keys.push('_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$currentIp');
-      keys = _.uniq(keys);
+      // keys = _.uniq(keys);
     }
     return _.pick(player, keys);
   }
