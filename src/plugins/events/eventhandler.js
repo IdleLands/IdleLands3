@@ -24,7 +24,7 @@ export class EventHandler {
     const affected = chosenEvent.operateOn(player);
 
     _.each(affected, affect => {
-      if(!affect) return;
+      if(!affect || !affect.$statistics) return;
       affect.$statistics.batchIncrement(['Character.Events', `Character.Event.${eventName}`]);
     });
   }
