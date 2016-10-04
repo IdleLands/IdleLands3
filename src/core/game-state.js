@@ -48,10 +48,6 @@ export class GameState {
     return this.parties[partyName];
   }
 
-  getPlayer(playerName) {
-    return _.find(this.players, { name: playerName });
-  }
-
   static getInstance() {
     if(GameStateInstance) {
       return GameStateInstance;
@@ -101,6 +97,10 @@ export class GameState {
     }
 
     remPlayer.save();
+  }
+
+  getPlayer(playerName) {
+    return _.find(this.players, { name: playerName });
   }
 
   getPlayers() {

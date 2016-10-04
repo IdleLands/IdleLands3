@@ -9,8 +9,9 @@ import { handleIp } from '../plugins/players/player.handleip';
 import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../shared/playerlist-updater';
 import { MessageParser } from '../plugins/events/messagecreator';
 
-PlayerEmitter.on('player:semilogin', ({ playerName }) => {
+PlayerEmitter.on('player:semilogin', ({ playerName, fromIp }) => {
   AllPlayers(playerName);
+  handleIp(GameState.getInstance().getPlayer(playerName), fromIp);
 });
 
 PlayerEmitter.on('player:login', async ({ playerName, fromIp }) => {
