@@ -82,7 +82,7 @@ export const primus = (() => {
 
   primus.addPlayer = (playerName, spark) => {
     if(!primus.players[playerName]) primus.players[playerName] = [];
-    _.each(primus.players[playerName], spark => this.delPlayer(playerName, spark));
+    _.each(primus.players[playerName], spark => primus.delPlayer(playerName, spark));
     primus.players[playerName].push(spark);
   };
 

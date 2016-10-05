@@ -106,9 +106,7 @@ export const socket = (socket, primus, respond) => {
       if(gameState._hasTimeout(oldPlayer.name)) {
         gameState._clearTimeout(oldPlayer.name);
       }
-
-      oldPlayer.quickLogin();
-      oldPlayer.update();
+      Logger.info('Login', oldPlayer.name + ' semi-login.');
       event = 'player:semilogin';
     }
 
