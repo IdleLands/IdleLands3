@@ -231,7 +231,7 @@ export class Battle {
         const level = party.level;
         const levelDiff = Math.max(-5, Math.min(5, compareLevel - level)) + 6;
 
-        const goldGainedInParty = Math.round((compareLevel * 1560) / party.players.length);
+        const goldGainedInParty = Math.round((compareLevel * 1560) / _.reject(party.players, (p) => p.$isMinion).length);
 
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Win');
