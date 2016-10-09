@@ -17,6 +17,7 @@ class Settings {
     this.pvpBattleRange = 10;
     this.minBattleLevel = 5;
     this.minPartyLevel = 10;
+    this.maxPartyMembers = 4;
 
     this.merchantMultiplier = 3;
 
