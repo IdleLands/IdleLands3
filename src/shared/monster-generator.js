@@ -35,6 +35,7 @@ export class MonsterGenerator extends Generator {
     const boss = _.cloneDeep(Bosses[name]);
     if(!this._isBossAlive(name)) return;
     boss.stats.name = name;
+    boss.stats._name = name;
     const monster = this.augmentMonster(boss.stats);
     monster.$isBoss = true;
     this.equipBoss(monster, boss.items);
@@ -48,6 +49,7 @@ export class MonsterGenerator extends Generator {
     return _.map(bossparty.members, member => {
       const boss = _.cloneDeep(Bosses[member]);
       boss.stats.name = member;
+      boss.stats._name = member;
       const monster = this.augmentMonster(boss.stats);
       this.equipBoss(monster, boss.items);
       monster._collectibles = boss.collectibles;
