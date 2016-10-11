@@ -21,7 +21,6 @@ export class Lich extends Profession {
   }
 
   static setupSpecial(target) {
-    target.$battle.kill = true;
     const numProfessions = Math.floor(target.level / 50) + 1;
     target.$secondaryProfessions = _.sampleSize(['Bard', 'Cleric', 'Fighter', 'Generalist', 'Mage', 'SandwichArtist'], numProfessions);
     target._special.name = 'Phylactic Energy';

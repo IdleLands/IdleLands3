@@ -220,7 +220,8 @@ export class Battle {
 
     _.each(this.parties, party => {
       // no monster bonuses
-      if(!party.leader.isPlayer) return;
+      // rare edge case with Bonecraft reducing loser's party size to one summon and then killing it.
+      if(!party.leader || !party.leader.isPlayer) return;
 
       // if this team won
       if(this.winningTeam === party) {

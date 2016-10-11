@@ -36,6 +36,15 @@ export class SpellTargetPossibilities {
         .value().length >= 1;
   }
 
+  // Dead and not bonecrafted before
+  static anyBonecraftable(caster) {
+    return _(caster.$battle.allPlayers)
+        .reject(p => p.hp > 0)
+        .reject(p => p.party === caster.party)
+        .reject(p => p.$prevParty)
+        .value().length >= 1;
+  }
+
   static allyWithoutEffect(caster, effect) {
     return _(caster.$battle.allPlayers)
         .reject(p => p.hp === 0)

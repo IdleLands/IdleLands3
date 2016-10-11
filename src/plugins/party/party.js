@@ -28,8 +28,10 @@ export class Party {
 
   get score() {
     let score = 0;
-    
-    if (this.leader.isPlayer) {
+    if (!this.leader) {
+      // Bonecraft edge case ends party with no players
+      return 0;
+    } else if (this.leader.isPlayer) {
       score = _.sum(_.map(this.humanPlayers, 'itemScore')) / this.humanPlayers.length;
     } else {
       score = _.sum(_.map(this.players, 'itemScore')) / this.players.length;
@@ -41,7 +43,10 @@ export class Party {
   get level() {
     let level = 0;
     
-    if (this.leader.isPlayer) {
+    if (!this.leader) {
+      // Bonecraft edge case ends party with no players
+      return 0;
+    } else if (this.leader.isPlayer) {
       level = _.sum(_.map(this.humanPlayers, 'level')) / this.humanPlayers.length;
     } else {
       level = _.sum(_.map(this.players, 'level')) / this.players.length;
