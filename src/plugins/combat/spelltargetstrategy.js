@@ -7,6 +7,12 @@ export class SpellTargetStrategy {
     return caster.$battle.allPlayers;
   }
 
+  static allAlive(caster) {
+    return _(caster.$battle.allPlayers)
+      .reject(p => p.hp === 0)
+      .value();
+  }
+
   static allEnemies(caster) {
     return _(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)

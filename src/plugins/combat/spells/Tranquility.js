@@ -16,6 +16,7 @@ export class Tranquility extends Spell {
   }
 
   determineTargets() {
+    // Tranquility is special and can target dead players.
     return this.$targetting.all;
   }
 
