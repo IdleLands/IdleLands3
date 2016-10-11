@@ -225,14 +225,15 @@ export class Battle {
 
     _.each(this.parties, party => {
       // no monster bonuses
-      if(!party.leader.isPlayer) return;
+      // rare edge case with Bonecraft reducing loser's party size to one summon and then killing it.
+      if(!party.leader || !party.leader.isPlayer) return;
 
       // if this team won
       if(this.winningTeam === party) {
 
         this._emitMessage(`${party.displayName} won!`);
 
-        const compareLevel = _.sum(_.map(this.losers, 'level')) / this.losers.length;
+        const compareLevel = _.sum(_.map(this.losers, 'level')) / Math.max(this.losers.length, 1);
         const level = party.level;
         const levelDiff = Math.max(-5, Math.min(5, compareLevel - level)) + 6;
 

@@ -24,7 +24,9 @@ export class Bonecraft extends Spell {
     _.each(targets, target => {
       const damage = -Math.round(target._hp.maximum * this.spellPower/100);
 
-      target.$prevParty = target.party;
+      if(!target.$prevParty) {
+        target.$prevParty = target.party;
+      }
       target.party.playerLeave(target);
       this.caster.party.playerJoin(target);
 
