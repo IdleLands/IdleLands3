@@ -10,11 +10,11 @@ export class Bonecraft extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.anyEnemyDead(caster);
+    return this.$canTarget.anyBonecraftable(caster);
   }
 
   determineTargets() {
-    return this.$targetting.randomDeadEnemy;
+    return this.$targetting.randomBonecraftable;
   }
 
   preCast() {
