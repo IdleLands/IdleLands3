@@ -29,6 +29,11 @@ export class Barbarian extends Profession {
     target._special.maximum = 100;
   }
 
+  static resetSpecial(target) {
+    super.resetSpecial(target);
+    target.recalculateStats(['str']);
+  }
+
   static _eventSelfAttacked(target) {
     target._special.add(5);
   }
