@@ -14,7 +14,7 @@ export class Freeleech extends Spell {
   }
 
   determineTargets() {
-    return this.$targetting.all;
+    return this.$targetting.allAlive;
   }
 
   calcDamage() {

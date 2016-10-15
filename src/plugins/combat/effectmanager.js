@@ -26,7 +26,7 @@ export class EffectManager {
 
   tick() {
     _.each(this.effects, effect => {
-      if(effect.duration <= 0) return;
+      if(effect.duration <= 0 || effect.target.hp === 0) return;
 
       effect.tick();
 

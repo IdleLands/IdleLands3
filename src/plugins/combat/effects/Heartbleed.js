@@ -10,7 +10,7 @@ export class Heartbleed extends Effect {
   tick() {
     super.tick();
     const damage = Math.round(this.target._hp.maximum * 0.07);
-    this._emitMessage(this.target, `%player suffered ${damage} damage from %casterName's %spellName!`);
-    this.dealDamage(this.target, damage);
+    const message = '%player suffered %damage damage from %casterName\'s %spellName!';
+    this.dealDamage(this.target, damage, message);
   }
 }

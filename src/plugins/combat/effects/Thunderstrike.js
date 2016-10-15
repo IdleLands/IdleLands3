@@ -9,7 +9,6 @@ export class Thunderstrike extends Effect {
 
   unaffect() {
     const damage = this.potency * this._duration;
-    this.target.$battle.dealDamage(this.target, damage);
-    this._emitMessage(this.target, '%player got struck by %casterName\'s %spellName and took %damage damage!', { damage });
+    this.dealDamage(this.target, damage, '%player got struck by %casterName\'s %spellName and took %damage damage!');
   }
 }

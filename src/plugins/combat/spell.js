@@ -96,7 +96,6 @@ export class Spell {
     this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
 
     damage = Math.round(damage);
-    this.caster.$battle.tryIncrement(this.caster, 'Combat.Give.Damage', damage);
     this.caster[`_${this.stat}`][this.oper](this.cost);
 
     messageData.spellName = this.tier.name;
@@ -107,25 +106,14 @@ export class Spell {
     }
 
     _.each(targets, target => {
-      this.caster.$battle.tryIncrement(target, 'Combat.Receive.Damage', damage);
-
       messageData.targetName = target.fullname;
 
       this.caster.$battle.emitEvents(this.caster, 'Attack');
       this.caster.$battle.emitEvents(target, 'Attacked');
 
+      const wasAlive = target.hp > 0;
       if(damage !== 0) {
         damage = this.dealDamage(target, damage);
-
-        if(target.hp === 0) {
-          this.caster.$battle.tryIncrement(this.caster, `Combat.Kills.${target.isPlayer ? 'Player' : 'Monster'}`);
-          this.caster.$battle.tryIncrement(target, `Combat.Deaths.${this.caster.isPlayer ? 'Player' : 'Monster'}`);
-
-          this.caster.$battle.emitEvents(this.caster, 'Kill');
-          this.caster.$battle.emitEvents(target, 'Killed');
-
-          target.$effects.clear();
-        }
       }
 
       messageData.damage = damage;
@@ -134,6 +122,11 @@ export class Spell {
       // TODO mark an attack as fatal somewhere else in metadata and display metadata on site
       if(message) {
         this.caster.$battle._emitMessage(this._emitMessage(this.caster, message, messageData));
+      }
+
+      // Target was killed by this attack. Prevents double counting of kills.
+      if(wasAlive && target.hp === 0) {
+        this.caster.$battle.handleDeath(target, this.caster);
       }
 
       if(applyEffect) {
@@ -150,7 +143,7 @@ export class Spell {
   preCast() {}
 
   dealDamage(target, damage) {
-    return this.caster.$battle.dealDamage(target, damage);
+    return this.caster.$battle.dealDamage(target, damage, this.caster);
   }
 
   minMax(min, max) {

@@ -5,6 +5,7 @@ const isQuiet = process.env.QUIET;
 import _ from 'lodash';
 
 import { StringGenerator } from '../../shared/string-generator';
+import { MessageParser } from '../../plugins/events/messagecreator';
 
 import { persistToDb } from './battle.db';
 
@@ -269,12 +270,41 @@ export class Battle {
     });
   }
 
-  dealDamage(target, damage) {
+  healDamage(target, healing, source) {
+    if(healing > 0) {
+      this.tryIncrement(source, 'Combat.Give.Healing', healing);
+      this.tryIncrement(source, 'Combat.Receive.Healing', healing);
+      target._hp.add(healing);
+    }
+    return healing;
+  }
+
+  dealDamage(target, damage, source) {
     if(damage > 0) {
       damage = Math.max(0, damage - target.liveStats.damageReduction);
+      this.tryIncrement(source, 'Combat.Give.Damage', damage);
+      this.tryIncrement(target, 'Combat.Receive.Damage', damage);
+      target._hp.sub(damage);
+    } else if (damage < 0) {
+      this.healDamage(target, Math.abs(damage), source);
     }
-    target._hp.sub(damage);
+
     return damage;
+  }
+
+  handleDeath(target, killer) {
+    this.tryIncrement(killer, `Combat.Kills.${target.isPlayer ? 'Player' : 'Monster'}`);
+    this.tryIncrement(target, `Combat.Deaths.${killer.isPlayer ? 'Player' : 'Monster'}`);
+
+    // TODO Get death message from killed character
+    let message = target.deathMessage || '%player has died!';
+    message = MessageParser.stringFormat(message, target);
+    this._emitMessage(message);
+
+    this.emitEvents(killer, 'Kill');
+    this.emitEvents(target, 'Killed');
+
+    target.$effects.clear();
   }
 
   setId() {

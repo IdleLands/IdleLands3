@@ -20,7 +20,7 @@ export class FoodFight extends Spell {
   }
 
   determineTargets() {
-    return this.$targetting.all;
+    return this.$targetting.allAlive;
   }
 
   calcDamage() {

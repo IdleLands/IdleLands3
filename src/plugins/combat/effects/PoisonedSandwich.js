@@ -15,7 +15,7 @@ export class PoisonedSandwich extends Effect {
     super.tick();
 
     const damage = Math.round(this.potency);
-    this._emitMessage(this.target, `%player suffered ${damage} damage from %casterName's %spellName!`);
-    this.dealDamage(this.target, damage);
+    const message = '%player suffered %damage damage from %casterName\'s %spellName!';
+    this.dealDamage(this.target, damage, message);
   }
 }
