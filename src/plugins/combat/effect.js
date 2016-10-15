@@ -31,11 +31,17 @@ export class Effect {
     return Math.round(player.liveStats[stat] * percent/100);
   }
 
-  dealDamage(player, damage, source) {
-    damage = player.$battle.dealDamage(player, damage, source || this.origin.ref);
+  dealDamage(player, damage, message, extraData = {}) {
+    const source = this.origin.ref;
+    damage = player.$battle.dealDamage(player, damage, source);
+
+    if(message) {
+      extraData.damage = damage;
+      this._emitMessage(player, message, extraData);
+    }
 
     if(player.hp === 0) {
-      this.target.$battle.handleDeath(player, this.origin.ref);
+      this.target.$battle.handleDeath(player, source);
     }
     return damage;
   }

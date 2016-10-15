@@ -16,11 +16,11 @@ export class Vampire extends Effect {
     const damage = Math.round(this.target._hp.maximum * 0.01 * this.potency);
     const casterAlive = this.origin.ref.hp !== 0;
 
-    this._emitMessage(this.target, `%player suffered ${damage} damage from %casterName's %spellName! ${casterAlive ? '%casterName leeched it back!' : ''}`);
+    const message = `%player suffered %damage damage from %casterName's %spellName! ${casterAlive ? '%casterName leeched it back!' : ''}`;
 
-    this.dealDamage(this.target, damage);
+    const dealtDamage = this.dealDamage(this.target, damage, message);
     if(casterAlive) {
-      this.origin.ref._hp.add(damage);
+      this.target.$battle.healDamage(this.origin.ref, dealtDamage, this.target);
     }
   }
 }

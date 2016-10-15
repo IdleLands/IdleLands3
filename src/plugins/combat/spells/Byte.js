@@ -36,7 +36,7 @@ export class Byte extends Spell {
       const damage = this.calcDamage();
       const healed = Math.round(damage/5);
       const message = `%player cast %spellName at %targetName and dealt %damage damage! %player gained ${healed} hp!`;
-      this.caster._hp.add(healed);
+      this.caster.$battle.healDamage(this.caster, healed, target);
 
       super.cast({
         damage,

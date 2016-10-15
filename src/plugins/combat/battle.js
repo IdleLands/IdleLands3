@@ -270,17 +270,24 @@ export class Battle {
     });
   }
 
+  healDamage(target, healing, source) {
+    if(healing > 0) {
+      this.tryIncrement(source, 'Combat.Give.Healing', healing);
+      this.tryIncrement(source, 'Combat.Receive.Healing', healing);
+      target._hp.add(healing);
+    }
+    return healing;
+  }
+
   dealDamage(target, damage, source) {
     if(damage > 0) {
       damage = Math.max(0, damage - target.liveStats.damageReduction);
       this.tryIncrement(source, 'Combat.Give.Damage', damage);
       this.tryIncrement(target, 'Combat.Receive.Damage', damage);
+      target._hp.sub(damage);
     } else if (damage < 0) {
-      const healing = Math.abs(damage);
-      this.tryIncrement(source, 'Combat.Give.Healing', healing);
-      this.tryIncrement(source, 'Combat.Receive.Healing', healing);
+      this.healDamage(target, Math.abs(damage), source);
     }
-    target._hp.sub(damage);
 
     return damage;
   }
