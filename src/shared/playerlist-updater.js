@@ -42,6 +42,7 @@ export const AllPlayersPostMove = () => {
 };
 
 export const SomePlayersPostMove = (updatedPlayers) => {
+  if(process.env.IGNORE_OTHER_PLAYER_MOVES) return;
   const gameState = GameState.getInstance();
   const data = gameState.getSomePlayersSimple(updatedPlayers, ['x', 'y', 'map']);
 
