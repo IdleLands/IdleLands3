@@ -47,7 +47,7 @@ export class DebuffTouch extends Spell {
 
       let message = '%player used %spellName on %targetName!';
       if(damage > 0) {
-        this.caster._hp.add(damage);
+        this.caster.$battle.healDamage(this.caster, damage, target);
         message = '%player used %spellName on %targetName and drained %damage hp!';
       }
 

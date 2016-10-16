@@ -7,6 +7,12 @@ export class SpellTargetStrategy {
     return caster.$battle.allPlayers;
   }
 
+  static allAlive(caster) {
+    return _(caster.$battle.allPlayers)
+      .reject(p => p.hp === 0)
+      .value();
+  }
+
   static allEnemies(caster) {
     return _(caster.$battle.allPlayers)
       .reject(p => p.hp === 0)
@@ -65,6 +71,15 @@ export class SpellTargetStrategy {
     return [_(caster.$battle.allPlayers)
       .reject(p => p.hp > 0)
       .reject(p => p.party === caster.party)
+      .sample()];
+  }
+
+  // Dead enemy and not bonecrafted before
+  static randomBonecraftable(caster) {
+    return [_(caster.$battle.allPlayers)
+      .reject(p => p.hp > 0)
+      .reject(p => p.party === caster.party)
+      .reject(p => p.$prevParty)
       .sample()];
   }
 

@@ -31,16 +31,19 @@ export class Effect {
     return Math.round(player.liveStats[stat] * percent/100);
   }
 
-  dealDamage(player, damage) {
-    player.$battle.dealDamage(player, damage);
+  dealDamage(player, damage, message, extraData = {}) {
+    const source = this.origin.ref;
+    damage = player.$battle.dealDamage(player, damage, source);
+
+    if(message) {
+      extraData.damage = damage;
+      this._emitMessage(player, message, extraData);
+    }
 
     if(player.hp === 0) {
-      this.target.$battle.tryIncrement(this.origin.ref, `Combat.Kills.${this.target.isPlayer ? 'Player' : 'Monster'}`);
-      this.target.$battle.tryIncrement(player, `Combat.Deaths.${this.origin.ref.isPlayer ? 'Player' : 'Monster'}`);
-
-      this.target.$battle.emitEvents(this.origin.ref, 'Kill');
-      this.target.$battle.emitEvents(player, 'Killed');
+      this.target.$battle.handleDeath(player, source);
     }
+    return damage;
   }
 
   tick() {

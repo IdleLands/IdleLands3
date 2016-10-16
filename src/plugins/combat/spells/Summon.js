@@ -69,11 +69,10 @@ export class Summon extends Spell {
 
     this.caster.party.playerJoin(summonedMonster);
     this.caster.$battle._setupPlayer(summonedMonster);
-
+    summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
     summonedMonster._eventSelfKilled = () => {
       this.caster._special.sub(baseMonster.slotCost);
-      this.caster.party.playerLeave(summonedMonster);
-      this._emitMessage(this.caster, '%targetName exploded into a pile of arcane dust!', { targetName: summonedMonster.fullname });
+      summonedMonster.party.playerLeave(summonedMonster);
     };
 
     const message = `%player used %spellName and spawned a ${baseMonster.name}!`;

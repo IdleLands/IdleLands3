@@ -44,7 +44,7 @@ export class Siphon extends Spell {
     _.each(targets, target => {
       const damage = this.calcDamage();
 
-      this.caster._hp.add(damage);
+      this.caster.$battle.healDamage(this.caster, damage, target);
 
       super.cast({
         damage,

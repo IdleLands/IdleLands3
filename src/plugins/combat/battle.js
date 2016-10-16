@@ -5,6 +5,7 @@ const isQuiet = process.env.QUIET;
 import _ from 'lodash';
 
 import { StringGenerator } from '../../shared/string-generator';
+import { MessageParser } from '../../plugins/events/messagecreator';
 
 import { persistToDb } from './battle.db';
 
@@ -187,14 +188,9 @@ export class Battle {
   get winningTeam() {
     return _.filter(this.parties, party => _.some(party.players, p => this.isPlayerAlive(p)))[0];
   }
-
-  get winners() {
-    return this.winningTeam.players;
-  }
-
-  get losers() {
-    const winners = this.winners;
-    return _.filter(this.allPlayers, p => !_.includes(winners, p));
+  
+  get losingTeam() {
+    return _.filter(this.parties, party => party !== this.winningTeam)[0];
   }
 
   isLoser(party) {
@@ -225,18 +221,19 @@ export class Battle {
 
     _.each(this.parties, party => {
       // no monster bonuses
-      if(!party.leader.isPlayer) return;
+      // rare edge case with Bonecraft reducing loser's party size to one summon and then killing it.
+      if(!party.leader || !party.leader.isPlayer) return;
 
       // if this team won
       if(this.winningTeam === party) {
 
         this._emitMessage(`${party.displayName} won!`);
 
-        const compareLevel = _.sum(_.map(this.losers, 'level')) / this.losers.length;
+        const compareLevel = this.losingTeam.level;
         const level = party.level;
         const levelDiff = Math.max(-5, Math.min(5, compareLevel - level)) + 6;
 
-        const goldGainedInParty = Math.round((compareLevel * 1560) / party.players.length);
+        const goldGainedInParty = Math.round((compareLevel * 1560) / _.reject(party.players, (p) => p.$isMinion).length);
 
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Win');
@@ -255,7 +252,7 @@ export class Battle {
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Lose');
 
-          const compareLevel = _.sum(_.map(this.winners, 'level')) / this.winners.length;
+          const compareLevel = this.winningTeam.level;
           const currentGold = _.isNumber(p.gold) ? p.gold : p.gold.__current;
           const lostGold = Math.round(currentGold / 100);
           let lostXp = Math.round(p._xp.maximum / 20);
@@ -273,12 +270,41 @@ export class Battle {
     });
   }
 
-  dealDamage(target, damage) {
+  healDamage(target, healing, source) {
+    if(healing > 0) {
+      this.tryIncrement(source, 'Combat.Give.Healing', healing);
+      this.tryIncrement(source, 'Combat.Receive.Healing', healing);
+      target._hp.add(healing);
+    }
+    return healing;
+  }
+
+  dealDamage(target, damage, source) {
     if(damage > 0) {
       damage = Math.max(0, damage - target.liveStats.damageReduction);
+      this.tryIncrement(source, 'Combat.Give.Damage', damage);
+      this.tryIncrement(target, 'Combat.Receive.Damage', damage);
+      target._hp.sub(damage);
+    } else if (damage < 0) {
+      this.healDamage(target, Math.abs(damage), source);
     }
-    target._hp.sub(damage);
+
     return damage;
+  }
+
+  handleDeath(target, killer) {
+    this.tryIncrement(killer, `Combat.Kills.${target.isPlayer ? 'Player' : 'Monster'}`);
+    this.tryIncrement(target, `Combat.Deaths.${killer.isPlayer ? 'Player' : 'Monster'}`);
+
+    // TODO Get death message from killed character
+    let message = target.deathMessage || '%player has died!';
+    message = MessageParser.stringFormat(message, target);
+    this._emitMessage(message);
+
+    this.emitEvents(killer, 'Kill');
+    this.emitEvents(target, 'Killed');
+
+    target.$effects.clear();
   }
 
   setId() {

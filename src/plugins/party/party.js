@@ -21,13 +21,38 @@ export class Party {
 
     this.playerJoin(leader);
   }
+  
+  get humanPlayers() {
+    return _.filter(this.players, player => player.isPlayer);
+  }
 
   get score() {
-    return _.sum(_.map(_.filter(this.players, player => player.isPlayer), 'itemScore')) / this.players.length;
+    let score = 0;
+    if (!this.leader) {
+      // Bonecraft edge case ends party with no players
+      return 0;
+    } else if (this.leader.isPlayer) {
+      score = _.sum(_.map(this.humanPlayers, 'itemScore')) / this.humanPlayers.length;
+    } else {
+      score = _.sum(_.map(this.players, 'itemScore')) / this.players.length;
+    }
+    
+    return score;
   }
 
   get level() {
-    return _.sum(_.map(_.filter(this.players, player => player.isPlayer), 'level')) / this.players.length;
+    let level = 0;
+    
+    if (!this.leader) {
+      // Bonecraft edge case ends party with no players
+      return 0;
+    } else if (this.leader.isPlayer) {
+      level = _.sum(_.map(this.humanPlayers, 'level')) / this.humanPlayers.length;
+    } else {
+      level = _.sum(_.map(this.players, 'level')) / this.players.length;
+    }
+    
+    return level;
   }
 
   get displayName() {
