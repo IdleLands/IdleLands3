@@ -32,6 +32,7 @@ export class BattleBoss extends Event {
     }
 
     const monsterPartyInstance = new PartyClass({ leader: bosses[0] });
+    monsterPartyInstance.isMonsterParty = true;
     if(bosses.length > 1) {
       for(let i = 1; i < bosses.length; i++) {
         monsterPartyInstance.playerJoin(bosses[i]);
@@ -114,6 +115,8 @@ export class BattleBoss extends Event {
     if(player.party.isBattleParty) {
       player.party.disband();
     }
+
+    monsterPartyInstance.disband();
 
     return affected;
   }

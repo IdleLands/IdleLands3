@@ -31,7 +31,7 @@ export class Battle extends Event {
     const monsters = MonsterGenerator.generateMonsters(player.party);
 
     const monsterPartyInstance = new PartyClass({ leader: monsters[0] });
-
+    monsterPartyInstance.isMonsterParty = true;
     if(monsters.length > 1) {
       for(let i = 1; i < monsters.length; i++) {
         monsterPartyInstance.playerJoin(monsters[i]);
@@ -54,6 +54,8 @@ export class Battle extends Event {
     if(player.party.isBattleParty) {
       player.party.disband();
     }
+
+    monsterPartyInstance.disband();
 
     return [player];
   }
