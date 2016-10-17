@@ -273,7 +273,7 @@ export class Battle {
   healDamage(target, healing, source) {
     if(healing > 0) {
       this.tryIncrement(source, 'Combat.Give.Healing', healing);
-      this.tryIncrement(source, 'Combat.Receive.Healing', healing);
+      this.tryIncrement(target, 'Combat.Receive.Healing', healing);
       target._hp.add(healing);
     }
     return healing;
