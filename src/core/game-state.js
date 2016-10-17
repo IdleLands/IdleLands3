@@ -9,6 +9,7 @@ import { MESSAGES } from '../static/messages';
 import { PlayerLoad } from '../plugins/players/player.load';
 
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
+const EXTRA_KEYS = ['_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$currentIp'];
 
 let GameStateInstance = null;
 
@@ -113,7 +114,7 @@ export class GameState {
 
   getPlayerSimple(player, keys = UPDATE_KEYS, override = false) {
     if(!override) {
-      keys.push('_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$currentIp');
+      keys = keys.concat(EXTRA_KEYS);
       // keys = _.uniq(keys);
     }
     return _.pick(player, keys);
