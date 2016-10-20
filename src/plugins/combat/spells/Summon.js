@@ -21,12 +21,19 @@ const monsters = {
     {
       name: 'dracolich',
       statMult: 1.35,
-      slotCost: 2,
+      slotCost: 4,
       restrictLevel: 85,
-      baseStats: { mirror: 1 },
+      restrictClasses: ['Lich'],
       requireCollectibles: ['Undead Dragon Scale']
     },
-    { name: 'demogorgon', statMult: 1.75, slotCost: 4, restrictLevel: 150, requireCollectibles: ['Gorgon Snake'] }
+    {
+      name: 'demogorgon',
+      statMult: 1.75,
+      slotCost: 6,
+      restrictLevel: 150,
+      baseStats: { mirror: 1 },
+      requireCollectibles: ['Gorgon Snake']
+    }
   ]
 };
 
@@ -54,7 +61,6 @@ export class Summon extends Spell {
 
   preCast() {
     const baseMonster = _.cloneDeep(this.chooseValidMonster());
-    baseMonster.level = Math.floor(this.caster.level / 2);
     _.extend(baseMonster, baseMonster.baseStats);
 
     if(baseMonster.restrictClasses) {
@@ -66,6 +72,7 @@ export class Summon extends Spell {
     const summonedMonster = MonsterGenerator.augmentMonster(baseMonster, mimicTarget);
     summonedMonster.name = `${this.caster.fullname}'s ${summonedMonster.name}`;
     summonedMonster.$isMinion = true;
+    summonedMonster._level.set(Math.floor(this.caster.level/2));
 
     this.caster.party.playerJoin(summonedMonster);
     this.caster.$battle._setupPlayer(summonedMonster);
