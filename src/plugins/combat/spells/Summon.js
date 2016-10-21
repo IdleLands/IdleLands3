@@ -73,11 +73,31 @@ export class Summon extends Spell {
     summonedMonster.name = `${this.caster.fullname}'s ${summonedMonster.name}`;
     summonedMonster.$isMinion = true;
     summonedMonster._level.set(Math.floor(this.caster.level/2));
+    summonedMonster.recalculateStats();
 
     this.caster.party.playerJoin(summonedMonster);
     this.caster.$battle._setupPlayer(summonedMonster);
-    summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
+    
+    const isLich = summonedMonster.professionName === 'Lich';
+    
+    // Lich summons use default death message if they have phylacteries left.
+    
+    if(!isLich) {
+      summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
+    }
+    
     summonedMonster._eventSelfKilled = () => {
+
+      // If the lich has phylacteries left, he stays in the party.
+      if(isLich && !summonedMonster._special.atMinimum()) { return; }
+      
+      // If the lich has HP but no phylacteries, he's on his last life, so he stays in the party.
+      if(isLich && !summonedMonster._hp.atMinimum()) {
+        // Change to the standard minion death message.
+        summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
+        return;
+      }
+      
       this.caster._special.sub(baseMonster.slotCost);
       summonedMonster.party.playerLeave(summonedMonster);
     };
