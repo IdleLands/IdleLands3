@@ -79,28 +79,23 @@ export class Summon extends Spell {
     this.caster.$battle._setupPlayer(summonedMonster);
     
     const isLich = summonedMonster.professionName === 'Lich';
-    const deathMessage = '%player exploded into a pile of arcane dust!';
     
     // Lich summons use default death message if they have phylacteries left.
     
     if(!isLich) {
-      summonedMonster.deathMessage = deathMessage;
+      summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
     }
     
     summonedMonster._eventSelfKilled = () => {
+
+      // If the lich has phylacteries left, he stays in the party.
+      if(isLich && !summonedMonster._special.atMinimum()) { return; }
       
-      // If a Lich dies with 1 phylactery, he will have full hp and 0 phylacteries when this code is run.
-      // In that case, change to final death message.
-      // The next time the Lich dies, he will have 0 hp and 0 phylacteries, and that is when he should be removed from the party.
-      if(isLich) {
-        if(summonedMonster._special.atMinimum()) {
-          if(!summonedMonster._hp.atMinimum()) {
-            summonedMonster.deathMessage = deathMessage;
-            return;
-          }
-        } else {
-          return;
-        }
+      // If the lich has HP but no phylacteries, he's on his last life, so he stays in the party.
+      if(isLich && !summonedMonster._hp.atMinimum()) {
+        // Change to the standard minion death message.
+        summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
+        return;
       }
       
       this.caster._special.sub(baseMonster.slotCost);
