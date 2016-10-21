@@ -27,11 +27,12 @@ export class Barbarian extends Profession {
     target._special.name = 'Rage';
     target._special.set(0);
     target._special.maximum = 100;
+    target.recalculateStats(['str']);
   }
 
   static resetSpecial(target) {
     super.resetSpecial(target);
-    target.recalculateStats(['str']);
+    if (target.$dirty) { target.$dirty.flags['str'] = true; }
   }
 
   static _eventSelfAttacked(target) {
