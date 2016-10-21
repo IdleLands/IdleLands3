@@ -32,7 +32,7 @@ export class Barbarian extends Profession {
 
   static resetSpecial(target) {
     super.resetSpecial(target);
-    if (target.$dirty) { target.$dirty.flags['str'] = true; }
+    if (target.$dirty) { target.$dirty.flags.str = true; }
   }
 
   static _eventSelfAttacked(target) {
