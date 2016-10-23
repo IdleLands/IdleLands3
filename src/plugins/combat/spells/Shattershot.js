@@ -8,8 +8,8 @@ export class Shattershot extends Spell {
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
-    { name: 'shattershot',   spellPower: 2, weight: 30, cost: 25,  level: 25,  profession: 'Archer' },
-    { name: 'shatterblast',  spellPower: 3, weight: 30, cost: 35,  level: 65,  profession: 'Archer' }
+    { name: 'shattershot',   spellPower: 1, weight: 30, cost: 25,  level: 25,  profession: 'Archer' },
+    { name: 'shatterblast',  spellPower: 2, weight: 30, cost: 35,  level: 65,  profession: 'Archer' }
   ];
 
   static shouldCast(caster) {
@@ -21,9 +21,9 @@ export class Shattershot extends Spell {
   }
 
   calcDamage() {
-    const min = (this.caster.liveStats.str + this.caster.liveStats.dex) * 0.75;
-    const max = (this.caster.liveStats.str + this.caster.liveStats.dex) * 1.50;
-    return this.minMax(min, max) * (this.spellPower-1);
+    const min = (this.caster.liveStats.str + (this.caster.liveStats.dex * 0.5)) * 0.2;
+    const max = (this.caster.liveStats.str + (this.caster.liveStats.dex * 0.5)) * 0.4;
+    return this.minMax(min, max) * (this.spellPower);
   }
 
   calcDuration() {
@@ -47,7 +47,7 @@ export class Shattershot extends Spell {
         targets: [target]
       });
 
-      super.applyCombatEffects(_.sampleSize(ATTACK_STATS, this.spellPower), target);
+      super.applyCombatEffects(_.sampleSize(ATTACK_STATS, this.spellPower+1), target);
     });
   }
 }

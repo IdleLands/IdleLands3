@@ -16,8 +16,8 @@ export class Multishot extends Spell {
   }
 
   calcDamage() {
-    const min = this.caster.liveStats.dex * (0.2*this.spellPower+0.8);
-    const max = this.caster.liveStats.dex * (0.5*this.spellPower+0.8);
+    const min = this.caster.liveStats.dex * 0.25;
+    const max = this.caster.liveStats.dex * 0.50;
     return this.minMax(min, max);
   }
 
