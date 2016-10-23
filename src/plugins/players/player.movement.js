@@ -205,18 +205,19 @@ export class PlayerMovement {
   }
 
   static getInitialWeight(player) {
-  
-    let weight = [300, 40, 7,  3,  1,  3,  7,  40];
-    
     const MAX_DRUNK = 10;
     const drunkFromPersonality = player.$personalities.isActive('Drunk') ? 7 : 0;
     const drunk = Math.max(0, Math.min(MAX_DRUNK, drunkFromPersonality));
-
-    if(player.lastDir && !drunk) {
+    
+    let weight = [300, 40, 7,  3,  1,  3,  7,  40]; // Sober: 75% 10%  2% <1% <1% <1%  2% 10%
+    
+    if(drunk) {
+      weight = [100, 40, 30, 20, 20, 20, 30, 40];   // Drunk: 33% 13% 10%  7%  7%  7% 10% 13%
+    }
+    
+    if(player.lastDir) {
       const lastDirIndex = directions.indexOf(player.lastDir);
       weight = weight.slice(weight.length - lastDirIndex).concat(weight.slice(0, weight.length - lastDirIndex));
-    } else if(drunk) {
-      weight = _.map(weight, s => Math.max(1, 200 - (s * (1 - drunk / MAX_DRUNK))));
     }
 
     return weight;
