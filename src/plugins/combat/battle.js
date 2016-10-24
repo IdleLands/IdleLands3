@@ -144,6 +144,9 @@ export class Battle {
 
     this.emitEvents(player, 'TakeTurn');
 
+    // Don't allow player to regen if they kill themselves
+    if(!this.isPlayerAlive(player)) return;
+
     const hpRegen = player.liveStats.hpregen;
     const mpRegen = player.liveStats.mpregen;
 
