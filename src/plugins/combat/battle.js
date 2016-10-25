@@ -287,7 +287,12 @@ export class Battle {
       damage = Math.max(0, damage - target.liveStats.damageReduction);
       this.tryIncrement(source, 'Combat.Give.Damage', damage);
       this.tryIncrement(target, 'Combat.Receive.Damage', damage);
+
+      const overkill = damage - target.hp;
       target._hp.sub(damage);
+      // TODO Display overkill damage in battle log.
+      this.tryIncrement(source, 'Combat.Give.Overkill', overkill);
+      this.tryIncrement(target, 'Combat.Receive.Overkill', overkill);
     } else if (damage < 0) {
       this.healDamage(target, Math.abs(damage), source);
     }
