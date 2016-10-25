@@ -36,7 +36,7 @@ You get X HP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 3 | 5 | 0 | 0 | 0
+0 | 1 | 3 | 0 | 0 | 0
 
 ### MP Modifiers
 You get X MP for every point in a particular stat.
