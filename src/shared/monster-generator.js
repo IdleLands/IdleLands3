@@ -51,6 +51,7 @@ export class MonsterGenerator extends Generator {
       boss.stats.name = `${member}`;
       boss.stats._name = `${member}`;
       const monster = this.augmentMonster(boss.stats);
+      monster.$isBoss = true;
       this.equipBoss(monster, boss.items);
       monster._collectibles = boss.collectibles;
       return monster;

@@ -82,6 +82,16 @@ export class SpellTargetStrategy {
       .reject(p => p.$prevParty)
       .sample()];
   }
+  
+  // Not boss, not bitomancer
+  static randomBitFlippable(caster) {
+    return [_(caster.$battle.allPlayers)
+      .reject(p => p.hp > 0)
+      .reject(p => p.party === caster.party)
+      .reject(p => p.$isBoss)
+      .reject(p => p.professionName === 'Bitomancer')
+      .sample()];
+  }
 
   static allAllies(caster) {
     return _(caster.$battle.allPlayers)
