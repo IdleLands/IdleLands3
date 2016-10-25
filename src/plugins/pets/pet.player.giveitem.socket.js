@@ -15,7 +15,7 @@ export const socket = (socket, primus, respond) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
-    Logger.info('Socket:Pet:Give', `${playerName} (${socket.address.ip}) pet giving ${itemId}.`);
+    Logger.info('Socket:Pet:Give', `${playerName} (${socket.address.ip}) giving ${itemId} to pet.`);
 
     const message = player.$pets.giveItemToPet(player, itemId);
 
