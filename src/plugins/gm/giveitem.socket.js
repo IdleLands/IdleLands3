@@ -1,6 +1,7 @@
 
 import { GameState } from '../../core/game-state';
 import { GMCommands } from './commands';
+import { Logger } from '../../shared/logger';
 
 import { JSONParser } from '../../shared/asset-loader';
 import { Equipment } from '../../core/base/equipment';
@@ -25,6 +26,8 @@ export const socket = (socket, primus, respond) => {
     if(!item || !item.type || !item.name) {
       return respond({ type: 'error', notify: 'Invalid item.' });
     }
+
+    Logger.info('Socket:GM:GiveItem', `${playerName} (${socket.address.ip}) giving item "${targetItemString}" to ${targetName}.`);
 
     const itemInst = new Equipment(item);
 

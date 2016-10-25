@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:pet:attr';
 export const description = 'Change your pets attribute.';
@@ -14,6 +15,7 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
+    Logger.info('Socket:Pet:AttributeChange', `${playerName} (${socket.address.ip}) changing pet attribute to ${newAttr}`);
     
     player.$pets.changePetAttr(player, newAttr);
   };

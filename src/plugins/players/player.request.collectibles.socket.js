@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:player:request:collectibles';
 export const description = 'Request collectible data. Generally used only when looking at collectibles.';
@@ -14,6 +15,8 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
+    Logger.info('Socket:Player:RequestCollectibles', `${socket.playerName} (${socket.address.ip}) requesting collectibles.`);
+
     player._updateCollectibles();
   };
 

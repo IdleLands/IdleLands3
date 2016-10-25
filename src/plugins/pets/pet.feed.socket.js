@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:pet:feed';
 export const description = 'Feed your pet gold.';
@@ -14,6 +15,7 @@ export const socket = (socket, primus, respond) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
+    Logger.info('Socket:Pet:Feed', `${playerName} (${socket.address.ip}) feeding pet ${gold} gold.`);
     
     const message = player.$pets.feedGold(player, gold);
 

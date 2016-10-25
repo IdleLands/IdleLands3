@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:pet:buy';
 export const description = 'Buy a new pet.';
@@ -14,7 +15,8 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
-    
+    Logger.info('Socket:Pet:Buy', `${playerName} (${socket.address.ip}) buying pet ${petType} and naming it ${petName}.`);
+
     player.$pets.addNewPet(player, petType, petName);
   };
 

@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:player:changename';
 export const description = 'Mod only. Change targets name to something else.';
@@ -17,6 +18,8 @@ export const socket = (socket) => {
     const target = gameState.retrievePlayer(targetName);
 
     if(!player || !player.isMod || !target) return;
+    Logger.info('Socket:Player:NameChange', `${socket.playerName} (${socket.address.ip}) changing player name from ${targetName} to ${newName}.`);
+
     target.changeName(newName);
   };
 

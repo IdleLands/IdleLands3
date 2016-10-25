@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:player:request:achievements';
 export const description = 'Request achievement data. Generally used only when looking at achievements.';
@@ -14,6 +15,8 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
+    Logger.info('Socket:Player:RequestAchievements', `${socket.playerName} (${socket.address.ip}) requesting achievements.`);
+
     player._updateAchievements();
   };
 

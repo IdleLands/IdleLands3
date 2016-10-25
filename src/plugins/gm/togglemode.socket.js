@@ -1,6 +1,7 @@
 
 import { GameState } from '../../core/game-state';
 import { GMCommands } from './commands';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:gm:togglemod';
 export const description = 'Mod only. Toggle moderator status for the target.';
@@ -16,6 +17,8 @@ export const socket = (socket) => {
     if(!player || !player.isMod) return;
 
     const target = GameState.getInstance().getPlayer(targetName);
+    Logger.info('Socket:GM:GiveEvent', `${playerName} (${socket.address.ip}) ${target.isMod ? 'taking' : 'giving'} mod to ${targetName}.`);
+
     GMCommands.toggleMod(target);
   };
 

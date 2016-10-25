@@ -24,6 +24,7 @@ export const socket = (socket, primus, respond) => {
     let player = null;
     let event = '';
     const playerDb = constitute(PlayerDb);
+    Logger.info('Socket:Player:Login', `Attempted login from (${socket.address.ip}, ${userId}).`);
 
     if(!playerDb) {
       Logger.error('Login', new Error('playerDb could not be resolved.'));
@@ -122,6 +123,8 @@ export const socket = (socket, primus, respond) => {
 
     // closed
     if(socket.readyState === 2) return;
+
+    Logger.info('Socket:Player:Login', `${socket.playerName} (${socket.address.ip}, ${userId}) logging in.`);
     
     primus.addPlayer(loggedInPlayerName, socket);
 

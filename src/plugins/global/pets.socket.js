@@ -2,6 +2,7 @@
 import _ from 'lodash';
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:global:allpets';
 export const description = 'Get all pets for the global page display. Cannot be logged in to execute this function.';
@@ -10,6 +11,7 @@ export const socket = (socket, primus, respond) => {
 
   const allpets = async () => {
     if(socket.authToken) return;
+    Logger.info('Socket:Global:Pets', `${socket.address.ip} requesting global pets.`);
 
     const allPets = _(GameState.getInstance().getPlayers())
       .map(p => p.$pets.activePet)

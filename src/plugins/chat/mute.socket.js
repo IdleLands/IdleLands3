@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 import { PlayerUpdateAll } from '../../shared/playerlist-updater';
 
@@ -19,6 +20,8 @@ export const socket = (socket) => {
     const target = gameState.retrievePlayer(targetName);
 
     if(!player || !player.isMod || !target) return;
+    Logger.info('Socket:Mute', `${playerName} (${socket.address.ip}) muting ${targetName}.`);
+
     target.isMuted = !target.isMuted;
     if(target.isMuted && target.isPardoned) target.isPardoned = false;
 

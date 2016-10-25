@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:pet:smart';
 export const description = 'Toggle a smart pet setting.';
@@ -14,6 +15,7 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
+    Logger.info('Socket:Pet:Smart', `${playerName} (${socket.address.ip}) pet smart toggle ${setting}.`);
     
     player.$pets.togglePetSmartSetting(setting);
   };

@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:player:togglepersonality';
 export const description = 'Turn a personality on or off.';
@@ -14,7 +15,8 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
-    
+    Logger.info('Socket:Player:Personality', `${socket.playerName} (${socket.address.ip}) toggling personality ${personality}.`);
+
     player.togglePersonality(personality);
   };
 

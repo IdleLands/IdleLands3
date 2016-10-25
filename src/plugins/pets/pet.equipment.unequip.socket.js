@@ -1,5 +1,6 @@
 
 import { GameState } from '../../core/game-state';
+import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:pet:unequip';
 export const description = 'Unequip an item from your pets gear.';
@@ -14,6 +15,7 @@ export const socket = (socket, primus, respond) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
+    Logger.info('Socket:Pet:Unequip', `${playerName} (${socket.address.ip}) pet unequipping ${itemId}.`);
     
     const message = player.$pets.unequipPetItem(player, itemId);
 
