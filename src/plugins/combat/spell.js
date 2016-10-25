@@ -129,8 +129,7 @@ export class Spell {
         this.caster.$battle.handleDeath(target, this.caster);
       }
 
-      // TODO Properly handle tranquility applying to dead players without hard coding it
-      if(applyEffect && (target.hp > 0 || this.tier.name === 'tranquility')) {
+      if(applyEffect && target.hp > 0) {
         const effect = new applyEffect({ target, extra: applyEffectExtra, potency: applyEffectPotency || this.calcPotency(), duration: applyEffectDuration || this.calcDuration() });
         effect.origin = { name: this.caster.fullname, ref: this.caster, spell: applyEffectName || this.tier.name };
         target.$effects.add(effect);
