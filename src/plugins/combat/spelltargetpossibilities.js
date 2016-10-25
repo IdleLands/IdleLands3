@@ -45,6 +45,16 @@ export class SpellTargetPossibilities {
         .value().length >= 1;
   }
 
+  // Not a boss, not a bitomancer
+  static anyBitFlippable(caster) {
+    return _(caster.$battle.allPlayers)
+        .reject(p => p.hp > 0)
+        .reject(p => p.party === caster.party)
+        .reject(p => p.$isBoss)
+        .reject(p => p.professionName === 'Bitomancer')
+        .value().length >= 1;
+  }
+
   static allyWithoutEffect(caster, effect) {
     return _(caster.$battle.allPlayers)
         .reject(p => p.hp === 0)

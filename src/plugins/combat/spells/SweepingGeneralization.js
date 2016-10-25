@@ -17,8 +17,8 @@ export class SweepingGeneralization extends Spell {
   }
 
   calcDamage() {
-    const min = (this.caster.stats.str + this.caster.stats.dex) / 4;
-    const max = (this.caster.stats.str + this.caster.stats.dex) / 2;
+    const min = (this.caster.stats.str + this.caster.stats.dex) / 8;
+    const max = (this.caster.stats.str + this.caster.stats.dex) / 4;
     return this.minMax(min, max) * this.spellPower;
   }
 

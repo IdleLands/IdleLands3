@@ -31,7 +31,7 @@ export class VenomCoating extends Spell {
   }
 
   preCast() {
-    const message = '%player appled a %spellName on %targetName\'s weapon!';
+    const message = '%player applied a %spellName on %targetName\'s weapon!';
     const targets = this.determineTargets();
 
     _.each(targets, target => {

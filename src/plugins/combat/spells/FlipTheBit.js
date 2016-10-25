@@ -10,11 +10,11 @@ export class FlipTheBit extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.enemyNotProfession(caster, 'Bitomancer');
+    return this.$canTarget.anyBitFlippable(caster);
   }
 
   determineTargets() {
-    return this.$targetting.randomEnemyNotProfession('Bitomancer');
+    return this.$targetting.randomBitFlippable;
   }
 
   preCast() {

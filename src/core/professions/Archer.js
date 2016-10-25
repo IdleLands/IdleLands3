@@ -6,7 +6,8 @@ export class Archer extends Profession {
   static baseHpPerLevel = Profession.baseHpPerLevel + 15;
   static baseMpPerLevel = Profession.baseMpPerLevel + 10;
 
-  static baseHpPerDex = 3;
+  static baseHpPerCon = 3;
+  static baseHpPerDex = 1;
   static baseMpPerDex = 3;
 
   static baseConPerLevel = 2;

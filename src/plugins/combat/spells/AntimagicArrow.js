@@ -17,8 +17,8 @@ export class AntimagicArrow extends Spell {
   }
 
   calcDamage() {
-    const min = (this.caster.liveStats.int + this.caster.liveStats.dex) * 0.4;
-    const max = (this.caster.liveStats.int + this.caster.liveStats.dex) * 0.7;
+    const min = (this.caster.liveStats.int + (this.caster.liveStats.dex * 0.25)) * 0.2;
+    const max = (this.caster.liveStats.int + (this.caster.liveStats.dex * 0.25)) * 0.4;
     return this.minMax(min, max) * this.spellPower;
   }
 
@@ -32,7 +32,7 @@ export class AntimagicArrow extends Spell {
     _.each(targets, target => {
       const damage = this.calcDamage();
 
-      const lostMp = target._mp.maximum * (25 * (this.spellPower+1)/100);
+      const lostMp = Math.floor(target._mp.maximum * (25 * (this.spellPower+1)/100));
       target._mp.sub(lostMp);
       const message = `%player used an %spellName on %targetName and dealt %damage damage and reduced %targetName\'s mp by ${lostMp}!`;
 
