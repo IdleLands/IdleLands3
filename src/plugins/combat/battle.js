@@ -291,8 +291,10 @@ export class Battle {
       const overkill = damage - target.hp;
       target._hp.sub(damage);
       // TODO Display overkill damage in battle log.
-      this.tryIncrement(source, 'Combat.Give.Overkill', overkill);
-      this.tryIncrement(target, 'Combat.Receive.Overkill', overkill);
+      if (target.hp === 0) {
+        this.tryIncrement(source, 'Combat.Give.Overkill', overkill);
+        this.tryIncrement(target, 'Combat.Receive.Overkill', overkill);
+      }
     } else if (damage < 0) {
       this.healDamage(target, Math.abs(damage), source);
     }
