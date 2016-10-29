@@ -368,7 +368,7 @@ Unlocked by pursuing the physical arts.
 * Smashed Mace
 
 #### Bosses
-* Butt Giant
+* Cloud Giant
 * Ghostly Pirate Captain
 * Goblin Lord
 * King Minotaur
