@@ -5,11 +5,11 @@ import { Profession } from '../base/profession';
 
 export class Pirate extends Profession {
 
-  static baseHpPerLevel = Profession.baseHpPerLevel + 30;
+  static baseHpPerLevel = Profession.baseHpPerLevel + 180;
   static baseMpPerLevel = Profession.baseMpPerLevel + 5;
 
-  static baseHpPerCon = 3;
-  static baseHpPerStr = 1;
+  static baseHpPerCon = 18;
+  static baseHpPerStr = 6;
   static baseMpPerInt = 5;
 
   static baseConPerLevel = 3;

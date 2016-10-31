@@ -2,8 +2,8 @@
 import _ from 'lodash';
 
 export class Profession {
-  static baseHpPerLevel = 45;
-  static baseHpPerCon = 5;
+  static baseHpPerLevel = 270;
+  static baseHpPerCon = 30;
   static baseHpPerInt = 0;
   static baseHpPerDex = 0;
   static baseHpPerStr = 0;

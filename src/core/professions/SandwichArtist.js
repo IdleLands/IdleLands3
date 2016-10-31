@@ -3,7 +3,7 @@ import { Profession } from '../base/profession';
 
 export class SandwichArtist extends Profession {
 
-  static baseHpPerLevel = Profession.baseHpPerLevel - 15;
+  static baseHpPerLevel = Profession.baseHpPerLevel - 90;
   static baseMpPerLevel = Profession.baseMpPerLevel + 5;
 
   static baseMpPerInt = 2;
