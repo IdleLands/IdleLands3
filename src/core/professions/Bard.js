@@ -3,7 +3,7 @@ import { Profession } from '../base/profession';
 
 export class Bard extends Profession {
 
-  static baseHpPerLevel = Profession.baseHpPerLevel - 5;
+  static baseHpPerLevel = Profession.baseHpPerLevel - 30;
   static baseMpPerLevel = Profession.baseMpPerLevel + 5;
 
   static baseMpPerInt = 5;

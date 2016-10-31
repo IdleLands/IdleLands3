@@ -3,11 +3,11 @@ import { Profession } from '../base/profession';
 
 export class Archer extends Profession {
 
-  static baseHpPerLevel = Profession.baseHpPerLevel + 15;
+  static baseHpPerLevel = Profession.baseHpPerLevel + 90;
   static baseMpPerLevel = Profession.baseMpPerLevel + 10;
 
-  static baseHpPerCon = 3;
-  static baseHpPerDex = 1;
+  static baseHpPerCon = 18;
+  static baseHpPerDex = 6;
   static baseMpPerDex = 3;
 
   static baseConPerLevel = 2;

@@ -3,11 +3,11 @@ import { Profession } from '../base/profession';
 
 export class Necromancer extends Profession {
 
-  static baseHpPerLevel = Profession.baseHpPerLevel - 30;
+  static baseHpPerLevel = Profession.baseHpPerLevel - 180;
   static baseMpPerLevel = Profession.baseMpPerLevel + 10;
 
   static baseMpPerInt = 12;
-  static baseHpPerCon = 7
+  static baseHpPerCon = 42
 
   static baseConPerLevel = 1;
   static baseDexPerLevel = 3;

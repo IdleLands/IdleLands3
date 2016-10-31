@@ -3,7 +3,7 @@ import { Profession } from '../base/profession';
 
 export class Mage extends Profession {
 
-  static baseHpPerLevel = Profession.baseHpPerLevel - 25;
+  static baseHpPerLevel = Profession.baseHpPerLevel - 150;
   static baseMpPerLevel = Profession.baseMpPerLevel + 25;
 
   static baseMpPerInt = 7;
