@@ -86,6 +86,7 @@ const parseFile = (filename) => {
 };
 
 StringAssets.class = _.map(loadDirectory(`${__dirname}/../core/professions`), ({ filename }) => {
+  if(_.includes(filename, '_all')) return;
   const split = filename.split('/');
   return split[split.length - 1].split('.')[0];
 });
