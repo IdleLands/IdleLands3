@@ -3,10 +3,10 @@ import { Profession } from '../base/profession';
 
 export class Rogue extends Profession {
 
-  static baseHpPerLevel = Profession.baseHpPerLevel - 5;
+  static baseHpPerLevel = Profession.baseHpPerLevel - 30;
   static baseMpPerLevel = Profession.baseMpPerLevel + 5;
 
-  static baseHpPerDex = 1;
+  static baseHpPerDex = 6;
   static baseMpPerDex = 1;
 
   static baseConPerLevel = 2;

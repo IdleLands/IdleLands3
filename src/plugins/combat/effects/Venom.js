@@ -13,7 +13,12 @@ export class Venom extends Effect {
 
   tick() {
     super.tick();
-    const damage = Math.round(this.target.hp * 0.02 * this.potency);
+    let damage = Math.round(this.target.hp * 0.02 * this.potency);
+    
+    if (this.target.$isBoss) {
+      damage = Math.round(damage / 4);
+    }
+    
     const message = '%player suffered %damage damage from %casterName\'s %spellName!';
     this.dealDamage(this.target, damage, message);
   }

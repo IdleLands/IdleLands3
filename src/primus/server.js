@@ -139,9 +139,14 @@ export const primus = (() => {
 
   if(process.env.NODE_ENV !== 'production') {
     _.each(['Play', 'Global'], root => {
-      const path = require('path').join(__dirname, '..', '..', root);
+      const path = require('path').join(__dirname, '..', '..', '..', root);
       fs.stat(path, e => {
-        if(e) return;
+        if(e) {
+          Logger.error('Primus:Generate', e);
+          return;
+        }
+        
+        Logger.info('Primus:Generate', `${root} is installed. Generating a Primus file for it.`);
         primus.save(`${path}/primus.gen.js`);
       });
     });

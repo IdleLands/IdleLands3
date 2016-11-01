@@ -15,6 +15,10 @@ An idling game of epic proportions.
 * `npm start` to start the server
 * `npm run test:client -- --players <playercount>` to test with that many players (up to ~1200)
 
+## Making Yourself A Mod
+* `mongo`
+* `db.players.update({ name: "Your Character Name" }, { $set: { isMod: true } })`
+
 ## Possible Errors
 * Errors `TypeError: Parameter "url" must be a string, not undefined` or `ReferenceError: (something about a missing proxy)` typically means you have an old version of node (`node --version` to check)
 * If `npm run test` (before you PR!) doesn't work, you haven't run `npm install`

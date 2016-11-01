@@ -216,7 +216,7 @@ export class PlayerMovement {
       const lastDirIndex = directions.indexOf(player.lastDir);
       weight = weight.slice(weight.length - lastDirIndex).concat(weight.slice(0, weight.length - lastDirIndex));
     } else if(drunk) {
-      weight = _.map(weight, s => Math.max(1, 200 - (s * (1 - drunk / MAX_DRUNK))));
+      weight = [1, 1, 1, 1, 1, 1, 1, 1];
     }
 
     return weight;

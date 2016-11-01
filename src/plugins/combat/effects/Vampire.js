@@ -13,7 +13,12 @@ export class Vampire extends Effect {
 
   tick() {
     super.tick();
-    const damage = Math.round(this.target._hp.maximum * 0.01 * this.potency);
+    let damage = Math.round(this.target.hp * 0.01 * this.potency);
+    
+    if (this.target.$isBoss) {
+      damage = Math.round(damage / 4);
+    }
+    
     const casterAlive = this.origin.ref.hp !== 0;
 
     const message = `%player suffered %damage damage from %casterName's %spellName! ${casterAlive ? '%casterName leeched it back!' : ''}`;
