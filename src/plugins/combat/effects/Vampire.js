@@ -16,7 +16,7 @@ export class Vampire extends Effect {
     let damage = Math.round(this.target.hp * 0.01 * this.potency);
     
     if (this.target.$isBoss) {
-      damage = damage / 4;
+      damage = Math.round(damage / 4);
     }
     
     const casterAlive = this.origin.ref.hp !== 0;
