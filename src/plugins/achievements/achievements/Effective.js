@@ -8,7 +8,7 @@ export class Effective extends Achievement {
     const baseValue = 200;
 
     let tier = 1;
-    while(value >= baseValue * tier) {
+    while(value >= baseValue * Math.pow(2, tier-1)) {
       tier++;
     }
 
@@ -18,7 +18,7 @@ export class Effective extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      mp: (player, baseValue) => baseValue * 0.01,
+      mp: (player, baseValue) => baseValue * 0.01 * tier,
       mpDisplay: `+${tier}% MP`
     }];
 
@@ -33,7 +33,7 @@ export class Effective extends Achievement {
     return [{
       tier,
       name: 'Effective',
-      desc: `Gain +${tier}% MP for ${(tier*200).toLocaleString()} combat effect usages.`,
+      desc: `Gain +${tier}% MP for ${(baseValue*Math.pow(10, tier-1)).toLocaleString()} combat effect usages.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];

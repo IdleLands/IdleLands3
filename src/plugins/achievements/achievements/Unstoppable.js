@@ -18,7 +18,7 @@ export class Unstoppable extends Achievement {
 
     const rewards = [{
       type: 'stats',
-      hp: (player, baseValue) => baseValue * 0.01,
+      hp: (player, baseValue) => baseValue * 0.01 * tier,
       hpDisplay: `+${tier}% HP`,
       str: 20*tier
     }];
