@@ -139,7 +139,7 @@ export const primus = (() => {
 
   if(process.env.NODE_ENV !== 'production') {
     _.each(['Play', 'Global'], root => {
-      const path = require('path').join(__dirname, '..', '..', root);
+      const path = require('path').join(__dirname, '..', '..', '..', root);
       fs.stat(path, e => {
         if(e) {
           Logger.error('Primus:Generate', e);
