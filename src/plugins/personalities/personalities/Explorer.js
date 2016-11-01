@@ -2,14 +2,14 @@
 import { Personality } from '../personality';
 
 export class Explorer extends Personality {
-  static description = 'You gain 3 more xp from exploring, but your stats are lowered by 3%.';
+  static description = 'You gain 50% more xp from exploring, but your stats are lowered by 25%.';
   static stats = {
-    xp: 3,
-    str: (player, baseValue) => -baseValue*0.03,
-    con: (player, baseValue) => -baseValue*0.03,
-    dex: (player, baseValue) => -baseValue*0.03,
-    agi: (player, baseValue) => -baseValue*0.03,
-    int: (player, baseValue) => -baseValue*0.03
+    xp:  (player, baseValue) =>  baseValue*0.5,
+    str: (player, baseValue) => -baseValue*0.25,
+    con: (player, baseValue) => -baseValue*0.25,
+    dex: (player, baseValue) => -baseValue*0.25,
+    agi: (player, baseValue) => -baseValue*0.25,
+    int: (player, baseValue) => -baseValue*0.25
   };
 
   static disable(player) {
