@@ -13,7 +13,7 @@ export class Poison extends Effect {
 
   tick() {
     super.tick();
-    const damage = Math.round(this.origin.ref.liveStats.int * 0.25 * this.potency);
+    const damage = Math.round(this.origin.ref.liveStats.int * Math.log(this.potency + 1) / 6);  // ln(x+1)/6 * int
     if(damage > 0) {
       const message = '%player suffered %damage damage from %casterName\'s %spellName!';
       this.dealDamage(this.target, damage, message);
