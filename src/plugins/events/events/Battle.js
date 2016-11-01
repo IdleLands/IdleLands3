@@ -1,6 +1,8 @@
 
 const isBattleDebug = process.env.BATTLE_DEBUG;
 
+import _ from 'lodash';
+
 import { Event } from '../event';
 import { Battle as BattleClass } from '../../combat/battle';
 import { Party as PartyClass } from '../../party/party';
@@ -50,6 +52,8 @@ export class Battle extends Event {
     } catch(e) {
       Logger.error('Battle', e, battle.saveObject());
     }
+
+    _.each(player.party.players, player => player.recalculateStats());
 
     if(player.party.isBattleParty) {
       player.party.disband();

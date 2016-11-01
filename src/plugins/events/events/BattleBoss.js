@@ -112,6 +112,8 @@ export class BattleBoss extends Event {
 
     const affected = player.party.players;
 
+    _.each(affected, player => player.recalculateStats());
+
     if(player.party.isBattleParty) {
       player.party.disband();
     }

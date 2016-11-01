@@ -68,6 +68,8 @@ export class BattlePvP extends Event {
 
     const affected = player.party.players.concat(opponent.party.players);
 
+    _.each(affected, player => player.recalculateStats());
+
     if(player.party.isBattleParty) {
       player.party.disband();
     }
