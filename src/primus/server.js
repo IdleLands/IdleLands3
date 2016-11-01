@@ -146,7 +146,7 @@ export const primus = (() => {
           return;
         }
         
-        Logger.info('Primus:Generate`, `${root} is installed. Generating a Primus file for it.`);
+        Logger.info('Primus:Generate', `${root} is installed. Generating a Primus file for it.`);
         primus.save(`${path}/primus.gen.js`);
       });
     });
