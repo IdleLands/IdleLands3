@@ -8,4 +8,9 @@ export class Camping extends Personality {
     const hoursPlayed = Math.abs(player.joinDate - Date.now()) / 36e5;
     return hoursPlayed > 24 * 7;
   }
+
+  static enable(player) {
+    if(!player.party) return;
+    player.party.playerLeave(player);
+  }
 }
