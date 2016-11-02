@@ -2,7 +2,7 @@
 import { Personality } from '../personality';
 
 export class Explorer extends Personality {
-  static description = 'You gain 50% more xp from exploring, but your stats are lowered by 25%.';
+  static description = 'You gain 50% more xp, but your stats are lowered by 25%.';
   static stats = {
     xp:  (player, baseValue) =>  baseValue*0.5,
     str: (player, baseValue) => -baseValue*0.25,
