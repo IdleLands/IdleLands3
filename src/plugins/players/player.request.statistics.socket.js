@@ -1,6 +1,6 @@
 
 import { GameState } from '../../core/game-state';
-import { Logger } from '../../shared/logger';
+// import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:player:request:statistics';
 export const description = 'Request statistics data. Generally used only when looking at statistics.';
@@ -15,7 +15,7 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
-    Logger.info('Socket:Player:RequestStatistics', `${socket.playerName} (${socket.address.ip}) requesting statistics.`);
+    // Logger.info('Socket:Player:RequestStatistics', `${socket.playerName} (${socket.address.ip}) requesting statistics.`);
 
     player._updateStatistics();
   };
