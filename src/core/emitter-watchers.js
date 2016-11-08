@@ -26,6 +26,17 @@ PlayerEmitter.on('player:login', async ({ playerName, fromIp }) => {
   player.$statistics.incrementStat('Game.Logins');
   AllPlayers(playerName);
   PlayerLogin(playerName);
+
+  if(player.$statistics.getStat('Game.Logins') === 1) {
+    player.$statistics.incrementStat(`Character.Professions.${player.professionName}`);
+
+    AdventureLog({
+      text: MessageParser.stringFormat('Welcome to Idliathlia, the world of IdleLands! Check out our new player information guide on the wiki: https://github.com/IdleLands/IdleLands/wiki/New-Player-Information and enjoy your stay!'),
+      type: MessageTypes.SINGLE,
+      targets: [playerName],
+      category: MessageCategories.META
+    });
+  }
 });
 
 PlayerEmitter.on('player:register', async ({ playerName, fromIp }) => {
@@ -37,11 +48,6 @@ PlayerEmitter.on('player:register', async ({ playerName, fromIp }) => {
   player.$statistics.incrementStat(`Character.Professions.${player.professionName}`);
   AllPlayers(playerName);
   PlayerLogin(playerName);
-  AdventureLog({
-    text: MessageParser.stringFormat('Welcome %player to Idliathlia!', player),
-    type: MessageTypes.GLOBAL,
-    category: MessageCategories.META
-  });
 });
 
 PlayerEmitter.on('player:logout', ({ playerName }) => {

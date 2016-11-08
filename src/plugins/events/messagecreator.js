@@ -235,7 +235,7 @@ export class MessageParser {
   }
 
   static stringFormat(string, player, extra = {}) {
-    if(!player) return '';
+    if(!player) return string;
     string = _.trim(string);
 
     if(extra.item)        extra.item = `«${extra.item}»`;
