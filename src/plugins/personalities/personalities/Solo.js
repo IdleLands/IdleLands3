@@ -7,4 +7,9 @@ export class Solo extends Personality {
   static hasEarned(player) {
     return player.$statistics.getStat('Character.Party.Join') >= 5;
   }
+
+  static enable(player) {
+    if(!player.party) return;
+    player.party.playerLeave(player);
+  }
 }
