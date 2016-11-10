@@ -182,6 +182,7 @@ export class Player extends Character {
   premiumTier() {
     const tier = this.$achievements.premiumTier();
     this._premiumTier = tier;
+    this.$statistics.setStat('Game.PremiumTier', tier);
     return tier;
   }
 
