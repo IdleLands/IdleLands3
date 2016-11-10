@@ -180,7 +180,9 @@ export class Player extends Character {
   }
 
   premiumTier() {
-    return this.$achievements.premiumTier();
+    const tier = this.$achievements.premiumTier();
+    this._premiumTier = tier;
+    return tier;
   }
 
   _$choiceLimit() {
