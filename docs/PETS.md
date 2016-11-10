@@ -8,13 +8,14 @@
 4. [Dolphin](#dolphin)
 5. [Ghostly Shield](#ghostly-shield)
 6. [Ghostly Sword](#ghostly-sword)
-7. [Minitaur](#minitaur)
-8. [Moose](#moose)
-9. [Octopus](#octopus)
-10. [Parrot](#parrot)
-11. [Pet Rock](#pet-rock)
-12. [Raven](#raven)
-13. [Spellbook](#spellbook)
+7. [Golden Floating Broom](#golden-floating-broom)
+8. [Minitaur](#minitaur)
+9. [Moose](#moose)
+10. [Octopus](#octopus)
+11. [Parrot](#parrot)
+12. [Pet Rock](#pet-rock)
+13. [Raven](#raven)
+14. [Spellbook](#spellbook)
 
 ---
 
@@ -405,6 +406,59 @@ itemFindRangeMultiplier|0|---|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---|---
 xpPerGold|0|---|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---|---
+
+######[\[top\]](#idlelands-pets)
+---
+
+## Golden Floating Broom
+
+### Cost
+1000000 gold
+
+### Category
+Combat
+
+### Description
+Unlocked by helping out.
+
+### Gear Slots
+* charm: 1
+* offhand: 1
+* mainhand: 1
+
+### Special Stats
+* int: 1000
+* str: 1000
+* con: 1000
+* glowing: 10
+
+### Unlock Requirements
+#### Statistics
+* Game.PremiumTier: 1
+
+### Upgrades
+Upgrade/Cost|Tier 1|Tier 2|Tier 3|Tier 4|Tier 5
+---:|:---:|:---:|:---:|:---:|:---:
+maxLevel|50|100|150|200|---
+Cost|0|1000000|1500000|20000000|---
+maxItemScore|2000|3000|4000|---|---
+Cost|0|300000|400000|---|---
+inventory|5|10|15|20|25
+Cost|0|100000|150000|200000|250000
+goldStorage|10000|100000|1000000|---|---
+Cost|0|1000000|10000000|---|---
+battleJoinPercent|0|25|50|75|100
+Cost|0|250000|500000|750000|1000000
+itemFindTimeDuration|0|86400|43200|21600|---
+Cost|0|500000|1000000|1500000|---
+itemSellMultiplier|0.1|0.2|---|---|---
+Cost|0|60000|---|---|---
+itemFindBonus|0|25|50|---|---
+Cost|0|250000|500000|---|---
+itemFindRangeMultiplier|0|0.05|0.1|0.2|0.35
+Cost|0|50000|100000|200000|350000
+xpPerGold|25|50|75|100|---
+Cost|0|500000|750000|1000000|---
 
 ######[\[top\]](#idlelands-pets)
 ---
