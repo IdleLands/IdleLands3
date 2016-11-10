@@ -139,7 +139,7 @@ export class Providence extends Event {
       baseMessage = `${baseMessage} Providence cleared!`;
 
     } else if(!player.equipment.providence && Event.chance.bool({ likelihood: this.probabilities.newProvidence })) {
-      player.equipment.providence = this.generateProvidenceItem();
+      player.equipment.providence = this.generateProvidenceItem(Math.round(player.level/10));
     }
 
     player.recalculateStats();
