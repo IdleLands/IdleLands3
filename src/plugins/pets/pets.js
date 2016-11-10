@@ -340,8 +340,7 @@ export class Pets {
     }
 
     if(!player.equipment[item.type].isNothing) {
-      player.unequip(item);
-      pet.addToInventory(item);
+      pet.addToInventory(player.equipment[item.type]);
     }
 
     player.equip(item);
