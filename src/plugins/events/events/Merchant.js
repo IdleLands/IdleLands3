@@ -41,7 +41,7 @@ export class Merchant extends Event {
     }
 
     const sellScore = item.score * SETTINGS.merchantMultiplier;
-    const cost = sellScore - (sellScore*player.liveStats.merchantCostReductionMultiplier);
+    const cost = Math.round((sellScore - (sellScore*player.liveStats.merchantCostReductionMultiplier)) * player._$priceReductionMultiplier());
     if(cost > player.gold) {
       player.$statistics.incrementStat('Character.Item.TooExpensive');
       const message = '%player was offered %item by a wandering merchant, but %she doesn\'t have enough gold.';

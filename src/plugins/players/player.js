@@ -185,6 +185,11 @@ export class Player extends Character {
     return tier;
   }
 
+  _$priceReductionMultiplier() {
+    const premiumTier = this.premiumTier();
+    return 1 - (0.1 * premiumTier);
+  }
+
   _$choiceLimit() {
     const premiumTier = this.premiumTier();
     return SETTINGS.maxChoices + (SETTINGS.maxChoices * premiumTier);

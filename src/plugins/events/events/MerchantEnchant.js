@@ -16,7 +16,7 @@ export class MerchantEnchant extends Event {
 
     player.$statistics.batchIncrement(['Character.Events', 'Character.Event.MerchantEnchant']);
 
-    const cost = Event.chance.integer({ min: 100000, max: 500000 });
+    const cost = Math.round(Event.chance.integer({ min: 100000, max: 500000 }) * player._$priceReductionMultiplier());
     if(cost > player.gold) {
       player.$statistics.incrementStat('Character.Enchant.TooExpensive');
       const message = '%player was offered an enchantment by a wandering merchant, but %she doesn\'t have enough gold.';
