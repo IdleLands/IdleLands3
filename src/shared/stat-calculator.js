@@ -69,6 +69,7 @@ export class StatCalculator {
     return _(player.equipment)
       .values()
       .flatten()
+      .compact()
       .map(item => _.isNumber(item[stat]) ? item[stat] : 0)
       .sum();
   }

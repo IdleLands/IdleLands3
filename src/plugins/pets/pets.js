@@ -339,7 +339,7 @@ export class Pets {
       return 'Item too powerful for you.';
     }
 
-    if(!player.equipment[item.type].isNothing) {
+    if(player.equipment[item.type] && !player.equipment[item.type].isNothing) {
       pet.addToInventory(player.equipment[item.type]);
     }
 
