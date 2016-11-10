@@ -8,6 +8,16 @@ import { Logger } from '../../shared/logger';
 
 import { SETTINGS } from '../../static/settings';
 
+const PREMIUM_TITLES = [
+  'Donator',
+  'Contributor'
+];
+
+const PREMIUM_TIERS = {
+  Donator: 1,
+  Contributor: 2
+};
+
 @Dependencies(Container)
 export class Achievements {
   constructor(container) {
@@ -26,6 +36,12 @@ export class Achievements {
     this._id = undefined;
     this.achievements = undefined;
     _.extend(this, opts);
+  }
+
+  premiumTier() {
+    const tiers = _.intersection(PREMIUM_TITLES, this.titles());
+    if(tiers.length === 0) return 0;
+    return PREMIUM_TIERS[_.maxBy(tiers, tier => PREMIUM_TIERS[tier])];
   }
 
   petAttributes() {

@@ -179,10 +179,20 @@ export class Player extends Character {
     return xp;
   }
 
+  premiumTier() {
+    return this.$achievements.premiumTier();
+  }
+
+  _$choiceLimit() {
+    const premiumTier = this.premiumTier();
+    return SETTINGS.maxChoices + (SETTINGS.maxChoices * premiumTier);
+  }
+
   addChoice(messageData) {
     this.choices.push(messageData);
+    this._choiceLimit = this._$choiceLimit();
 
-    if(this.choices.length > SETTINGS.maxChoices) {
+    if(this.choices.length > this._choiceLimit) {
       if(this.$personalities.isAnyActive(['Affirmer', 'Denier', 'Indecisive'])) {
         const choice = this.choices[0];
         if(_.includes(choice.choices, 'Yes') && this.$personalities.isActive('Affirmer')) {
