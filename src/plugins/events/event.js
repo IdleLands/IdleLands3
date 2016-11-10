@@ -44,7 +44,7 @@ export class Event {
   }
 
   static pickValidItemForBless(player) {
-    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.isUnderNormalPercent);
+    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.isUnderNormalPercent(player));
     return _.sample(validTargets);
   }
 

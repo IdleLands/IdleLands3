@@ -195,6 +195,11 @@ export class Player extends Character {
     return SETTINGS.maxChoices + (SETTINGS.maxChoices * premiumTier);
   }
 
+  _$maxItemBoost() {
+    const premiumTier = this.premiumTier();
+    return 0.5 * premiumTier;
+  }
+
   addChoice(messageData) {
     this.choices.push(messageData);
     this._choiceLimit = this._$choiceLimit();

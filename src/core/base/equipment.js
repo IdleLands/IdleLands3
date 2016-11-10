@@ -56,12 +56,13 @@ export class Equipment {
     this._baseScore = this.score;
   }
 
-  get isNormallyEnchantable() {
-    return this.enchantLevel < 10;
+  isUnderNormalPercent(player) {
+    const boost = player._$maxItemBoost();
+    return (this._calcScore/this._baseScore) < (3+boost);
   }
 
-  get isUnderNormalPercent() {
-    return (this._calcScore/this._baseScore) < 3;
+  get isNormallyEnchantable() {
+    return this.enchantLevel < 10;
   }
 
   get isNothing() {
