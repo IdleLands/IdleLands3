@@ -8,7 +8,7 @@ export class Jester extends Profession {
 
   static baseHpPerCon = 0;
   static baseHpPerLuk = 30;
-  static baseMpPerLuk = 5;
+  static baseMpPerLuk = 30;
 
   static baseConPerLevel = 0;
   static baseDexPerLevel = 0;
