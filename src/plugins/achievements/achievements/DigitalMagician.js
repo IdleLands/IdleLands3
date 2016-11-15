@@ -6,12 +6,12 @@ export class DigitalMagician extends Achievement {
 
     const totalDigitals = player.$statistics.getStat('Combat.Utilize.Digital');
 
-    if(totalDigitals < 100000) return [];
+    if(totalDigitals < 30000) return [];
 
     return [{
       tier: 1,
       name: 'Digital Magician',
-      desc: `Gain a special title (and +5% max item score) for ${(100000).toLocaleString()} Digital skill uses.`,
+      desc: `Gain a special title (and +5% max item score) for ${(30000).toLocaleString()} Digital skill uses.`,
       type: AchievementTypes.COMBAT,
       rewards: [{
         type: 'title',
