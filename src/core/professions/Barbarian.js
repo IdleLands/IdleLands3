@@ -4,7 +4,7 @@ import { Profession } from '../base/profession';
 export class Barbarian extends Profession {
 
   static baseHpPerLevel = Profession.baseHpPerLevel + 210;
-  static baseMpPerLevel = Profession.baseMpPerLevel + 1;
+  static baseMpPerLevel = Profession.baseMpPerLevel + 6;
 
   static baseHpPerStr = 18;
   static baseHpPerCon = 12;

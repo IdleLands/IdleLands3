@@ -4,7 +4,7 @@ import { Profession } from '../base/profession';
 export class Monster extends Profession {
 
   static baseHpPerLevel = Profession.baseHpPerLevel + 240;
-  static baseMpPerLevel = Profession.baseMpPerLevel + 5;
+  static baseMpPerLevel = Profession.baseMpPerLevel + 30;
 
   static baseConPerLevel = 4;
   static baseDexPerLevel = 4;

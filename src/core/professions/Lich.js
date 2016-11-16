@@ -6,9 +6,9 @@ import { Profession } from '../base/profession';
 export class Lich extends Profession {
 
   static baseHpPerLevel = Profession.baseHpPerLevel;
-  static baseMpPerLevel = Profession.baseMpPerLevel + 25;
+  static baseMpPerLevel = Profession.baseMpPerLevel + 150;
 
-  static baseMpPerInt = 15;
+  static baseMpPerInt = 75;
 
   static baseConPerLevel = 5;
   static baseDexPerLevel = 0;

@@ -4,10 +4,10 @@ import { Profession } from '../base/profession';
 export class Fighter extends Profession {
 
   static baseHpPerLevel = Profession.baseHpPerLevel + 150;
-  static baseMpPerLevel = Profession.baseMpPerLevel + 3;
+  static baseMpPerLevel = Profession.baseMpPerLevel + 18;
 
-  static baseMpPerStr = 1;
-  static baseMpPerInt = 1;
+  static baseMpPerStr = 6;
+  static baseMpPerInt = 6;
 
   static baseConPerLevel = 2;
   static baseDexPerLevel = 4;

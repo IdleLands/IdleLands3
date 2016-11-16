@@ -4,9 +4,9 @@ import { Profession } from '../base/profession';
 export class Cleric extends Profession {
 
   static baseHpPerLevel = Profession.baseHpPerLevel + 60;
-  static baseMpPerLevel = Profession.baseMpPerLevel + 10;
+  static baseMpPerLevel = Profession.baseMpPerLevel + 60;
 
-  static baseMpPerInt = 5;
+  static baseMpPerInt = 30;
 
   static baseConPerLevel = 4;
   static baseDexPerLevel = 2;
