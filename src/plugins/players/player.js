@@ -359,12 +359,16 @@ export class Player extends Character {
     this.saveSteps--;
 
     if(this.saveSteps <= 0) {
-      this._saveSelf();
-      this.$statistics.save();
-      this.$pets.save();
+      this._save();
       this.saveSteps = SETTINGS.saveSteps;
     }
     this.update();
+  }
+
+  _save() {
+    this._saveSelf();
+    this.$statistics.save();
+    this.$pets.save();
   }
 
   checkAchievements() {
@@ -372,14 +376,18 @@ export class Player extends Character {
     this.achievementSteps--;
 
     if(this.achievementSteps <= 0) {
-      this.$pets.checkPets(this);
-      const newAchievements = this.$achievements.checkAchievements(this);
-      if(newAchievements.length > 0) {
-        emitter.emit('player:achieve', { player: this, achievements: newAchievements });
-        this.$personalities.checkPersonalities(this);
-      }
+      this._checkAchievements();
 
       this.achievementSteps = SETTINGS.achievementSteps;
+    }
+  }
+
+  _checkAchievements() {
+    this.$pets.checkPets(this);
+    const newAchievements = this.$achievements.checkAchievements(this);
+    if(newAchievements.length > 0) {
+      emitter.emit('player:achieve', { player: this, achievements: newAchievements });
+      this.$personalities.checkPersonalities(this);
     }
   }
 

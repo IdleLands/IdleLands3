@@ -29,6 +29,8 @@ export class GMCommands {
   static toggleAchievement(player, achievement) {
     player.permanentAchievements = player.permanentAchievements || {};
     player.permanentAchievements[achievement] = !player.permanentAchievements[achievement];
+    player._checkAchievements();
+    player._save();
   }
 
   static setLevel(player, level) {

@@ -28,7 +28,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-360 | 10 | 2 | 4 | 2 | 3 | 1 | 0
+360 | 60 | 2 | 4 | 2 | 3 | 1 | 0
 
 
 ### HP Modifiers
@@ -43,7 +43,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 3 | 0 | 0 | 0 | 0
+0 | 18 | 0 | 0 | 0 | 0
 
 ## Barbarian
 
@@ -53,7 +53,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-480 | 1 | 6 | 1 | 6 | 1 | -5 | 0
+480 | 6 | 6 | 1 | 6 | 1 | -5 | 0
 
 
 ### HP Modifiers
@@ -78,7 +78,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-240 | 5 | 2 | 1 | 1 | 3 | 3 | 0
+240 | 30 | 2 | 1 | 1 | 3 | 3 | 0
 
 
 ### HP Modifiers
@@ -93,7 +93,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 5 | 0
+0 | 0 | 0 | 0 | 30 | 0
 
 ## Bitomancer
 
@@ -128,7 +128,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-330 | 10 | 3 | 2 | 4 | 2 | 6 | 0
+330 | 60 | 3 | 2 | 4 | 2 | 6 | 0
 
 
 ### HP Modifiers
@@ -143,7 +143,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 5 | 0
+0 | 0 | 0 | 0 | 30 | 0
 
 ## Fighter
 
@@ -153,7 +153,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-420 | 3 | 5 | 4 | 2 | 3 | 1 | 0
+420 | 18 | 5 | 4 | 2 | 3 | 1 | 0
 
 
 ### HP Modifiers
@@ -168,7 +168,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-1 | 0 | 0 | 0 | 1 | 0
+6 | 0 | 0 | 0 | 6 | 0
 
 ## Generalist
 
@@ -178,7 +178,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-270 | 3 | 3 | 3 | 3 | 3 | 3 | 0
+270 | 18 | 3 | 3 | 3 | 3 | 3 | 0
 
 
 ### HP Modifiers
@@ -193,7 +193,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 3 | 0
+0 | 0 | 0 | 0 | 18 | 0
 
 ## Jester
 
@@ -218,7 +218,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 0 | 5
+0 | 0 | 0 | 0 | 0 | 30
 
 ## Mage
 
@@ -228,7 +228,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-120 | 25 | 2 | 2 | 2 | 2 | 6 | 0
+120 | 150 | 2 | 2 | 2 | 2 | 6 | 0
 
 
 ### HP Modifiers
@@ -243,7 +243,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 7 | 0
+0 | 0 | 0 | 0 | 42 | 0
 
 ## MagicalMonster
 
@@ -253,7 +253,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-270 | 15 | 2 | 2 | 2 | 2 | 2 | 0
+270 | 75 | 2 | 2 | 2 | 2 | 2 | 0
 
 
 ### HP Modifiers
@@ -268,7 +268,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 20 | 0
+0 | 0 | 0 | 0 | 120 | 0
 
 ## Monster
 
@@ -278,7 +278,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-510 | 5 | 4 | 4 | 4 | 4 | 4 | 0
+510 | 30 | 4 | 4 | 4 | 4 | 4 | 0
 
 
 ### HP Modifiers
@@ -303,7 +303,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-90 | 10 | 3 | 3 | 1 | -3 | 8 | -1
+90 | 60 | 3 | 3 | 1 | -3 | 8 | -1
 
 
 ### HP Modifiers
@@ -318,7 +318,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 12 | 0
+0 | 0 | 0 | 0 | 72 | 0
 
 ## Pirate
 
@@ -328,7 +328,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-450 | 5 | 3 | 2 | 3 | 2 | 1 | 0
+450 | 30 | 3 | 2 | 3 | 2 | 1 | 0
 
 
 ### HP Modifiers
@@ -343,7 +343,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 5 | 0
+0 | 0 | 0 | 0 | 30 | 0
 
 ## Rogue
 
@@ -353,7 +353,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-240 | 5 | 2 | 4 | 2 | 4 | 1 | 0
+240 | 30 | 2 | 4 | 2 | 4 | 1 | 0
 
 
 ### HP Modifiers
@@ -368,7 +368,7 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 1 | 0 | 0 | 0 | 0
+0 | 6 | 0 | 0 | 0 | 0
 
 ## SandwichArtist
 
@@ -378,7 +378,7 @@ These are the stat gains per level.
 
 HP | MP | STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | --- | --- | ---
-180 | 5 | 3 | 5 | 1 | 1 | 1 | 0
+180 | 30 | 3 | 5 | 1 | 1 | 1 | 0
 
 
 ### HP Modifiers
@@ -393,5 +393,5 @@ You get X MP for every point in a particular stat.
 
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
-0 | 0 | 0 | 0 | 2 | 0
+0 | 0 | 0 | 0 | 12 | 0
 
