@@ -5,15 +5,17 @@ export class Greedy extends Personality {
   static disableOnActivate = ['Seeker'];
   static description = 'Gain more gold, but gain less xp.';
   static stats = {
-    xp:   (player, baseValue) => -baseValue*0.25,
-    gold: (player, baseValue) => baseValue*0.25
+    xp:   (player, baseValue) => -baseValue*0.15,
+    gold: (player, baseValue) => baseValue*0.15
   };
 
   static disable(player) {
+    super.disable(player);
     this.flagDirty(player, ['xp', 'gold']);
   }
 
   static enable(player) {
+    super.enable(player);
     this.flagDirty(player, ['xp', 'gold']);
   }
 

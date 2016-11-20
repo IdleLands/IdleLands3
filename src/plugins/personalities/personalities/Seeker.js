@@ -5,8 +5,8 @@ export class Seeker extends Personality {
   static disableOnActivate = ['Greedy'];
   static description = 'Gain more xp, but gain less gold.';
   static stats = {
-    xp:   (player, baseValue) => baseValue*0.25,
-    gold: (player, baseValue) => -baseValue*0.25
+    xp:   (player, baseValue) => baseValue*0.15,
+    gold: (player, baseValue) => -baseValue*0.15
   };
 
   static disable(player) {

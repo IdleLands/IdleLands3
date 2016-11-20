@@ -10,6 +10,7 @@ export class Solo extends Personality {
 
   static enable(player) {
     if(!player.party) return;
+    super.enable(player);
     player.party.playerLeave(player);
   }
 }

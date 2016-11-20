@@ -13,10 +13,12 @@ export class Explorer extends Personality {
   };
 
   static disable(player) {
+    super.disable(player);
     this.flagDirty(player, ['xp', 'str', 'con', 'agi', 'dex', 'int']);
   }
 
   static enable(player) {
+    super.enable(player);
     this.flagDirty(player, ['xp', 'str', 'con', 'agi', 'dex', 'int']);
   }
 

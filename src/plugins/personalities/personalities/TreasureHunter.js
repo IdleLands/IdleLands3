@@ -4,16 +4,18 @@ import { Personality } from '../personality';
 export class TreasureHunter extends Personality {
   static description = 'Find better items, but gain significantly less gold and xp.';
   static stats = {
-    xp:   (player, baseValue) => -baseValue*0.9,
-    gold: (player, baseValue) => -baseValue*0.9,
-    itemFindRangeMultiplier: (player) => player.level * 0.05
+    xp:   (player, baseValue) => -baseValue*0.84,
+    gold: (player, baseValue) => -baseValue*0.84,
+    itemFindRangeMultiplier: (player) => player.level * 0.03
   };
 
   static disable(player) {
+    super.disable(player);
     this.flagDirty(player, ['xp', 'gold', 'itemFindRange']);
   }
 
   static enable(player) {
+    super.enable(player);
     this.flagDirty(player, ['xp', 'gold', 'itemFindRange']);
   }
 
