@@ -34,7 +34,7 @@ export class Critical extends Achievement {
     return [{
       tier,
       name: 'Critical',
-      desc: `Gain ${tier}% DEX for having ${(Math.pow(2, tier-1)).toLocaleString()} critical hits.`,
+      desc: `Gain ${tier}% DEX for having ${(baseValue * Math.pow(2, tier-1)).toLocaleString()} critical hits.`,
       type: AchievementTypes.COMBAT,
       rewards
     }];
