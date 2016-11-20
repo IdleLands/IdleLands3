@@ -180,7 +180,7 @@ export class Pets {
 
     if(pet.$scale[scaleAttr].length - 1 === pet.scaleLevel[scaleAttr]) return;
 
-    const cost = pet.$scaleCost[scaleAttr][pet.scaleLevel[scaleAttr]];
+    const cost = pet.$scaleCost[scaleAttr][pet.scaleLevel[scaleAttr]+1];
     if(player.gold < cost) return;
 
     player.gainGold(-cost, false);
