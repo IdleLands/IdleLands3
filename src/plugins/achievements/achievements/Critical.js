@@ -22,12 +22,12 @@ export class Critical extends Achievement {
       dexDisplay: `${tier}%`
     }];
 
-    if(tier >= 10) {
+    if(tier >= 6) {
       rewards.push({ type: 'title', title: 'Critical' });
       rewards.push({ type: 'stats', crit: 1 });
     }
 
-    if(tier >= 11) {
+    if(tier >= 7) {
       rewards.push({ type: 'petattr', petattr: 'a giant bullseye with a few arrows in it' });
     }
 
