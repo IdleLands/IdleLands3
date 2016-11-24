@@ -10,10 +10,12 @@ export class Seeker extends Personality {
   };
 
   static disable(player) {
+    super.disable(player);
     this.flagDirty(player, ['xp', 'gold']);
   }
 
   static enable(player) {
+    super.enable(player);
     this.flagDirty(player, ['xp', 'gold']);
   }
 
