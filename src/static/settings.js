@@ -66,6 +66,10 @@ class Settings {
       winter: {
         start: new Date('Dec 1'),
         end:   new Date('Dec 31')
+      },
+      valentine: {
+        start: new Date('Feb 1'),
+        end:   new Date('Feb 28')
       }
     };
 
