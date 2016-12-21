@@ -18,7 +18,9 @@ export class Map {
     this.height = this.map.height;
     this.width = this.map.width;
 
-    this.name = this.map.properties.name;
+    if(this.map && this.map.properties) {
+      this.name = this.map.properties.name;
+    }
     this.path = path.split('assets/maps/world-maps/')[1];
 
     this.nameTrainers();
