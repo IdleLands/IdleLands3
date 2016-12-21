@@ -177,7 +177,9 @@ class Settings {
       83: 'TreeStump',
       84: 'AntiShrine',
       85: 'Shrine',
-      86: 'Merchant'
+      86: 'Merchant',
+      87: 'JailDoor',
+      88: 'StoneJailDoor'
     };
 
     this.revGidMap = _.invert(this.gidMap);
