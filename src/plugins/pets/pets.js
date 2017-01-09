@@ -127,7 +127,7 @@ export class Pets {
 
   feedGold(player, amount) {
     amount = Math.round(+amount);
-    if(_.isNaN(amount) || amount <= 0 || player.gold < amount) return 'Bad amount of gold specified.';
+    if(_.isNaN(amount) || amount < 0 || player.gold < amount) return 'Bad amount of gold specified.';
 
     const pet = this.activePet;
     const xpGained = pet.$_scale.xpPerGold * amount;
