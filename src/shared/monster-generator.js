@@ -137,7 +137,7 @@ export class MonsterGenerator extends Generator {
 
     if(baseMonster.mirror) {
       baseMonster.professionName = forPlayer && forPlayer.professionName ? forPlayer.professionName : 'Monster';
-      baseMonster.level = forPlayer.level;
+      baseMonster.level = forPlayer && forPlayer.professionName ? forPlayer.level : baseMonster.level;
     }
 
     monster.init(baseMonster);
