@@ -136,7 +136,7 @@ export class MonsterGenerator extends Generator {
     const monster = new Monster();
 
     if(baseMonster.mirror) {
-      baseMonster.professionName = forPlayer.professionName;
+      baseMonster.professionName = forPlayer && forPlayer.professionName ? forPlayer.professionName : 'Monster';
       baseMonster.level = forPlayer.level;
     }
 
