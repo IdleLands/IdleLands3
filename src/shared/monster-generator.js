@@ -142,7 +142,7 @@ export class MonsterGenerator extends Generator {
 
     monster.init(baseMonster);
 
-    if(baseMonster.mirror) {
+    if(baseMonster.mirror && forPlayer) {
       _.each(_.values(forPlayer.equipment), item => {
         const cloned = _.cloneDeep(item);
         monster.equip(cloned);
