@@ -78,13 +78,13 @@ export class PlayerMovement {
   }
 
   static handleTileBoss(player, tile) {
-    const boss = MonsterGenerator.generateBoss(tile.object.name);
+    const boss = MonsterGenerator.generateBoss(tile.object.name, player);
     if(!boss) return;
     BattleBoss.operateOn(player, { bossName: tile.object.name, bosses: boss });
   }
 
   static handleTileBossParty(player, tile) {
-    const bossparty = MonsterGenerator.generateBossParty(tile.object.name);
+    const bossparty = MonsterGenerator.generateBossParty(tile.object.name, player);
     if(!bossparty) return;
     BattleBoss.operateOn(player, { bossName: tile.object.name, bosses: bossparty });
   }
