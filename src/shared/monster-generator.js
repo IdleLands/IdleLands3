@@ -31,26 +31,26 @@ export class MonsterGenerator extends Generator {
     return bossTimers[name] ? bossTimers[name] - Date.now() < 0 : true;
   }
 
-  static generateBoss(name) {
+  static generateBoss(name, forPlayer) {
     const boss = _.cloneDeep(Bosses[name]);
     if(!this._isBossAlive(name)) return;
     boss.stats.name = `${name}`;
     boss.stats._name = `${name}`;
-    const monster = this.augmentMonster(boss.stats);
+    const monster = this.augmentMonster(boss.stats, forPlayer);
     monster.$isBoss = true;
     this.equipBoss(monster, boss.items);
     monster._collectibles = boss.collectibles;
     return [monster];
   }
 
-  static generateBossParty(name) {
+  static generateBossParty(name, forPlayer) {
     const bossparty = BossParties[name];
     if(!this._isBossAlive(name)) return;
     return _.map(bossparty.members, member => {
       const boss = _.cloneDeep(Bosses[member]);
       boss.stats.name = `${member}`;
       boss.stats._name = `${member}`;
-      const monster = this.augmentMonster(boss.stats);
+      const monster = this.augmentMonster(boss.stats, forPlayer);
       monster.$isBoss = true;
       this.equipBoss(monster, boss.items);
       monster._collectibles = boss.collectibles;
