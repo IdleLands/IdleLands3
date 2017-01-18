@@ -335,7 +335,7 @@ export class Pets {
     const item = _.find(pet.inventory, { id: itemId });
     if(!item) return;
 
-    if(!player.canEquip(item) && !item._wasEquipped) {
+    if(!player.canEquip(item, 1, false) && !item._wasEquipped) {
       return 'Item too powerful for you.';
     }
 
