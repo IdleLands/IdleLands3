@@ -460,6 +460,7 @@ export class Player extends Character {
   }
 
   ascend() {
+    if(!this._level.atMaximum()) return;
     this.$statistics.incrementStat('Character.Ascension.Times');
 
     this.$statistics.incrementStat('Character.Ascension.Gold', this.gold);
