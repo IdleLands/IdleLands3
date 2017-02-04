@@ -98,6 +98,7 @@ export class Achievements {
 
     const newAchievements = [];
     _.each(earned, ach => {
+      if(!ach) return;
       if(mine[ach.name] && mine[ach.name].tier >= ach.tier) return;
       newAchievements.push(ach);
     });
