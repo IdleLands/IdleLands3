@@ -472,6 +472,8 @@ export class Player extends Character {
     this._level.maximum += 50;
     this._level.set(1);
 
+    this.resetMaxXp();
+
     this.$statistics.incrementStat('Character.Ascension.CollectiblesFound', this.$collectibles.totalCollectibles());
     this.$collectibles.reset();
     this.$collectibles.save();
