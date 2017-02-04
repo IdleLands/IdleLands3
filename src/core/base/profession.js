@@ -54,6 +54,6 @@ export class Profession {
   static setupSpecial() {}
   static resetSpecial(target) {
     target._special.name = '';
-    target._special.maximum = target.minimum = target.__current = 0;
+    target._special.maximum = target._special.minimum = target._special.__current = 0;
   }
 }
