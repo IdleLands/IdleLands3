@@ -23,9 +23,9 @@ export class Ascended extends Achievement {
         type: 'stats',
         itemFindRangeMultiplier: (totalAscensions * 0.1).toFixed(2),
         itemValueMultiplier: (totalAscensions * 0.03).toFixed(2),
-        gold: (gold) => gold * 0.15 * totalAscensions,
+        gold: (player, baseValue) => baseValue * 0.05 * totalAscensions,
         goldDisplay: `+${totalAscensions * 15}%`,
-        xp: (gold) => gold * 0.05 * totalAscensions,
+        xp:   (player, baseValue) => baseValue * 0.05 * totalAscensions,
         xpDisplay: `+${totalAscensions * 5}%`
       }]
     }];
