@@ -236,11 +236,11 @@ export class Battle {
         const level = party.level;
         const levelDiff = Math.max(-5, Math.min(5, compareLevel - level)) + 6;
 
-        const goldGainedInParty = Math.round((compareLevel * 1560) / _.reject(party.players, (p) => p.$isMinion).length);
+        const goldGainedInParty = Math.max(1, Math.round((compareLevel * 1560) / _.reject(party.players, (p) => p.$isMinion).length));
 
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Win');
-          let gainedXp = Math.round(p._xp.maximum * (levelDiff / 100));
+          let gainedXp = Math.max(1, Math.round(p._xp.maximum * (levelDiff / 100)));
           if(compareLevel < level - 5) gainedXp = 0;
 
           const modXp = p.gainXp(gainedXp);
@@ -257,8 +257,8 @@ export class Battle {
 
           const compareLevel = this.winningTeam.level;
           const currentGold = _.isNumber(p.gold) ? p.gold : p.gold.__current;
-          const lostGold = Math.round(currentGold / 100);
-          let lostXp = Math.round(p._xp.maximum / 20);
+          const lostGold = Math.round(currentGold / 250);
+          let lostXp = Math.round(p._xp.maximum / 50);
 
           if(compareLevel > party.level + 5) {
             lostXp = 0;
