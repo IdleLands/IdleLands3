@@ -6,6 +6,8 @@ export class Ascended extends Achievement {
 
     const totalAscensions = player.$statistics.getStat('Character.Ascension.Times');
 
+    if(totalAscensions < 1) return;
+
     return [{
       tier: totalAscensions,
       name: 'Ascended',
