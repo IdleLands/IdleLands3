@@ -96,6 +96,7 @@ export class StatCalculator {
       .values()
       .map('rewards')
       .flattenDeep()
+      .compact()
       .reject(bonus => bonus.type !== 'stats')
       .reject(bonus => !bonus[stat])
       .value();
@@ -107,6 +108,7 @@ export class StatCalculator {
       .values()
       .map('rewards')
       .flattenDeep()
+      .compact()
       .reject(bonus => bonus.type !== 'stats')
       .reject(bonus => !bonus[stat] || _.isFunction(bonus[stat]))
       .reduce((prev, cur) => prev+(+cur[stat]), 0);

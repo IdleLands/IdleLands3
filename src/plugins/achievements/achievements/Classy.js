@@ -10,9 +10,9 @@ const allStats = ['Con', 'Dex', 'Agi', 'Str', 'Int', 'Luk'];
 export class Classy extends Achievement {
   static achievementData(player) {
 
-    const allProfessionsBeen = _.keys(player.$statistics.getStat('Character.Professions'));
+    const allProfessionsBeen = player.$statistics.getStat('Character.Professions');
 
-    return _.map(allProfessionsBeen, prof => {
+    return _.flatten(_.map(allProfessionsBeen, (times, prof) => {
 
       const statReward = {
         type: 'stats'
@@ -24,13 +24,35 @@ export class Classy extends Achievement {
         statReward[stat] = profStat;
       });
 
-      return {
+      const baseAchievements = [{
         tier: 1,
         name: `Classy: ${prof}`,
         desc: `You've been a ${prof}. Gain their base stats as a bonus!`,
         type: AchievementTypes.PROGRESS,
         rewards: [statReward]
-      };
-    });
+      }];
+
+      const tiers = [
+        { required: 5,    title: 'Trainee' },
+        { required: 15,   title: 'Student' },
+        { required: 25,   title: 'Skilled' },
+        { required: 50,   title: 'Master' },
+        { required: 100,  title: 'Grandmaster' }
+      ];
+
+      _.each(tiers, ({ required, title }, index) => {
+        if(times < required) return;
+
+        baseAchievements.push({
+          tier: index + 1,
+          name: `Professional: ${title} ${prof}`,
+          desc: `You've been a ${prof} ${required} times. Get a title for it!`,
+          type: AchievementTypes.PROGRESS,
+          rewards: [{ type: 'title', title: `${title} ${prof}` }]
+        });
+      });
+
+      return baseAchievements;
+    }));
   }
 }
