@@ -111,8 +111,8 @@ export class ItemGenerator extends Generator {
       { name: 'linear',      statsModified: 3, modify: (stat) => stat + stat },
       { name: 'scalar',      statsModified: 1, modify: (stat) => stat * stat },
       { name: 'vector',      statsModified: 2, modify: (stat) => Math.round(stat + Math.sqrt(stat)) },
-      { name: 'quadratic',   statsModified: 4, modify: (stat) => stat * chance.bool() ? -2 : 2 },
-      { name: 'parabolic',   statsModified: 2, modify: (stat) => stat * (stat + stat) },
+      { name: 'parabolic',   statsModified: 4, modify: (stat) => stat * chance.bool() ? -2 : 2 },
+      { name: 'quadratic',   statsModified: 2, modify: (stat) => stat * (stat + stat) },
       { name: 'exponential', statsModified: 5, modify: (stat) => Math.round(stat * Math.sqrt(stat)) }
     ];
 
@@ -140,6 +140,8 @@ export class ItemGenerator extends Generator {
     _.each(validKeys, key => {
       item[key] = func.modify(item[key]);
     });
+
+    item.name = `${func.name} ${item.name}`;
   }
 
   static cleanUpItem(item) {
