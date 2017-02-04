@@ -466,8 +466,18 @@ export class Player extends Character {
     this.$statistics.incrementStat('Character.Ascension.Gold', this.gold);
     this.gold = 0;
 
+    _.each(this.$pets.$pets, pet => {
+      this.$statistics.incrementStat('Character.Ascension.Gold', pet.gold.getTotal());
+      pet.gold.set(0);
+    });
+
     this.$statistics.incrementStat('Character.Ascension.ItemScore', this.itemScore);
     this.generateBaseEquipment();
+
+    _.each(this.$pets.$pets, pet => {
+      pet.unequipAll();
+      pet.inventory = [];
+    });
 
     this.$statistics.incrementStat('Character.Ascension.Levels', this.level);
     this._level.maximum += 50;
@@ -484,8 +494,11 @@ export class Player extends Character {
 
     this.$personalities.turnAllOff(this);
 
+    this.recalculateStats();
     this._checkAchievements();
     this.update();
     this.save();
+
+    this.$pets.save();
   }
 }

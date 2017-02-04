@@ -178,7 +178,17 @@ export class Pet extends Character {
     return item.score > compareItem.score ? compareItem : false;
   }
 
+  unequipAll() {
+    _.each(this.equipment, (arr) => {
+      _.each(arr, item => {
+        this.unequip(item, true);
+      });
+    });
+  }
+
   unequip(item, replace = false) {
+    if(item.type === 'soul') return;
+
     this.equipment[item.type] = _.reject(this.equipment[item.type], checkItem => checkItem === item);
     if(replace) {
       this.equipment[item.type].push(this.$manager.__emptyGear({ slot: item.type }));
