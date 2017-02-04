@@ -22,7 +22,7 @@ export class FindItem extends Event {
       const playerItem = player.equipment[item.type];
       const text = playerItem.score > item.score ? 'weak' : 'strong';
 
-      if(!player.canEquip(item)) {
+      if(!player.canEquip(item) || item.score <= 0) {
         const message = `%player came across %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
         const gold = player.sellItem(item);
         const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
