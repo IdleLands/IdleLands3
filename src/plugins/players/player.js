@@ -262,6 +262,12 @@ export class Player extends Character {
     this._updatePersonalities();
   }
 
+  moveToStart() {
+    this.map = 'Norkos';
+    this.x = 10;
+    this.y = 10;
+  }
+
   moveAction() {
     const weight = this.$playerMovement.getInitialWeight(this);
 
@@ -287,9 +293,7 @@ export class Player extends Character {
     const mapInstance = GameState.getInstance().world.maps[this.map];
 
     if(!mapInstance || this.x <= 0 || this.y <= 0 || this.y > mapInstance.height || this.x > mapInstance.width) {
-      this.map = 'Norkos';
-      this.x = 10;
-      this.y = 10;
+      this.moveToStart();
     }
 
     this.oldRegion = this.mapRegion;
@@ -416,7 +420,7 @@ export class Player extends Character {
   }
 
   _updateCollectibles() {
-    this.$dataUpdater(this.name, 'collectibles', this.$collectibles.collectibles);
+    this.$dataUpdater(this.name, 'collectibles', { current: this.$collectibles.collectibles, prior: this.$collectibles.priorCollectibleData });
   }
 
   _updatePersonalities() {
@@ -449,15 +453,36 @@ export class Player extends Character {
     if(this.$updateEquipment) {
       this._updateEquipment();
     }
-    // this._updateStatistics();
-    /* if(this.$updateAchievements) {
-      this._updateAchievements();
-      this.$updateAchievements = false;
-    } */
-    /* if(this.$updateCollectibles) {
-      this._updateCollectibles();
-      this.$updateCollectibles = false;
-    } */
-    // this._updatePersonalities();
+  }
+
+  get hasAscended() {
+    return this.$statistics.getStat('Character.Ascension.Times');
+  }
+
+  ascend() {
+    this.$statistics.incrementStat('Character.Ascension.Times');
+
+    this.$statistics.incrementStat('Character.Ascension.Gold', this.gold);
+    this.gold = 0;
+
+    this.$statistics.incrementStat('Character.Ascension.ItemScore', this.itemScore);
+    this.generateBaseEquipment();
+
+    this.$statistics.incrementStat('Character.Ascension.Levels', this.level);
+    this._level.maximum += 50;
+    this._level.set(1);
+
+    this.$statistics.incrementStat('Character.Ascension.CollectiblesFound', this.$collectibles.totalCollectibles());
+    this.$collectibles.reset();
+    this.$collectibles.save();
+
+    this.moveToStart();
+    this.choices = [];
+
+    this.$personalities.turnAllOff(this);
+
+    this._checkAchievements();
+    this.update();
+    this.save();
   }
 }

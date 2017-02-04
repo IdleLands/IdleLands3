@@ -41,6 +41,12 @@ export class Personalities {
       .value();
   }
 
+  turnAllOff(player) {
+    _.each(_.keys(this.activePersonalities), pers => {
+      this.togglePersonality(player, pers);
+    });
+  }
+
   togglePersonality(player, personality) {
     const newState = !this.activePersonalities[personality];
     this.activePersonalities[personality] = newState;

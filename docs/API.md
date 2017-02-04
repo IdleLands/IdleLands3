@@ -79,6 +79,7 @@ plugin:pet:smart | setting | Toggle a smart pet setting.
 plugin:pet:swap | petType | Swap to a different pet.
 plugin:pet:takegold |  | Take your pets gold.
 plugin:pet:upgrade | upgradeAttr | Upgrade a facet of your pet.
+plugin:player:ascend |  | Ascend.
 plugin:player:makechoice | id, response | Make a choice from the choice log.
 plugin:player:exists | userId | Unauthenticated. Check if a particular player exists for auto-login purposes.
 plugin:player:changegender | gender | Change your gender based on the existing gender list.

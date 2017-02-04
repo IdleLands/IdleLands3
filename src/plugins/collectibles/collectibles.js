@@ -22,6 +22,7 @@ export class Collectibles {
   init(opts) {
     this._id = undefined;
     this.collectibles = undefined;
+    this.priorCollectibles = undefined;
     const allCollectibles = GameState.getInstance().world.allCollectibles;
 
     // update collectibles on login
@@ -33,6 +34,31 @@ export class Collectibles {
     });
 
     _.extend(this, opts);
+  }
+
+  reset() {
+    if(!this.priorCollectibles) this.priorCollectibles = {};
+
+    _.each(_.values(this.collectibles), coll => {
+      this.priorCollectibles[coll.name] = this.priorCollectibles[coll.name] || 0;
+      this.priorCollectibles[coll.name]++;
+    });
+
+    this.collectibles = {};
+  }
+
+  get priorCollectibleData() {
+    if(!this.priorCollectibles) return {};
+
+    const allCollectibles = GameState.getInstance().world.allCollectibles;
+    const emit = {};
+    _.each(this.priorCollectibles, (count, coll) => {
+      emit[coll] = _.cloneDeep(allCollectibles[coll]);
+      emit[coll].name = coll;
+      emit[coll].count = count;
+    });
+
+    return emit;
   }
 
   totalCollectibles() {

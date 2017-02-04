@@ -30,7 +30,7 @@ export class World {
 
   loadAllMaps() {
     _.each(this.getMapsInFolder('assets/maps/world-maps'), ({ map, path }) => {
-      const mapRef = new Map(path);
+      const mapRef = new Map(path, map);
       this.maps[map] = mapRef;
 
       this.uniqueRegions.push(..._.uniq(_.compact(mapRef.regions)));

@@ -9,7 +9,7 @@ const blockers = [16, 17, 3, 33, 37, 38, 39, 44, 45, 46, 47, 50, 53, 54, 55, 56,
 // const interactables = [1, 2, 12, 13, 14, 15, 18, 40, 41, 42, 43, 48, 51];
 
 export class Map {
-  constructor(path) {
+  constructor(path, mapName) {
     this.map = _.cloneDeep(require(`${path}`));
 
     this.tileHeight = this.map.tileheight;
@@ -22,6 +22,7 @@ export class Map {
       this.name = this.map.properties.name;
     }
     this.path = path.split('assets/maps/world-maps/')[1];
+    this.mapName = mapName;
 
     this.nameTrainers();
     this.loadRegions();
@@ -33,6 +34,10 @@ export class Map {
     _.each(this.map.layers[2].objects, object => {
       if(object.type !== 'Collectible') return;
       this.collectibles[object.name] = object.properties;
+      if(!object.properties.rarity) object.properties.rarity = 'basic';
+      object.properties.description = object.properties.flavorText;
+      object.properties.map = this.mapName;
+      object.properties.region = this.regions[((object.y/16)*this.width)+(object.x/16)] || 'Wilderness';
     });
   }
 

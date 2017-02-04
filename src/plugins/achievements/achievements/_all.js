@@ -1,6 +1,7 @@
 
 export { Achiever } from './Achiever';
 export { Ancient } from './Ancient';
+export { Ascended } from './Ascended';
 export { Bossy } from './Bossy';
 export { Boxer } from './Boxer';
 export { Camper } from './Camper';
