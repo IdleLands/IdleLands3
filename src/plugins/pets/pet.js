@@ -100,7 +100,7 @@ export class Pet extends Character {
   }
 
   findItem() {
-    const item = ItemGenerator.generateItem(null, this.$_scale.itemFindBonus);
+    const item = ItemGenerator.generateItem(null, this.$_scale.itemFindBonus, this.level);
 
     if(!this.canEquipScore(item)) {
       this.sellItem(item);

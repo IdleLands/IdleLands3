@@ -63,7 +63,7 @@ export class ItemGenerator extends Generator {
     return itemClass;
   }
   
-  static generateItem(type, bonus = 0) {
+  static generateItem(type, bonus = 0, genLevel = 0) {
     if(!type) {
       type = _.sample(this.types);
     }
@@ -72,6 +72,7 @@ export class ItemGenerator extends Generator {
     const itemInst = new Equipment(baseItem);
 
     this.addPropertiesToItem(itemInst, bonus);
+    this.tryToVectorize(itemInst, genLevel);
 
     itemInst._baseScore = itemInst.score;
     itemInst.type = type;
@@ -101,6 +102,44 @@ export class ItemGenerator extends Generator {
     if(chance.integer({ min: 0, max: 85 }) <= 1+bonus) {
       this.mergePropInto(item, _.sample(ObjectAssets.suffix));
     }
+  }
+
+  static tryToVectorize(item, level) {
+    if(level <= 100 || chance.bool({ likelihood: 95 })) return;
+
+    const funcs = [
+      { name: 'linear',      statsModified: 3, modify: (stat) => stat + stat },
+      { name: 'scalar',      statsModified: 1, modify: (stat) => stat * stat },
+      { name: 'vector',      statsModified: 2, modify: (stat) => Math.round(stat + Math.sqrt(stat)) },
+      { name: 'quadratic',   statsModified: 4, modify: (stat) => stat * chance.bool() ? -2 : 2 },
+      { name: 'parabolic',   statsModified: 2, modify: (stat) => stat * (stat + stat) },
+      { name: 'exponential', statsModified: 5, modify: (stat) => Math.round(stat * Math.sqrt(stat)) }
+    ];
+
+    const weights = [
+      6,
+      3,
+      5,
+      2,
+      4,
+      1
+    ];
+
+    const func = chance.weighted(funcs, weights);
+
+    const validKeys = _(item)
+      .omitBy((val, prop) => {
+        return _.includes(['enchantLevel', 'foundAt', '_calcScore', '_baseScore'], prop)
+            || val === 0
+            || _.isString(item[prop]);
+      })
+      .keys()
+      .sampleSize(func.statsModified)
+      .value();
+
+    _.each(validKeys, key => {
+      item[key] = func.modify(item[key]);
+    });
   }
 
   static cleanUpItem(item) {

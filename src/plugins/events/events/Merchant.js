@@ -28,7 +28,7 @@ export class Merchant extends Event {
       return [player];
     }
 
-    const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus + merchantBonus));
+    const item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk + player.liveStats.merchantItemGeneratorBonus + merchantBonus), player.level);
     if(!player.canEquip(item)) {
       const playerItem = player.equipment[item.type];
       const text = playerItem.score > item.score ? 'weak' : 'strong';

@@ -17,7 +17,7 @@ export class FindItem extends Event {
     let item = forceItem;
 
     if(!forceItem) {
-      item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk));
+      item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk), player.level);
 
       const playerItem = player.equipment[item.type];
       const text = playerItem.score > item.score ? 'weak' : 'strong';
