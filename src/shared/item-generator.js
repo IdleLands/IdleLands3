@@ -105,7 +105,7 @@ export class ItemGenerator extends Generator {
   }
 
   static tryToVectorize(item, level) {
-    if(level <= 100 || chance.bool({ likelihood: 95 })) return;
+    if(!item.vector && (level <= 100 || chance.bool({ likelihood: 95 }))) return;
 
     const funcs = [
       { name: 'linear',      statsModified: 3, modify: (stat) => stat + stat },
@@ -129,12 +129,12 @@ export class ItemGenerator extends Generator {
 
     const validKeys = _(item)
       .omitBy((val, prop) => {
-        return _.includes(['enchantLevel', 'foundAt', '_calcScore', '_baseScore'], prop)
+        return _.includes(['enchantLevel', 'foundAt', '_calcScore', '_baseScore', 'vector'], prop)
             || val === 0
             || _.isString(item[prop]);
       })
       .keys()
-      .sampleSize(func.statsModified)
+      .sampleSize(item.vector || func.statsModified)
       .value();
 
     _.each(validKeys, key => {
