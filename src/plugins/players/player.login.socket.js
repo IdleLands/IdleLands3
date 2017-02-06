@@ -28,8 +28,7 @@ export const socket = (socket, primus, respond) => {
 
     if(!playerDb) {
       Logger.error('Login', new Error('playerDb could not be resolved.'));
-      respond({ msg: MESSAGES.GENERIC });
-      return;
+      return respond({ msg: MESSAGES.GENERIC });
     }
 
     const validateToken = process.env.NODE_ENV === 'production' || !_.includes(userId, 'local|');
@@ -78,7 +77,7 @@ export const socket = (socket, primus, respond) => {
           return respond(MESSAGES.GENERIC);
         }
 
-        playerObject.init({ _id: name, name, gender, professionName, userId });
+        playerObject.init({ _id: name, name, gender, professionName, userId }, false);
 
         try {
           await playerDb.createPlayer(playerObject.buildSaveObject());
@@ -92,6 +91,7 @@ export const socket = (socket, primus, respond) => {
           Logger.error('Login', e);
           respond(MESSAGES.GENERIC);
         }
+
         event = 'player:register';
       }
 

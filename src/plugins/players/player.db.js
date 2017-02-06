@@ -48,15 +48,10 @@ export class PlayerDb {
     const players = db.$$collections.players;
     
     return new Promise((resolve, reject) => {
-      players.insertOne(playerObject, (err) =>{
-        if (!err) {
-          resolve(playerObject);
-        } else {
-          // process.stdout.write('|');
-          // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-          // MONGOERRORIGNORE
-        }
-      }, reject);
+      players.insertOne(playerObject, (err) => {
+        if(err) return reject(err);
+        resolve(playerObject);
+      });
     });
   }
 

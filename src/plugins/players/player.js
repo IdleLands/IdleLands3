@@ -32,8 +32,9 @@ export class Player extends Character {
     this.$dataUpdater = DataUpdater;
   }
 
-  init(opts) {
+  init(opts, save = true) {
     this.$dirty = new DirtyChecker();
+    this.$canSave = save;
 
     super.init(opts);
 
@@ -55,6 +56,8 @@ export class Player extends Character {
     if(this.isMod) {
       this.emitGMData();
     }
+
+    this.$canSave = true;
   }
 
   quickLogin() {
@@ -353,6 +356,7 @@ export class Player extends Character {
   }
 
   _saveSelf() {
+    if(!this.$canSave) return;
     this.$playerDb.savePlayer(this);
   }
 
