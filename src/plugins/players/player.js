@@ -11,6 +11,7 @@ import { Logger } from '../../shared/logger';
 import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
 import { ItemGenerator } from '../../shared/item-generator';
+import { sendSystemMessage } from '../../shared/send-system-message';
 
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
@@ -506,5 +507,7 @@ export class Player extends Character {
     this.save();
 
     this.$pets.save();
+
+    sendSystemMessage(`${this.name} has ascended!`);
   }
 }
