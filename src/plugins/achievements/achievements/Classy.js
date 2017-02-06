@@ -40,17 +40,26 @@ export class Classy extends Achievement {
         { required: 100,  title: 'Grandmaster' }
       ];
 
-      _.each(tiers, ({ required, title }, index) => {
+      const professionalAchievement = {
+        name: `Professional: ${prof}`,
+        type: AchievementTypes.PROGRESS,
+        rewards: []
+      };
+
+      let topMax = 0;
+
+      _.each(tiers, ({ required, title }) => {
         if(times < required) return;
 
-        baseAchievements.push({
-          tier: index + 1,
-          name: `Professional: ${prof}`,
-          desc: `You've been a ${prof} ${required} times. Get a title for it!`,
-          type: AchievementTypes.PROGRESS,
-          rewards: [{ type: 'title', title: `${title} ${prof}` }]
-        });
+        professionalAchievement.rewards.push({ type: 'title', title: `${title} ${prof}` });
+        topMax = required;
       });
+
+      if(professionalAchievement.rewards.length > 0) {
+        professionalAchievement.desc = `You've been a ${prof} ${topMax} times. Get title(s) for it!`;
+        professionalAchievement.tier = professionalAchievement.rewards.length;
+        baseAchievements.push(professionalAchievement);
+      }
 
       return baseAchievements;
     }));
