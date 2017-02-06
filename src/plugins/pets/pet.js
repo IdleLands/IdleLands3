@@ -250,10 +250,15 @@ export class Pet extends Character {
     });
   }
 
+  _doLevelUpgrade() {
+    this._level.maximum = this.$_scale.maxLevel;
+    this.levelUp();
+  }
+
   doUpgrade(attr) {
     switch(attr) {
       case 'goldStorage':             return this.gold.maximum = this.$_scale.goldStorage;
-      case 'maxLevel':                return this._level.maximum = this.$_scale.maxLevel;
+      case 'maxLevel':                return this._doLevelUpgrade();
       case 'itemFindTimeDuration':    return this._setNextItemFind();
       case 'itemFindRangeMultiplier': return this.updateSoul();
       case 'itemSellMultiplier':      return this.updateSoul();
