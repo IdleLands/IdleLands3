@@ -44,6 +44,7 @@ export class PlayerMovement {
       if(properties.requireClass)       return player.professionName === properties.requireClass;
       if(properties.requireAchievement) return player.$achievements.hasAchievement(properties.requireAchievement);
       if(properties.requireCollectible) return player.$collectibles.hasCollectible(properties.requireCollectible);
+      if(properties.requireAscension)   return player.ascensionLevel > properties.requireAscension;
       if(properties.requireHoliday) {
         const { start, end } = SETTINGS.holidays[properties.requireHoliday];
         const today = new Date();
