@@ -11,7 +11,7 @@ export const AllPlayers = (playerName) => {
 };
 
 export const PlayerLogin = (playerName) => {
-  const simplePlayerToAdd = GameState.getInstance().getPlayerNameSimple(playerName, [], true);
+  const simplePlayerToAdd = GameState.getInstance().getPlayerNameSimple(playerName);
   primus.forEach((spark, next) => {
     if(!spark.authToken || spark.authToken.playerName === playerName) return next();
     spark.write({ playerListOperation: 'add', data: simplePlayerToAdd });
