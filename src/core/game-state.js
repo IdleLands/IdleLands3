@@ -9,7 +9,7 @@ import { MESSAGES } from '../static/messages';
 import { PlayerLoad } from '../plugins/players/player.load';
 
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
-const EXTRA_KEYS = ['_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$currentIp'];
+const EXTRA_KEYS = ['_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$currentIp', 'ascensionLevel'];
 
 let GameStateInstance = null;
 
@@ -108,23 +108,20 @@ export class GameState {
     return this.players;
   }
 
-  getPlayerNameSimple(playerName, keys, getAscension = false) {
-    return this.getPlayerSimple(this.retrievePlayer(playerName), keys, false, getAscension);
+  getPlayerNameSimple(playerName, keys) {
+    return this.getPlayerSimple(this.retrievePlayer(playerName), keys, false);
   }
 
-  getPlayerSimple(player, keys = UPDATE_KEYS, override = false, getAscension = false) {
+  getPlayerSimple(player, keys = UPDATE_KEYS, override = false) {
     if(!override) {
       keys = keys.concat(EXTRA_KEYS);
     }
     const obj = _.pick(player, keys);
-    if(getAscension) {
-      obj.aLvl = player.$statistics.getStat('Character.Ascension.Times');
-    }
     return obj;
   }
 
-  getPlayersSimple(keys, override, getAscension) {
-    return _.map(this.players, p => this.getPlayerSimple(p, keys, override, getAscension));
+  getPlayersSimple(keys, override) {
+    return _.map(this.players, p => this.getPlayerSimple(p, keys, override));
   }
 
   getSomePlayersSimple(playerNames, keys) {

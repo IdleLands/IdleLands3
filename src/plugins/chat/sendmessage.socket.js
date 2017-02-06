@@ -63,6 +63,7 @@ export const socket = (socket, primus) => {
       level: player.level,
       event,
       ip: player.$currentIp,
+      ascensionLevel: player.ascensionLevel,
       isMod: player.isMod
     };
 
