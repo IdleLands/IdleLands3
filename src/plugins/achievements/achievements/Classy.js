@@ -45,7 +45,7 @@ export class Classy extends Achievement {
 
         baseAchievements.push({
           tier: index + 1,
-          name: `Professional ${prof}`,
+          name: `Professional: ${prof}`,
           desc: `You've been a ${prof} ${required} times. Get a title for it!`,
           type: AchievementTypes.PROGRESS,
           rewards: [{ type: 'title', title: `${title} ${prof}` }]
