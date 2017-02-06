@@ -31,6 +31,7 @@ An idling game of epic proportions.
 
 ## Other IdleLands Repositories
 * [Play](https://github.com/IdleLands/Play/) The front end code (angular2, phaser.io, bootstrap)  
+* [Global](https://github.com/IdleLands/Global/) The global player information site (angular2, phaser.io, bootstrap)
 * [Maps](https://github.com/IdleLands/Maps/) Maps (json+png tilemap. Plus npcs, features etc on the maps)  
 * [Custom-Assets](https://github.com/IdleLands/Custom-Assets/) The strings for the game (monsters, vegetables, conversation etc)  
 
