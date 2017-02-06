@@ -108,20 +108,23 @@ export class GameState {
     return this.players;
   }
 
-  getPlayerNameSimple(playerName, keys) {
-    return this.getPlayerSimple(this.retrievePlayer(playerName), keys);
+  getPlayerNameSimple(playerName, keys, getAscension = false) {
+    return this.getPlayerSimple(this.retrievePlayer(playerName), keys, false, getAscension);
   }
 
-  getPlayerSimple(player, keys = UPDATE_KEYS, override = false) {
+  getPlayerSimple(player, keys = UPDATE_KEYS, override = false, getAscension = false) {
     if(!override) {
       keys = keys.concat(EXTRA_KEYS);
-      // keys = _.uniq(keys);
     }
-    return _.pick(player, keys);
+    const obj = _.pick(player, keys);
+    if(getAscension) {
+      obj.aLvl = player.$statistics.getStat('Character.Ascension.Times');
+    }
+    return obj;
   }
 
-  getPlayersSimple(keys, override) {
-    return _.map(this.players, p => this.getPlayerSimple(p, keys, override));
+  getPlayersSimple(keys, override, getAscension) {
+    return _.map(this.players, p => this.getPlayerSimple(p, keys, override, getAscension));
   }
 
   getSomePlayersSimple(playerNames, keys) {

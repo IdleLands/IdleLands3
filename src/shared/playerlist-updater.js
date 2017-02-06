@@ -6,12 +6,13 @@ import { GameState } from '../core/game-state';
 
 // these functions pertain to one person logging in and out
 export const AllPlayers = (playerName) => {
-  const allPlayers = GameState.getInstance().getPlayersSimple();
+  const allPlayers = GameState.getInstance().getPlayersSimple([], false, true);
   primus.emitToPlayers([playerName], { playerListOperation: 'set', data: allPlayers });
 };
 
 export const PlayerLogin = (playerName) => {
-  const simplePlayerToAdd = GameState.getInstance().getPlayerNameSimple(playerName);
+  const simplePlayerToAdd = GameState.getInstance().getPlayerNameSimple(playerName, [], true);
+  console.log(simplePlayerToAdd);
   primus.forEach((spark, next) => {
     if(!spark.authToken || spark.authToken.playerName === playerName) return next();
     spark.write({ playerListOperation: 'add', data: simplePlayerToAdd });
@@ -60,7 +61,8 @@ export const SomePlayersPostMove = (updatedPlayers) => {
 };
 
 export const PlayerUpdateAll = (playerId, keys) => {
-  const data = GameState.getInstance().getPlayerNameSimple(playerId, keys);
+  const data = GameState.getInstance().getPlayerNameSimple(playerId, keys, true);
+  console.log(data);
   primus.forEach((spark, next) => {
     spark.write({ playerListOperation: 'update', data });
     next();
