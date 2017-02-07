@@ -248,7 +248,7 @@ export class MessageParser {
     if(extra.collectible) extra.collectible = `«${extra.collectible}»`;
 
     _.each(_.keys(extra), key => {
-      string = string.split(`%${key}`).join(extra[key]);
+      string = string.split(`%${key}`).join(_.isNumber(extra[key]) ? extra[key].toLocaleString() : extra[key]);
     });
 
     string = EventVariableManager.handleVariables(string, extra._eventData);

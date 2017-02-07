@@ -48,11 +48,11 @@ export class Gambling extends Event {
       const winnings = Math.round(cost * multiplier);
       player.gainGold(winnings, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Win', winnings);
-      message = `%player got lucky and bet ${cost} gold against the odds of ${odds}%. %She came out ahead with ${winnings.toLocaleString()} gold!`;
+      message = `%player got lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%. %She came out ahead with ${winnings.toLocaleString()} gold!`;
     } else {
       player.gainGold(-cost, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Lose', cost);
-      message = `%player felt lucky and bet ${cost} gold against the odds of ${odds}%. %She lost it all at the table.`;
+      message = `%player felt lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%. %She lost it all at the table.`;
     }
 
     message = this._parseText(message, player);
