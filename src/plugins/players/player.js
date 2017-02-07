@@ -11,7 +11,6 @@ import { Logger } from '../../shared/logger';
 import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
 import { ItemGenerator } from '../../shared/item-generator';
-import { sendSystemMessage } from '../../shared/send-system-message';
 
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
@@ -453,9 +452,18 @@ export class Player extends Character {
     this.$dataUpdater(this.name, 'petactive', this.$pets.activePet.buildTransmitObject());
   }
 
+  __updateFestivals() {
+    this.$dataUpdater(this.name, 'festivals', GameState.getInstance().festivals);
+  }
+
+  _updateSystem() {
+    this.__updateFestivals();
+  }
+
   update() {
     this._updatePlayer();
     this._updateParty();
+    this._updateSystem();
 
     if(this.$updateEquipment) {
       this._updateEquipment();
@@ -508,9 +516,9 @@ export class Player extends Character {
 
     this.$pets.save();
 
-    sendSystemMessage(`${this.name} has ascended! +20% XP for everyone for 24 hours!`);
     GameState.getInstance().addFestival({
       name: `${this.name}'s Ascension`,
+      message: `${this.name} has ascended! +20% XP for everyone for 24 hours!`,
       hourDuration: 24,
       bonuses: {
         xp: 0.2

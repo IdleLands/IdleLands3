@@ -8,7 +8,6 @@ import { Festival } from './festival';
 
 import { scheduleJob } from 'node-schedule';
 
-
 @Dependencies(FestivalsDb)
 export class Festivals {
   constructor(festivalsDb) {

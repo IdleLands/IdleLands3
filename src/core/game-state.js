@@ -7,6 +7,7 @@ import { Logger } from '../shared/logger';
 import { constitute } from '../shared/di-wrapper';
 import { MESSAGES } from '../static/messages';
 
+import { sendSystemMessage } from '../shared/send-system-message';
 import { PlayerLoad } from '../plugins/players/player.load';
 
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
@@ -34,6 +35,7 @@ export class GameState {
   }
 
   addFestival(festival) {
+    sendSystemMessage(festival.message);
     this.festivalContainer.addFestival(festival);
   }
 
@@ -145,5 +147,11 @@ export class GameState {
     if(playerObject) return playerObject;
 
     return this.playerLoad.loadPlayer(playerName);
+  }
+
+  emitFestivals() {
+    _.each(this.players, player => {
+      player.__updateFestivals();
+    });
   }
 }
