@@ -21,6 +21,7 @@ export { Eventful } from './Eventful';
 export { Explorative } from './Explorative';
 export { Fateful } from './Fateful';
 export { Golden } from './Golden';
+export { Gambler } from './Gambler';
 export { Herder } from './Herder';
 export { Impossible } from './Impossible';
 export { Levelable } from './Levelable';
