@@ -62,7 +62,8 @@ export class DbWrapper {
           personalities:      db.collection('personalities'),
           pets:               db.collection('pets'),
           players:            db.collection('players'),
-          statistics:         db.collection('statistics')
+          statistics:         db.collection('statistics'),
+          festivals:          db.collection('festivals')
         };
 
         resolve(db);

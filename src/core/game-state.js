@@ -2,6 +2,7 @@
 import _ from 'lodash';
 
 import { World } from './world/world';
+import { Festivals } from '../plugins/festivals/festivals';
 import { Logger } from '../shared/logger';
 import { constitute } from '../shared/di-wrapper';
 import { MESSAGES } from '../static/messages';
@@ -27,6 +28,17 @@ export class GameState {
 
     Logger.info('GameState', 'Creating world.');
     this.world = constitute(World);
+
+    Logger.info('GameState', 'Loading festivals.');
+    this.festivalContainer = constitute(Festivals);
+  }
+
+  addFestival(festival) {
+    this.festivalContainer.addFestival(festival);
+  }
+
+  get festivals() {
+    return this.festivalContainer.festivals;
   }
 
   _hasTimeout(playerName) {

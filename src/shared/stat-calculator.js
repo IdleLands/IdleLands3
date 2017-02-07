@@ -1,6 +1,7 @@
 
 import _ from 'lodash';
 import { SETTINGS } from '../static/settings';
+import { GameState } from '../core/game-state';
 
 export const SPECIAL_STATS_BASE = [
   { name: 'hpregen',         desc: 'Regenerate HP every combat round.', enchantMax: 100 },
@@ -144,6 +145,13 @@ export class StatCalculator {
     const functions = this._secondPassFunctions(player, stat);
     _.each(functions, func => {
       mods += func(player, baseValue);
+    });
+
+    const festivals = GameState.getInstance().festivals;
+
+    _.each(festivals, festival => {
+      if(!festival.bonuses[stat]) return;
+      mods += festival.bonuses[stat] * baseValue;
     });
 
     return doRound ? Math.floor(baseValue + mods) : baseValue + mods;

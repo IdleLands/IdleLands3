@@ -508,6 +508,13 @@ export class Player extends Character {
 
     this.$pets.save();
 
-    sendSystemMessage(`${this.name} has ascended!`);
+    sendSystemMessage(`${this.name} has ascended! +20% XP for everyone 24 hours!`);
+    GameState.getInstance().addFestival({
+      name: `${this.name}'s Ascension`,
+      hourDuration: 24,
+      bonuses: {
+        xp: 0.2
+      }
+    });
   }
 }
