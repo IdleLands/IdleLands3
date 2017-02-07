@@ -13,7 +13,7 @@ export class Gambling extends Event {
 
   static operateOn(player) {
 
-    if(player.gold < MIN_GOLD) return;
+    if(player.gold < MIN_GOLD * 4) return;
     const cost = this.chance.integer({ min: MIN_GOLD, max: player.gold / 4 });
 
     const id = Event.chance.guid();
