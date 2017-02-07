@@ -14,7 +14,7 @@ export class XPForsake extends Event {
     const xpMod = player.gainXp(-baseXP);
     const eventText = this.eventText('forsakeXp', player, { xp: Math.abs(xpMod) });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [-${Math.abs(xpMod)} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [-${Math.abs(xpMod).toLocaleString()} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
 	
     return [player];
   }

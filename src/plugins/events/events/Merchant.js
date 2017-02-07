@@ -51,7 +51,7 @@ export class Merchant extends Event {
     }
 
     const id = Event.chance.guid();
-    const message = `Would you like to buy «${item.fullname}» for ${cost} gold?`;
+    const message = `Would you like to buy «${item.fullname}» for ${cost.toLocaleString()} gold?`;
     const eventText = this.eventText('merchant', player, { item: item.fullname, shopGold: cost });
     const extraData = { item, cost, eventText };
 

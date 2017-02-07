@@ -21,7 +21,7 @@ export class XPBless extends Event {
     const xpMod = player.gainXp(baseXp);
     const eventText = this.eventText('blessXp', player, { xp: xpMod });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [+${xpMod} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [+${xpMod.toLocaleString()} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
 
     return [player];
   }

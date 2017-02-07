@@ -19,7 +19,7 @@ export class ItemForsake extends Event {
 
     const eventText = this.eventText('forsakeItem', player, { item: item.fullname });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${item[stat]-boost}]`, category: MessageCategories.ITEM });
+    this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat].toLocaleString()} -> ${(item[stat]-boost).toLocaleString()}]`, category: MessageCategories.ITEM });
     item[stat] -= boost;
     item.score;
     player.recalculateStats();
