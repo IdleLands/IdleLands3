@@ -26,7 +26,7 @@ export class MerchantEnchant extends Event {
     }
 
     const id = Event.chance.guid();
-    const message = `Would you like to buy an enchantment for ${cost} gold?`;
+    const message = `Would you like to buy an enchantment for ${cost.toLocaleString()} gold?`;
     const eventText = this.eventText('merchant', player, { item: 'an enchantment', shopGold: cost });
     const extraData = { cost, eventText };
 
