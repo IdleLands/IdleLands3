@@ -476,6 +476,7 @@ export class Player extends Character {
 
   ascend() {
     if(!this._level.atMaximum()) return;
+    const currentAscensionLevel = this.$statistics.getStat('Character.Ascension.Times');
     this.$statistics.incrementStat('Character.Ascension.Times');
 
     this.$statistics.incrementStat('Character.Ascension.Gold', this.gold);
@@ -521,7 +522,8 @@ export class Player extends Character {
       message: `${this.name} has ascended! +20% XP for everyone for 24 hours!`,
       hourDuration: 24,
       bonuses: {
-        xp: 0.2
+        xp: 0.2 + (0.15 * currentAscensionLevel),
+        gold: 0.2 + (0.15 * currentAscensionLevel)
       }
     });
   }
