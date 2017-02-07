@@ -154,7 +154,7 @@ export class Battle {
     player._mp.add(mpRegen);
 
     if(hpRegen > 0 || mpRegen > 0) {
-      this._emitMessage(`${player.fullname} regenerated ${hpRegen} hp and ${mpRegen} mp!`);
+      this._emitMessage(`${player.fullname} regenerated ${hpRegen.toLocaleString()} hp and ${mpRegen.toLocaleString()} mp!`);
     }
 
     player.$effects.tick();
@@ -246,7 +246,7 @@ export class Battle {
           const modXp = p.gainXp(gainedXp);
           const modGold = p.gainGold(goldGainedInParty);
 
-          this._emitMessage(`${p.fullname} gained ${modXp}xp and ${modGold}gold!`);
+          this._emitMessage(`${p.fullname} gained ${modXp.toLocaleString()}xp and ${modGold.toLocaleString()}gold!`);
         });
 
       } else {
@@ -267,7 +267,7 @@ export class Battle {
           const modXp = Math.abs(p.gainXp(-Math.abs(lostXp)));
           const modGold = Math.abs(p.gainGold(-Math.abs(lostGold)));
 
-          this._emitMessage(`${p.fullname} lost ${modXp}xp and ${modGold}gold!`);
+          this._emitMessage(`${p.fullname} lost ${modXp.toLocaleString()}xp and ${modGold.toLocaleString()}gold!`);
         });
       }
     });

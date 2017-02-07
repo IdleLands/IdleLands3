@@ -116,8 +116,8 @@ export class Spell {
         damage = this.dealDamage(target, damage);
       }
 
-      messageData.damage = damage;
-      messageData.healed = Math.abs(damage);
+      messageData.damage = damage.toLocaleString();
+      messageData.healed = Math.abs(damage).toLocaleString();
 
       // TODO mark an attack as fatal somewhere else in metadata and display metadata on site
       if(message) {
