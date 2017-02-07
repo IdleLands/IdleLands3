@@ -7,7 +7,6 @@ import { Logger } from '../shared/logger';
 import { constitute } from '../shared/di-wrapper';
 import { MESSAGES } from '../static/messages';
 
-import { sendSystemMessage } from '../shared/send-system-message';
 import { PlayerLoad } from '../plugins/players/player.load';
 
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
@@ -34,8 +33,11 @@ export class GameState {
     this.festivalContainer = constitute(Festivals);
   }
 
+  cancelFestival(festivalId) {
+    this.festivalContainer.removeFestivalById(festivalId);
+  }
+
   addFestival(festival) {
-    sendSystemMessage(festival.message);
     this.festivalContainer.addFestival(festival);
   }
 

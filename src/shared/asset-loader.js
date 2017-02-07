@@ -66,6 +66,14 @@ export class JSONParser {
     const itemData = this._parseParameters({ name: name, type: type }, parameters);
     return itemData;
   }
+
+  static parseFestivalString(str) {
+    const [name, parameters] = this._parseInitialArgs(str);
+    if(!parameters) return;
+
+    const festData = this._parseParameters({ name: name }, parameters);
+    return festData;
+  }
 }
 
 const loadDirectory = (dir) => {

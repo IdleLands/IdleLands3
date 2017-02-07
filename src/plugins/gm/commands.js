@@ -1,6 +1,7 @@
 
 import { EventHandler } from '../events/eventhandler';
 import { FindItem } from '../events/events/FindItem';
+import { GameState } from '../../core/game-state';
 
 export class GMCommands {
   static teleport(player, { map, x, y, toLoc }) {
@@ -44,5 +45,13 @@ export class GMCommands {
 
   static giveItem(player, item) {
     FindItem.operateOn(player, null, item);
+  }
+
+  static createFestival(festival) {
+    GameState.getInstance().addFestival(festival);
+  }
+
+  static cancelFestival(festivalId) {
+    GameState.getInstance().cancelFestival(festivalId);
   }
 }

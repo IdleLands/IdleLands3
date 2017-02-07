@@ -55,6 +55,8 @@ plugin:chat:togglemute | targetName | Mod only. Toggle muted status for a partic
 plugin:chat:togglepardon | targetName | Mod only. Toggle pardoned status for a particular user.
 plugin:chat:sendmessage | text, channel, route | Send a chat message.
 plugin:combat:retrieve | battleName, playerName | Retrieve a battle from the database.
+plugin:festival:cancel | festivalId | Mod only. Cancel a festival.
+plugin:festival:create | targetFestivalString | Mod only. Create a festival.
 plugin:global:allmaps |  | Get all maps for the global page display. Cannot be logged in to execute this function.
 plugin:global:pet | playerName | Get all pet information for the global page display. Cannot be logged in to execute this function.
 plugin:global:allpets |  | Get all pets for the global page display. Cannot be logged in to execute this function.

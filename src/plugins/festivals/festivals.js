@@ -6,7 +6,10 @@ import { Dependencies } from 'constitute';
 import { FestivalsDb } from './festivals.db';
 import { Festival } from './festival';
 
+import { ObjectId } from 'mongodb';
+
 import { scheduleJob } from 'node-schedule';
+import { sendSystemMessage } from '../../shared/send-system-message';
 
 @Dependencies(FestivalsDb)
 export class Festivals {
@@ -28,19 +31,33 @@ export class Festivals {
   }
 
   addFestival(festival) {
+    if(festival.message) {
+      sendSystemMessage(festival.message);
+    }
     festival = new Festival(festival);
     this.festivalsDb.saveFestival(festival);
     this.festivals.push(festival);
   }
 
+  removeFestivalById(festivalId) {
+    const festival = _.find(this.festivals, { _id: ObjectId(festivalId) });
+    this._removeFestival(festival);
+  }
+
+  _removeFestival(festival) {
+    this.festivals = _.without(this.festivals, festival);
+    sendSystemMessage(`${festival.name} is now over!`);
+    this.festivalsDb.removeFestival(festival);
+  }
+
   setExpiryTimerForFestival(festival) {
     if(festival.endDate < Date.now()) {
-      this.festivalsDb.removeFestival(festival);
+      this._removeFestival(festival);
       return;
     }
 
     scheduleJob(festival.endDate, () => {
-      this.festivalsDb.removeFestival(festival);
+      this._removeFestival(festival);
     });
   }
 }
