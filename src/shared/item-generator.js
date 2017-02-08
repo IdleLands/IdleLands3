@@ -108,12 +108,18 @@ export class ItemGenerator extends Generator {
     if(!item.vector && (level <= 100 || chance.bool({ likelihood: 95 }))) return;
 
     const funcs = [
-      { name: 'linear',      statsModified: 3, modify: (stat) => stat + stat },
-      { name: 'scalar',      statsModified: 1, modify: (stat) => stat * stat },
-      { name: 'vector',      statsModified: 2, modify: (stat) => Math.round(stat + Math.sqrt(stat)) },
-      { name: 'parabolic',   statsModified: 4, modify: (stat) => stat * chance.bool() ? -2 : 2 },
-      { name: 'quadratic',   statsModified: 2, modify: (stat) => stat * (stat + stat) },
-      { name: 'exponential', statsModified: 5, modify: (stat) => Math.round(stat * Math.sqrt(stat)) }
+      { name: 'linear',           statsModified: 3, modify: (stat) => stat + stat },
+      { name: 'scalar',           statsModified: 1, modify: (stat) => stat * stat },
+      { name: 'vector',           statsModified: 2, modify: (stat) => Math.round(stat + Math.sqrt(stat)) },
+      { name: 'parabolic',        statsModified: 4, modify: (stat) => stat * chance.bool() ? -2 : 2 },
+      { name: 'quadratic',        statsModified: 2, modify: (stat) => Math.round(stat * Math.log(stat)) },
+      { name: 'exponential',      statsModified: 1, modify: (stat) => Math.round(stat * Math.sqrt(stat)) },
+
+      { name: 'leve-linear',      statsModified: 2, modify: (stat) => stat + level },
+      { name: 'leve-scalar',      statsModified: 2, modify: (stat) => stat * level },
+      { name: 'leve-vector',      statsModified: 2, modify: (stat) => Math.round(stat + Math.sqrt(level)) },
+      { name: 'leve-quadratic',   statsModified: 2, modify: (stat) => Math.round(stat * Math.log(level)) },
+      { name: 'leve-exponential', statsModified: 2, modify: (stat) => Math.round(stat * Math.sqrt(level)) }
     ];
 
     const weights = [
@@ -121,6 +127,11 @@ export class ItemGenerator extends Generator {
       3,
       5,
       2,
+      4,
+      1,
+      6,
+      3,
+      5,
       4,
       1
     ];
