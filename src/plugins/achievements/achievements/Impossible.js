@@ -13,7 +13,7 @@ export class Impossible extends Achievement {
       desc: 'Cheater!',
       type: AchievementTypes.SPECIAL,
       rewards: [{
-        type: 'title', title: 'l33t h4x0r'
+        type: 'title', title: 'l33t h4x0r', deathMessage: '%player cheated in life, and will probably cheat in death.'
       }, {
         type: 'petattr', petattr: 'a big cheater'
       }]

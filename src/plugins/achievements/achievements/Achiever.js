@@ -19,7 +19,7 @@ export class Achiever extends Achievement {
     const rewards = [];
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Achiever' });
+      rewards.push({ type: 'title', title: 'Achiever', deathMessage: '%player finally achieved something worthwhile: dying.' });
     }
 
     if(tier >= 6) {

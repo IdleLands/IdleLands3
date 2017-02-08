@@ -15,7 +15,8 @@ export class Fateful extends Achievement {
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
-        title: 'Fateful'
+        title: 'Fateful',
+        deathMessage: '%player tempted the scales of fate and was nerfed.'
       }, {
         type: 'petattr',
         petattr: 'a miniature pool with a question mark in it'

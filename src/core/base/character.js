@@ -72,6 +72,25 @@ export class Character {
   get stats() { return this.statCache; }
   get fullname() { return this.name; }
 
+  randomDeathMessage() {
+    return _.sample([
+      '%player watched %hisher innards become outards.',
+      '%player vanished into thin air.',
+      '%player has died.',
+      '%player isn\'t pining for the fjords!',
+      '%player has passed on.',
+      '%player has gone to meet their maker.',
+      '%player\'s a stiff!',
+      'Bereft of life, %player can finally rest in pieces.',
+      '%player\'s metabolic processes are now history!',
+      '%player kicked the bucket, and the bucket kicked back!'
+    ]);
+  }
+
+  get deathMessage() {
+    return this._deathMessage;
+  }
+
   get party() {
     if(!this.$partyName) return null;
     return GameState.getInstance().getParty(this.$partyName);

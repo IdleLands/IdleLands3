@@ -15,7 +15,8 @@ export class Camper extends Achievement {
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
-        title: 'Camper'
+        title: 'Camper',
+        deathMessage: '%player found out the hard way that campfires are hot.'
       }, {
         type: 'petattr',
         petattr: 'a flaming log'

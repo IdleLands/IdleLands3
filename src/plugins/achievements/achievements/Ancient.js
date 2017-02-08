@@ -30,7 +30,7 @@ export class Ancient extends Achievement {
       agiDisplay: `${tier}%`
     }];
 
-    rewards.push({ type: 'title', title: 'Ancient' });
+    rewards.push({ type: 'title', title: 'Ancient', deathMessage: '%player withered away and crumbled to dust.' });
 
     rewards.push({ type: 'petattr', petattr: 'an old rock' });
 

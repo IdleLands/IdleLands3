@@ -24,7 +24,7 @@ export class Territorial extends Achievement {
     }];
 
     if(tier >= 10) {
-      rewards.push({ type: 'title', title: 'Territorial' });
+      rewards.push({ type: 'title', title: 'Territorial', deathMessage: '%player tried guarding %hisher territory but got served by a rival gang.' });
     }
 
     if(tier >= 11) {

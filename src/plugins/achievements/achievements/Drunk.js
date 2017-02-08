@@ -15,7 +15,8 @@ export class Drunk extends Achievement {
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
-        title: 'Drunk'
+        title: 'Drunk',
+        deathMessage: '%player drank too much and fell into a river.'
       }, {
         type: 'petattr',
         petattr: 'a bottle of booze'

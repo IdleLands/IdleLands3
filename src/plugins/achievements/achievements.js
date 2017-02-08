@@ -66,6 +66,20 @@ export class Achievements {
       .value();
   }
 
+  getDeathMessageForTitle(title) {
+    const titleReward = _(this.achievements)
+      .values()
+      .map(achi => achi.rewards)
+      .flattenDeep()
+      .compact()
+      .filter(reward => reward.type === 'title')
+      .filter(reward => reward.title === title)
+      .value()[0];
+
+    if(titleReward) return titleReward.deathMessage;
+    return '';
+  }
+
   tiers() {
     return _(this.achievements)
       .values()

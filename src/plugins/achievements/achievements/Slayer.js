@@ -31,7 +31,7 @@ export class Slayer extends Achievement {
     }
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Slayer' });
+      rewards.push({ type: 'title', title: 'Slayer', deathMessage: '%player died an ironic death of getting impaled by the spear of the child\'s child\'s child of the first goblin %she killed.' });
     }
 
     if(tier >= 6) {

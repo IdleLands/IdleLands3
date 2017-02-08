@@ -15,7 +15,8 @@ export class Soloer extends Achievement {
       type: AchievementTypes.COMBAT,
       rewards: [{
         type: 'title',
-        title: 'Soloer'
+        title: 'Soloer',
+        deathMessage: '%player didn\'t have anyone to watch %hisher back and got stabbed in the back by a backstabbing backstabber.'
       }, {
         type: 'petattr',
         petattr: 'a shield that you probably need by now'

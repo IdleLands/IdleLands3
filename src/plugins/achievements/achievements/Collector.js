@@ -31,7 +31,7 @@ export class Collector extends Achievement {
     }];
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Collector' });
+      rewards.push({ type: 'title', title: 'Collector', deathMessage: '%player tried collecting all the dragon balls but ran out of breath near the 7th one.' });
     }
 
     if(tier >= 6) {

@@ -23,7 +23,7 @@ export class Effective extends Achievement {
     }];
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Effective' });
+      rewards.push({ type: 'title', title: 'Effective', deathMessage: '%player effectively got written out of a will by dying.' });
     }
 
     if(tier >= 6) {

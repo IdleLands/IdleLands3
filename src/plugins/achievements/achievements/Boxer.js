@@ -27,7 +27,7 @@ export class Boxer extends Achievement {
     }
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Boxer' });
+      rewards.push({ type: 'title', title: 'Boxer', deathMessage: '%player went home for boxing day.' });
     }
 
     if(tier >= 6) {

@@ -31,7 +31,7 @@ export class PKer extends Achievement {
     }
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'PKer' });
+      rewards.push({ type: 'title', title: 'PKer', deathMessage: '%player killed too many friends that this was probably a long time coming.' });
     }
 
     if(tier >= 6) {

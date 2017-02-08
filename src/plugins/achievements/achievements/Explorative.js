@@ -28,7 +28,7 @@ export class Explorative extends Achievement {
     }
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Explorative' });
+      rewards.push({ type: 'title', title: 'Explorative', deathMessage: '%player wanted to explore the underworld.' });
     }
 
     if(tier >= 6) {

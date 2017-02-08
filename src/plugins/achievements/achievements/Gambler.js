@@ -23,7 +23,7 @@ export class Gambler extends Achievement {
     }];
 
     if(tier >= 3) {
-      rewards.push({ type: 'title', title: 'Gambler' });
+      rewards.push({ type: 'title', title: 'Gambler', deathMessage: '%player gambled away %hisher life.' });
     }
 
     if(tier >= 4) {

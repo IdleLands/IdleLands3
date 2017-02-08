@@ -28,7 +28,8 @@ export class Classfluid extends Achievement {
       type: AchievementTypes.PROGRESS,
       rewards: [{
         type: 'title',
-        title: 'Fluidic'
+        title: 'Fluidic',
+        deathMessage: '%player was so fluid that they evaporated.'
       }, {
         type: 'petattr',
         petattr: 'a drop of water'

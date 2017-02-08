@@ -13,7 +13,7 @@ export class Levelable extends Achievement {
     }];
 
     if(tier >= 10) {
-      rewards.push({ type: 'title', title: 'Centennial' });
+      rewards.push({ type: 'title', title: 'Centennial', deathMessage: '%player was so old, this was probably coming.' });
     }
 
     if(tier >= 15) {
@@ -21,7 +21,7 @@ export class Levelable extends Achievement {
     }
 
     if(tier >= 20) {
-      rewards.push({ type: 'title', title: 'Bicentennial' });
+      rewards.push({ type: 'title', title: 'Bicentennial', deathMessage: '%player should have wasted away a long time ago!' });
     }
 
     if(tier >= 25) {

@@ -24,7 +24,7 @@ export class Sponge extends Achievement {
     }];
 
     if(tier >= 4) {
-      rewards.push({ type: 'title', title: 'Sponge' });
+      rewards.push({ type: 'title', title: 'Sponge', deathMessage: '%player could only absorb so much.' });
     }
 
     if(tier >= 5) {

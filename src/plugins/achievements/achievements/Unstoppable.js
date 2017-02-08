@@ -24,7 +24,7 @@ export class Unstoppable extends Achievement {
     }];
 
     if(tier >= 4) {
-      rewards.push({ type: 'title', title: 'Unstoppable' });
+      rewards.push({ type: 'title', title: 'Unstoppable', deathMessage: '%player was clearly actually stoppable.' });
     }
 
     if(tier >= 5) {

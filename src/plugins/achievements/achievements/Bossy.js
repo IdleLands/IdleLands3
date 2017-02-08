@@ -27,7 +27,7 @@ export class Bossy extends Achievement {
     }
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Bossy' });
+      rewards.push({ type: 'title', title: 'Bossy', deathMessage: '%player ordered around the wrong person and the mutiny resulted in %hisher death!' });
     }
 
     if(tier >= 6) {

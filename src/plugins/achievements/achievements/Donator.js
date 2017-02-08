@@ -14,7 +14,10 @@ export class Donator extends Achievement {
 
     const tier = 1;
 
-    const rewards = [{ type: 'title', title: 'Donator' }, { type: 'petattr', petattr: 'a platinum bar that says thank you so much, literally' }];
+    const rewards = [
+      { type: 'title', title: 'Donator', deathMessage: '%player donated to the best cause of all: their inevitable demise.' },
+      { type: 'petattr', petattr: 'a platinum bar that says thank you so much, literally' }
+    ];
 
     return [{
       tier,

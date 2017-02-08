@@ -96,6 +96,11 @@ export class Player extends Character {
     return viewName;
   }
 
+  get deathMessage() {
+    if(this._deathMessage) return this._deathMessage;
+    return this.randomDeathMessage();
+  }
+
   takeTurn() {
 
     const activePet = this.$pets.activePet;
@@ -248,8 +253,14 @@ export class Player extends Character {
   }
 
   changeTitle(newTitle) {
-    if(newTitle && !_.includes(this.$achievements.titles(), newTitle)) return;
+    const titles = this.$achievements.titles();
+    if(newTitle && !_.includes(titles, newTitle)) return;
     this.title = newTitle;
+    if(newTitle) {
+      this._deathMessage = this.$achievements.getDeathMessageForTitle(newTitle);
+    } else {
+      this._deathMessage = null;
+    }
     emitter.emit('player:changetitle', { player: this });
   }
 

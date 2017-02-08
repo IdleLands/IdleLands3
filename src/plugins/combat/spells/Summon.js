@@ -83,7 +83,7 @@ export class Summon extends Spell {
     // Lich summons use default death message if they have phylacteries left.
     
     if(!isLich) {
-      summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
+      summonedMonster._deathMessage = '%player exploded into a pile of arcane dust!';
     }
     
     summonedMonster._eventSelfKilled = () => {
@@ -94,7 +94,7 @@ export class Summon extends Spell {
       // If the lich has HP but no phylacteries, he's on his last life, so he stays in the party.
       if(isLich && !summonedMonster._hp.atMinimum()) {
         // Change to the standard minion death message.
-        summonedMonster.deathMessage = '%player exploded into a pile of arcane dust!';
+        summonedMonster._deathMessage = '%player exploded into a pile of arcane dust!';
         return;
       }
       

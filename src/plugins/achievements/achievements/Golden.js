@@ -24,7 +24,7 @@ export class Golden extends Achievement {
     }];
 
     if(tier >= 3) {
-      rewards.push({ type: 'title', title: 'Golden Child' });
+      rewards.push({ type: 'title', title: 'Golden Child', deathMessage: '%player was transmuted into a literal brick of gold and sold on the gold market. Talk about going gold.' });
     }
 
     if(tier >= 4) {

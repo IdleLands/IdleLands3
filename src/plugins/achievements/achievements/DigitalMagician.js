@@ -15,7 +15,8 @@ export class DigitalMagician extends Achievement {
       type: AchievementTypes.COMBAT,
       rewards: [{
         type: 'title',
-        title: 'Digital Magician'
+        title: 'Digital Magician',
+        deathMessage: '%player became nothing more than bits and pieces.'
       }, {
         type: 'petattr',
         petattr: 'a digitally signed certificate'

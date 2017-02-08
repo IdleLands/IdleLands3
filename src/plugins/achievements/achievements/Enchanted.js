@@ -26,7 +26,8 @@ export class Enchanted extends Achievement {
       type: AchievementTypes.PROGRESS,
       rewards: [{
         type: 'title',
-        title: 'Enchanted'
+        title: 'Enchanted',
+        deathMessage: '%player was so transfixed on the transmogrification of %himherself that %she died in the process.'
       }, {
         type: 'petattr',
         petattr: 'a blob of arcane dust'

@@ -16,7 +16,8 @@ export class Entitled extends Achievement {
       type: AchievementTypes.EVENT,
       rewards: [{
         type: 'title',
-        title: 'Entitled'
+        title: 'Entitled',
+        deathMessage: '%player didn\'t want to live anyway, b-b-baka!'
       }, {
         type: 'petattr',
         petattr: 'a small child who wants a lot of things'

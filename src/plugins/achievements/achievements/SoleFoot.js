@@ -15,7 +15,8 @@ export class SoleFoot extends Achievement {
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
-        title: 'Sole Foot'
+        title: 'Sole Foot',
+        deathMessage: '%player was walking on one foot for too long that %she fell over and died.'
       }, {
         type: 'petattr',
         petattr: 'a literal rabbit foot'

@@ -15,7 +15,8 @@ export class TempterOfFate extends Achievement {
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
-        title: 'Tempter of Fate'
+        title: 'Tempter of Fate',
+        deathMessage: '%player tipped the scales of fate too many times and finally succumbed to it.'
       }, {
         type: 'petattr',
         petattr: 'a crazy hat that instills craziness'

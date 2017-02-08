@@ -24,7 +24,7 @@ export class Consumerist extends Achievement {
     }];
 
     if(tier >= 3) {
-      rewards.push({ type: 'title', title: 'Consumerist' });
+      rewards.push({ type: 'title', title: 'Consumerist', deathMessage: '%player consumed too much and died of an implosive explosion.' });
     }
 
     if(tier >= 4) {

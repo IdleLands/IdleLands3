@@ -15,7 +15,8 @@ export class Ascended extends Achievement {
       type: AchievementTypes.SPECIAL,
       rewards: [{
         type: 'title',
-        title: 'Ascended'
+        title: 'Ascended',
+        deathMessage: '%player went to a higher plane of existence.'
       }, {
         type: 'petattr',
         petattr: 'a golden and silver halo with an angel floating above it bathed in the light of Idliathlia'

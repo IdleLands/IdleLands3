@@ -23,7 +23,7 @@ export class Critical extends Achievement {
     }];
 
     if(tier >= 6) {
-      rewards.push({ type: 'title', title: 'Critical' });
+      rewards.push({ type: 'title', title: 'Critical', deathMessage: '%player rolled a critical failure on their life-saving roll.' });
       rewards.push({ type: 'stats', crit: 1 });
     }
 

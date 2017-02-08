@@ -21,7 +21,7 @@ export class Walker extends Achievement {
     }];
 
     if(tier >= 6) {
-      rewards.push({ type: 'title', title: 'Tired Foot' });
+      rewards.push({ type: 'title', title: 'Tired Foot', deathMessage: '%player got sick of walking and gave up.' });
     }
 
     if(tier >= 7) {

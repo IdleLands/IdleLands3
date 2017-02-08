@@ -14,7 +14,10 @@ export class Contributor extends Achievement {
 
     const tier = 1;
 
-    const rewards = [{ type: 'title', title: 'Contributor' }, { type: 'petattr', petattr: 'a gold coin that says thank you' }];
+    const rewards = [
+      { type: 'title', title: 'Contributor', deathMessage: '%player found out that contributing to their death IRA was not such a good idea after all.' },
+      { type: 'petattr', petattr: 'a gold coin that says thank you' }
+    ];
 
     return [{
       tier,

@@ -22,7 +22,7 @@ export class Eventful extends Achievement {
     }];
 
     if(tier >= 5) {
-      rewards.push({ type: 'title', title: 'Center of Attention' });
+      rewards.push({ type: 'title', title: 'Center of Attention', deathMessage: '%player exploded into a fantastic display of lights, disco, and confetti.' });
     }
 
     if(tier >= 6) {
