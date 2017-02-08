@@ -108,18 +108,18 @@ export class ItemGenerator extends Generator {
     if(!item.vector && (level <= 100 || chance.bool({ likelihood: 95 }))) return;
 
     const funcs = [
-      { name: 'linear',           statsModified: 3, modify: (stat) => stat + stat },
-      { name: 'scalar',           statsModified: 1, modify: (stat) => stat * stat },
-      { name: 'vector',           statsModified: 2, modify: (stat) => Math.round(stat + Math.sqrt(stat)) },
-      { name: 'parabolic',        statsModified: 4, modify: (stat) => stat * chance.bool() ? -2 : 2 },
-      { name: 'quadratic',        statsModified: 2, modify: (stat) => Math.round(stat * Math.log(stat)) },
-      { name: 'exponential',      statsModified: 1, modify: (stat) => Math.round(stat * Math.sqrt(stat)) },
+      { name: 'linear',           modify: (stat) => stat + stat },
+      { name: 'scalar',           modify: (stat) => stat * stat },
+      { name: 'vector',           modify: (stat) => Math.round(stat + Math.sqrt(stat)) },
+      { name: 'parabolic',        modify: (stat) => stat * chance.bool() ? -2 : 2 },
+      { name: 'quadratic',        modify: (stat) => Math.round(stat * Math.log(stat)) },
+      { name: 'exponential',      modify: (stat) => Math.round(stat * Math.sqrt(stat)) },
 
-      { name: 'leve-linear',      statsModified: 2, modify: (stat) => stat + level },
-      { name: 'leve-scalar',      statsModified: 2, modify: (stat) => stat * level },
-      { name: 'leve-vector',      statsModified: 2, modify: (stat) => Math.round(stat + Math.sqrt(level)) },
-      { name: 'leve-quadratic',   statsModified: 2, modify: (stat) => Math.round(stat * Math.log(level)) },
-      { name: 'leve-exponential', statsModified: 2, modify: (stat) => Math.round(stat * Math.sqrt(level)) }
+      { name: 'leve-linear',      modify: (stat) => stat + level },
+      { name: 'leve-scalar',      modify: (stat) => stat * level },
+      { name: 'leve-vector',      modify: (stat) => Math.round(stat + Math.sqrt(level)) },
+      { name: 'leve-quadratic',   modify: (stat) => Math.round(stat * Math.log(level)) },
+      { name: 'leve-exponential', modify: (stat) => Math.round(stat * Math.sqrt(level)) }
     ];
 
     const weights = [
@@ -145,10 +145,11 @@ export class ItemGenerator extends Generator {
             || _.isString(item[prop]);
       })
       .keys()
-      .sampleSize(item.vector || func.statsModified)
       .value();
 
-    _.each(validKeys, key => {
+    const chosenKeys = _.sampleSize(validKeys, item.vector || chance.integer({ min: 1, max: validKeys.length }));
+
+    _.each(chosenKeys, key => {
       item[key] = func.modify(item[key]);
     });
 
