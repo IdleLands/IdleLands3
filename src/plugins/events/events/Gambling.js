@@ -4,7 +4,7 @@ import { Event } from '../event';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 7;
+export const WEIGHT = 4;
 const MIN_GOLD = 5000;
 
 // Get the opportunity to buy an item
