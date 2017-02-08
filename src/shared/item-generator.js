@@ -147,7 +147,8 @@ export class ItemGenerator extends Generator {
       .keys()
       .value();
 
-    const chosenKeys = _.sampleSize(validKeys, item.vector || chance.integer({ min: 1, max: validKeys.length }));
+    const numKeys = item.vector ? Math.min(validKeys.length, item.vector) : chance.integer({ min: 1, max: validKeys.length });
+    const chosenKeys = _.sampleSize(validKeys, numKeys);
 
     _.each(chosenKeys, key => {
       item[key] = func.modify(item[key]);
