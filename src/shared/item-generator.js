@@ -44,11 +44,12 @@ export class ItemGenerator extends Generator {
     return equipment;
   }
 
-  static getAllTreasure(chestName) {
+  static getAllTreasure(chestName, player) {
     return _.map(Chests[chestName].items, itemName => {
       const item = new Equipment(Treasures[itemName]);
       item.name = itemName;
       item.itemClass = 'guardian';
+      this.tryToVectorize(item, player.level);
       return item;
     });
   }
