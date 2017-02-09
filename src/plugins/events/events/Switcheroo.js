@@ -10,7 +10,10 @@ export class Switcheroo extends Event {
 
   static operateOn(player) {
     const item = this.pickValidItem(player);
+    if(!item) return;
+
     const stat = this.pickStat(item);
+    if(!stat) return;
 
     const eventText = this.eventText('flipStat', player, { item: item.fullname });
 

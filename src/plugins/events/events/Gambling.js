@@ -4,17 +4,18 @@ import { Event } from '../event';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 4;
+export const WEIGHT = 3;
 const MIN_GOLD = 5000;
+const INCOME_PERCENT = 10;
 
-// Get the opportunity to buy an item
+// Get the opportunity to gamble away your gold
 export class Gambling extends Event {
   static WEIGHT = WEIGHT;
 
   static operateOn(player) {
 
-    if(player.gold < MIN_GOLD * 4) return;
-    const cost = this.chance.integer({ min: MIN_GOLD, max: player.gold / 4 });
+    if(player.gold < MIN_GOLD * INCOME_PERCENT) return;
+    const cost = this.chance.integer({ min: MIN_GOLD, max: player.gold / INCOME_PERCENT });
 
     const id = Event.chance.guid();
     const multiplier = this.chance.floating({ fixed: 2, min: 1, max: 2 });
