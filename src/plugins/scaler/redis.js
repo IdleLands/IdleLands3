@@ -6,6 +6,7 @@ import NRP from 'node-redis-pubsub';
 import { GameState } from '../../core/game-state';
 import { PlayerLoginData, PlayerLogoutData, PlayerUpdateAllData } from '../../shared/playerlist-updater';
 import { sendMessage } from '../chat/sendmessage';
+import { GMCommands } from '../gm/commands';
 
 const redisUrl = process.env.REDIS_URL;
 
@@ -35,7 +36,7 @@ if(redisInstance) {
   });
 
   redisInstance.on('player:login', ({ playerName, data }) => {
-    if(GameState.getInstance().hasPlayer(playerName)) return;
+    if(GameState.getInstance().getPlayer(playerName)) return;
     PlayerLoginData(playerName, data);
     otherPlayers.push(data);
   });
@@ -46,7 +47,7 @@ if(redisInstance) {
   });
 
   redisInstance.on('chat:send', ({ message }) => {
-    if(GameState.getInstance().hasPlayer(message.realPlayerName)) return;
+    if(GameState.getInstance().getPlayer(message.realPlayerName)) return;
     sendMessage(message);
   });
 
@@ -56,6 +57,42 @@ if(redisInstance) {
 
   redisInstance.on('festival:cancel', ({ festivalId }) => {
     GameState.getInstance().cancelFestivalData(festivalId);
+  });
+
+  redisInstance.on('gm:teleport', ({ playerName, opts }) => {
+    GMCommands.teleport(playerName, opts, false);
+  });
+
+  redisInstance.on('gm:togglemod', ({ playerName }) => {
+    GMCommands.toggleMod(playerName, false);
+  });
+
+  redisInstance.on('gm:toggleachievement', ({ playerName, achievement }) => {
+    GMCommands.toggleAchievement(playerName, achievement, false);
+  });
+
+  redisInstance.on('gm:setlevel', ({ playerName, level }) => {
+    GMCommands.setLevel(playerName, level, false);
+  });
+
+  redisInstance.on('gm:giveitem', ({ playerName, item }) => {
+    GMCommands.giveItem(playerName, item, false);
+  });
+
+  redisInstance.on('gm:giveevent', ({ playerName, event }) => {
+    GMCommands.giveEvent(playerName, event, false);
+  });
+
+  redisInstance.on('gm:ban', ({ playerName }) => {
+    GMCommands.ban(playerName, false);
+  });
+
+  redisInstance.on('gm:mute', ({ playerName }) => {
+    GMCommands.mute(playerName, false);
+  });
+
+  redisInstance.on('gm:pardon', ({ playerName }) => {
+    GMCommands.pardon(playerName, false);
   });
 }
 
@@ -109,4 +146,49 @@ export const AddFestivalRedis = (festival) => {
 export const CancelFestivalRedis = (festivalId) => {
   if(!redisInstance) return;
   redisInstance.emit('festival:cancel', { festivalId });
+};
+
+export const TeleportRedis = (playerName, opts) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:teleport', { playerName, opts });
+};
+
+export const ToggleModRedis = (playerName) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:togglemod', { playerName });
+};
+
+export const ToggleAchievementRedis = (playerName, achievement) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:toggleachievement', { playerName, achievement });
+};
+
+export const SetLevelRedis = (playerName, level) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:setlevel', { playerName, level });
+};
+
+export const GiveItemRedis = (playerName, item) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:giveitem', { playerName, item });
+};
+
+export const GiveEventRedis = (playerName, event) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:giveevent', { playerName, event });
+};
+
+export const BanRedis = (playerName) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:ban', { playerName });
+};
+
+export const MuteRedis = (playerName) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:mute', { playerName });
+};
+
+export const PardonRedis = (playerName) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:pardon', { playerName });
 };

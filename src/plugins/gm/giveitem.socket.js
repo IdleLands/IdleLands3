@@ -19,8 +19,6 @@ export const socket = (socket, primus, respond) => {
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player || !player.isMod) return;
 
-    const target = GameState.getInstance().getPlayer(targetName);
-
     const item = JSONParser.parseItemString(targetItemString);
 
     if(!item || !item.type || !item.name) {
@@ -31,7 +29,7 @@ export const socket = (socket, primus, respond) => {
 
     const itemInst = new Equipment(item);
 
-    GMCommands.giveItem(target, itemInst);
+    GMCommands.giveItem(targetName, itemInst);
   };
 
   socket.on(event, giveitem);

@@ -2,7 +2,7 @@
 import { GameState } from '../../core/game-state';
 import { Logger } from '../../shared/logger';
 
-import { emitter } from '../../plugins/players/_emitter';
+import { GMCommands } from '../gm/commands';
 
 export const event = 'plugin:chat:toggleban';
 export const description = 'Mod only. Toggle banned status for a particular user. Generally only used to ban, as they get kicked immediately.';
@@ -22,10 +22,7 @@ export const socket = (socket) => {
     if(!player || !player.isMod || !target) return;
     Logger.info('Socket:Ban', `${playerName} (${socket.address.ip}) banning ${targetName}.`);
 
-    target.isBanned = true;
-    target._saveSelf();
-
-    emitter.emit('player:logout', { playerName: targetName });
+    GMCommands.ban(targetName);
   };
 
   socket.on(event, toggleban);

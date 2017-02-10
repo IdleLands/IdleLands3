@@ -17,8 +17,7 @@ export const socket = (socket) => {
     if(!player || !player.isMod) return;
     Logger.info('Socket:GM:SetLevel', `${playerName} (${socket.address.ip}) setting level ${targetLevel} on ${targetName}.`);
 
-    const target = GameState.getInstance().getPlayer(targetName);
-    GMCommands.setLevel(target, targetLevel);
+    GMCommands.setLevel(targetName, targetLevel);
   };
 
   socket.on(event, setlevel);

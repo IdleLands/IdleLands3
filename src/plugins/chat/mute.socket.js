@@ -2,7 +2,7 @@
 import { GameState } from '../../core/game-state';
 import { Logger } from '../../shared/logger';
 
-import { PlayerUpdateAll } from '../../shared/playerlist-updater';
+import { GMCommands } from '../gm/commands';
 
 export const event = 'plugin:chat:togglemute';
 export const description = 'Mod only. Toggle muted status for a particular user.';
@@ -22,12 +22,7 @@ export const socket = (socket) => {
     if(!player || !player.isMod || !target) return;
     Logger.info('Socket:Mute', `${playerName} (${socket.address.ip}) muting ${targetName}.`);
 
-    target.isMuted = !target.isMuted;
-    if(target.isMuted && target.isPardoned) target.isPardoned = false;
-
-    target._saveSelf();
-
-    PlayerUpdateAll(target._id, ['isMuted', 'isPardoned']);
+    GMCommands.mute(targetName);
   };
 
   socket.on(event, togglemute);

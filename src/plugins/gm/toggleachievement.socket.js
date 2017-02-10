@@ -17,8 +17,7 @@ export const socket = (socket) => {
     if(!player || !player.isMod) return;
     Logger.info('Socket:GM:TogglePermanentAchievement', `${playerName} (${socket.address.ip}) giving achievement ${achievement} to ${targetName}.`);
 
-    const target = GameState.getInstance().getPlayer(targetName);
-    GMCommands.toggleAchievement(target, achievement);
+    GMCommands.toggleAchievement(targetName, achievement);
   };
 
   socket.on(event, toggleachievement);

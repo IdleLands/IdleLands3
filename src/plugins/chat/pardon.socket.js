@@ -2,7 +2,7 @@
 import { GameState } from '../../core/game-state';
 import { Logger } from '../../shared/logger';
 
-import { PlayerUpdateAll } from '../../shared/playerlist-updater';
+import { GMCommands } from '../gm/commands';
 
 export const event = 'plugin:chat:togglepardon';
 export const description = 'Mod only. Toggle pardoned status for a particular user.';
@@ -22,10 +22,7 @@ export const socket = (socket) => {
     if(!player || !player.isMod || !target) return;
     Logger.info('Socket:Pardon', `${playerName} (${socket.address.ip}) pardoning ${targetName}.`);
 
-    target.isPardoned = !target.isPardoned;
-    if(target.isPardoned && target.isMuted) target.isMuted = false;
-
-    PlayerUpdateAll(target._id, ['isMuted', 'isPardoned']);
+    GMCommands.pardon(playerName);
   };
 
   socket.on(event, togglepardon);

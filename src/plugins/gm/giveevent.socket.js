@@ -17,8 +17,7 @@ export const socket = (socket) => {
     if(!player || !player.isMod) return;
     Logger.info('Socket:GM:GiveEvent', `${playerName} (${socket.address.ip}) giving event ${targetEvent} to ${targetName}.`);
 
-    const target = GameState.getInstance().getPlayer(targetName);
-    GMCommands.giveEvent(target, targetEvent);
+    GMCommands.giveEvent(targetName, targetEvent);
   };
 
   socket.on(event, setlevel);

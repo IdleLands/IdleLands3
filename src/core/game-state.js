@@ -148,10 +148,6 @@ export class GameState {
     return obj;
   }
 
-  hasPlayer(playerName) {
-    return _.find(this.players, { name: playerName });
-  }
-
   getPlayersSimple(keys, override) {
     return _.map(this.players, p => this.getPlayerSimple(p, keys, override));
   }
