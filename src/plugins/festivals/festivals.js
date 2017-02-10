@@ -31,6 +31,8 @@ export class Festivals {
   }
 
   addFestival(festival) {
+    if(_.find(this.festivals, { name: festival.name })) return;
+
     if(festival.message) {
       sendSystemMessage(festival.message);
     }
@@ -41,6 +43,7 @@ export class Festivals {
 
   removeFestivalById(festivalId) {
     const festival = _.find(this.festivals, { _id: ObjectId(festivalId) });
+    if(!festival) return;
     this._removeFestival(festival);
   }
 
