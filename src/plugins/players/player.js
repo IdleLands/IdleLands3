@@ -241,6 +241,10 @@ export class Player extends Character {
     this.update();
   }
 
+  emitLevelChange() {
+    emitter.emit('player:changelevel', { player: this });
+  }
+
   removeChoice(id) {
     this.choices = _.reject(this.choices, { id });
   }

@@ -66,6 +66,11 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
   });
 });
 
+PlayerEmitter.on('player:changelevel', ({ player }) => {
+  PlayerUpdateAll(player.name, ['level']);
+  player.update();
+});
+
 PlayerEmitter.on('player:changegender', ({ player }) => {
   PlayerUpdateAll(player.name, ['gender']);
   player.update();

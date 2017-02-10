@@ -82,12 +82,14 @@ export class Providence extends Event {
         player._level.sub(1);
         player.resetMaxXp();
         player._xp.set(player._xp.maximum + lostXp);
+        player.emitLevelChange();
       }
 
     } else if(level && Event.chance.bool({ likelihood: this.probabilities.level })) {
       player._level.add(level);
       player.resetMaxXp();
       message = `${message} ${level > 0 ? 'Gained' : 'Lost'} ${Math.abs(level)} levels!`;
+      player.emitLevelChange();
     }
 
     if(player.gender !== gender && Event.chance.bool({ likelihood: this.probabilities.gender })) {
