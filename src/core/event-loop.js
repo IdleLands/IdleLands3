@@ -16,6 +16,9 @@ import '../shared/asset-loader';
 Logger.info('Core', 'Loading events.');
 import '../plugins/events/eventhandler';
 
+Logger.info('Redis', 'Connecting to Redis (if possible).');
+import '../plugins/scaler/redis';
+
 Logger.info('Core', 'Creating game state.');
 GameState.getInstance();
 

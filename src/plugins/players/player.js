@@ -63,7 +63,6 @@ export class Player extends Character {
   quickLogin() {
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
-    this._updateParty();
 
     if(this.isMod) {
       this.emitGMData();
