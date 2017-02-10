@@ -3,21 +3,21 @@
 
 ## Table of Contents
 
-1. [Archer](#Archer)
-2. [Barbarian](#Barbarian)
-3. [Bard](#Bard)
-4. [Bitomancer](#Bitomancer)
-5. [Cleric](#Cleric)
-6. [Fighter](#Fighter)
-7. [Generalist](#Generalist)
-8. [Jester](#Jester)
-9. [Mage](#Mage)
-10. [MagicalMonster](#MagicalMonster)
-11. [Monster](#Monster)
-12. [Necromancer](#Necromancer)
-13. [Pirate](#Pirate)
-14. [Rogue](#Rogue)
-15. [SandwichArtist](#SandwichArtist)
+1. [Archer](#archer)
+2. [Barbarian](#barbarian)
+3. [Bard](#bard)
+4. [Bitomancer](#bitomancer)
+5. [Cleric](#cleric)
+6. [Fighter](#fighter)
+7. [Generalist](#generalist)
+8. [Jester](#jester)
+9. [Mage](#mage)
+10. [MagicalMonster](#magicalmonster)
+11. [Monster](#monster)
+12. [Necromancer](#necromancer)
+13. [Pirate](#pirate)
+14. [Rogue](#rogue)
+15. [SandwichArtist](#sandwichartist)
 
 
 
