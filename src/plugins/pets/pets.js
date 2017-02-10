@@ -167,7 +167,7 @@ export class Pets {
 
   changePetAttr(player, newAttr) {
     const allAttrs = player.$achievements.petAttributes();
-    if(!_.includes(allAttrs, newAttr)) return;
+    if(newAttr && !_.includes(allAttrs, newAttr)) return;
 
     this.activePet.changeAttr(newAttr);
     player.__updatePetActive();
