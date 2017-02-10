@@ -63,13 +63,41 @@ class Settings {
     this.chatMessageMaxLength = 500;
 
     this.holidays = {
-      winter: {
-        start: new Date('Dec 1'),
-        end:   new Date('Dec 31')
-      },
       valentine: {
         start: new Date('Feb 1'),
         end:   new Date('Feb 28')
+      },
+      leprechaun: {
+        start: new Date('Mar 1'),
+        end:   new Date('Mar 31')
+      },
+      eggs: {
+        start: new Date('Apr 1'),
+        end:   new Date('Apr 30')
+      },
+      anniversary: {
+        start: new Date('Jun 1'),
+        end:   new Date('Jun 30')
+      },
+      fireworks: {
+        start: new Date('Jul 1'),
+        end:   new Date('Jul 31')
+      },
+      school: {
+        start: new Date('Sep 1'),
+        end:   new Date('Sep 30')
+      },
+      hallows: {
+        start: new Date('Oct 1'),
+        end:   new Date('Oct 31')
+      },
+      turkeys: {
+        start: new Date('Nov 1'),
+        end:   new Date('Nov 31')
+      },
+      winter: {
+        start: new Date('Dec 1'),
+        end:   new Date('Dec 31')
       }
     };
 
