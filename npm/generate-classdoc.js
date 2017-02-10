@@ -13,14 +13,20 @@ let docString = `
 `;
 
 _.each(_.sortBy(_.keys(Professions)), (profession, index) => {
-  docString += `${index + 1}. ${profession}\n`;
+  docString += `${index + 1}. [${profession}](#${profession})\n`;
 });
 
 docString += '\n\n';
 
-_.each(_.sortBy(_.keys(Professions)), (professionKey) => {
+_.each(_.sortBy(_.keys(Professions)), (professionKey, index) => {
 
   const profession = Professions[professionKey];
+
+  if (index > 0) {
+    docString += `\n######[\\[top\\]](#idlelands-pets)`;
+  }
+
+  docString += `\n---\n\n`;
 
   docString += `## ${professionKey}\n\n`;
   docString += '### Stats Per Level\n\n';

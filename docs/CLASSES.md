@@ -3,22 +3,25 @@
 
 ## Table of Contents
 
-1. Archer
-2. Barbarian
-3. Bard
-4. Bitomancer
-5. Cleric
-6. Fighter
-7. Generalist
-8. Jester
-9. Mage
-10. MagicalMonster
-11. Monster
-12. Necromancer
-13. Pirate
-14. Rogue
-15. SandwichArtist
+1. [Archer](#Archer)
+2. [Barbarian](#Barbarian)
+3. [Bard](#Bard)
+4. [Bitomancer](#Bitomancer)
+5. [Cleric](#Cleric)
+6. [Fighter](#Fighter)
+7. [Generalist](#Generalist)
+8. [Jester](#Jester)
+9. [Mage](#Mage)
+10. [MagicalMonster](#MagicalMonster)
+11. [Monster](#Monster)
+12. [Necromancer](#Necromancer)
+13. [Pirate](#Pirate)
+14. [Rogue](#Rogue)
+15. [SandwichArtist](#SandwichArtist)
 
+
+
+---
 
 ## Archer
 
@@ -45,6 +48,10 @@ STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 18 | 0 | 0 | 0 | 0
 
+
+######[\[top\]](#idlelands-pets)
+---
+
 ## Barbarian
 
 ### Stats Per Level
@@ -69,6 +76,10 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 0 | 0
+
+
+######[\[top\]](#idlelands-pets)
+---
 
 ## Bard
 
@@ -95,6 +106,10 @@ STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 30 | 0
 
+
+######[\[top\]](#idlelands-pets)
+---
+
 ## Bitomancer
 
 ### Stats Per Level
@@ -119,6 +134,10 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 0 | 0
+
+
+######[\[top\]](#idlelands-pets)
+---
 
 ## Cleric
 
@@ -145,6 +164,10 @@ STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 30 | 0
 
+
+######[\[top\]](#idlelands-pets)
+---
+
 ## Fighter
 
 ### Stats Per Level
@@ -169,6 +192,10 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 6 | 0 | 0 | 0 | 6 | 0
+
+
+######[\[top\]](#idlelands-pets)
+---
 
 ## Generalist
 
@@ -195,6 +222,10 @@ STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 18 | 0
 
+
+######[\[top\]](#idlelands-pets)
+---
+
 ## Jester
 
 ### Stats Per Level
@@ -219,6 +250,10 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 0 | 30
+
+
+######[\[top\]](#idlelands-pets)
+---
 
 ## Mage
 
@@ -245,6 +280,10 @@ STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 42 | 0
 
+
+######[\[top\]](#idlelands-pets)
+---
+
 ## MagicalMonster
 
 ### Stats Per Level
@@ -269,6 +308,10 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 120 | 0
+
+
+######[\[top\]](#idlelands-pets)
+---
 
 ## Monster
 
@@ -295,6 +338,10 @@ STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 0 | 0
 
+
+######[\[top\]](#idlelands-pets)
+---
+
 ## Necromancer
 
 ### Stats Per Level
@@ -319,6 +366,10 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 72 | 0
+
+
+######[\[top\]](#idlelands-pets)
+---
 
 ## Pirate
 
@@ -345,6 +396,10 @@ STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 30 | 0
 
+
+######[\[top\]](#idlelands-pets)
+---
+
 ## Rogue
 
 ### Stats Per Level
@@ -369,6 +424,10 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 6 | 0 | 0 | 0 | 0
+
+
+######[\[top\]](#idlelands-pets)
+---
 
 ## SandwichArtist
 
