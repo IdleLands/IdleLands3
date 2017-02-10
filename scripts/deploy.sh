@@ -46,8 +46,6 @@ git config user.email "travis@travis-ci.org"
 rm -rf .babelrc .editorconfig .eslintignore .eslintrc .gitignore .travis.yml LICENSE README.md
 rm -rf docs scripts src test node_modules assets
 
-echo 'web: node dist/index.js' > Procfile
-
 git remote add origin-heroku https://${GH_TOKEN}@github.com/IdleLands/IdleLands.git > /dev/null 2>&1
 
 # Commit the "changes", i.e. the new version.

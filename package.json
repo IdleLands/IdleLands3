@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run install:assets",
     "install:assets": "node npm/install-assets",
-    "start": "node index.js",
+    "start": "node dist/index.js",
     "start:dev": "node src/index.js",
     "start:inspect": "node --expose-gc --inspect=9222 src/index.js",
     "start:battletest": "cross-env BATTLE_DEBUG=1 node src/index.js",
