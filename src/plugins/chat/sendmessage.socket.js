@@ -67,6 +67,7 @@ export const socket = (socket, primus) => {
       route,
       title: player.title,
       playerName: player.nameEdit ? player.nameEdit : player.name,
+      realPlayerName: player.name,
       level: player.level,
       event,
       ip: player.$currentIp,

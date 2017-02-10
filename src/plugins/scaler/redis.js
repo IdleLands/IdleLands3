@@ -46,6 +46,7 @@ if(redisInstance) {
   });
 
   redisInstance.on('chat:send', ({ message }) => {
+    if(GameState.getInstance().hasPlayer(message.realPlayerName)) return;
     sendMessage(message);
   });
 

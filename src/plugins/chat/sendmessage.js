@@ -13,7 +13,7 @@ export const sendMessage = (messageObject) => {
   } else {
     primus.room(messageObject.route).write(messageObject);
 
-    if(messageObject.route === 'General' && primus.extChat) {
+    if(messageObject.route === 'chat:channel:General' && primus.extChat) {
       primus.extChat.sendMessage(messageObject);
     }
   }
