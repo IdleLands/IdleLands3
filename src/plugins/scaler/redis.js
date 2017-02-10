@@ -17,7 +17,7 @@ const redisInstance = redisUrl ? new NRP({
 const innerRedisClient = redisInstance ? redisInstance.getRedisClient() : null;
 
 const cleanRedis = () => {
-  if(!innerRedisClient) return;
+  if(!innerRedisClient || _.isNumber(process.env.INSTANCE_NUMBER)) return;
   innerRedisClient.del('IsFirst', () => {
     process.exit();
   });
@@ -99,6 +99,11 @@ if(redisInstance) {
 const firstNodePromise = new Promise((resolve) => {
   // no redis = yes, this is client #1
   if(!redisInstance) return resolve(true);
+
+  // deployed on clever-cloud
+  if(_.isNumber(process.env.INSTANCE_NUMBER)) {
+    return process.env.INSTANCE_NUMBER === 0 ? resolve(true) : resolve(false);
+  }
 
   // do logic
   innerRedisClient.get('IsFirst', (e, hasFirst) => {

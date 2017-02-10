@@ -13,6 +13,7 @@ import { MESSAGES } from '../../static/messages';
 import { GameState } from '../../core/game-state';
 
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
+const SERVER_ID = process.env.INSTANCE_NUMBER || 0;
 
 export const event = 'plugin:player:login';
 export const description = 'Log in or register a new character. Login only requires userId.';
@@ -107,7 +108,7 @@ export const socket = (socket, primus, respond) => {
       if(gameState._hasTimeout(oldPlayer.name)) {
         gameState._clearTimeout(oldPlayer.name);
       }
-      Logger.info('Login', oldPlayer.name + ' semi-login.');
+      Logger.info('Login', `${oldPlayer.name} semi-login (server ${SERVER_ID}).`);
       event = 'player:semilogin';
     }
 
@@ -124,7 +125,7 @@ export const socket = (socket, primus, respond) => {
     // closed
     if(socket.readyState === 2) return;
 
-    Logger.info('Socket:Player:Login', `${socket.playerName} (${socket.address.ip}, ${userId}) logging in.`);
+    Logger.info('Socket:Player:Login', `${socket.playerName} (${socket.address.ip}, ${userId}) logging in (server ${SERVER_ID}).`);
     
     primus.addPlayer(loggedInPlayerName, socket);
 
