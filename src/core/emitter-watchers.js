@@ -22,6 +22,7 @@ PlayerEmitter.on('player:login', async ({ playerName, fromIp }) => {
   if(!player) return;
   migrate(player);
   handleIp(player, fromIp);
+  player.$shard = process.env.INSTANCE_NUMBER;
   player.update();
   player.$statistics.incrementStat('Game.Logins');
   AllPlayers(playerName);

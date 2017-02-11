@@ -10,7 +10,7 @@ import { MESSAGES } from '../static/messages';
 import { PlayerLoad } from '../plugins/players/player.load';
 
 const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
-const EXTRA_KEYS = ['_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$currentIp', 'ascensionLevel'];
+const EXTRA_KEYS = ['_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$shard', '$currentIp', 'ascensionLevel'];
 
 import { AddFestivalRedis, CancelFestivalRedis } from '../plugins/scaler/redis';
 
