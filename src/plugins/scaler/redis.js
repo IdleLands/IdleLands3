@@ -50,9 +50,9 @@ if(redisInstance) {
     SomePlayersPostMoveData(data);
   });
 
-  redisInstance.on('chat:send', ({ message }) => {
+  redisInstance.on('chat:send', ({ message, isExternal }) => {
     if(GameState.getInstance().getPlayer(message.realPlayerName)) return;
-    sendMessage(message);
+    sendMessage(message, isExternal);
   });
 
   redisInstance.on('festival:add', ({ festival }) => {
@@ -154,7 +154,7 @@ export const SendChatMessage = (message, isExternal) => {
     }
     return;
   }
-  redisInstance.emit('chat:send', { message });
+  redisInstance.emit('chat:send', { message, isExternal });
 };
 
 export const AddFestivalRedis = (festival) => {
