@@ -51,6 +51,7 @@ export class Player extends Character {
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
     this.$updateGenders = true;
+    this.$updatePremium = true;
 
     this.$partyName = null;
 
@@ -65,6 +66,7 @@ export class Player extends Character {
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
     this.$updateGenders = true;
+    this.$updatePremium = true;
 
     if(this.isMod) {
       this.emitGMData();
@@ -252,7 +254,7 @@ export class Player extends Character {
   }
 
   get validGenders() {
-    return SETTINGS.validGenders;
+    return SETTINGS.validGenders.concat(this.$premium.genders);
   }
 
   changeGender(newGender) {
@@ -484,6 +486,10 @@ export class Player extends Character {
     this.__updateFestivals();
   }
 
+  _updatePremium() {
+    this.$dataUpdater(this.name, 'premium', { buyable: this.$premium.buyable, ilp: this.$premium.ilp, bought: this.$premium.oneTimeItemsPurchased });
+  }
+
   update() {
     this._updatePlayer();
     this._updateParty();
@@ -496,6 +502,11 @@ export class Player extends Character {
     if(this.$updateGenders) {
       this.$updateGenders = false;
       this._updateGenders();
+    }
+
+    if(this.$updatePremium) {
+      this.$updatePremium = false;
+      this._updatePremium();
     }
   }
 
@@ -549,10 +560,11 @@ export class Player extends Character {
     GameState.getInstance().addFestival({
       name: `${this.name}'s Ascension`,
       message: `${this.name} has ascended! +20% XP for everyone for 24 hours!`,
+      startedBy: this.name,
       hourDuration: 24,
       bonuses: {
-        xp: 0.2 + (0.15 * currentAscensionLevel),
-        gold: 0.2 + (0.15 * currentAscensionLevel)
+        xp: 0.25 + (0.05 * currentAscensionLevel),
+        gold: 0.25 + (0.05 * currentAscensionLevel)
       }
     });
   }

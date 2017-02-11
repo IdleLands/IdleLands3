@@ -9,5 +9,6 @@ export class Festival {
     this.endDate = opts.endDate;
     this.name = opts.name;
     this.bonuses = opts.bonuses || {}; // { stat: multiplier }
+    this.startedBy = opts.startedBy;
   }
 }

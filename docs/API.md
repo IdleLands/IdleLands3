@@ -63,6 +63,8 @@ plugin:global:allpets |  | Get all pets for the global page display. Cannot be l
 plugin:global:player | playerName | Get all player information for the global page display. Cannot be logged in to execute this function.
 plugin:global:allplayers |  | Get all players for the global page display. Cannot be logged in to execute this function.
 plugin:gm:giveevent | targetName, targetEvent | Mod only. Give an event to a particular player.
+plugin:gm:givegold | targetName, bonusGold | Mod only. Give gold to a particular player.
+plugin:gm:giveilp | targetName, bonusIlp | Mod only. Give ILP to a particular player.
 plugin:gm:giveitem | targetName, targetItemString | Mod only. Give a custom item to a particular player.
 plugin:gm:setlevel | targetName, targetLevel | Mod only. Set a players level.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
@@ -97,3 +99,5 @@ plugin:player:request:personalities |  | Request personality data. Generally use
 plugin:player:request:pets |  | Request pet data.
 plugin:player:request:statistics |  | Request statistics data. Generally used only when looking at statistics.
 plugin:player:changetitle | title | Change your title.
+plugin:premium:buyilp | ilpBuy | Buy ILP with gold.
+plugin:premium:buyilpitem | item | Buy items with ILP.

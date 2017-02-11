@@ -30,6 +30,10 @@ export class Festivals {
       });
   }
 
+  hasFestival(playerName) {
+    return _.find(this.festivals, { startedBy: playerName });
+  }
+
   addFestival(festival) {
     if(_.find(this.festivals, { name: festival.name })) return;
 

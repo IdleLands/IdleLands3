@@ -53,6 +53,10 @@ export class GameState {
     AddFestivalRedis(festival);
   }
 
+  hasFestival(playerName) {
+    return this.festivalContainer.hasFestival(playerName);
+  }
+
   get festivals() {
     return this.festivalContainer.festivals;
   }

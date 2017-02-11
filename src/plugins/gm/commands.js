@@ -9,7 +9,8 @@ import { PlayerUpdateAll } from '../../shared/playerlist-updater';
 
 import { TeleportRedis, ToggleModRedis, ToggleAchievementRedis,
          SetLevelRedis, GiveItemRedis, GiveEventRedis,
-         BanRedis, MuteRedis, PardonRedis
+         BanRedis, MuteRedis, PardonRedis,
+         GiveGoldRedis, GiveILPRedis
 } from '../scaler/redis';
 
 export class GMCommands {
@@ -105,6 +106,21 @@ export class GMCommands {
     if(!player && propagate) return GiveEventRedis(playerName, item);
 
     FindItem.operateOn(player, null, item);
+  }
+
+  static giveGold(playerName, gold, propagate = true) {
+    const player = GameState.getInstance().getPlayer(playerName);
+    if(!player && propagate) return GiveGoldRedis(playerName, gold);
+
+    player.gold += gold;
+  }
+
+  static giveILP(playerName, ilp, propagate = true) {
+    const player = GameState.getInstance().getPlayer(playerName);
+    if(!player && propagate) return GiveILPRedis(playerName, ilp);
+
+    player.$premium.addIlp(ilp);
+    player._updatePremium();
   }
 
   static createFestival(festival) {

@@ -20,18 +20,34 @@ import { CollectiblesDb } from '../collectibles/collectibles.db';
 import { Pets } from '../pets/pets';
 import { PetsDb } from '../pets/pets.db';
 
+import { Premium } from '../premium/premium';
+import { PremiumDb } from '../premium/premium.db';
+
 import { Logger } from '../../shared/logger';
 import { constitute } from '../../shared/di-wrapper';
 
-@Dependencies(PlayerDb, StatisticsDb, AchievementsDb, PersonalitiesDb, CollectiblesDb, PetsDb)
+@Dependencies(PlayerDb, StatisticsDb, AchievementsDb, PersonalitiesDb, CollectiblesDb, PetsDb, PremiumDb)
 export class PlayerLoad {
-  constructor(playerDb, statisticsDb, achievementsDb, personalitiesDb, collectiblesDb, petsDb) {
+  constructor(playerDb, statisticsDb, achievementsDb, personalitiesDb, collectiblesDb, petsDb, premiumDb) {
     this.playerDb = playerDb;
     this.statisticsDb = statisticsDb;
     this.achievementsDb = achievementsDb;
     this.personalitiesDb = personalitiesDb;
     this.collectiblesDb = collectiblesDb;
     this.petsDb = petsDb;
+    this.premiumDb = premiumDb;
+  }
+
+  async loadPremium(player) {
+    if(!player.premiumLink) {
+      const premObj = constitute(Premium);
+      premObj.init({ _id: player.name, ilp: 0, oneTimeItemsPurchased: {}, purchaseHistory: [] });
+      await this.premiumDb.savePremium(premObj);
+      player.premiumLink = player.name;
+      player.$premium = premObj;
+    } else {
+      player.$premium = await this.premiumDb.getPremium(player.name);
+    }
   }
 
   async loadPets(player) {
@@ -107,13 +123,16 @@ export class PlayerLoad {
         this.loadAchievements(player),
         this.loadPersonalities(player),
         this.loadCollectibles(player),
-        this.loadPets(player)
+        this.loadPets(player),
+        this.loadPremium(player)
       ]);
 
       player.$personalities.checkPersonalities(player);
 
       player.$pets.restorePetData(player);
       player.$pets.checkPets(player);
+
+      player.$premium.checkDonatorFirstTimeBonus(player);
 
       player.isOnline = true;
       player.recalculateStats();

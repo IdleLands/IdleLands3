@@ -87,6 +87,14 @@ if(redisInstance) {
     GMCommands.giveEvent(playerName, event, false);
   });
 
+  redisInstance.on('gm:givegold', ({ playerName, gold }) => {
+    GMCommands.giveGold(playerName, gold, false);
+  });
+
+  redisInstance.on('gm:giveilp', ({ playerName, ilp }) => {
+    GMCommands.giveILP(playerName, ilp, false);
+  });
+
   redisInstance.on('gm:ban', ({ playerName }) => {
     GMCommands.ban(playerName, false);
   });
@@ -195,6 +203,16 @@ export const GiveItemRedis = (playerName, item) => {
 export const GiveEventRedis = (playerName, event) => {
   if(!redisInstance) return;
   redisInstance.emit('gm:giveevent', { playerName, event });
+};
+
+export const GiveGoldRedis = (playerName, gold) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:givegold', { playerName, gold });
+};
+
+export const GiveILPRedis = (playerName, ilp) => {
+  if(!redisInstance) return;
+  redisInstance.emit('gm:giveilp', { playerName, ilp });
 };
 
 export const BanRedis = (playerName) => {

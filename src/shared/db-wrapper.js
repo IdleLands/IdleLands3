@@ -63,7 +63,8 @@ export class DbWrapper {
           pets:               db.collection('pets'),
           players:            db.collection('players'),
           statistics:         db.collection('statistics'),
-          festivals:          db.collection('festivals')
+          festivals:          db.collection('festivals'),
+          premiums:           db.collection('premiums')
         };
 
         resolve(db);
