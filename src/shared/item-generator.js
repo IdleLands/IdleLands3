@@ -50,7 +50,8 @@ export class ItemGenerator extends Generator {
       item.name = itemName;
       item.itemClass = 'guardian';
       this.tryToVectorize(item, player.level);
-      return item;
+      item.score;
+      return this.cleanUpItem(item);
     });
   }
   

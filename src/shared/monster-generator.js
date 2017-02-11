@@ -6,8 +6,6 @@ const chance = new Chance();
 
 import * as Professions from '../core/professions/_all';
 
-// import { Monster } from ;
-
 import { ItemGenerator } from './item-generator';
 
 import { Generator } from '../core/base/generator';
@@ -65,6 +63,7 @@ export class MonsterGenerator extends Generator {
       itemInst.name = item.name;
       itemInst.itemClass = 'guardian';
       itemInst.dropPercent = item.dropPercent;
+      ItemGenerator.tryToVectorize(itemInst, monster.level);
       monster.equip(itemInst);
     });
   }
