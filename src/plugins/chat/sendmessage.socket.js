@@ -60,6 +60,8 @@ export const socket = (socket, primus) => {
     text = _.truncate(text, { length: SETTINGS.chatMessageMaxLength, omission: ' [truncated]' }).trim();
     if(!text) return;
 
+    const ip = _.isNumber(process.env.INSTANCE_NUMBER) ? `${process.env.INSTANCE_NUMBER}~${player.$currentIp}` : `${player.$currentIp}`;
+
     const messageObject = {
       text,
       timestamp,
@@ -70,7 +72,7 @@ export const socket = (socket, primus) => {
       realPlayerName: player.name,
       level: player.level,
       event,
-      ip: player.$currentIp,
+      ip,
       ascensionLevel: player.ascensionLevel,
       isMod: player.isMod
     };
