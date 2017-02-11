@@ -50,6 +50,7 @@ export class Player extends Character {
 
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
+    this.$updateGenders = true;
 
     this.$partyName = null;
 
@@ -63,6 +64,7 @@ export class Player extends Character {
   quickLogin() {
     this.$updateAchievements = true;
     this.$updateCollectibles = true;
+    this.$updateGenders = true;
 
     if(this.isMod) {
       this.emitGMData();
@@ -249,8 +251,12 @@ export class Player extends Character {
     this.choices = _.reject(this.choices, { id });
   }
 
+  get validGenders() {
+    return SETTINGS.validGenders;
+  }
+
   changeGender(newGender) {
-    if(!_.includes(SETTINGS.validGenders, newGender)) return;
+    if(!_.includes(this.validGenders, newGender)) return;
     this.gender = newGender;
     emitter.emit('player:changegender', { player: this });
   }
@@ -447,6 +453,10 @@ export class Player extends Character {
     this.$dataUpdater(this.name, 'personalities', { earned: this.$personalities.earnedPersonalities, active: this.$personalities.activePersonalities });
   }
 
+  _updateGenders() {
+    this.$dataUpdater(this.name, 'genders', this.validGenders);
+  }
+
   _updatePet() {
     this.__updatePetBuyData();
     this.__updatePetBasic();
@@ -481,6 +491,11 @@ export class Player extends Character {
 
     if(this.$updateEquipment) {
       this._updateEquipment();
+    }
+
+    if(this.$updateGenders) {
+      this.$updateGenders = false;
+      this._updateGenders();
     }
   }
 
