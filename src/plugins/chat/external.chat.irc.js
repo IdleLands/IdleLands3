@@ -2,6 +2,9 @@
 import IRC from 'squelch-client';
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
+import { sendMessage } from './sendmessage';
+import { SendChatMessage } from '../scaler/redis';
+
 const isProd = process.env.NODE_ENV === 'production' && !process.env.EXT_CHAT;
 
 const { server, nick, channel } = SETTINGS.chatConfig.irc;
@@ -29,13 +32,18 @@ export class ExternalChatMechanism {
       this.isConnected = true;
       this.client.on('msg', ({ from, to, msg }) => {
         if(to !== '##idlebot') return;
-        primus.room(sendRoom).write({
+
+        const messageObject = {
           text: msg,
           playerName: `<irc:${from}>`,
+          timestamp: Date.now(),
           channel: 'General',
           route: sendRoom,
           event: 'plugin:chat:sendmessage'
-        });
+        };
+
+        sendMessage(messageObject, true);
+        SendChatMessage(messageObject);
       });
     });
   }
