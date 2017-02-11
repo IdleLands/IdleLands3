@@ -147,8 +147,13 @@ export const SomePlayersPostMoveRedis = (data) => {
   redisInstance.emit('global:move', { data });
 };
 
-export const SendChatMessage = (message) => {
-  if(!redisInstance) return;
+export const SendChatMessage = (message, isExternal) => {
+  if(!redisInstance) {
+    if(isExternal) {
+      sendMessage(message, isExternal);
+    }
+    return;
+  }
   redisInstance.emit('chat:send', { message });
 };
 

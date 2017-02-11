@@ -2,7 +2,6 @@
 import IRC from 'squelch-client';
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
-import { sendMessage } from './sendmessage';
 import { SendChatMessage } from '../scaler/redis';
 
 const isProd = process.env.NODE_ENV === 'production' && !process.env.EXT_CHAT;
@@ -42,8 +41,7 @@ export class ExternalChatMechanism {
           event: 'plugin:chat:sendmessage'
         };
 
-        sendMessage(messageObject, true);
-        SendChatMessage(messageObject);
+        SendChatMessage(messageObject, true);
       });
     });
   }
