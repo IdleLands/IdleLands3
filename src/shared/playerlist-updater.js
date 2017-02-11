@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { primus } from '../primus/server';
 import { GameState } from '../core/game-state';
 
-import { PlayerLoginRedis, PlayerLogoutRedis, PlayerUpdateAllRedis, GetRedisPlayers } from '../plugins/scaler/redis';
+import { PlayerLoginRedis, PlayerLogoutRedis, PlayerUpdateAllRedis, GetRedisPlayers, SomePlayersPostMoveRedis } from '../plugins/scaler/redis';
 
 // these functions pertain to one person logging in and out
 export const AllPlayers = (playerName) => {
@@ -41,22 +41,26 @@ export const PlayerLogout = (playerName) => {
 
 // these are global updater functions
 
-export const SomePlayersPostMove = (updatedPlayers) => {
-  if(process.env.IGNORE_OTHER_PLAYER_MOVES) return;
-  const gameState = GameState.getInstance();
-  const data = gameState.getSomePlayersSimple(updatedPlayers, ['x', 'y', 'map']);
-
-  const groupedByMap = _.groupBy(data, 'map');
+export const SomePlayersPostMoveData = (groupedByMap) => {
 
   primus.forEach((spark, next) => {
     if(!spark.authToken) return next();
-    const player = gameState.getPlayer(spark.authToken.playerName);
+    const player = GameState.getInstance().getPlayer(spark.authToken.playerName);
     if(!player) return next();
     const filteredData = groupedByMap[player.map];
     if(!filteredData || !filteredData.length) return next();
     spark.write({ playerListOperation: 'updateMass', data: filteredData });
     next();
   }, () => {});
+};
+
+export const SomePlayersPostMove = (updatedPlayers) => {
+  if(process.env.IGNORE_OTHER_PLAYER_MOVES) return;
+  const gameState = GameState.getInstance();
+  const data = gameState.getSomePlayersSimple(updatedPlayers, ['x', 'y', 'map']);
+  const groupedByMap = _.groupBy(data, 'map');
+  SomePlayersPostMoveData(groupedByMap);
+  SomePlayersPostMoveRedis(groupedByMap);
 };
 
 export const PlayerUpdateAllData = (data) => {

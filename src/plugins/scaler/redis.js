@@ -4,7 +4,7 @@ import _ from 'lodash';
 import NRP from 'node-redis-pubsub';
 
 import { GameState } from '../../core/game-state';
-import { PlayerLoginData, PlayerLogoutData, PlayerUpdateAllData } from '../../shared/playerlist-updater';
+import { PlayerLoginData, PlayerLogoutData, PlayerUpdateAllData, SomePlayersPostMoveData } from '../../shared/playerlist-updater';
 import { sendMessage } from '../chat/sendmessage';
 import { GMCommands } from '../gm/commands';
 
@@ -44,6 +44,10 @@ if(redisInstance) {
   redisInstance.on('player:update', ({ data }) => {
     PlayerUpdateAllData(data);
     _.merge(_.find(otherPlayers, { name: data.name }), data);
+  });
+
+  redisInstance.on('global:move', ({ data }) => {
+    SomePlayersPostMoveData(data);
   });
 
   redisInstance.on('chat:send', ({ message }) => {
@@ -136,6 +140,11 @@ export const PlayerLoginRedis = (playerName, data) => {
 export const PlayerUpdateAllRedis = (data) => {
   if(!redisInstance) return;
   redisInstance.emit('player:update', { data });
+};
+
+export const SomePlayersPostMoveRedis = (data) => {
+  if(!redisInstance) return;
+  redisInstance.emit('global:move', { data });
 };
 
 export const SendChatMessage = (message) => {
