@@ -56,7 +56,7 @@ if(redisInstance) {
   });
 
   redisInstance.on('festival:add', ({ festival }) => {
-    GameState.getInstance().addFestivalData(festival);
+    GameState.getInstance().addFestivalData(festival, false);
   });
 
   redisInstance.on('festival:cancel', ({ festivalId }) => {

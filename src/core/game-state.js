@@ -44,8 +44,8 @@ export class GameState {
     CancelFestivalRedis(festivalId);
   }
 
-  addFestivalData(festival) {
-    this.festivalContainer.addFestival(festival);
+  addFestivalData(festival, insertIntoDb = true) {
+    this.festivalContainer.addFestival(festival, insertIntoDb);
   }
 
   addFestival(festival) {
