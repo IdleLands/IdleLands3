@@ -81,6 +81,7 @@ Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPai
 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
+attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
 
 
 ## Bitomancer
@@ -143,12 +144,14 @@ revitalize group ([CureGroup 4](../src/plugins/combat/spells/CureGroup.js)) | He
 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
+attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
 
 
 ## Druid
 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
+attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
 
 
 ## Fighter
@@ -320,5 +323,6 @@ month-old ([DayOldBread 3](../src/plugins/combat/spells/DayOldBread.js)) | Physi
 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
+attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
 
 

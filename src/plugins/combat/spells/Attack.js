@@ -13,8 +13,11 @@ export class Attack extends Spell {
     { name: 'attack',  spellPower: 1.2, weight: 30, cost: 0, level: 1,   profession: 'Barbarian' },
     { name: 'strike',  spellPower: 2.3, weight: 30, cost: 0, level: 50,  profession: 'Barbarian' },
     { name: 'attack',  spellPower: 1.0, weight: 40, cost: 0, level: 1,   profession: 'Bard' },
+    { name: 'attack',  spellPower: 1.0, weight: 20, cost: 0, level: 1,   profession: 'Beatomancer' },
     { name: 'attack',  spellPower: 0.7, weight: 20, cost: 0, level: 1,   profession: 'Bitomancer' },
     { name: 'attack',  spellPower: 0.8, weight: 20, cost: 0, level: 1,   profession: 'Cleric' },
+    { name: 'attack',  spellPower: 1.0, weight: 20, cost: 0, level: 1,   profession: 'Clockborg' },
+    { name: 'attack',  spellPower: 1.0, weight: 20, cost: 0, level: 1,   profession: 'Druid' },
     { name: 'attack',  spellPower: 1.1, weight: 65, cost: 0, level: 1,   profession: 'Fighter' },
     { name: 'strike',  spellPower: 1.3, weight: 65, cost: 0, level: 50,  profession: 'Fighter' },
     { name: 'assault', spellPower: 1.7, weight: 65, cost: 0, level: 100, profession: 'Fighter',
@@ -31,7 +34,8 @@ export class Attack extends Spell {
     { name: 'strike',  spellPower: 1.9, weight: 50, cost: 0, level: 75,  profession: 'Pirate' },
     { name: 'attack',  spellPower: 1.0, weight: 20, cost: 0, level: 1,   profession: 'Rogue' },
     { name: 'strike',  spellPower: 1.4, weight: 20, cost: 0, level: 25,  profession: 'Rogue' },
-    { name: 'attack',  spellPower: 1.0, weight: 50, cost: 0, level: 1,   profession: 'SandwichArtist' }
+    { name: 'attack',  spellPower: 1.0, weight: 50, cost: 0, level: 1,   profession: 'SandwichArtist' },
+    { name: 'attack',  spellPower: 1.0, weight: 20, cost: 0, level: 1,   profession: 'Trickster' }
   ];
 
   static shouldCast() {
