@@ -23,7 +23,7 @@ _.each(_.sortBy(_.keys(Professions)), (professionKey, index) => {
   const profession = Professions[professionKey];
 
   if (index > 0) {
-    docString += `\n######[\\[top\\]](#idlelands-pets)`;
+    docString += `\n######[\\[top\\]](#idlelands-classes)`;
   }
 
   docString += `\n---\n\n`;

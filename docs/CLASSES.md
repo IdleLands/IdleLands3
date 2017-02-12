@@ -49,7 +49,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 18 | 0 | 0 | 0 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Barbarian
@@ -78,7 +78,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 0 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Bard
@@ -107,7 +107,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 30 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Bitomancer
@@ -136,7 +136,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 0 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Cleric
@@ -165,7 +165,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 30 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Fighter
@@ -194,7 +194,7 @@ STR | DEX | CON | AGI | INT | LUK
 6 | 0 | 0 | 0 | 6 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Generalist
@@ -223,7 +223,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 18 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Jester
@@ -252,7 +252,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 0 | 30
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Mage
@@ -281,7 +281,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 42 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## MagicalMonster
@@ -310,7 +310,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 120 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Monster
@@ -339,7 +339,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 0 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Necromancer
@@ -368,7 +368,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 72 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Pirate
@@ -397,7 +397,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 0 | 0 | 0 | 30 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## Rogue
@@ -426,7 +426,7 @@ STR | DEX | CON | AGI | INT | LUK
 0 | 6 | 0 | 0 | 0 | 0
 
 
-######[\[top\]](#idlelands-pets)
+######[\[top\]](#idlelands-classes)
 ---
 
 ## SandwichArtist
