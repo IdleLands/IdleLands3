@@ -13,7 +13,7 @@ export class Switcheroo extends Event {
     if(!item) return;
 
     const stat = this.pickStat(item);
-    if(!stat) return;
+    if(!item[stat]) return;
 
     const eventText = this.eventText('flipStat', player, { item: item.fullname });
 

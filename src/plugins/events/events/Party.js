@@ -12,7 +12,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { SETTINGS } from '../../../static/settings';
 
-export const WEIGHT = isBattleDebug ? 250 : 25;
+export const WEIGHT = isBattleDebug ? 250 : 12;
 
 // Create a party
 export class Party extends Event {

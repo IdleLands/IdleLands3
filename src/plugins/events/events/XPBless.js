@@ -4,7 +4,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { XPBlessParty } from './XPBlessParty';
 
-export const WEIGHT = 15;
+export const WEIGHT = 18;
 
 // Gain 1-3% XP
 export class XPBless extends Event {
