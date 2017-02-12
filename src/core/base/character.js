@@ -102,6 +102,10 @@ export class Character {
     }, 0);
   }
 
+  get score() {
+    return this.itemScore;
+  }
+
   get spells() {
     return SpellManager.validSpells(this);
   }
