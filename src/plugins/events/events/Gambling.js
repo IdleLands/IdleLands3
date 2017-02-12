@@ -18,8 +18,8 @@ export class Gambling extends Event {
     const cost = this.chance.integer({ min: MIN_GOLD, max: player.gold / INCOME_PERCENT });
 
     const id = Event.chance.guid();
-    const multiplier = this.chance.floating({ fixed: 2, min: 1, max: 2 });
-    const odds = this.chance.integer({ min: 10, max: 60 });
+    const multiplier = this.chance.floating({ fixed: 2, min: 1.3, max: 2 });
+    const odds = this.chance.integer({ min: 10, max: 50 });
 
     const message = `Would you like to gamble ${cost.toLocaleString()} gold at a ${multiplier}x rate with ${odds}% chance to win?`;
     const extraData = { multiplier, cost, odds };
@@ -49,11 +49,11 @@ export class Gambling extends Event {
       const winnings = Math.round(cost * multiplier);
       player.gainGold(winnings, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Win', winnings);
-      message = `%player got lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%. %She came out ahead with ${winnings.toLocaleString()} gold!`;
+      message = `%player got lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%${response === 'Double Down' ? ' (Double Down)': ''}. %She came out ahead with ${winnings.toLocaleString()} gold!`;
     } else {
       player.gainGold(-cost, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Lose', cost);
-      message = `%player felt lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%. %She lost it all at the table.`;
+      message = `%player felt lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}${response === 'Double Down' ? ' (Double Down)': ''}%. %She lost it all at the table.`;
     }
 
     message = this._parseText(message, player);
