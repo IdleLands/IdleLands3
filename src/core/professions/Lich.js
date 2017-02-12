@@ -21,8 +21,16 @@ export class Lich extends Profession {
   }
 
   static setupSpecial(target) {
-    const numProfessions = Math.floor(target.level / 50) + 1;
-    target.$secondaryProfessions = _.sampleSize(['Bard', 'Cleric', 'Fighter', 'Generalist', 'Mage', 'SandwichArtist'], numProfessions);
+    const numProfessions = Math.floor(target.level / 100) + 1;
+
+    let secondaries = ['Bard', 'Cleric', 'Fighter', 'Generalist', 'Mage', 'SandwichArtist'];
+
+    if(target.$statistics) {
+      const allProfsBeen = _.keys(target.$statistics.getStat('Character.Professions'));
+      secondaries = _.filter(secondary => _.includes(allProfsBeen, secondary));
+    }
+
+    target.$secondaryProfessions = _.sampleSize(secondaries, numProfessions);
     target._special.name = 'Phylactic Energy';
     target._special.maximum = Math.floor(target.level / 25) + 1;
     target._special.toMaximum();

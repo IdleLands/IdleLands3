@@ -1,0 +1,54 @@
+
+import _ from 'lodash';
+
+import { Achievement, AchievementTypes } from '../achievement';
+
+export class Classfizzy extends Achievement {
+  static achievementData(player) {
+
+    const allProfessionsBeen = player.$statistics.getStat('Character.Professions');
+    const allProfessionBeenCount = _.keys(allProfessionsBeen);
+    const allProfessions = [
+      'Beatomancer', 'Clockborg', 'Druid', 'Lich', 'Trickster'
+    ];
+
+    if(allProfessions.length !== allProfessionBeenCount.length) return [];
+
+    let tier = 0;
+    while(++tier) {
+      if(!_.every(allProfessions, prof => allProfessionsBeen[prof] >= tier)) break;
+    }
+
+    tier--;
+
+    return [{
+      tier,
+      name: 'Classfizzy',
+      desc: `+${2*tier}% STR/CON/DEX/INT/AGI/LUK and +${tier*50} max item score for being each advanced profession ${tier} times.`,
+      type: AchievementTypes.PROGRESS,
+      rewards: [{
+        type: 'title',
+        title: 'Fizzy',
+        deathMessage: '%player was so fizzy that they solidified.'
+      }, {
+        type: 'petattr',
+        petattr: 'a ball of gas'
+      }, {
+        type: 'stats',
+        agi: (player, baseValue) => baseValue*0.02*tier,
+        agiDisplay: `${tier*2}%`,
+        str: (player, baseValue) => baseValue*0.02*tier,
+        strDisplay: `${tier*2}%`,
+        dex: (player, baseValue) => baseValue*0.02*tier,
+        dexDisplay: `${tier*2}%`,
+        con: (player, baseValue) => baseValue*0.02*tier,
+        conDisplay: `${tier*2}%`,
+        int: (player, baseValue) => baseValue*0.02*tier,
+        intDisplay: `${tier*2}%`,
+        luk: (player, baseValue) => baseValue*0.02*tier,
+        lukDisplay: `${tier*2}%`,
+        itemFindRange: tier*50
+      }]
+    }];
+  }
+}

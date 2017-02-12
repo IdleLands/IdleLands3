@@ -6,18 +6,22 @@
 1. Archer
 2. Barbarian
 3. Bard
-4. Bitomancer
-5. Cleric
-6. Fighter
-7. Generalist
-8. Jester
-9. Mage
-10. MagicalMonster
-11. Monster
-12. Necromancer
-13. Pirate
-14. Rogue
-15. SandwichArtist
+4. Beatomancer
+5. Bitomancer
+6. Cleric
+7. Clockborg
+8. Druid
+9. Fighter
+10. Generalist
+11. Jester
+12. Mage
+13. MagicalMonster
+14. Monster
+15. Necromancer
+16. Pirate
+17. Rogue
+18. SandwichArtist
+19. Trickster
 
 
 ## Archer
@@ -71,6 +75,12 @@ Purity From The Stars ([LightFromTheStars 2](../src/plugins/combat/spells/LightF
 Shining Bright Against the Night ([PaleMoonlight 2](../src/plugins/combat/spells/PaleMoonlight.js)) | Buff | 50 |  | 
 You Shant Get Away ([ThereIsNoEscape 2](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 50 |  | 
 Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 100 |  | Ancient Lute
+
+
+## Beatomancer
+
+Name | Element | Level | Description | Required Collectibles
+---- | ------- | ----- | ----------- | ---------------------
 
 
 ## Bitomancer
@@ -127,6 +137,18 @@ restore group ([CureGroup 3](../src/plugins/combat/spells/CureGroup.js)) | Heal 
 titan strength ([ClericStrength 4](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 95 |  | 
 revitalize ([Cure 4](../src/plugins/combat/spells/Cure.js)) | Heal | 115 |  | Strand of Fate
 revitalize group ([CureGroup 4](../src/plugins/combat/spells/CureGroup.js)) | Heal | 145 |  | Gauntlet
+
+
+## Clockborg
+
+Name | Element | Level | Description | Required Collectibles
+---- | ------- | ----- | ----------- | ---------------------
+
+
+## Druid
+
+Name | Element | Level | Description | Required Collectibles
+---- | ------- | ----- | ----------- | ---------------------
 
 
 ## Fighter
@@ -292,5 +314,11 @@ week-old ([DayOldBread 2](../src/plugins/combat/spells/DayOldBread.js)) | Physic
 food brawl ([FoodFight 3](../src/plugins/combat/spells/FoodFight.js)) | Physical | 75 |  | 
 well-done ([ToastedSandwich 3](../src/plugins/combat/spells/ToastedSandwich.js)) | Fire | 90 |  | 
 month-old ([DayOldBread 3](../src/plugins/combat/spells/DayOldBread.js)) | Physical | 100 |  | Funny Fungus
+
+
+## Trickster
+
+Name | Element | Level | Description | Required Collectibles
+---- | ------- | ----- | ----------- | ---------------------
 
 
