@@ -13,6 +13,7 @@ export { Providence } from './Providence';
 export { Merchant } from './Merchant';
 export { MerchantEnchant } from './MerchantEnchant';
 export { Switcheroo } from './Switcheroo';
+export { TownCrier } from './TownCrier';
 export { XPBless } from './XPBless';
 export { XPForsake } from './XPForsake';
 
