@@ -23,7 +23,12 @@ export const PlayerLoginData = (playerName, data) => {
 export const PlayerLogin = (playerName) => {
   const simplePlayerToAdd = GameState.getInstance().getPlayerNameSimple(playerName);
   PlayerLoginData(playerName, simplePlayerToAdd);
-  PlayerLoginRedis(playerName, simplePlayerToAdd);
+
+  const simplePlayerId = GameState.getInstance().getPlayer(playerName).userId;
+  const simpleAddData = _.cloneDeep(simplePlayerToAdd);
+  simpleAddData.userId = simplePlayerId;
+
+  PlayerLoginRedis(playerName, simpleAddData);
 };
 
 export const PlayerLogoutData = (playerName) => {

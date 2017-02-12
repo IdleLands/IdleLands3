@@ -9,6 +9,7 @@ export const MESSAGES = {
   ALREADY_LOGGED_IN:  { type: 'error',    title: 'Login Error',    notify: 'You are already logged in elsewhere!' },
   BANNED:             { type: 'error',    title: 'Banned',         notify: 'You are banned!' },
   LOGIN_SUCCESS:      { type: 'success',  title: 'Login',          notify: 'Login successful. Welcome back!' },
+  ON_OTHER_SHARD:     { type: 'error',    title: 'Login',          notify: 'You are already logged in on another shard.' },
 
   NO_BATTLE:          { type: 'error',    title: 'Battle Expired', notify: 'That battle is too old to be loaded.' }
 };
