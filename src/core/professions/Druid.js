@@ -17,4 +17,10 @@ export class Druid extends Profession {
   static classStats = {
     mpregen: (target) => target._mp.maximum * 0.01
   }
+
+  static setupSpecial(target) {
+    target._special.name = 'Pets';
+    target._special.set(0);
+    target._special.maximum = Math.floor(target.level / 100) + 1;
+  }
 }
