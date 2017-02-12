@@ -14,4 +14,10 @@ export class Clockborg extends Profession {
   static baseAgiPerLevel = 1;
   static baseStrPerLevel = 6;
   static baseIntPerLevel = 6;
+
+  static setupSpecial(target) {
+    target._special.name = 'Turrets';
+    target._special.set(0);
+    target._special.maximum = 3;
+  }
 }
