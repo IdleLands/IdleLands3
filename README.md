@@ -13,7 +13,7 @@ An idling game of epic proportions.
 * Create an `.env` file in the repo root with the key `MONGODB_URI` set to a URI leading to a local or remote mongodb install (eg: `MONGODB_URI=mongodb://localhost:27017/play` and if you're using redis, `REDIS_URL` should be set to where your Redis is setup (eg: `REDIS_URL=redis://localhost:6379`))
 
 ## Running
-* `npm start:dev` to start the server
+* `npm run start:dev` to start the server
 * `npm run test:client -- --players <playercount>` to test with that many players (up to ~1200)
 
 ## Making Yourself A Mod
