@@ -68,7 +68,7 @@ export class Premium {
   cantBuy(player, item) {
     if(this.ilp < item.cost) return 'You do not have enough ILP to buy that.';
     if(this.hasBought(item)) return 'You have already bought that upgrade.';
-    if(GameState.getInstance().hasFestival(player.name)) return 'You already have an ongoing festival.';
+    if(GameState.getInstance().hasFestival(player.name) && item.festivalData) return 'You already have an ongoing festival.';
   }
 
   buy(player, item) {
