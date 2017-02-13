@@ -7,12 +7,9 @@ export class Classfizzy extends Achievement {
   static achievementData(player) {
 
     const allProfessionsBeen = player.$statistics.getStat('Character.Professions');
-    const allProfessionBeenCount = _.keys(allProfessionsBeen);
     const allProfessions = [
       'Beatomancer', 'Clockborg', 'Druid', 'Fencer', 'Lich', 'Trickster'
     ];
-
-    if(allProfessions.length !== allProfessionBeenCount.length) return [];
 
     let tier = 0;
     while(++tier) {
@@ -20,6 +17,8 @@ export class Classfizzy extends Achievement {
     }
 
     tier--;
+
+    if(tier === 0) return [];
 
     return [{
       tier,

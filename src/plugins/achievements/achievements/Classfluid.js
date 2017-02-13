@@ -7,13 +7,10 @@ export class Classfluid extends Achievement {
   static achievementData(player) {
 
     const allProfessionsBeen = player.$statistics.getStat('Character.Professions');
-    const allProfessionBeenCount = _.keys(allProfessionsBeen);
     const allProfessions = [
       'Archer', 'Barbarian', 'Bard', 'Bitomancer', 'Cleric', 'Fighter', 'Generalist', 'Jester',
       'Mage', 'MagicalMonster', 'Monster', 'Necromancer', 'Pirate', 'Rogue', 'SandwichArtist'
     ];
-
-    if(allProfessions.length !== allProfessionBeenCount.length) return [];
 
     let tier = 0;
     while(++tier) {
@@ -21,6 +18,8 @@ export class Classfluid extends Achievement {
     }
 
     tier--;
+
+    if(tier === 0) return [];
 
     return [{
       tier,
