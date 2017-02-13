@@ -26,7 +26,7 @@ _.each(sortedPets, (petKey, index) => {
 	petString += `## ${petKey}\n\n`;
 	
 	petString += `### Cost\n`;
-	petString += `${pet.cost} gold\n\n`;
+	petString += `${pet.cost.toLocaleString()} gold\n\n`;
 	
 	petString += `### Category\n`;
 	petString += `${pet.category}\n\n`;
@@ -43,7 +43,7 @@ _.each(sortedPets, (petKey, index) => {
 	
 	petString += `### Special Stats\n`;
 	_.each(_.keys(pet.specialStats), (stat) => {
-		petString += `* ${stat}: ${pet.specialStats[stat]}\n`;
+		petString += `* ${stat}: ${pet.specialStats[stat].toLocaleString()}\n`;
 	});
 	
 	petString += `\n`;
@@ -65,7 +65,7 @@ _.each(sortedPets, (petKey, index) => {
 			}
 			
 			if (reqType == "statistics") {
-				petString += `* ${req}: ${reqs[req]}\n`;
+				petString += `* ${req}: ${reqs[req].toLocaleString()}\n`;
 			}
 		});
 		
@@ -104,8 +104,8 @@ _.each(sortedPets, (petKey, index) => {
 		
 		for (var i = 0; i < maxLength; i++) {
 			if (i < _.size(upgrade)) {
-				upgradeString += `|${upgrade[i]}`;
-				costString += `|${cost[i]}`;
+				upgradeString += `|${upgrade[i].toLocaleString()}`;
+				costString += `|${cost[i].toLocaleString()}`;
 			}
 			else {
 				upgradeString += `|---`;
