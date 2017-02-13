@@ -7,6 +7,7 @@ export { Beatomancer } from './Beatomancer';
 export { Cleric } from './Cleric';
 export { Clockborg } from './Clockborg';
 export { Druid } from './Druid';
+export { Fencer } from './Fencer';
 export { Fighter } from './Fighter';
 export { Generalist } from './Generalist';
 export { Jester } from './Jester';

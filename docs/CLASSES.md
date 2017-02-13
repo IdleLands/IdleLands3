@@ -11,17 +11,18 @@
 6. [Cleric](#cleric)
 7. [Clockborg](#clockborg)
 8. [Druid](#druid)
-9. [Fighter](#fighter)
-10. [Generalist](#generalist)
-11. [Jester](#jester)
-12. [Mage](#mage)
-13. [MagicalMonster](#magicalmonster)
-14. [Monster](#monster)
-15. [Necromancer](#necromancer)
-16. [Pirate](#pirate)
-17. [Rogue](#rogue)
-18. [SandwichArtist](#sandwichartist)
-19. [Trickster](#trickster)
+9. [Fencer](#fencer)
+10. [Fighter](#fighter)
+11. [Generalist](#generalist)
+12. [Jester](#jester)
+13. [Mage](#mage)
+14. [MagicalMonster](#magicalmonster)
+15. [Monster](#monster)
+16. [Necromancer](#necromancer)
+17. [Pirate](#pirate)
+18. [Rogue](#rogue)
+19. [SandwichArtist](#sandwichartist)
+20. [Trickster](#trickster)
 
 
 
@@ -254,6 +255,35 @@ You get X MP for every point in a particular stat.
 STR | DEX | CON | AGI | INT | LUK
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 26 | 0
+
+
+######[\[top\]](#idlelands-classes)
+---
+
+## Fencer
+
+### Stats Per Level
+
+These are the stat gains per level.
+
+HP | MP | STR | DEX | CON | AGI | INT | LUK
+--- | --- | --- | --- | --- | --- | --- | ---
+270 | 0 | 1 | 7 | 1 | 1 | 1 | 1
+
+
+### HP Modifiers
+You get X HP for every point in a particular stat.
+
+STR | DEX | CON | AGI | INT | LUK
+--- | --- | --- | --- | --- | ---
+0 | 10 | 1 | 0 | 0 | 0
+
+### MP Modifiers
+You get X MP for every point in a particular stat.
+
+STR | DEX | CON | AGI | INT | LUK
+--- | --- | --- | --- | --- | ---
+0 | 0 | 0 | 0 | 0 | 0
 
 
 ######[\[top\]](#idlelands-classes)

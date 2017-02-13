@@ -9,7 +9,7 @@ export class Classfizzy extends Achievement {
     const allProfessionsBeen = player.$statistics.getStat('Character.Professions');
     const allProfessionBeenCount = _.keys(allProfessionsBeen);
     const allProfessions = [
-      'Beatomancer', 'Clockborg', 'Druid', 'Lich', 'Trickster'
+      'Beatomancer', 'Clockborg', 'Druid', 'Fencer', 'Lich', 'Trickster'
     ];
 
     if(allProfessions.length !== allProfessionBeenCount.length) return [];

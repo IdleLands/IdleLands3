@@ -11,17 +11,18 @@
 6. Cleric
 7. Clockborg
 8. Druid
-9. Fighter
-10. Generalist
-11. Jester
-12. Mage
-13. MagicalMonster
-14. Monster
-15. Necromancer
-16. Pirate
-17. Rogue
-18. SandwichArtist
-19. Trickster
+9. Fencer
+10. Fighter
+11. Generalist
+12. Jester
+13. Mage
+14. MagicalMonster
+15. Monster
+16. Necromancer
+17. Pirate
+18. Rogue
+19. SandwichArtist
+20. Trickster
 
 
 ## Archer
@@ -148,6 +149,13 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A s
 
 
 ## Druid
+
+Name | Element | Level | Description | Required Collectibles
+---- | ------- | ----- | ----------- | ---------------------
+attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
+
+
+## Fencer
 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
