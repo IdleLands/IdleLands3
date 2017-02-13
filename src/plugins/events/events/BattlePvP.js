@@ -11,7 +11,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 import { Logger } from '../../../shared/logger';
 import { SETTINGS } from '../../../static/settings';
 
-export const WEIGHT = 9;
+export const WEIGHT = 27;
 
 // Create a pvp battle
 export class BattlePvP extends Event {

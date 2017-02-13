@@ -10,7 +10,7 @@ import { SETTINGS } from '../../../static/settings';
 
 import { MerchantEnchant } from './MerchantEnchant';
 
-export const WEIGHT = 51;
+export const WEIGHT = 153;
 
 // Get the opportunity to buy an item
 export class Merchant extends Event {

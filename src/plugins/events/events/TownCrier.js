@@ -6,7 +6,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { SystemTownCrierMessages } from '../basetowncrier';
 
-export const WEIGHT = 6;
+export const WEIGHT = 18;
 
 // Spout helpful information
 export class TownCrier extends Event {

@@ -2,7 +2,7 @@
 import { Event } from '../event';
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 6;
+export const WEIGHT = 18;
 
 // Lose 3-5% XP
 export class XPForsake extends Event {

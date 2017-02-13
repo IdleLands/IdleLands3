@@ -14,7 +14,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 import { Logger } from '../../../shared/logger';
 import { SETTINGS } from '../../../static/settings';
 
-export const WEIGHT = isBattleDebug ? 300 : 9;
+export const WEIGHT = isBattleDebug ? 300 : 27;
 
 // Create a battle
 export class Battle extends Event {

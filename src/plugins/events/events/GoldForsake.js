@@ -2,7 +2,7 @@
 import { Event } from '../event';
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 12;
+export const WEIGHT = 36;
 
 // Lose 25-2000 Gold
 export class GoldForsake extends Event {
