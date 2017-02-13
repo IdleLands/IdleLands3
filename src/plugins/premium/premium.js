@@ -43,6 +43,7 @@ export class Premium {
   }
 
   canBuyIlp(player, ilp) {
+    if(_.isNaN(ilp)) return false;
     return player.gold >= ilp * 10000;
   }
 

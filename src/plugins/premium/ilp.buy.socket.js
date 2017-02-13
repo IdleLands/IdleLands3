@@ -17,6 +17,8 @@ export const socket = (socket, primus, respond) => {
     if(!player) return;
     Logger.info('Socket:ILP:Buy', `${playerName} (${socket.address.ip}) buying ${ilpBuy} ILP.`);
 
+    ilpBuy = +ilpBuy;
+
     if(!player.$premium.canBuyIlp(player, ilpBuy)) {
       return respond({ type: 'error', title: 'Buy ILP Error', notify: 'You do not have enough gold for that.' });
     }
