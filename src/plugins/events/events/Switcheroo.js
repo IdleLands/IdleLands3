@@ -2,7 +2,7 @@
 import { Event } from '../event';
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 3;
+export const WEIGHT = 1;
 
 // Switcheroo an item (flip any stat between positive and negative)
 export class Switcheroo extends Event {

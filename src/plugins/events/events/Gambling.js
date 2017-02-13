@@ -4,7 +4,7 @@ import { Event } from '../event';
 
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 6;
+export const WEIGHT = 3;
 const MIN_GOLD = 5000;
 const INCOME_PERCENT = 10;
 

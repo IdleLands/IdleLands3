@@ -44,8 +44,11 @@ export class EventHandler {
     const weights = [];
 
     _.each(_.keys(allEvents), evtName => {
+      const weight = allEvents[evtName].WEIGHT;
+      if(!weight || weight <= 0) return;
+
       events.push(evtName);
-      weights.push(allEvents[evtName].WEIGHT);
+      weights.push(weight);
     });
 
     const chosenEventName = chance.weighted(events, weights);
