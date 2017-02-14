@@ -2,7 +2,7 @@
 import { Event } from '../event';
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 45;
+export const WEIGHT = 90;
 
 // Forsake an item (random stat -5%)
 export class ItemForsake extends Event {

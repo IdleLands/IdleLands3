@@ -2,7 +2,7 @@
 import { Event } from '../event';
 import { MessageCategories } from '../../../shared/adventure-log';
 
-export const WEIGHT = 135;
+export const WEIGHT = 270;
 
 // Bless an item (random stat +5%)
 export class ItemBless extends Event {

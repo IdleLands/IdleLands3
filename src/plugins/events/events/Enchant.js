@@ -6,7 +6,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { SPECIAL_STATS_BASE, ATTACK_STATS_BASE } from '../../../shared/stat-calculator';
 
-export const WEIGHT = 3;
+export const WEIGHT = 6;
 
 // Enchant an item (+special stat, +50 to random stat, +1 enchantLevel)
 export class Enchant extends Event {

@@ -4,7 +4,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { GoldBlessParty } from './GoldBlessParty';
 
-export const WEIGHT = 108;
+export const WEIGHT = 216;
 
 // Gain 10-1000 Gold
 export class GoldBless extends Event {
