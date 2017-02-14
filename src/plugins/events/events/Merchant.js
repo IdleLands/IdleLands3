@@ -44,7 +44,7 @@ export class Merchant extends Event {
     const cost = Math.round((sellScore - (sellScore*player.liveStats.merchantCostReductionMultiplier)) * player._$priceReductionMultiplier());
     if(cost > player.gold) {
       player.$statistics.incrementStat('Character.Item.TooExpensive');
-      const message = '%player was offered %item by a wandering merchant, but it costs too much gold %himher.';
+      const message = '%player was offered %item by a wandering merchant, but it costs too much gold for %himher.';
       const parsedMessage = this._parseText(message, player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.GOLD });
       return [player];
