@@ -3,26 +3,26 @@
 
 ## Table of Contents
 
-1. Archer
-2. Barbarian
-3. Bard
-4. Beatomancer
-5. Bitomancer
-6. Cleric
-7. Clockborg
-8. Druid
-9. Fencer
-10. Fighter
-11. Generalist
-12. Jester
-13. Mage
-14. MagicalMonster
-15. Monster
-16. Necromancer
-17. Pirate
-18. Rogue
-19. SandwichArtist
-20. Trickster
+1. [Archer](#archer)
+2. [Barbarian](#barbarian)
+3. [Bard](#bard)
+4. [Beatomancer](#beatomancer)
+5. [Bitomancer](#bitomancer)
+6. [Cleric](#cleric)
+7. [Clockborg](#clockborg)
+8. [Druid](#druid)
+9. [Fencer](#fencer)
+10. [Fighter](#fighter)
+11. [Generalist](#generalist)
+12. [Jester](#jester)
+13. [Mage](#mage)
+14. [MagicalMonster](#magicalmonster)
+15. [Monster](#monster)
+16. [Necromancer](#necromancer)
+17. [Pirate](#pirate)
+18. [Rogue](#rogue)
+19. [SandwichArtist](#sandwichartist)
+20. [Trickster](#trickster)
 
 
 ## Archer

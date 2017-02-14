@@ -14,7 +14,7 @@ let docString = `
 `;
 
 _.each(_.sortBy(_.keys(Professions)), (profession, index) => {
-  docString += `${index + 1}. ${profession}\n`;
+  docString += `${index + 1}. [${profession}](#${profession.toLowerCase()})\n`;
 });
 
 docString += '\n\n';
