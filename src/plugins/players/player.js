@@ -557,14 +557,16 @@ export class Player extends Character {
 
     this.$pets.save();
 
+    const ascBonus = 0.25 + (0.05 * currentAscensionLevel);
+
     GameState.getInstance().addFestival({
       name: `${this.name}'s Ascension`,
-      message: `${this.name} has ascended! +20% XP for everyone for 24 hours!`,
+      message: `${this.name} has ascended! +${ascBonus*100}% XP/Gold for everyone for 24 hours!`,
       startedBy: this.name,
       hourDuration: 24,
       bonuses: {
-        xp: 0.25 + (0.05 * currentAscensionLevel),
-        gold: 0.25 + (0.05 * currentAscensionLevel)
+        xp: ascBonus,
+        gold: ascBonus
       }
     });
   }
