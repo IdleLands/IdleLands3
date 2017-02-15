@@ -36,6 +36,10 @@ export class Achievements {
     this._id = undefined;
     this.achievements = undefined;
     _.extend(this, opts);
+
+    if(!this.uniqueAchievements) {
+      this.save();
+    }
   }
 
   premiumTier() {
@@ -132,7 +136,14 @@ export class Achievements {
     return newAchievements;
   }
 
+  uniqueAchievementCount() {
+    return _.size(this.achievements);
+  }
+
   save() {
+    this.uniqueAchievements = this.uniqueAchievementCount();
+    this.totalAchievementTiers = this.tiers();
+    this.totalTitles = this.titles().length;
     this.achievementsDb.saveAchievements(this);
   }
 }

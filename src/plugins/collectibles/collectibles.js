@@ -37,6 +37,14 @@ export class Collectibles {
     });
 
     _.extend(this, opts);
+
+    if(_.isUndefined(this.uniqueCollectibles)) {
+      this.save();
+    }
+  }
+
+  calcUniqueCollectibles() {
+    return _.uniq(_.keys(this.collectibles).concat(_.keys(this.priorCollectibles))).length;
   }
 
   reset() {
@@ -78,6 +86,7 @@ export class Collectibles {
   }
 
   save() {
+    this.uniqueCollectibles = this.calcUniqueCollectibles();
     this.collectiblesDb.saveCollectibles(this);
   }
 }

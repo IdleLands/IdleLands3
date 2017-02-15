@@ -42,7 +42,11 @@ export class CollectiblesDb {
     const collectibles = db.$$collections.collectibles;
 
     return new Promise((resolve) => {
-      collectibles.findOneAndUpdate({ _id: collectiblesObject._id }, { $set: { collectibles: collectiblesObject.collectibles, priorCollectibles: collectiblesObject.priorCollectibles } }, { upsert: true }, (err) =>{
+      collectibles.findOneAndUpdate({ _id: collectiblesObject._id }, { $set: {
+        collectibles: collectiblesObject.collectibles,
+        priorCollectibles: collectiblesObject.priorCollectibles,
+        uniqueCollectibles: collectiblesObject.uniqueCollectibles
+      } }, { upsert: true }, (err) =>{
         if (!err) {
           resolve(collectibles);
         } else {
