@@ -14,7 +14,12 @@ export class Enchant extends Event {
 
   static operateOn(player) {
     const item = this.pickValidItemForEnchant(player);
-    if(!item) return [];
+    if(!item) {
+      const eventText = this._parseText('%player attempted to enchant %hisher gear, but it failed!', player);
+      this.emitMessage({ affected: [player], eventText, category: MessageCategories.ITEM });
+      player.$statistics.incrementStat('Character.Item.OverEnchant');
+      return [];
+    }
 
     let eventText = this.eventText('enchant', player, { item: item.fullname });
 
