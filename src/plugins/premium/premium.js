@@ -97,7 +97,7 @@ export class Premium {
     if(!player.$achievements.hasAchievement('Donator')) return;
 
     this.donatorFirstTimeBonus = true;
-    this.addIlp(500);
+    this.addIlp(1000);
     player._updatePremium();
   }
 
