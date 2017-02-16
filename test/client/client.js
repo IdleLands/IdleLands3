@@ -51,7 +51,9 @@ const play = (name, index) => {
   const socket = new Socket('ws://localhost:' + (process.env.PORT || 8080));
 
   const login = () => {
-    socket.emit('plugin:player:login', { name, userId: `local|${name}` });
+    const userId = `local|${name}`;
+    socket.emit('plugin:player:login', { name, userId });
+    socket.emit('plugin:player:request:pets');
   };
 
   sockets[name] = socket;
@@ -82,6 +84,15 @@ const play = (name, index) => {
           });
         });
       }
+    }
+
+    if(msg.update === 'petbasic') {
+      _.each(msg.data, petInfo => {
+        if(petInfo.bought) return;
+
+        console.log(`Buying ${petInfo.name}`);
+        socket.emit('plugin:pet:buy', { petType: petInfo.name, petName: petInfo.name });
+      });
     }
 
     if(!msg.type || !msg.text) return;
