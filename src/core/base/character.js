@@ -197,9 +197,17 @@ export class Character {
 
   levelUpXpCalc(level) {
     let xp = Math.floor(100 + (400 * Math.pow(level, 1.71)));
+
     if(level > 200) {
       const modifier = level - 200;
       xp += (xp * (modifier / 100));
+
+      if(level >= this._level.maximum - SETTINGS.ascensionLevelBoost) {
+        const levelsTilMax = this._level.maximum - level;
+        const multiplier = SETTINGS.ascensionXpCurve * (SETTINGS.ascensionLevelBoost - levelsTilMax);
+
+        xp += (xp * (multiplier / 100));
+      }
     }
 
     return Math.floor(xp);

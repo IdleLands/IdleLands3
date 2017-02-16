@@ -536,7 +536,7 @@ export class Player extends Character {
     });
 
     this.$statistics.incrementStat('Character.Ascension.Levels', this.level);
-    this._level.maximum += 50;
+    this._level.maximum += SETTINGS.ascensionLevelBoost;
     this._level.set(1);
     this._xp.set(0);
 

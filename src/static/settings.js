@@ -24,6 +24,9 @@ class Settings {
     this.saveSteps = 10;
     this.achievementSteps = 60; // once every 5 minutes
 
+    this.ascensionLevelBoost = 50;
+    this.ascensionXpCurve = 20;
+
     this.reductionDefaults = {
       itemFindRange: 12,
       itemFindRangeMultiplier: 0.5,
