@@ -8,7 +8,7 @@ export class Drunk extends Achievement {
 
     if(totalSteps < 100000) return [];
 
-    return [{
+    const baseReward = {
       tier: 1,
       name: 'Drunk',
       desc: `Gain a special title (and +5% max item score) for ${(100000).toLocaleString()} drunken steps.`,
@@ -24,6 +24,16 @@ export class Drunk extends Achievement {
         type: 'stats',
         itemFindRangeMultiplier: 0.05
       }]
-    }];
+    };
+
+    if(totalSteps >= 1000000) {
+      baseReward.rewards.push({
+        type: 'title',
+        title: 'Lush',
+        deathMessage: '%player drank too much and dozed off in the town square.'
+      });
+    }
+
+    return [baseReward];
   }
 }

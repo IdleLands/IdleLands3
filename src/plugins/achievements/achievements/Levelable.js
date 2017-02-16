@@ -28,6 +28,10 @@ export class Levelable extends Achievement {
       rewards.push({ type: 'petattr', petattr: 'a really old person' });
     }
 
+    if(tier > 100) {
+      rewards.push({ type: 'title', title: 'Milennial', deathMessage: '%player oversaw many generations before finally crumbling into dust.' });
+    }
+
     return [{
       tier,
       name: 'Levelable',

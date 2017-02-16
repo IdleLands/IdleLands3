@@ -8,7 +8,7 @@ export class SoleFoot extends Achievement {
 
     if(soloSteps < 100000) return [];
 
-    return [{
+    const baseReward = {
       tier: 1,
       name: 'Sole Foot',
       desc: `Gain a special title (and +5% max item score) for taking ${(100000).toLocaleString()} solo steps.`,
@@ -24,6 +24,16 @@ export class SoleFoot extends Achievement {
         type: 'stats',
         itemFindRangeMultiplier: 0.05
       }]
-    }];
+    };
+
+    if(soloSteps >= 1000000) {
+      baseReward.rewards.push({
+        type: 'title',
+        title: 'Lone Wolf',
+        deathMessage: '%player was alone for too long in the prairie and got eaten by a wolf.'
+      });
+    }
+
+    return [baseReward];
   }
 }
