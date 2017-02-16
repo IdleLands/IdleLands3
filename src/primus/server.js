@@ -10,6 +10,9 @@ import Rooms from 'primus-rooms';
 import { GameState } from '../core/game-state';
 import { Logger } from '../shared/logger';
 
+import allteleports from '../../assets/maps/content/teleports.json';
+const compressedTeleports = _.extend({}, allteleports.towns, allteleports.bosses, allteleports.dungeons, allteleports.trainers, allteleports.other);
+
 export const primus = (() => {
   if(process.env.NO_START_GAME) return;
 
@@ -21,10 +24,9 @@ export const primus = (() => {
     .first();
 
   if(ip) {
-    console.log(`Your IP is: ${ip}` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
+    console.log(`Your IP is: ${ip}:${process.env.PORT || 8080}` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
   }
 
-  
   const express = require('express');
   const compression = require('compression');
   const serve = express();
@@ -41,6 +43,17 @@ export const primus = (() => {
     } catch (e) {
       res.send(e);
     }
+  });
+
+  serve.get('/maps', (req, res) => {
+    const mapData = _.sortBy(_.map(GameState.getInstance().world.maps, (val, key) => {
+      return { name: key, path: val.path };
+    }), 'name');
+
+    res.json({
+      maps: mapData,
+      teleports: compressedTeleports
+    });
   });
 
   const finalhandler = require('finalhandler');
