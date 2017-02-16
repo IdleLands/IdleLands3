@@ -35,10 +35,12 @@ export class Gambling extends Event {
     const choice = _.find(player.choices, { id });
     let { cost, multiplier, odds } = choice.extraData;
 
-    if(response === 'Double Down') {
+    const isDoubleDown = response === 'Double Down';
+    if(isDoubleDown) {
       cost *= 2;
       multiplier *= 2;
       odds /= 2;
+      player.$statistics.incrementStat('Character.Gamble.DoubleDown');
     }
 
     if(player.gold < cost) return false;
@@ -49,11 +51,19 @@ export class Gambling extends Event {
       const winnings = Math.round(cost * multiplier);
       player.gainGold(winnings, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Win', winnings);
-      message = `%player got lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%${response === 'Double Down' ? ' (Double Down)': ''}. %She came out ahead with ${winnings.toLocaleString()} gold!`;
+      player.$statistics.incrementStat('Character.Gamble.WinTimes');
+      if(isDoubleDown) {
+        player.$statistics.incrementStat('Character.Gamble.WinTimesDoubleDown');
+      }
+      message = `%player got lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%${isDoubleDown ? ' (Double Down)': ''}. %She came out ahead with ${winnings.toLocaleString()} gold!`;
     } else {
       player.gainGold(-cost, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Lose', cost);
-      message = `%player felt lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}${response === 'Double Down' ? ' (Double Down)': ''}%. %She lost it all at the table.`;
+      player.$statistics.incrementStat('Character.Gamble.LoseTimes');
+      if(isDoubleDown) {
+        player.$statistics.incrementStat('Character.Gamble.LoseTimesDoubleDown');
+      }
+      message = `%player felt lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}${isDoubleDown ? ' (Double Down)': ''}%. %She lost it all at the table.`;
     }
 
     message = this._parseText(message, player);

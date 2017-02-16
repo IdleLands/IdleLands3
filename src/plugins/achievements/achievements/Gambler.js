@@ -7,6 +7,14 @@ export class Gambler extends Achievement {
     const value = player.$statistics.getStat('Character.Gold.Gamble.Win') + player.$statistics.getStat('Character.Gold.Gamble.Lose');
     const baseValue = 100000;
 
+    const wins  = player.$statistics.getStat('Character.Gamble.WinTimes');
+    const loses = player.$statistics.getStat('Character.Gamble.LoseTimes');
+
+    const winsDD  = player.$statistics.getStat('Character.Gamble.WinTimesDoubleDown');
+    const losesDD = player.$statistics.getStat('Character.Gamble.LoseTimesDoubleDown');
+
+    if(wins < 10 || loses < 30 || winsDD < 3 || losesDD < 10) return [];
+
     let tier = 1;
     while(value >= baseValue * Math.pow(10, tier-1)) {
       tier++;
