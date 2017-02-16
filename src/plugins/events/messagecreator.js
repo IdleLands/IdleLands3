@@ -70,11 +70,11 @@ class AllDomains {
   static random(props, cache) {
     const { domain, funct, cacheNum, args } = props[0];
     const got = cache.get(domain, funct, cacheNum);
-    if(got) return `«${got}»`;
+    if(got) return got;
 
     const res = AssetDomainHandler[funct](args, props, cache);
     cache.set(domain, funct, cacheNum, res);
-    return `«${res}»`;
+    return res;
   }
 }
 
@@ -158,7 +158,7 @@ class EventVariableManager {
     try {
       const prevCacheData = cache.get(domain, funct, cacheNum);
       if(prevCacheData && funct !== 'party') return prevCacheData;
-      retVal = AllDomains[domain](props, cache, eventData);
+      retVal = `«${AllDomains[domain](props, cache, eventData)}»`;
       if(funct !== 'party') cache.set(domain, funct, cacheNum, retVal);
     } catch(e) {
       Logger.error('EventVariableManager', e, { props, cache });
