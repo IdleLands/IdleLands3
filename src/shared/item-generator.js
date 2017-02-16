@@ -84,7 +84,12 @@ export class ItemGenerator extends Generator {
   }
 
   static addPropertiesToItem(item, bonus = 0) {
-    if(chance.integer({ min: 0, max: 3 }) === 0) {
+
+    let prefixBonus = 0;
+    if(bonus > 10) prefixBonus++;
+    if(bonus > 20) prefixBonus++;
+
+    if(chance.integer({ min: 0, max: 3 }) - prefixBonus <= 0) {
       this.mergePropInto(item, _.sample(ObjectAssets.prefix));
 
       let iter = 1;
@@ -97,11 +102,11 @@ export class ItemGenerator extends Generator {
       }
     }
 
-    if(chance.integer({ min: 0, max: 100 }) === 0) {
+    if(chance.integer({ min: 0, max: 100 }) - bonus <= 0) {
       this.mergePropInto(item, _.sample(ObjectAssets['prefix-special']));
     }
 
-    if(chance.integer({ min: 0, max: 85 }) <= 1+bonus) {
+    if(chance.integer({ min: 0, max: 85 }) <= 1 + bonus) {
       this.mergePropInto(item, _.sample(ObjectAssets.suffix));
     }
   }
