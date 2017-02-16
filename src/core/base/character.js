@@ -31,6 +31,10 @@ export class Character {
       this._level.maximum = SETTINGS.maxLevel;
     }
 
+    if(this._xp.__current > this._xp.maximum) {
+      this._xp.__current = this._xp.maximum;
+    }
+
     _.each(['_hp', '_mp', '_xp', '_level', '_special'], stat => {
       if(_.isNaN(this[stat].__current)) this[stat].__current = 0;
       this[stat].__proto__ = RestrictedNumber.prototype;
