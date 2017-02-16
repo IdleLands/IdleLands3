@@ -557,6 +557,7 @@ export class Player extends Character {
     this.save();
 
     this.$pets.save();
+    this.$statistics.save();
 
     const ascBonus = 0.25 + (0.05 * currentAscensionLevel);
 
