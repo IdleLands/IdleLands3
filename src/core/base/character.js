@@ -196,7 +196,13 @@ export class Character {
   }
 
   levelUpXpCalc(level) {
-    return Math.floor(100 + (400 * Math.pow(level, 1.71)));
+    let xp = Math.floor(100 + (400 * Math.pow(level, 1.71)));
+    if(level > 200) {
+      const modifier = level - 200;
+      xp += (xp * (modifier / 100));
+    }
+
+    return Math.floor(xp);
   }
 
   gainGold(gold = 1) {
