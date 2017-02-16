@@ -13,4 +13,5 @@ export { ScaredOfTheDark } from './ScaredOfTheDark';
 export { Seeker } from './Seeker';
 export { SharpEye } from './SharpEye';
 export { Solo } from './Solo';
+export { Swapper } from './Swapper';
 export { TreasureHunter } from './TreasureHunter';
