@@ -88,7 +88,9 @@ export class MonsterGenerator extends Generator {
     _.each(Generator.types, type => {
       const item = ItemGenerator.generateItem(type, monster.level * 15, monster.level);
 
-      monster.equip(item);
+      if(monster.canEquip(item, monster.level / 2, false)) {
+        monster.equip(item);
+      }
     });
 
     // base stats = "monster essence"; always given to a monster after other equipment
