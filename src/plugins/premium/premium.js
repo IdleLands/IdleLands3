@@ -44,11 +44,11 @@ export class Premium {
 
   canBuyIlp(player, ilp) {
     if(_.isNaN(ilp)) return false;
-    return player.gold >= ilp * 10000;
+    return player.gold >= ilp * 20000;
   }
 
   buyIlp(player, ilp) {
-    player.gold -= ilp * 10000;
+    player.gold -= ilp * 20000;
     player.save();
 
     this.addIlp(ilp);
