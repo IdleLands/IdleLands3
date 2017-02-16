@@ -40,6 +40,7 @@ export const socket = (socket, primus, respond) => {
         try {
           jwt.verify(token, new Buffer(AUTH0_SECRET, 'base64'), { algorithms: ['HS256'] });
         } catch(e) {
+          Logger.error('Login', e, { token });
           return respond(MESSAGES.INVALID_TOKEN);
         }
       } else {
