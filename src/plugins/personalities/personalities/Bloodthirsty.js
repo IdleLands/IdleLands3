@@ -5,8 +5,8 @@ export class Bloodthirsty extends Personality {
   static disableOnActivate = ['Coward'];
   static description = 'Be more likely to go into combat, but be more reckless.';
   static stats = {
-    BattleChance:       (player, baseValue) => baseValue*2,
-    BattlePvPChance:    (player, baseValue) => baseValue*2,
+    BattleChance:       (player, baseValue) => baseValue*3,
+    BattlePvPChance:    (player, baseValue) => baseValue*3,
     GoldForsakeChance:  (player, baseValue) => baseValue,
     XPForsakeChance:    (player, baseValue) => baseValue,
     ItemForsakeChance:  (player, baseValue) => baseValue
