@@ -43,6 +43,7 @@ export class Personalities {
 
   turnAllOff(player) {
     _.each(_.keys(this.activePersonalities), pers => {
+      if(!this.activePersonalities[pers]) return;
       this.togglePersonality(player, pers);
     });
   }
