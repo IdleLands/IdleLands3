@@ -57,7 +57,8 @@ export class Providence extends Event {
     clearProvidence: 20,
     newProvidence: 75,
     personality: 50,
-    title: 75
+    title: 75,
+    ilp: 1
   };
 
   static _genders = SETTINGS.validGenders;
@@ -118,6 +119,11 @@ export class Providence extends Event {
     if(Event.chance.bool({ likelihood: this.probabilities.title })) {
       player.changeTitle(_.sample(player.$achievements.titles()));
       message = `${message} Title change!`;
+    }
+
+    if(Event.chance.bool({ likelihood: this.probabilities.ilp })) {
+      player.$premium.addIlp(5);
+      message = `${message} Got ILP!`;
     }
 
     return message;
