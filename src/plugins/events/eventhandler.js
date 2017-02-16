@@ -2,6 +2,8 @@
 import _ from 'lodash';
 import fs from 'fs';
 
+import { StatCalculator } from '../../shared/stat-calculator';
+
 import Chance from 'chance';
 const chance = new Chance();
 
@@ -47,8 +49,10 @@ export class EventHandler {
       const weight = allEvents[evtName].WEIGHT;
       if(!weight || weight <= 0) return;
 
+      const modWeight = StatCalculator.stat(player, `${evtName}Chance`, weight);
+
       events.push(evtName);
-      weights.push(weight);
+      weights.push(modWeight);
     });
 
     const chosenEventName = chance.weighted(events, weights);
