@@ -37,7 +37,7 @@ export class DigitalMagician extends Achievement {
     if(totalDigitals >= 1000000) {
       baseReward.rewards.push({
         type: 'title',
-        title: 'Digital Archmage',
+        title: 'Digital Wolf',
         deathMessage: '%player\'s endian ordering changed from big to little.'
       });
     }

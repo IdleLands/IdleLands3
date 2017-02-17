@@ -29,7 +29,7 @@ export class Camper extends Achievement {
     if(totalCamps >= 1000000) {
       baseReward.rewards.push({
         type: 'title',
-        title: 'Bad Bear',
+        title: 'Camping Wolf',
         deathMessage: '%player burned down the nearby forest after leaving a campfire running all night.'
       });
     }

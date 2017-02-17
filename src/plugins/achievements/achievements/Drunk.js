@@ -29,7 +29,7 @@ export class Drunk extends Achievement {
     if(totalSteps >= 1000000) {
       baseReward.rewards.push({
         type: 'title',
-        title: 'Lush',
+        title: 'Lush Wolf',
         deathMessage: '%player drank too much and dozed off in the town square.'
       });
     }
