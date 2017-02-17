@@ -102,7 +102,7 @@ export class ItemGenerator extends Generator {
       }
     }
 
-    if(chance.integer({ min: 0, max: 100 }) - bonus <= 0) {
+    if(chance.integer({ min: 0, max: 100 }) - (prefixBonus * 5) <= 0) {
       this.mergePropInto(item, _.sample(ObjectAssets['prefix-special']));
     }
 
