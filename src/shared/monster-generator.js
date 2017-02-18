@@ -87,8 +87,7 @@ export class MonsterGenerator extends Generator {
     // give it some equipment to defend itself with
     _.each(Generator.types, type => {
       const item = ItemGenerator.generateItem(type, monster.level * 15, monster.level);
-
-      if(monster.canEquip(item, monster.level / 2, false)) {
+      if(monster.canEquip(item, monster.level * 5, false)) {
         monster.equip(item);
       }
     });
