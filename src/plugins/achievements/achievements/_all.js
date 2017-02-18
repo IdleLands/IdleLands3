@@ -27,6 +27,7 @@ export { Herder } from './Herder';
 export { Impossible } from './Impossible';
 export { Levelable } from './Levelable';
 export { Mapceptional } from './Mapceptional';
+export { PartyMember } from './PartyMember';
 export { Personable } from './Personable';
 export { PKer } from './PKer';
 export { Slayer } from './Slayer';

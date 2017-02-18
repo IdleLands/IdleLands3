@@ -345,6 +345,10 @@ export class Player extends Character {
       incrementStats.push('Character.Movement.Solo');
     }
 
+    if(this.party) {
+      incrementStats.push('Character.Movement.Party');
+    }
+
     this.$statistics.batchIncrement(incrementStats);
 
     this.gainXp(SETTINGS.xpPerStep);
