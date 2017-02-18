@@ -117,10 +117,10 @@ export class ItemGenerator extends Generator {
     const funcs = [
       { name: 'linear',           modify: (stat) => stat + stat },
       { name: 'scalar',           modify: (stat) => stat * stat },
-      { name: 'vector',           modify: (stat) => Math.round(stat + Math.sqrt(stat)) },
+      { name: 'vector',           modify: (stat) => Math.round(stat + Math.sqrt(Math.abs(stat))) },
       { name: 'parabolic',        modify: (stat) => stat * chance.bool() ? -2 : 2 },
-      { name: 'quadratic',        modify: (stat) => Math.round(stat * Math.log(stat)) },
-      { name: 'exponential',      modify: (stat) => Math.round(stat * Math.sqrt(stat)) },
+      { name: 'quadratic',        modify: (stat) => Math.round(stat * Math.log(Math.abs(stat))) },
+      { name: 'exponential',      modify: (stat) => Math.round(stat * Math.sqrt(Math.abs(stat))) },
 
       { name: 'leve-linear',      modify: (stat) => stat + level },
       { name: 'leve-scalar',      modify: (stat) => stat * level },
@@ -148,7 +148,7 @@ export class ItemGenerator extends Generator {
     const validKeys = _(item)
       .omitBy((val, prop) => {
         return _.includes(['enchantLevel', 'foundAt', '_calcScore', '_baseScore', 'vector', 'dropPercent'], prop)
-            || val <= 0
+            || val === 0
             || _.isString(item[prop]);
       })
       .keys()
