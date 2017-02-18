@@ -228,12 +228,13 @@ export class Character {
 
   sellItem(item) {
     const value = Math.max(1, Math.floor(item.score * this.liveStats.itemValueMultiplier));
+    const maxValue = this.liveStats.itemFindRange * 10;
 
     if(this.$statistics) {
       this.$statistics.incrementStat('Character.Item.Sell');
     }
 
     const gold = this.gainGold(value);
-    return gold;
+    return Math.min(maxValue, gold);
   }
 }
