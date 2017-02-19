@@ -40,10 +40,13 @@ export class Gambling extends Event {
       cost *= 2;
       multiplier *= 2;
       odds /= 2;
-      player.$statistics.incrementStat('Character.Gamble.DoubleDown');
     }
 
     if(player.gold < cost) return false;
+
+    if(isDoubleDown) {
+      player.$statistics.incrementStat('Character.Gamble.DoubleDown');
+    }
 
     let message = '';
 
