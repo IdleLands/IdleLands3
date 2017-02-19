@@ -9,9 +9,15 @@ export class GoldForsake extends Event {
   static WEIGHT = WEIGHT;
 
   static operateOn(player) {
-    const maxGoldLost = Math.max(2000, Math.round(player.gold * 0.03));
-    const baseGold = Math.min(player.gold, Math.floor(Event.chance.integer({ min: 25, max: maxGoldLost })));
-    const goldMod = Math.abs(player.gainGold(-baseGold));
+
+    let value = Event.chance.integer({ min: 10, max: 1000 * player.level });
+    if(Event.chance.bool({ likelihood: 5 })) {
+      const maxGoldGained = Math.max(1000, Math.round(player.gold * 0.03));
+      const baseGold = Math.floor(Event.chance.integer({ min: 25, max: maxGoldGained }));
+      value = baseGold;
+    }
+
+    const goldMod = Math.abs(player.gainGold(-value));
     const eventText = this.eventText('forsakeGold', player, { gold: goldMod });
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [-${goldMod.toLocaleString()} gold]`, category: MessageCategories.GOLD });

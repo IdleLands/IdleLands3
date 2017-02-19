@@ -16,9 +16,14 @@ export class GoldBless extends Event {
       return player.party.members;
     }
 
-    const maxGoldGained = Math.max(1000, Math.round(player.gold * 0.02));
-    const baseGold = Math.floor(Event.chance.integer({ min: 10, max: maxGoldGained }));
-    const goldMod = player.gainGold(baseGold);
+    let value = Event.chance.integer({ min: 10, max: 500 * player.level });
+    if(Event.chance.bool({ likelihood: 1 })) {
+      const maxGoldGained = Math.max(1000, Math.round(player.gold * 0.02));
+      const baseGold = Math.floor(Event.chance.integer({ min: 10, max: maxGoldGained }));
+      value = baseGold;
+    }
+
+    const goldMod = player.gainGold(value);
     const eventText = this.eventText('blessGold', player, { gold: goldMod });
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [+${goldMod.toLocaleString()} gold]`, category: MessageCategories.GOLD });

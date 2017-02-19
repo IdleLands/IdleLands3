@@ -10,7 +10,7 @@ export class GoldBlessParty extends Event {
   static WEIGHT = WEIGHT;
 
   static operateOn(player) {
-    const goldMod = Math.floor(Event.chance.integer({ min: 10, max: 1000 }));
+    const goldMod = Math.floor(Event.chance.integer({ min: 10, max: 10000 }));
     const eventText = this.eventText('blessGoldParty', player, { gold: goldMod, partyName: player.party.name });
 
     _.each(player.party.players, member => {
