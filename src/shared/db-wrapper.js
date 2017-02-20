@@ -49,7 +49,9 @@ export class DbWrapper {
         db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
         db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
 
-        db.collection('players').updateMany({}, { $set: { isOnline: false } });
+        if(_.isUndefined(process.env.INSTANCE_NUMBER) || process.env.INSTANCE_NUMBER === 0) {
+          db.collection('players').updateMany({}, { $set: { isOnline: false } });
+        }
 
         db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 21600 }, _.noop);
 
