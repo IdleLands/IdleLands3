@@ -23,11 +23,11 @@ export class Consumerist extends Achievement {
       dexDisplay: `${tier}%`
     }];
 
-    if(tier >= 3) {
+    if(tier >= 4) {
       rewards.push({ type: 'title', title: 'Consumerist', deathMessage: '%player consumed too much and died of an implosive explosion.' });
     }
 
-    if(tier >= 4) {
+    if(tier >= 5) {
       rewards.push({ type: 'petattr', petattr: 'a bronze coin that looks like it got chewed on' });
     }
 

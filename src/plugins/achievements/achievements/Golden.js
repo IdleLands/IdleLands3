@@ -23,11 +23,11 @@ export class Golden extends Achievement {
       agiDisplay: `${tier}%`
     }];
 
-    if(tier >= 3) {
+    if(tier >= 4) {
       rewards.push({ type: 'title', title: 'Golden Child', deathMessage: '%player was transmuted into a literal brick of gold and sold on the gold market. Talk about going gold.' });
     }
 
-    if(tier >= 4) {
+    if(tier >= 5) {
       rewards.push({ type: 'petattr', petattr: 'a chunk of metal that is painted gold' });
     }
 
