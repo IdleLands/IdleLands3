@@ -20,7 +20,7 @@ export const socket = (socket, primus) => {
       gameState._clearTimeout(playerName);
       primus.delPlayer(playerName, socket);
       emitter.emit('player:logout', { playerName });
-    }, 10000);
+    }, 15000);
 
     gameState._setTimeout(playerName, timeoutId);
 

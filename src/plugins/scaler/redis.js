@@ -8,6 +8,9 @@ import { PlayerLoginData, PlayerLogoutData, PlayerUpdateAllData, SomePlayersPost
 import { sendMessage } from '../chat/sendmessage';
 import { GMCommands } from '../gm/commands';
 
+import { primus } from '../../primus/server';
+import { emitter } from '../../core/emitter-watchers';
+
 const redisUrl = process.env.REDIS_URL;
 
 const redisInstance = redisUrl ? new NRP({
@@ -30,6 +33,14 @@ process.on('SIGTERM', cleanRedis);
 let otherPlayers = [];
 
 if(redisInstance) {
+  redisInstance.on('player:forcelogout', ({ playerName }) => {
+    primus.delPlayer(playerName);
+    emitter.emit('player:logout', { playerName });
+
+    PlayerLogoutData(playerName);
+    otherPlayers = _.without(otherPlayers, _.find(otherPlayers, { name: playerName }));
+  });
+
   redisInstance.on('player:logout', ({ playerName }) => {
     PlayerLogoutData(playerName);
     otherPlayers = _.without(otherPlayers, _.find(otherPlayers, { name: playerName }));
@@ -133,6 +144,11 @@ export const IsFirstNode = () => {
 
 export const GetRedisPlayers = () => {
   return otherPlayers;
+};
+
+export const PlayerForceLogout = (playerName) => {
+  if(!redisInstance) return;
+  redisInstance.emit('player:forcelogout', { playerName });
 };
 
 export const PlayerLogoutRedis = (playerName) => {

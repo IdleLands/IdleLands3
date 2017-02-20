@@ -101,8 +101,16 @@ export const primus = (() => {
   };
 
   primus.delPlayer = (playerName, spark) => {
-    primus.players[playerName] = _.without(primus.players[playerName], spark);
-    spark.end();
+    if(spark) {
+      primus.players[playerName] = _.without(primus.players[playerName], spark);
+      spark.end();
+    } else {
+      _.each(primus.players[playerName], iterSpark => {
+        primus.players[playerName] = _.without(primus.players[playerName], iterSpark);
+        iterSpark.end();
+      });
+    }
+
     if(!primus.players[playerName].length) {
       delete primus.players[playerName];
     }
