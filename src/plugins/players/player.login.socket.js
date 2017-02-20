@@ -51,7 +51,7 @@ export const socket = (socket, primus, respond) => {
     const meOnOtherShards = _.find(GetRedisPlayers(), { userId });
 
     if(meOnOtherShards) {
-      return respond(MESSAGES.INVALID_TOKEN);
+      return respond(MESSAGES.ON_OTHER_SHARD);
     }
 
     const gameState = GameState.getInstance();
