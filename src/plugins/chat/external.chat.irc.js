@@ -10,7 +10,6 @@ const { server, nick, channel } = SETTINGS.chatConfig.irc;
 
 export class ExternalChatMechanism {
   connect(primus, sendRoom) {
-    console.log('loading extchat', sendRoom, isProd, process.env.NODE_ENV, process.env.EXT_CHAT);
     if(!isProd) return;
 
     if(!primus) {
