@@ -7,6 +7,8 @@ import Emit from 'primus-emit';
 import Rooms from 'primus-rooms';
 // import Multiplex from 'primus-multiplex';
 
+import { chatSetup } from '../plugins/chat/chat.setup';
+
 import { GameState } from '../core/game-state';
 import { Logger } from '../shared/logger';
 
@@ -90,6 +92,8 @@ export const primus = (() => {
 
   primus.use('rooms', Rooms);
   primus.use('emit', Emit);
+
+  chatSetup(primus);
 
   primus.players = {};
 
