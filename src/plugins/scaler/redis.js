@@ -14,8 +14,6 @@ import { emitter } from '../../core/emitter-watchers';
 const redisUrl = process.env.REDIS_URL;
 const INSTANCE = +process.env.INSTANCE_NUMBER;
 
-console.log('Am instance ' + INSTANCE);
-
 const redisInstance = redisUrl ? new NRP({
   url: redisUrl
 }) : null;
@@ -36,6 +34,9 @@ process.on('SIGTERM', cleanRedis);
 let otherPlayers = [];
 
 if(redisInstance) {
+
+  console.log('Am instance ' + INSTANCE);
+
   redisInstance.on('player:forcelogout', ({ playerName, _instance }) => {
     if(INSTANCE === _instance) return;
     primus.delPlayer(playerName);
