@@ -26,7 +26,7 @@ export const primus = (() => {
     .first();
 
   if(ip) {
-    console.log(`Your IP is: ${ip}:${process.env.PORT || 8080}` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
+    Logger.info('Server', `Server IP is: ${ip}:${process.env.PORT || 8080}` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
   }
 
   const express = require('express');
@@ -35,9 +35,6 @@ export const primus = (() => {
   serve.use(compression(), express.static('assets'));
   serve.get('/online', (req, res) => {
     try {
-      res.set({
-        'Cache-Control': 'public, max-age=86400'
-      });
       res.json({
         players: GameState.getInstance().getPlayers().length,
         sparks: primus.connected
@@ -67,6 +64,8 @@ export const primus = (() => {
   });
 
   server.listen(process.env.PORT || 8080);
+
+  Logger.info('Server', 'Express started.');
 
   const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
 
