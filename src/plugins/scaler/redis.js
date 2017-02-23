@@ -12,6 +12,9 @@ import { primus } from '../../primus/server';
 import { emitter } from '../../core/emitter-watchers';
 
 const redisUrl = process.env.REDIS_URL;
+const INSTANCE = +process.env.INSTANCE_NUMBER;
+
+console.log('Am instance ' + INSTANCE);
 
 const redisInstance = redisUrl ? new NRP({
   url: redisUrl
@@ -20,7 +23,7 @@ const redisInstance = redisUrl ? new NRP({
 const innerRedisClient = redisInstance ? redisInstance.getRedisClient() : null;
 
 const cleanRedis = () => {
-  if(!innerRedisClient || _.isNumber(process.env.INSTANCE_NUMBER)) return;
+  if(!innerRedisClient || _.isNumber(INSTANCE)) return;
   innerRedisClient.del('IsFirst', () => {
     process.exit();
   });
@@ -33,7 +36,8 @@ process.on('SIGTERM', cleanRedis);
 let otherPlayers = [];
 
 if(redisInstance) {
-  redisInstance.on('player:forcelogout', ({ playerName }) => {
+  redisInstance.on('player:forcelogout', ({ playerName, _instance }) => {
+    if(INSTANCE === _instance) return;
     primus.delPlayer(playerName);
     emitter.emit('player:logout', { playerName });
 
@@ -41,28 +45,31 @@ if(redisInstance) {
     otherPlayers = _.without(otherPlayers, _.find(otherPlayers, { name: playerName }));
   });
 
-  redisInstance.on('player:logout', ({ playerName }) => {
+  redisInstance.on('player:logout', ({ playerName, _instance }) => {
+    if(INSTANCE === _instance) return;
     PlayerLogoutData(playerName);
     otherPlayers = _.without(otherPlayers, _.find(otherPlayers, { name: playerName }));
   });
 
-  redisInstance.on('player:login', ({ playerName, data }) => {
-    if(GameState.getInstance().getPlayer(playerName)) return;
+  redisInstance.on('player:login', ({ playerName, data, _instance }) => {
+    if(INSTANCE === _instance) return;
     PlayerLoginData(playerName, data);
     otherPlayers.push(data);
   });
 
-  redisInstance.on('player:update', ({ data }) => {
+  redisInstance.on('player:update', ({ data, _instance }) => {
+    if(INSTANCE === _instance) return;
     PlayerUpdateAllData(data);
     _.merge(_.find(otherPlayers, { name: data.name }), data);
   });
 
-  redisInstance.on('global:move', ({ data }) => {
+  redisInstance.on('global:move', ({ data, _instance }) => {
+    if(INSTANCE === _instance) return;
     SomePlayersPostMoveData(data);
   });
 
-  redisInstance.on('chat:send', ({ message, isExternal }) => {
-    if(GameState.getInstance().getPlayer(message.realPlayerName)) return;
+  redisInstance.on('chat:send', ({ message, isExternal, _instance }) => {
+    if(INSTANCE === _instance) return;
     sendMessage(message, isExternal);
   });
 
@@ -119,27 +126,10 @@ if(redisInstance) {
   });
 }
 
-const firstNodePromise = new Promise((resolve) => {
-  // no redis = yes, this is client #1
-  if(!redisInstance) return resolve(true);
-
-  // deployed on clever-cloud
-  if(_.isNumber(process.env.INSTANCE_NUMBER)) {
-    return process.env.INSTANCE_NUMBER === 0 ? resolve(true) : resolve(false);
-  }
-
-  // do logic
-  innerRedisClient.get('IsFirst', (e, hasFirst) => {
-    if(hasFirst) return resolve(false);
-
-    innerRedisClient.set('IsFirst', '1', () => {
-      resolve(true);
-    });
-  });
-});
-
-export const IsFirstNode = () => {
-  return firstNodePromise;
+const _emit = (event, data) => {
+  if(!redisInstance) return;
+  data._instance = INSTANCE;
+  redisInstance.emit(event, data);
 };
 
 export const GetRedisPlayers = () => {
@@ -147,28 +137,23 @@ export const GetRedisPlayers = () => {
 };
 
 export const PlayerForceLogout = (playerName) => {
-  if(!redisInstance) return;
-  redisInstance.emit('player:forcelogout', { playerName });
+  _emit('player:forcelogout', { playerName });
 };
 
 export const PlayerLogoutRedis = (playerName) => {
-  if(!redisInstance) return;
-  redisInstance.emit('player:logout', { playerName });
+  _emit('player:logout', { playerName });
 };
 
 export const PlayerLoginRedis = (playerName, data) => {
-  if(!redisInstance) return;
-  redisInstance.emit('player:login', { playerName, data });
+  _emit('player:login', { playerName, data });
 };
 
 export const PlayerUpdateAllRedis = (data) => {
-  if(!redisInstance) return;
-  redisInstance.emit('player:update', { data });
+  _emit('player:update', { data });
 };
 
 export const SomePlayersPostMoveRedis = (data) => {
-  if(!redisInstance) return;
-  redisInstance.emit('global:move', { data });
+  _emit('global:move', { data });
 };
 
 export const SendChatMessage = (message, isExternal) => {
@@ -178,70 +163,57 @@ export const SendChatMessage = (message, isExternal) => {
     }
     return;
   }
-  redisInstance.emit('chat:send', { message, isExternal });
+  _emit('chat:send', { message, isExternal });
 };
 
 export const AddFestivalRedis = (festival) => {
-  if(!redisInstance) return;
-  redisInstance.emit('festival:add', { festival });
+  _emit('festival:add', { festival });
 };
 
 export const CancelFestivalRedis = (festivalId) => {
-  if(!redisInstance) return;
-  redisInstance.emit('festival:cancel', { festivalId });
+  _emit('festival:cancel', { festivalId });
 };
 
 export const TeleportRedis = (playerName, opts) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:teleport', { playerName, opts });
+  _emit('gm:teleport', { playerName, opts });
 };
 
 export const ToggleModRedis = (playerName) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:togglemod', { playerName });
+  _emit('gm:togglemod', { playerName });
 };
 
 export const ToggleAchievementRedis = (playerName, achievement) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:toggleachievement', { playerName, achievement });
+  _emit('gm:toggleachievement', { playerName, achievement });
 };
 
 export const SetLevelRedis = (playerName, level) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:setlevel', { playerName, level });
+  _emit('gm:setlevel', { playerName, level });
 };
 
 export const GiveItemRedis = (playerName, item) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:giveitem', { playerName, item });
+  _emit('gm:giveitem', { playerName, item });
 };
 
 export const GiveEventRedis = (playerName, event) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:giveevent', { playerName, event });
+  _emit('gm:giveevent', { playerName, event });
 };
 
 export const GiveGoldRedis = (playerName, gold) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:givegold', { playerName, gold });
+  _emit('gm:givegold', { playerName, gold });
 };
 
 export const GiveILPRedis = (playerName, ilp) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:giveilp', { playerName, ilp });
+  _emit('gm:giveilp', { playerName, ilp });
 };
 
 export const BanRedis = (playerName) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:ban', { playerName });
+  _emit('gm:ban', { playerName });
 };
 
 export const MuteRedis = (playerName) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:mute', { playerName });
+  _emit('gm:mute', { playerName });
 };
 
 export const PardonRedis = (playerName) => {
-  if(!redisInstance) return;
-  redisInstance.emit('gm:pardon', { playerName });
+  _emit('gm:pardon', { playerName });
 };
