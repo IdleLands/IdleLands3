@@ -47,7 +47,6 @@ export const PlayerLogout = (playerName) => {
 // these are global updater functions
 
 export const SomePlayersPostMoveData = (groupedByMap) => {
-  console.log('first');
 
   primus.forEach((spark, next) => {
     if(!spark.authToken) return next();
