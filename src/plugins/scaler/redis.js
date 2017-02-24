@@ -60,7 +60,7 @@ if(redisInstance) {
   });
 
   redisInstance.on('chat:send', ({ message, isExternal, _instance }) => {
-    if(INSTANCE === _instance || isExternal) return;
+    if(INSTANCE === _instance && !isExternal) return;
     sendMessage(message, isExternal);
   });
 
