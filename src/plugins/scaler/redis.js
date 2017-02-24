@@ -119,7 +119,6 @@ if(redisInstance) {
 
 const _emit = (event, data) => {
   if(!redisInstance) return;
-  console.log(`Redis ${INSTANCE} emitting ${event}`, data);
   data._instance = INSTANCE;
   redisInstance.emit(event, data);
 };
@@ -129,14 +128,17 @@ export const GetRedisPlayers = () => {
 };
 
 export const PlayerForceLogout = (playerName) => {
+  console.log(`Redis ${INSTANCE} emitting forcelogout`, playerName);
   _emit('player:forcelogout', { playerName });
 };
 
 export const PlayerLogoutRedis = (playerName) => {
+  console.log(`Redis ${INSTANCE} emitting logout`, playerName);
   _emit('player:logout', { playerName });
 };
 
 export const PlayerLoginRedis = (playerName, data) => {
+  console.log(`Redis ${INSTANCE} emitting login`, playerName);
   _emit('player:login', { playerName, data });
 };
 
