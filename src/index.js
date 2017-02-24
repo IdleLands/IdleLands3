@@ -22,7 +22,7 @@ _.mixin({
   }
 }, { chain: false });
 
-if(process.env.TRADE_SERVICE_NAME) {
+if(process.env.TRACE_SERVICE_NAME) {
   console.log('Starting Trace reporting!');
   require('@risingstack/trace');
 }
