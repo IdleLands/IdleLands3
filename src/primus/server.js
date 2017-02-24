@@ -1,10 +1,10 @@
 
-import fs from 'fs';
+import * as fs from 'fs';
 
-import _ from 'lodash';
-import Primus from 'primus';
-import Emit from 'primus-emit';
-import Rooms from 'primus-rooms';
+import * as _ from 'lodash';
+import * as Primus from 'primus';
+import * as Emit from 'primus-emit';
+import * as Rooms from 'primus-rooms';
 // import Multiplex from 'primus-multiplex';
 
 import { chatSetup } from '../plugins/chat/chat.setup';
@@ -12,7 +12,7 @@ import { chatSetup } from '../plugins/chat/chat.setup';
 import { GameState } from '../core/game-state';
 import { Logger } from '../shared/logger';
 
-import allteleports from '../../assets/maps/content/teleports.json';
+import * as allteleports from '../../assets/maps/content/teleports.json';
 const compressedTeleports = _.extend({}, allteleports.towns, allteleports.bosses, allteleports.dungeons, allteleports.trainers, allteleports.other);
 
 export const primus = (() => {
@@ -61,6 +61,11 @@ export const primus = (() => {
   const server = require('http').createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     serve(req, res, finalhandler(req, res));
+  });
+
+  server.on('error', (e) => {
+    console.error(e);
+    process.exit(1);
   });
 
   server.listen(process.env.PORT || 8080);
@@ -140,13 +145,6 @@ export const primus = (() => {
     _.each(allSocketRequires, obj => obj.socket(spark, primus, (data) => {
       data.event = obj.event;
       respond(data);
-
-      // kill global sparks after 5 seconds
-      if(_.includes(obj.event, 'plugin:global')) {
-        setTimeout(() => {
-          spark.end();
-        }, 5000);
-      }
     }));
 
     spark.on('error', e => {
@@ -162,7 +160,7 @@ export const primus = (() => {
   });
 
   if(process.env.NODE_ENV !== 'production') {
-    _.each(['Play', 'Global'], root => {
+    _.each(['Play'], root => {
       const path = require('path').join(__dirname, '..', '..', '..', root);
       fs.stat(path, e => {
         if(e) {

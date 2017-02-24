@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { Event } from '../event';
 import { Battle as BattleClass } from '../../combat/battle';

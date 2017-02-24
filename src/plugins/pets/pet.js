@@ -1,6 +1,6 @@
 
-import _ from 'lodash';
-import RestrictedNumber from 'restricted-number';
+import * as _ from 'lodash';
+import * as RestrictedNumber from 'restricted-number';
 
 import { Character } from '../../core/base/character';
 import { Equipment } from '../../core/base/equipment';

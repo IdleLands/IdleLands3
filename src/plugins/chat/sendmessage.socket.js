@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { GameState } from '../../core/game-state';
 import { SETTINGS } from '../../static/settings';
@@ -29,7 +29,7 @@ export const socket = (socket) => {
     const { playerName } = socket.authToken;
     if(!playerName) return;
 
-    const player = GameState.getInstance().retrievePlayer(playerName);
+    const player = GameState.getInstance().getPlayer(playerName);
     if(!player || !player.isOnline || player.isMuted || player.isBanned) return;
 
     if(!player.lastSentMessage) player.lastSentMessage = Date.now();

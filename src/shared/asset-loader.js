@@ -1,6 +1,6 @@
 
-import fs from 'fs';
-import _ from 'lodash';
+import * as fs from 'fs';
+import * as _ from 'lodash';
 
 // auto-populated
 export const StringAssets = {};

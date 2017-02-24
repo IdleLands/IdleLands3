@@ -1,6 +1,6 @@
 
 import { Dependencies, Container } from 'constitute';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import * as AllPersonalities from './personalities/_all';
 

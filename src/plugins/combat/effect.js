@@ -2,7 +2,7 @@
 import { MessageParser } from '../../plugins/events/messagecreator';
 import { Logger } from '../../shared/logger';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 export class Effect {

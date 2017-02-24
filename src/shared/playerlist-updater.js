@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { primus } from '../primus/server';
 import { GameState } from '../core/game-state';

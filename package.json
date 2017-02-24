@@ -6,21 +6,20 @@
   "scripts": {
     "postinstall": "npm run install:assets",
     "install:assets": "node npm/install-assets",
-    "start": "NO_BABEL=1 node dist/index.js",
-    "start:dev": "node src/index.js",
-    "start:inspect": "node --expose-gc --inspect=9222 src/index.js",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon --exec \"ts-node src/index.js\"",
     "start:battletest": "cross-env BATTLE_DEBUG=1 node src/index.js",
-    "start:prod": "cross-env NODE_ENV=production IGNORE_NEWRELIC=1 EXT_CHAT=0 INSTANCE_NUMBER=0 node src/index.js",
+    "start:prod": "cross-env NODE_ENV=production EXT_CHAT=0 INSTANCE_NUMBER=0 node src/index.js",
     "test": "npm run test:local",
     "test:lint": "eslint --quiet src/** test/plugins/**",
     "test:local": "npm run test:lint",
     "test:client": "node test/client/client",
     "generate:all": "npm run generate:spelldoc && npm run generate:classdoc && npm run generate:apidoc && npm run generate:effectdoc && npm run generate:petdoc",
-    "generate:effectdoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-effectdoc",
-    "generate:spelldoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-spelldoc",
-    "generate:classdoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-classdoc",
-    "generate:petdoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-petdoc",
-    "generate:apidoc": "cross-env NO_START_GAME=1 node -r babel-polyfill -r babel-register npm/generate-apidoc",
+    "generate:effectdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-effectdoc",
+    "generate:spelldoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-spelldoc",
+    "generate:classdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-classdoc",
+    "generate:petdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-petdoc",
+    "generate:apidoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-apidoc",
     "gitfix": "git add docs",
     "gen:items": "node test/gen/items"
   },
@@ -44,21 +43,7 @@
     ],
     "source": [
       "src/**/*.js"
-    ],
-    "require": [
-      "babel-register",
-      "babel-polyfill"
-    ],
-    "babel": {
-      "presets": [
-        "es2015"
-      ],
-      "plugins": [
-        "transform-decorators-legacy",
-        "transform-async-to-generator",
-        "transform-class-properties"
-      ]
-    }
+    ]
   },
   "pre-commit": [
     "test",
@@ -66,12 +51,6 @@
     "gitfix"
   ],
   "dependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-plugin-transform-class-properties": "^6.10.2",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-polyfill": "^6.9.1",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-register": "^6.9.0",
     "chance": "^1.0.3",
     "compression": "^1.6.2",
     "constitute": "^1.6.2",
@@ -98,11 +77,13 @@
   },
   "devDependencies": {
     "ava": "^0.15.2",
-    "babel-eslint": "^6.0.5",
     "bithound": "^1.7.0",
     "cross-env": "^3.0.0",
     "eslint": "^2.13.1",
     "eslint-config-kellyirc": "^3.1.0",
-    "pre-commit": "1.1.3"
+    "nodemon": "^1.11.0",
+    "pre-commit": "1.1.3",
+    "ts-node": "^2.1.0",
+    "typescript": "^2.2.1"
   }
 }

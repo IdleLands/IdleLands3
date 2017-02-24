@@ -1,6 +1,6 @@
 
-import _ from 'lodash';
-import jwt from 'jsonwebtoken';
+import * as _ from 'lodash';
+import * as jwt from 'jsonwebtoken';
 
 import { Player } from './player';
 import { PlayerDb } from './player.db';
@@ -51,6 +51,7 @@ export const socket = (socket, primus, respond) => {
     const meOnOtherShards = _.find(GetRedisPlayers(), { userId });
 
     if(meOnOtherShards) {
+      console.log('Force logging out of other shards');
       PlayerForceLogout(meOnOtherShards.name);
       // return respond(MESSAGES.ON_OTHER_SHARD);
     }

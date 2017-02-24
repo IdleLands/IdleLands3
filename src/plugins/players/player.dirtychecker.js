@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { ALL_STATS } from '../../shared/stat-calculator';
 

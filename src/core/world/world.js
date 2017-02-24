@@ -1,9 +1,9 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Map } from './map';
-import fs from 'fs';
+import * as fs from 'fs';
 
-import Bosses from '../../../assets/maps/content/boss.json';
+import * as Bosses from '../../../assets/maps/content/boss.json';
 
 export class World {
   constructor() {

@@ -1,7 +1,7 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import fs from 'fs';
+import * as fs from 'fs';
 
 import * as Professions from '../src/core/professions/_all';
 

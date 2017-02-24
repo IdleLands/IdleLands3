@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { GameState } from '../../core/game-state';
 import { GMCommands } from '../gm/commands';

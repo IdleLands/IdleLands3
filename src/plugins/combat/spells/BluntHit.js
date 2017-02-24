@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 import { Prone as BluntHitEffect } from '../effects/Prone';

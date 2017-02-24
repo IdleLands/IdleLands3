@@ -1,5 +1,5 @@
 
-import RestrictedNumber from 'restricted-number';
+import * as RestrictedNumber from 'restricted-number';
 
 import { Profession } from '../base/profession';
 

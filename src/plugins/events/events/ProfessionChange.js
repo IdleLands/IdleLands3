@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Event } from '../event';
 import { emitter } from '../../players/_emitter';
 

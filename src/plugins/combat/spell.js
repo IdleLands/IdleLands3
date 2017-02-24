@@ -1,11 +1,11 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { SpellTargetStrategy } from './spelltargetstrategy';
 import { SpellTargetPossibilities } from './spelltargetpossibilities';
 import { MessageParser } from '../../plugins/events/messagecreator';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 const isValidSpellTierProfession = (tier, caster) => {

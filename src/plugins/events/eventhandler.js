@@ -1,10 +1,10 @@
 
-import _ from 'lodash';
-import fs from 'fs';
+import * as _ from 'lodash';
+import * as fs from 'fs';
 
 import { StatCalculator } from '../../shared/stat-calculator';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 export const allEvents = {};

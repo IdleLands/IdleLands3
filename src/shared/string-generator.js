@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { StringAssets } from './asset-loader';
 
 export class StringGenerator {

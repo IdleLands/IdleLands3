@@ -1,10 +1,10 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import fs from 'fs';
+import * as fs from 'fs';
 
-import * as Professions from '../src/core/professions/_all';
-import * as Spells from '../src/plugins/combat/spells/_all';
+import * as Professions from '../core/professions/_all';
+import * as Spells from '../plugins/combat/spells/_all';
 
 let docString = `
 # IdleLands Class Spells

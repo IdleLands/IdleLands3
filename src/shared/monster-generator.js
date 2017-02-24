@@ -1,7 +1,7 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 import * as Professions from '../core/professions/_all';
@@ -12,9 +12,9 @@ import { Generator } from '../core/base/generator';
 import { Equipment } from '../core/base/equipment';
 import { ObjectAssets } from '../shared/asset-loader';
 
-import Bosses from '../../assets/maps/content/boss.json';
-import BossParties from '../../assets/maps/content/bossparties.json';
-import BossItems from '../../assets/maps/content/bossitems.json';
+import * as Bosses from '../../assets/maps/content/boss.json';
+import * as BossParties from '../../assets/maps/content/bossparties.json';
+import * as BossItems from '../../assets/maps/content/bossitems.json';
 
 const bossTimers = {};
 

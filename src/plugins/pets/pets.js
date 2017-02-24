@@ -1,13 +1,13 @@
 
 import { Dependencies, Container } from 'constitute';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { Logger } from '../../shared/logger';
 
 import { Equipment } from '../../core/base/equipment';
 
 import { SETTINGS } from '../../static/settings';
-import petdata from '../../../assets/maps/content/pets.json';
+import * as petdata from '../../../assets/maps/content/pets.json';
 import { Pet } from './pet';
 
 @Dependencies(Container)

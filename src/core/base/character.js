@@ -1,8 +1,7 @@
 
-import _ from 'lodash';
-import RestrictedNumber from 'restricted-number';
+import * as _ from 'lodash';
+import * as RestrictedNumber from 'restricted-number';
 import { GameState } from '../game-state';
-
 
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
@@ -54,6 +53,8 @@ export class Character {
         if(_.includes(Generator.stats, name) && !_.includes(['gold', 'xp'], name)) {
           return StatCalculator.stat(this, name);
         }
+
+        if(!StatCalculator[name]) return null;
 
         try {
           return StatCalculator[name](this);

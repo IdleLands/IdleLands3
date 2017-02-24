@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 export const migrate = (player) => {
   const choiceMigrate = _.get(player.$statistics.stats, 'Character.Choice.Choose');

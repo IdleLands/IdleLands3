@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { GameState } from '../../core/game-state';
 
 import { ProfessionChange } from '../events/events/ProfessionChange';
@@ -13,7 +13,7 @@ import { emitter } from './_emitter';
 
 import { MonsterGenerator } from '../../shared/monster-generator';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance(Math.random);
 
 const directions = [1, 2, 3, 6, 9, 8, 7, 4];

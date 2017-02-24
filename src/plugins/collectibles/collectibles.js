@@ -1,6 +1,6 @@
 
 import { Dependencies, Container } from 'constitute';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { Logger } from '../../shared/logger';
 import { GameState } from '../../core/game-state';

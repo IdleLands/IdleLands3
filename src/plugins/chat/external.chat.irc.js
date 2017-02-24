@@ -1,5 +1,5 @@
 
-import IRC from 'squelch-client';
+import * as IRC from 'squelch-client';
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
 import { SendChatMessage } from '../scaler/redis';

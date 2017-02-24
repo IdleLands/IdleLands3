@@ -1,2 +1,2 @@
-npm install -g babel-cli
-babel -q -d dist src
+npm install -g typescript
+tsc

@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { StringAssets } from '../../shared/asset-loader';
 import { MessageParser } from '../../plugins/events/messagecreator';
@@ -8,7 +8,7 @@ import { primus } from '../../primus/server';
 
 import { emitter } from '../../plugins/players/_emitter';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 export class Event {

@@ -1,5 +1,5 @@
 
-import rollbar from 'rollbar';
+import * as rollbar from 'rollbar';
 
 const rollbarToken = process.env.ROLLBAR_ACCESS_TOKEN;
 const isQuiet = process.env.QUIET;

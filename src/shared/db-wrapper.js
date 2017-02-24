@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { MongoClient } from 'mongodb';
 
 import { Logger } from './logger';

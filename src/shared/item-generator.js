@@ -1,15 +1,15 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 import { Generator } from '../core/base/generator';
 import { Equipment } from '../core/base/equipment';
 import { ObjectAssets } from '../shared/asset-loader';
 
-import Chests from '../../assets/maps/content/chests.json';
-import Treasures from '../../assets/maps/content/treasure.json';
+import * as Chests from '../../assets/maps/content/chests.json';
+import * as Treasures from '../../assets/maps/content/treasure.json';
 
 export class ItemGenerator extends Generator {
   

@@ -1,8 +1,8 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import fs from 'fs';
+import * as fs from 'fs';
 
-import PETDATA from '../assets/maps/content/pets.json';
+import * as PETDATA from '../../assets/maps/content/pets.json';
 
 let indexString = `# IdleLands Pets\n\n`;
 	indexString += `## Table of Contents\n\n`;

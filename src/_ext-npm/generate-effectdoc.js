@@ -1,9 +1,9 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import fs from 'fs';
+import * as fs from 'fs';
 
-import { SPECIAL_STATS_BASE, ATTACK_STATS_BASE } from '../src/shared/stat-calculator';
+import { SPECIAL_STATS_BASE, ATTACK_STATS_BASE } from '../shared/stat-calculator';
 
 let docString = `
 # IdleLands Equipment Effects

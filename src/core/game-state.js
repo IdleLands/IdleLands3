@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { World } from './world/world';
 import { Festivals } from '../plugins/festivals/festivals';
@@ -97,19 +97,18 @@ export class GameState {
   addPlayer(playerName) {
     return new Promise(async (resolve, reject) => {
       if(this.getPlayer(playerName)) return resolve(false);
-      const player = await this.retrievePlayer(playerName);
 
-      // double check because async takes time
-      if(this.getPlayer(playerName)) return resolve(false);
+      this.retrievePlayerFromDb(playerName)
+        .then(player => {
+          if(!player) {
+            return reject({ msg: MESSAGES.NO_PLAYER });
+          }
 
-      if(!player) {
-        return reject({ msg: MESSAGES.NO_PLAYER });
-      }
+          player.choices = _.reject(player.choices, c => c.event === 'Party' || c.event === 'PartyLeave');
 
-      player.choices = _.reject(player.choices, c => c.event === 'Party' || c.event === 'PartyLeave');
-
-      this.players.push(player);
-      resolve(player);
+          this.players.push(player);
+          resolve(player);
+        });
     });
   }
 
@@ -141,7 +140,7 @@ export class GameState {
   }
 
   getPlayerNameSimple(playerName, keys) {
-    return this.getPlayerSimple(this.retrievePlayer(playerName), keys, false);
+    return this.getPlayerSimple(this.getPlayer(playerName), keys, false);
   }
 
   getPlayerSimple(player, keys = UPDATE_KEYS, override = false) {
@@ -160,16 +159,7 @@ export class GameState {
     return _.compact(_.map(this.players, p => playerNames[p.name] ? this.getPlayerSimple(p, keys) : null));
   }
 
-  retrievePlayer(playerName) {
-    const playerObject = _.find(this.players, { name: playerName });
-    if(playerObject) return playerObject;
-
+  retrievePlayerFromDb(playerName) {
     return this.playerLoad.loadPlayer(playerName);
-  }
-
-  emitFestivals() {
-    _.each(this.players, player => {
-      player.__updateFestivals();
-    });
   }
 }

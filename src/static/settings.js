@@ -1,7 +1,7 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import teleports from '../../assets/maps/content/teleports.json';
+import * as teleports from '../../assets/maps/content/teleports.json';
 
 class Settings {
 

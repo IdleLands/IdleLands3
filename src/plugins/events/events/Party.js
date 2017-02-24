@@ -1,7 +1,7 @@
 
 const isBattleDebug = process.env.BATTLE_DEBUG;
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { Event } from '../event';
 import { GameState } from '../../../core/game-state';

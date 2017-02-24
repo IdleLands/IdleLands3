@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Event } from '../event';
 import { MessageCategories } from '../../../shared/adventure-log';
 

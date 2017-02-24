@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { SETTINGS } from '../../static/settings';
 import { ObjectAssets } from '../../shared/asset-loader';

@@ -1,9 +1,9 @@
 
 // TODO: https://github.com/IdleLands/IdleLandsOld/blob/e460f87751ddfe370f8e99b46d4838af5688b93b/src/system/handlers/MessageCreator.coffee
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 import { GameState } from '../../core/game-state';

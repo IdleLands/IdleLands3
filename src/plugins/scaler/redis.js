@@ -1,7 +1,7 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import NRP from 'node-redis-pubsub';
+import * as NRP from 'node-redis-pubsub';
 
 import { GameState } from '../../core/game-state';
 import { PlayerLoginData, PlayerLogoutData, PlayerUpdateAllData, SomePlayersPostMoveData } from '../../shared/playerlist-updater';
@@ -12,24 +12,11 @@ import { primus } from '../../primus/server';
 import { emitter } from '../../core/emitter-watchers';
 
 const redisUrl = process.env.REDIS_URL;
-const INSTANCE = +process.env.INSTANCE_NUMBER;
+const INSTANCE = _.isNaN(+process.env.INSTANCE_NUMBER) ? 0 : +process.env.INSTANCE_NUMBER;
 
 const redisInstance = redisUrl ? new NRP({
   url: redisUrl
 }) : null;
-
-const innerRedisClient = redisInstance ? redisInstance.getRedisClient() : null;
-
-const cleanRedis = () => {
-  if(!innerRedisClient || _.isNumber(INSTANCE)) return;
-  innerRedisClient.del('IsFirst', () => {
-    process.exit();
-  });
-};
-
-process.on('exit', cleanRedis);
-process.on('SIGINT', cleanRedis);
-process.on('SIGTERM', cleanRedis);
 
 let otherPlayers = [];
 

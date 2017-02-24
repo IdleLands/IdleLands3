@@ -17,13 +17,6 @@ if(process.env.NODE_ENV !== 'production') {
 process.on('uncaughtException', e => console.error(e));
 process.on('unhandledRejection', reason => console.error(reason));
 
-// should only be needed in dev
-if(!process.env.NO_BABEL) {
-  require('babel-register');
-}
-
-require('babel-polyfill');
-
 require('./primus/server');
 
 require('./core/event-loop');

@@ -1,7 +1,7 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 import { Generator } from '../core/base/generator';

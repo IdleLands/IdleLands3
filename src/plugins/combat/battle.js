@@ -2,14 +2,14 @@
 const isBattleDebug = process.env.BATTLE_DEBUG;
 const isQuiet = process.env.QUIET;
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { StringGenerator } from '../../shared/string-generator';
 import { MessageParser } from '../../plugins/events/messagecreator';
 
 import { persistToDb } from './battle.db';
 
-import Chance from 'chance';
+import * as Chance from 'chance';
 const chance = new Chance();
 
 const MAX_ROUND = 100;

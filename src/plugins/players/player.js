@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Dependencies } from 'constitute';
 import { Character } from '../../core/base/character';
 
@@ -254,7 +254,7 @@ export class Player extends Character {
   }
 
   get validGenders() {
-    return SETTINGS.validGenders.concat(this.$premium.genders);
+    return SETTINGS.validGenders.concat(_.get(this.$premium, 'genders', []));
   }
 
   changeGender(newGender) {
@@ -515,7 +515,7 @@ export class Player extends Character {
   }
 
   get ascensionLevel() {
-    return this.$statistics.getStat('Character.Ascension.Times');
+    return this.$statistics ? this.$statistics.getStat('Character.Ascension.Times') : 0;
   }
 
   ascend() {
