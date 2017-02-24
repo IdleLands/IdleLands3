@@ -15,7 +15,7 @@ import { GameState } from '../../core/game-state';
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
 const SERVER_ID = process.env.INSTANCE_NUMBER || 0;
 
-import { GetRedisPlayers, PlayerForceLogout } from '../scaler/redis';
+import { PlayerForceLogout } from '../scaler/redis';
 
 export const event = 'plugin:player:login';
 export const description = 'Log in or register a new character. Login only requires userId.';
@@ -46,13 +46,6 @@ export const socket = (socket, primus, respond) => {
       } else {
         Logger.error('Login', new Error('Token needs to be validated, but no AUTH0_TOKEN is present.'));
       }
-    }
-
-    const meOnOtherShards = _.find(GetRedisPlayers(), { userId });
-
-    if(meOnOtherShards) {
-      PlayerForceLogout(meOnOtherShards.name);
-      // return respond(MESSAGES.ON_OTHER_SHARD);
     }
 
     const gameState = GameState.getInstance();
@@ -123,6 +116,8 @@ export const socket = (socket, primus, respond) => {
     }
 
     const loggedInPlayerName = (oldPlayer || player).name;
+
+    PlayerForceLogout(loggedInPlayerName);
 
     try {
       socket.authToken = { playerName: loggedInPlayerName, token };
