@@ -26,6 +26,7 @@ if(redisInstance) {
 
   redisInstance.on('player:forcelogout', ({ playerName, _instance }) => {
     if(INSTANCE === _instance) return;
+    console.log(`Redis ${INSTANCE} acting on forcelogout from ${_instance}`, playerName);
     primus.delPlayer(playerName);
     emitter.emit('player:logout', { playerName });
 
@@ -35,12 +36,14 @@ if(redisInstance) {
 
   redisInstance.on('player:logout', ({ playerName, _instance }) => {
     if(INSTANCE === _instance) return;
+    console.log(`Redis ${INSTANCE} acting on logout from ${_instance}`, playerName);
     PlayerLogoutData(playerName);
     otherPlayers = _.without(otherPlayers, _.find(otherPlayers, { name: playerName }));
   });
 
   redisInstance.on('player:login', ({ playerName, data, _instance }) => {
     if(INSTANCE === _instance) return;
+    console.log(`Redis ${INSTANCE} acting on login from ${_instance}`, playerName);
     PlayerLoginData(playerName, data);
     otherPlayers.push(data);
   });
@@ -116,6 +119,7 @@ if(redisInstance) {
 
 const _emit = (event, data) => {
   if(!redisInstance) return;
+  console.log(`Redis ${INSTANCE} emitting ${event}`, data);
   data._instance = INSTANCE;
   redisInstance.emit(event, data);
 };
