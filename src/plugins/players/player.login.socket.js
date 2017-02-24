@@ -51,7 +51,6 @@ export const socket = (socket, primus, respond) => {
     const meOnOtherShards = _.find(GetRedisPlayers(), { userId });
 
     if(meOnOtherShards) {
-      console.log('Force logging out of other shards');
       PlayerForceLogout(meOnOtherShards.name);
       // return respond(MESSAGES.ON_OTHER_SHARD);
     }
