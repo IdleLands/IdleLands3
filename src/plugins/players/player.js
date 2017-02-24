@@ -375,11 +375,16 @@ export class Player extends Character {
   }
 
   buildTransmitObject() {
-    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir', 'allIps'];
+    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir', 'allIps', 'profession', 'spells'];
     const obj = _.omitBy(this, (val, key) => {
-      return _.startsWith(key, '$') || _.includes(key, 'Link') || _.includes(key, 'Steps') || _.includes(badKeys, key);
+      return _.startsWith(key, '$')
+         || _.isFunction(val)
+         || _.includes(key, 'Link')
+         || _.includes(key, 'Steps')
+         || _.includes(badKeys, key);
     });
     obj.ascensionLevel = this.ascensionLevel;
+    console.log(obj);
     return obj;
   }
 
