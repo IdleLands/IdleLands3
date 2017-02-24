@@ -13,7 +13,6 @@ import { GameState } from '../core/game-state';
 import { Logger } from '../shared/logger';
 
 import * as allteleports from '../../assets/maps/content/teleports.json';
-const compressedTeleports = _.extend({}, allteleports.towns, allteleports.bosses, allteleports.dungeons, allteleports.trainers, allteleports.other);
 
 export const primus = (() => {
   if(process.env.NO_START_GAME) return;
@@ -34,11 +33,13 @@ export const primus = (() => {
   const serve = express();
   serve.use(compression(), express.static('assets'));
 
-  serve.get('/maps', (req, res) => {
-    const mapData = _.sortBy(_.map(GameState.getInstance().world.maps, (val, key) => {
-      return { name: key, path: val.path };
-    }), 'name');
+  const compressedTeleports = _.extend({}, allteleports.towns, allteleports.bosses, allteleports.dungeons, allteleports.trainers, allteleports.other);
 
+  const mapData = _.sortBy(_.map(GameState.getInstance().world.maps, (val, key) => {
+    return { name: key, path: val.path };
+  }), 'name');
+
+  serve.get('/maps', (req, res) => {
     res.json({
       maps: mapData,
       teleports: compressedTeleports
