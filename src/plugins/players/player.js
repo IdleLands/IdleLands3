@@ -384,7 +384,6 @@ export class Player extends Character {
          || _.includes(badKeys, key);
     });
     obj.ascensionLevel = this.ascensionLevel;
-    console.log(obj);
     return obj;
   }
 
