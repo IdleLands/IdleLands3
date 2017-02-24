@@ -373,15 +373,6 @@ export class Pets {
     return _.omitBy(this, (val, key) => _.startsWith(key, '$') || _.isNotWritable(this, key));
   }
 
-  buildGlobalObject() {
-    const ret = {};
-    _.each(this.$pets, pet => {
-      ret[pet.$petId] = pet.buildSaveObject();
-    });
-
-    return ret;
-  }
-
   save() {
     this.petsDb.savePets(this.buildSaveObject());
   }

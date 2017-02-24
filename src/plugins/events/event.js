@@ -39,12 +39,12 @@ export class Event {
   }
 
   static pickValidItemForEnchant(player) {
-    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.isNormallyEnchantable);
+    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.type !== 'trinket' && item.isNormallyEnchantable);
     return _.sample(validTargets);
   }
 
   static pickValidItemForBless(player) {
-    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.isUnderNormalPercent(player));
+    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.type !== 'trinket' && item.isUnderNormalPercent(player));
     return _.sample(validTargets);
   }
 
