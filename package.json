@@ -63,6 +63,7 @@
     "lodash": "^4.13.1",
     "minimist": "^1.2.0",
     "mongodb": "^2.1.18",
+    "node-cleanup": "^2.1.2",
     "node-redis-pubsub": "^1.0.2",
     "node-schedule": "^1.2.0",
     "primus": "^5.2.2",

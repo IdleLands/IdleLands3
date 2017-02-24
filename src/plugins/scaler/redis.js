@@ -2,6 +2,7 @@
 import * as _ from 'lodash';
 
 import * as NRP from 'node-redis-pubsub';
+import * as nodeCleanup from 'node-cleanup';
 
 import { GameState } from '../../core/game-state';
 import { PlayerLoginData, PlayerLogoutData, PlayerUpdateAllData, SomePlayersPostMoveData } from '../../shared/playerlist-updater';
@@ -18,11 +19,29 @@ const redisInstance = redisUrl ? new NRP({
   url: redisUrl
 }) : null;
 
+const _emit = (event, data = {}) => {
+  if(!redisInstance) return;
+  data._instance = INSTANCE;
+  redisInstance.emit(event, data);
+};
+
+nodeCleanup(() => {
+  _emit('server:forcekill');
+  setTimeout(() => {
+    process.exit(0);
+  }, 1000);
+  return false;
+});
+
 let otherPlayers = [];
 
 if(redisInstance) {
 
   console.log('Am instance ' + INSTANCE);
+
+  redisInstance.on('server:forcekill', ({ _instance }) => {
+    otherPlayers = _.reject(otherPlayers, p => p.$shard === _instance);
+  });
 
   redisInstance.on('player:forcelogout', ({ playerName, _instance }) => {
     if(INSTANCE === _instance) return;
@@ -116,12 +135,6 @@ if(redisInstance) {
     GMCommands.pardon(playerName, false);
   });
 }
-
-const _emit = (event, data) => {
-  if(!redisInstance) return;
-  data._instance = INSTANCE;
-  redisInstance.emit(event, data);
-};
 
 export const GetRedisPlayers = () => {
   return otherPlayers;

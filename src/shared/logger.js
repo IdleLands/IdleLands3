@@ -40,5 +40,9 @@ export class Logger {
 }
 
 process.on('uncaughtException', err => {
-  Logger.error('PROCESS:BAD', err);
+  Logger.error('PROCESS:BAD:EXCEPTION', err);
+});
+
+process.on('unhandledRejection', err => {
+  Logger.error('PROCESS:BAD:REJECTION', err);
 });
