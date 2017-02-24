@@ -117,8 +117,6 @@ export const socket = (socket, primus, respond) => {
 
     const loggedInPlayerName = (oldPlayer || player).name;
 
-    PlayerForceLogout(loggedInPlayerName);
-
     try {
       socket.authToken = { playerName: loggedInPlayerName, token };
       socket.playerName = loggedInPlayerName;
@@ -135,6 +133,8 @@ export const socket = (socket, primus, respond) => {
     primus.addPlayer(loggedInPlayerName, socket);
 
     emitter.emit(event, { playerName: loggedInPlayerName, fromIp: socket.address.ip });
+
+    PlayerForceLogout(loggedInPlayerName);
 
     const msg = _.clone(MESSAGES.LOGIN_SUCCESS);
     msg.ok = true;
