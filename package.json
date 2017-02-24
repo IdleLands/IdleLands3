@@ -13,7 +13,7 @@
     "test": "npm run test:local",
     "test:lint": "eslint --quiet src/** test/plugins/**",
     "test:local": "npm run test:lint",
-    "test:client": "node test/client/client",
+    "test:client": "ts-node src/test/client/client",
     "generate:all": "npm run generate:spelldoc && npm run generate:classdoc && npm run generate:apidoc && npm run generate:effectdoc && npm run generate:petdoc",
     "generate:effectdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-effectdoc",
     "generate:spelldoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-spelldoc",

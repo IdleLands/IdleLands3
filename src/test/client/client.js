@@ -1,6 +1,4 @@
 
-require('babel-register');
-require('babel-polyfill');
 
 const _ = require('lodash');
 const Primus = require('primus');
@@ -9,7 +7,7 @@ const argv = require('minimist')(process.argv.slice(2));
 
 const isQuiet = process.env.QUIET;
 
-const al = require('../../src/shared/asset-loader');
+const al = require('../../shared/asset-loader');
 
 // get a big list of names (don't really care what)
 let names = [
@@ -109,7 +107,7 @@ const play = (name, index) => {
 
 if (argv.random) {
   _.each(_.sampleSize(players, numPlayers), play);
-} else if (argv.name){
+} else if (argv.name) {
   console.log(`Playing with ${argv.name}`);
   play(argv.name, 0);
 } else {
