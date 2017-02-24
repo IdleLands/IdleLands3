@@ -56,8 +56,7 @@ if(redisInstance) {
     SomePlayersPostMoveData(data);
   });
 
-  redisInstance.on('chat:send', ({ message, isExternal, _instance }) => {
-    if(INSTANCE === _instance) return;
+  redisInstance.on('chat:send', ({ message, isExternal }) => {
     sendMessage(message, isExternal);
   });
 
