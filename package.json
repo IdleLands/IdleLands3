@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run install:assets",
-    "install:assets": "node src/_ext-npm/install-assets",
+    "install:assets": "node install-assets",
     "start": "node dist/index.js",
     "start:dev": "nodemon --exec \"ts-node src/index.js\"",
     "start:battletest": "cross-env BATTLE_DEBUG=1 node src/index.js",
