@@ -158,6 +158,7 @@ export class ItemGenerator extends Generator {
     const chosenKeys = _.sampleSize(validKeys, numKeys);
 
     _.each(chosenKeys, key => {
+      if(_.includes(['score', 'isNormallyEnchantable'], key)) return;
       item[key] = func.modify(item[key]);
     });
 
