@@ -33,16 +33,6 @@ export const primus = (() => {
   const compression = require('compression');
   const serve = express();
   serve.use(compression(), express.static('assets'));
-  serve.get('/online', (req, res) => {
-    try {
-      res.json({
-        players: GameState.getInstance().getPlayers().length,
-        sparks: primus.connected
-      });
-    } catch (e) {
-      res.send(e);
-    }
-  });
 
   serve.get('/maps', (req, res) => {
     const mapData = _.sortBy(_.map(GameState.getInstance().world.maps, (val, key) => {
