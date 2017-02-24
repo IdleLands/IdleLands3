@@ -51,6 +51,7 @@
     "gitfix"
   ],
   "dependencies": {
+    "@risingstack/trace": "^3.5.0",
     "chance": "^1.0.3",
     "compression": "^1.6.2",
     "constitute": "^1.6.2",

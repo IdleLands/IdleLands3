@@ -22,5 +22,10 @@ _.mixin({
   }
 }, { chain: false });
 
+if(process.env.TRADE_SERVICE_NAME) {
+  console.log('Starting Trace reporting!');
+  require('@risingstack/trace');
+}
+
 require('./primus/server');
 require('./core/event-loop');
