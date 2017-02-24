@@ -26,5 +26,4 @@ _.mixin({
 }, { chain: false });
 
 require('./primus/server');
-
 require('./core/event-loop');
