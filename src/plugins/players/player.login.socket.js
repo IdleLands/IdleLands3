@@ -13,7 +13,7 @@ import { MESSAGES } from '../../static/messages';
 import { GameState } from '../../core/game-state';
 
 const AUTH0_SECRET = process.env.AUTH0_SECRET;
-const SERVER_ID = process.env.INSTANCE_NUMBER || 0;
+const SERVER_ID = _.isNaN(+process.env.INSTANCE_NUMBER) ? 0 : +process.env.INSTANCE_NUMBER;
 
 import { PlayerForceLogout } from '../scaler/redis';
 
