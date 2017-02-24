@@ -2,11 +2,11 @@
   "name": "idlelands",
   "version": "0.0.0",
   "description": "An idling game of epic proportions",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "postinstall": "npm run install:assets",
     "install:assets": "node install-assets",
-    "start": "node dist/index.js",
+    "start": "ts-node src/index.js",
     "start:dev": "nodemon --exec \"ts-node src/index.js\"",
     "start:battletest": "cross-env BATTLE_DEBUG=1 node src/index.js",
     "start:prod": "cross-env NODE_ENV=production EXT_CHAT=0 INSTANCE_NUMBER=0 node src/index.js",
