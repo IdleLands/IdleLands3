@@ -21,6 +21,7 @@
     "assets",
     "test",
     "docs",
-    "scripts"
+    "scripts",
+    "install-assets.js"
   ]
 }
