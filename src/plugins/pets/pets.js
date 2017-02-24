@@ -370,7 +370,7 @@ export class Pets {
     _.each(this.$pets, pet => {
       this.earnedPetData[pet.$petId] = pet.buildSaveObject();
     });
-    return _.omitBy(this, (val, key) => _.startsWith(key, '$'));
+    return _.omitBy(this, (val, key) => _.startsWith(key, '$') || _.isNotWritable(this, key));
   }
 
   buildGlobalObject() {

@@ -371,14 +371,15 @@ export class Player extends Character {
   }
 
   buildSaveObject() {
-    return _.omitBy(this, (val, key) => _.startsWith(key, '$'));
+    return _.omitBy(this, (val, key) => _.startsWith(key, '$') || _.isNotWritable(this, key));
   }
 
   buildTransmitObject() {
-    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir', 'allIps', 'profession', 'spells', 'party'];
+    const badKeys = ['equipment', 'isOnline', 'stepCooldown', 'userId', 'lastDir', 'allIps', 'profession', 'spells'];
     const obj = _.omitBy(this, (val, key) => {
       return _.startsWith(key, '$')
          || _.isFunction(val)
+         || _.isNotWritable(this, key)
          || _.includes(key, 'Link')
          || _.includes(key, 'Steps')
          || _.includes(badKeys, key);

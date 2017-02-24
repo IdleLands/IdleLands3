@@ -270,7 +270,7 @@ export class Pet extends Character {
   }
 
   buildTransmitObject() {
-    const base = _.omitBy(this, (val, key) => _.startsWith(key, '$'));
+    const base = _.omitBy(this, (val, key) => _.startsWith(key, '$') || _.isNotWritable(this, key));
     base.$petId = this.$petId;
     base.$scale = this.$scale;
     base.$scaleCost = this.$scaleCost;
@@ -280,7 +280,7 @@ export class Pet extends Character {
   }
 
   buildSaveObject() {
-    return _.omitBy(this, (val, key) => _.startsWith(key, '$'));
+    return _.omitBy(this, (val, key) => _.startsWith(key, '$') || _.isNotWritable(this, key));
   }
 
   save() {

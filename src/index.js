@@ -17,6 +17,14 @@ if(process.env.NODE_ENV !== 'production') {
 process.on('uncaughtException', e => console.error(e));
 process.on('unhandledRejection', reason => console.error(reason));
 
+var _ = require('lodash');
+_.mixin({
+  'isNotWritable': (obj, key) => {
+    const descriptor = Object.getOwnPropertyDescriptor(obj, key);
+    return (!descriptor || !descriptor.writable);
+  }
+}, { chain: false });
+
 require('./primus/server');
 
 require('./core/event-loop');
