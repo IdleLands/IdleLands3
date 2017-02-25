@@ -401,6 +401,7 @@ export class Player extends Character {
     this.saveSteps--;
 
     if(this.saveSteps <= 0) {
+      Logger.silly('Player:TakeTurn', `${this.name} actually saving.`);
       this._save();
       this.saveSteps = SETTINGS.saveSteps;
     }
