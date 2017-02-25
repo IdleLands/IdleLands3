@@ -125,9 +125,7 @@ export class Player extends Character {
     this.attemptToDisbandSoloParty();
 
     try {
-      Logger.silly('Player:TakeTurn', `${this.name} moving.`);
       this.moveAction();
-      Logger.silly('Player:TakeTurn', `${this.name} doing event.`);
       EventHandler.tryToDoEvent(this);
     } catch(e) {
       Logger.error('Player', e);
@@ -137,7 +135,6 @@ export class Player extends Character {
       this.party.playerTakeStep(this);
     }
 
-    Logger.silly('Player:TakeTurn', `${this.name} save.`);
     this.save();
   }
 
