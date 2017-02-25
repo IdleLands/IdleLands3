@@ -59,7 +59,15 @@ const playerInterval = () => {
   SomePlayersPostMove(ranPlayerNames);
 };
 
-setInterval(playerInterval, timerDelay);
+const runPlayerInterval = () => {
+  playerInterval();
+  setTimeout(() => {
+    process.nextTick(runPlayerInterval);
+  }, timerDelay);
+};
+
+runPlayerInterval();
+// setInterval(playerInterval, timerDelay);
 
 if(global.gc) {
   Logger.info('Core', 'Running GC every 30 seconds.');
