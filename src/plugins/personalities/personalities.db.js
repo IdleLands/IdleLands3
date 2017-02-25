@@ -41,21 +41,19 @@ export class PersonalitiesDb {
     const db = await this.dbWrapper.connectionPromise();
     const personalities = db.$$collections.personalities;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       personalities.findOneAndUpdate({ _id: personalitiesObject._id }, 
         { $set: {
           activePersonalities: personalitiesObject.activePersonalities ,
           earnedPersonalities: personalitiesObject.earnedPersonalities
         } }, 
         { upsert: true }, 
-        (err) =>{
-          if (!err) {
-            resolve(personalities);
-          } else {
-            // process.stdout.write('p');
-            // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-            // MONGOERRORIGNORE
+        (err) => {
+          if(err) {
+            return reject(err);
           }
+
+          resolve(personalities);
         }
       );
     });

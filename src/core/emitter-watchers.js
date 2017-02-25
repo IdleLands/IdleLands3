@@ -8,6 +8,11 @@ import { migrate } from '../plugins/players/player.migration';
 import { handleIp } from '../plugins/players/player.handleip';
 import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../shared/playerlist-updater';
 import { MessageParser } from '../plugins/events/messagecreator';
+import { Logger } from '../shared/logger';
+
+PlayerEmitter.on('error', e => {
+  Logger.error('PlayerEmitter', e);
+});
 
 PlayerEmitter.on('player:semilogin', ({ playerName, fromIp }) => {
   const player = GameState.getInstance().getPlayer(playerName);

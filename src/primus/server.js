@@ -48,14 +48,14 @@ export const primus = (() => {
 
   const finalhandler = require('finalhandler');
 
-// load primus
+  // load primus
   const server = require('http').createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     serve(req, res, finalhandler(req, res));
   });
 
   server.on('error', (e) => {
-    console.error(e);
+    Logger.error('HTTP', e);
     process.exit(1);
   });
 
@@ -146,8 +146,10 @@ export const primus = (() => {
       if(spark.authToken || spark._registering) return;
       spark.end();
     }, 10000);
+  });
 
-    // spark.join('adventurelog');
+  primus.on('error', e => {
+    Logger.error('Primus', e);
   });
 
   if(process.env.NODE_ENV !== 'production') {

@@ -41,7 +41,7 @@ export class PetsDb {
     const db = await this.dbWrapper.connectionPromise();
     const pets = db.$$collections.pets;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       pets.findOneAndUpdate({ _id: petsObject._id },
         { $set: {
           activePetId: petsObject.activePetId,
@@ -49,14 +49,13 @@ export class PetsDb {
           earnedPets: petsObject.earnedPets
         } },
         { upsert: true },
-        (err) =>{
-          if (!err) {
-            resolve(pets);
-          } else {
-            // process.stdout.write('p');
-            // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-            // MONGOERRORIGNORE
+        (err) => {
+
+          if(err) {
+            return reject(err);
           }
+
+          resolve(pets);
         }
       );
     });

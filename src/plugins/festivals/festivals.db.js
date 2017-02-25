@@ -38,16 +38,14 @@ export class FestivalsDb {
     const db = await this.dbWrapper.connectionPromise();
     const festivals = db.$$collections.festivals;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       festivals.remove({ _id: festivalObject._id },
-        (err) =>{
-          if (!err) {
-            resolve(festivalObject);
-          } else {
-            // process.stdout.write('p');
-            // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-            // MONGOERRORIGNORE
+        (err) => {
+          if(err) {
+            return reject(err);
           }
+
+          resolve(festivalObject);
         }
       );
     });

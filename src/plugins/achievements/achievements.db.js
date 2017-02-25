@@ -41,20 +41,17 @@ export class AchievementsDb {
     const db = await this.dbWrapper.connectionPromise();
     const achievements = db.$$collections.achievements;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: {
         achievements: achievementsObject.achievements,
         uniqueAchievements: achievementsObject.uniqueAchievements,
         totalAchievementTiers: achievementsObject.totalAchievementTiers,
         totalTitles: achievementsObject.totalTitles
       } }, { upsert: true }, (err) =>{
-        if (!err) {
-          resolve(achievements);
-        } else {
-          // process.stdout.write('a');
-          // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-          // MONGOERRORIGNORE
+        if(err) {
+          return reject(err);
         }
+        resolve(achievements);
       });
     });
   }

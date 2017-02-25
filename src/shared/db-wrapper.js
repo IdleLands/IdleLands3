@@ -46,6 +46,10 @@ export class DbWrapper {
           }
         });
 
+        db.on('error', e => {
+          Logger.error('DB:Err', e);
+        });
+
         db.collection('players').createIndex({ name: 1 }, { unique: true }, _.noop);
         db.collection('players').createIndex({ userId: 1 }, { unique: true }, _.noop);
 

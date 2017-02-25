@@ -41,19 +41,17 @@ export class CollectiblesDb {
     const db = await this.dbWrapper.connectionPromise();
     const collectibles = db.$$collections.collectibles;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       collectibles.findOneAndUpdate({ _id: collectiblesObject._id }, { $set: {
         collectibles: collectiblesObject.collectibles,
         priorCollectibles: collectiblesObject.priorCollectibles,
         uniqueCollectibles: collectiblesObject.uniqueCollectibles
       } }, { upsert: true }, (err) =>{
-        if (!err) {
-          resolve(collectibles);
-        } else {
-          // process.stdout.write('c');
-          // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-          // MONGOERRORIGNORE
+        if(err) {
+          return reject(err);
         }
+
+        resolve(collectibles);
       });
     });
   }

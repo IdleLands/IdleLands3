@@ -41,7 +41,7 @@ export class PremiumDb {
     const db = await this.dbWrapper.connectionPromise();
     const premiums = db.$$collections.premiums;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       premiums.findOneAndUpdate(
         { _id: premiumObject._id },
         { $set: {
@@ -51,13 +51,11 @@ export class PremiumDb {
         } },
         { upsert: true },
         (err) => {
-          if (!err) {
-            resolve(premiumObject);
-          } else {
-            // process.stdout.write('c');
-            // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-            // MONGOERRORIGNORE
+          if(err) {
+            return reject(err);
           }
+
+          resolve(premiumObject);
         });
     });
   }

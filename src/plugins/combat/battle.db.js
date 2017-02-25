@@ -10,14 +10,12 @@ export const persistToDb = async (battleInstance) => {
   const battles = db.$$collections.battles;
 
   return new Promise((resolve, reject) => {
-    battles.findOneAndUpdate({ _id: saveData._id }, saveData, { upsert: true }, (err) =>{
-      if (!err) {
-        resolve(saveData);
-      } else {
-        // process.stdout.write('b');
-        // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-        // MONGOERRORIGNORE
+    battles.findOneAndUpdate({ _id: saveData._id }, saveData, { upsert: true }, (err) => {
+      if(err) {
+        return reject(err);
       }
+
+      resolve(saveData);
     }, reject);
   });
 };

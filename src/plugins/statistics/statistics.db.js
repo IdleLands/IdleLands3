@@ -41,15 +41,14 @@ export class StatisticsDb {
     const db = await this.dbWrapper.connectionPromise();
     const statistics = db.$$collections.statistics;
 
-    return new Promise((resolve) => {
-      statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }, (err) =>{
-        if (!err) {
-          resolve(statistics);
-        } else {
-          // process.stdout.write('s');
-          // TOFIX: for now, just dump these. it's failed, typically from high load. Hopefully the next save will work better
-          // MONGOERRORIGNORE
+    return new Promise((resolve, reject) => {
+      statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }, (err) => {
+
+        if(err) {
+          return reject(err);
         }
+
+        resolve(statistics);
       });
     });
   }
