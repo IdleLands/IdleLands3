@@ -15,7 +15,7 @@ import { Logger } from '../shared/logger';
 import * as allteleports from '../../assets/maps/content/teleports.json';
 
 export const primus = (() => {
-  if(process.env.NO_START_GAME) return;
+  if(process.env.NO_START_GAME || process.env.INSTANCE_TYPE === 'build') return {};
 
   const ip = _(require('os').networkInterfaces())
     .values()
