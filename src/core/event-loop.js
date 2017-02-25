@@ -35,7 +35,6 @@ const canTakeTurn = (now, player) => {
 };
 
 const playerInterval = () => {
-  console.log('player interval');
   const gameState = GameState.getInstance();
   const players = gameState.getPlayers();
 
