@@ -108,7 +108,7 @@ export class Achievements {
   }
 
   hasAchievement(achievement) {
-    return this.achievements[achievement];
+    return this.achievements && this.achievements[achievement];
   }
 
   hasAchievementAtTier(achievement, tier) {
