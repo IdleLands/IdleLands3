@@ -105,10 +105,12 @@ export class Player extends Character {
   }
 
   takeTurn() {
+    Logger.silly('Player:TakeTurn', `${this.name} taking turn.`);
 
     const activePet = this.$pets.activePet;
 
     if(activePet) {
+      Logger.silly('Player:TakeTurn', `${this.name}'s pet taking turn.`);
       activePet.takeTurn();
       if(activePet.$updatePlayer) {
         this.__updatePetActive();
@@ -116,6 +118,7 @@ export class Player extends Character {
     }
 
     if(this.$personalities.isActive('Camping')) {
+      Logger.silly('Player:TakeTurn', `${this.name}'s is camping.`);
       this.$statistics.incrementStat('Character.Movement.Camping');
       this.save();
       return;
@@ -124,16 +127,21 @@ export class Player extends Character {
     this.attemptToDisbandSoloParty();
 
     try {
+      Logger.silly('Player:TakeTurn', `${this.name} moving.`);
       this.moveAction();
+      Logger.silly('Player:TakeTurn', `${this.name} doing event.`);
       EventHandler.tryToDoEvent(this);
+      Logger.silly('Player:TakeTurn', `${this.name} did event.`);
     } catch(e) {
       Logger.error('Player', e);
     }
 
     if(this.$partyName) {
+      Logger.silly('Player:TakeTurn', `${this.name} party step.`);
       this.party.playerTakeStep(this);
     }
 
+    Logger.silly('Player:TakeTurn', `${this.name} save.`);
     this.save();
   }
 

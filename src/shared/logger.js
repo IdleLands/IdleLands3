@@ -37,6 +37,11 @@ export class Logger {
     if (isQuiet) return;
     console.info(this._formatMessage(tag, message));
   }
+
+  static silly(tag, message) {
+    if(!process.env.DEBUG_SILLY) return;
+    console.info(this._formatMessage(tag, message));
+  }
 }
 
 process.on('uncaughtException', err => {

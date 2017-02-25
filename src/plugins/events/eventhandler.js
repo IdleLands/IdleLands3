@@ -2,6 +2,7 @@
 import * as _ from 'lodash';
 import * as fs from 'fs';
 
+import { Logger } from '../../shared/logger';
 import { StatCalculator } from '../../shared/stat-calculator';
 
 import * as Chance from 'chance';
@@ -34,9 +35,12 @@ export class EventHandler {
   static tryToDoEvent(player) {
 
     if(player.eventSteps > 0) {
+      Logger.silly('Player:TryEvent', `${this.name} could not do event.`);
       player.eventSteps--;
       return;
     }
+
+    Logger.silly('Player:TryEvent', `${this.name} finding event.`);
 
     const requiredEventSteps = chance.integer({ min: 35, max: 50 });
     const modifier = player.calcLuckBonusFromValue();
@@ -56,6 +60,8 @@ export class EventHandler {
     });
 
     const chosenEventName = chance.weighted(events, weights);
+
+    Logger.silly('Player:TryEvent', `${this.name} trying to do ${chosenEventName}.`);
     this.doEvent(player, chosenEventName);
   }
 }
