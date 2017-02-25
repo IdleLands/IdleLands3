@@ -28,6 +28,10 @@ export class Premium {
     this.donatorFirstTimeBonus = undefined;
 
     _.extend(this, opts);
+
+    if(!_.isNumber(this.ilp)) {
+      this.ilp = 0;
+    }
   }
 
   get buyable() {
