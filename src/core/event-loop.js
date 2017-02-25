@@ -35,7 +35,7 @@ const canTakeTurn = (now, player) => {
 };
 
 const playerInterval = () => {
-  Logger.silly('Player interval, Server:', process.env.INSTANCE_NUMBER);
+  Logger.silly('EventLoop:PlayerInterval', `Server: ${process.env.INSTANCE_NUMBER}`);
   const gameState = GameState.getInstance();
   const players = gameState.getPlayers();
 

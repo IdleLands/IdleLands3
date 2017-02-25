@@ -11,6 +11,7 @@ import { GMCommands } from '../gm/commands';
 
 import { primus } from '../../primus/server';
 import { emitter } from '../../core/emitter-watchers';
+import { Logger } from '../../shared/logger';
 
 const redisUrl = process.env.REDIS_URL;
 const INSTANCE = _.isNaN(+process.env.INSTANCE_NUMBER) ? 0 : +process.env.INSTANCE_NUMBER;
@@ -37,7 +38,7 @@ let otherPlayers = [];
 
 if(redisInstance) {
 
-  console.log('Am instance ' + INSTANCE);
+  Logger.info('Redis', `Am instance ${INSTANCE}`);
 
   redisInstance.on('server:forcekill', ({ _instance }) => {
     otherPlayers = _.reject(otherPlayers, p => p.$shard === _instance);
@@ -45,7 +46,7 @@ if(redisInstance) {
 
   redisInstance.on('player:forcelogout', ({ playerName, _instance }) => {
     if(INSTANCE === _instance) return;
-    console.log(`Redis ${INSTANCE} acting on forcelogout from ${_instance}`, playerName);
+    Logger.silly('Redis', `Redis ${INSTANCE} acting on forcelogout from ${_instance}`, playerName);
     primus.delPlayer(playerName);
     emitter.emit('player:logout', { playerName });
 
@@ -55,14 +56,14 @@ if(redisInstance) {
 
   redisInstance.on('player:logout', ({ playerName, _instance }) => {
     if(INSTANCE === _instance) return;
-    console.log(`Redis ${INSTANCE} acting on logout from ${_instance}`, playerName);
+    Logger.silly('Redis', `Redis ${INSTANCE} acting on logout from ${_instance}`, playerName);
     PlayerLogoutData(playerName);
     otherPlayers = _.without(otherPlayers, _.find(otherPlayers, { name: playerName }));
   });
 
   redisInstance.on('player:login', ({ playerName, data, _instance }) => {
     if(INSTANCE === _instance) return;
-    console.log(`Redis ${INSTANCE} acting on login from ${_instance}`, playerName);
+    Logger.silly('Redis', `Redis ${INSTANCE} acting on login from ${_instance}`, playerName);
     PlayerLoginData(playerName, data);
     otherPlayers.push(data);
   });
@@ -141,17 +142,17 @@ export const GetRedisPlayers = () => {
 };
 
 export const PlayerForceLogout = (playerName) => {
-  console.log(`Redis ${INSTANCE} emitting forcelogout`, playerName);
+  Logger.silly('Redis', `Redis ${INSTANCE} emitting forcelogout`, playerName);
   _emit('player:forcelogout', { playerName });
 };
 
 export const PlayerLogoutRedis = (playerName) => {
-  console.log(`Redis ${INSTANCE} emitting logout`, playerName);
+  Logger.silly('Redis', `Redis ${INSTANCE} emitting logout`, playerName);
   _emit('player:logout', { playerName });
 };
 
 export const PlayerLoginRedis = (playerName, data) => {
-  console.log(`Redis ${INSTANCE} emitting login`, playerName);
+  Logger.silly('Redis', `Redis ${INSTANCE} emitting login`, playerName);
   _emit('player:login', { playerName, data });
 };
 
