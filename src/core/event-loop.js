@@ -51,7 +51,6 @@ const playerInterval = () => {
     flagNextTurn(player);
 
     player.takeTurn();
-    // PlayerUpdateAll(player.name, ['x', 'y', 'map']);
   };
 
   _.each(players, playerTakeTurn);
@@ -67,7 +66,6 @@ const runPlayerInterval = () => {
 };
 
 runPlayerInterval();
-// setInterval(playerInterval, timerDelay);
 
 if(global.gc) {
   Logger.info('Core', 'Running GC every 30 seconds.');

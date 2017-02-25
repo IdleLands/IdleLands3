@@ -419,6 +419,7 @@ export class Player extends Character {
     this.achievementSteps--;
 
     if(this.achievementSteps <= 0) {
+      Logger.silly('Player:TakeTurn', `${this.name} actually checking achievements.`);
       this._checkAchievements();
 
       this.achievementSteps = SETTINGS.achievementSteps;
