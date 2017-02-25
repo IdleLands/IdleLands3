@@ -419,7 +419,6 @@ export class Player extends Character {
     this.achievementSteps--;
 
     if(this.achievementSteps <= 0) {
-      Logger.silly('Player:TakeTurn', `${this.name} actually checking achievements.`);
       this._checkAchievements();
 
       this.achievementSteps = SETTINGS.achievementSteps;
@@ -427,22 +426,15 @@ export class Player extends Character {
   }
 
   _checkAchievements() {
-    Logger.silly('Player:TakeTurn', `${this.name} checking pets.`);
     this.$pets.checkPets(this);
 
     Logger.silly('Player:TakeTurn', `${this.name} actually checking new achievements.`);
     const newAchievements = this.$achievements.checkAchievements(this);
 
-    Logger.silly('Player:TakeTurn', `${this.name} checked for new achievements.`);
     if(newAchievements.length > 0) {
-      Logger.silly('Player:TakeTurn', `${this.name} achieving new things.`);
       emitter.emit('player:achieve', { player: this, achievements: newAchievements });
-
-      Logger.silly('Player:TakeTurn', `${this.name} checking personalities.`);
       this.$personalities.checkPersonalities(this);
     }
-
-    Logger.silly('Player:TakeTurn', `${this.name} done checking achievements.`);
   }
 
   _updatePlayer() {

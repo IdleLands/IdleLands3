@@ -37,6 +37,8 @@ export class Achievements {
     this.achievements = undefined;
     _.extend(this, opts);
 
+    if(!this.achievements) this.achievements = {};
+
     if(!this.uniqueAchievements) {
       this.save();
     }
@@ -115,24 +117,35 @@ export class Achievements {
 
   checkAchievements(player) {
     const earned = this._allAchievements(player);
+    Logger.silly('Achievement', `Earned ${earned}`);
     const mine = this.achievements;
+    Logger.silly('Achievement', `Mine ${mine}`);
 
     const newAchievements = [];
     _.each(earned, ach => {
+      Logger.silly('Achievement', `Checking ${player.name}|${ach}`);
       if(mine[ach.name] && mine[ach.name].tier >= ach.tier) return;
       newAchievements.push(ach);
     });
 
+    Logger.silly('Achievement', `New ${newAchievements}`);
+
     // always update the achievement data just in case
     this.achievements = {};
-    _.each(earned, ach => this.addAchievement(ach));
+    _.each(earned, ach => {
+      Logger.silly('Achievement', `Adding ${ach}`);
+      this.addAchievement(ach);
+    });
 
+    Logger.silly('Achievement', 'Saving');
     this.save();
 
     if(newAchievements.length > 0) {
+      Logger.silly('Achievement', 'Recalculating');
       player.recalculateStats();
     }
 
+    Logger.silly('Achievement', 'Done');
     return newAchievements;
   }
 
