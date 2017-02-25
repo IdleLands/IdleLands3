@@ -29,6 +29,10 @@ export class Statistics {
   }
 
   _addStat(stat, value = 1) {
+    if(!_.isFinite(value)) {
+      Logger.error('Statistics', new Error(`Someone is attempting to add a non-finite number to ${stat}. Fix it!`));
+      return;
+    }
     let val = _.get(this.stats, stat, 0);
     const oldVal = val;
     val += value;
@@ -37,6 +41,10 @@ export class Statistics {
   }
 
   setStat(stat, value = 1) {
+    if(!_.isFinite(value)) {
+      Logger.error('Statistics', new Error(`Someone is attempting to set a non-finite number to ${stat}. Fix it!`));
+      return;
+    }
     _.set(this.stats, stat, value);
   }
 
