@@ -97,7 +97,10 @@ export class Achievements {
   _allAchievements(player) {
     return _(AllAchievements)
       .values()
-      .map(ach => ach.achievementData(player) || [])
+      .map(ach => {
+        Logger.silly('ACHIEVEMENT', `checking ${ach.name}`);
+        return ach.achievementData(player) || [];
+      })
       .flattenDeep()
       .compact()
       .value();
