@@ -37,9 +37,10 @@ PlayerEmitter.on('player:login', async ({ playerName, fromIp }) => {
     player.$statistics.incrementStat(`Character.Professions.${player.professionName}`);
 
     AdventureLog({
-      text: MessageParser.stringFormat('Welcome to Idliathlia, the world of IdleLands! Check out our new player information guide on the wiki: https://github.com/IdleLands/IdleLands/wiki/New-Player-Information and enjoy your stay!'),
+      text: MessageParser.stringFormat('Welcome to Idliathlia, the world of IdleLands! Check out our new player information guide on the wiki and enjoy your stay!'),
       type: MessageTypes.SINGLE,
       targets: [playerName],
+      extraData: { link: 'https://github.com/IdleLands/IdleLands/wiki/New-Player-Information' },
       category: MessageCategories.META
     });
   }
