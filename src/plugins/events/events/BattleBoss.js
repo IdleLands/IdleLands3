@@ -93,8 +93,8 @@ export class BattleBoss extends Event {
 
           const collectibleObj = {
             name: coll.name,
-            map: player.map,
-            region: player.mapRegion,
+            map: 'Boss',
+            region: bossName,
             rarity: coll.rarity || 'guardian',
             description: coll.flavorText,
             storyline: coll.storyline,

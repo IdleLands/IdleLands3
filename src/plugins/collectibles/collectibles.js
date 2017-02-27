@@ -63,10 +63,12 @@ export class Collectibles {
 
     const allCollectibles = GameState.getInstance().world.allCollectibles;
     const emit = {};
+
     _.each(this.priorCollectibles, (count, coll) => {
       emit[coll] = _.cloneDeep(allCollectibles[coll]);
       emit[coll].name = coll;
       emit[coll].count = count;
+      emit[coll].description = emit[coll].flavorText;
     });
 
     return emit;

@@ -40,10 +40,12 @@ export class World {
   loadAllCollectibles() {
     this.allCollectibles = {};
 
-    _.each(_.values(Bosses), boss => {
+    _.each(Bosses, (boss, bossName) => {
       if(!boss.collectibles) return;
       _.each(boss.collectibles, coll => {
         coll.rarity = 'guardian';
+        coll.map = 'Boss';
+        coll.region = bossName;
         this.allCollectibles[coll.name] = coll;
       });
     });
