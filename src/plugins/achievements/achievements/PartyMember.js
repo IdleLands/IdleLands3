@@ -11,7 +11,7 @@ export class PartyMember extends Achievement {
     const baseReward = {
       tier: 1,
       name: 'Party Member',
-      desc: `Gain a special title (and +5% max item score) for camping for ${(100000).toLocaleString()} steps.`,
+      desc: `Gain a special title (and +5% max item score) for being in a party for ${(100000).toLocaleString()} steps.`,
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
