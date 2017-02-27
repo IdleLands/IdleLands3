@@ -19,7 +19,7 @@ export class Sponge extends Achievement {
     const rewards = [{
       type: 'stats',
       hp: (player, baseValue) => baseValue * 0.01 * tier,
-      hpDisplay: `+${tier}% HP`,
+      hpDisplay: `+${tier}%`,
       con: 20*tier
     }];
 

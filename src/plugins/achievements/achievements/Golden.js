@@ -20,7 +20,7 @@ export class Golden extends Achievement {
       type: 'stats',
       itemValueMultiplier: (tier*0.05).toFixed(2),
       agi: (player, baseValue) => baseValue*0.01*tier,
-      agiDisplay: `${tier}%`
+      agiDisplay: `+${tier}%`
     }];
 
     if(tier >= 4) {

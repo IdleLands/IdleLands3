@@ -22,12 +22,12 @@ export class Ancient extends Achievement {
       luk: (player, baseValue) => baseValue*0.01*tier,
       int: (player, baseValue) => baseValue*0.01*tier,
       agi: (player, baseValue) => baseValue*0.01*tier,
-      strDisplay: `${tier}%`,
-      conDisplay: `${tier}%`,
-      dexDisplay: `${tier}%`,
-      lukDisplay: `${tier}%`,
-      intDisplay: `${tier}%`,
-      agiDisplay: `${tier}%`
+      strDisplay: `+${tier}%`,
+      conDisplay: `+${tier}%`,
+      dexDisplay: `+${tier}%`,
+      lukDisplay: `+${tier}%`,
+      intDisplay: `+${tier}%`,
+      agiDisplay: `+${tier}%`
     }];
 
     rewards.push({ type: 'title', title: 'Ancient', deathMessage: '%player withered away and crumbled to dust.' });

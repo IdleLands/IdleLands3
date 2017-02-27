@@ -18,15 +18,15 @@ export class Collector extends Achievement {
     const rewards = [{
       type: 'stats',
       agi: (player, baseValue) => baseValue*0.01*tier,
-      agiDisplay: `${tier}%`,
+      agiDisplay: `+${tier}%`,
       str: (player, baseValue) => baseValue*0.01*tier,
-      strDisplay: `${tier}%`,
+      strDisplay: `+${tier}%`,
       dex: (player, baseValue) => baseValue*0.01*tier,
-      dexDisplay: `${tier}%`,
+      dexDisplay: `+${tier}%`,
       con: (player, baseValue) => baseValue*0.01*tier,
-      conDisplay: `${tier}%`,
+      conDisplay: `+${tier}%`,
       int: (player, baseValue) => baseValue*0.01*tier,
-      intDisplay: `${tier}%`,
+      intDisplay: `+${tier}%`,
       itemFindRange: tier*50
     }];
 

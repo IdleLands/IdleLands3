@@ -20,7 +20,7 @@ export class Explorative extends Achievement {
     const rewards = [{
       type: 'stats',
       int: (player, baseValue) => baseValue*0.01*tier,
-      intDisplay: `${tier}%`
+      intDisplay: `+${tier}%`
     }];
 
     if(tier >= 4) {

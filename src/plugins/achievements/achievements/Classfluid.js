@@ -36,17 +36,17 @@ export class Classfluid extends Achievement {
       }, {
         type: 'stats',
         agi: (player, baseValue) => baseValue*0.03*tier,
-        agiDisplay: `${tier*3}%`,
+        agiDisplay: `+${tier*3}%`,
         str: (player, baseValue) => baseValue*0.03*tier,
-        strDisplay: `${tier*3}%`,
+        strDisplay: `+${tier*3}%`,
         dex: (player, baseValue) => baseValue*0.03*tier,
-        dexDisplay: `${tier*3}%`,
+        dexDisplay: `+${tier*3}%`,
         con: (player, baseValue) => baseValue*0.03*tier,
-        conDisplay: `${tier*3}%`,
+        conDisplay: `+${tier*3}%`,
         int: (player, baseValue) => baseValue*0.03*tier,
-        intDisplay: `${tier*3}%`,
+        intDisplay: `+${tier*3}%`,
         luk: (player, baseValue) => baseValue*0.03*tier,
-        lukDisplay: `${tier*3}%`,
+        lukDisplay: `+${tier*3}%`,
         itemFindRange: tier*100
       }]
     }];

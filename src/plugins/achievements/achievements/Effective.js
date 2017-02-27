@@ -19,7 +19,7 @@ export class Effective extends Achievement {
     const rewards = [{
       type: 'stats',
       mp: (player, baseValue) => baseValue * 0.01 * tier,
-      mpDisplay: `+${tier}% MP`
+      mpDisplay: `+${tier}%`
     }];
 
     if(tier >= 5) {

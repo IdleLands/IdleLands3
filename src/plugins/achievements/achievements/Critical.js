@@ -19,7 +19,7 @@ export class Critical extends Achievement {
     const rewards = [{
       type: 'stats',
       dex: (player, baseValue) => baseValue*0.01*tier,
-      dexDisplay: `${tier}%`
+      dexDisplay: `+${tier}%`
     }];
 
     if(tier >= 6) {

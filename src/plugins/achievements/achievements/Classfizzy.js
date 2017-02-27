@@ -35,17 +35,17 @@ export class Classfizzy extends Achievement {
       }, {
         type: 'stats',
         agi: (player, baseValue) => baseValue*0.02*tier,
-        agiDisplay: `${tier*2}%`,
+        agiDisplay: `+${tier*2}%`,
         str: (player, baseValue) => baseValue*0.02*tier,
-        strDisplay: `${tier*2}%`,
+        strDisplay: `+${tier*2}%`,
         dex: (player, baseValue) => baseValue*0.02*tier,
-        dexDisplay: `${tier*2}%`,
+        dexDisplay: `+${tier*2}%`,
         con: (player, baseValue) => baseValue*0.02*tier,
-        conDisplay: `${tier*2}%`,
+        conDisplay: `+${tier*2}%`,
         int: (player, baseValue) => baseValue*0.02*tier,
-        intDisplay: `${tier*2}%`,
+        intDisplay: `+${tier*2}%`,
         luk: (player, baseValue) => baseValue*0.02*tier,
-        lukDisplay: `${tier*2}%`,
+        lukDisplay: `+${tier*2}%`,
         itemFindRange: tier*50
       }]
     }];

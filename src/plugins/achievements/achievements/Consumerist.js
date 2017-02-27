@@ -20,7 +20,7 @@ export class Consumerist extends Achievement {
       type: 'stats',
       itemValueMultiplier: (tier*0.05).toFixed(2),
       dex: (player, baseValue) => baseValue*0.01*tier,
-      dexDisplay: `${tier}%`
+      dexDisplay: `+${tier}%`
     }];
 
     if(tier >= 4) {
