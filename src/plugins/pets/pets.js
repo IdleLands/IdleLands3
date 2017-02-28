@@ -70,7 +70,6 @@ export class Pets {
     myPetData.$petId = petName;
     myPetData.$ownerRef = player;
     myPetData.$manager = this;
-    myPetData.scaleLevel.xpPerGold = 0;
   }
 
   addNewPet(player, type, name) {

@@ -41,6 +41,8 @@ export class Pet extends Character {
       xpPerGold: 0
     };
 
+    if(this.scaleLevel.xpPerGold > 0) this.scaleLevel.xpPerGold = 0;
+
     this.$_scale = new Proxy({}, {
       get: (target, name) => {
         const scale = this.$scale[name];
