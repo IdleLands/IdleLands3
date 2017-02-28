@@ -68,7 +68,7 @@ export class Achievements {
       .flattenDeep()
       .compact()
       .filter(reward => reward.type === 'petclass')
-      .map(reward => reward.petattr)
+      .map(reward => reward.petclass)
       .value().concat(['Monster']);
   }
 
