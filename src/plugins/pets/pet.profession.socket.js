@@ -5,7 +5,7 @@ import { Logger } from '../../shared/logger';
 export const event = 'plugin:pet:profession';
 export const description = 'Change your pets profession.';
 export const args = 'newProfession';
-export const socket = (socket) => {
+export const socket = (socket, primus, respond) => {
 
   const petclass = async({ newProfession }) => {
     if(!socket.authToken) return;
@@ -17,7 +17,10 @@ export const socket = (socket) => {
     if(!player) return;
     Logger.info('Socket:Pet:Profession', `${playerName} (${socket.address.ip}) pet profession change to ${newProfession}.`);
     
-    player.$pets.changePetProfession(player, newProfession);
+    const res = player.$pets.changePetProfession(player, newProfession);
+    if(res) {
+      respond({ type: 'error', title: 'Pet Error', notify: res });
+    }
   };
 
   socket.on(event, petclass);

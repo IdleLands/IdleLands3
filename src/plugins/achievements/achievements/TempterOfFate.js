@@ -8,10 +8,10 @@ export class TempterOfFate extends Achievement {
 
     if(totalFates < 100000) return [];
 
-    return [{
+    const baseReward = {
       tier: 1,
       name: 'Tempter of Fate',
-      desc: 'Gain a special title for 100,000 fate pool uses (AKA: being literally insane).',
+      desc: `Gain a special title for ${(100000).toLocaleString()} fate pool uses (AKA: being literally insane).`,
       type: AchievementTypes.EXPLORE,
       rewards: [{
         type: 'title',
@@ -21,6 +21,16 @@ export class TempterOfFate extends Achievement {
         type: 'petattr',
         petattr: 'a crazy hat that instills craziness'
       }]
-    }];
+    };
+
+    if(totalFates >= 1000000) {
+      baseReward.rewards.push({
+        type: 'title',
+        title: 'Fateful Wolf',
+        deathMessage: '%player was raised by wolves and died like one.'
+      });
+    }
+
+    return [baseReward];
   }
 }

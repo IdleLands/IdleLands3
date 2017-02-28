@@ -61,6 +61,17 @@ export class Achievements {
       .value().concat(SETTINGS.validPetAttributes);
   }
 
+  petClasses() {
+    return _(this.achievements)
+      .values()
+      .map(achi => achi.rewards)
+      .flattenDeep()
+      .compact()
+      .filter(reward => reward.type === 'petclass')
+      .map(reward => reward.petattr)
+      .value().concat(['Monster']);
+  }
+
   titles() {
     return _(this.achievements)
       .values()

@@ -33,7 +33,7 @@ export class Classy extends Achievement {
       }];
 
       const tiers = [
-        { required: 5,    title: 'Trainee' },
+        { required: 5,    title: 'Trainee', bonusRewards: { type: 'petclass', petclass: prof } },
         { required: 15,   title: 'Student' },
         { required: 25,   title: 'Skilled' },
         { required: 50,   title: 'Master' },
@@ -48,10 +48,13 @@ export class Classy extends Achievement {
 
       let topMax = 0;
 
-      _.each(tiers, ({ required, title }) => {
+      _.each(tiers, ({ required, title, bonusRewards }) => {
         if(times < required) return;
 
         professionalAchievement.rewards.push({ type: 'title', title: `${title} ${prof}` });
+        if(bonusRewards) {
+          professionalAchievement.rewards.push(bonusRewards);
+        }
         topMax = required;
       });
 

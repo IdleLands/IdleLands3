@@ -157,8 +157,8 @@ export class Pets {
   }
 
   changePetProfession(player, newProfession) {
-    const allProfessions = player.$statistics.getStat('Character.Professions');
-    if(!allProfessions[newProfession] && newProfession !== 'Monster') return;
+    const allProfessions = player.$achievements.petClasses();
+    if(!_.includes(allProfessions, newProfession)) return 'You have not unlocked that pet class!';
 
     this.activePet.changeProfession(newProfession);
     player.__updatePetActive();
