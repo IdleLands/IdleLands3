@@ -161,6 +161,7 @@ export class Pet extends Character {
     if(this.nextItemFind - now <= 0) {
       this.findItem();
       this._setNextItemFind();
+      this.updatePlayer();
     }
   }
 
