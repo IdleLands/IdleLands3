@@ -136,6 +136,7 @@ export class PlayerMovement {
       dest.destName = toLocData.formalName;
     }
 
+    player.mapPath = tile.path;
     player.map = dest.map;
     player.x = dest.x;
     player.y = dest.y;
