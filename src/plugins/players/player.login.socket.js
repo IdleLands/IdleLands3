@@ -34,7 +34,7 @@ export const socket = (socket, primus, respond) => {
       return respond({ msg: MESSAGES.GENERIC });
     }
 
-    const validateToken = process.env.NODE_ENV === 'production' || !_.includes(userId, 'local|');
+    const validateToken = (process.env.NODE_ENV === 'production' && !process.env.ALLOW_LOCAL) || !_.includes(userId, 'local|');
     if(validateToken) {
       if(AUTH0_SECRET) {
         try {
