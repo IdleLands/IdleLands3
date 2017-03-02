@@ -8,6 +8,8 @@ import { Logger } from '../../shared/logger';
 
 import { perks } from './perks';
 
+const CONVERSION_RATE = 20000;
+
 @Dependencies(Container)
 export class Premium {
   constructor(container) {
@@ -46,13 +48,17 @@ export class Premium {
       .value();
   }
 
+  get ILP_CONVERSION_RATE() {
+    return CONVERSION_RATE;
+  }
+
   canBuyIlp(player, ilp) {
     if(_.isNaN(ilp) || ilp <= 0) return false;
-    return player.gold >= ilp * 20000;
+    return player.gold >= ilp * this.ILP_CONVERSION_RATE;
   }
 
   buyIlp(player, ilp) {
-    player.gold -= ilp * 20000;
+    player.gold -= ilp * this.ILP_CONVERSION_RATE;
     player.save();
 
     this.addIlp(ilp);

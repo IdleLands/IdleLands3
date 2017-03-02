@@ -501,7 +501,7 @@ export class Player extends Character {
   }
 
   _updatePremium() {
-    this.$dataUpdater(this.name, 'premium', { buyable: this.$premium.buyable, ilp: this.$premium.ilp, bought: this.$premium.oneTimeItemsPurchased });
+    this.$dataUpdater(this.name, 'premium', { conversionRate: this.$premium.ILP_CONVERSION_RATE, buyable: this.$premium.buyable, ilp: this.$premium.ilp, bought: this.$premium.oneTimeItemsPurchased });
   }
 
   update() {
