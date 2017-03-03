@@ -46,6 +46,7 @@ plugin:player:imregisteringrightnowdontkillme |  | Send this to the server to no
 plugin:player:request:achievements |  | Request achievement data. Generally used only when looking at achievements.
 plugin:player:request:collectibles |  | Request collectible data. Generally used only when looking at collectibles.
 plugin:player:request:equipment |  | Request equipment data. Generally used only when looking at equipment.
+plugin:player:request:party |  | Request party data. Generally used only when looking at overview.
 plugin:player:request:personalities |  | Request personality data. Generally used only when looking at personalities.
 plugin:player:request:pets |  | Request pet data.
 plugin:player:request:statistics |  | Request statistics data. Generally used only when looking at statistics.

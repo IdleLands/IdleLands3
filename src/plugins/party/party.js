@@ -148,6 +148,7 @@ export class Party {
       players: _.map(this.players, p => {
         return {
           name: p.fullname,
+          shortName: p.name,
           level: p.level,
           profession: p.professionName
         };
