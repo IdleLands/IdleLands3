@@ -61,7 +61,7 @@ export const socket = (socket, primus, respond) => {
       } catch(e) {
 
         // 20 char name is reasonable
-        name = _.truncate(name, { length: 20 }).trim().replace(/[^\w\d ]/gm, '');
+        name = _.truncate(name, { length: 20 }).trim().replace(/[^\w\dÀ-ÿ ]/gm, '');
         name = name.split(' the ').join('');
         name = name.trim();
 
