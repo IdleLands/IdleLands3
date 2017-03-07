@@ -42,7 +42,7 @@ export class Gambling extends Event {
       odds /= 2;
     }
 
-    if(player.gold < cost) return false;
+    if(player.gold < cost || _.isNaN(cost) || cost < 0) return false;
 
     if(isDoubleDown) {
       player.$statistics.incrementStat('Character.Gamble.DoubleDown');
