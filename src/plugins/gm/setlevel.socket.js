@@ -1,4 +1,5 @@
 
+import * as _ from 'lodash';
 import { GameState } from '../../core/game-state';
 import { GMCommands } from './commands';
 import { Logger } from '../../shared/logger';
@@ -14,7 +15,11 @@ export const socket = (socket) => {
     const { playerName } = socket.authToken;
 
     const player = GameState.getInstance().getPlayer(playerName);
-    if(!player || !player.isMod) return;
+    if(!player || !player.isMod || !targetName) return;
+
+    targetLevel = +targetLevel;
+    if(_.isNaN(targetLevel)) return;
+
     Logger.info('Socket:GM:SetLevel', `${playerName} (${socket.address.ip}) setting level ${targetLevel} on ${targetName}.`);
 
     GMCommands.setLevel(targetName, targetLevel);

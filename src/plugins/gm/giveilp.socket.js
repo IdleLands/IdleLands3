@@ -1,4 +1,6 @@
 
+import * as _ from 'lodash';
+
 import { GameState } from '../../core/game-state';
 import { GMCommands } from './commands';
 import { Logger } from '../../shared/logger';
@@ -14,7 +16,10 @@ export const socket = (socket) => {
     const { playerName } = socket.authToken;
 
     const player = GameState.getInstance().getPlayer(playerName);
-    if(!player || !player.isMod) return;
+    if(!player || !player.isMod || !targetName) return;
+
+    bonusIlp = +bonusIlp;
+    if(_.isNaN(bonusIlp)) return;
 
     Logger.info('Socket:GM:GiveItem', `${playerName} (${socket.address.ip}) giving ${bonusIlp} ILP to ${targetName}.`);
 

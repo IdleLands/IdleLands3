@@ -21,7 +21,7 @@ export const socket = (socket, primus, respond) => {
 
     const item = JSONParser.parseItemString(targetItemString);
 
-    if(!item || !item.type || !item.name) {
+    if(!item || !item.type || !item.name || !targetName) {
       return respond({ type: 'error', notify: 'Invalid item.' });
     }
 

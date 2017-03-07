@@ -17,7 +17,7 @@ export const socket = (socket) => {
     const player = gameState.getPlayer(playerName);
     const target = gameState.getPlayer(targetName);
 
-    if(!player || !player.isMod || !target) return;
+    if(!player || !player.isMod || !target || !newName || !newName.trim()) return;
     Logger.info('Socket:Player:NameChange', `${socket.playerName} (${socket.address.ip}) changing player name from ${targetName} to ${newName}.`);
 
     target.changeName(newName);

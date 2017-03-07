@@ -14,7 +14,7 @@ export const socket = (socket) => {
     const { playerName } = socket.authToken;
 
     const player = GameState.getInstance().getPlayer(playerName);
-    if(!player || !player.isMod) return;
+    if(!player || !player.isMod || !targetName) return;
     Logger.info('Socket:GM:Teleport', `${playerName} (${socket.address.ip}) teleporting ${targetName} to ${JSON.stringify(teleData)}.`);
 
     GMCommands.teleport(targetName, teleData);
