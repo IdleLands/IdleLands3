@@ -19,5 +19,10 @@ export const SystemTownCrierMessages = [
     message: 'Strange equipment effects? Wondering about pet growth? Curious on what classes there are? Check out those and more on the wiki!',
     link: 'https://github.com/IdleLands/IdleLands/wiki/Misc-Info',
     origin: 'system'
+  },
+  {
+    message: 'Found a bug? Can you reproduce a bug I can\'t? Great! Get ILP or Gold for giving me some reproduction steps!',
+    link: 'https://github.com/IdleLands/IdleLands/wiki/Bug-Bounties',
+    origin: 'system'
   }
 ];
