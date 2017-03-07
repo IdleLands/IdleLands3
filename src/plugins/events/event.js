@@ -34,7 +34,7 @@ export class Event {
   }
 
   static pickValidItem(player) {
-    const validTargets = _.reject(player.equipment, item => item.isNothing || item.type === 'providence');
+    const validTargets = _.reject(player.equipment, item => item.isNothing || item.type === 'trinket' || item.type === 'providence');
     return _.sample(validTargets);
   }
 
