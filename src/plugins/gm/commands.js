@@ -1,4 +1,6 @@
 
+import * as _ from 'lodash';
+
 import { EventHandler } from '../events/eventhandler';
 import { FindItem } from '../events/events/FindItem';
 import { GameState } from '../../core/game-state';
@@ -87,6 +89,8 @@ export class GMCommands {
   }
 
   static setLevel(playerName, level, propagate = true) {
+    level = +level;
+    if(_.isNaN(level)) return;
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player && propagate) return SetLevelRedis(playerName, level);
 
@@ -109,6 +113,9 @@ export class GMCommands {
   }
 
   static giveGold(playerName, gold, propagate = true) {
+    gold = +gold;
+    if(_.isNaN(gold)) return;
+
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player && propagate) return GiveGoldRedis(playerName, gold);
 
@@ -116,6 +123,9 @@ export class GMCommands {
   }
 
   static giveILP(playerName, ilp, propagate = true) {
+    ilp = +ilp;
+    if(_.isNaN(ilp)) return;
+
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player && propagate) return GiveILPRedis(playerName, ilp);
 
