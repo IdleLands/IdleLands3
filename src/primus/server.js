@@ -31,7 +31,7 @@ export const primus = (() => {
   const express = require('express');
   const compression = require('compression');
   const serve = express();
-  serve.use(compression(), express.static('assets'));
+  serve.use(compression(), express.static('assets', { maxAge: '7d' }));
 
   const compressedTeleports = _.extend({}, allteleports.towns, allteleports.bosses, allteleports.dungeons, allteleports.trainers, allteleports.other);
 
