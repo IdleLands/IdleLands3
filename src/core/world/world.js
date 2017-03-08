@@ -21,7 +21,9 @@ export class World {
     _.each(list, basefilename => {
       const filename = `${dir}/${basefilename}`;
       const stat = fs.statSync(__dirname + '/../../../' + filename);
-      if (stat && stat.isDirectory()) results = results.concat(this.getMapsInFolder(filename));
+      if(_.includes(filename, 'promo')) return;
+
+      if(stat && stat.isDirectory()) results = results.concat(this.getMapsInFolder(filename));
       else results.push({ map: basefilename.split('.')[0], path: __dirname + '/../../../' + filename });
     });
 
