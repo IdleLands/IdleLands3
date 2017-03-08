@@ -218,6 +218,8 @@ export class Pets {
 
   takePetGold(player) {
     const pet = this.activePet;
+    if(!pet) return;
+
     const gold = pet.gold.getValue();
 
     player.gainGold(gold, false);
