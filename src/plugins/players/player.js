@@ -60,6 +60,8 @@ export class Player extends Character {
     }
 
     this.$canSave = true;
+
+    this.lastLogin = Date.now();
   }
 
   quickLogin() {
