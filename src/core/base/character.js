@@ -39,7 +39,15 @@ export class Character {
       this[stat].__proto__ = RestrictedNumber.prototype;
     });
 
-    _.each(_.compact(_.flatten(_.values(this.equipment))), item => item.__proto__ = Equipment.prototype);
+    _.each(_.compact(_.flatten(_.values(this.equipment))), item => {
+      delete item.isUnderNormalPercent;
+      delete item.isNormallyEnchantable;
+      delete item.isNothing;
+      delete item.score;
+      delete item.fullname;
+
+      item.__proto__ = Equipment.prototype;
+    });
 
     if(!this.gender)          this.gender = _.sample(['male', 'female']);
     if(!this.professionName)  this.professionName = 'Generalist';

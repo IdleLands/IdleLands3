@@ -55,7 +55,14 @@ export class Pet extends Character {
 
     this.gold.__proto__ = RestrictedNumber.prototype;
 
-    _.each(this.inventory, item => item.__proto__ = Equipment.prototype);
+    _.each(this.inventory, item => {
+      delete item.isUnderNormalPercent;
+      delete item.isNormallyEnchantable;
+      delete item.isNothing;
+      delete item.score;
+      delete item.fullname;
+      item.__proto__ = Equipment.prototype;
+    });
 
     this._level.maximum = this.$_scale.maxLevel;
 

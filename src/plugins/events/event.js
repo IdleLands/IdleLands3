@@ -21,6 +21,8 @@ export class Event {
   static t1stats = ['str', 'int', 'con'];
   static t2stats = ['luk'];
 
+  static invalidItemTypes = ['providence', 'trinket'];
+
   static _parseText(message, player, extra) {
     return MessageParser.stringFormat(message, player, extra);
   }
@@ -34,17 +36,17 @@ export class Event {
   }
 
   static pickValidItem(player) {
-    const validTargets = _.reject(player.equipment, item => item.isNothing || item.type === 'trinket' || item.type === 'providence');
+    const validTargets = _.reject(player.equipment, item => item.isNothing || _.includes(this.invalidItemTypes, item.type));
     return _.sample(validTargets);
   }
 
   static pickValidItemForEnchant(player) {
-    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.type !== 'trinket' && item.isNormallyEnchantable);
+    const validTargets = _.filter(player.equipment, item => !item.isNothing && !_.includes(this.invalidItemTypes, item.type) && item.isNormallyEnchantable);
     return _.sample(validTargets);
   }
 
   static pickValidItemForBless(player) {
-    const validTargets = _.filter(player.equipment, item => !item.isNothing && item.type !== 'providence' && item.type !== 'trinket' && item.isUnderNormalPercent(player));
+    const validTargets = _.filter(player.equipment, item => !item.isNothing && !_.includes(this.invalidItemTypes, item.type) && item.isUnderNormalPercent(player));
     return _.sample(validTargets);
   }
 
