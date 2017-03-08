@@ -1,6 +1,7 @@
 
 import * as _ from 'lodash';
-import { Event, MessageCategories } from '../event';
+import { Event } from '../event';
+import { MessageCategories } from '../../../shared/adventure-log';
 import { emitter } from '../../players/_emitter';
 
 export const WEIGHT = -1;
