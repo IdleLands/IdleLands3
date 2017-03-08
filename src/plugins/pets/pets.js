@@ -139,6 +139,27 @@ export class Pets {
     pet.gainXp(xpGained);
 
     player._updatePet();
+    player.update();
+  }
+
+  feedMax(player) {
+    const pet = this.activePet;
+    const xpGainedPerGold = pet.$_scale.xpPerGold;
+
+    if(!pet.canGainXp()) return 'Pet cannot gain XP at this time.';
+
+    while(pet.level !== pet._level.maximum) {
+      const xpNeeded = pet._xp.maximum - pet._xp.__current;
+      const amount = xpGainedPerGold * xpNeeded;
+      if(player.gold < amount) break;
+
+      player.gainGold(-amount, false);
+      player.$statistics.incrementStat('Character.Pet.GoldFed', amount);
+      pet.levelUp();
+    }
+
+    player._updatePet();
+    player.update();
   }
 
   changePet(player, newPetType) {

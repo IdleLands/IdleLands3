@@ -25,6 +25,7 @@ plugin:pet:attr | newAttr | Change your pets attribute.
 plugin:pet:buy | petType, petName | Buy a new pet.
 plugin:pet:unequip | itemId | Unequip an item from your pets gear.
 plugin:pet:feed | gold | Feed your pet gold.
+plugin:pet:feedmax |  | Feed your pet maximum gold.
 plugin:pet:equip | itemId | Equip an item from your pets inventory.
 plugin:pet:sell | itemId | Sell an item from your pets inventory.
 plugin:pet:sellall |  | Sell all items from your pets inventory.
