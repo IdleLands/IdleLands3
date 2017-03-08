@@ -33,11 +33,11 @@ export class Classy extends Achievement {
       }];
 
       const tiers = [
-        { required: 5,    title: 'Trainee', bonusRewards: { type: 'petclass', petclass: prof } },
-        { required: 15,   title: 'Student' },
-        { required: 25,   title: 'Skilled' },
-        { required: 50,   title: 'Master' },
-        { required: 100,  title: 'Grandmaster' }
+        { required: 5,    tier: 1, title: 'Trainee', bonusRewards: { type: 'petclass', petclass: prof } },
+        { required: 15,   tier: 2, title: 'Student' },
+        { required: 25,   tier: 3, title: 'Skilled' },
+        { required: 50,   tier: 4, title: 'Master' },
+        { required: 100,  tier: 5, title: 'Grandmaster' }
       ];
 
       const professionalAchievement = {
@@ -48,7 +48,7 @@ export class Classy extends Achievement {
 
       let topMax = 0;
 
-      _.each(tiers, ({ required, title, bonusRewards }) => {
+      _.each(tiers, ({ required, tier, title, bonusRewards }) => {
         if(times < required) return;
 
         const statReward = {
@@ -69,11 +69,11 @@ export class Classy extends Achievement {
         }
 
         topMax = required;
+        professionalAchievement.tier = tier;
       });
 
       if(professionalAchievement.rewards.length > 0) {
         professionalAchievement.desc = `You've been a ${prof} ${topMax} times. Get title(s) and stats for it!`;
-        professionalAchievement.tier = professionalAchievement.rewards.length;
         baseAchievements.push(professionalAchievement);
       }
 
