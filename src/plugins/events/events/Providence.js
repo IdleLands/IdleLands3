@@ -124,6 +124,7 @@ export class Providence extends Event {
     if(Event.chance.bool({ likelihood: this.probabilities.ilp })) {
       player.$premium.addIlp(5);
       message = `${message} Got ILP!`;
+      player._updatePremium();
     }
 
     return message;
