@@ -47,17 +47,13 @@ export class Premium {
       .value();
   }
 
-  get ILP_CONVERSION_RATE() {
-    return SETTINGS.ilpConversionRate;
-  }
-
   canBuyIlp(player, ilp) {
     if(_.isNaN(ilp) || ilp <= 0) return false;
-    return player.gold >= ilp * this.ILP_CONVERSION_RATE;
+    return player.gold >= ilp * SETTINGS.ilpConversionRate;
   }
 
   buyIlp(player, ilp) {
-    player.gold -= ilp * this.ILP_CONVERSION_RATE;
+    player.gold -= ilp * SETTINGS.ilpConversionRate;
     player.save();
 
     this.addIlp(ilp);
