@@ -27,6 +27,7 @@ plugin:pet:unequip | itemId | Unequip an item from your pets gear.
 plugin:pet:feed | gold | Feed your pet gold.
 plugin:pet:equip | itemId | Equip an item from your pets inventory.
 plugin:pet:sell | itemId | Sell an item from your pets inventory.
+plugin:pet:sellall |  | Sell all items from your pets inventory.
 plugin:pet:giveitem | itemId | Give your pet an item from your equipment.
 plugin:pet:takeitem | itemId | Take an item from your pet and equip it.
 plugin:pet:profession | newProfession | Change your pets profession.

@@ -254,6 +254,18 @@ export class Pets {
     player.__updatePetActive();
   }
 
+  sellAllPetItems(player) {
+    const pet = this.activePet;
+    if(!this.activePet) return;
+
+    _.each(pet.inventory, item => {
+      pet.sellItem(item);
+      pet.removeFromInventory(item);
+    });
+
+    player.__updatePetActive();
+  }
+
   unequipPetItem(player, itemId) {
     const pet = this.activePet;
     if(!this.activePet) return;
