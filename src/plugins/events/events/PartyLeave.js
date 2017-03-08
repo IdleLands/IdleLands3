@@ -9,8 +9,11 @@ export class PartyLeave extends Event {
   static WEIGHT = WEIGHT;
 
   static operateOn(player) {
+    if(Event.chance.bool({ likelihood: 75 })) return;
+
     const otherOfSame = _.find(player.choices, choice => choice.event === 'PartyLeave');
     if(otherOfSame) return;
+
     const id = Event.chance.guid();
     const message = 'Would you like to leave your party?';
 
