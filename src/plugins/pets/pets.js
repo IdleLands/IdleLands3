@@ -213,6 +213,7 @@ export class Pets {
     pet.doUpgrade(scaleAttr);
 
     player.__updatePetActive();
+    player.update();
   }
 
   takePetGold(player) {
