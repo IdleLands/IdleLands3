@@ -130,6 +130,8 @@ export class Pets {
     if(_.isNaN(amount) || amount < 0 || player.gold < amount) return 'Bad amount of gold specified.';
 
     const pet = this.activePet;
+    if(!pet) return;
+
     const xpGained = pet.$_scale.xpPerGold * amount;
 
     if(!pet.canGainXp()) return 'Pet cannot gain XP at this time.';
@@ -144,6 +146,8 @@ export class Pets {
 
   feedMax(player) {
     const pet = this.activePet;
+    if(!pet) return;
+
     const xpGainedPerGold = pet.$_scale.xpPerGold;
 
     if(!pet.canGainXp()) return 'Pet cannot gain XP at this time.';
@@ -170,6 +174,7 @@ export class Pets {
   }
 
   togglePetSmartSetting(setting) {
+    if(!this.activePet) return;
     if(!_.includes(['self', 'sell', 'equip'], setting)) return;
     const pet = this.activePet;
     pet.smart[setting] = !pet.smart[setting];
@@ -178,6 +183,8 @@ export class Pets {
   }
 
   changePetProfession(player, newProfession) {
+    if(!this.activePet) return;
+
     const allProfessions = player.$achievements.petClasses();
     if(!_.includes(allProfessions, newProfession)) return 'You have not unlocked that pet class!';
 
@@ -187,6 +194,8 @@ export class Pets {
   }
 
   changePetAttr(player, newAttr) {
+    if(!this.activePet) return;
+
     const allAttrs = player.$achievements.petAttributes();
     if(newAttr && !_.includes(allAttrs, newAttr)) return;
 
@@ -198,6 +207,7 @@ export class Pets {
   upgradePet(player, scaleAttr) {
 
     const pet = this.activePet;
+    if(!pet) return;
 
     if(pet.$scale[scaleAttr].length - 1 === pet.scaleLevel[scaleAttr]) return;
 
