@@ -573,6 +573,8 @@ export class Player extends Character {
     this.$pets.save();
     this.$statistics.save();
 
+    this.lastAscension = Date.now();
+
     const ascBonus = 0.25 + (0.05 * currentAscensionLevel);
 
     GameState.getInstance().addFestival({
