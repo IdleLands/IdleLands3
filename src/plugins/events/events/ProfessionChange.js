@@ -1,6 +1,6 @@
 
 import * as _ from 'lodash';
-import { Event } from '../event';
+import { Event, MessageCategories } from '../event';
 import { emitter } from '../../players/_emitter';
 
 export const WEIGHT = -1;
@@ -11,7 +11,11 @@ export class ProfessionChange extends Event {
 
   static operateOn(player, { professionName, trainerName }) {
     const otherOfSame = _.find(player.choices, choice => choice.event === 'ProfessionChange');
-    if(player.professionName === professionName || otherOfSame) return;
+    if(player.professionName === professionName || otherOfSame) {
+      const message = this._parseText(`%player met with ${trainerName}, the ${professionName} trainer, but already has an offer from a different trainer.`);
+      this.emitMessage({ affected: [player], eventText: message, category: MessageCategories.PROFESSION });
+      return;
+    }
     const id = Event.chance.guid();
     const message = `Would you like to change your profession to ${professionName}?`;
     const extraData = { professionName, trainerName };
