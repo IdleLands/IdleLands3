@@ -302,7 +302,7 @@ export class Player extends Character {
     let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    if(this.$playerMovement.canEnterTile(this, tile) && this.party) {
+    if(!this.$playerMovement.canEnterTile(this, tile) && this.party) {
       this.party.playerLeave(this);
     }
 
