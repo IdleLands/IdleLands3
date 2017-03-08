@@ -5,10 +5,9 @@ import { GameState } from '../../core/game-state';
 
 import { Dependencies, Container } from 'constitute';
 import { Logger } from '../../shared/logger';
+import { SETTINGS } from '../../static/settings';
 
 import { perks } from './perks';
-
-const CONVERSION_RATE = 20000;
 
 @Dependencies(Container)
 export class Premium {
@@ -49,7 +48,7 @@ export class Premium {
   }
 
   get ILP_CONVERSION_RATE() {
-    return CONVERSION_RATE;
+    return SETTINGS.ilpConversionRate;
   }
 
   canBuyIlp(player, ilp) {
