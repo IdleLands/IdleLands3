@@ -43,6 +43,7 @@ plugin:player:changegender | gender | Change your gender based on the existing g
 plugin:player:login | name, gender, professionName, token, userId | Log in or register a new character. Login only requires userId.
 plugin:player:logout |  | Log out of the game.
 plugin:player:changename | targetName, newName | Mod only. Change targets name to something else.
+plugin:player:partyleave |  | Leave your current party.
 plugin:player:togglepersonality | personality | Turn a personality on or off.
 plugin:player:imregisteringrightnowdontkillme |  | Send this to the server to not have your socket killed while registering.
 plugin:player:request:achievements |  | Request achievement data. Generally used only when looking at achievements.
