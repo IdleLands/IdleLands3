@@ -303,7 +303,13 @@ export class Player extends Character {
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
     if(!this.$playerMovement.canEnterTile(this, tile) && this.party) {
-      this.party.playerLeave(this);
+      this.$partyStepsLeft = this.$partyStepsLeft || 3;
+
+      if(this.$partyStepsLeft <= 0) {
+        this.party.playerLeave(this);
+      }
+
+      this.$partyStepsLeft--;
     }
 
     let attempts = 1;
