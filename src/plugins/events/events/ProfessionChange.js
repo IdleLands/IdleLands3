@@ -13,7 +13,7 @@ export class ProfessionChange extends Event {
   static operateOn(player, { professionName, trainerName }) {
     const otherOfSame = _.find(player.choices, choice => choice.event === 'ProfessionChange');
     if(player.professionName === professionName || otherOfSame) {
-      const message = this._parseText(`%player met with ${trainerName}, the ${professionName} trainer, but already has an offer from a different trainer.`);
+      const message = this._parseText(`%player met with ${trainerName}, the ${professionName} trainer, but already has an offer from a different trainer.`, player);
       this.emitMessage({ affected: [player], eventText: message, category: MessageCategories.PROFESSION });
       return;
     }
