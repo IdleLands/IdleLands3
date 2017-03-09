@@ -1,4 +1,5 @@
 
+import * as _ from 'lodash';
 import * as IRC from 'squelch-client';
 import { SETTINGS } from '../../static/settings';
 import { Logger } from '../../shared/logger';
@@ -31,6 +32,8 @@ export class ExternalChatMechanism {
       this.isConnected = true;
       this.client.on('msg', ({ from, to, msg }) => {
         if(to !== '##idlebot') return;
+
+        if(_.includes(from, '<web:')) return;
 
         const messageObject = {
           text: msg,
