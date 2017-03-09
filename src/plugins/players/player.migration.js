@@ -6,4 +6,9 @@ export const migrate = (player) => {
   if(!_.isObject(choiceMigrate)) {
     _.set(player.$statistics.stats, 'Character.Choice.Choose', {});
   }
+
+  const profMigrate = _.get(player.$statistics.stats, 'Character.Professions');
+  if(!_.isObject(profMigrate)) {
+    _.set(player.$statistics.stats, 'Character.Professions', {});
+  }
 };
