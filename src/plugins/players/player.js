@@ -324,18 +324,18 @@ export class Player extends Character {
       attempts++;
     }
 
+    if(!tile.terrain) {
+      Logger.error('PlayerMovement', new Error(`Invalid tile terrain undefined for ${this.name} @ ${this.map}: ${this.x},${this.y}`));
+    }
+
     this.lastDir = dir === 5 ? null : dir;
     this.x = newLoc.x;
     this.y = newLoc.y;
 
-    if(!tile.terrain) {
-      Logger.error('PlayerMovement', new Error(`Invalid tile terrain undefined @ ${this.map}: ${this.x},${this.y}`));
-    }
-
     const mapInstance = GameState.getInstance().world.maps[this.map];
 
     if(!mapInstance || this.x <= 0 || this.y <= 0 || this.y > mapInstance.height || this.x > mapInstance.width) {
-      Logger.error('PlayerMovement', new Error(`Out of bounds on ${this.map}: ${this.x}, ${this.y}`));
+      Logger.error('PlayerMovement', new Error(`Out of bounds for ${this.name} on ${this.map}: ${this.x}, ${this.y}`));
       this.moveToStart();
     }
 
