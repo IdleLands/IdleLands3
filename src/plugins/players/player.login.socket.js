@@ -24,6 +24,12 @@ export const socket = (socket, primus, respond) => {
 
   const login = async({ name, gender, professionName, token, userId }) => {
 
+    if(_.isUndefined(process.env.INSTANCE_NUMBER)) {
+      Logger.info('Socket:Player:Login', 'No instance number, killing login.');
+      socket.end(undefined, { reconnect: true });
+      return;
+    }
+
     let player = null;
     let event = '';
     const playerDb = constitute(PlayerDb);
