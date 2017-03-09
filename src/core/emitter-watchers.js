@@ -19,6 +19,7 @@ PlayerEmitter.on('player:semilogin', ({ playerName, fromIp }) => {
   handleIp(player, fromIp);
   player.quickLogin();
   player.update();
+  player.$shard = process.env.INSTANCE_NUMBER;
   AllPlayers(playerName);
 });
 
@@ -53,6 +54,7 @@ PlayerEmitter.on('player:register', async ({ playerName, fromIp }) => {
   player.update();
   player.$statistics.incrementStat('Game.Logins');
   player.$statistics.incrementStat(`Character.Professions.${player.professionName}`);
+  player.$shard = process.env.INSTANCE_NUMBER;
   AllPlayers(playerName);
   PlayerLogin(playerName);
 });
