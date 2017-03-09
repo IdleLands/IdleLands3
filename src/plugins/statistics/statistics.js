@@ -26,7 +26,7 @@ export class Statistics {
 
   getStat(stat) {
     let val = _.get(this.stats, stat, 0);
-    if(!_.isFinite(val) || _.isNaN(val)) {
+    if(!_.isObject(val) && !_.isFinite(val) || _.isNaN(val)) {
       val = 0;
       this.setStat(stat, 0);
       Logger.error('Statistics', new Error(`Someone has infinity or NaN for ${stat}. Fix it!`));
