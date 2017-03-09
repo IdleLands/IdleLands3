@@ -154,7 +154,7 @@ export class Pets {
 
     while(pet.level !== pet._level.maximum) {
       const xpNeeded = pet._xp.maximum - pet._xp.__current;
-      const amount = xpGainedPerGold * xpNeeded;
+      const amount = Math.floor(xpNeeded / xpGainedPerGold);
       if(player.gold < amount) break;
 
       player.gainGold(-amount, false);
