@@ -152,7 +152,7 @@ export class Pets {
 
     if(!pet.canGainXp()) return 'Pet cannot gain XP at this time.';
 
-    while(pet.level !== pet._level.maximum) {
+    while(pet.canGainXp()) {
       const xpNeeded = pet._xp.maximum - pet._xp.__current;
       const amount = Math.floor(xpNeeded / xpGainedPerGold);
       if(player.gold < amount) break;
