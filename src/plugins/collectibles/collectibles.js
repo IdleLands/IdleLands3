@@ -66,6 +66,7 @@ export class Collectibles {
 
     _.each(this.priorCollectibles, (count, coll) => {
       emit[coll] = _.cloneDeep(allCollectibles[coll]);
+      if(!emit[coll]) return;
       emit[coll].name = coll;
       emit[coll].count = count;
       emit[coll].description = emit[coll].flavorText;
