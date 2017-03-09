@@ -33,7 +33,7 @@ export class ExternalChatMechanism {
       this.client.on('msg', ({ from, to, msg }) => {
         if(to !== '##idlebot') return;
 
-        if(_.includes(from, '<web:')) return;
+        if(_.includes(from, '<web:') || _.includes(msg, '<web:')) return;
 
         const messageObject = {
           text: msg,
