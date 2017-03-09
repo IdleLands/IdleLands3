@@ -25,7 +25,13 @@ export class Statistics {
   }
 
   getStat(stat) {
-    return _.get(this.stats, stat, 0);
+    let val = _.get(this.stats, stat, 0);
+    if(!_.isFinite(val) || _.isNaN(val)) {
+      val = 0;
+      this.setStat(stat, 0);
+      Logger.error('Statistics', new Error(`Someone has infinity or NaN for ${stat}. Fix it!`));
+    }
+    return val;
   }
 
   _addStat(stat, value = 1) {
