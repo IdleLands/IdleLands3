@@ -125,7 +125,7 @@ if(redisInstance) {
   });
 
   redisInstance.on('gm:setstat', ({ playerName, stat, value }) => {
-    GMCommands.giveILP(playerName, stat, value, false);
+    GMCommands.setStat(playerName, stat, value, false);
   });
 
   redisInstance.on('gm:ban', ({ playerName }) => {
