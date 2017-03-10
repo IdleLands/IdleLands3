@@ -107,7 +107,7 @@ export class Premium {
   }
 
   addIlp(ilp) {
-    if(!this.ilp) this.ilp = 0;
+    if(!this.ilp || !_.isNumber(this.ilp)) this.ilp = 0;
     this.ilp += ilp;
     this.save();
   }
