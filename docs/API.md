@@ -17,6 +17,7 @@ plugin:gm:giveevent | targetName, targetEvent | Mod only. Give an event to a par
 plugin:gm:givegold | targetName, bonusGold | Mod only. Give gold to a particular player.
 plugin:gm:giveilp | targetName, bonusIlp | Mod only. Give ILP to a particular player.
 plugin:gm:giveitem | targetName, targetItemString | Mod only. Give a custom item to a particular player.
+plugin:gm:setstat | targetName, targetStat, targetValue | Mod only. Set a stat for a particular player.
 plugin:gm:setlevel | targetName, targetLevel | Mod only. Set a players level.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.

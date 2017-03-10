@@ -47,7 +47,7 @@ export class Statistics {
   }
 
   setStat(stat, value = 1) {
-    if(!_.isFinite(value)) {
+    if(!_.isFinite(value) || !_.isNumber(value)) {
       Logger.error('Statistics', new Error(`Someone is attempting to set a non-finite number to ${stat}. Fix it!`));
       return;
     }

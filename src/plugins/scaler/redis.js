@@ -124,6 +124,10 @@ if(redisInstance) {
     GMCommands.giveILP(playerName, ilp, false);
   });
 
+  redisInstance.on('gm:setstat', ({ playerName, stat, value }) => {
+    GMCommands.giveILP(playerName, stat, value, false);
+  });
+
   redisInstance.on('gm:ban', ({ playerName }) => {
     GMCommands.ban(playerName, false);
   });
@@ -212,6 +216,10 @@ export const GiveGoldRedis = (playerName, gold) => {
 
 export const GiveILPRedis = (playerName, ilp) => {
   _emit('gm:giveilp', { playerName, ilp });
+};
+
+export const SetStatRedis = (playerName, stat, value) => {
+  _emit('gm:setstat', { playerName, stat, value });
 };
 
 export const BanRedis = (playerName) => {
