@@ -128,6 +128,8 @@ export class GMCommands {
     if(!player && propagate) return SetStatRedis(playerName, stat, value);
 
     player.$statistics.setStat(stat, value);
+    player.$statistics.save();
+    player._updateStatistics();
   }
 
   static createFestival(festival) {
