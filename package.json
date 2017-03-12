@@ -21,7 +21,8 @@
     "generate:petdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-petdoc",
     "generate:apidoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-apidoc",
     "gitfix": "git add docs",
-    "gen:items": "node test/gen/items"
+    "gen:items": "node test/gen/items",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "engines": {
     "node": "6.5.0"
@@ -48,6 +49,7 @@
   "pre-commit": [
     "test",
     "generate:all",
+    "changelog",
     "gitfix"
   ],
   "dependencies": {
@@ -81,6 +83,7 @@
     "ava": "^0.15.2",
     "babel-eslint": "^7.1.1",
     "bithound": "^1.7.0",
+    "conventional-changelog-cli": "^1.3.1",
     "cross-env": "^3.0.0",
     "eslint": "^2.13.1",
     "eslint-config-kellyirc": "^3.1.0",
