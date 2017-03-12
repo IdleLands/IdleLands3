@@ -87,6 +87,10 @@ export class Premium {
       });
     }
 
+    if(item.teleportData) {
+      player.$playerMovement._doTeleport(player, item.teleportData);
+    }
+
     if(item.oneTimeData) {
       this.getOneTimeUpgrade(item);
       player._updateGenders();

@@ -227,4 +227,22 @@ export class PlayerMovement {
 
   }
 
+  static _doTeleport(player, { map, x, y, toLoc }) {
+    const tileData = {
+      object: {
+        properties: {
+          destx: x,
+          desty: y,
+          movementType: 'teleport',
+          map,
+          toLoc
+        }
+      }
+    };
+
+    this.handleTileTeleport(player, tileData, true);
+    const tile = this.getTileAt(player.map, player.x, player.y);
+    this.handleTile(player, tile);
+  }
+
 }

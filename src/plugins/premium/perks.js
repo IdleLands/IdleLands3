@@ -40,6 +40,22 @@ export const perks = [
     festivalDuration: 24,
     festivalData: { luk: 0.2 } },
 
+  { name: 'Teleport: Norkos', cost: 3000,
+    description: 'Teleport to Norkos.',
+    teleportData: { toLoc: 'norkos' } },
+
+  { name: 'Teleport: Maeles', cost: 3000,
+    description: 'Teleport to Maeles.',
+    teleportData: { toLoc: 'maeles' } },
+
+  { name: 'Teleport: Vocalnus', cost: 3000,
+    description: 'Teleport to Vocalnus.',
+    teleportData: { toLoc: 'vocalnus' } },
+
+  { name: 'Teleport: Frigri', cost: 3000,
+    description: 'Teleport to Frigri.',
+    teleportData: { toLoc: 'frigri' } },
+
   { name: 'Gender: Blue', cost: 100,
     description: 'Unlock the Blue gender.',
     oneTimeData: { gender: 'blue' } },

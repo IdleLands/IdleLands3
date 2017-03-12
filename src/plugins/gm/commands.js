@@ -51,21 +51,7 @@ export class GMCommands {
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player && propagate) return TeleportRedis(playerName, { map, x, y, toLoc });
 
-    const tileData = {
-      object: {
-        properties: {
-          destx: x,
-          desty: y,
-          movementType: 'teleport',
-          map,
-          toLoc
-        }
-      }
-    };
-
-    player.$playerMovement.handleTileTeleport(player, tileData, true);
-    const tile = player.$playerMovement.getTileAt(player.map, player.x, player.y);
-    player.$playerMovement.handleTile(player, tile);
+    player.$playerMovement._doTeleport(player, { map, x, y, toLoc });
   }
 
   static toggleMod(playerName, propagate = true) {
