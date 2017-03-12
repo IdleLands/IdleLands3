@@ -374,7 +374,9 @@ export class Player extends Character {
 
   equip(item) {
     super.equip(item);
+    this.recalculateStats();
     this._saveSelf();
+    this.update();
   }
 
   unequip(item, replaceWith) {
