@@ -303,15 +303,19 @@ export class Player extends Character {
     let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    if(!this.$playerMovement.canEnterTile(this, tile) && this.party) {
-      this.$partyStepsLeft = this.$partyStepsLeft || 3;
+    const partyTileCheck = () => {
+      if(!this.$playerMovement.canEnterTile(this, tile) && this.party) {
+        this.$partyStepsLeft = this.$partyStepsLeft || 3;
 
-      if(this.$partyStepsLeft <= 0) {
-        this.party.playerLeave(this);
+        if(this.$partyStepsLeft <= 0) {
+          this.party.playerLeave(this);
+        }
+
+        this.$partyStepsLeft--;
       }
+    };
 
-      this.$partyStepsLeft--;
-    }
+    partyTileCheck();
 
     let attempts = 1;
     while(!this.$playerMovement.canEnterTile(this, tile)) {
@@ -322,6 +326,9 @@ export class Player extends Character {
       weight[index] = 0;
       [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+
+      partyTileCheck();
+
       attempts++;
     }
 
