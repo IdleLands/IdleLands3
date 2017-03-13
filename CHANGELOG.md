@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 * **equipment:** recalculate stats when equipping items and update the player ([f17f75a](https://github.com/IdleLands/IdleLands/commit/f17f75a))
+* **mlab:** battles now expire after 30 minutes instead of 6 hours ([acdc563](https://github.com/IdleLands/IdleLands/commit/acdc563))
 
 
 ### Features

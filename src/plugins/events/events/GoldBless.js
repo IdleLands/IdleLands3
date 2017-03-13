@@ -16,7 +16,7 @@ export class GoldBless extends Event {
       return player.party.members;
     }
 
-    let value = Event.chance.integer({ min: 10, max: 500 * player.level });
+    let value = Event.chance.integer({ min: 10, max: 350 * player.level });
     if(Event.chance.bool({ likelihood: 1 })) {
       const maxGoldGained = Math.max(1000, Math.round(player.gold * 0.02));
       const baseGold = Math.floor(Event.chance.integer({ min: 10, max: maxGoldGained }));
