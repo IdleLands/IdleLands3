@@ -17,7 +17,7 @@ export const socket = (socket) => {
     if(!player) return;
     // Logger.info('Socket:Player:RequestParty', `${socket.playerName} (${socket.address.ip}) requesting party.`);
 
-    player._updateParty();
+    player._updateParty(true);
   };
 
   socket.on(event, requestparty);
