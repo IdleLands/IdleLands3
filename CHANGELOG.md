@@ -9,6 +9,7 @@
 * **gold:** you can no longer lose more gold than you have, and forsakegold is less penalizing ([15bf42b](https://github.com/IdleLands/IdleLands/commit/15bf42b))
 * **mlab:** battles now expire after 30 minutes instead of 6 hours ([acdc563](https://github.com/IdleLands/IdleLands/commit/acdc563))
 * **movement:** fix a weird case where movement would sometimes not generate valid weights ([255787f](https://github.com/IdleLands/IdleLands/commit/255787f))
+* **party:** allow you to forcibly request your party via frontend, making it visible to semi-login [refreshes] ([4fd5224](https://github.com/IdleLands/IdleLands/commit/4fd5224))
 
 
 ### Features

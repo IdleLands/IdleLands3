@@ -1,5 +1,6 @@
 
 export { Achiever } from './Achiever';
+export { Affirmer } from './Affirmer';
 export { Ancient } from './Ancient';
 export { Ascended } from './Ascended';
 export { Bossy } from './Bossy';
@@ -12,6 +13,7 @@ export { Collector } from './Collector';
 export { Consumerist } from './Consumerist';
 export { Contributor } from './Contributor';
 export { Critical } from './Critical';
+export { Denier } from './Denier';
 export { DigitalMagician } from './DigitalMagician';
 export { Donator } from './Donator';
 export { Drunk } from './Drunk';
@@ -25,6 +27,7 @@ export { Golden } from './Golden';
 export { Gambler } from './Gambler';
 export { Herder } from './Herder';
 export { Impossible } from './Impossible';
+export { Indecisive } from './Indecisive';
 export { Levelable } from './Levelable';
 export { Mapceptional } from './Mapceptional';
 export { PartyMember } from './PartyMember';

@@ -221,12 +221,15 @@ export class Player extends Character {
         const choice = this.choices[0];
         if(_.includes(choice.choices, 'Yes') && this.$personalities.isActive('Affirmer')) {
           this.handleChoice({ id: choice.id, response: 'Yes' });
+          this.$statistics.incrementStat('Character.Choice.Affirm');
 
         } else if(_.includes(choice.choices, 'No') && this.$personalities.isActive('Denier')) {
           this.handleChoice({ id: choice.id, response: 'No' });
+          this.$statistics.incrementStat('Character.Choice.Deny');
 
         } else if(this.$personalities.isActive('Indecisive')) {
           this.handleChoice({ id: choice.id, response: _.sample(choice.choices) });
+          this.$statistics.incrementStat('Character.Choice.Indecisive');
         }
 
       } else {
@@ -475,7 +478,6 @@ export class Player extends Character {
     this.$lastPartyObject = transmitObject;
 
     this.$dataUpdater(this.name, 'party', transmitObject);
-    console.log('party requested', transmitObject);
   }
 
   _updateEquipment() {
