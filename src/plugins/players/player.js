@@ -298,7 +298,7 @@ export class Player extends Character {
 
   moveAction() {
 
-    const weight = this.getInitialWeight(this);
+    const weight = this.$playerMovement.getInitialWeight(this);
 
     let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
