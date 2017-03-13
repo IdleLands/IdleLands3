@@ -188,10 +188,10 @@ export class PlayerMovement {
     return [0, { x: target.x, y: target.y }, target.lastDir];
   }
 
-  static pickRandomTile(player, weight, overrideFollow = false) {
+  static pickRandomTile(player, weight) {
     if(!player.stepCooldown) player.stepCooldown = 0;
 
-    if(player.party && !overrideFollow) {
+    if(player.party) {
       const party = player.party;
       const follow = party.getFollowTarget(player);
 
@@ -199,8 +199,11 @@ export class PlayerMovement {
         return this.pickFollowTile(player, follow);
       }
     }
-
     const indexes = [0, 1, 2, 3, 4, 5, 6, 7];
+
+    if(weight.length === 0) {
+      Logger.error('PlayerMovement', new Error(`${player.name} in ${player.map} @ ${player.x},${player.y} is unable to move due to no weights.`));
+    }
 
     const randomIndex = chance.weighted(indexes, weight);
     const dir = directions[randomIndex];
@@ -212,13 +215,13 @@ export class PlayerMovement {
   
     let weight = [300, 40, 7,  3,  1,  3,  7,  40];
     
-    const MAX_DRUNK = 10;
-    const drunkFromPersonality = player.$personalities.isActive('Drunk') ? 7 : 0;
-    const drunk = Math.max(0, Math.min(MAX_DRUNK, drunkFromPersonality));
+    const drunk = player.$personalities.isActive('Drunk');
 
     if(player.lastDir && !drunk) {
       const lastDirIndex = directions.indexOf(player.lastDir);
-      weight = weight.slice(weight.length - lastDirIndex).concat(weight.slice(0, weight.length - lastDirIndex));
+      if(lastDirIndex !== -1) {
+        weight = weight.slice(weight.length - lastDirIndex).concat(weight.slice(0, weight.length - lastDirIndex));
+      }
     } else if(drunk) {
       weight = [1, 1, 1, 1, 1, 1, 1, 1];
     }
