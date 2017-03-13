@@ -404,6 +404,7 @@ export class Player extends Character {
          || _.includes(key, 'Steps')
          || _.includes(badKeys, key);
     });
+
     obj.ascensionLevel = this.ascensionLevel;
     return obj;
   }
