@@ -11,4 +11,14 @@ export const migrate = (player) => {
   if(!_.isObject(profMigrate)) {
     _.set(player.$statistics.stats, 'Character.Professions', {});
   }
+
+  const mapMigrate = _.get(player.$statistics.stats, 'Character.Maps');
+  if(!_.isObject(mapMigrate)) {
+    _.set(player.$statistics.stats, 'Character.Maps', {});
+  }
+
+  const regionMigrate = _.get(player.$statistics.stats, 'Character.Regions');
+  if(!_.isObject(regionMigrate)) {
+    _.set(player.$statistics.stats, 'Character.Regions', {});
+  }
 };
