@@ -27,12 +27,15 @@ export class Premium {
     this.ilp = undefined;
     this.oneTimeItemsPurchased = undefined;
     this.donatorFirstTimeBonus = undefined;
+    this.consumables = undefined;
 
     _.extend(this, opts);
 
     if(!_.isNumber(this.ilp)) {
       this.ilp = 0;
     }
+
+    if(!this.consumables) this.consumables = {};
   }
 
   get buyable() {
@@ -96,9 +99,26 @@ export class Premium {
       player._updateGenders();
     }
 
+    if(item.consumableKey) {
+      this.addConsumable(item.consumableKey);
+    }
+
     this.addIlp(-item.cost);
     player._updatePremium();
     this.save();
+  }
+
+  addConsumable(consumableKey) {
+    this.consumables[consumableKey] = this.consumables[consumableKey] || 0;
+    this.consumables[consumableKey]++;
+  }
+
+  canConsume(consumableKey) {
+    return this.consumables[consumableKey] > 0;
+  }
+
+  consume(consumableKey) {
+    this.consumables[consumableKey]--;
   }
 
   checkDonatorFirstTimeBonus(player) {

@@ -56,6 +56,10 @@ export const perks = [
     description: 'Teleport to Frigri.',
     teleportData: { toLoc: 'frigri' } },
 
+  { name: 'Rename Tag: Pet', cost: 1000,
+    description: 'Rename a single pet.',
+    consumableKey: 'renameTagPet' },
+
   { name: 'Gender: Blue', cost: 100,
     description: 'Unlock the Blue gender.',
     oneTimeData: { gender: 'blue' } },

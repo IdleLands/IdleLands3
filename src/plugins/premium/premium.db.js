@@ -47,7 +47,8 @@ export class PremiumDb {
         { $set: {
           ilp: premiumObject.ilp,
           oneTimeItemsPurchased: premiumObject.oneTimeItemsPurchased,
-          donatorFirstTimeBonus: premiumObject.donatorFirstTimeBonus
+          donatorFirstTimeBonus: premiumObject.donatorFirstTimeBonus,
+          consumables: premiumObject.consumables
         } },
         { upsert: true },
         (err) => {
