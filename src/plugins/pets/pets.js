@@ -405,6 +405,19 @@ export class Pets {
     });
   }
 
+  changePetName(player, petId, petName) {
+    if(!player.$premium.canConsume('renameTagPet')) return 'You do not have a pet rename tag!';
+    player.$premium.consume(player, 'renameTagPet');
+
+    const pet = _.find(this.$pets, { $petId: petId });
+    pet.name = petName;
+
+    this._updateSimplePetInfo(petId, 'petName', petName);
+
+    player._updatePet();
+    this.save();
+  }
+
   get petInfo() {
     return _.reduce(_.keys(petdata), (prev, cur) => {
       prev[cur] = _.pick(petdata[cur], ['cost', 'category', 'description']);

@@ -117,8 +117,10 @@ export class Premium {
     return this.consumables[consumableKey] > 0;
   }
 
-  consume(consumableKey) {
+  consume(player, consumableKey) {
     this.consumables[consumableKey]--;
+    player._updatePremium();
+    this.save();
   }
 
   checkDonatorFirstTimeBonus(player) {

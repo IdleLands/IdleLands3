@@ -32,6 +32,7 @@ plugin:pet:sell | itemId | Sell an item from your pets inventory.
 plugin:pet:sellall |  | Sell all items from your pets inventory.
 plugin:pet:giveitem | itemId | Give your pet an item from your equipment.
 plugin:pet:takeitem | itemId | Take an item from your pet and equip it.
+plugin:pet:rename | petId, newName | Rename your pet. Requires 1 Rename Tag: Pet.
 plugin:pet:profession | newProfession | Change your pets profession.
 plugin:pet:smart | setting | Toggle a smart pet setting.
 plugin:pet:swap | petType | Swap to a different pet.
