@@ -81,7 +81,9 @@ export class Collectibles {
 
   addCollectible(collectible) {
     const allCollectibles = GameState.getInstance().world.allCollectibles;
-    this.collectibles[collectible.name] = allCollectibles[collectible.name];
+    const newCollectible = _.cloneDeep(allCollectibles[collectible.name]);
+    newCollectible.name = collectible.name;
+    this.collectibles[collectible.name] = newCollectible;
     this.save();
   }
 
