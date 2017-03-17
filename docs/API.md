@@ -24,6 +24,7 @@ plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a perma
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.
 plugin:pet:attr | newAttr | Change your pets attribute.
 plugin:pet:buy | petType, petName | Buy a new pet.
+plugin:pet:pass | itemId, petId | Pass an item from your pets inventory to another pet.
 plugin:pet:unequip | itemId | Unequip an item from your pets gear.
 plugin:pet:feed | gold | Feed your pet gold.
 plugin:pet:feedmax |  | Feed your pet maximum gold.

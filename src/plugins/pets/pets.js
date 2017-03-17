@@ -226,6 +226,23 @@ export class Pets {
     player.update();
   }
 
+  passPetItem(player, itemId, petId) {
+    const pet = this.activePet;
+    if(!pet) return 'You have no pet!';
+
+    const item = _.find(pet.inventory, { id: itemId });
+    if(!item) return 'Item does not exist.';
+
+    const otherPet = _.find(this.$pets, { $petId: petId });
+    if(!otherPet) return 'You do not have that pet!';
+
+    if(otherPet.inventoryFull()) return 'Other pet inventory full.';
+
+    pet.removeFromInventory(item);
+    otherPet.addToInventory(item);
+    player.__updatePetActive();
+  }
+
   takePetGold(player) {
     const pet = this.activePet;
     if(!pet) return;
