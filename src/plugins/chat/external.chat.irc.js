@@ -33,11 +33,18 @@ export class ExternalChatMechanism {
       this.client.on('msg', ({ from, to, msg }) => {
         if(to !== '##idlebot') return;
 
+        let protocol = 'irc';
         if(_.includes(from, '<web:') || _.includes(msg, '<web:')) return;
+
+        if(_.startsWith(msg, '<') && _.includes(from, 'discord')) {
+          protocol = 'discord';
+          from = msg.split('<')[1].split('>')[0].trim();
+          msg = msg.split('>')[1].trim();
+        }
 
         const messageObject = {
           text: msg,
-          playerName: `<irc:${from}>`,
+          playerName: `<${protocol}:${from}>`,
           timestamp: Date.now(),
           channel: 'General',
           route: sendRoom,
