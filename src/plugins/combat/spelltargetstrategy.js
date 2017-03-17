@@ -1,5 +1,8 @@
 
 import * as _ from 'lodash';
+import * as Chance from 'chance';
+
+const chance = new Chance();
 
 export class SpellTargetStrategy {
 
@@ -149,6 +152,19 @@ export class SpellTargetStrategy {
         .reject(p => p.party === caster.party)
         .reject(p => p.$effects.hasEffect(effect))
         .sample()];
+    };
+  }
+  
+  static randomAllyWithoutEffectAndPrioritizeCaster(caster) {
+    return function(effect) {
+      const allies = _(caster.$battle.allPlayers)
+        .reject(p => p.hp === 0)
+        .reject(p => p.party !== caster.party)
+        .reject(p => p.$effects.hasEffect(effect)).value();
+      const weights = _.map(allies, ally => {
+        return (ally === caster) ? 7 : 5;
+      });
+      return [chance.weighted(allies, weights)];
     };
   }
 
