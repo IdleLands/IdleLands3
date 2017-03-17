@@ -93,7 +93,7 @@ export class Battle {
     player._mp.toMaximum();
     player.$profession.setupSpecial(player);
 
-    this.tryIncrement(player, 'Combats');
+    this.tryIncrement(player, 'Combat.Times');
   }
 
   setupParties() {
@@ -350,7 +350,7 @@ export class Battle {
       }
 
       if(p.$personalities && p.$personalities.isActive('Solo') && (!p.party || p.party.isBattleParty)) {
-        this.tryIncrement(p, 'CombatSolo');
+        this.tryIncrement(p, 'Combat.TimesSolo');
       }
 
       if(!p.isPlayer) {

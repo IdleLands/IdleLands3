@@ -21,4 +21,11 @@ export const migrate = (player) => {
   if(!_.isObject(regionMigrate)) {
     _.set(player.$statistics.stats, 'Character.Regions', {});
   }
+
+  const combats = player.$statistics.getStat('Combats');
+  player.$statistics.setStat('Combat.Times', combats);
+
+  const combatSolo = player.$statistics.getStat('CombatSolo');
+  player.$statistics.setStat('Combat.TimesSolo', combatSolo);
+
 };

@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 * **changelog:** changelog should update with every commit now ([a75336c](https://github.com/IdleLands/IdleLands/commit/a75336c))
+* **collectibles:** always update collectibles when finding a new one ([404e182](https://github.com/IdleLands/IdleLands/commit/404e182)), closes [#610](https://github.com/IdleLands/IdleLands/issues/610)
 * **equipment:** recalculate stats when equipping items and update the player ([f17f75a](https://github.com/IdleLands/IdleLands/commit/f17f75a))
 * **extchat:** attempt to parse messages better to show discord users ([2369a63](https://github.com/IdleLands/IdleLands/commit/2369a63)), closes [#614](https://github.com/IdleLands/IdleLands/issues/614)
 * **gold:** forsakegold no longer eats all of your gold ([62defbc](https://github.com/IdleLands/IdleLands/commit/62defbc))

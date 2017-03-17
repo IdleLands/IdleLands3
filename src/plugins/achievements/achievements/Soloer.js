@@ -4,7 +4,7 @@ import { Achievement, AchievementTypes } from '../achievement';
 export class Soloer extends Achievement {
   static achievementData(player) {
 
-    const totalSoloCombats = player.$statistics.getStat('CombatSolo');
+    const totalSoloCombats = player.$statistics.getStat('Combat.TimesSolo');
 
     if(totalSoloCombats < 5000) return [];
 
