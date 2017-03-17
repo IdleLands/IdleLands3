@@ -20,7 +20,7 @@
     "generate:classdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-classdoc",
     "generate:petdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-petdoc",
     "generate:apidoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-apidoc",
-    "gitfix": "git add docs",
+    "gitfix": "git add docs && git add CHANGELOG.md",
     "gen:items": "node test/gen/items",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
