@@ -38,7 +38,7 @@ _.each(_.sortBy(_.keys(Professions)), (profession) => {
     })
     .map(spell => spell.tiers)
     .flattenDeep()
-    .reject(tier => tier.profession !== profession)
+    .reject(tier => tier.profession !== profession || tier.ignore)
     .tap(arr => {
       const tiers = {};
       _.each(arr, tier => {

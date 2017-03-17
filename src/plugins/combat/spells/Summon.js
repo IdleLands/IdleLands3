@@ -40,7 +40,11 @@ const monsters = {
 export class Summon extends Spell {
   static element = SpellType.PHYSICAL;
   static tiers = [
-    { name: 'summon',  spellPower: 1, weight: 90, cost: 350,  level: 25,  profession: 'Necromancer' }
+    { name: 'summon',  spellPower: 1, weight: 90, cost: 350,  level: 25,  profession: 'Necromancer' },
+
+    // this exists to generate collectible rarity properly
+    { name: 'dsummon', spellPower: 1, weight: 90, cost: 350,  level: 25,  profession: 'Necromancer',
+      ignore: true, collectibles: ['Gorgon Snake', 'Undead Dragon Scale'] }
   ];
 
   static shouldCast(caster) {

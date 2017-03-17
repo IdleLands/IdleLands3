@@ -16,6 +16,7 @@
 
 * **achievements:** added achievements for affirmer, denier, indecisive ([5accfce](https://github.com/IdleLands/IdleLands/commit/5accfce)), closes [#605](https://github.com/IdleLands/IdleLands/issues/605)
 * **premium:** added new ILP purchases for teleport locations ([81004b7](https://github.com/IdleLands/IdleLands/commit/81004b7))
+* **premium:** you can now buy consumable premium items (currently only a pet rename tag is available) ([2b5e404](https://github.com/IdleLands/IdleLands/commit/2b5e404))
 
 
 

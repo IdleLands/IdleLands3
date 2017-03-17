@@ -80,7 +80,8 @@ export class Collectibles {
   }
 
   addCollectible(collectible) {
-    this.collectibles[collectible.name] = collectible;
+    const allCollectibles = GameState.getInstance().world.allCollectibles;
+    this.collectibles[collectible.name] = allCollectibles[collectible.name];
     this.save();
   }
 

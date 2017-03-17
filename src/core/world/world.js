@@ -4,6 +4,8 @@ import { Map } from './map';
 import * as fs from 'fs';
 
 import * as Bosses from '../../../assets/maps/content/boss.json';
+import * as Pets from '../../../assets/maps/content/pets.json';
+import * as Spells from '../../plugins/combat/spells/_all';
 
 export class World {
   constructor() {
@@ -52,8 +54,30 @@ export class World {
       });
     });
 
+    const mapRequirements = {};
+
     _.each(_.values(this.maps), map => {
       _.extend(this.allCollectibles, map.collectibles);
+      _.extend(mapRequirements, map.loadRequirements());
+    });
+
+    const petRequirements = {};
+    _.each(_.values(Pets), pet => {
+      const collectibles = _.get(pet, 'requirements.collectibles', []);
+      _.each(collectibles, coll => petRequirements[coll] = true);
+    });
+
+    const spellRequirements = {};
+    _.each(_.flatten(_.map(Spells, 'tiers')), spellTier => {
+      if(!spellTier.collectibles) return;
+      _.each(spellTier.collectibles, coll => spellRequirements[coll] = true);
+    });
+
+    _.each(this.allCollectibles, (coll, name) => {
+      if(coll.map !== 'Boss')      coll.rarity = 'basic';
+      if(spellRequirements[name])  coll.rarity = 'pro';
+      if(petRequirements[name])    coll.rarity = 'idle';
+      if(mapRequirements[name])    coll.rarity = 'godly';
     });
   }
 }
