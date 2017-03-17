@@ -547,7 +547,18 @@ export class Player extends Character {
     this._updateSystem();
 
     if(this.$updateEquipment) {
+      this.$updateEquipment = false;
       this._updateEquipment();
+    }
+
+    if(this.$updateCollectibles) {
+      this.$updateCollectibles = false;
+      this._updateCollectibles();
+    }
+
+    if(this.$updateAchievements) {
+      this.$updateAchievements = false;
+      this._updateAchievements();
     }
 
     if(this.$updateGenders) {
