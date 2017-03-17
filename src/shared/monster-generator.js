@@ -20,6 +20,10 @@ const bossTimers = {};
 
 export class MonsterGenerator extends Generator {
 
+  static get bossTimers() {
+    return bossTimers || {};
+  }
+
   static _setBossTimer(name) {
     const respawn = Bosses[name] ? Bosses[name].respawn : BossParties[name].respawn;
     bossTimers[name] = Date.now() + (1000 * respawn);

@@ -26,6 +26,7 @@
 * **forsake:** xp and gold forsake will no longer take positive modifiers when calculating gold/xp lost, meaning no more bloated % from +200% xp festivals ([24e07ce](https://github.com/IdleLands/IdleLands/commit/24e07ce)), closes [#607](https://github.com/IdleLands/IdleLands/issues/607)
 * **newbies:** newbie equipment will never have a negative base score ([0bfb292](https://github.com/IdleLands/IdleLands/commit/0bfb292)), closes [#608](https://github.com/IdleLands/IdleLands/issues/608)
 * **pet:** you can now rename pets with a premium item ([5cc3527](https://github.com/IdleLands/IdleLands/commit/5cc3527))
+* **pets:** can now send items to other pets ([81d8a84](https://github.com/IdleLands/IdleLands/commit/81d8a84)), closes [#596](https://github.com/IdleLands/IdleLands/issues/596)
 * **premium:** added new ILP purchases for teleport locations ([81004b7](https://github.com/IdleLands/IdleLands/commit/81004b7))
 * **premium:** you can now buy consumable premium items (currently only a pet rename tag is available) ([2b5e404](https://github.com/IdleLands/IdleLands/commit/2b5e404))
 

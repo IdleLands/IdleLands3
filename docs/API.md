@@ -50,6 +50,7 @@ plugin:player:partyleave |  | Leave your current party.
 plugin:player:togglepersonality | personality | Turn a personality on or off.
 plugin:player:imregisteringrightnowdontkillme |  | Send this to the server to not have your socket killed while registering.
 plugin:player:request:achievements |  | Request achievement data. Generally used only when looking at achievements.
+plugin:player:request:bosstimers |  | Request bosstimer data. Generally used only when looking at maps.
 plugin:player:request:collectibles |  | Request collectible data. Generally used only when looking at collectibles.
 plugin:player:request:equipment |  | Request equipment data. Generally used only when looking at equipment.
 plugin:player:request:party |  | Request party data. Generally used only when looking at overview.

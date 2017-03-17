@@ -11,6 +11,7 @@ import { Logger } from '../../shared/logger';
 import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
 import { ItemGenerator } from '../../shared/item-generator';
+import { MonsterGenerator } from '../../shared/monster-generator';
 
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
@@ -478,6 +479,10 @@ export class Player extends Character {
 
   _updatePlayer() {
     this.$dataUpdater(this.name, 'player', this.buildTransmitObject());
+  }
+
+  _updateBossTimers() {
+    this.$dataUpdater(this.name, 'bosstimers', MonsterGenerator.bossTimers);
   }
 
   _updateParty(force = false) {
