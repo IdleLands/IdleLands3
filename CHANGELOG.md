@@ -19,6 +19,7 @@
 ### Features
 
 * **achievements:** added achievements for affirmer, denier, indecisive ([5accfce](https://github.com/IdleLands/IdleLands/commit/5accfce)), closes [#605](https://github.com/IdleLands/IdleLands/issues/605)
+* **chests:** you see when you visited a chest in the event log now. ([797fe3e](https://github.com/IdleLands/IdleLands/commit/797fe3e)), closes [#606](https://github.com/IdleLands/IdleLands/issues/606)
 * **collectibles:** collectible rarity is now automatically determined ([1466c87](https://github.com/IdleLands/IdleLands/commit/1466c87)), closes [#483](https://github.com/IdleLands/IdleLands/issues/483)
 * **combat:** Mages will now prioritize themselves when using Arcane Intelligence ([08aff06](https://github.com/IdleLands/IdleLands/commit/08aff06))
 * **pet:** you can now rename pets with a premium item ([5cc3527](https://github.com/IdleLands/IdleLands/commit/5cc3527))

@@ -36,7 +36,7 @@ export class ItemGenerator extends Generator {
         type: key,
         itemClass: 'newbie',
         name: _.sample(itemNames[key]),
-        str: r(), con: r(), dex: r(), int: r(), agi: r(), luk: r()
+        str: r(), con: r(), dex: r(), int: r(), agi: r(), luk: r(), sentimentality: 30
       });
       equipment.push(item);
     });
