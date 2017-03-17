@@ -13,6 +13,7 @@
 * **mlab:** battles now expire after 30 minutes instead of 6 hours ([acdc563](https://github.com/IdleLands/IdleLands/commit/acdc563))
 * **movement:** fix a weird case where movement would sometimes not generate valid weights ([255787f](https://github.com/IdleLands/IdleLands/commit/255787f))
 * **party:** allow you to forcibly request your party via frontend, making it visible to semi-login [refreshes] ([4fd5224](https://github.com/IdleLands/IdleLands/commit/4fd5224))
+* **statistics:** move combat/combatsolo under the combat root ([fe77254](https://github.com/IdleLands/IdleLands/commit/fe77254)), closes [#589](https://github.com/IdleLands/IdleLands/issues/589)
 
 
 ### Features
