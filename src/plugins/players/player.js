@@ -156,9 +156,13 @@ export class Player extends Character {
     emitter.emit('player:levelup', { player: this });
   }
 
+  _calcModGold(baseXp) {
+    return this.liveStats.gold(baseXp);
+  }
+
   gainGold(baseGold = 1, calc = true) {
     
-    const gold = calc ? this.liveStats.gold(baseGold) : baseGold;
+    const gold = calc ? this._calcModGold(baseGold) : baseGold;
     if(_.isNaN(gold) || gold === 0 || Math.sign(gold) !== Math.sign(baseGold)) return 0;
     
     super.gainGold(gold);
@@ -172,9 +176,13 @@ export class Player extends Character {
     return gold;
   }
 
+  _calcModXp(baseXp) {
+    return this.liveStats.xp(baseXp);
+  }
+
   gainXp(baseXp = 1, calc = true) {
 
-    const xp = calc ? this.liveStats.xp(baseXp) : baseXp;
+    const xp = calc ? this._calcModXp(baseXp) : baseXp;
     if(_.isNaN(xp) || xp === 0 || Math.sign(xp) !== Math.sign(baseXp)) return 0;
     
     super.gainXp(xp);

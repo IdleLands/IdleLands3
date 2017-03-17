@@ -22,6 +22,7 @@
 * **chests:** you see when you visited a chest in the event log now. ([797fe3e](https://github.com/IdleLands/IdleLands/commit/797fe3e)), closes [#606](https://github.com/IdleLands/IdleLands/issues/606)
 * **collectibles:** collectible rarity is now automatically determined ([1466c87](https://github.com/IdleLands/IdleLands/commit/1466c87)), closes [#483](https://github.com/IdleLands/IdleLands/issues/483)
 * **combat:** Mages will now prioritize themselves when using Arcane Intelligence ([08aff06](https://github.com/IdleLands/IdleLands/commit/08aff06))
+* **newbies:** newbie equipment will never have a negative base score ([0bfb292](https://github.com/IdleLands/IdleLands/commit/0bfb292)), closes [#608](https://github.com/IdleLands/IdleLands/issues/608)
 * **pet:** you can now rename pets with a premium item ([5cc3527](https://github.com/IdleLands/IdleLands/commit/5cc3527))
 * **premium:** added new ILP purchases for teleport locations ([81004b7](https://github.com/IdleLands/IdleLands/commit/81004b7))
 * **premium:** you can now buy consumable premium items (currently only a pet rename tag is available) ([2b5e404](https://github.com/IdleLands/IdleLands/commit/2b5e404))
