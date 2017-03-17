@@ -19,7 +19,7 @@ export class MageIntelligence extends Spell {
   }
 
   determineTargets() {
-    return this.$targetting.randomAllyWithoutEffect('INTBoost');
+    return this.$targetting.randomAllyWithoutEffectAndPrioritizeCaster('INTBoost');
   }
 
   calcDuration() {
