@@ -12,6 +12,7 @@
 * **combat:** can no longer battle yourself ([4911573](https://github.com/IdleLands/IdleLands/commit/4911573)), closes [#612](https://github.com/IdleLands/IdleLands/issues/612)
 * **equipment:** recalculate stats when equipping items and update the player ([f17f75a](https://github.com/IdleLands/IdleLands/commit/f17f75a))
 * **extchat:** attempt to parse messages better to show discord users ([2369a63](https://github.com/IdleLands/IdleLands/commit/2369a63)), closes [#614](https://github.com/IdleLands/IdleLands/issues/614)
+* **finditem:** calling people a cheater a lot ([4070d4f](https://github.com/IdleLands/IdleLands/commit/4070d4f))
 * **gold:** forsakegold no longer eats all of your gold ([62defbc](https://github.com/IdleLands/IdleLands/commit/62defbc))
 * **gold:** you can no longer lose more gold than you have, and forsakegold is less penalizing ([15bf42b](https://github.com/IdleLands/IdleLands/commit/15bf42b))
 * **mlab:** battles now expire after 30 minutes instead of 6 hours ([acdc563](https://github.com/IdleLands/IdleLands/commit/acdc563))
