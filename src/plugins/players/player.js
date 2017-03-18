@@ -12,6 +12,7 @@ import { PlayerDb } from './player.db';
 import { PlayerMovement } from './player.movement';
 import { ItemGenerator } from '../../shared/item-generator';
 import { MonsterGenerator } from '../../shared/monster-generator';
+import { ShopGenerator } from '../../shared/shop-generator';
 
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
@@ -53,6 +54,7 @@ export class Player extends Character {
     this.$updateCollectibles = true;
     this.$updateGenders = true;
     this.$updatePremium = true;
+    this.$updateShop = true;
 
     this.$partyName = null;
 
@@ -359,8 +361,15 @@ export class Player extends Character {
       this.moveToStart();
     }
 
+    const oldRegion = this.oldRegion;
+
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
+
+    if(!this.$shop || (oldRegion !== this.mapRegion)) {
+      this.$updateShop = true;
+      this.$shop = ShopGenerator.regionShop(this);
+    }
 
     this.mapPath = tile.path;
 
@@ -390,6 +399,25 @@ export class Player extends Character {
     this.$statistics.batchIncrement(incrementStats);
 
     this.gainXp(SETTINGS.xpPerStep);
+  }
+
+  buyShopItem(itemId) {
+    const items = _.get(this, '$shop.slots', []);
+    const item = _.find(items, { id: itemId });
+
+    if(!item) return 'Item does not exist';
+
+    if(this.gold < item.price) return 'Too expensive for your blood';
+
+    this.gold -= item.price;
+    item.price = 0;
+    this.equip(item);
+
+    this.$shop.slots = _.without(this.$shop.slots, item);
+
+    this.$updateEquipment = true;
+    this.$updateShop = true;
+    this.update();
   }
 
   equip(item) {
@@ -481,6 +509,10 @@ export class Player extends Character {
     this.$dataUpdater(this.name, 'player', this.buildTransmitObject());
   }
 
+  _updateShop() {
+    this.$dataUpdater(this.name, 'shop', this.$shop || { slots: [] });
+  }
+
   _updateBossTimers() {
     this.$dataUpdater(this.name, 'bosstimers', MonsterGenerator.bossTimers);
   }
@@ -558,6 +590,11 @@ export class Player extends Character {
     this._updatePlayer();
     this._updateParty();
     this._updateSystem();
+
+    if(this.$updateShop) {
+      this.$updateShop = false;
+      this._updateShop();
+    }
 
     if(this.$updateEquipment) {
       this.$updateEquipment = false;

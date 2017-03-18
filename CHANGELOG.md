@@ -1,5 +1,5 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/IdleLands/IdleLands/compare/0.9.0...v0.0.0) (2017-03-17)
+# [0.0.0](https://github.com/IdleLands/IdleLands/compare/0.9.0...v0.0.0) (2017-03-18)
 
 
 ### Bug Fixes
@@ -20,8 +20,10 @@
 ### Features
 
 * **achievements:** added achievements for affirmer, denier, indecisive ([5accfce](https://github.com/IdleLands/IdleLands/commit/5accfce)), closes [#605](https://github.com/IdleLands/IdleLands/issues/605)
+* **bosses:** boss timers are now able to be emitted to the client ([03b7ec6](https://github.com/IdleLands/IdleLands/commit/03b7ec6)), closes [#611](https://github.com/IdleLands/IdleLands/issues/611)
 * **chests:** you see when you visited a chest in the event log now. ([797fe3e](https://github.com/IdleLands/IdleLands/commit/797fe3e)), closes [#606](https://github.com/IdleLands/IdleLands/issues/606)
 * **collectibles:** collectible rarity is now automatically determined ([1466c87](https://github.com/IdleLands/IdleLands/commit/1466c87)), closes [#483](https://github.com/IdleLands/IdleLands/issues/483)
+* **combat:** Mages will now prioritize themselves when using Arcane Intelligence ([c98d518](https://github.com/IdleLands/IdleLands/commit/c98d518))
 * **combat:** Mages will now prioritize themselves when using Arcane Intelligence ([08aff06](https://github.com/IdleLands/IdleLands/commit/08aff06))
 * **forsake:** xp and gold forsake will no longer take positive modifiers when calculating gold/xp lost, meaning no more bloated % from +200% xp festivals ([24e07ce](https://github.com/IdleLands/IdleLands/commit/24e07ce)), closes [#607](https://github.com/IdleLands/IdleLands/issues/607)
 * **newbies:** newbie equipment will never have a negative base score ([0bfb292](https://github.com/IdleLands/IdleLands/commit/0bfb292)), closes [#608](https://github.com/IdleLands/IdleLands/issues/608)

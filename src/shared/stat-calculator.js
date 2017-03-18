@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 import { SETTINGS } from '../static/settings';
 import { GameState } from '../core/game-state';
 
+import { Regions } from './regions';
+
 export const SPECIAL_STATS_BASE = [
   { name: 'hpregen',         desc: 'Regenerate HP every combat round.', enchantMax: 100 },
   { name: 'mpregen',         desc: 'Regenerate MP every combat round.', enchantMax: 100 },
@@ -60,10 +62,17 @@ export class StatCalculator {
   static _baseStat(player, stat) {
     return this.classStat(player, stat)
          + this.effectStat(player, stat)
+         + this.regionStat(player, stat)
          + this.equipmentStat(player, stat)
          + this.professionStat(player, stat)
          + this.achievementStat(player, stat)
          + this.personalityStat(player, stat);
+  }
+
+  static regionStat(player, stat) {
+    const region = Regions[player.region];
+    if(!region || !region[stat]) return 0;
+    return region[stat](player);
   }
 
   static equipmentStat(player, stat) {
