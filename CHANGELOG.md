@@ -28,6 +28,7 @@
 * **collectibles:** collectible rarity is now automatically determined ([1466c87](https://github.com/IdleLands/IdleLands/commit/1466c87)), closes [#483](https://github.com/IdleLands/IdleLands/issues/483)
 * **combat:** Mages will now prioritize themselves when using Arcane Intelligence ([c98d518](https://github.com/IdleLands/IdleLands/commit/c98d518))
 * **combat:** Mages will now prioritize themselves when using Arcane Intelligence ([08aff06](https://github.com/IdleLands/IdleLands/commit/08aff06))
+* **finditem:** finding an item will now allow you to also give it to your pet ([438bd3a](https://github.com/IdleLands/IdleLands/commit/438bd3a))
 * **forsake:** xp and gold forsake will no longer take positive modifiers when calculating gold/xp lost, meaning no more bloated % from +200% xp festivals ([24e07ce](https://github.com/IdleLands/IdleLands/commit/24e07ce)), closes [#607](https://github.com/IdleLands/IdleLands/issues/607)
 * **newbies:** newbie equipment will never have a negative base score ([0bfb292](https://github.com/IdleLands/IdleLands/commit/0bfb292)), closes [#608](https://github.com/IdleLands/IdleLands/issues/608)
 * **pet:** you can now rename pets with a premium item ([5cc3527](https://github.com/IdleLands/IdleLands/commit/5cc3527))

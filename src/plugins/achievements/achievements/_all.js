@@ -41,3 +41,4 @@ export { TempterOfFate } from './TempterOfFate';
 export { Territorial } from './Territorial';
 export { Unstoppable } from './Unstoppable';
 export { Walker } from './Walker';
+export { Wolfmaster } from './Wolfmaster';
