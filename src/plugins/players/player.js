@@ -415,6 +415,9 @@ export class Player extends Character {
 
     this.$shop.slots = _.without(this.$shop.slots, item);
 
+    this.$statistics.incrementStat('Character.Gold.Spent', item.price);
+    this.$statistics.incrementStat('Character.Item.Buy');
+
     this.$updateEquipment = true;
     this.$updateShop = true;
     this.update();
