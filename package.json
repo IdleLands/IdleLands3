@@ -7,9 +7,9 @@
     "postinstall": "npm run install:assets",
     "install:assets": "node install-assets",
     "start": "node dist/index.js",
-    "start:dev": "nodemon --exec \"ts-node src/index.js\"",
+    "start:dev": "nodemon --ext js,ts --exec \"ts-node src/index.js\"",
     "start:battletest": "cross-env BATTLE_DEBUG=1 nodemon --exec \"ts-node src/index.js\"",
-    "start:prod": "cross-env NODE_ENV=production ALLOW_LOCAL=1 EXT_CHAT=0 INSTANCE_NUMBER=0 nodemon --exec \"ts-node src/index.js\"",
+    "start:prod": "cross-env NODE_ENV=production ALLOW_LOCAL=1 EXT_CHAT=0 INSTANCE_NUMBER=0 nodemon --ext js,ts --exec \"ts-node src/index.js\"",
     "test": "npm run test:local",
     "test:lint": "eslint --quiet src/** test/plugins/**",
     "test:local": "npm run test:lint",
@@ -80,6 +80,7 @@
     "ws": "^1.1.1"
   },
   "devDependencies": {
+    "@types/node": "^7.0.8",
     "ava": "^0.15.2",
     "babel-eslint": "^7.1.1",
     "bithound": "^1.7.0",

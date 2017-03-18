@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES2015",
     "module": "commonjs",
     "allowJs": true,
     "moduleResolution": "node",
@@ -11,14 +11,14 @@
     "rootDir": "src",
     "outDir": "dist",
     "noImplicitAny": false,
-    "declaration": false
+    "declaration": false,
+    "typeRoots": ["node_modules/@types"]
   },
   "compileOnSave": false,
   "buildOnSave": false,
   "exclude": [
     "node_modules",
     "dist",
-    "assets",
     "test",
     "docs",
     "scripts",
