@@ -40,7 +40,7 @@ export class Logger {
 
   static silly(tag, message) {
     if(!process.env.DEBUG_SILLY) return;
-    console.info(this._formatMessage(tag, message));
+    console.info(this._formatMessage(`${process.env.INSTANCE_NUMBER}:${tag}`, message));
   }
 }
 
