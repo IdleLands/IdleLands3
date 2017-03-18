@@ -16,6 +16,7 @@ import { ShopGenerator } from '../../shared/shop-generator';
 
 import { DataUpdater } from '../../shared/data-updater';
 import { EventHandler } from '../events/eventhandler';
+import { FindItem } from '../events/events/FindItem';
 
 import * as Events from '../events/events/_all';
 import * as Achievements from '../achievements/achievements/_all';
@@ -410,8 +411,9 @@ export class Player extends Character {
     if(this.gold < item.price) return 'Too expensive for your blood';
 
     this.gold -= item.price;
-    item.price = 0;
-    this.equip(item);
+    delete item.price;
+
+    FindItem.operateOn(this, null, item);
 
     this.$shop.slots = _.without(this.$shop.slots, item);
 
