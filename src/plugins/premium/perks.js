@@ -56,6 +56,10 @@ export const perks = [
     description: 'Teleport to Frigri.',
     teleportData: { toLoc: 'frigri' } },
 
+  { name: 'Teleport: Astral Control Room', cost: 1000,
+    description: 'Teleport to the Astral Control Room.',
+    teleportData: { toLoc: 'astralcontrolroom' } },
+
   { name: 'Rename Tag: Pet', cost: 1000,
     description: 'Rename a single pet.',
     consumableKey: 'renameTagPet' },
