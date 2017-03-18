@@ -31,6 +31,7 @@
 * **pets:** can now send items to other pets ([81d8a84](https://github.com/IdleLands/IdleLands/commit/81d8a84)), closes [#596](https://github.com/IdleLands/IdleLands/issues/596)
 * **premium:** added new ILP purchases for teleport locations ([81004b7](https://github.com/IdleLands/IdleLands/commit/81004b7))
 * **premium:** you can now buy consumable premium items (currently only a pet rename tag is available) ([2b5e404](https://github.com/IdleLands/IdleLands/commit/2b5e404))
+* **shops:** shops now show up in certain regions ([5902615](https://github.com/IdleLands/IdleLands/commit/5902615)), closes [#33](https://github.com/IdleLands/IdleLands/issues/33)
 
 
 

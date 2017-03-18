@@ -37,6 +37,12 @@ export const Regions = {
     shopQuality: () => 1.4,
     TownCrierChance: (player, baseValue) => baseValue*3
   },
+  'Astral Town': {
+    shopPriceMultiplier: () => 10,
+    shopSlots: () => 5,
+    shopQuality: () => 7,
+    TownCrierChance: (player, baseValue) => baseValue*3
+  },
 
   'Dangerous Cave Area': {
     BattleChance:       (player, baseValue) => baseValue*1.2,
