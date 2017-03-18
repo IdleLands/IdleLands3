@@ -116,6 +116,7 @@ export class Player extends Character {
     const activePet = this.$pets.activePet;
 
     if(activePet) {
+      Logger.silly('Player:TakeTurn', `${this.name} pet taking turn.`);
       activePet.takeTurn();
       if(activePet.$updatePlayer) {
         this.__updatePetActive();
@@ -133,7 +134,9 @@ export class Player extends Character {
     this.attemptToDisbandSoloParty();
 
     try {
+      Logger.silly('Player:TakeTurn', `${this.name} moving.`);
       this.moveAction();
+      Logger.silly('Player:TakeTurn', `${this.name} trying event.`);
       EventHandler.tryToDoEvent(this);
     } catch(e) {
       Logger.error('Player', e);
