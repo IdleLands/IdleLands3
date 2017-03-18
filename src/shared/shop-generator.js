@@ -18,7 +18,7 @@ export class ShopGenerator extends Generator {
 
     const region = Regions[shop.region];
 
-    if(!region) return shop;
+    if(!region || !region.shopSlots || !region.shopQuality || !region.shopPriceMultiplier) return shop;
 
     const slots = region.shopSlots(player);
     const multiplier = region.shopQuality(player);

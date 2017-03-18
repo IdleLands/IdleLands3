@@ -42,7 +42,7 @@ export class Gambling extends Event {
       odds /= 2;
     }
 
-    if(player.gold < cost || _.isNaN(cost) || cost < 0) return false;
+    if(player.gold < cost || _.isNaN(cost) || cost < 0) return Event.feedback(player, 'You do not have enough gold!');
 
     if(isDoubleDown) {
       player.$statistics.incrementStat('Character.Gamble.DoubleDown');
@@ -72,10 +72,6 @@ export class Gambling extends Event {
     message = this._parseText(message, player);
 
     this.emitMessage({ affected: [player], eventText: message, category: MessageCategories.GOLD });
-  }
-
-  static feedback(player) {
-    Event.feedback(player, 'You do not have enough gold!');
   }
 }
 

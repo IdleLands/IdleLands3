@@ -65,5 +65,6 @@ export class Event {
       spark.write({ type: 'error', title: '', notify: message });
       next();
     }, () => {});
+    return message;
   }
 }

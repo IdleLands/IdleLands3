@@ -38,15 +38,11 @@ export class MerchantEnchant extends Event {
   static makeChoice(player, id, response) {
     if(response !== 'Yes') return;
     const choice = _.find(player.choices, { id });
-    if(player.gold < choice.extraData.cost) return false;
+    if(player.gold < choice.extraData.cost) return Event.feedback(player, 'You do not have enough gold!');
     player.gainGold(-choice.extraData.cost, false);
     player.$statistics.incrementStat('Character.Gold.Spent', choice.extraData.cost);
     this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.GOLD });
     Enchant.operateOn(player);
-  }
-
-  static feedback(player) {
-    Event.feedback(player, 'You do not have enough gold!');
   }
 }
 

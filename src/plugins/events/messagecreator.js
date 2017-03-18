@@ -121,7 +121,9 @@ class AssetDomainHandler {
 }
 
 class PlayerOwnedDomainHandler {
-  static pet() {
+  static pet(player) {
+    const pet = player.$pets.activePet;
+    if(pet) return pet.fullname;
     return AllDomains.placeholder();
   }
   static guild() {

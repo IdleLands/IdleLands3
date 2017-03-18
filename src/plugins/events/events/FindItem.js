@@ -36,16 +36,35 @@ export class FindItem extends Event {
     const eventText = this.eventText('findItem', player, { item: item.fullname });
     const extraData = { item, eventText };
 
-    player.addChoice({ id, message, extraData, event: 'FindItem', choices: ['Yes', 'No'] });
+    const choices = ['Yes', 'No'];
+    if(player.$pets.activePet) {
+      choices.push('Pet');
+    }
+    player.addChoice({ id, message, extraData, event: 'FindItem', choices });
 
     return [player];
   }
 
   static makeChoice(player, id, response) {
-    if(response !== 'Yes') return;
+    if(response === 'No') return;
     const choice = _.find(player.choices, { id });
-    player.equip(new Equipment(choice.extraData.item));
-    this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.ITEM });
+
+    if((!_.includes(choice.choices, 'Pet') && response === 'Pet') || !player.$pets.activePet) return Event.feedback(player, 'Invalid choice. Cheater.');
+
+    const item = new Equipment(choice.extraData.item);
+
+    if(response === 'Pet') {
+      const pet = player.$pets.activePet;
+      if(pet.inventoryFull()) return Event.feedback(player, 'Pet inventory full.');
+      pet.addToInventory(item);
+      const eventText = this._parseText('%player gave a fancy %item to %pet!', player, { item: item.fullname });
+      this.emitMessage({ affected: [player], eventText, category: MessageCategories.ITEM });
+    }
+
+    if(response === 'Yes') {
+      player.equip(item);
+      this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.ITEM });
+    }
   }
 }
 

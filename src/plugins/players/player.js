@@ -257,7 +257,7 @@ export class Player extends Character {
     const choice = _.find(this.choices, { id });
     if(!choice) return;
     const result = Events[choice.event].makeChoice(this, id, response);
-    if(result === false) return Events[choice.event].feedback(this);
+    if(_.isString(result)) return;
     this.$statistics.batchIncrement(['Character.Choice.Chosen', `Character.Choice.Choose.${response}`]);
     this.removeChoice(id);
     this.update();
