@@ -49,7 +49,7 @@ export class FindItem extends Event {
     if(response === 'No') return;
     const choice = _.find(player.choices, { id });
 
-    if((!_.includes(choice.choices, 'Pet') && response === 'Pet') || !player.$pets.activePet) return Event.feedback(player, 'Invalid choice. Cheater.');
+    if((!_.includes(choice.choices, 'Pet') && response === 'Pet')) return Event.feedback(player, 'Invalid choice. Cheater.');
 
     const item = new Equipment(choice.extraData.item);
 
