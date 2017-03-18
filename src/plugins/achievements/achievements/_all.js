@@ -28,6 +28,7 @@ export { Gambler } from './Gambler';
 export { Herder } from './Herder';
 export { Impossible } from './Impossible';
 export { Indecisive } from './Indecisive';
+export { Jailbird } from './Jailbird';
 export { Levelable } from './Levelable';
 export { Mapceptional } from './Mapceptional';
 export { PartyMember } from './PartyMember';

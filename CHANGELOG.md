@@ -23,6 +23,7 @@
 ### Features
 
 * **achievements:** added achievements for affirmer, denier, indecisive ([5accfce](https://github.com/IdleLands/IdleLands/commit/5accfce)), closes [#605](https://github.com/IdleLands/IdleLands/issues/605)
+* **achievements:** new wolfmaster title ([33fd8c7](https://github.com/IdleLands/IdleLands/commit/33fd8c7)), closes [#578](https://github.com/IdleLands/IdleLands/issues/578)
 * **bosses:** boss timers are now able to be emitted to the client ([03b7ec6](https://github.com/IdleLands/IdleLands/commit/03b7ec6)), closes [#611](https://github.com/IdleLands/IdleLands/issues/611)
 * **chests:** you see when you visited a chest in the event log now. ([797fe3e](https://github.com/IdleLands/IdleLands/commit/797fe3e)), closes [#606](https://github.com/IdleLands/IdleLands/issues/606)
 * **collectibles:** collectible rarity is now automatically determined ([1466c87](https://github.com/IdleLands/IdleLands/commit/1466c87)), closes [#483](https://github.com/IdleLands/IdleLands/issues/483)
