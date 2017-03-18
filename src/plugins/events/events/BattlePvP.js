@@ -21,7 +21,7 @@ export class BattlePvP extends Event {
     if(player.level <= SETTINGS.minBattleLevel) return;
     if(player.$personalities.isActive('Coward') && Event.chance.bool({ likelihood: 75 })) return;
 
-    const allPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.$battle);
+    const allPlayers = _.reject(GameState.getInstance().getPlayers(), p => p.$battle || p === player);
     let opponent = null;
 
     // 1v1
