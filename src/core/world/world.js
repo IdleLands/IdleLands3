@@ -74,6 +74,7 @@ export class World {
     });
 
     _.each(this.allCollectibles, (coll, name) => {
+      coll.name = name;
       if(coll.map !== 'Boss')      coll.rarity = 'basic';
       if(spellRequirements[name])  coll.rarity = 'pro';
       if(petRequirements[name])    coll.rarity = 'idle';

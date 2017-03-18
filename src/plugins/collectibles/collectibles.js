@@ -26,11 +26,13 @@ export class Collectibles {
     const allCollectibles = GameState.getInstance().world.allCollectibles;
 
     // update collectibles on login
-    _.each(_.values(opts.collectibles), coll => {
-      if(!allCollectibles[coll.name]) {
-        delete opts.collectibles[coll.name];
+    _.each(opts.collectibles, (coll, name) => {
+      if(!allCollectibles[name]) {
+        delete opts.collectibles[name];
         return;
       }
+
+      coll.name = name;
       coll.rarity = allCollectibles[coll.name].rarity || 'basic';
       coll.description = allCollectibles[coll.name].flavorText;
       coll.storyline = allCollectibles[coll.name].storyline;
@@ -82,7 +84,6 @@ export class Collectibles {
   addCollectible(collectible) {
     const allCollectibles = GameState.getInstance().world.allCollectibles;
     const newCollectible = _.cloneDeep(allCollectibles[collectible.name]);
-    newCollectible.name = collectible.name;
     this.collectibles[collectible.name] = newCollectible;
     this.save();
   }
