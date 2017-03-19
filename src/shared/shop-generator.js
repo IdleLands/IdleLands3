@@ -24,9 +24,11 @@ export class ShopGenerator extends Generator {
     const multiplier = region.shopQuality(player);
     const priceMult = region.shopPriceMultiplier(player);
 
+    let attempts = 0;
+
     for(let i = 0; i < slots; i++) {
       let item = this.generateItem(player, multiplier);
-      while(!player.canEquip(item)) {
+      while(!player.canEquip(item) && attempts++ < 10) {
         item = this.generateItem(player, multiplier);
       }
 
