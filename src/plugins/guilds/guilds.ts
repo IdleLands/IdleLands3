@@ -41,10 +41,10 @@ export class Guilds {
     if(tag.length <= 1 || tag.length > 6) return 'Guild tag mus be between 1 and 6 characters';
 
     leader.gold -= SETTINGS.guild.cost;
-    leader.guildName = name;
 
     const guild = new Guild(this.guildsDb);
     guild.init({ leader: leader.name, name, tag });
+    guild.memberJoin(leader);
     guild.save();
   }
 

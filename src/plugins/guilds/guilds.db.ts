@@ -52,6 +52,38 @@ export class GuildsDb {
     });
   }
 
+  async removePlayerFromGuild(playerName) {
+    const db = await this.dbWrapper.connectionPromise();
+    const players = db.$$collections.players;
+
+    return new Promise((resolve, reject) => {
+      players.findOneAndUpdate({ _id: playerName }, { $set: { guildName: '' } }, (err) => {
+
+        if(err) {
+          return reject(err);
+        }
+
+        resolve();
+      }, reject);
+    });
+  }
+
+  async removeGuild(guildObject) {
+    const db = await this.dbWrapper.connectionPromise();
+    const guilds = db.$$collections.guilds;
+
+    return new Promise((resolve, reject) => {
+      guilds.remove({ _id: guildObject._id }, (err) => {
+
+        if(err) {
+          return reject(err);
+        }
+
+        resolve(guildObject);
+      }, reject);
+    });
+  }
+
   async saveGuild(guildObject) {
     const saveObject = guildObject.buildSaveObject();
     const db = await this.dbWrapper.connectionPromise();
