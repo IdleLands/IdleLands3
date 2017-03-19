@@ -110,6 +110,11 @@ export class Player extends Character {
     return this.randomDeathMessage();
   }
 
+  get guild() {
+    const gamestate = GameState.getInstance();
+    return gamestate.hasGuild(this.guildName);
+  }
+
   takeTurn() {
     Logger.silly('Player:TakeTurn', `${this.name} taking turn.`);
 
@@ -554,6 +559,10 @@ export class Player extends Character {
 
   _updateGenders() {
     this.$dataUpdater(this.name, 'genders', this.validGenders);
+  }
+
+  _updateGuild() {
+    this.$dataUpdater(this.name, 'guild', this.guild);
   }
 
   _updatePet() {

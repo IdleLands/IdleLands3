@@ -1,9 +1,15 @@
 
+import * as _ from 'lodash';
+
 import { Dependencies } from 'constitute';
 
 import { DbWrapper } from '../../shared/db-wrapper';
 import { MESSAGES } from '../../static/messages';
 import { Logger } from '../../shared/logger';
+
+import { constitute } from '../../shared/di-wrapper';
+
+import { Guild } from './guild';
 
 @Dependencies(DbWrapper)
 export class GuildsDb {
@@ -27,24 +33,21 @@ export class GuildsDb {
 
         try {
           docs.toArray((err, data) => {
-            resolve(data);
+            const guildObj = {};
+
+            _.each(data, guild => {
+              const guildCont = constitute(Guild);
+              guildCont.init(guild);
+
+              guildObj[guildCont.name] = guildCont;
+            });
+
+            resolve(guildObj);
           });
         } catch(e) {
           Logger.error('GuildsDb:getGuilds', e);
           reject({ e, msg: MESSAGES.GENERIC });
         }
-      });
-    });
-  }
-
-  async createGuild(guildObject) {
-    const db = await this.dbWrapper.connectionPromise();
-    const guilds = db.$$collections.guilds;
-
-    return new Promise((resolve, reject) => {
-      guilds.insertOne(guildObject, (err) => {
-        if(err) return reject(err);
-        resolve(guildObject);
       });
     });
   }

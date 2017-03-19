@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 
 import { World } from './world/world';
 import { Festivals } from '../plugins/festivals/festivals';
+import { Guilds } from '../plugins/guilds/guilds';
 import { Logger } from '../shared/logger';
 import { constitute } from '../shared/di-wrapper';
 import { MESSAGES } from '../static/messages';
@@ -33,6 +34,13 @@ export class GameState {
 
     Logger.info('GameState', 'Loading festivals.');
     this.festivalContainer = constitute(Festivals);
+
+    Logger.info('GameState', 'Loading guilds.');
+    this.guilds = constitute(Guilds);
+  }
+
+  hasGuild(guildName) {
+    return this.guilds.guilds[guildName];
   }
 
   cancelFestivalData(festivalId) {

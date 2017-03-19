@@ -54,6 +54,7 @@ plugin:player:request:achievements |  | Request achievement data. Generally used
 plugin:player:request:bosstimers |  | Request bosstimer data. Generally used only when looking at maps.
 plugin:player:request:collectibles |  | Request collectible data. Generally used only when looking at collectibles.
 plugin:player:request:equipment |  | Request equipment data. Generally used only when looking at equipment.
+plugin:player:request:guild |  | Request guild data.
 plugin:player:request:party |  | Request party data. Generally used only when looking at overview.
 plugin:player:request:personalities |  | Request personality data. Generally used only when looking at personalities.
 plugin:player:request:pets |  | Request pet data.

@@ -11,11 +11,11 @@ import { SETTINGS } from '../../static/settings';
 @Dependencies(GuildsDb)
 export class Guilds {
   guildsDb: any;
-  guilds: Guild[];
+  guilds: any;
 
   constructor(guildsDb) {
     this.guildsDb = guildsDb;
-    this.guilds = [];
+    this.guilds = {};
 
     this.init();
   }
@@ -23,22 +23,29 @@ export class Guilds {
   init() {
     this.guildsDb.getGuilds()
       .then(guilds => {
-        this.guilds = guilds ? _.map(guilds, g => new Guild(g)) : [];
+        this.guilds = guilds || {};
       });
   }
 
   createGuild({ leader, name, tag }) {
-    // gold cost: 100 000 000
     if(leader.gold < SETTINGS.guild.cost) return `You need ${SETTINGS.guild.cost.toLocaleString()} gold to start a guild!`;
+
+    name = (''+name).trim();
+    tag = (''+tag).trim();
 
     if(_.find(this.guilds, { name }) || _.find(this.guilds, { tag })) {
       return 'You need to have a unique name and tag!';
     }
 
+    if(name.length <= 3 || name.length > 20) return 'Guild name must be between 3 and 20 characters.';
+    if(tag.length <= 1 || tag.length > 6) return 'Guild tag mus be between 1 and 6 characters';
+
     leader.gold -= SETTINGS.guild.cost;
+    leader.guildName = name;
 
-    const guild = new Guild({ leader: leader.name, name, tag });
-
+    const guild = new Guild(this.guildsDb);
+    guild.init({ leader: leader.name, name, tag });
+    guild.save();
   }
 
 }

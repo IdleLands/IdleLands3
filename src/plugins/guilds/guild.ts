@@ -20,7 +20,13 @@ export class Guild {
 
   taxRate: number;
 
-  constructor(opts: any) {
+  $guildDb: any;
+
+  constructor(guildDb) {
+    this.$guildDb = guildDb;
+  }
+
+  init(opts: any) {
     _.extend(this, opts);
     if(!this.founded) this.founded = Date.now();
     if(!this.level) this.level = 1;
@@ -30,15 +36,18 @@ export class Guild {
   }
 
   disband() {
-
+    // go through every member, remove them if online, if in db reset guildName
+    // remove self from db
   }
 
-  kickMember() {
-
+  kickMember(member) {
+    // check if they're online, remove guildName (basically, call memberLeave)
+    // if not online, dig into db and unset guildName
   }
 
-  memberLeave() {
-
+  memberLeave(member) {
+    // unset guildName, updateGuild
+    // remove from this.members
   }
 
   inviteMember() {
@@ -50,10 +59,15 @@ export class Guild {
   }
 
   save() {
-
+    this.$guildDb.saveGuild(this);
   }
 
   buildSaveObject() {
-    return this;
+    const obj = _.omitBy(this, (val, key) => {
+      return _.startsWith(key, '$')
+        || _.isNotWritable(this, key)
+    });
+
+    return obj;
   }
 }
