@@ -116,7 +116,6 @@ export class Player extends Character {
     const activePet = this.$pets.activePet;
 
     if(activePet) {
-      Logger.silly('Player:TakeTurn', `${this.name} pet taking turn.`);
       activePet.takeTurn();
       if(activePet.$updatePlayer) {
         this.__updatePetActive();
@@ -136,7 +135,6 @@ export class Player extends Character {
     try {
       Logger.silly('Player:TakeTurn', `${this.name} moving.`);
       this.moveAction();
-      Logger.silly('Player:TakeTurn', `${this.name} trying event.`);
       EventHandler.tryToDoEvent(this);
     } catch(e) {
       Logger.error('Player', e);
@@ -335,11 +333,12 @@ export class Player extends Character {
       }
     };
 
+    Logger.silly('Player:Move', `${this.name} doing tile check`);
     partyTileCheck();
 
     let attempts = 1;
     while(!this.$playerMovement.canEnterTile(this, tile)) {
-      if (attempts > 8) {
+      if(attempts > 8) {
         Logger.error('Player', new Error(`Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`));
         break;
       }
@@ -350,6 +349,7 @@ export class Player extends Character {
       partyTileCheck();
 
       attempts++;
+      Logger.silly('Player:Move', `${this.name} doing tile enter check again ${attempts}`);
     }
 
     if(!tile.terrain) {
@@ -362,6 +362,8 @@ export class Player extends Character {
 
     const mapInstance = GameState.getInstance().world.maps[this.map];
 
+    Logger.silly('Player:Move', `${this.name} doing validation`);
+
     if(!mapInstance || this.x <= 0 || this.y <= 0 || this.y > mapInstance.height || this.x > mapInstance.width) {
       Logger.error('PlayerMovement', new Error(`Out of bounds for ${this.name} on ${this.map}: ${this.x}, ${this.y}`));
       this.moveToStart();
@@ -372,6 +374,7 @@ export class Player extends Character {
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
 
+    Logger.silly('Player:Move', `${this.name} possibly doing shop`);
     if(!this.$shop || (oldRegion !== this.mapRegion)) {
       this.$updateShop = true;
       this.$shop = ShopGenerator.regionShop(this);
@@ -402,8 +405,10 @@ export class Player extends Character {
       incrementStats.push('Character.Movement.Party');
     }
 
+    Logger.silly('Player:Move', `${this.name} incrementing stats`);
     this.$statistics.batchIncrement(incrementStats);
 
+    Logger.silly('Player:Move', `${this.name} gaining xp`);
     this.gainXp(SETTINGS.xpPerStep);
   }
 
@@ -506,7 +511,6 @@ export class Player extends Character {
   _checkAchievements() {
     this.$pets.checkPets(this);
 
-    Logger.silly('Player:TakeTurn', `${this.name} actually checking new achievements.`);
     const newAchievements = this.$achievements.checkAchievements(this);
 
     if(newAchievements.length > 0) {
