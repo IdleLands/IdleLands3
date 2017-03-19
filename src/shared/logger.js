@@ -1,4 +1,6 @@
 
+import * as _ from 'lodash';
+
 import * as rollbar from 'rollbar';
 
 const rollbarToken = process.env.ROLLBAR_ACCESS_TOKEN;
@@ -40,7 +42,9 @@ export class Logger {
 
   static silly(tag, message) {
     if(!process.env.DEBUG_SILLY) return;
-    console.info(this._formatMessage(`${process.env.INSTANCE_NUMBER}:${tag}`, message));
+    if(process.env.DEBUG_SILLY === '1' || _.includes(message, process.env.DEBUG_SILLY)) {
+      console.info(this._formatMessage(`${process.env.INSTANCE_NUMBER}:${tag}`, message));
+    }
   }
 }
 

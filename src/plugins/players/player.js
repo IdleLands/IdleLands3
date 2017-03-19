@@ -377,7 +377,10 @@ export class Player extends Character {
     Logger.silly('Player:Move', `${this.name} possibly doing shop`);
     if(!this.$shop || (oldRegion !== this.mapRegion)) {
       this.$updateShop = true;
+
+      Logger.silly('Player:Move', `${this.name} possibly doing shop (IN)`);
       this.$shop = ShopGenerator.regionShop(this);
+      Logger.silly('Player:Move', `${this.name} possibly doing shop (AFTER)`);
     }
 
     this.mapPath = tile.path;
