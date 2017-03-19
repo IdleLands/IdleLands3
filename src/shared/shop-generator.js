@@ -32,6 +32,8 @@ export class ShopGenerator extends Generator {
         item = this.generateItem(player, multiplier);
       }
 
+      if(!player.canEquip(item)) continue;
+
       // price gouge the players, muhahaha
       const price = Math.round(item.score * priceMult * 7);
       item.price = price;
