@@ -22,6 +22,7 @@
     "generate:apidoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-apidoc",
     "gitfix": "git add docs && git add CHANGELOG.md",
     "gen:items": "node test/gen/items",
+    "prerelease": "npm run test && npm run generate:all",
     "release": "standard-version --no-verify"
   },
   "engines": {
@@ -46,12 +47,6 @@
       "src/**/*.js"
     ]
   },
-  "pre-commit": [
-    "test",
-    "generate:all",
-    "release",
-    "gitfix"
-  ],
   "dependencies": {
     "@risingstack/trace": "^3.5.0",
     "chance": "^1.0.3",
@@ -90,7 +85,6 @@
     "eslint": "^2.13.1",
     "eslint-config-kellyirc": "^3.1.0",
     "nodemon": "^1.11.0",
-    "pre-commit": "1.1.3",
     "ts-node": "^2.1.0",
     "typescript": "^2.2.1"
   }
