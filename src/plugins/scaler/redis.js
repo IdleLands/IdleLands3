@@ -139,6 +139,41 @@ if(redisInstance) {
   redisInstance.on('gm:pardon', ({ playerName }) => {
     GMCommands.pardon(playerName, false);
   });
+
+  redisInstance.on('guild:reload', ({ guildName, notify, _instance }) => {
+    if(INSTANCE === _instance) return;
+    GameState.getInstance().guilds._loadGuild(guildName, notify);
+  });
+
+  redisInstance.on('guild:kick', ({ guildName, kickName, _instance }) => {
+    if(INSTANCE === _instance) return;
+    GameState.getInstance().guilds.getGuild(guildName).kickMemberName(kickName);
+  });
+
+  redisInstance.on('guild:join', ({ guildName, joinName, _instance }) => {
+    if(INSTANCE === _instance) return;
+    GameState.getInstance().guilds.getGuild(guildName).memberJoinName(joinName);
+  });
+
+  redisInstance.on('guild:leave', ({ guildName, leaveName, _instance }) => {
+    if(INSTANCE === _instance) return;
+    GameState.getInstance().guilds.getGuild(guildName).memberLeaveName(leaveName);
+  });
+
+  redisInstance.on('guild:invite', ({ guildName, byName, invName, _instance }) => {
+    if(INSTANCE === _instance) return;
+    GameState.getInstance().guilds.getGuild(guildName).inviteMemberName(byName, invName);
+  });
+
+  redisInstance.on('guild:disband', ({ guildName, _instance }) => {
+    if(INSTANCE === _instance) return;
+    GameState.getInstance().guilds.getGuild(guildName).disband();
+  });
+
+  redisInstance.on('guild:renameretag', ({ guildName, newName, newTag, _instance }) => {
+    if(INSTANCE === _instance) return;
+    GameState.getInstance().guilds._renameRetag(guildName, newName, newTag);
+  });
 }
 
 export const GetRedisPlayers = () => {
@@ -232,4 +267,32 @@ export const MuteRedis = (playerName) => {
 
 export const PardonRedis = (playerName) => {
   _emit('gm:pardon', { playerName });
+};
+
+export const GuildReloadRedis = (guildName, notify) => {
+  _emit('guild:reload', { guildName, notify });
+};
+
+export const GuildKickRedis = (guildName, kickName) => {
+  _emit('guild:kick', { guildName, kickName });
+};
+
+export const GuildJoinRedis = (guildName, joinName) => {
+  _emit('guild:join', { guildName, joinName });
+};
+
+export const GuildLeaveRedis = (guildName, leaveName) => {
+  _emit('guild:leave', { guildName, leaveName });
+};
+
+export const GuildInviteRedis = (guildName, byName, invName) => {
+  _emit('guild:invite', { guildName, byName, invName });
+};
+
+export const GuildDisbandRedis = (guildName) => {
+  _emit('guild:disband', { guildName });
+};
+
+export const GuildRenameRetagRedis = (guildName, newName, newTag) => {
+  _emit('guild:renameretag', { guildName, newName, newTag });
 };

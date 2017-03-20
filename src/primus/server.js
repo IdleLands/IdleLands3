@@ -115,6 +115,22 @@ export const primus = (() => {
     }
   };
 
+  primus.joinGuildChat = (player) => {
+    if(!player || !player.guildName) return;
+    _.each(primus.players[player.name], spark => {
+      if(!spark) return;
+      spark.join(`chat:channel:Guild:${player.guildName}`);
+    });
+  };
+
+  primus.leaveGuildChat = (player) => {
+    if(!player || !player.guildName) return;
+    _.each(primus.players[player.name], spark => {
+      if(!spark) return;
+      spark.leave(`chat:channel:Guild:${player.guildName}`);
+    });
+  };
+
   primus.emitToPlayers = (players = [], data) => {
     _.each(players, player => {
       _.each(primus.players[player], spark => {

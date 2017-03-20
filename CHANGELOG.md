@@ -1,5 +1,5 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/IdleLands/IdleLands/compare/0.9.0...v0.0.0) (2017-03-19)
+# [0.0.0](https://github.com/IdleLands/IdleLands/compare/0.9.0...v0.0.0) (2017-03-20)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 * **collectibles:** show the name when getting a new one ([8210ebf](https://github.com/IdleLands/IdleLands/commit/8210ebf))
 * **combat:** attempt to fix necro bonecraft screwing with players ([9fb3ff2](https://github.com/IdleLands/IdleLands/commit/9fb3ff2))
 * **combat:** can no longer battle yourself ([4911573](https://github.com/IdleLands/IdleLands/commit/4911573)), closes [#612](https://github.com/IdleLands/IdleLands/issues/612)
+* **combat:** show results at top of combat log ([d61b34f](https://github.com/IdleLands/IdleLands/commit/d61b34f)), closes [#625](https://github.com/IdleLands/IdleLands/issues/625)
 * **equipment:** recalculate stats when equipping items and update the player ([f17f75a](https://github.com/IdleLands/IdleLands/commit/f17f75a))
 * **extchat:** attempt to parse messages better to show discord users ([2369a63](https://github.com/IdleLands/IdleLands/commit/2369a63)), closes [#614](https://github.com/IdleLands/IdleLands/issues/614)
 * **finditem:** calling people a cheater a lot ([4070d4f](https://github.com/IdleLands/IdleLands/commit/4070d4f))
@@ -20,6 +21,7 @@
 * **party:** allow you to forcibly request your party via frontend, making it visible to semi-login [refreshes] ([4fd5224](https://github.com/IdleLands/IdleLands/commit/4fd5224))
 * **shops:** buying an item will now make a choice ([e10c974](https://github.com/IdleLands/IdleLands/commit/e10c974))
 * **shops:** increment some stats when buying items ([a7faa74](https://github.com/IdleLands/IdleLands/commit/a7faa74))
+* **shops:** should no longer allow you to buy too powerful items ([ed365dd](https://github.com/IdleLands/IdleLands/commit/ed365dd)), closes [#619](https://github.com/IdleLands/IdleLands/issues/619)
 * **statistics:** move combat/combatsolo under the combat root ([fe77254](https://github.com/IdleLands/IdleLands/commit/fe77254)), closes [#589](https://github.com/IdleLands/IdleLands/issues/589)
 
 

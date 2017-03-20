@@ -110,6 +110,11 @@ export class Player extends Character {
     return this.randomDeathMessage();
   }
 
+  get guild() {
+    const gamestate = GameState.getInstance();
+    return gamestate.hasGuild(this.guildName) || { $noGuild: true };
+  }
+
   takeTurn() {
     Logger.silly('Player:TakeTurn', `${this.name} taking turn.`);
 
@@ -169,13 +174,22 @@ export class Player extends Character {
 
   gainGold(baseGold = 1, calc = true) {
     
-    const gold = calc ? this._calcModGold(baseGold) : baseGold;
+    let gold = calc ? this._calcModGold(baseGold) : baseGold;
     if(_.isNaN(gold) || gold === 0 || Math.sign(gold) !== Math.sign(baseGold)) return 0;
     
     super.gainGold(gold);
     
     if(gold > 0) {
+      if(this.guild && !this.guild.$noGuild) {
+        const taxes = this.guild.getTaxedAmount(this, gold);
+        this.guild.payTaxes(this, taxes);
+        gold -= taxes;
+
+        this.$statistics.incrementStat('Character.Gold.Taxed', taxes);
+      }
+
       this.$statistics.incrementStat('Character.Gold.Gain', gold);
+
     } else {
       this.$statistics.incrementStat('Character.Gold.Lose', -gold);
     }
@@ -456,6 +470,11 @@ export class Player extends Character {
     this.$dirty.reset();
   }
 
+  tryUpdateGuild() {
+    if(!this.guild || this.guild.$noGuild) return;
+    this.guild.updateMember(this);
+  }
+
   buildSaveObject() {
     return _.omitBy(this, (val, key) => _.startsWith(key, '$') || _.isNotWritable(this, key));
   }
@@ -564,6 +583,12 @@ export class Player extends Character {
 
   _updateGenders() {
     this.$dataUpdater(this.name, 'genders', this.validGenders);
+  }
+
+  _updateGuild() {
+    const guild = this.guild;
+    guild.$me = _.find(guild.members, { name: this.name });
+    this.$dataUpdater(this.name, 'guild', guild);
   }
 
   _updatePet() {

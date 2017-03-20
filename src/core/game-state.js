@@ -3,13 +3,14 @@ import * as _ from 'lodash';
 
 import { World } from './world/world';
 import { Festivals } from '../plugins/festivals/festivals';
+import { Guilds } from '../plugins/guilds/guilds';
 import { Logger } from '../shared/logger';
 import { constitute } from '../shared/di-wrapper';
 import { MESSAGES } from '../static/messages';
 
 import { PlayerLoad } from '../plugins/players/player.load';
 
-const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
+const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title', 'guildName'];
 const EXTRA_KEYS = ['_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$shard', '$currentIp', 'ascensionLevel'];
 
 import { AddFestivalRedis, CancelFestivalRedis } from '../plugins/scaler/redis';
@@ -33,6 +34,13 @@ export class GameState {
 
     Logger.info('GameState', 'Loading festivals.');
     this.festivalContainer = constitute(Festivals);
+
+    Logger.info('GameState', 'Loading guilds.');
+    this.guilds = constitute(Guilds);
+  }
+
+  hasGuild(guildName) {
+    return this.guilds.guilds[guildName];
   }
 
   cancelFestivalData(festivalId) {
@@ -148,6 +156,9 @@ export class GameState {
       keys = keys.concat(EXTRA_KEYS);
     }
     const obj = _.pick(player, keys);
+    if(_.includes(keys, 'guildName')) {
+      obj.guildTag = player.guild.tag;
+    }
     return obj;
   }
 

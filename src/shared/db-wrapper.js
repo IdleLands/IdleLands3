@@ -59,6 +59,9 @@ export class DbWrapper {
 
         db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 1800 }, _.noop);
 
+        db.collection('guilds').createIndex({ name: 1 }, { unique: true }, _.noop);
+        db.collection('guilds').createIndex({ tag: 1 }, { unique: true }, _.noop);
+
         Logger.info(mongoTag, 'Connected!');
 
         db.$$collections = {
@@ -70,7 +73,8 @@ export class DbWrapper {
           players:            db.collection('players'),
           statistics:         db.collection('statistics'),
           festivals:          db.collection('festivals'),
-          premiums:           db.collection('premiums')
+          premiums:           db.collection('premiums'),
+          guilds:             db.collection('guilds')
         };
 
         resolve(db);
