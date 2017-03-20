@@ -18,6 +18,7 @@
   "buildOnSave": false,
   "exclude": [
     "node_modules",
+    "assets",
     "dist",
     "test",
     "docs",
