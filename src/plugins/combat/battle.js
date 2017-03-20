@@ -210,9 +210,9 @@ export class Battle {
     
     // temporary fix for battle log virtual scrolling
     this.results.reverse().forEach(result => {
-      this.messageData.splice(1, 0, result);
+      this.messageData.splice(1, 0, { message: result, data: null });
     });
-    this.messageData.splice(1, 0, 'Summary');
+    this.messageData.splice(1, 0, { message: 'Summary', data: null });
     
     persistToDb(this);
     this.cleanUp();
