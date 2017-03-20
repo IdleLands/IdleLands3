@@ -10,6 +10,12 @@ import { AllPlayers, PlayerLogin, PlayerLogout, PlayerUpdateAll } from '../share
 import { MessageParser } from '../plugins/events/messagecreator';
 import { Logger } from '../shared/logger';
 
+const updateGuildLastSeen = (player, online) => {
+  if(!player.guild || player.guild.$noGuild) return;
+
+  player.guild.updateLastSeen(player, online);
+};
+
 PlayerEmitter.on('error', e => {
   Logger.error('PlayerEmitter', e);
 });
@@ -33,6 +39,7 @@ PlayerEmitter.on('player:login', async ({ playerName, fromIp }) => {
   player.$statistics.incrementStat('Game.Logins');
   AllPlayers(playerName);
   PlayerLogin(playerName);
+  updateGuildLastSeen(player, true);
 
   if(player.$statistics.getStat('Game.Logins') === 1) {
     player.$statistics.incrementStat(`Character.Professions.${player.professionName}`);
@@ -60,12 +67,18 @@ PlayerEmitter.on('player:register', async ({ playerName, fromIp }) => {
 });
 
 PlayerEmitter.on('player:logout', ({ playerName }) => {
+  const player = GameState.getInstance().getPlayer(playerName);
+  if(player) {
+    updateGuildLastSeen(player, false);
+  }
+
   PlayerLogout(playerName);
   GameState.getInstance().delPlayer(playerName);
 });
 
 PlayerEmitter.on('player:levelup', ({ player }) => {
   PlayerUpdateAll(player.name, ['level']);
+  player.tryUpdateGuild();
   AdventureLog({
     text: MessageParser.stringFormat(`%player has reached experience level ${player.level}!`, player),
     type: MessageTypes.SINGLE,
@@ -75,9 +88,15 @@ PlayerEmitter.on('player:levelup', ({ player }) => {
   });
 });
 
+PlayerEmitter.on('player:changeguildstatus', ({ player }) => {
+  PlayerUpdateAll(player.name, ['guildName']);
+  player.update();
+});
+
 PlayerEmitter.on('player:changelevel', ({ player }) => {
   PlayerUpdateAll(player.name, ['level']);
   player.update();
+  player.tryUpdateGuild();
 });
 
 PlayerEmitter.on('player:changegender', ({ player }) => {
@@ -88,6 +107,7 @@ PlayerEmitter.on('player:changegender', ({ player }) => {
 PlayerEmitter.on('player:changetitle', ({ player }) => {
   PlayerUpdateAll(player.name, ['title']);
   player.update();
+  player.tryUpdateGuild();
 });
 
 PlayerEmitter.on('player:changename', ({ player }) => {
@@ -130,6 +150,7 @@ PlayerEmitter.on('player:collectible', ({ player, collectible }) => {
 PlayerEmitter.on('player:changeclass', ({ player, choice }) => {
   player.$statistics.incrementStat(`Character.Professions.${choice.extraData.professionName}`);
   PlayerUpdateAll(player.name, ['professionName']);
+  player.tryUpdateGuild();
   AdventureLog({
     text: MessageParser.stringFormat(`%player has met with ${choice.extraData.trainerName} and became a ${choice.extraData.professionName}!`, player),
     type: MessageTypes.SINGLE,

@@ -52,12 +52,63 @@ export class GuildsDb {
     });
   }
 
+  async getGuild(guildName): Promise<any> {
+    const db = await this.dbWrapper.connectionPromise();
+    const guilds = db.$$collections.guilds;
+
+    return new Promise((resolve, reject) => {
+      guilds.findOne({ name: guildName }, (err, doc) => {
+
+        if(err) {
+          return reject({ err, msg: MESSAGES.GENERIC });
+        }
+
+        const guildCont = constitute(Guild);
+        guildCont.init(doc);
+
+        resolve(guildCont);
+      });
+    });
+  }
+
+  async updateAllGuildMembersToNewGuild(oldName, newName) {
+    const db = await this.dbWrapper.connectionPromise();
+    const players = db.$$collections.players;
+
+    return new Promise((resolve, reject) => {
+      players.update({ guildName: oldName }, { $set: { guildName: newName } }, { multi: true }, (err) => {
+
+        if(err) {
+          return reject(err);
+        }
+
+        resolve();
+      }, reject);
+    });
+  }
+
+  async renameGuild(oldName, newName, newTag) {
+    const db = await this.dbWrapper.connectionPromise();
+    const guilds = db.$$collections.guilds;
+
+    return new Promise((resolve, reject) => {
+      guilds.findOneAndUpdate({ name: oldName }, { $set: { name: newName, tag: newTag} }, (err) => {
+
+        if(err) {
+          return reject(err);
+        }
+
+        resolve();
+      }, reject);
+    });
+  }
+
   async removePlayerFromGuild(playerName) {
     const db = await this.dbWrapper.connectionPromise();
     const players = db.$$collections.players;
 
     return new Promise((resolve, reject) => {
-      players.findOneAndUpdate({ _id: playerName }, { $set: { guildName: '' } }, (err) => {
+      players.findOneAndUpdate({ _id: playerName }, { $set: { guildName: '', guildInvite: null } }, (err) => {
 
         if(err) {
           return reject(err);
@@ -73,7 +124,7 @@ export class GuildsDb {
     const guilds = db.$$collections.guilds;
 
     return new Promise((resolve, reject) => {
-      guilds.remove({ _id: guildObject._id }, (err) => {
+      guilds.remove({ name: guildObject.name }, (err) => {
 
         if(err) {
           return reject(err);
@@ -90,7 +141,7 @@ export class GuildsDb {
     const guilds = db.$$collections.guilds;
 
     return new Promise((resolve, reject) => {
-      guilds.findOneAndUpdate({ _id: saveObject._id }, saveObject, { upsert: true }, (err) => {
+      guilds.findOneAndUpdate({ name: saveObject.name }, saveObject, { upsert: true }, (err) => {
 
         if(err) {
           return reject(err);

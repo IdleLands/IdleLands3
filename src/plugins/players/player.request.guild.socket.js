@@ -15,7 +15,6 @@ export const socket = (socket) => {
 
     const player = GameState.getInstance().getPlayer(playerName);
     if(!player) return;
-    // Logger.info('Socket:Player:RequestPet', `${socket.playerName} (${socket.address.ip}) requesting pet.`);
 
     player._updateGuild();
   };

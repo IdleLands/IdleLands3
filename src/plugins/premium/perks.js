@@ -64,6 +64,10 @@ export const perks = [
     description: 'Rename a single pet.',
     consumableKey: 'renameTagPet' },
 
+  { name: 'Rename Tag: Guild', cost: 3000,
+    description: 'Rename your guild. Only Leaders can use this.',
+    consumableKey: 'renameTagGuild' },
+
   { name: 'Gender: Blue', cost: 100,
     description: 'Unlock the Blue gender.',
     oneTimeData: { gender: 'blue' } },

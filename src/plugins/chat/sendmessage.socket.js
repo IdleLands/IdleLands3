@@ -64,7 +64,8 @@ export const socket = (socket) => {
       ip: player.$currentIp,
       shard: player.$shard,
       ascensionLevel: player.ascensionLevel,
-      isMod: player.isMod
+      isMod: player.isMod,
+      guildTag: player.guild.tag
     };
 
     sendMessage(messageObject);

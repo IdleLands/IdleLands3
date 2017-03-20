@@ -22,6 +22,20 @@ plugin:gm:setlevel | targetName, targetLevel | Mod only. Set a players level.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.
+plugin:guild:create | name, tag | Create a new guild.
+plugin:guild:demote | memberName | Demote a member to member status.
+plugin:guild:disband |  | Disband your guild.
+plugin:guild:donate | gold | Donate to your guild.
+plugin:guild:invite:accept |  | Accept a guild invitation.
+plugin:guild:invite:reject |  | Reject a guild invitation.
+plugin:guild:invite | newMemberName | Invite a new member to your guild.
+plugin:guild:kick | memberName | Kick someone from your guild.
+plugin:guild:leave |  | Leave your guild.
+plugin:guild:motd | motd | Update your guilds MOTD.
+plugin:guild:player:tax | newRate | Update your personal tax rate.
+plugin:guild:renameretag | name, tag | Rename/retag from your guild.
+plugin:guild:promote | memberName | Promote a member to Mod status.
+plugin:guild:tax | newRate | Update your guilds tax rate.
 plugin:pet:attr | newAttr | Change your pets attribute.
 plugin:pet:buy | petType, petName | Buy a new pet.
 plugin:pet:pass | itemId, petId | Pass an item from your pets inventory to another pet.

@@ -24,7 +24,8 @@ export const PlayerLogin = (playerName) => {
   const simplePlayerToAdd = GameState.getInstance().getPlayerNameSimple(playerName);
   PlayerLoginData(playerName, simplePlayerToAdd);
 
-  const simplePlayerId = GameState.getInstance().getPlayer(playerName).userId;
+  const player = GameState.getInstance().getPlayer(playerName);
+  const simplePlayerId = player.userId;
   const simpleAddData = _.cloneDeep(simplePlayerToAdd);
   simpleAddData.userId = simplePlayerId;
 

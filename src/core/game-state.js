@@ -10,7 +10,7 @@ import { MESSAGES } from '../static/messages';
 
 import { PlayerLoad } from '../plugins/players/player.load';
 
-const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title'];
+const UPDATE_KEYS = ['x', 'y', 'map', 'gender', 'professionName', 'level', 'name', 'title', 'guildName'];
 const EXTRA_KEYS = ['_id', 'nameEdit', 'isMuted', 'isPardoned', 'isMod', 'name', '$shard', '$currentIp', 'ascensionLevel'];
 
 import { AddFestivalRedis, CancelFestivalRedis } from '../plugins/scaler/redis';
@@ -156,6 +156,9 @@ export class GameState {
       keys = keys.concat(EXTRA_KEYS);
     }
     const obj = _.pick(player, keys);
+    if(_.includes(keys, 'guildName')) {
+      obj.guildTag = player.guild.tag;
+    }
     return obj;
   }
 
