@@ -5,40 +5,8 @@ All notable changes to this project will be documented in this file. See [standa
 <a name="0.10.2"></a>
 ## [0.10.2](https://github.com/IdleLands/IdleLands/compare/v0.10.1...v0.10.2) (2017-03-20)
 
-
-
-<a name="0.10.2"></a>
-## [0.10.2](https://github.com/IdleLands/IdleLands/compare/v0.10.1...v0.10.2) (2017-03-20)
-
-
-
 <a name="0.10.1"></a>
 ## [0.10.1](https://github.com/IdleLands/IdleLands/compare/0.10.0...v0.10.1) (2017-03-20)
-
-
-
-<a name="0.10.1"></a>
-## [0.10.1](https://github.com/IdleLands/IdleLands/compare/0.10.0...v0.10.1) (2017-03-20)
-
-
-
-<a name="0.11.1"></a>
-## [0.11.1](https://github.com/IdleLands/IdleLands/compare/0.10.0...v0.11.1) (2017-03-20)
-
-
-
-<a name="0.11.0"></a>
-# [0.11.0](https://github.com/IdleLands/IdleLands/compare/0.10.0...v0.11.0) (2017-03-20)
-
-
-
-<a name="0.0.1"></a>
-## [0.0.1](https://github.com/IdleLands/IdleLands/compare/0.10.0...v0.0.1) (2017-03-20)
-
-
-
-<a name="0.0.0"></a>
-# [0.0.0](https://github.com/IdleLands/IdleLands/compare/0.10.0...v0.0.0) (2017-03-20)
 
 
 ### Bug Fixes
