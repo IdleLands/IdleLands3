@@ -1,5 +1,5 @@
 <a name="0.0.0"></a>
-# [0.0.0](https://github.com/IdleLands/IdleLands/compare/0.9.0...v0.0.0) (2017-03-20)
+# [0.0.0](https://github.com/IdleLands/IdleLands/compare/0.10.0...v0.0.0) (2017-03-20)
 
 
 ### Bug Fixes
@@ -37,6 +37,7 @@
 * **combat:** Mages will now prioritize themselves when using Arcane Intelligence ([08aff06](https://github.com/IdleLands/IdleLands/commit/08aff06))
 * **finditem:** finding an item will now allow you to also give it to your pet ([438bd3a](https://github.com/IdleLands/IdleLands/commit/438bd3a))
 * **forsake:** xp and gold forsake will no longer take positive modifiers when calculating gold/xp lost, meaning no more bloated % from +200% xp festivals ([24e07ce](https://github.com/IdleLands/IdleLands/commit/24e07ce)), closes [#607](https://github.com/IdleLands/IdleLands/issues/607)
+* **guilds:** guilds ([8fa3220](https://github.com/IdleLands/IdleLands/commit/8fa3220)), closes [#35](https://github.com/IdleLands/IdleLands/issues/35)
 * **newbies:** newbie equipment will never have a negative base score ([0bfb292](https://github.com/IdleLands/IdleLands/commit/0bfb292)), closes [#608](https://github.com/IdleLands/IdleLands/issues/608)
 * **pet:** you can now rename pets with a premium item ([5cc3527](https://github.com/IdleLands/IdleLands/commit/5cc3527))
 * **pets:** can now send items to other pets ([81d8a84](https://github.com/IdleLands/IdleLands/commit/81d8a84)), closes [#596](https://github.com/IdleLands/IdleLands/issues/596)
