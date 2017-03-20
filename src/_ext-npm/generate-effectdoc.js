@@ -17,7 +17,7 @@ docString += 'Name | Description\n';
 docString += '---- | -----------\n';
 
 _.each(SPECIAL_STATS_BASE, ({ name, desc }) => {
-  docString += `${name} | ${desc}\n`;
+  if (desc.length) docString += `${name} | ${desc}\n`;
 });
 
 docString += '\n\n';

@@ -3,24 +3,24 @@ import * as _ from 'lodash';
 
 import { Spell, SpellType } from '../spell';
 
-import { DamageReductionBoost } from '../effects/DamageReductionBoost';
+import { DamageReductionPercentBoost } from '../effects/DamageReductionPercentBoost';
 
 export class EnergyShield extends Spell {
   static element = SpellType.BUFF;
   static tiers = [
-    { name: 'energy shield',      spellPower: 100,    weight: 25, cost: 200,  profession: 'Mage', level: 5 },
-    { name: 'energy buckler',     spellPower: 400,    weight: 25, cost: 900,  profession: 'Mage', level: 25 },
-    { name: 'energy towershield', spellPower: 1000,   weight: 25, cost: 2200, profession: 'Mage', level: 65 },
-    { name: 'energy omegashield', spellPower: 5000,   weight: 25, cost: 6000, profession: 'Mage', level: 125,
+    { name: 'energy shield',      spellPower: 5,   weight: 25, cost: 400,  profession: 'Mage', level: 5 },
+    { name: 'energy buckler',     spellPower: 7,   weight: 25, cost: 3000,  profession: 'Mage', level: 25 },
+    { name: 'energy towershield', spellPower: 10,  weight: 25, cost: 14000, profession: 'Mage', level: 65 },
+    { name: 'energy omegashield', spellPower: 15,  weight: 25, cost: 80000, profession: 'Mage', level: 125,
       collectibles: ['Jar of Magic Dust'] }
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.allyWithoutEffect(caster, 'DamageReductionBoost');
+    return this.$canTarget.allyWithoutEffect(caster, 'DamageReductionPercentBoost');
   }
 
   determineTargets() {
-    return this.$targetting.randomAllyWithoutEffect('DamageReductionBoost');
+    return this.$targetting.randomAllyWithoutEffect('DamageReductionPercentBoost');
   }
 
   calcDuration() {
@@ -39,7 +39,7 @@ export class EnergyShield extends Spell {
       super.cast({
         damage: 0,
         message,
-        applyEffect: DamageReductionBoost,
+        applyEffect: DamageReductionPercentBoost,
         targets: [target]
       });
     });

@@ -9,6 +9,7 @@ export const SPECIAL_STATS_BASE = [
   { name: 'hpregen',         desc: 'Regenerate HP every combat round.', enchantMax: 100 },
   { name: 'mpregen',         desc: 'Regenerate MP every combat round.', enchantMax: 100 },
   { name: 'damageReduction', desc: 'Take 1 fewer damage per point from some sources. Stacks intensity.', enchantMax: 100 },
+  { name: 'damageReductionPercent',  desc: '' },
   { name: 'crit',            desc: '+1% crit chance. Stacks intensity.', enchantMax: 1 },
   { name: 'dance',           desc: '+50% dodge chance.', enchantMax: 1 },
   { name: 'deadeye',         desc: '+50% chance to beat opponent dodge.', enchantMax: 1 },

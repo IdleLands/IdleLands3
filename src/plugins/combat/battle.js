@@ -300,6 +300,7 @@ export class Battle {
 
   dealDamage(target, damage, source) {
     if(damage > 0) {
+      damage = Math.min(damage, damage * Math.max(0, 100 - target.liveStats.damageReductionPercent) / 100);
       damage = Math.max(0, damage - target.liveStats.damageReduction);
       this.tryIncrement(source, 'Combat.Give.Damage', damage);
       this.tryIncrement(target, 'Combat.Receive.Damage', damage);
