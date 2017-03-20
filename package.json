@@ -1,6 +1,6 @@
 {
   "name": "idlelands",
-  "version": "0.0.0",
+  "version": "0.10.1",
   "description": "An idling game of epic proportions",
   "main": "src/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "generate:apidoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-apidoc",
     "gitfix": "git add docs && git add CHANGELOG.md",
     "gen:items": "node test/gen/items",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "release": "standard-version --no-verify"
   },
   "engines": {
     "node": "6.5.0"
@@ -77,6 +77,7 @@
     "rollbar": "^0.6.2",
     "serve-static": "^1.11.1",
     "squelch-client": "^0.19.0",
+    "standard-version": "^4.0.0",
     "ws": "^1.1.1"
   },
   "devDependencies": {
