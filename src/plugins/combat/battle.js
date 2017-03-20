@@ -23,6 +23,8 @@ export class Battle {
     this.setId();
     this.messageData = [];
     this.currentRound = 0;
+    // temporary fix for battle log virtual scrolling
+    this.results = [];
   }
 
   generateName() {
@@ -43,11 +45,13 @@ export class Battle {
     });
   }
 
-  _emitMessage(message, data = null) {
+  // temporary fix for virtual scrolling
+  _emitMessage(message, data = null, results = false) {
     if(isBattleDebug && !isQuiet) {
       console.log(message);
     }
     this.messageData.push({ message, data });
+    if (results) this.results.push(message);
   }
 
   startBattle() {
@@ -203,6 +207,13 @@ export class Battle {
   endBattle() {
     this._emitMessage('Battle complete.', this._partyStats());
     this.endBattleBonuses();
+    
+    // temporary fix for battle log virtual scrolling
+    this.results.reverse().forEach(result => {
+      this.messageData.splice(1, 0, result);
+    });
+    this.messageData.splice(1, 0, 'Summary');
+    
     persistToDb(this);
     this.cleanUp();
 
@@ -217,7 +228,8 @@ export class Battle {
 
   endBattleBonuses() {
     if(this.currentRound >= MAX_ROUND || !this.winningTeam) {
-      this._emitMessage('No one wins! It was a tie! Give it up already, people!');
+      // temporary fix for virtual scrolling - place results at top of log
+      this._emitMessage('No one wins! It was a tie! Give it up already, people!', null, true);
       this._isTie = true;
       return;
     }
@@ -230,7 +242,8 @@ export class Battle {
       // if this team won
       if(this.winningTeam === party) {
 
-        this._emitMessage(`${party.displayName} won!`);
+        // temporary fix for virtual scrolling - place results at top of battle log
+        this._emitMessage(`${party.displayName} won!`, null, true);
 
         const compareLevel = this.losingTeam.level;
         const level = party.level;
@@ -246,11 +259,13 @@ export class Battle {
           const modXp = p.gainXp(gainedXp);
           const modGold = p.gainGold(goldGainedInParty);
 
-          this._emitMessage(`${p.fullname} gained ${modXp.toLocaleString()}xp and ${modGold.toLocaleString()}gold!`);
+          // temporary fix for virtual scrolling - place results at top of battle log
+          this._emitMessage(`${p.fullname} gained ${modXp.toLocaleString()}xp and ${modGold.toLocaleString()}gold!`, null, true);
         });
 
       } else {
-        this._emitMessage(`${party.displayName} lost!`);
+        // temporary fix for virtual scrolling - place results at top of battle log
+        this._emitMessage(`${party.displayName} lost!`, null, true);
 
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Lose');
@@ -267,7 +282,8 @@ export class Battle {
           const modXp = Math.abs(p.gainXp(-Math.abs(lostXp)));
           const modGold = Math.abs(p.gainGold(-Math.abs(lostGold)));
 
-          this._emitMessage(`${p.fullname} lost ${modXp.toLocaleString()}xp and ${modGold.toLocaleString()}gold!`);
+          // temporary fix for virtual scrolling - place results at top of battle log
+          this._emitMessage(`${p.fullname} lost ${modXp.toLocaleString()}xp and ${modGold.toLocaleString()}gold!`, null, true);
         });
       }
     });
