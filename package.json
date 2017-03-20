@@ -1,6 +1,6 @@
 {
   "name": "idlelands",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "An idling game of epic proportions",
   "main": "src/index.js",
   "scripts": {
@@ -49,7 +49,7 @@
   "pre-commit": [
     "test",
     "generate:all",
-    "changelog",
+    "release",
     "gitfix"
   ],
   "dependencies": {
