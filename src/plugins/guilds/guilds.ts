@@ -167,7 +167,7 @@ export class Guilds {
 
     const guild: Guild = player.guild;
     guild.donateGold(player, gold);
-    player.$statistics.increment('Character.Gold.Donate', gold);
+    player.$statistics.incrementStat('Character.Gold.Donate', gold);
   }
 
   inviteMember(player, newMemberName) {
