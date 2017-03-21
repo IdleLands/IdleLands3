@@ -119,7 +119,11 @@ export const primus = (() => {
     if(!player || !player.guildName) return;
     _.each(primus.players[player.name], spark => {
       if(!spark) return;
-      spark.join(`chat:channel:Guild:${player.guildName}`);
+      try {
+        spark.join(`chat:channel:Guild:${player.guildName}`);
+      } catch(e) {
+        Logger.error('Primus:JoinGuildChat', e);
+      }
     });
   };
 
@@ -127,7 +131,11 @@ export const primus = (() => {
     if(!player || !player.guildName) return;
     _.each(primus.players[player.name], spark => {
       if(!spark) return;
-      spark.leave(`chat:channel:Guild:${player.guildName}`);
+      try {
+        spark.leave(`chat:channel:Guild:${player.guildName}`);
+      } catch(e) {
+        Logger.error('Primus:LeaveGuildChat', e);
+      }
     });
   };
 
