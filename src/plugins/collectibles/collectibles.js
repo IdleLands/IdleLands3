@@ -89,7 +89,7 @@ export class Collectibles {
   }
 
   hadCollectible(collectibleName) {
-    return this.priorCollectibles[collectibleName];
+    return this.priorCollectibles && this.priorCollectibles[collectibleName];
   }
 
   hasCollectible(collectibleName) {
