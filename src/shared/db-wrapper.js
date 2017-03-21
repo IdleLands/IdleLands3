@@ -8,6 +8,47 @@ const connectionString = process.env.MONGODB_URI;
 
 const mongoTag = `Mongo:${process.send ? 'Worker' : 'Core'}`;
 
+const playerIndexes = [
+  { gold: -1 },
+  { 'statCache.luk': -1 },
+  { allIps: 1, isMuted: 1 },
+  { isOnline: 1 }
+];
+
+const statisticIndexes = [
+  { 'stats.Character.Steps': -1 },
+  { 'stats.Combat.Receive.Damage': -1 },
+  { 'stats.Combat.Win': -1 },
+  { 'stats.Combat.Kills.Player': -1 },
+  { 'stats.Combat.Give.Damage': -1 },
+  { 'stats.Character.Events': -1 },
+  { 'stats.Character.Event.Providence': -1 },
+  { 'stats.Combat.Kills.Monster': -1 },
+  { 'stats.Character.Movement.Party': -1 },
+  { 'stats.Character.Movement.Camping': -1 },
+  { 'stats.Character.Movement.Drunk': -1 },
+  { 'stats.Character.Terrains.Acid': -1 },
+  { 'stats.Combat.Give.Overkill': -1 },
+  { 'stats.Character.Movement.Solo': -1 }
+];
+
+const achievementIndexes = [
+  { uniqueAchievements: -1 },
+  { totalTitles: -1 }
+];
+
+const collectibleIndexes = [
+  { uniqueCollectibles: -1 }
+];
+
+const petIndexes = [
+  { activePetId: 1 }
+];
+
+const guildIndexes = [
+  { name: 1 }
+];
+
 let globalPromise;
 export class DbWrapper {
 
@@ -61,6 +102,13 @@ export class DbWrapper {
 
         db.collection('guilds').createIndex({ name: 1 }, { unique: true }, _.noop);
         db.collection('guilds').createIndex({ tag: 1 }, { unique: true }, _.noop);
+
+        _.each(playerIndexes, index => db.collection('players').createIndex(index, _.noop));
+        _.each(statisticIndexes, index => db.collection('statistics').createIndex(index, _.noop));
+        _.each(achievementIndexes, index => db.collection('achievements').createIndex(index, _.noop));
+        _.each(collectibleIndexes, index => db.collection('collectibles').createIndex(index, _.noop));
+        _.each(petIndexes, index => db.collection('pets').createIndex(index, _.noop));
+        _.each(guildIndexes, index => db.collection('guilds').createIndex(index, _.noop));
 
         Logger.info(mongoTag, 'Connected!');
 
