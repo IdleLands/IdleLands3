@@ -9,6 +9,7 @@ export { Drunk } from './Drunk';
 export { Explorer } from './Explorer';
 export { FeelingLucky } from './FeelingLucky';
 export { Greedy } from './Greedy';
+export { Gullible } from './Gullible';
 export { Indecisive } from './Indecisive';
 export { ScaredOfTheDark } from './ScaredOfTheDark';
 export { Seeker } from './Seeker';
