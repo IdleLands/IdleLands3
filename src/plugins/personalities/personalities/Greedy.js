@@ -3,7 +3,7 @@ import { Personality } from '../personality';
 
 export class Greedy extends Personality {
   static disableOnActivate = ['Seeker'];
-  static description = 'Gain more gold, but gain less xp.';
+  static description = 'Gain 15% more gold, but gain 15% less xp.';
   static stats = {
     xp:   (player, baseValue) => -baseValue*0.15,
     gold: (player, baseValue) => baseValue*0.15
