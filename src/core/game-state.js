@@ -158,6 +158,7 @@ export class GameState {
     const obj = _.pick(player, keys);
     if(_.includes(keys, 'guildName')) {
       obj.guildTag = player.guild.tag;
+      if(player.guildInvite) obj.guildInvite = true;
     }
     return obj;
   }
