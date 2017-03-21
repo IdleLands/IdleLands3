@@ -88,6 +88,10 @@ export class Collectibles {
     this.save();
   }
 
+  hadCollectible(collectibleName) {
+    return this.priorCollectibles[collectibleName];
+  }
+
   hasCollectible(collectibleName) {
     return this.collectibles[collectibleName];
   }

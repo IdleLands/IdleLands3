@@ -4,7 +4,7 @@ import { Achievement, AchievementTypes } from '../achievement';
 export class Jailbird extends Achievement {
   static achievementData(player) {
 
-    const requiredCollectible = player.$collectibles.hasCollectible('Jail Brick');
+    const requiredCollectible = player.$collectibles.hasCollectible('Jail Brick') || player.$collectibles.hadCollectible('Jail Brick');
     if(!requiredCollectible) return [];
 
     return [{
