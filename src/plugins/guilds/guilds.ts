@@ -177,14 +177,17 @@ export class Guilds {
 
     let memberExists = false;
     const newMember = GameState.getInstance().getPlayer(newMemberName);
+    const newMemberRedis = _.find(GetRedisPlayers(), { name: newMemberName });
     if(newMember) memberExists = true;
-    if(_.find(GetRedisPlayers(), { name: newMemberName })) memberExists = true;
+    if(newMemberRedis) memberExists = true;
 
     if(!memberExists) return 'That player is not online!';
 
     if(newMember.guildInvite && newMember.guildInvite.name !== guild.name) return 'That player already has an outstanding guild invite!';
 
     if(_.find(guild.members, { name: newMemberName })) return 'That player is already in your roster!';
+
+    if(newMember.hasGuild || newMemberRedis.guildName) return 'That person already has a guild!';
 
     guild.inviteMember(player, newMember);
   }

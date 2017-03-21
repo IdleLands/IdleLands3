@@ -115,6 +115,10 @@ export class Player extends Character {
     return gamestate.hasGuild(this.guildName) || { $noGuild: true };
   }
 
+  get hasGuild() {
+    return this.guild && !this.guild.$noGuild;
+  }
+
   takeTurn() {
     Logger.silly('Player:TakeTurn', `${this.name} taking turn.`);
 
