@@ -182,11 +182,11 @@ export class Guilds {
     if(newMemberRedis) memberExists = true;
     if(!memberExists) return 'That player is not online!';
 
-    if(newMemberRedis.hasGuildInvite || newMember.guildInvite && newMember.guildInvite.name !== guild.name) return 'That player already has an outstanding guild invite!';
+    if((newMemberRedis && newMemberRedis.hasGuildInvite) || (newMember && newMember.guildInvite && newMember.guildInvite.name !== guild.name)) return 'That player already has an outstanding guild invite!';
 
     if(_.find(guild.members, { name: newMemberName })) return 'That player is already in your roster!';
 
-    if(newMember.hasGuild || newMemberRedis.guildName) return 'That person already has a guild!';
+    if((newMember && newMember.hasGuild) || (newMemberRedis && newMemberRedis.guildName)) return 'That person already has a guild!';
 
     guild.inviteMember(player, newMember);
   }
