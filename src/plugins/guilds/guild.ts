@@ -139,11 +139,11 @@ export class Guild {
     return mod.rank < member.rank || mod.rank <= MOD && member.unacceptedInvite;
   }
 
-  kickMemberName(name) {
-    this.kickMember(this.getMemberByName(name));
+  kickMemberName(name, propagate = true) {
+    this.kickMember(this.getMemberByName(name), propagate);
   }
 
-  kickMember(member: GuildMember) {
+  kickMember(member: GuildMember, propagate = true) {
 
     // check if they're online, remove guildName (basically, call memberLeave)
     const onlinePlayer = GameState.getInstance().getPlayer(member.name);
@@ -159,7 +159,7 @@ export class Guild {
       this.$guildDb.removePlayerFromGuild(member.name);
       this.save();
 
-    } else {
+    } else if(propagate) {
       GuildKickRedis(this.name, member.name);
     }
 
@@ -184,11 +184,11 @@ export class Guild {
     return member;
   }
 
-  memberJoinName(newMemberName, push = false) {
-    this.memberJoin({ name: newMemberName }, push);
+  memberJoinName(newMemberName, push = false, propagate = true) {
+    this.memberJoin({ name: newMemberName }, push, propagate);
   }
 
-  memberJoin(newMember, push = false) {
+  memberJoin(newMember, push = false, propagate = true) {
 
     const onlinePlayer = GameState.getInstance().getPlayer(newMember.name);
     if(onlinePlayer) {
@@ -223,16 +223,16 @@ export class Guild {
       this.save();
       this.updateAllOnlineMembers();
 
-    } else {
+    } else if(propagate) {
       GuildJoinRedis(this.name, newMember.name);
     }
   }
 
-  memberLeaveName(playerName) {
-    this.memberLeave({ name: playerName });
+  memberLeaveName(playerName, propagate = true) {
+    this.memberLeave({ name: playerName }, propagate);
   }
 
-  memberLeave(player) {
+  memberLeave(player, propagate = true) {
 
     const onlinePlayer = GameState.getInstance().getPlayer(player.name);
 
@@ -274,16 +274,16 @@ export class Guild {
 
       this.updateAllOnlineMembers();
 
-    } else {
+    } else if(propagate) {
       GuildLeaveRedis(this.name, player.name);
     }
   }
 
-  inviteMemberName(byName, playerName) {
-    this.inviteMember({ name: byName }, { name: playerName });
+  inviteMemberName(byName, playerName, propagate = true) {
+    this.inviteMember({ name: byName }, { name: playerName }, propagate);
   }
 
-  inviteMember(by, player) {
+  inviteMember(by, player, propagate = true) {
 
     const onlinePlayer = GameState.getInstance().getPlayer(player.name);
     if(onlinePlayer) {
@@ -305,7 +305,7 @@ export class Guild {
       player._saveSelf();
       player._updateGuild();
 
-    } else {
+    } else if(propagate) {
       GuildInviteRedis(this.name, by.name, player.name);
     }
   }

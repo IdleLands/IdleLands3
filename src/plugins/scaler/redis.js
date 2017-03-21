@@ -147,22 +147,22 @@ if(redisInstance) {
 
   redisInstance.on('guild:kick', ({ guildName, kickName, _instance }) => {
     if(INSTANCE === _instance) return;
-    GameState.getInstance().guilds.getGuild(guildName).kickMemberName(kickName);
+    GameState.getInstance().guilds.getGuild(guildName).kickMemberName(kickName, false);
   });
 
   redisInstance.on('guild:join', ({ guildName, joinName, _instance }) => {
     if(INSTANCE === _instance) return;
-    GameState.getInstance().guilds.getGuild(guildName).memberJoinName(joinName);
+    GameState.getInstance().guilds.getGuild(guildName).memberJoinName(joinName, false, false);
   });
 
   redisInstance.on('guild:leave', ({ guildName, leaveName, _instance }) => {
     if(INSTANCE === _instance) return;
-    GameState.getInstance().guilds.getGuild(guildName).memberLeaveName(leaveName);
+    GameState.getInstance().guilds.getGuild(guildName).memberLeaveName(leaveName, false);
   });
 
   redisInstance.on('guild:invite', ({ guildName, byName, invName, _instance }) => {
     if(INSTANCE === _instance) return;
-    GameState.getInstance().guilds.getGuild(guildName).inviteMemberName(byName, invName);
+    GameState.getInstance().guilds.getGuild(guildName).inviteMemberName(byName, invName, false);
   });
 
   redisInstance.on('guild:disband', ({ guildName, _instance }) => {
