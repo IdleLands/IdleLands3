@@ -188,7 +188,7 @@ export class Guilds {
 
     if((newMember && newMember.hasGuild) || (newMemberRedis && newMemberRedis.guildName)) return 'That person already has a guild!';
 
-    guild.inviteMember(player, newMember);
+    guild.inviteMember(player, newMember || newMemberRedis);
   }
 
   private finalizeInviteRemoval(player) {
