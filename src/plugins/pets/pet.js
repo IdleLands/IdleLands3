@@ -230,7 +230,7 @@ export class Pet extends Character {
   }
 
   canGainXp() {
-    return this.level < this.$ownerRef.level || this.level >= this._level.maximum;
+    return this.level <= this.$ownerRef.level && this.level <= this._level.maximum;
   }
 
   gainXp(xp) {
