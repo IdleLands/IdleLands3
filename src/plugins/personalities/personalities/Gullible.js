@@ -12,6 +12,7 @@ export class Gullible extends Personality {
   static stats = {};
 
   static hasEarned() {
-    return false;
+    const date = new Date();
+    return date.getUTCMonth() + 1 === 4 && date.getUTCDate() === 1;
   }
 }
