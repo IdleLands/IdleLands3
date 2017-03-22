@@ -299,16 +299,25 @@ export class Battle {
     return healing;
   }
 
-  dealDamage(target, damage, source) {
-
+  _damageCheck(tag, target, damage, source) {
     if(!_.isFinite(damage) || _.isNaN(damage)) {
-      Logger.error('Combat', new Error(`${source} tried to deal ${damage} damage to ${target}`));
+      Logger.error('Combat', new Error(`(${tag}): ${source} tried to deal ${damage} damage to ${target}`));
       damage = 0;
     }
 
+    return damage;
+  }
+
+  dealDamage(target, damage, source) {
+
+    damage = this._damageCheck('Pre', target, damage, source);
+
     if(damage > 0) {
       damage = Math.min(damage, damage * Math.max(0, 100 - target.liveStats.damageReductionPercent) / 100);
+      damage = this._damageCheck('Damred%', target, damage, source);
       damage = Math.max(0, damage - target.liveStats.damageReduction);
+      damage = this._damageCheck('Damred', target, damage, source);
+
       this.tryIncrement(source, 'Combat.Give.Damage', damage);
       this.tryIncrement(target, 'Combat.Receive.Damage', damage);
 
