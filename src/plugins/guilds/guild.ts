@@ -131,8 +131,7 @@ export class Guild {
       member.lastSeen = Date.now();
     }
 
-    this.save();
-    this.updateAllOnlineMembers();
+    this.save(true);
   }
 
 
@@ -158,7 +157,7 @@ export class Guild {
 
       // if not online, dig into db and unset guildName
       this.$guildDb.removePlayerFromGuild(member.name);
-      this.save();
+      this.save(true);
 
     } else if(propagate) {
       GuildKickRedis(this.name, member.name);
@@ -221,8 +220,7 @@ export class Guild {
       primus.joinGuildChat(onlinePlayer);
       PlayerEmitter.emit('player:changeguildstatus', { player: onlinePlayer });
 
-      this.save();
-      this.updateAllOnlineMembers();
+      this.save(true);
 
     } else if(propagate) {
       GuildJoinRedis(this.name, newMember.name);
@@ -267,13 +265,11 @@ export class Guild {
       PlayerEmitter.emit('player:changeguildstatus', { player: onlinePlayer });
 
       this.members = _.without(this.members, memberInList);
-      this.save();
+      this.save(true);
 
       if(this.members.length === 0) {
         this.disband();
       }
-
-      this.updateAllOnlineMembers();
 
     } else if(propagate) {
       GuildLeaveRedis(this.name, player.name);
@@ -305,7 +301,7 @@ export class Guild {
       newMember.unacceptedInvite = true;
       this.members.push(newMember);
 
-      this.save();
+      this.save(true);
       onlinePlayer._saveSelf();
       onlinePlayer._updateGuild();
 
@@ -318,14 +314,14 @@ export class Guild {
   promoteMember(memberName: string) {
     const member = this.getMemberByName(memberName);
     member.rank -= 2;
-    this.save();
+    this.save(true);
     this.updateAllOnlineMembers();
   }
 
   demoteMember(memberName: string) {
     const member = this.getMemberByName(memberName);
     member.rank += 2;
-    this.save();
+    this.save(true);
     this.updateAllOnlineMembers();
   }
 
@@ -353,8 +349,7 @@ export class Guild {
 
   changeMOTD(motd: string) {
     this.motd = motd;
-    this.save();
-    this.updateAllOnlineMembers();
+    this.save(true);
   }
 
   setTaxRate(taxRate: number) {
@@ -363,11 +358,15 @@ export class Guild {
     // consciously not updating all members here - small update, not really worth it.
   }
 
-  async save() {
+  async save(forceUpdateOthers = false) {
     if(this.$disbanding) return;
     await this.$guildDb.saveGuild(this);
 
-    GuildReloadRedis(this.name);
+    if(forceUpdateOthers) {
+      this.updateAllOnlineMembers();
+    }
+
+    GuildReloadRedis(this.name, forceUpdateOthers);
   }
 
   buildSaveObject() {
