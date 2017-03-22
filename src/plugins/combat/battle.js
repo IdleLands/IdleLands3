@@ -301,7 +301,7 @@ export class Battle {
 
   _damageCheck(tag, target, damage, source) {
     if(!_.isFinite(damage) || _.isNaN(damage)) {
-      Logger.error('Combat', new Error(`(${tag}): ${source} tried to deal ${damage} damage to ${target}`));
+      Logger.error('Combat', new Error(`(${tag}): ${source.name} tried to deal ${damage} damage to ${target.name}`));
       damage = 0;
     }
 
