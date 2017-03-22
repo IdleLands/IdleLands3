@@ -35,6 +35,7 @@ export class Equipment {
     shatter: 300,
     vampire: 700,
     damageReduction: 2,
+    damageReductionPercent: 1000,
     gold: 0.5,
     sentimentality: 1,
     dance: 100,
