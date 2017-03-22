@@ -243,7 +243,6 @@ export class Guilds {
     if(!guild.canKick(mod, member)) return 'You do not have enough privileges to do this!';
 
     guild.kickMember(member);
-    player._updateGuild();
   }
 
   promoteMember(player, memberName: string) {

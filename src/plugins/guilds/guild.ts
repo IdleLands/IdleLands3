@@ -291,7 +291,7 @@ export class Guild {
     const onlinePlayer = GameState.getInstance().getPlayer(player.name);
     if(onlinePlayer) {
       Logger.silly('Guild', `Found ${onlinePlayer.name} {prop=${propagate}}`);
-      player.guildInvite = {
+      onlinePlayer.guildInvite = {
         invitedAt: Date.now(),
         inviter: by.name,
         name: this.name,
@@ -301,13 +301,13 @@ export class Guild {
         founded: this.founded
       };
 
-      const newMember = this.createMemberFromPlayer(player);
+      const newMember = this.createMemberFromPlayer(onlinePlayer);
       newMember.unacceptedInvite = true;
       this.members.push(newMember);
 
       this.save();
-      player._saveSelf();
-      player._updateGuild();
+      onlinePlayer._saveSelf();
+      onlinePlayer._updateGuild();
 
     } else if(propagate) {
       Logger.silly('Guild', `propagating invite for ${player.name} {prop=${propagate}}`);
