@@ -352,7 +352,6 @@ export class Player extends Character {
       }
     };
 
-    Logger.silly('Player:Move', `${this.name} doing tile check`);
     partyTileCheck();
 
     let attempts = 1;
@@ -393,13 +392,10 @@ export class Player extends Character {
     this.oldRegion = this.mapRegion;
     this.mapRegion = tile.region;
 
-    Logger.silly('Player:Move', `${this.name} possibly doing shop`);
     if(!this.$shop || (oldRegion !== this.mapRegion)) {
       this.$updateShop = true;
 
-      Logger.silly('Player:Move', `${this.name} possibly doing shop (IN)`);
       this.$shop = ShopGenerator.regionShop(this);
-      Logger.silly('Player:Move', `${this.name} possibly doing shop (AFTER)`);
     }
 
     this.mapPath = tile.path;
