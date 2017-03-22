@@ -144,6 +144,7 @@ export class Player extends Character {
     try {
       Logger.silly('Player:TakeTurn', `${this.name} moving.`);
       this.moveAction();
+      Logger.silly('Player:TakeTurn', `${this.name} doing event?`);
       EventHandler.tryToDoEvent(this);
     } catch(e) {
       Logger.error('Player', e);
