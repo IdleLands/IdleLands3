@@ -2,7 +2,7 @@
 import { Personality } from '../personality';
 
 export class TreasureHunter extends Personality {
-  static description = 'Find better items, but gain significantly less gold and xp.';
+  static description = 'Find better items based on level, but gain 84% less gold and xp.';
   static stats = {
     xp:   (player, baseValue) => -baseValue*0.84,
     gold: (player, baseValue) => -baseValue*0.84,
