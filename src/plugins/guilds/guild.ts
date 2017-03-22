@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import { GameState } from '../../core/game-state';
 import { primus } from '../../primus/server';
 import { emitter as PlayerEmitter } from '../players/_emitter';
+import { Logger } from '../../shared/logger';
 
 import {
   GuildReloadRedis,
@@ -280,13 +281,16 @@ export class Guild {
   }
 
   inviteMemberName(byName, playerName, propagate = true) {
+    Logger.silly('Guild', `${byName} inviting (by name) ${playerName} {prop=${propagate}}`);
     this.inviteMember({ name: byName }, { name: playerName }, propagate);
   }
 
   inviteMember(by, player, propagate = true) {
 
+    Logger.silly('Guild', `${by.name} inviting ${player.name} {prop=${propagate}}`);
     const onlinePlayer = GameState.getInstance().getPlayer(player.name);
     if(onlinePlayer) {
+      Logger.silly('Guild', `Found ${onlinePlayer.name} {prop=${propagate}}`);
       player.guildInvite = {
         invitedAt: Date.now(),
         inviter: by.name,
@@ -306,6 +310,7 @@ export class Guild {
       player._updateGuild();
 
     } else if(propagate) {
+      Logger.silly('Guild', `propagating invite for ${player.name} {prop=${propagate}}`);
       GuildInviteRedis(this.name, by.name, player.name);
     }
   }

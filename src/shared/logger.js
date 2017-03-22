@@ -41,8 +41,9 @@ export class Logger {
   }
 
   static silly(tag, message) {
-    if(!process.env.DEBUG_SILLY) return;
-    if(process.env.DEBUG_SILLY === '1' || _.includes(message, process.env.DEBUG_SILLY)) {
+    const SILLY = process.env.DEBUG_SILLY;
+    if(!SILLY) return;
+    if(SILLY === '1' || SILLY === tag || _.includes(message, SILLY)) {
       console.info(this._formatMessage(`${process.env.INSTANCE_NUMBER}:${tag}`, message));
     }
   }
