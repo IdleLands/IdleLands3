@@ -4,6 +4,7 @@ const isQuiet = process.env.QUIET;
 
 import * as _ from 'lodash';
 
+import { Logger } from '../../shared/logger';
 import { StringGenerator } from '../../shared/string-generator';
 import { MessageParser } from '../../plugins/events/messagecreator';
 
@@ -299,6 +300,12 @@ export class Battle {
   }
 
   dealDamage(target, damage, source) {
+
+    if(!_.isFinite(damage) || _.isNaN(damage)) {
+      Logger.error('Combat', new Error(`${source} tried to deal ${damage} damage to ${target}`));
+      damage = 0;
+    }
+
     if(damage > 0) {
       damage = Math.min(damage, damage * Math.max(0, 100 - target.liveStats.damageReductionPercent) / 100);
       damage = Math.max(0, damage - target.liveStats.damageReduction);
