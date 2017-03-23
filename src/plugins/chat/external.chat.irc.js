@@ -58,6 +58,6 @@ export class ExternalChatMechanism {
 
   sendMessage(msgData) {
     if(!isProd || !this.isConnected) return;
-    this.client.msg(channel, `<web:${msgData.playerName} [${msgData.guildName || 'no guild'}] [${msgData.title || 'no title'}] [${msgData.ascensionLevel}~${msgData.level}]> ${msgData.text}`);
+    this.client.msg(channel, `<web:${msgData.playerName} [${msgData.guildTag || 'no guild'}] [${msgData.title || 'no title'}] [${msgData.ascensionLevel}~${msgData.level}]> ${msgData.text}`);
   }
 }
