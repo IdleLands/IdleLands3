@@ -127,10 +127,11 @@ class PlayerOwnedDomainHandler {
     return AllDomains.placeholder();
   }
   static guild() {
-    return AllDomains.placeholder();
+    return _.sample(_.keys(GameState.getInstance().guilds.guilds)) || AllDomains.placeholder();
   }
-  static guildMember() {
-    return AllDomains.placeholder();
+  static guildMember(player) {
+    if(!player.hasGuild) return AllDomains.placeholder();
+    return _.sample(player.guild.members).name;
   }
 }
 
