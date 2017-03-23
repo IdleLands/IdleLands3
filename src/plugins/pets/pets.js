@@ -301,6 +301,8 @@ export class Pets {
     const pet = this.activePet;
     if(!pet) return 'You have no pet!';
 
+    if(pet.$_scale.salvage === 0) return 'Your pet cannot salvage!';
+
     if(!player.hasGuild) return 'You are not in a guild!';
 
     let woodGained = 0;
@@ -332,6 +334,8 @@ export class Pets {
   salvagePetItem(player, itemId) {
     const pet = this.activePet;
     if(!pet) return 'You have no pet!';
+
+    if(pet.$_scale.salvage === 0) return 'Your pet cannot salvage!';
 
     const item = _.find(pet.inventory, { id: itemId });
     if(!item) return 'Item does not exist.';
