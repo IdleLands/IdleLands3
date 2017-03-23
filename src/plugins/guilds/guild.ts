@@ -348,7 +348,7 @@ export class Guild {
   }
 
   getTaxedAmount(player, gold: number) {
-    const percent = player.guildTaxRate + this.taxRate;
+    const percent = Math.min(100, player.guildTaxRate + this.taxRate);
     return Math.floor((percent/100) * gold);
   }
 

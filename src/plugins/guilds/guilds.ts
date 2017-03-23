@@ -153,7 +153,7 @@ export class Guilds {
   updatePersonalTaxRate(player, taxRate: number) {
     taxRate = Math.floor(+taxRate);
     if(taxRate < 0) taxRate = 0;
-    if(taxRate > 85) taxRate = 85;
+    if(taxRate > 100) taxRate = 100;
 
     player.guildTaxRate = taxRate;
     player._saveSelf();
