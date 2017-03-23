@@ -351,7 +351,7 @@ export class Pets {
     const item = _.find(pet.inventory, { id: itemId });
     if(!item) return;
 
-    const goldGained = pet.sellItem(item, true);
+    const goldGained = pet.sellItem(item, true) || 0;
     pet.removeFromInventory(item);
 
     player.__updatePetActive();
@@ -366,7 +366,7 @@ export class Pets {
     let goldGained = 0;
 
     _.each(pet.inventory, item => {
-      goldGained += pet.sellItem(item, true);
+      goldGained += pet.sellItem(item, true) || 0;
       pet.removeFromInventory(item);
     });
 
