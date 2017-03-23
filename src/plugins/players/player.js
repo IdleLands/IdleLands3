@@ -693,6 +693,8 @@ export class Player extends Character {
     if(clay > 0)      this.$statistics.incrementStat('Character.Salvage.Clay', clay);
     if(astralium > 0) this.$statistics.incrementStat('Character.Salvage.Astralium', astralium);
     if(isCrit > 0)    this.$statistics.incrementStat('Character.Salvage.CriticalSuccess', isCrit);
+
+    this.guild.addResources({ wood, stone, clay, astralium });
   }
 
   ascend() {

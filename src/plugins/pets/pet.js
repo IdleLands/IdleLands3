@@ -165,7 +165,6 @@ export class Pet extends Character {
     this.$ownerRef.__updatePetActive();
 
     this.$ownerRef.incrementSalvageStatistics(salvageResult);
-    this.$ownerRef.guild.addResources(salvageResult);
 
     return salvageResult;
   }

@@ -30,7 +30,6 @@ export class FindItem extends Event {
 
           if(wood > 0 || clay > 0 || stone > 0 || astralium > 0) {
             player.incrementSalvageStatistics(salvageResult);
-            player.guild.addResources(salvageResult);
             message = `%player came across %item, but it was too ${text} for %himher, so %she salvaged it for %wood wood, %clay clay, %stone stone, and %astralium astralium.`;
           }
 
