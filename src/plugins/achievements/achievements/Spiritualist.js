@@ -9,6 +9,8 @@ export class Spiritualist extends Achievement {
     const requiredPets = ['Ghostly Shield', 'Ghostly Sword', 'Spellbook'];
     const pets = player.$pets;
 
+    if(!pets || !pets.earnedPetData) return [];
+
     if(!_.every(requiredPets, req => {
       const foundPet = pets.earnedPetData[req];
       if(!foundPet) return false;
