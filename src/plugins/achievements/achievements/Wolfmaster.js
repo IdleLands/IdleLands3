@@ -12,7 +12,7 @@ export class Wolfmaster extends Achievement {
 
     const ownedTitles = _.filter(titles, title => _.includes(title, 'Wolf'));
 
-    if(ownedTitles < baseValue) return [];
+    if(ownedTitles.length < baseValue) return [];
 
     return [{
       tier: 1,
