@@ -170,8 +170,8 @@ export class Pet extends Character {
     return salvageResult;
   }
 
-  sellItem(item) {
-    if(this.$ownerRef.hasGuild && this.smart.salvage) {
+  sellItem(item, force = false) {
+    if(!force && this.$ownerRef.hasGuild && this.smart.salvage) {
       this.salvageItem(item);
       return 0;
     }
