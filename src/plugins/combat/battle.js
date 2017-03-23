@@ -319,6 +319,8 @@ export class Battle {
       damage = Math.max(0, damage - target.liveStats.damageReduction);
       damage = this._damageCheck('Damred', target, damage, source);
 
+      damage = Math.floor(damage);
+
       this.tryIncrement(source, 'Combat.Give.Damage', damage);
       this.tryIncrement(target, 'Combat.Receive.Damage', damage);
 
