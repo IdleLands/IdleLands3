@@ -164,8 +164,6 @@ export class Pet extends Character {
     this.removeFromInventory(item);
     this.$ownerRef.__updatePetActive();
 
-    this.$ownerRef.incrementSalvageStatistics(salvageResult);
-
     return salvageResult;
   }
 
