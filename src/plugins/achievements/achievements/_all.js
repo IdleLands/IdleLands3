@@ -34,6 +34,7 @@ export { Mapceptional } from './Mapceptional';
 export { PartyMember } from './PartyMember';
 export { Personable } from './Personable';
 export { PKer } from './PKer';
+export { Scrappy } from './Scrappy';
 export { Slayer } from './Slayer';
 export { SoleFoot } from './SoleFoot';
 export { Soloer } from './Soloer';

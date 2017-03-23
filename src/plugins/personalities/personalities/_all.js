@@ -11,6 +11,7 @@ export { FeelingLucky } from './FeelingLucky';
 export { Greedy } from './Greedy';
 export { Gullible } from './Gullible';
 export { Indecisive } from './Indecisive';
+export { Salvager } from './Salvager';
 export { ScaredOfTheDark } from './ScaredOfTheDark';
 export { Seeker } from './Seeker';
 export { SharpEye } from './SharpEye';

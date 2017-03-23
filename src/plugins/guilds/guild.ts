@@ -51,6 +51,8 @@ export class Guild {
   taxRate: number;
   motd: string;
 
+  resources: any;
+
   $guildDb: any;
 
   constructor(guildDb) {
@@ -66,8 +68,18 @@ export class Guild {
     if(!this.taxRate) this.taxRate = 0;
     if(!this.maxMembers) this.maxMembers = 10;
     if(!this.motd) this.motd = `Welcome to ${this.name} [${this.tag}]!`;
+    if(!this.resources) this.resources = { wood: 0, stone: 0, clay: 0, astralium: 0 };
 
     _.each(this.members, member => { if(member.rank > 5) member.rank = 5; });
+  }
+
+  addResources({ wood, clay, stone, astralium }) {
+    this.resources.wood += wood;
+    this.resources.clay += clay;
+    this.resources.stone += stone;
+    this.resources.astralium += astralium;
+
+    this.save();
   }
 
   updateAllOnlineMembers() {

@@ -1,6 +1,9 @@
 
 import * as _ from 'lodash';
 import { Dependencies } from 'constitute';
+import * as Chance from 'chance';
+const chance = new Chance();
+
 import { Character } from '../../core/base/character';
 
 import { GameState } from '../../core/game-state';
@@ -667,6 +670,29 @@ export class Player extends Character {
 
   get ascensionLevel() {
     return this.$statistics ? this.$statistics.getStat('Character.Ascension.Times') : 0;
+  }
+
+  getSalvageValues(item, baseMultiplier = 1, bonus = 0) {
+    const critSalvageChance = this.calcLuckBonusFromValue(this.liveStats.luk + bonus);
+    const isCrit = chance.integer({ min: 0, max: 10000 }) <= critSalvageChance ? 1 : 0;
+    const multiplier = isCrit ? 3 : baseMultiplier;
+
+    const wood = Math.round(item.woodValue() * multiplier);
+    const stone = Math.round(item.stoneValue() * multiplier);
+    const clay = Math.round(item.clayValue() * multiplier);
+    const astralium = Math.round(item.astraliumValue() * multiplier);
+
+    return { wood, stone, clay, astralium, isCrit };
+  }
+
+  incrementSalvageStatistics({ wood, stone, clay, astralium, isCrit }, numItems = 1) {
+    this.$statistics.incrementStat('Character.Item.Salvage', numItems);
+
+    if(wood > 0)      this.$statistics.incrementStat('Character.Salvage.Wood', wood);
+    if(stone > 0)     this.$statistics.incrementStat('Character.Salvage.Stone', stone);
+    if(clay > 0)      this.$statistics.incrementStat('Character.Salvage.Clay', clay);
+    if(astralium > 0) this.$statistics.incrementStat('Character.Salvage.Astralium', astralium);
+    if(isCrit > 0)    this.$statistics.incrementStat('Character.Salvage.CriticalSuccess', isCrit);
   }
 
   ascend() {

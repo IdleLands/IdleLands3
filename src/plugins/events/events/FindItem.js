@@ -23,9 +23,27 @@ export class FindItem extends Event {
       const text = playerItem.score > item.score ? 'weak' : 'strong';
 
       if(!player.canEquip(item) || item.score <= 0) {
+        if(player.$personalities.isActive('Salvager') && player.hasGuild) {
+          let message = `%player came across %item, but it was too ${text} for %himher, but it was unsalvageable.`;
+          const salvageResult = player.getSalvageValues(item);
+          const { wood, clay, stone, astralium } = salvageResult;
+
+          if(wood > 0 || clay > 0 || stone > 0 || astralium > 0) {
+            player.incrementSalvageStatistics(salvageResult);
+            player.guild.addResources(salvageResult);
+            message = `%player came across %item, but it was too ${text} for %himher, so %she salvaged it for %wood wood, %clay clay, %stone stone, and %astralium astralium.`;
+          }
+
+          const parsedMessage = this._parseText(message, player, { wood, clay, stone, astralium, item: item.fullname });
+          this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
+
+          return;
+        }
+
         const message = `%player came across %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
         const gold = player.sellItem(item);
         const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
+        player.$statistics.incrementStat('Character.Item.Unequippable');
         this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
         return;
       }
