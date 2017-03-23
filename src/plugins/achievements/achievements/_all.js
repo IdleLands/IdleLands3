@@ -38,6 +38,7 @@ export { Scrappy } from './Scrappy';
 export { Slayer } from './Slayer';
 export { SoleFoot } from './SoleFoot';
 export { Soloer } from './Soloer';
+export { Spiritualist } from './Spiritualist';
 export { Sponge } from './Sponge';
 export { TempterOfFate } from './TempterOfFate';
 export { Territorial } from './Territorial';
