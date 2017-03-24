@@ -3,11 +3,13 @@ import { GuildBase } from '../guild-base';
 
 import { SETTINGS } from '../../../static/settings';
 
-export class MaelesBase extends GuildBase {
+export class Maeles extends GuildBase {
 
   constructor(guildName) {
     super('Maeles', guildName);
   }
+
+  static moveInCost = 5000000;
 
   costs = {
     moveIn: 5000000,

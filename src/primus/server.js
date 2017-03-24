@@ -49,7 +49,7 @@ export const primus = (() => {
   serve.get('/maps/world-maps/guilds/:name', (req, res) => {
     const guild = GameState.getInstance().guilds.getGuild(req.params.name);
     if(!guild) return res.status(500).json({ error: 'No map' });
-    res.json(guild.baseMap.map);
+    res.json(guild.$base.map);
   });
 
   const finalhandler = require('finalhandler');

@@ -51,27 +51,27 @@ export class Equipment {
   };
 
   static woodStats = {
-    str: 50,
-    dex: 50,
+    str: 25,
+    dex: 25,
     hp: 100,
     hpregen: 25
   };
 
   static stoneStats = {
-    con: 25,
+    con: 10,
     damageReduction: 25,
     damageReductionPercent: 1
   };
 
   static clayStats = {
-    int: 50,
-    agi: 50,
+    int: 25,
+    agi: 25,
     mp: 100,
     mpregen: 25
   };
 
   static astraliumStats = {
-    luk: 50,
+    luk: 100,
     xp: 1,
     enchantLevel: 1,
     crit: 1,
@@ -80,7 +80,7 @@ export class Equipment {
     poison: 1,
     shatter: 1,
     vampire: 1,
-    gold: 10,
+    gold: 50,
     dance: 1,
     offense: 1,
     defense: 1,

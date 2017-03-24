@@ -3,11 +3,13 @@ import { GuildBase } from '../guild-base';
 
 import { SETTINGS } from '../../../static/settings';
 
-export class HomletBase extends GuildBase {
+export class Homlet extends GuildBase {
 
   constructor(guildName) {
     super('Homlet', guildName);
   }
+
+  static moveInCost = 1000000;
 
   costs = {
     moveIn: 1000000,

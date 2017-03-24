@@ -6,7 +6,10 @@ import { primus } from '../../primus/server';
 import { emitter as PlayerEmitter } from '../players/_emitter';
 import { Logger } from '../../shared/logger';
 
+import { GuildBase } from './guild-base';
+
 import * as Bases from './bases';
+import * as Buildings from './buildings';
 
 import {
   GuildReloadRedis,
@@ -56,9 +59,11 @@ export class Guild {
   resources: any;
 
   $guildDb: any;
+  $base: GuildBase;
 
   baseLocation: string;
-  buildings: { currentlyBuilt: any, levels: any };
+  buildings: { currentlyBuilt: any, levels: any, properties: any };
+  $buildingInstances: any;
 
   constructor(guildDb) {
     this.$guildDb = guildDb;
@@ -75,9 +80,12 @@ export class Guild {
     if(!this.motd) this.motd = `Welcome to ${this.name} [${this.tag}]!`;
     if(!this.resources) this.resources = { wood: 0, stone: 0, clay: 0, astralium: 0 };
     if(!this.baseLocation) this.baseLocation = 'Norkos';
-    if(!this.buildings) this.buildings = { currentlyBuilt: {}, levels: {} };
-    if(!this.buildings.currentlyBuilt) this.buildings.currentlyBuilt = {};
+    if(!this.buildings) this.buildings = { currentlyBuilt: { sm: {}, md: {}, lg: {} }, levels: {}, properties: {} };
+    if(!this.buildings.currentlyBuilt) this.buildings.currentlyBuilt = { sm: {}, md: {}, lg: {} };
     if(!this.buildings.levels) this.buildings.levels = {};
+    if(!this.buildings.properties) this.buildings.properties = {};
+
+    if(!this.$buildingInstances) this.$buildingInstances = {};
 
     _.each(this.members, member => { if(member.rank > 5) member.rank = 5; });
 
@@ -86,6 +94,7 @@ export class Guild {
 
   resetBuildings() {
     this.buildings.currentlyBuilt = { sm: [], md: [], lg: [] };
+    this.$buildingInstances = {};
   }
 
   get baseName() {
@@ -93,23 +102,53 @@ export class Guild {
   }
 
   get baseMap() {
-    return GameState.getInstance().world.maps[this.baseName];
+    return this.$base;
   }
 
   buildBase() {
-    const base = new Bases[`${this.baseLocation}Base`](this.name);
+    const base = new Bases[this.baseLocation](this);
+    this.$base = base;
+    base.init();
     GameState.getInstance().world.maps[this.baseName] = base;
 
     this.rebuildBuildings();
   }
 
-  rebuildBuildings() {
+  buildBuilding(name, slot) {
+    const buildingProto = Buildings[name];
+    if(!this.buildings.levels[name]) this.buildings.levels[name] = 1;
 
+    const building = new buildingProto(this);
+
+    this.$buildingInstances[name] = building;
+    this.buildings.currentlyBuilt[buildingProto.size][slot] = name;
+    this.$base.buildBuilding(name, buildingProto.size, slot, building);
+
+    // TODO make a new "update guild hall" redis call
+    this.save();
+  }
+
+  upgradeBuilding(name) {
+    // TODO check if built
+    // TODO check resources
+
+    // TODO update player guild and guild buildings
+  }
+
+  rebuildBuildings() {
+    this.$buildingInstances = {};
+    _.each(['sm', 'md', 'lg'], size => {
+      _.each(this.buildings.currentlyBuilt[size], (building, index) => {
+        if(!building) return;
+        const inst = new Buildings[building](this);
+        this.baseMap.buildBuilding(building, size, index, inst);
+      });
+    });
   }
 
   moveBases() {
     // TODO move to new base
-    // TODO kick out anyone on this map to norkos
+    // TODO kick out anyone on this map to new guild hall map at the starting loc
   }
 
   addResources({ wood, clay, stone, astralium }) {
@@ -420,10 +459,37 @@ export class Guild {
     GuildReloadRedis(this.name, forceUpdateOthers);
   }
 
+  buildBuildingTransmitObject() {
+    return {
+      otherBases: _.map(Bases, (base, baseName) => {
+        return { name: baseName, moveInCost: base.moveInCost };
+      }),
+      hallCosts: this.baseMap.costs,
+      hallSizes: this.baseMap.$slotSizes,
+
+      buildings: this.buildings,
+
+      buildingInfo: _.map(Buildings, (building, buildingName) => {
+        return {
+          name: buildingName,
+          desc: building.desc,
+          size: building.size,
+          properties: building.properties,
+          nextLevelCost: building.levelupCost(this.buildings.levels[buildingName] || 1)
+        };
+      })
+    };
+  }
+
+  buildTransmitObject() {
+    const obj = this.buildSaveObject();
+    return obj;
+  }
+
   buildSaveObject() {
     const obj = _.omitBy(this, (val, key) => {
       return _.startsWith(key, '$')
-        || _.isNotWritable(this, key)
+        || _.isNotWritable(this, key);
     });
 
     return obj;

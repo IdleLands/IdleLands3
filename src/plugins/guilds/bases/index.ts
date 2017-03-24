@@ -1,7 +1,7 @@
 
-export * from './FrigriBase';
-export * from './HomletBase';
-export * from './MaelesBase';
-export * from './NorkosBase';
-export * from './RaburroBase';
-export * from './VocalnusBase';
+export * from './Frigri';
+export * from './Homlet';
+export * from './Maeles';
+export * from './Norkos';
+export * from './Raburro';
+export * from './Vocalnus';

@@ -12,6 +12,9 @@ import { SETTINGS } from '../../static/settings';
 
 import { GetRedisPlayers } from '../scaler/redis';
 
+import * as Bases from './bases';
+import * as Buildings from './buildings';
+
 @Dependencies(GuildsDb)
 export class Guilds {
   guildsDb: any;
@@ -263,6 +266,23 @@ export class Guilds {
     if(!guild.isMod(member)) return 'Member already lowest privileges!';
 
     guild.demoteMember(memberName);
+  }
+
+  buildBuilding(player, buildingName, slot) {
+    const guild: Guild = player.guild;
+    if(!guild.isMod(player)) return 'You do not have enough privileges to do this!';
+
+    const buildingProto = Buildings[buildingName];
+    if(!buildingProto) return 'That building does not exist!';
+
+    const buildCost = guild.$base.costs;
+    if(guild.gold < buildCost[buildingProto.size]) return 'You do not have enough gold to construct a building!';
+
+    // guild.gold -= buildCost[buildingProto.size];
+    guild.buildBuilding(buildingName, slot);
+
+    player._updateGuild();
+    player._updateGuildBuildings();
   }
 
 }
