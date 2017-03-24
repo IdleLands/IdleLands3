@@ -6,6 +6,8 @@ import { primus } from '../../primus/server';
 import { emitter as PlayerEmitter } from '../players/_emitter';
 import { Logger } from '../../shared/logger';
 
+import * as Bases from './bases';
+
 import {
   GuildReloadRedis,
   GuildKickRedis,
@@ -55,6 +57,9 @@ export class Guild {
 
   $guildDb: any;
 
+  baseLocation: string;
+  buildings: { currentlyBuilt: any, levels: any };
+
   constructor(guildDb) {
     this.$guildDb = guildDb;
   }
@@ -69,8 +74,42 @@ export class Guild {
     if(!this.maxMembers) this.maxMembers = 10;
     if(!this.motd) this.motd = `Welcome to ${this.name} [${this.tag}]!`;
     if(!this.resources) this.resources = { wood: 0, stone: 0, clay: 0, astralium: 0 };
+    if(!this.baseLocation) this.baseLocation = 'Norkos';
+    if(!this.buildings) this.buildings = { currentlyBuilt: {}, levels: {} };
+    if(!this.buildings.currentlyBuilt) this.buildings.currentlyBuilt = {};
+    if(!this.buildings.levels) this.buildings.levels = {};
 
     _.each(this.members, member => { if(member.rank > 5) member.rank = 5; });
+
+    this.buildBase();
+  }
+
+  resetBuildings() {
+    this.buildings.currentlyBuilt = { sm: [], md: [], lg: [] };
+  }
+
+  get baseName() {
+    return `Guild Base - ${this.name}`;
+  }
+
+  get baseMap() {
+    return GameState.getInstance().world.maps[this.baseName];
+  }
+
+  buildBase() {
+    const base = new Bases[`${this.baseLocation}Base`](this.name);
+    GameState.getInstance().world.maps[this.baseName] = base;
+
+    this.rebuildBuildings();
+  }
+
+  rebuildBuildings() {
+
+  }
+
+  moveBases() {
+    // TODO move to new base
+    // TODO kick out anyone on this map to norkos
   }
 
   addResources({ wood, clay, stone, astralium }) {

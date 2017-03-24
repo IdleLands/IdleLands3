@@ -44,7 +44,7 @@ export class PlayerMovement {
       if(properties.requireClass)       return player.professionName === properties.requireClass;
       if(properties.requireAchievement) return player.$achievements.hasAchievement(properties.requireAchievement);
       if(properties.requireCollectible) return player.$collectibles.hasCollectible(properties.requireCollectible);
-      if(properties.requireAscension)   return player.ascensionLevel >= properties.requireAscension;
+      if(properties.requireAscension)   return player.ascensionLevel >= +properties.requireAscension;
       if(properties.requireHoliday) {
         const { start, end } = SETTINGS.holidays[properties.requireHoliday];
         const today = new Date();
@@ -90,6 +90,11 @@ export class PlayerMovement {
     BattleBoss.operateOn(player, { bossName: tile.object.name, bosses: bossparty });
   }
 
+  static handleGuildTeleport(player) {
+    if(!player.hasGuild) return;
+    this.handleTileTeleport(player, { object: { properties: { toLoc: 'guildbase' } } });
+  }
+
   static handleTileTrainer(player, tile) {
     if(player.stepCooldown > 0) return;
     player.stepCooldown = 10;
@@ -129,11 +134,20 @@ export class PlayerMovement {
     if(!dest.destName) dest.destName = dest.map;
 
     if(dest.toLoc) {
-      const toLocData = SETTINGS.locToTeleport(dest.toLoc);
-      dest.x = toLocData.x;
-      dest.y = toLocData.y;
-      dest.map = toLocData.map;
-      dest.destName = toLocData.formalName;
+      if(dest.toLoc === 'guildbase' && player.hasGuild) {
+        const base = player.guild.baseMap;
+        dest.x = base.startLoc[0];
+        dest.y = base.startLoc[1];
+        dest.map = player.guild.baseName;
+        dest.destName = `${player.guildName}'s Guild Base`;
+
+      } else {
+        const toLocData = SETTINGS.locToTeleport(dest.toLoc);
+        dest.x = toLocData.x;
+        dest.y = toLocData.y;
+        dest.map = toLocData.map;
+        dest.destName = toLocData.formalName;
+      }
     }
 
     const destTile = this.getTileAt(dest.map, dest.x, dest.y);
