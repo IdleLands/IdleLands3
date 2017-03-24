@@ -159,17 +159,21 @@ export class Pet extends Character {
 
   }
 
-  salvageItem(item) {
+  salvageItem(item, doUpdate = false) {
     const salvageResult = this.$ownerRef.getSalvageValues(item, (this.$_scale.salvage/100), this.liveStats.luk);
     this.removeFromInventory(item);
     this.$ownerRef.__updatePetActive();
+
+    if(doUpdate) {
+      this.$ownerRef.incrementSalvageStatistics(salvageResult);
+    }
 
     return salvageResult;
   }
 
   sellItem(item, force = false) {
-    if(!force && this.$ownerRef.hasGuild && this.smart.salvage) {
-      this.salvageItem(item);
+    if(!force && this.$ownerRef.hasGuild && this.smart.salvage && this.$_scale.salvage > 0) {
+      this.salvageItem(item, true);
       return 0;
     }
 
