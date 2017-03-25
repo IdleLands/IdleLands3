@@ -590,8 +590,13 @@ export class Player extends Character {
   }
 
   _updateGuild() {
-    const guild = this.guild.buildTransmitObject();
-    guild.$me = _.find(guild.members, { name: this.name });
+    let guild = this.guild;
+    if(this.hasGuild) {
+      const guildTrans = guild.buildTransmitObject();
+      guildTrans.$me = _.find(guild.members, { name: this.name });
+      guild = guildTrans;
+    }
+
     this.$dataUpdater(this.name, 'guild', guild);
   }
 
