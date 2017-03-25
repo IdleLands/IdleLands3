@@ -43,6 +43,12 @@ export const Regions = {
     shopQuality: () => 7,
     TownCrierChance: (player, baseValue) => baseValue*3
   },
+  'Guild Hall': {
+    shopPriceMultiplier: (player) => player.hasGuild ? 1 + (Math.floor(player.guild.buildings.levels.GuildShop/3) * 0.5) : 0,
+    shopSlots: (player) => player.hasGuild ? 1 + Math.floor(player.guild.buildings.levels.GuildShop/10) : 0,
+    shopQuality: (player) => player.hasGuild ? player.guild.buildings.levels.GuildShop/5 : 0,
+    TownCrierChance: (player, baseValue) => baseValue*2
+  },
 
   'Dangerous Cave Area': {
     BattleChance:       (player, baseValue) => baseValue*1.2,

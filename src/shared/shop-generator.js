@@ -26,6 +26,8 @@ export class ShopGenerator extends Generator {
 
     let attempts = 0;
 
+    if(slots === 0) return shop;
+
     for(let i = 0; i < slots; i++) {
       let item = this.generateItem(player, multiplier);
       while(!player.canEquip(item) && attempts++ < 10) {

@@ -60,6 +60,10 @@ export const perks = [
     description: 'Teleport to the Astral Control Room.',
     teleportData: { toLoc: 'astralcontrolroom' } },
 
+  { name: 'Teleport: Guild Base', cost: 5000,
+    description: 'Teleport to your Guild Base. Will not work for non-guild-members.',
+    teleportData: { toLoc: 'guildbase' } },
+
   { name: 'Rename Tag: Pet', cost: 1000,
     description: 'Rename a single pet.',
     consumableKey: 'renameTagPet' },

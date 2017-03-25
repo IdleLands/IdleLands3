@@ -62,12 +62,20 @@ export class StatCalculator {
 
   static _baseStat(player, stat) {
     return this.classStat(player, stat)
+         + this.guildStat(player, stat)
          + this.effectStat(player, stat)
          + this.regionStat(player, stat)
          + this.equipmentStat(player, stat)
          + this.professionStat(player, stat)
          + this.achievementStat(player, stat)
          + this.personalityStat(player, stat);
+  }
+
+  static guildStat(player, stat) {
+    if(!player.hasGuild) return 0;
+    const boost = player.guild.$statBoosts[stat];
+    if(!boost) return 0;
+    return boost;
   }
 
   static regionStat(player, stat) {

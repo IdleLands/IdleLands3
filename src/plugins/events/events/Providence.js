@@ -155,9 +155,58 @@ export class Providence extends Event {
     this.emitMessage({ affected: [player], eventText: baseMessage, category: MessageCategories.EXPLORE });
   }
 
-  static operateOn(player) {
-    const eventText = this.eventText('providence', player);
-    this.fatePoolProvidence(player, eventText);
+  static guildHallProvidence(player, baseMessage) {
+
+    const fortuneTellerLevel = player.guild.buildings.levels.FortuneTeller || 0;
+
+    const xpMin = Math.floor(-player._xp.maximum + (player._xp.maximum * Math.min(fortuneTellerLevel, 90) / 100));
+    const xpMax = Math.floor(player._xp.maximum * Math.min(fortuneTellerLevel/10, 10) / 100);
+
+    const goldMin = -Math.min(30000 - (Math.min(fortuneTellerLevel, 25) * 100), player.gold);
+    const goldMax = 20000 + fortuneTellerLevel * 100;
+
+    const providenceData = {
+      xp: Event.chance.integer({ min: xpMin, max: xpMax }),
+      gender: _.sample(this._genders),
+      profession: _.sample(this._professions(player)) || 'Generalist',
+      gold: Event.chance.integer({ min: goldMin, max: goldMax })
+    };
+
+    baseMessage = `${baseMessage} ${this.doBasicProvidencing(player, providenceData).trim()}`;
+
+    if(player.equipment.providence && Event.chance.bool({ likelihood: this.probabilities.clearProvidence })) {
+      player.equipment.providence = null;
+      delete player.equipment.providence;
+
+      baseMessage = `${baseMessage} Providence cleared!`;
+
+    } else if(!player.equipment.providence && Event.chance.bool({ likelihood: this.probabilities.newProvidence })) {
+      player.equipment.providence = this.generateProvidenceItem(
+        Math.round(player.level/10),
+        fortuneTellerLevel,
+        Math.floor(fortuneTellerLevel/2),
+        Math.floor(fortuneTellerLevel/3)
+      );
+    }
+
+    player.recalculateStats();
+    this.emitMessage({ affected: [player], eventText: baseMessage, category: MessageCategories.EXPLORE });
+  }
+
+  static operateOn(player, { isGuild } = {}) {
+    if(isGuild && player.hasGuild) {
+      const fortuneTellerName = player.guild.getProperty('FortuneTeller', 'Name');
+      const fortuneTellerDisplay = fortuneTellerName ? fortuneTellerName + ', the Guild Fortune Teller' : 'the Guild Fortune Teller';
+      const eventText = this._parseText(
+        `%player met with ${fortuneTellerDisplay} and had %hisher fortune told!`,
+        player
+      );
+      this.guildHallProvidence(player, eventText);
+
+    } else {
+      const eventText = this.eventText('providence', player);
+      this.fatePoolProvidence(player, eventText);
+    }
     player.$statistics.batchIncrement(['Character.Events', 'Character.Event.Providence']);
   }
 
