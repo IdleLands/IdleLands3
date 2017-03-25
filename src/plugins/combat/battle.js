@@ -313,7 +313,7 @@ export class Battle {
     damage = this._damageCheck('Pre', target, damage, source);
 
     if(damage > 0) {
-      const damRedPercent = Math.max(0, 100 - Math.min(target.liveStats.damageReductionPercent, 100));
+      const damRedPercent = Math.max(0, 100 - Math.min((target.liveStats.damageReductionPercent || 0), 100));
       damage = Math.min(damage, damage * (damRedPercent / 100));
       damage = this._damageCheck('Damred%', target, damage, source);
       damage = Math.max(0, damage - target.liveStats.damageReduction);
