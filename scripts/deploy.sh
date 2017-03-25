@@ -11,11 +11,11 @@ function doCompile {
 mkdir dist
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" -o "$SOURCE_BRANCH" != "v*" ]; then
-    echo "Skipping deploy; just doing a build."
-    doCompile
-    exit 0
-fi
+# if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" -o "$TRAVIS_BRANCH" != "v*" ]; then
+#     echo "Skipping deploy; just doing a build."
+#     doCompile
+#     exit 0
+# fi
 
 # Save some useful information
 SHA=`git rev-parse --verify HEAD`
