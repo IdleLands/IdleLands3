@@ -429,7 +429,7 @@ Cost|0|---|---|---|---|---|---|---|---|---
 500,000 gold
 
 ### Category
-Non-combat
+Non-Combat
 
 ### Description
 Unlocked by becoming a purveyor of natural resources.

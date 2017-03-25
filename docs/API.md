@@ -22,6 +22,10 @@ plugin:gm:setlevel | targetName, targetLevel | Mod only. Set a players level.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.
+plugin:guild:building:build | buildingName, slot | Build a building in the guild.
+plugin:guild:building:movebase | newBase | Move the guild to a new place.
+plugin:guild:building:updateprop | buildingName, propName, propValue | Update a building property.
+plugin:guild:building:upgrade | buildingName | Upgrade a building in the guild.
 plugin:guild:create | name, tag | Create a new guild.
 plugin:guild:demote | memberName | Demote a member to member status.
 plugin:guild:disband |  | Disband your guild.
@@ -43,6 +47,8 @@ plugin:pet:unequip | itemId | Unequip an item from your pets gear.
 plugin:pet:feed | gold | Feed your pet gold.
 plugin:pet:feedmax |  | Feed your pet maximum gold.
 plugin:pet:equip | itemId | Equip an item from your pets inventory.
+plugin:pet:salvage | itemId | Salvage an item from your pets inventory.
+plugin:pet:salvageall |  | Salvage all items from your pets inventory.
 plugin:pet:sell | itemId | Sell an item from your pets inventory.
 plugin:pet:sellall |  | Sell all items from your pets inventory.
 plugin:pet:giveitem | itemId | Give your pet an item from your equipment.
@@ -69,6 +75,7 @@ plugin:player:request:bosstimers |  | Request bosstimer data. Generally used onl
 plugin:player:request:collectibles |  | Request collectible data. Generally used only when looking at collectibles.
 plugin:player:request:equipment |  | Request equipment data. Generally used only when looking at equipment.
 plugin:player:request:guild |  | Request guild data.
+plugin:player:request:guildbuildings |  | Request guild buildings data.
 plugin:player:request:party |  | Request party data. Generally used only when looking at overview.
 plugin:player:request:personalities |  | Request personality data. Generally used only when looking at personalities.
 plugin:player:request:pets |  | Request pet data.
