@@ -6,13 +6,19 @@ import { SETTINGS } from '../../../static/settings';
 
 export class Mascot extends GuildBuilding {
   static size: Size = 'sm';
-  static desc = 'Upgrade this guy for bragging rights!';
+  static desc = 'This guy is purely for bragging rights!';
 
   static properties = [
     { name: 'Name', type: 'text' },
     { name: 'Quote', type: 'text' },
     { name: 'MascotID', type: 'select', values: _.keys(SETTINGS.revGidMap) }
   ];
+
+  static woodCost =       (level) => level * 100;
+  static clayCost =       (level) => level * 100;
+  static stoneCost =      (level) => level * 100;
+  static astraliumCost =  (level) => level * 100;
+  static goldCost =       (level) => level * 1000000;
 
   init() {
     const mascotId = +SETTINGS.revGidMap[this.getProperty('MascotID')];

@@ -12,6 +12,12 @@ export class Tavern extends GuildBuilding {
   static size: Size = 'lg';
   static desc = 'Get drunk with your guildmates!';
 
+  static woodCost =       (level) => level * 10;
+  static clayCost =       (level) => level * 10;
+  static stoneCost =      (level) => level * 10;
+  static astraliumCost =  (level) => level * 10;
+  static goldCost =       (level) => level * 150000;
+
   tiles = [
     0,  0,  0,  0,  0,  0,  0,
     0,  44, 39, 0,  45, 47, 0,

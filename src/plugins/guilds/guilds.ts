@@ -99,9 +99,6 @@ export class Guilds {
     const guildCheck: Guild = leader.guild;
     if(guildCheck && guildCheck.$noGuild) return 'You do not have a guild!';
 
-    if(!leader.$premium.canConsume('renameTagGuild')) return 'You do not have a guild rename tag!';
-    leader.$premium.consume(leader, 'renameTagGuild');
-
     name = (''+name).trim();
     tag = (''+tag).trim();
 
@@ -111,6 +108,9 @@ export class Guilds {
 
     if(name.length <= 3 || name.length > 20) return 'Guild name must be between 4 and 20 characters.';
     if(tag.length <= 1 || tag.length > 6) return 'Guild tag must be between 2 and 6 characters';
+
+    if(!leader.$premium.canConsume('renameTagGuild')) return 'You do not have a guild rename tag!';
+    leader.$premium.consume(leader, 'renameTagGuild');
 
     this._renameRetag(guildCheck.name, name, tag);
 
@@ -275,13 +275,94 @@ export class Guilds {
     const buildingProto = Buildings[buildingName];
     if(!buildingProto) return 'That building does not exist!';
 
-    const buildCost = guild.$base.costs;
-    if(guild.gold < buildCost[buildingProto.size]) return 'You do not have enough gold to construct a building!';
+    if(buildingName !== 'GuildHall') {
+      if(!guild.$buildingInstances.GuildHall) return 'You do not have the guild hall built!';
+    }
 
-    // guild.gold -= buildCost[buildingProto.size];
+    const buildCost = guild.$base.costs.build;
+    const cost = buildCost[buildingProto.size];
+    if(guild.gold < cost) return 'You do not have enough gold to construct a building!';
+
+    slot = Math.floor(+slot);
+    if(_.isNaN(slot) || slot < 0 || slot > guild.$base.$slotSizes[buildingProto.size]) return 'Invalid slot.';
+
+    guild.gold -= cost;
     guild.buildBuilding(buildingName, slot);
 
     player._updateGuild();
+    player._updateGuildBuildings();
+  }
+
+  upgradeBuilding(player, buildingName) {
+    const guild: Guild = player.guild;
+    if(!guild.isMod(player)) return 'You do not have enough privileges to do this!';
+
+    const buildingProto = Buildings[buildingName];
+    if(!buildingProto) return 'That building does not exist!';
+
+    if(!guild.$buildingInstances[buildingName]) return 'You have not built that yet!';
+
+    if(buildingName !== 'GuildHall') {
+      if(!guild.$buildingInstances.GuildHall) return 'You do not have the guild hall built!';
+      if(guild.buildings.levels.GuildHall < guild.buildings.levels[buildingName] + 1) return 'Your guild hall must be upgraded first!';
+    }
+
+    const { wood, clay, stone, astralium, gold } = buildingProto.levelupCost(guild.buildings.levels[buildingName] || 1);
+    if(guild.gold < gold) return 'Your guild does not have enough gold!';
+    if(guild.resources.wood < wood) return 'Your guild does not have enough gold!';
+    if(guild.resources.clay < clay) return 'Your guild does not have enough gold!';
+    if(guild.resources.stone < stone) return 'Your guild does not have enough gold!';
+    if(guild.resources.astralium < astralium) return 'Your guild does not have enough gold!';
+
+    guild.gold -= gold;
+    guild.resources.wood -= wood;
+    guild.resources.clay -= clay;
+    guild.resources.stone -= stone;
+    guild.resources.astralium -= astralium;
+
+    guild.upgradeBuilding(buildingName);
+
+    player._updateGuild();
+    player._updateGuildBuildings();
+  }
+
+  moveBase(player, newBase) {
+    const guild: Guild = player.guild;
+    if(!guild.isMod(player)) return 'You do not have enough privileges to do this!';
+
+    if(guild.baseLocation === newBase) return 'You are already there!';
+
+    const base = Bases[newBase];
+    if(!base) return 'That base does not exist!';
+
+    const cost = base.moveInCost;
+    if(guild.gold < cost) return 'You do not have enough gold to move!';
+
+    guild.gold -= cost;
+
+    guild.moveBases(newBase);
+
+    player._updateGuild();
+    player._updateGuildBuildings();
+  }
+
+  updateProp(player, buildingName, propName, propValue) {
+    const guild: Guild = player.guild;
+    if(!guild.isMod(player)) return 'You do not have enough privileges to do this!';
+
+    const building = Buildings[buildingName];
+    if(!building) return 'That building does not exist!';
+
+    if(!guild.$buildingInstances[buildingName]) return 'Building not constructed!';
+
+    const prop = _.find(building.properties, { name: propName });
+    if(!prop) return 'That property does not exist!';
+
+    propValue = (''+propValue).trim();
+    if(!propValue) return 'Invalid property value!';
+
+    guild.updateProperty(buildingName, propName, propValue);
+
     player._updateGuildBuildings();
   }
 

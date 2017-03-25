@@ -17,7 +17,11 @@ import {
   GuildJoinRedis,
   GuildLeaveRedis,
   GuildInviteRedis,
-  GuildDisbandRedis
+  GuildDisbandRedis,
+  GuildBuildBuildingRedis,
+  GuildUpgradeBuildingRedis,
+  GuildMoveBaseRedis,
+  GuildUpdateBuildingPropertyRedis
 } from '../scaler/redis';
 
 const LEADER = 1;
@@ -60,6 +64,7 @@ export class Guild {
 
   $guildDb: any;
   $base: GuildBase;
+  $statBoosts: any;
 
   baseLocation: string;
   buildings: { currentlyBuilt: any, levels: any, properties: any };
@@ -73,7 +78,7 @@ export class Guild {
     _.extend(this, opts);
     if(!this.founded) this.founded = Date.now();
     if(!this.level) this.level = 1;
-    if(!this.gold) this.gold = 0;
+    if(!this.gold || _.isNaN(this.gold)) this.gold = 0;
     if(!this.members) this.members = [];
     if(!this.taxRate) this.taxRate = 0;
     if(!this.maxMembers) this.maxMembers = 10;
@@ -87,9 +92,58 @@ export class Guild {
 
     if(!this.$buildingInstances) this.$buildingInstances = {};
 
+    if(!this.$statBoosts) this.$statBoosts = {};
+
     _.each(this.members, member => { if(member.rank > 5) member.rank = 5; });
 
     this.buildBase();
+    this.recalculateStats();
+  }
+
+  recalculateStats() {
+    this.maxMembers = 10 + this.buildings.levels.Academy;
+
+    this.$statBoosts = {};
+
+    if(this.$buildingInstances.GardenSmall) {
+      const smallGardenLevel = this.buildings.levels.GardenSmall;
+      const smallGardenBoost1 = this.getProperty('GardenSmall', 'StatBoost1');
+      this.$statBoosts[smallGardenBoost1] = smallGardenLevel;
+    }
+
+    if(this.$buildingInstances.GardenMedium) {
+      const mediumGardenLevel = this.buildings.levels.GardenMedium;
+      const mediumGardenBoost1 = this.getProperty('GardenMedium', 'StatBoost1');
+      const mediumGardenBoost2 = this.getProperty('GardenMedium', 'StatBoost2');
+      this.$statBoosts[mediumGardenBoost1] = mediumGardenLevel * 20;
+
+      let val = 0;
+      switch(mediumGardenBoost2) {
+        case 'gold':                    val = 10; break;
+        case 'xp':                      val = 2; break;
+        case 'itemFindRangeMultiplier': val = 0.05; break;
+      }
+      this.$statBoosts[mediumGardenBoost2] = mediumGardenLevel * val;
+    }
+
+    if(this.$buildingInstances.GardenLarge) {
+      const largeGardenLevel = this.buildings.levels.GardenLarge;
+      const largeGardenBoost1 = this.getProperty('GardenLarge', 'StatBoost1');
+      const largeGardenBoost2 = this.getProperty('GardenLarge', 'StatBoost2');
+      const largeGardenBoost3 = this.getProperty('GardenLarge', 'StatBoost3');
+
+      this.$statBoosts[largeGardenBoost1] = largeGardenLevel;
+      this.$statBoosts[largeGardenBoost2] = largeGardenLevel;
+
+      let val = 0;
+      switch(largeGardenBoost3) {
+        case 'hp': case 'mp':           val = 1000; break;
+        case 'hpregen': case 'mpregen': val = 200; break;
+        case 'damageReduction':         val = 100; break;
+      }
+
+      this.$statBoosts[largeGardenBoost3] = largeGardenLevel * val;
+    }
   }
 
   resetBuildings() {
@@ -114,25 +168,45 @@ export class Guild {
     this.rebuildBuildings();
   }
 
-  buildBuilding(name, slot) {
+  buildBuilding(name: string, slot?: number, propagate = true) {
     const buildingProto = Buildings[name];
     if(!this.buildings.levels[name]) this.buildings.levels[name] = 1;
 
-    const building = new buildingProto(this);
+    if(_.isUndefined(slot)) {
+      slot = _.indexOf(this.buildings.currentlyBuilt[buildingProto.size], name);
+    }
 
+    const building = new buildingProto(this);
+    building.$slot = slot;
     this.$buildingInstances[name] = building;
     this.buildings.currentlyBuilt[buildingProto.size][slot] = name;
     this.$base.buildBuilding(name, buildingProto.size, slot, building);
 
-    // TODO make a new "update guild hall" redis call
+    this.recalculateStats();
+
+    if(propagate) {
+      GuildBuildBuildingRedis(this.name, name, slot);
+    }
+
     this.save();
   }
 
-  upgradeBuilding(name) {
-    // TODO check if built
-    // TODO check resources
+  upgradeBuilding(name: string, propagate = true) {
+    if(!this.buildings.levels[name]) this.buildings.levels[name] = 1;
+    this.buildings.levels[name]++;
 
-    // TODO update player guild and guild buildings
+    const buildingInstance = this.$buildingInstances[name];
+    const instanceProto = Object.getPrototypeOf(buildingInstance).constructor;
+
+    this.$base.updateSignpost(name, instanceProto.size, buildingInstance.$slot);
+
+    this.recalculateStats();
+
+    if(propagate) {
+      GuildUpgradeBuildingRedis(this.name);
+    }
+
+    this.save();
   }
 
   rebuildBuildings() {
@@ -141,14 +215,56 @@ export class Guild {
       _.each(this.buildings.currentlyBuilt[size], (building, index) => {
         if(!building) return;
         const inst = new Buildings[building](this);
+        this.$buildingInstances[building] = inst;
+        inst.$slot = index;
         this.baseMap.buildBuilding(building, size, index, inst);
       });
     });
+
+    this.recalculateStats();
   }
 
-  moveBases() {
-    // TODO move to new base
-    // TODO kick out anyone on this map to new guild hall map at the starting loc
+  resetOnlinePlayersInGuildBase() {
+    const gameState = GameState.getInstance();
+    _.each(this.onlineMembers, member => {
+      const player = gameState.getPlayer(member.name);
+      if(!player || player.map !== this.baseName) return;
+
+      const startLoc = this.$base.startLoc;
+      player.x = startLoc[0];
+      player.y = startLoc[1];
+    });
+  }
+
+  moveBases(newBase: string, propagate = true) {
+    this.baseLocation = newBase;
+    this.resetBuildings();
+    this.buildBase();
+    this.resetOnlinePlayersInGuildBase();
+
+    if(propagate) {
+      GuildMoveBaseRedis(this.name, newBase);
+    }
+
+    this.save();
+  }
+
+  getProperty(buildingName: string, propName: string) {
+    return this.buildings.properties[`${buildingName}-${propName}`];
+  }
+
+  updateProperty(buildingName: string, propName: string, propValue: string, propagate = true) {
+
+    this.buildings.properties[`${buildingName}-${propName}`] = propValue;
+    this.buildBuilding(buildingName);
+
+    if(propagate) {
+      GuildUpdateBuildingPropertyRedis(this.name, buildingName, propName, propValue);
+    }
+
+    this.recalculateStats();
+
+    this.save();
   }
 
   addResources({ wood, clay, stone, astralium }) {

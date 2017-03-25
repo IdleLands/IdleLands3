@@ -219,7 +219,13 @@ export class PlayerMovement {
       Logger.error('PlayerMovement', new Error(`${player.name} in ${player.map} @ ${player.x},${player.y} is unable to move due to no weights.`));
     }
 
-    const randomIndex = chance.weighted(indexes, weight);
+    let randomIndex;
+    try {
+      randomIndex = chance.weighted(indexes, weight);
+    } catch(e) {
+      player.moveToStart();
+      Logger.error('PlayerMovement', e);
+    }
     const dir = directions[randomIndex];
 
     return [randomIndex, this.num2dir(dir, player.x, player.y), dir];

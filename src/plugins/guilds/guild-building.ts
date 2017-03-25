@@ -11,6 +11,8 @@ export class GuildBuilding {
 
   static properties: Array<{ name: string, type: string, values?: string[] }> = [];
 
+  static baseTile = 0;
+
   static woodCost = (level) => 0;
   static clayCost = (level) => 0;
   static stoneCost = (level) => 0;

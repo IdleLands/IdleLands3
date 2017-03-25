@@ -2,12 +2,12 @@
 import { GameState } from '../../core/game-state';
 import { Logger } from '../../shared/logger';
 
-export const event = 'plugin:guild:building:build';
-export const description = 'Build a building in the guild.';
-export const args = 'buildingName, slot';
+export const event = 'plugin:guild:building:movebase';
+export const description = 'Move the guild to a new place.';
+export const args = 'newBase';
 export const socket = (socket, primus, respond) => {
 
-  const request = async({ buildingName, slot }) => {
+  const request = async({ newBase }) => {
     if(!socket.authToken) return;
 
     const { playerName } = socket.authToken;
@@ -17,8 +17,8 @@ export const socket = (socket, primus, respond) => {
     const player = gameState.getPlayer(playerName);
     if(!player || !player.guild || player.guild.$noGuild) return;
 
-    Logger.info('Socket:Guild:Building:Build', `${playerName} (${socket.address.ip}) building ${buildingName} in slot ${slot}.`);
-    const message = gameState.guilds.buildBuilding(player, buildingName, slot);
+    Logger.info('Socket:Guild:Building:MoveBase', `${playerName} (${socket.address.ip}) moving to ${newBase}.`);
+    const message = gameState.guilds.moveBase(player, newBase);
 
     if(message) {
       respond({ type: 'error', title: 'Guild Error', notify: message });

@@ -10,7 +10,13 @@ const f = {
 
 export class Academy extends GuildBuilding {
   static size: Size = 'md';
-  static desc = 'Upgrade this building to make your roster size go up!';
+  static desc = 'This building controls the size of your guild roster!';
+
+  static woodCost =       (level) => level * 50;
+  static clayCost =       (level) => level * 25;
+  static stoneCost =      (level) => level * 50;
+  static astraliumCost =  (level) => level * 10;
+  static goldCost =       (level) => level * 100000;
 
   tiles = [
     0,  0,  0,  0,  0,

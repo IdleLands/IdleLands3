@@ -55,6 +55,14 @@ export class GuildBase extends Map {
     lg: []
   };
 
+  updateSignpost(building: string, size: string, slot: number) {
+    const { signpostLoc } = this.buildings[size][slot];
+    const sign = _.find(this.map.layers[2].objects, { x: signpostLoc[0] * 16, y: (1 + signpostLoc[1]) * 16 });
+    if(!sign) return;
+
+    sign.name = `Level ${this.$guild.buildings.levels[building]} ${building}`;
+  }
+
   buildBuilding(building: string, size: string, slot: number, instance: GuildBuilding) {
     const { startCoords, signpostLoc, tiles } = this.buildings[size][slot];
 
@@ -85,7 +93,7 @@ export class GuildBase extends Map {
 
     this.map.layers[2].objects = _.reject(this.map.layers[2].objects, (item) => _.includes(tileIndexes, (item.y/16) * mapWidth + item.x/16));
 
-    const sign = _.find(this.map.layers[2].objects, { x: signpostLoc[0] * 16, y: signpostLoc[1] * 16 });
+    const sign = _.find(this.map.layers[2].objects, { x: signpostLoc[0] * 16, y: (1 + signpostLoc[1]) * 16 });
 
     if(sign) {
       sign.name = `Level ${this.$guild.buildings.levels[building]} ${building}`;

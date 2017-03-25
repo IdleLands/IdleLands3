@@ -3,18 +3,21 @@ import { GuildBuilding, Size } from '../guild-building';
 
 export class Enchantress extends GuildBuilding {
   static size: Size = 'sm';
-  static desc = 'Upgrade this magic user to get better enchanting capabilities!';
+  static desc = 'This magic user is capable of wicked enchantments!';
+
+  static astraliumCost =  (level) => level * 2500;
+  static goldCost =       (level) => level * 500000;
 
   static properties = [
     { name: 'Name', type: 'text' },
-    { name: 'AttemptEnchant', type: 'select', values: ['Yes', 'No'] }
+    { name: 'AttemptUnsafeEnchant', type: 'select', values: ['Yes', 'No'] }
   ];
 
   init() {
     const mascotName = this.getProperty('Name');
 
     const f = {
-      name: mascotName || 'Enchantress',
+      name: `${mascotName} the Enchantress` || 'Enchantress',
       gid: 21,
       type: 'Guild NPC',
       properties: {
