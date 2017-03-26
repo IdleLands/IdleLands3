@@ -172,11 +172,9 @@ export class Guild {
     const buildingProto = Buildings[name];
     if(!this.buildings.levels[name]) this.buildings.levels[name] = 1;
 
-    if(_.isUndefined(slot)) {
-      slot = _.indexOf(this.buildings.currentlyBuilt[buildingProto.size], name);
+    if(_.isUndefined(slot) && this.$buildingInstances[name]) {
+      slot = this.$buildingInstances[name].$slot;
     }
-
-    console.log(name, slot, buildingProto.size);
 
     const building = new buildingProto(this);
     building.$slot = slot;
