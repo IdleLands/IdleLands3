@@ -44,10 +44,12 @@ export const Regions = {
     TownCrierChance: (player, baseValue) => baseValue*3
   },
   'Guild Hall': {
-    shopPriceMultiplier: (player) => player.hasGuild ? 1 + (Math.floor(player.guild.buildings.levels.GuildShop/3) * 0.5) : 0,
-    shopSlots: (player) => player.hasGuild ? 1 + Math.floor(player.guild.buildings.levels.GuildShop/10) : 0,
-    shopQuality: (player) => player.hasGuild ? player.guild.buildings.levels.GuildShop/5 : 0,
-    TownCrierChance: (player, baseValue) => baseValue*2
+    shopPriceMultiplier:  (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? 1 + (Math.floor(player.guild.buildings.levels.GuildShop/3) * 0.5) : 0,
+    shopSlots:            (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? 1 + Math.floor(player.guild.buildings.levels.GuildShop/10) : 0,
+    shopQuality:          (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? player.guild.buildings.levels.GuildShop/5 : 0,
+    TownCrierChance:      (player, baseValue) => baseValue*2,
+    GuildGambling:        (player) => player.hasGuild && player.guild.hasBuilt('Tavern') ? player.guild.buildings.levels.Tavern*3 : 0,
+    GuildParty:           (player) => player.hasGuild && player.guild.hasBuilt('Tavern') ? player.guild.buildings.levels.Tavern*9 : 0
   },
 
   'Dangerous Cave Area': {

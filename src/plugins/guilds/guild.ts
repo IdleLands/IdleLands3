@@ -151,6 +151,10 @@ export class Guild {
     }
   }
 
+  hasBuilt(building: string) {
+    return this.buildings.currentlyBuilt[building];
+  }
+
   resetBuildings() {
     this.buildings.currentlyBuilt = { sm: [], md: [], lg: [] };
     this.$buildingInstances = {};

@@ -3,34 +3,50 @@ import * as _ from 'lodash';
 import { Event } from '../event';
 
 import { MessageCategories } from '../../../shared/adventure-log';
+import { XPForsake, GoldForsake } from './_all';
 
-export const WEIGHT = 6;
 const MIN_GOLD = 5000;
 const INCOME_PERCENT = 10;
 
 // Get the opportunity to gamble away your gold
-export class Gambling extends Event {
-  static WEIGHT = WEIGHT;
+export class GuildGambling extends Event {
+  static WEIGHT = 0;
 
   static operateOn(player) {
+    if(!player.hasGuild) return;
 
-    if(player.gold < MIN_GOLD * INCOME_PERCENT) return;
-    const cost = this.chance.integer({ min: MIN_GOLD, max: player.gold / INCOME_PERCENT });
+    const tavernLevel = player.guild.buildings.levels.Tavern || 0;
+    if(tavernLevel === 0) return;
+
+    const MOD_INCOME_PERCENT = INCOME_PERCENT + Math.floor(tavernLevel / 5);
+
+    if(player.gold < MIN_GOLD * MOD_INCOME_PERCENT) return;
+    const cost = this.chance.integer({ min: MIN_GOLD, max: player.gold / MOD_INCOME_PERCENT });
+
+    const multiplierMin = 0.5 + (0.1 * Math.floor(tavernLevel/3));
+    const multiplierMax = 1 + (0.1 * Math.floor(tavernLevel/5));
+
+    const oddsMin = Math.max(20, 5 + (0.5 * Math.floor(tavernLevel/2)));
+    const oddsMax = Math.max(75, 30 + (0.5 * Math.floor(tavernLevel/7)));
 
     const id = Event.chance.guid();
-    const multiplier = this.chance.floating({ fixed: 2, min: 1.3, max: 2 });
-    const odds = this.chance.integer({ min: 10, max: 50 });
+    const multiplier = this.chance.floating({ fixed: 2, min: multiplierMin, max: multiplierMax });
+    const odds = this.chance.integer({ min: oddsMin, max: oddsMax });
 
     const message = `Would you like to gamble ${cost.toLocaleString()} gold at a ${multiplier}x rate with ${odds}% chance to win?`;
     const extraData = { multiplier, cost, odds };
 
-    player.addChoice({ id, message, extraData, event: 'Gambling', choices: ['Yes', 'No', 'Double Down'] });
+    player.addChoice({ id, message, extraData, event: 'Gambling', choices: ['Yes', 'No', 'Double Down', 'Cheat'] });
 
     return [player];
   }
 
   static makeChoice(player, id, response) {
     if(response === 'No') return;
+    if(!player.hasGuild) return;
+
+    const tavernLevel = player.guild.buildings.levels.Tavern || 0;
+    if(tavernLevel === 0) return;
 
     const choice = _.find(player.choices, { id });
     let { cost, multiplier, odds } = choice.extraData;
@@ -40,6 +56,25 @@ export class Gambling extends Event {
       cost *= 2;
       multiplier *= 2;
       odds /= 2;
+    }
+
+    const isCheat = response === 'Cheat';
+    const getCaughtChance = Math.max(15, 50 - (tavernLevel/5));
+
+    if(Event.chance.bool({ likelihood: getCaughtChance })) {
+      let cheatMessage = '%player got caught cheating and lost some XP and Gold as a punishment!';
+      cheatMessage = this._parseText(cheatMessage, player);
+      this.emitMessage({ affected: [player], eventText: cheatMessage, category: MessageCategories.GOLD });
+      player.$statistics.incrementStat('Character.Gamble.CheatFail');
+
+      XPForsake.operateOn(player, '%player got caught cheating and lost %xp xp!');
+      GoldForsake.operateOn(player, '%player got caught cheating and lost %gold gold!');
+      return;
+    }
+
+    if(isCheat) {
+      odds += 10;
+      player.$statistics.incrementStat('Character.Gamble.CheatSuccess');
     }
 
     if(player.gold < cost || _.isNaN(cost) || cost < 0) return Event.feedback(player, 'You do not have enough gold!');

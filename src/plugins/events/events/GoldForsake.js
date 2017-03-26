@@ -8,7 +8,7 @@ export const WEIGHT = 72;
 export class GoldForsake extends Event {
   static WEIGHT = WEIGHT;
 
-  static operateOn(player) {
+  static operateOn(player, forceMessage) {
 
     let value = Event.chance.integer({ min: 10, max: 500 * player.level });
     if(Event.chance.bool({ likelihood: 5 })) {
@@ -20,7 +20,7 @@ export class GoldForsake extends Event {
     const goldModCheck = player._calcModGold(-value);
 
     const goldMod = Math.min(player.gold, Math.max(Math.abs(goldModCheck), Math.abs(value)));
-    const eventText = this.eventText('forsakeGold', player, { gold: goldMod });
+    const eventText = forceMessage ? this._parseText(forceMessage, player, { gold: goldMod }) : this.eventText('forsakeGold', player, { gold: goldMod });
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [-${goldMod.toLocaleString()} gold]`, category: MessageCategories.GOLD });
 
