@@ -171,6 +171,8 @@ export class Guilds {
     const guild: Guild = player.guild;
     guild.donateGold(player, gold);
     player.$statistics.incrementStat('Character.Gold.Donate', gold);
+
+    return `Successfully donated ${gold} gold.`;
   }
 
   inviteMember(player, newMemberName) {
@@ -192,6 +194,8 @@ export class Guilds {
     if((newMember && newMember.hasGuild) || (newMemberRedis && newMemberRedis.guildName)) return 'That person already has a guild!';
 
     guild.inviteMember(player, newMember || newMemberRedis);
+
+    return `Sucecssfully invited ${newMemberName}.`;
   }
 
   private finalizeInviteRemoval(player) {
@@ -246,6 +250,8 @@ export class Guilds {
     if(!guild.canKick(mod, member)) return 'You do not have enough privileges to do this!';
 
     guild.kickMember(member);
+
+    return `Sucessfully kicked ${memberName}`;
   }
 
   promoteMember(player, memberName: string) {
@@ -256,6 +262,8 @@ export class Guilds {
     if(guild.isMod(member)) return 'Member already a mod!';
 
     guild.promoteMember(memberName);
+
+    return `Successfully promoted ${memberName}.`;
   }
 
   demoteMember(player, memberName: string) {
@@ -266,6 +274,8 @@ export class Guilds {
     if(!guild.isMod(member)) return 'Member already lowest privileges!';
 
     guild.demoteMember(memberName);
+
+    return `Successfully demoted ${memberName}.`;
   }
 
   buildBuilding(player, buildingName, slot) {
@@ -291,6 +301,8 @@ export class Guilds {
 
     player._updateGuild();
     player._updateGuildBuildings();
+
+    return `Successfully built ${buildingName}.`;
   }
 
   upgradeBuilding(player, buildingName) {
@@ -324,6 +336,8 @@ export class Guilds {
 
     player._updateGuild();
     player._updateGuildBuildings();
+
+    return `Successfully upgraded ${buildingName}.`;
   }
 
   moveBase(player, newBase) {
@@ -344,6 +358,8 @@ export class Guilds {
 
     player._updateGuild();
     player._updateGuildBuildings();
+
+    return `Successfully moved base to ${newBase}.`;
   }
 
   updateProp(player, buildingName, propName, propValue) {
@@ -364,6 +380,8 @@ export class Guilds {
     guild.updateProperty(buildingName, propName, propValue);
 
     player._updateGuildBuildings();
+
+    return `Successfully updated ${buildingName} "${propName}" to ${propValue}.`;
   }
 
 }
