@@ -18,7 +18,7 @@ _.each(sortedPets, (petKey, index) => {
 	indexString += `${index + 1}. [${petKey}](#${_.kebabCase(petKey)})\n`;
 	
 	if (index > 0) {
-		petString += `\n######[\\[top\\]](#idlelands-pets)`;
+		petString += `\n###### [\\[top\\]](#idlelands-pets)`;
 	}
 	
 	petString += `\n---\n\n`;
