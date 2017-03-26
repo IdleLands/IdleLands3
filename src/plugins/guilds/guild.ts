@@ -101,7 +101,7 @@ export class Guild {
   }
 
   recalculateStats() {
-    this.maxMembers = 10 + this.buildings.levels.Academy;
+    this.maxMembers = 10 + (this.buildings.levels.Academy || 0);
 
     this.$statBoosts = {};
 
