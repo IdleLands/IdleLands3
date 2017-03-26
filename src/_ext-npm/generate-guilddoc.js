@@ -33,7 +33,7 @@ _.each(_.sortBy(_.keys(Bases)), (baseKey, index) => {
   const baseInst = new base('Test');
 
   if (index > 0) {
-    docString += `\n######[\\[top\\]](#idlelands-guild-basesbuildings)`;
+    docString += `\n###### [\\[top\\]](#idlelands-guild-basesbuildings)`;
   }
 
   docString += `\n---\n\n`;
@@ -59,14 +59,14 @@ _.each(_.sortBy(_.keys(Buildings)), (buildingKey, index) => {
   const building = Buildings[buildingKey];
 
   if (index > 0) {
-    docString += `\n######[\\[top\\]](#idlelands-guild-basesbuildings)`;
+    docString += `\n###### [\\[top\\]](#idlelands-guild-basesbuildings)`;
   }
 
   docString += `\n---\n\n`;
 
   docString += `## ${buildingKey}\n\n`;
-  docString += `${building.desc}\n`;
-  docString += `Size: ${building.size}\n`;
+  docString += `${building.desc}\n\n`;
+  docString += `Size: ${building.size}\n\n`;
 
   docString += `Cost Per Level (compounding)\n\n`;
   docString += `Wood|Clay|Stone|Astralium|Gold\n`;
