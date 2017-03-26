@@ -12,6 +12,33 @@ export const WEIGHT = 306;
 export class FindItem extends Event {
   static WEIGHT = WEIGHT;
 
+  static disposeOfItem(player, item) {
+
+    const playerItem = player.equipment[item.type];
+    const text = playerItem.score > item.score ? 'weak' : 'strong';
+
+    if(player.$personalities.isActive('Salvager') && player.hasGuild) {
+      let message = `%player came across %item, but it was too ${text} for %himher, but it was unsalvageable.`;
+      const salvageResult = player.getSalvageValues(item);
+      const { wood, clay, stone, astralium } = salvageResult;
+
+      if(wood > 0 || clay > 0 || stone > 0 || astralium > 0) {
+        player.incrementSalvageStatistics(salvageResult);
+        message = `%player came across %item, but it was too ${text} for %himher, so %she salvaged it for %wood wood, %clay clay, %stone stone, and %astralium astralium.`;
+      }
+
+      const parsedMessage = this._parseText(message, player, { wood, clay, stone, astralium, item: item.fullname });
+      this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
+
+      return;
+    }
+    const message = `%player came across %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
+    const gold = player.sellItem(item);
+    const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
+    player.$statistics.incrementStat('Character.Item.Unequippable');
+    this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
+  }
+
   static operateOn(player, opts = {}, forceItem) {
 
     let item = forceItem;
@@ -19,32 +46,8 @@ export class FindItem extends Event {
     if(!forceItem) {
       item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk), player.level);
 
-      const playerItem = player.equipment[item.type];
-      const text = playerItem.score > item.score ? 'weak' : 'strong';
-
       if(!player.canEquip(item) || item.score <= 0) {
-        if(player.$personalities.isActive('Salvager') && player.hasGuild) {
-          let message = `%player came across %item, but it was too ${text} for %himher, but it was unsalvageable.`;
-          const salvageResult = player.getSalvageValues(item);
-          const { wood, clay, stone, astralium } = salvageResult;
-
-          if(wood > 0 || clay > 0 || stone > 0 || astralium > 0) {
-            player.incrementSalvageStatistics(salvageResult);
-            message = `%player came across %item, but it was too ${text} for %himher, so %she salvaged it for %wood wood, %clay clay, %stone stone, and %astralium astralium.`;
-          }
-
-          const parsedMessage = this._parseText(message, player, { wood, clay, stone, astralium, item: item.fullname });
-          this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
-
-          return;
-        }
-
-        const message = `%player came across %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
-        const gold = player.sellItem(item);
-        const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
-        player.$statistics.incrementStat('Character.Item.Unequippable');
-        this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
-        return;
+        return this.disposeOfItem(player, item);
       }
     }
 
@@ -63,12 +66,14 @@ export class FindItem extends Event {
   }
 
   static makeChoice(player, id, response) {
-    if(response === 'No') return;
     const choice = _.find(player.choices, { id });
+    const item = new Equipment(choice.extraData.item);
+
+    if(response === 'No') {
+      return this.disposeOfItem(player, item);
+    }
 
     if((!_.includes(choice.choices, 'Pet') && response === 'Pet')) return Event.feedback(player, 'Invalid choice. Cheater.');
-
-    const item = new Equipment(choice.extraData.item);
 
     if(response === 'Pet') {
       const pet = player.$pets.activePet;
