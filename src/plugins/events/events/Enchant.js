@@ -41,7 +41,6 @@ export class Enchant extends Event {
       const stat = this.pickStat(item);
       const boost = 50;
       return [stat, boost];
-
     }
 
     const { enchantMax, name } = _.sample(SPECIAL_STATS_BASE.concat(ATTACK_STATS_BASE));
@@ -65,9 +64,8 @@ export class Enchant extends Event {
 
     const [stat, boost] = this.getStatAndBoost(item);
 
-    eventText = `${eventText} [${stat} ${item[stat]} -> ${item[stat]+boost}]`;
-
     item[stat] = item[stat] || 0;
+    eventText = `${eventText} [${stat} ${item[stat]} -> ${item[stat]+boost}]`;
     item[stat] += boost;
 
     item.enchantLevel = item.enchantLevel || 0;
@@ -116,9 +114,10 @@ export class Enchant extends Event {
       } else {
         baseEventText = `${baseEventText} Fortunately, %item was successfully enchanted to +${currentLevel + 1}!`;
         const [stat, boost] = this.getStatAndBoost(item);
-        baseEventText = `${baseEventText} [${stat} ${item[stat]} -> ${item[stat]+boost}]`;
 
         item[stat] = item[stat] || 0;
+        baseEventText = `${baseEventText} [${stat} ${item[stat]} -> ${item[stat]+boost}]`;
+
         item[stat] += boost;
         item.enchantLevel++;
         item.score;
