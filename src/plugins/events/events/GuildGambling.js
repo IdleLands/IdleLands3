@@ -3,7 +3,8 @@ import * as _ from 'lodash';
 import { Event } from '../event';
 
 import { MessageCategories } from '../../../shared/adventure-log';
-import { XPForsake, GoldForsake } from './_all';
+import { XPForsake } from './XPForsake';
+import { GoldForsake } from './GoldForsake';
 
 const MIN_GOLD = 5000;
 const INCOME_PERCENT = 10;
