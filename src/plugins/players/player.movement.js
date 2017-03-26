@@ -160,6 +160,8 @@ export class PlayerMovement {
     player.oldRegion = player.mapRegion;
     player.mapRegion = tile.region;
 
+    this.handleTile(player, tile);
+
     player.$statistics.incrementStat(`Character.Movement.${_.capitalize(dest.movementType)}`);
 
     emitter.emit('player:transfer', { player, dest });
