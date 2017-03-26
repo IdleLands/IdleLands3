@@ -176,6 +176,8 @@ export class Guild {
       slot = _.indexOf(this.buildings.currentlyBuilt[buildingProto.size], name);
     }
 
+    console.log(name, slot, buildingProto.size);
+
     const building = new buildingProto(this);
     building.$slot = slot;
     this.$buildingInstances[name] = building;

@@ -23,7 +23,8 @@
     "gitfix": "git add docs && git add CHANGELOG.md",
     "gen:items": "node test/gen/items",
     "prerelease": "npm run test && npm run generate:all",
-    "release": "standard-version --no-verify"
+    "release": "standard-version --no-verify",
+    "build:dist": "tsc"
   },
   "engines": {
     "node": "6.5.0"
