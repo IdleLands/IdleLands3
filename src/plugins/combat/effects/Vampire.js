@@ -13,7 +13,7 @@ export class Vampire extends Effect {
 
   tick() {
     super.tick();
-    let damage = Math.round(this.target.hp * 0.01 * this.potency);
+    let damage = Math.round(this.target.hp * 0.01 * Math.min(this.potency, 5));
     
     if (this.target.$isBoss) {
       damage = Math.round(damage / 4);
