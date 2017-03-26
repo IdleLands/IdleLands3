@@ -103,6 +103,11 @@ export class Guild {
   recalculateStats() {
     this.maxMembers = 10 + (this.buildings.levels.Academy || 0);
 
+    const numBuildings = _.size(Buildings);
+    const totalLevel = _.sum(_.values(this.buildings.levels));
+
+    this.level = Math.max(1, Math.floor(totalLevel / numBuildings));
+
     this.$statBoosts = {};
 
     if(this.$buildingInstances.GardenSmall) {
