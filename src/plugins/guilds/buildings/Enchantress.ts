@@ -5,7 +5,7 @@ export class Enchantress extends GuildBuilding {
   static size: Size = 'sm';
   static desc = 'This magic user is capable of wicked enchantments!';
 
-  static astraliumCost =  (level) => level * 2500;
+  static astraliumCost =  (level) => level * 500;
   static goldCost =       (level) => level * 500000;
 
   static properties = [

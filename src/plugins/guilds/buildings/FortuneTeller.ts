@@ -5,7 +5,7 @@ export class FortuneTeller extends GuildBuilding {
   static size: Size = 'sm';
   static desc = 'This crystal ball user can give you better providences!';
 
-  static astraliumCost =  (level) => level * 5000;
+  static astraliumCost =  (level) => level * 1000;
   static goldCost =       (level) => level * 1000000;
 
   static properties = [
