@@ -57,8 +57,7 @@ export class PlayerMovement {
     return !tile.blocked && tile.terrain !== 'Void';
   }
 
-  // TODO https://github.com/IdleLands/IdleLandsOld/blob/master/src/character/player/Player.coffee#L347
-  static handleTile(player, tile) {
+  static handleTile(player, tile, ignoreIf) {
     const type = _.get(tile, 'object.type');
 
     const forceEvent = _.get(tile, 'object.properties.forceEvent', '');
@@ -70,7 +69,7 @@ export class PlayerMovement {
       Events[forceEvent].operateOn(player, tile.object.properties);
     }
 
-    if(!type || !this[`handleTile${type}`]) return;
+    if(!type || !this[`handleTile${type}`] || ignoreIf === type) return;
     this[`handleTile${type}`](player, tile);
   }
 
@@ -90,7 +89,7 @@ export class PlayerMovement {
     BattleBoss.operateOn(player, { bossName: tile.object.name, bosses: bossparty });
   }
 
-  static handleGuildTeleport(player) {
+  static handleTileGuildTeleport(player) {
     if(!player.hasGuild) return;
     this.handleTileTeleport(player, { object: { properties: { toLoc: 'guildbase' } } });
   }
@@ -160,7 +159,7 @@ export class PlayerMovement {
     player.oldRegion = player.mapRegion;
     player.mapRegion = tile.region;
 
-    this.handleTile(player, tile);
+    this.handleTile(player, tile, 'Teleport');
 
     player.$statistics.incrementStat(`Character.Movement.${_.capitalize(dest.movementType)}`);
 
