@@ -51,7 +51,7 @@ export class Raburro extends GuildBase {
         ] }
     ],
     md: [
-      { startCoords: [7, 2], signpostLoc: [7, 4],
+      { startCoords: [8, 2], signpostLoc: [7, 4],
         tiles: [
           0, 0, 0, 0, 0,
           0, 0, 0, 0, 0,
