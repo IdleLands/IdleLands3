@@ -91,7 +91,7 @@ export class PlayerMovement {
 
   static handleTileGuildTeleport(player) {
     if(!player.hasGuild) return;
-    this.handleTileTeleport(player, { object: { properties: { toLoc: 'guildbase' } } });
+    this.handleTileTeleport(player, { object: { properties: { toLoc: 'guildbase', movementType: 'teleport' } } });
   }
 
   static handleTileTrainer(player, tile) {
