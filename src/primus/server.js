@@ -25,7 +25,7 @@ export const primus = (() => {
     .first();
 
   if(ip) {
-    Logger.info('Server', `Server IP is: ${ip}:${process.env.PORT || 8080}` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
+    Logger.important('Server', `Server IP is: ${ip}:${process.env.PORT || 8080}` + (process.env.QUIET ? ' (quiet mode. ssh...)' : ''));
   }
 
   const express = require('express');
@@ -67,7 +67,7 @@ export const primus = (() => {
 
   server.listen(process.env.PORT || 8080);
 
-  Logger.info('Server', 'Express started.');
+  Logger.important('Server', 'Express started.');
 
   const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
 
@@ -191,7 +191,7 @@ export const primus = (() => {
           return;
         }
         
-        Logger.info('Primus:Generate', `${root} is installed. Generating a Primus file for it.`);
+        Logger.important('Primus:Generate', `${root} is installed. Generating a Primus file for it.`);
         primus.save(`${path}/primus.gen.js`);
       });
     });

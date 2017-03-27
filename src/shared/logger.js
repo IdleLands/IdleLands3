@@ -35,9 +35,13 @@ export class Logger {
     }
   }
 
+  static important(tag, message) {
+    console.log(this._formatMessage(`${process.env.INSTANCE_NUMBER}:${tag}`, message));
+  }
+
   static info(tag, message) {
-    if (isQuiet) return;
-    console.info(this._formatMessage(tag, message));
+    if(isQuiet) return;
+    console.info(this._formatMessage(`${process.env.INSTANCE_NUMBER}:${tag}`, message));
   }
 
   static silly(tag, message) {
