@@ -225,7 +225,7 @@ export class PlayerMovement {
       randomIndex = chance.weighted(indexes, weight);
     } catch(e) {
       player.moveToStart();
-      Logger.error('PlayerMovement', e);
+      Logger.error('PlayerMovement', new Error('Chance.weighted failed. RIP'));
     }
     const dir = directions[randomIndex];
 
