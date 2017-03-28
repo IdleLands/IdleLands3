@@ -172,6 +172,10 @@ export const primus = (() => {
       Logger.error('Spark', e);
     });
 
+    spark.on('roomserror', e => {
+      Logger.error('Spark:Rooms', e);
+    });
+
     setTimeout(() => {
       if(spark.authToken || spark._registering) return;
       spark.end();
@@ -180,6 +184,10 @@ export const primus = (() => {
 
   primus.on('error', e => {
     Logger.error('Primus', e);
+  });
+
+  primus.on('roomserror', (error) => {
+    Logger.error('Primus:Rooms', error);
   });
 
   if(process.env.NODE_ENV !== 'production') {
