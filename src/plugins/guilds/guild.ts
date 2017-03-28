@@ -95,6 +95,7 @@ export class Guild {
     if(!this.$statBoosts) this.$statBoosts = {};
 
     _.each(this.members, member => { if(member.rank > 5) member.rank = 5; });
+    _.each(_.keys(Buildings), building => this.buildings.levels[building] = this.buildings.levels[building] || 0);
 
     this.buildBase();
     this.recalculateStats();
