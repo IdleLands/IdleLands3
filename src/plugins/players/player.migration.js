@@ -31,7 +31,7 @@ export const migrate = (player) => {
   const combatSolo = player.$statistics.getStat('CombatSolo');
   if(combatSolo > 0) {
     player.$statistics.setStat('Combat.TimesSolo', combatSolo);
-    player.$statistics.setStat('Combats', 0);
+    player.$statistics.setStat('CombatSolo', 0);
   }
 
   if(player.guild && !player.guild.$noGuild && player.guildInvite) {
