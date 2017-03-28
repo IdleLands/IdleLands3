@@ -27,6 +27,7 @@ export class Bonecraft extends Spell {
       if(!target.$prevParty) {
         target.$prevParty = target.party;
       }
+
       target.party.playerLeave(target);
       this.caster.party.playerJoin(target);
 
