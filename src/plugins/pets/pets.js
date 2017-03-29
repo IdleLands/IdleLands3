@@ -241,6 +241,8 @@ export class Pets {
     const otherPet = _.find(this.$pets, { $petId: petId });
     if(!otherPet) return 'You do not have that pet!';
 
+    if(otherPet.$petId === pet.$petId) return 'You cannot give it to the same pet!';
+
     if(otherPet.inventoryFull()) return 'Other pet inventory full.';
 
     pet.removeFromInventory(item);
