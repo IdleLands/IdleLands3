@@ -63,7 +63,7 @@ export class PlayerMovement {
     const forceEvent = _.get(tile, 'object.properties.forceEvent', '');
     if(forceEvent) {
       if(!Events[forceEvent]) {
-        Logger.error('PlayerMovement', `forceEvent ${forceEvent} does not exist at ${player.x}, ${player.y} in ${player.map}`);
+        Logger.error('PlayerMovement', new Error(`forceEvent ${forceEvent} does not exist at ${player.x}, ${player.y} in ${player.map}`));
         return;
       }
       Events[forceEvent].operateOn(player, tile.object.properties);
