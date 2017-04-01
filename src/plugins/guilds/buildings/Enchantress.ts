@@ -21,7 +21,7 @@ export class Enchantress extends GuildBuilding {
       gid: 21,
       type: 'Guild NPC',
       properties: {
-        forceEvent: 'enchant',
+        forceEvent: 'Enchant',
         isGuild: true
       }
     };
