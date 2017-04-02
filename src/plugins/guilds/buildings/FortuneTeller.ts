@@ -20,7 +20,7 @@ export class FortuneTeller extends GuildBuilding {
       gid: 23,
       type: 'Guild NPC',
       properties: {
-        forceEvent: 'providence',
+        forceEvent: 'Providence',
         isGuild: true
       }
     };
