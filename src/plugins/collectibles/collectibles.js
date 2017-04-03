@@ -43,6 +43,10 @@ export class Collectibles {
     if(_.isUndefined(this.uniqueCollectibles)) {
       this.save();
     }
+
+    if(!this.priorCollectibles) {
+      this.priorCollectibles = {};
+    }
   }
 
   calcUniqueCollectibles() {

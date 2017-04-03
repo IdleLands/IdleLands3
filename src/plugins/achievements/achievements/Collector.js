@@ -4,7 +4,7 @@ import { Achievement, AchievementTypes } from '../achievement';
 export class Collector extends Achievement {
   static achievementData(player) {
 
-    const totalCollectibles = player.$collectibles.totalCollectibles();
+    const totalCollectibles = player.$collectibles.calcUniqueCollectibles();
 
     let tier = 1;
     while(totalCollectibles >= tier * 25) {
