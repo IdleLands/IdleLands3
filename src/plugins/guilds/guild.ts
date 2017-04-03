@@ -152,6 +152,15 @@ export class Guild {
     }
   }
 
+  verifyPlayer(player) {
+    const member = this.getMemberByName(player.name);
+    if(!member) return;
+
+    if(player.guildName && member.unacceptedInvite) {
+
+    }
+  }
+
   hasBuilt(building: string) {
     return this.buildings.currentlyBuilt[building];
   }

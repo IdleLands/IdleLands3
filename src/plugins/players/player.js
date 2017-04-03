@@ -409,10 +409,13 @@ export class Player extends Character {
 
     const incrementStats = [
       'Character.Steps',
-      `Character.Maps.${this.map}`,
       `Character.Terrains.${tile.terrain}`,
       `Character.Regions.${tile.region}`
     ];
+
+    if(!_.includes(this.map, 'Guild Base -')) {
+      incrementStats.push(`Character.Maps.${this.map}`);
+    }
 
     if(this.$personalities.isActive('Drunk')) {
       incrementStats.push('Character.Movement.Drunk');

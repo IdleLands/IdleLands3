@@ -134,6 +134,10 @@ export class PlayerLoad {
 
       player.$premium.checkDonatorFirstTimeBonus(player);
 
+      if(player.hasGuild) {
+        player.guild.verifyPlayer(player);
+      }
+
       player.isOnline = true;
       player.recalculateStats();
 
