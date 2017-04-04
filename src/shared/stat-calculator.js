@@ -6,8 +6,6 @@ import { GameState } from '../core/game-state';
 import { Regions } from './regions';
 
 export const SPECIAL_STATS_BASE = [
-  { name: 'hpregen',         desc: 'Regenerate HP every combat round.', enchantMax: 100 },
-  { name: 'mpregen',         desc: 'Regenerate MP every combat round.', enchantMax: 100 },
   { name: 'damageReduction', desc: 'Take 1 fewer damage per point from some sources. Stacks intensity.', enchantMax: 100 },
   { name: 'damageReductionPercent',  desc: '', enchantMax: 1 },
   { name: 'crit',            desc: '+1% crit chance. Stacks intensity.', enchantMax: 1 },
@@ -24,8 +22,10 @@ export const SPECIAL_STATS_BASE = [
   { name: 'sentimentality',  desc: '+1 score. Stacks intensity.', enchantMax: 500 },
   { name: 'hp',              desc: '+1 hp. Stacks intensity.', enchantMax: 2000 },
   { name: 'mp',              desc: '+1 mp. Stacks intensity.', enchantMax: 2000 },
-  { name: 'xp',              desc: 'Gain +1 xp every time xp is gained.', enchantMax: 1 },
-  { name: 'gold',            desc: 'Gain +1 gold every time gold is gained.', enchantMax: 500 }
+  { name: 'hpregen',         desc: 'Regenerate HP every combat round. Stacks intensity.', enchantMax: 100 },
+  { name: 'mpregen',         desc: 'Regenerate MP every combat round. Stacks intensity.', enchantMax: 100 },
+  { name: 'xp',              desc: 'Gain +1 xp every time xp is gained. Stacks intensity.', enchantMax: 1 },
+  { name: 'gold',            desc: 'Gain +1 gold every time gold is gained. Stacks intensity.', enchantMax: 500 }
 ];
 
 export const ATTACK_STATS_BASE = [
