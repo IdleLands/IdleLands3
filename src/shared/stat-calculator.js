@@ -29,7 +29,7 @@ export const SPECIAL_STATS_BASE = [
 ];
 
 export const ATTACK_STATS_BASE = [
-  { name: 'prone',           desc: '+5% chance of stunning an opponent for 1 round.', enchantMax: 1 },
+  { name: 'prone',           desc: '+5% chance of stunning an opponent for 1 round. Stacks intensity (round stun does not stack).', enchantMax: 1 },
   { name: 'venom',           desc: '+5% chance of inflicting venom (DoT, % of target HP) on an enemy. Stacks intensity.', enchantMax: 1 },
   { name: 'poison',          desc: '+5% chance of inflicting poison (DoT, based on caster INT) on an enemy. Stacks intensity.', enchantMax: 1 },
   { name: 'shatter',         desc: '+5% chance of inflicting shatter (-10% CON/DEX/AGI) on an enemy. Stacks intensity.', enchantMax: 1 },
