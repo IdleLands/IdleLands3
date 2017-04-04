@@ -14,6 +14,7 @@ export class XPForsake extends Event {
     const xpModCheck = player._calcModXp(-baseXP);
 
     const xpMod = Math.max(baseXP, xpModCheck);
+    player.gainXp(-xpMod, false);
 
     const eventText = forceMessage ? this._parseText(forceMessage, player, { xp: Math.abs(xpMod) }) : this.eventText('forsakeXp', player, { xp: Math.abs(xpMod) });
 
