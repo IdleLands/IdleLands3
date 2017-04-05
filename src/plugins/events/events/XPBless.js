@@ -16,10 +16,14 @@ export class XPBless extends Event {
       return player.party.players;
     }
 
-    const percent = Event.chance.floating({ fixed: 5, min: 0.01, max: 0.03 });
+    let percent = Event.chance.floating({ fixed: 5, min: 0.01, max: 0.03 });
+
     const baseXp = Math.floor(player._xp.maximum * percent);
     const xpMod = player.gainXp(baseXp);
     const eventText = this.eventText('blessXp', player, { xp: xpMod });
+
+    // recalculate for the modified value
+    percent = xpMod/player._xp.maximum;
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [+${xpMod.toLocaleString()} xp, ~${(percent*100).toFixed(2)}%]`, category: MessageCategories.XP });
 
