@@ -265,7 +265,7 @@ export class Player extends Character {
           this.$statistics.incrementStat('Character.Choice.Deny');
 
         } else if(this.$personalities.isActive('Indecisive')) {
-          this.handleChoice({ id: choice.id, response: _.sample(choice.choices) });
+          this.handleChoice({ id: choice.id, response: _.sample(['Yes', 'No']) });
           this.$statistics.incrementStat('Character.Choice.Indecisive');
         }
 
