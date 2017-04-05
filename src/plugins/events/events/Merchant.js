@@ -55,19 +55,40 @@ export class Merchant extends Event {
     const eventText = this.eventText('merchant', player, { item: item.fullname, shopGold: cost });
     const extraData = { item, cost, eventText };
 
-    player.addChoice({ id, message, extraData, event: 'Merchant', choices: ['Yes', 'No'] });
+    const choices = ['Yes', 'No'];
+    if(player.$pets.activePet) {
+      choices.push('Pet');
+    }
+
+    player.addChoice({ id, message, extraData, event: 'Merchant', choices });
 
     return [player];
   }
 
   static makeChoice(player, id, response) {
-    if(response !== 'Yes') return;
+    if(response === 'No') return;
     const choice = _.find(player.choices, { id });
+    if((!_.includes(choice.choices, 'Pet') && response === 'Pet')) return Event.feedback(player, 'Invalid choice. Cheater.');
+
     if(player.gold < choice.extraData.cost) return Event.feedback(player, 'You do not have enough gold!');
-    player.equip(new Equipment(choice.extraData.item));
+
+    const item = new Equipment(choice.extraData.item);
+
+    if(response === 'Yes') {
+      player.equip(item);
+      this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.GOLD });
+    }
+
+    if(response === 'Pet') {
+      const pet = player.$pets.activePet;
+      if(pet.inventoryFull()) return Event.feedback(player, 'Pet inventory full.');
+      pet.addToInventory(item);
+      const eventText = this._parseText('%player bought a fancy %item for %pet with %hisher %goldgold!', player, { item: item.fullname, gold: choice.extraData.cost });
+      this.emitMessage({ affected: [player], eventText, category: MessageCategories.ITEM });
+    }
+
     player.gainGold(-choice.extraData.cost, false);
     player.$statistics.incrementStat('Character.Gold.Spent', choice.extraData.cost);
-    this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.GOLD });
   }
 }
 
