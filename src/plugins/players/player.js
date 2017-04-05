@@ -327,6 +327,8 @@ export class Player extends Character {
   togglePersonality(personality) {
     if(!_.find(this.$personalities.earnedPersonalities, { name: personality })) return;
     this.$personalities.togglePersonality(this, personality);
+    this.recalculateStats();
+    this.update();
     this._updatePersonalities();
   }
 

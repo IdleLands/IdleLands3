@@ -42,6 +42,7 @@ export { Spiritualist } from './Spiritualist';
 export { Sponge } from './Sponge';
 export { TempterOfFate } from './TempterOfFate';
 export { Territorial } from './Territorial';
+export { Unequippable } from './Unequippable';
 export { Unstoppable } from './Unstoppable';
 export { Walker } from './Walker';
 export { Wolfmaster } from './Wolfmaster';
