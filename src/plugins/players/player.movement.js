@@ -216,7 +216,7 @@ export class PlayerMovement {
     }
     const indexes = [0, 1, 2, 3, 4, 5, 6, 7];
 
-    if(weight.length === 0) {
+    if(weight.length === 0 && !player.party) {
       Logger.error('PlayerMovement', new Error(`${player.name} in ${player.map} @ ${player.x},${player.y} is unable to move due to no weights.`));
     }
 

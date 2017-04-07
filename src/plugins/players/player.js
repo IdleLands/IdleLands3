@@ -365,19 +365,25 @@ export class Player extends Character {
     let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
     let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-    const partyTileCheck = () => {
-      if(!this.$playerMovement.canEnterTile(this, tile) && this.party) {
+    const partyTileCheck = (tile) => {
+      const party = this.party;
+      if(!party) return;
+
+      const followTarget = party.getFollowTarget(this);
+
+      if((!this.$playerMovement.canEnterTile(this, tile) || (followTarget && followTarget.map !== this.map))) {
         this.$partyStepsLeft = this.$partyStepsLeft || 3;
 
         if(this.$partyStepsLeft <= 0) {
           this.party.playerLeave(this);
+          this.$partyStepsLeft = 0;
         }
 
         this.$partyStepsLeft--;
       }
     };
 
-    partyTileCheck();
+    partyTileCheck(tile);
 
     let attempts = 1;
     while(!this.$playerMovement.canEnterTile(this, tile)) {
@@ -389,7 +395,7 @@ export class Player extends Character {
       [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-      partyTileCheck();
+      partyTileCheck(tile);
 
       attempts++;
       Logger.silly('Player:Move', `${this.name} doing tile enter check again ${attempts}`);

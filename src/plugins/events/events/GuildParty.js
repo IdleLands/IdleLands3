@@ -16,13 +16,14 @@ export class GuildParty extends Event {
 
   static operateOn(player) {
 
-    if(player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel) return;
+    if(player.$personalities.isActive('Solo') || player.level < SETTINGS.minPartyLevel || !player.guildName) return;
 
     const validPlayers = _.reject(
       GameState.getInstance().getPlayers(),
       p => p.$partyName || p === player
       || p.$personalities.isActive('Solo')
       || p.$personalities.isActive('Camping')
+      || !p.guildName
       || p.guildName !== player.guildName
     );
 
