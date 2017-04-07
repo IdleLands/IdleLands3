@@ -156,6 +156,8 @@ export class ItemGenerator extends Generator {
       .keys()
       .value();
 
+    if(validKeys.length === 0) return;
+
     const numKeys = item.vector ? Math.min(validKeys.length, item.vector) : chance.integer({ min: 1, max: validKeys.length });
     const chosenKeys = _.sampleSize(validKeys, numKeys);
 
