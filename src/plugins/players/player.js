@@ -256,17 +256,37 @@ export class Player extends Character {
     if(this.choices.length > this._choiceLimit) {
       if(this.$personalities.isAnyActive(['Affirmer', 'Denier', 'Indecisive'])) {
         const choice = this.choices[0];
+
+        let failed = false;
+
         if(_.includes(choice.choices, 'Yes') && this.$personalities.isActive('Affirmer')) {
-          this.handleChoice({ id: choice.id, response: 'Yes' });
-          this.$statistics.incrementStat('Character.Choice.Affirm');
+          const res = this.handleChoice({ id: choice.id, response: 'Yes' });
+          if(!res) {
+            this.$statistics.incrementStat('Character.Choice.Affirm');
+          } else {
+            failed = true;
+          }
 
         } else if(_.includes(choice.choices, 'No') && this.$personalities.isActive('Denier')) {
-          this.handleChoice({ id: choice.id, response: 'No' });
-          this.$statistics.incrementStat('Character.Choice.Deny');
+          const res = this.handleChoice({ id: choice.id, response: 'No' });
+          if(!res) {
+            this.$statistics.incrementStat('Character.Choice.Deny');
+          } else {
+            failed = true;
+          }
 
         } else if(this.$personalities.isActive('Indecisive')) {
-          this.handleChoice({ id: choice.id, response: _.sample(['Yes', 'No']) });
-          this.$statistics.incrementStat('Character.Choice.Indecisive');
+          const res = this.handleChoice({ id: choice.id, response: _.sample(['Yes', 'No']) });
+          if(!res) {
+            this.$statistics.incrementStat('Character.Choice.Indecisive');
+          } else {
+            failed = true;
+          }
+        }
+
+        if(failed) {
+          this.choices.shift();
+          this.$statistics.incrementStat('Character.Choice.Ignore');
         }
 
       } else {
