@@ -17,22 +17,24 @@ export class Logger {
   }
 
   static error(tag, error, payload) {
-    console.error(this._formatMessage(tag, error.message));
-    if(error.stack) {
-      console.error(error.stack);
-    }
-
-    if(payload) {
-      console.error('PAYLOAD', payload);
-    }
-
-    if(rollbarToken) {
-      if(payload) {
-        rollbar.handleErrorWithPayloadData(error, payload);
-      } else {
-        rollbar.handleError(error);
+    return new Promise(resolve => {
+      console.error(this._formatMessage(tag, error.message));
+      if(error.stack) {
+        console.error(error.stack);
       }
-    }
+
+      if(payload) {
+        console.error('PAYLOAD', payload);
+      }
+
+      if(rollbarToken) {
+        if(payload) {
+          rollbar.handleErrorWithPayloadData(error, payload, resolve);
+        } else {
+          rollbar.handleError(error, resolve);
+        }
+      }
+    });
   }
 
   static important(tag, message) {
@@ -54,11 +56,15 @@ export class Logger {
 }
 
 process.on('uncaughtException', err => {
-  Logger.error('PROCESS:BAD:EXCEPTION', err);
-  process.exit(2);
+  Logger.error('PROCESS:BAD:EXCEPTION', err)
+    .then(() => {
+      process.exit(2);
+    });
 });
 
 process.on('unhandledRejection', err => {
-  Logger.error('PROCESS:BAD:REJECTION', err);
-  process.exit(1);
+  Logger.error('PROCESS:BAD:REJECTION', err)
+    .then(() => {
+      process.exit(1);
+    });
 });
