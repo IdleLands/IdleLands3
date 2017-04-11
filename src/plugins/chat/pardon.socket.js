@@ -17,9 +17,8 @@ export const socket = (socket) => {
 
     const gameState = GameState.getInstance();
     const player = gameState.getPlayer(playerName);
-    const target = gameState.getPlayer(targetName);
 
-    if(!player || !player.isMod || !target) return;
+    if(!player || !player.isMod) return;
     Logger.info('Socket:Pardon', `${playerName} (${socket.address.ip}) pardoning ${targetName}.`);
 
     GMCommands.pardon(playerName);
