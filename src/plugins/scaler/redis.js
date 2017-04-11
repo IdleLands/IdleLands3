@@ -128,15 +128,18 @@ if(redisInstance) {
     GMCommands.setStat(playerName, stat, value, false);
   });
 
-  redisInstance.on('gm:ban', ({ playerName }) => {
+  redisInstance.on('gm:ban', ({ playerName, _instance }) => {
+    if(INSTANCE === _instance) return;
     GMCommands.ban(playerName, false);
   });
 
-  redisInstance.on('gm:mute', ({ playerName }) => {
+  redisInstance.on('gm:mute', ({ playerName, _instance }) => {
+    if(INSTANCE === _instance) return;
     GMCommands.mute(playerName, false);
   });
 
-  redisInstance.on('gm:pardon', ({ playerName }) => {
+  redisInstance.on('gm:pardon', ({ playerName, _instance }) => {
+    if(INSTANCE === _instance) return;
     GMCommands.pardon(playerName, false);
   });
 
