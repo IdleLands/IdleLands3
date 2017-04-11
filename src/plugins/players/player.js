@@ -426,12 +426,16 @@ export class Player extends Character {
     if(!this.$shop || (oldRegion !== this.mapRegion)) {
       this.$updateShop = true;
 
+      Logger.silly('Player:Move', `${this.name} generating shop`);
       this.$shop = ShopGenerator.regionShop(this);
+      Logger.silly('Player:Move', `${this.name} generated shop`);
     }
 
     this.mapPath = tile.path;
 
+    Logger.silly('Player:Move', `${this.name} handling tile`);
     this.$playerMovement.handleTile(this, tile);
+    Logger.silly('Player:Move', `${this.name} handled tile`);
 
     this.stepCooldown--;
 
