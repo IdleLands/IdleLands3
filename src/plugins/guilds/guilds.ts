@@ -195,7 +195,7 @@ export class Guilds {
 
     guild.inviteMember(player, newMember || newMemberRedis);
 
-    return `Sucecssfully invited ${newMemberName}.`;
+    return `Successfully invited ${newMemberName}.`;
   }
 
   private finalizeInviteRemoval(player) {
@@ -321,10 +321,10 @@ export class Guilds {
 
     const { wood, clay, stone, astralium, gold } = buildingProto.levelupCost(guild.buildings.levels[buildingName] || 1);
     if(guild.gold < gold) return 'Your guild does not have enough gold!';
-    if(guild.resources.wood < wood) return 'Your guild does not have enough gold!';
-    if(guild.resources.clay < clay) return 'Your guild does not have enough gold!';
-    if(guild.resources.stone < stone) return 'Your guild does not have enough gold!';
-    if(guild.resources.astralium < astralium) return 'Your guild does not have enough gold!';
+    if(guild.resources.wood < wood) return 'Your guild does not have enough wood!';
+    if(guild.resources.clay < clay) return 'Your guild does not have enough clay!';
+    if(guild.resources.stone < stone) return 'Your guild does not have enough stone!';
+    if(guild.resources.astralium < astralium) return 'Your guild does not have enough astralium!';
 
     guild.gold -= gold;
     guild.resources.wood -= wood;
