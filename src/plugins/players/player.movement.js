@@ -38,22 +38,59 @@ export class PlayerMovement {
   static canEnterTile(player, tile) {
     const properties = _.get(tile, 'object.properties');
     if(properties) {
-      if(properties.requireMap)         return player.$statistics.getStat(`Character.Maps.${properties.requireMap}`) > 0;
-      if(properties.requireRegion)      return player.$statistics.getStat(`Character.Regions.${properties.requireRegion}`) > 0;
-      if(properties.requireBoss)        return player.$statistics.getStat(`Character.BossKills.${properties.requireBoss}`) > 0;
-      if(properties.requireClass)       return player.professionName === properties.requireClass;
-      if(properties.requireAchievement) return player.$achievements.hasAchievement(properties.requireAchievement);
-      if(properties.requireCollectible) return player.$collectibles.hasCollectible(properties.requireCollectible);
-      if(properties.requireAscension)   return player.ascensionLevel >= +properties.requireAscension;
+      let totalRequirements = 0;
+      let metRequirements = 0;
+
+      if(properties.requireMap) {
+        totalRequirements++;
+        if(player.$statistics.getStat(`Character.Maps.${properties.requireMap}`) > 0) metRequirements++;
+      }
+
+      if(properties.requireRegion) {
+        totalRequirements++;
+        if(player.$statistics.getStat(`Character.Regions.${properties.requireRegion}`) > 0) metRequirements++;
+      }
+
+      if(properties.requireBoss) {
+        totalRequirements++;
+        if(player.$statistics.getStat(`Character.BossKills.${properties.requireBoss}`) > 0) metRequirements++;
+      }
+
+      if(properties.requireClass) {
+        totalRequirements++;
+        if(player.professionName === properties.requireClass) metRequirements++;
+      }
+
+      if(properties.requireAchievement) {
+        totalRequirements++;
+        if(player.$achievements.hasAchievement(properties.requireAchievement)) metRequirements++;
+      }
+
+      if(properties.requireCollectible) {
+        totalRequirements++;
+        if(player.$collectibles.hasCollectible(properties.requireCollectible)) metRequirements++;
+      }
+
+      if(properties.requireAscension) {
+        totalRequirements++;
+        if(player.ascensionLevel >= +properties.requireAscension) metRequirements++;
+      }
+
       if(properties.requireHoliday) {
+        totalRequirements++;
         const { start, end } = SETTINGS.holidays[properties.requireHoliday];
         const today = new Date();
-        return today.getMonth() >= start.getMonth()
+        const meets = today.getMonth() >= start.getMonth()
             && today.getDate()  >= start.getDate()
             && today.getMonth() <= end.getMonth()
             && today.getDate()  <= end.getDate();
+
+        if(meets) metRequirements++;
       }
+
+      if(totalRequirements !== metRequirements) return;
     }
+
     return !tile.blocked && tile.terrain !== 'Void';
   }
 
