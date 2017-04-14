@@ -379,13 +379,17 @@ export class Guild {
       // check if member is even in guild (ie, could just be an invite)
       const memberInList = _.find(this.members, { name: member.name });
       this.members = _.without(this.members, memberInList);
-
-      // if not online, dig into db and unset guildName
-      this.$guildDb.removePlayerFromGuild(member.name);
       this.save(true);
 
     } else if(propagate) {
       GuildKickRedis(this.name, member.name);
+    } else if(!propagate) {
+
+      // if not online, dig into db and unset guildName
+      const memberInList = _.find(this.members, { name: member.name });
+      this.members = _.without(this.members, memberInList);
+      this.$guildDb.removePlayerFromGuild(member.name);
+      this.save();
     }
 
   }
