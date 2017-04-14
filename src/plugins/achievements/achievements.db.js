@@ -41,7 +41,7 @@ export class AchievementsDb {
     const db = await this.dbWrapper.connectionPromise();
     const achievements = db.$$collections.achievements;
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       achievements.findOneAndUpdate({ _id: achievementsObject._id }, { $set: {
         achievements: achievementsObject.achievements,
         uniqueAchievements: achievementsObject.uniqueAchievements,
@@ -49,7 +49,8 @@ export class AchievementsDb {
         totalTitles: achievementsObject.totalTitles
       } }, { upsert: true }, (err) =>{
         if(err) {
-          return reject(err);
+          // FIXME somehow this periodically throws 'duplicate key error'
+          return; // reject(err);
         }
         resolve(achievements);
       });
