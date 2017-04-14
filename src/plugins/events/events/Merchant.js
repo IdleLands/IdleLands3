@@ -40,7 +40,7 @@ export class Merchant extends Event {
       return [player];
     }
 
-    const sellScore = item.score * SETTINGS.merchantMultiplier;
+    const sellScore = Math.abs(item.score) * SETTINGS.merchantMultiplier;
     const cost = Math.round((sellScore - (sellScore*player.liveStats.merchantCostReductionMultiplier)) * player._$priceReductionMultiplier());
     if(cost > player.gold) {
       player.$statistics.incrementStat('Character.Item.TooExpensive');
