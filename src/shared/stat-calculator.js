@@ -25,7 +25,8 @@ export const SPECIAL_STATS_BASE = [
   { name: 'hpregen',         desc: 'Regenerate HP every combat round. Stacks intensity.', enchantMax: 100 },
   { name: 'mpregen',         desc: 'Regenerate MP every combat round. Stacks intensity.', enchantMax: 100 },
   { name: 'xp',              desc: 'Gain +1 xp every time xp is gained. Stacks intensity.', enchantMax: 1 },
-  { name: 'gold',            desc: 'Gain +1 gold every time gold is gained. Stacks intensity.', enchantMax: 500 }
+  { name: 'gold',            desc: 'Gain +1 gold every time gold is gained. Stacks intensity.', enchantMax: 500 },
+  { name: 'salvage',         desc: 'Salvage 10% better resources. Stacks intensity.', enchantMax: 1 }
 ];
 
 export const ATTACK_STATS_BASE = [
@@ -169,7 +170,7 @@ export class StatCalculator {
 
     _.each(festivals, festival => {
       if(!festival.bonuses[stat]) return;
-      mods += festival.bonuses[stat] * baseValue;
+      mods += festival.bonuses[stat] * (baseValue || 1);
     });
 
     return doRound ? Math.floor(baseValue + mods) : baseValue + mods;

@@ -718,9 +718,11 @@ export class Player extends Character {
   }
 
   getSalvageValues(item, baseMultiplier = 1, bonus = 0) {
+    const salvageBoost = this.liveStats.salvage;
+
     const critSalvageChance = this.calcLuckBonusFromValue(this.liveStats.luk + bonus);
-    const isCrit = chance.integer({ min: 0, max: 10000 }) <= critSalvageChance ? 1 : 0;
-    const multiplier = isCrit ? 3 : baseMultiplier;
+    const isCrit = chance.integer({ min: 0, max: 10000 }) <= (salvageBoost + critSalvageChance) ? 1 : 0;
+    const multiplier = (salvageBoost / 10) + (isCrit ? 3 : baseMultiplier);
 
     const wood = Math.round(item.woodValue() * multiplier);
     const stone = Math.round(item.stoneValue() * multiplier);

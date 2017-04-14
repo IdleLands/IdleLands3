@@ -10,16 +10,6 @@ export const perks = [
     festivalDuration: 24 * 7,
     festivalData: { xp: 0.15 } },
 
-  { name: '+15% Gold (1 day)', cost: 2000,
-    description: 'Give the world +15% Gold for 1 day.',
-    festivalDuration: 24,
-    festivalData: { gold: 0.15 } },
-
-  { name: '+15% Gold (1 week)', cost: 10000,
-    description: 'Give the world +15% Gold for 1 week.',
-    festivalDuration: 24 * 7,
-    festivalData: { gold: 0.15 } },
-
   { name: '+10% Item Find (1 day)', cost: 4000,
     description: 'Give the world +10% Item Find for 1 day.',
     festivalDuration: 24,
@@ -39,6 +29,21 @@ export const perks = [
     description: 'Give the world +20% luck for 1 day.',
     festivalDuration: 24,
     festivalData: { luk: 0.2 } },
+
+  { name: '+30% Salvage (1 day)', cost: 1500,
+    description: 'Give the world +30% salvage for 1 day.',
+    festivalDuration: 24,
+    festivalData: { salvage: 3 } },
+
+  { name: '+70% Salvage (1 day)', cost: 3000,
+    description: 'Give the world +70% salvage for 1 day.',
+    festivalDuration: 24,
+    festivalData: { salvage: 7 } },
+
+  { name: '+100% Salvage (1 day)', cost: 4500,
+    description: 'Give the world +100% salvage for 1 day.',
+    festivalDuration: 24,
+    festivalData: { salvage: 10 } },
 
   { name: 'Teleport: Norkos', cost: 3000,
     description: 'Teleport to Norkos.',

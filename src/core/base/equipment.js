@@ -71,7 +71,7 @@ export class Equipment {
   };
 
   static astraliumStats = {
-    luk: 100,
+    luk: 10,
     xp: 1,
     enchantLevel: 1,
     crit: 1,
@@ -80,7 +80,7 @@ export class Equipment {
     poison: 1,
     shatter: 1,
     vampire: 1,
-    gold: 50,
+    gold: 10,
     dance: 1,
     offense: 1,
     defense: 1,
