@@ -372,6 +372,7 @@ export class Guild {
 
     // check if they're online, remove guildName (basically, call memberLeave)
     const onlinePlayer = GameState.getInstance().getPlayer(member.name);
+    if(onlinePlayer.guildName !== this.name) return;
 
     if(onlinePlayer) {
       this.memberLeave(onlinePlayer);
@@ -388,7 +389,7 @@ export class Guild {
       // if not online, dig into db and unset guildName
       const memberInList = _.find(this.members, { name: member.name });
       this.members = _.without(this.members, memberInList);
-      this.$guildDb.removePlayerFromGuild(member.name);
+      this.$guildDb.removePlayerFromGuild(member.name, this.name);
       this.save();
     }
 
@@ -463,7 +464,6 @@ export class Guild {
   memberLeave(player, propagate = true) {
 
     const onlinePlayer = GameState.getInstance().getPlayer(player.name);
-
     const memberInList = this.getMemberByName(player.name);
 
     if(onlinePlayer) {
@@ -514,6 +514,7 @@ export class Guild {
 
     Logger.silly('Guild', `${by.name} inviting ${player.name} {prop=${propagate}}`);
     const onlinePlayer = GameState.getInstance().getPlayer(player.name);
+
     if(onlinePlayer) {
       Logger.silly('Guild', `Found ${onlinePlayer.name} {prop=${propagate}}`);
       onlinePlayer.guildInvite = {

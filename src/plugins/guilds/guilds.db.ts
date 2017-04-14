@@ -103,12 +103,12 @@ export class GuildsDb {
     });
   }
 
-  async removePlayerFromGuild(playerName) {
+  async removePlayerFromGuild(playerName, guildName) {
     const db = await this.dbWrapper.connectionPromise();
     const players = db.$$collections.players;
 
     return new Promise((resolve, reject) => {
-      players.findOneAndUpdate({ _id: playerName }, { $set: { guildName: '', guildInvite: null } }, (err) => {
+      players.findOneAndUpdate({ _id: playerName, guildName }, { $set: { guildName: '', guildInvite: null } }, (err) => {
 
         if(err) {
           return reject(err);
