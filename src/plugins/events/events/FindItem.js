@@ -52,7 +52,7 @@ export class FindItem extends Event {
     }
 
     const id = Event.chance.guid();
-    const message = `Would you like to equip «${item.fullname}»?`;
+    const message = `Would you like to equip «${item.fullname}» (Score: ${item.score.toLocaleString()})?`;
     const eventText = this.eventText('findItem', player, { item: item.fullname });
     const extraData = { item, eventText };
 
