@@ -390,7 +390,7 @@ export class Guild {
       const memberInList = _.find(this.members, { name: member.name });
       this.members = _.without(this.members, memberInList);
       this.$guildDb.removePlayerFromGuild(member.name, this.name);
-      this.save();
+      this.save(true);
     }
 
   }
