@@ -76,7 +76,7 @@ export class Providence extends Event {
       const lostXp = curPlayerXp - xp;
 
       player._xp.add(xp);
-      message = `${message} ${xp > 0 ? 'Gained' : 'Lost'} ${Math.abs(xp)} xp!`;
+      message = `${message} ${xp > 0 ? 'Gained' : 'Lost'} ${Math.abs(xp).toLocaleString()} xp!`;
 
       if(xp < 0 && player._xp.atMinimum()) {
         message = `${message} Lost 1 level!`;
@@ -100,7 +100,7 @@ export class Providence extends Event {
 
     if(gold && Event.chance.bool({ likelihood: this.probabilities.gold })) {
       player.gold += gold;
-      message = `${message} ${gold > 0 ? 'Gained' : 'Lost'} ${Math.abs(gold)} gold!`;
+      message = `${message} ${gold > 0 ? 'Gained' : 'Lost'} ${Math.abs(gold).toLocaleString()} gold!`;
     }
 
     if(profession !== player.professionName && Event.chance.bool({ likelihood: this.probabilities.profession })) {
