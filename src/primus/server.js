@@ -142,8 +142,6 @@ export const primus = (() => {
     });
   };
 
-  // primus.use('multiplex', Multiplex);
-
 // force setting up the global connection
   new (require('../shared/db-wrapper').DbWrapper)().connectionPromise();
 

@@ -68,8 +68,6 @@
     "node-schedule": "^1.2.0",
     "primus": "^5.2.2",
     "primus-emit": "^1.0.0",
-    "primus-multiplex": "^3.2.0",
-    "primus-rooms": "^3.4.1",
     "restricted-number": "^1.1.0",
     "rollbar": "^0.6.2",
     "serve-static": "^1.11.1",
