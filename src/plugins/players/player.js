@@ -284,8 +284,9 @@ export class Player extends Character {
           }
         }
 
+        this.choices.shift();
+
         if(failed) {
-          this.choices.shift();
           this.$statistics.incrementStat('Character.Choice.Ignore');
         }
 
