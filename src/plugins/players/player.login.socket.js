@@ -137,7 +137,6 @@ export const socket = (socket, primus, respond) => {
     Logger.info('Socket:Player:Login', `${socket.playerName} (${socket.address.ip}, ${userId}) logging in (server ${SERVER_ID}).`);
     
     primus.addPlayer(loggedInPlayerName, socket);
-    primus.joinGuildChat(player);
 
     emitter.emit(event, { playerName: loggedInPlayerName, fromIp: socket.address.ip });
 

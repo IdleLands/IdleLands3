@@ -2,7 +2,6 @@
 import * as _ from 'lodash';
 
 import { GameState } from '../../core/game-state';
-import { primus } from '../../primus/server';
 import { emitter as PlayerEmitter } from '../players/_emitter';
 import { Logger } from '../../shared/logger';
 
@@ -482,8 +481,6 @@ export class Guild {
         random.rank = LEADER;
         this.leader = random.name;
       }
-
-      primus.leaveGuildChat(onlinePlayer);
 
       onlinePlayer.guildName = '';
       onlinePlayer.guildInvite = null;

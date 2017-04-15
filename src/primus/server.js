@@ -119,21 +119,6 @@ export const primus = (() => {
     }
   };
 
-  primus.joinGuildChat = (player) => {
-    if(!player || !player.guildName) return;
-    _.each(primus.players[player.name], spark => {
-      if(!spark || spark.readyState === 2) return;
-      spark.guildName = player.guildName;
-    });
-  };
-
-  primus.leaveGuildChat = (player) => {
-    if(!player || !player.guildName) return;
-    _.each(primus.players[player.name], spark => {
-      spark.guildName = null;
-    });
-  };
-
   primus.emitToPlayers = (players = [], data) => {
     _.each(players, player => {
       _.each(primus.players[player], spark => {
