@@ -65,7 +65,7 @@ export class GardenLarge extends GuildBuilding {
   static properties = [
     { name: 'StatBoost1', type: 'select', values: ['aegis', 'dance', 'deadeye', 'lethal', 'power', 'silver'] },
     { name: 'StatBoost2', type: 'select', values: ['crit', 'offense', 'defense', 'glowing'] },
-    { name: 'StatBoost3', type: 'select', values: ['hp', 'hpregen', 'mp', 'mpregen', 'damageReduction'] }
+    { name: 'StatBoost3', type: 'select', values: ['hp', 'hpregen', 'mp', 'mpregen', 'damageReduction', 'salvage'] }
   ];
 
   static baseTile = SETTINGS.revGidMap.Grass;

@@ -145,6 +145,7 @@ export class Guild {
         case 'hp': case 'mp':           val = 1000; break;
         case 'hpregen': case 'mpregen': val = 200; break;
         case 'damageReduction':         val = 100; break;
+        case 'salvage':                 val = 1; break;
       }
 
       this.$statBoosts[largeGardenBoost3] = largeGardenLevel * val;
