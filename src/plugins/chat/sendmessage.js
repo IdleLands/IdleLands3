@@ -11,7 +11,20 @@ export const sendMessage = (messageObject, fromExtChat = false) => {
       next();
     }, () => {});
   } else {
-    primus.room(messageObject.route).write(messageObject);
+    if(messageObject.route === 'chat:channel:General') {
+      primus.forEach((spark, next) => {
+        spark.write(messageObject);
+        next();
+      }, () => {});
+    } else if(_.includes(messageObject.route, 'chat:channel:guild')) {
+      const guildName = messageObject.route.split(':')[3];
+
+      primus.forEach((spark, next) => {
+        if(spark.guildName !== guildName) return;
+        spark.write(messageObject);
+        next();
+      }, () => {});
+    }
 
     if(messageObject.route === 'chat:channel:General' && primus.extChat && !fromExtChat) {
       primus.extChat.sendMessage(messageObject);

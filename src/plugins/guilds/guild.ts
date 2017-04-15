@@ -447,7 +447,6 @@ export class Guild {
       onlinePlayer._updateGuild();
       onlinePlayer.update();
 
-      primus.joinGuildChat(onlinePlayer);
       PlayerEmitter.emit('player:changeguildstatus', { player: onlinePlayer });
 
       this.save(true);

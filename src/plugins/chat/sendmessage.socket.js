@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { GameState } from '../../core/game-state';
 import { SETTINGS } from '../../static/settings';
 
-const GENERAL_ROUTE = 'chat:channel:General';
+// const GENERAL_ROUTE = 'chat:channel:General';
 // const EVENTS_ROUTE  = 'chat:general:Global Events';
 
 const CHAT_SPAM_DELAY = process.env.CHAT_SPAM_DELAY || 2000;
@@ -20,7 +20,7 @@ export const args = 'text, channel, route';
 export const socket = (socket) => {
 
   // always join the general chat channel
-  socket.join(GENERAL_ROUTE);
+  // socket.join(GENERAL_ROUTE);
   // socket.join(EVENTS_ROUTE);
 
   const sendmessage = async ({ text, channel, route }) => {

@@ -4,7 +4,6 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as Primus from 'primus';
 import * as Emit from 'primus-emit';
-import * as Rooms from 'primus-rooms';
 // import Multiplex from 'primus-multiplex';
 
 import { chatSetup } from '../plugins/chat/chat.setup';
@@ -91,7 +90,6 @@ export const primus = (() => {
   const allSocketFunctions = getAllSocketFunctions(normalizedPath);
   const allSocketRequires = _.map(allSocketFunctions, require);
 
-  primus.use('rooms', Rooms);
   primus.use('emit', Emit);
 
   chatSetup(primus);
@@ -125,23 +123,14 @@ export const primus = (() => {
     if(!player || !player.guildName) return;
     _.each(primus.players[player.name], spark => {
       if(!spark || spark.readyState === 2) return;
-      try {
-        spark.join(`chat:channel:Guild:${player.guildName}`);
-      } catch(e) {
-        Logger.error('Primus:JoinGuildChat', e);
-      }
+      spark.guildName = player.guildName;
     });
   };
 
   primus.leaveGuildChat = (player) => {
     if(!player || !player.guildName) return;
     _.each(primus.players[player.name], spark => {
-      if(!spark || spark.readyState === 2) return;
-      try {
-        spark.leave(`chat:channel:Guild:${player.guildName}`);
-      } catch(e) {
-        Logger.error('Primus:LeaveGuildChat', e);
-      }
+      spark.guildName = null;
     });
   };
 
@@ -172,10 +161,6 @@ export const primus = (() => {
       Logger.error('Spark', e);
     });
 
-    spark.on('roomserror', e => {
-      Logger.error('Spark:Rooms', e);
-    });
-
     setTimeout(() => {
       if(spark.authToken || spark._registering) return;
       spark.end();
@@ -184,10 +169,6 @@ export const primus = (() => {
 
   primus.on('error', e => {
     Logger.error('Primus', e);
-  });
-
-  primus.on('roomserror', (error) => {
-    Logger.error('Primus:Rooms', error);
   });
 
   if(process.env.NODE_ENV !== 'production') {

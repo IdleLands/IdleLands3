@@ -40,7 +40,6 @@ const play = (name, index) => {
     transformer: 'websockets',
     parser: 'JSON',
     plugin: {
-      rooms: require('primus-rooms'),
       emit: require('primus-emit'),
       multiplex: require('primus-multiplex')
     }
