@@ -1,6 +1,6 @@
 
 export const sendSystemMessage = (text) => {
-  require('../primus/server').primus.room('chat:channel:General').write({
+  require('../primus/server').primus.forEach(spark => spark.write({
     timestamp: Date.now(),
     text,
     channel: 'General',
@@ -9,5 +9,5 @@ export const sendSystemMessage = (text) => {
     playerName: '<system>',
     ip: '<system>',
     isMod: true
-  });
+  }));
 };
