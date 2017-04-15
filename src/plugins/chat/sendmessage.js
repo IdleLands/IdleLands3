@@ -16,7 +16,7 @@ export const sendMessage = (messageObject, fromExtChat = false) => {
         spark.write(messageObject);
         next();
       }, () => {});
-    } else if(_.includes(messageObject.route, 'chat:channel:guild')) {
+    } else if(_.includes(messageObject.route, 'chat:channel:Guild')) {
       const guildName = messageObject.route.split(':')[3];
 
       primus.forEach((spark, next) => {
