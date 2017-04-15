@@ -45,7 +45,9 @@ export class Festivals {
     if(insertIntoDb) {
       this.festivalsDb.saveFestival(festival);
     }
+
     this.festivals.push(festival);
+    this.setExpiryTimerForFestival(festival);
   }
 
   removeFestivalById(festivalId) {
