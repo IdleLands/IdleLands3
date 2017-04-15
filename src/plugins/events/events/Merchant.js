@@ -89,6 +89,7 @@ export class Merchant extends Event {
 
     player.gainGold(-choice.extraData.cost, false);
     player.$statistics.incrementStat('Character.Gold.Spent', choice.extraData.cost);
+    player.$statistics.incrementStat('Character.Item.Buy');
   }
 }
 
