@@ -6,8 +6,6 @@ import { Equipment } from '../../../core/base/equipment';
 import { MessageCategories } from '../../../shared/adventure-log';
 import { StringGenerator } from '../../../shared/string-generator';
 
-import { SETTINGS } from '../../../static/settings';
-
 export const WEIGHT = -1;
 
 // Get the gift of the divine
@@ -61,7 +59,6 @@ export class Providence extends Event {
     ilp: 1
   };
 
-  static _genders = SETTINGS.validGenders;
   static _professions = (player) => {
     return _.keys(player.$statistics.getStat('Character.Professions')) || ['Generalist'];
   };
@@ -134,7 +131,7 @@ export class Providence extends Event {
     const providenceData = {
       xp: Event.chance.integer({ min: -player._xp.maximum, max: player.level < 100 ? player._xp.maximum: 0 }),
       level: Event.chance.integer({ min: -3, max: player.level < 100 ? 2 : 0 }),
-      gender: _.sample(this._genders),
+      gender: _.sample(player.validGenders),
       profession: _.sample(this._professions(player)) || 'Generalist',
       gold: Event.chance.integer({ min: -Math.min(30000, player.gold), max: 20000 })
     };
@@ -167,7 +164,7 @@ export class Providence extends Event {
 
     const providenceData = {
       xp: Event.chance.integer({ min: xpMin, max: xpMax }),
-      gender: _.sample(this._genders),
+      gender: _.sample(player.validGenders),
       profession: _.sample(this._professions(player)) || 'Generalist',
       gold: Event.chance.integer({ min: goldMin, max: goldMax })
     };
