@@ -372,7 +372,7 @@ export class Guild {
 
     // check if they're online, remove guildName (basically, call memberLeave)
     const onlinePlayer = GameState.getInstance().getPlayer(member.name);
-    if(onlinePlayer.guildName !== this.name) return;
+    if(onlinePlayer && onlinePlayer.guildName !== this.name) return;
 
     if(onlinePlayer) {
       this.memberLeave(onlinePlayer);
