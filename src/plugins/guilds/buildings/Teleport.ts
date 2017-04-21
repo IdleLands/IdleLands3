@@ -16,7 +16,9 @@ export class Teleport extends GuildBuilding {
   ];
 
   init() {
-    const teleLoc = this.getProperty('TeleportLocation');
+    let teleLoc = this.getProperty('TeleportLocation');
+
+    if(!teleLoc) teleLoc = 'norkos';
 
     const f = {
       name: `Guild Teleport`,
