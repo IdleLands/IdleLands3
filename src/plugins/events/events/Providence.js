@@ -128,9 +128,10 @@ export class Providence extends Event {
   }
 
   static fatePoolProvidence(player, baseMessage) {
+    const canGainXp = player.level.__current < player.level.maximum - 100;
     const providenceData = {
-      xp: Event.chance.integer({ min: -player._xp.maximum, max: player.level < 100 ? player._xp.maximum: 0 }),
-      level: Event.chance.integer({ min: -3, max: player.level < 100 ? 2 : 0 }),
+      xp: Event.chance.integer({ min: -player._xp.maximum, max: canGainXp ? player._xp.maximum: 0 }),
+      level: Event.chance.integer({ min: -3, max: canGainXp ? 2 : 0 }),
       gender: _.sample(player.validGenders),
       profession: _.sample(this._professions(player)) || 'Generalist',
       gold: Event.chance.integer({ min: -Math.min(30000, player.gold), max: 20000 })
