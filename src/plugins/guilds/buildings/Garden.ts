@@ -38,7 +38,7 @@ export class GardenMedium extends GuildBuilding {
 
   static properties = [
     { name: 'StatBoost1', type: 'select', values: ['str', 'con', 'dex', 'agi', 'int', 'luk'] },
-    { name: 'StatBoost2', type: 'select', values: ['gold', 'xp', 'itemFindRangeMultiplier'] }
+    { name: 'StatBoost2', type: 'select', values: ['gold', 'xp', 'itemFindRangeMultiplier', 'salvage'] }
   ];
 
   static baseTile = SETTINGS.revGidMap.Grass;
@@ -65,7 +65,7 @@ export class GardenLarge extends GuildBuilding {
   static properties = [
     { name: 'StatBoost1', type: 'select', values: ['aegis', 'dance', 'deadeye', 'lethal', 'power', 'silver'] },
     { name: 'StatBoost2', type: 'select', values: ['crit', 'offense', 'defense', 'glowing'] },
-    { name: 'StatBoost3', type: 'select', values: ['hp', 'hpregen', 'mp', 'mpregen', 'damageReduction', 'salvage'] }
+    { name: 'StatBoost3', type: 'select', values: ['hp', 'hpregen', 'mp', 'mpregen', 'damageReduction'] }
   ];
 
   static baseTile = SETTINGS.revGidMap.Grass;
