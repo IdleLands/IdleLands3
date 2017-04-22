@@ -83,7 +83,7 @@ export class Merchant extends Event {
       const pet = player.$pets.activePet;
       if(pet.inventoryFull()) return Event.feedback(player, 'Pet inventory full.');
       pet.addToInventory(item);
-      const eventText = this._parseText('%player bought a fancy %item for %pet with %hisher %goldgold!', player, { item: item.fullname, gold: choice.extraData.cost });
+      const eventText = this._parseText('%player bought a fancy %item for %pet with %hisher %gold gold!', player, { item: item.fullname, gold: choice.extraData.cost });
       this.emitMessage({ affected: [player], eventText, category: MessageCategories.ITEM });
     }
 
