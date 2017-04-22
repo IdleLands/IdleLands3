@@ -80,7 +80,7 @@ export class Equipment {
     poison: 1,
     shatter: 1,
     vampire: 1,
-    gold: 10,
+    gold: 50,
     dance: 1,
     offense: 1,
     defense: 1,
