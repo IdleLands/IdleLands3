@@ -16,7 +16,7 @@ export class FindTreasure extends Event {
   static operateOn(player, { treasureName }) {
 
     if(player.stepCooldown > 0) return;
-    player.stepCooldown = 10;
+    player.stepCooldown = 20;
 
     const eventText = this._parseText('%player came across the worldly treasure of %treasure!', player, { treasure: treasureName });
     this.emitMessage({ affected: [player], eventText, category: MessageCategories.EXPLORE });
