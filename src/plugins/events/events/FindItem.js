@@ -51,6 +51,9 @@ export class FindItem extends Event {
       }
     }
 
+    const foundItem = _.find(player.choices, choice => choice.extraData && choice.extraData.name === item.name);
+    if(foundItem) return;
+
     const id = Event.chance.guid();
     const message = `Would you like to equip «${item.fullname}» (Score: ${item.score.toLocaleString()})?`;
     const eventText = this.eventText('findItem', player, { item: item.fullname });
@@ -60,6 +63,7 @@ export class FindItem extends Event {
     if(player.$pets.activePet) {
       choices.push('Pet');
     }
+
     player.addChoice({ id, message, extraData, event: 'FindItem', choices });
 
     return [player];
