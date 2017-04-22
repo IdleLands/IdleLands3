@@ -51,7 +51,7 @@ export class FindItem extends Event {
       }
     }
 
-    const foundItem = _.find(player.choices, choice => choice.extraData && choice.extraData.name === item.name);
+    const foundItem = _.find(player.choices, choice => _.get(choice, 'extraData.item.name', '') === item.name);
     if(foundItem) return;
 
     const id = Event.chance.guid();
