@@ -47,7 +47,8 @@ export class Equipment {
     power: 100,
     vorpal: 500,
     aegis: 100,
-    glowing: 300
+    glowing: 300,
+    salvage: 2000
   };
 
   static woodStats = {
