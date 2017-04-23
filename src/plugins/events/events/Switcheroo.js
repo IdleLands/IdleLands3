@@ -15,7 +15,7 @@ export class Switcheroo extends Event {
     const stat = this.pickStat(item);
     if(!item[stat]) return;
 
-    const eventText = this.eventText('flipStat', player, { item: item.fullname });
+    const eventText = this.eventText('flipStat', player, { item: item.fullname, stat });
 
     this.emitMessage({ affected: [player], eventText: `${eventText} [${stat} ${item[stat]} -> ${-item[stat]}]`, category: MessageCategories.ITEM });
     item[stat] = -item[stat];
