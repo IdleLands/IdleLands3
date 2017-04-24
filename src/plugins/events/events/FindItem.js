@@ -46,7 +46,7 @@ export class FindItem extends Event {
     if(!forceItem) {
       item = ItemGenerator.generateItem(null, player.calcLuckBonusFromValue(player.stats.luk), player.level);
 
-      if(!player.canEquip(item) || item.score <= 0) {
+      if(!player.canEquip(item)) {
         return this.disposeOfItem(player, item);
       }
     }

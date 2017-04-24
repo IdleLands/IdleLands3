@@ -181,7 +181,7 @@ export class Character {
     if(!useCheckRangeMultiplier) {
       checkRangeMultiplier = 0;
     }
-    return checkScore > (myScore * checkRangeMultiplier) && checkScore <= itemFindRange;
+    return checkScore > 0 && checkScore > (myScore * checkRangeMultiplier) && checkScore <= itemFindRange;
   }
 
   equip(item) {
