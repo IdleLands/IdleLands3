@@ -25,6 +25,7 @@ hpregen | Regenerate HP every combat round. Stacks intensity.
 mpregen | Regenerate MP every combat round. Stacks intensity.
 xp | Gain +1 xp every time xp is gained. Stacks intensity.
 gold | Gain +1 gold every time gold is gained. Stacks intensity.
+salvage | Salvage 10% better resources. Stacks intensity.
 
 
 ## Attack Stats
