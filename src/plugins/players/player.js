@@ -260,7 +260,7 @@ export class Player extends Character {
         let failed = false;
 
         if(_.includes(choice.choices, 'Yes') && this.$personalities.isActive('Affirmer')) {
-          const res = this.handleChoice({ id: choice.id, response: 'Yes' });
+          const res = this.handleChoice({ id: choice.id, response: 'Yes' }, false);
           if(!res) {
             this.$statistics.incrementStat('Character.Choice.Affirm');
           } else {
@@ -268,7 +268,7 @@ export class Player extends Character {
           }
 
         } else if(_.includes(choice.choices, 'No') && this.$personalities.isActive('Denier')) {
-          const res = this.handleChoice({ id: choice.id, response: 'No' });
+          const res = this.handleChoice({ id: choice.id, response: 'No' }, false);
           if(!res) {
             this.$statistics.incrementStat('Character.Choice.Deny');
           } else {
@@ -276,7 +276,7 @@ export class Player extends Character {
           }
 
         } else if(this.$personalities.isActive('Indecisive')) {
-          const res = this.handleChoice({ id: choice.id, response: _.sample(['Yes', 'No']) });
+          const res = this.handleChoice({ id: choice.id, response: _.sample(['Yes', 'No']) }, false);
           if(!res) {
             this.$statistics.incrementStat('Character.Choice.Indecisive');
           } else {
@@ -299,13 +299,13 @@ export class Player extends Character {
     this.$statistics.incrementStat('Character.Choices');
   }
 
-  handleChoice({ id, response }) {
+  handleChoice({ id, response }, removeChoice = true) {
     const choice = _.find(this.choices, { id });
     if(!choice) return;
     const result = Events[choice.event].makeChoice(this, id, response);
     if(_.isString(result)) return;
     this.$statistics.batchIncrement(['Character.Choice.Chosen', `Character.Choice.Choose.${response}`]);
-    this.removeChoice(id);
+    if(removeChoice) this.removeChoice(id);
     this.update();
   }
 
