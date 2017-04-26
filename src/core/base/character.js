@@ -140,7 +140,6 @@ export class Character {
   }
 
   changeProfession(professionName) {
-    if(professionName === this.professionName) return;
     if(this.$profession) this.$profession.unload(this);
     this.professionName = professionName;
     this.$profession = require(`../professions/${professionName}`)[professionName];
