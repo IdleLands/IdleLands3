@@ -25,7 +25,7 @@ export class ProfessionChange extends Event {
   }
 
   static makeChoice(player, id, response) {
-    if(response !== 'Yes') return;
+    if(response !== 'Yes' || player.professionName === choice.extraData.professionName) return;
     const choice = _.find(player.choices, { id });
     player.changeProfession(choice.extraData.professionName);
     emitter.emit('player:changeclass', { player, choice });
