@@ -207,6 +207,8 @@ export class Guilds {
   }
 
   inviteAccept(player) {
+    if(!player.guildInvite) return 'You do not have an invite!';
+
     const guildName = player.guildInvite.name;
     const guild: Guild = this.guilds[guildName];
 
@@ -225,6 +227,8 @@ export class Guilds {
   }
 
   inviteReject(player) {
+    if(!player.guildInvite) return 'You do not have an invite!';
+
     const guildName = player.guildInvite.name;
     const guild: Guild = this.guilds[guildName];
 
