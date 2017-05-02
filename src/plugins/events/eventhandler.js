@@ -50,6 +50,7 @@ export class EventHandler {
       if(!weight || weight <= 0) return;
 
       const modWeight = StatCalculator.stat(player, `${evtName}Chance`, weight);
+      if(modWeight <= 0) return;
 
       events.push(evtName);
       weights.push(modWeight);
