@@ -15,7 +15,7 @@ export class FindItem extends Event {
   static disposeOfItem(player, item) {
 
     const playerItem = player.equipment[item.type];
-    const text = playerItem.score > item.score ? 'weak' : 'strong';
+    const text = playerItem && playerItem.score > item.score ? 'weak' : 'strong';
 
     if(player.$personalities.isActive('Salvager') && player.hasGuild) {
       let message = `%player came across %item, but it was too ${text} for %himher, but it was unsalvageable.`;
