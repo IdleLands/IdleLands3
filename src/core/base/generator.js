@@ -22,8 +22,12 @@ export class Generator {
       if(!_.isNumber(val) || _.isEmpty(attr)) return;
 
       if(baseItem[attr]) {
-        baseItem[attr] += prop[attr];
-
+        if (_.includes(attr, 'Req')) {
+          baseItem[attr] = Math.max(baseItem[attr], prop[attr]);
+        }
+        else {
+          baseItem[attr] += prop[attr];
+        }
       } else {
         baseItem[attr] = _.isNaN(prop[attr]) ? true : prop[attr];
       }

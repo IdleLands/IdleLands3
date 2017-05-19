@@ -172,6 +172,7 @@ export class Character {
   }
 
   canEquip(item, rangeBoostMultiplier = 1, useCheckRangeMultiplier = true) {
+    const player = this;
     const myItem = this.equipment[item.type];
     const checkScore = item.score;
     const myScore = myItem ? myItem.score : -1000;
@@ -181,7 +182,33 @@ export class Character {
     if(!useCheckRangeMultiplier) {
       checkRangeMultiplier = 0;
     }
-    return checkScore > 0 && checkScore > (myScore * checkRangeMultiplier) && checkScore <= itemFindRange;
+
+    const metRequirements = (player.isPlayer) ? _(item)
+      .keys()
+      .filter(stat => _.includes(stat, 'Req'))
+      .every(requirement => {
+        if (requirement.startsWith('a')) {
+          const name = _(requirement).trimStart('aReq').replace(/_/g, ' ');
+          const tier = item[requirement];
+          return player.$achievements.hasAchievement(name) && player.$achievements.hasAchievementAtTier(name, tier);
+        }
+        else if (requirement.startsWith('c')) {
+          const name = _(requirement).trimStart('cReq').replace(/_/g, ' ');
+          const number = item[requirement];
+          return player.$collectibles.hasTotalCollectibleAtNumber(name, number);
+        }
+        else if (requirement.startsWith('s')) {
+          let statisticName = _(requirement).trimStart('sReq').replace(/\*/g, ' ').split(' ');
+          let requiredNumber = item[requirement];
+          if (statisticName[0] === 'Boss_Kills') statisticName[0] = 'BossKills';
+          if (statisticName[0] === 'Regions' || statisticName[0] === 'Maps' || statisticName[0] === 'BossKills') statisticName.unshift('Character');
+          statisticName = statisticName.join('.').replace(/_/g, ' ');
+          return player.$statistics.getStat(statisticName) >= requiredNumber;
+        }
+        return false;
+      }) : false;
+
+    return checkScore > 0 && checkScore > (myScore * checkRangeMultiplier) && checkScore <= itemFindRange && metRequirements;
   }
 
   equip(item) {

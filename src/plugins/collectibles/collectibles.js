@@ -100,6 +100,13 @@ export class Collectibles {
     return this.collectibles[collectibleName];
   }
 
+  hasTotalCollectibleAtNumber(collectibleName, number) {
+    let count = 0;
+    if (this.hasCollectible(collectibleName)) count++;
+    if (this.hadCollectible(collectibleName)) count+= this.priorCollectibles[collectibleName];
+    return count >= number;
+  }
+
   save() {
     this.uniqueCollectibles = this.calcUniqueCollectibles();
     this.collectiblesDb.saveCollectibles(this);
