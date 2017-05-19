@@ -24,8 +24,7 @@ export class Generator {
       if(baseItem[attr]) {
         if (_.includes(attr, 'Req')) {
           baseItem[attr] = Math.max(baseItem[attr], prop[attr]);
-        }
-        else {
+        } else {
           baseItem[attr] += prop[attr];
         }
       } else {

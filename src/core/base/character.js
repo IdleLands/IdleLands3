@@ -191,19 +191,20 @@ export class Character {
           const name = _(requirement).trimStart('aReq').replace(/_/g, ' ');
           const tier = item[requirement];
           return player.$achievements.hasAchievement(name) && player.$achievements.hasAchievementAtTier(name, tier);
-        }
-        else if (requirement.startsWith('c')) {
+
+        } else if (requirement.startsWith('c')) {
           const name = _(requirement).trimStart('cReq').replace(/_/g, ' ');
           const number = item[requirement];
           return player.$collectibles.hasTotalCollectibleAtNumber(name, number);
-        }
-        else if (requirement.startsWith('s')) {
+
+        } else if (requirement.startsWith('s')) {
           let statisticName = _(requirement).trimStart('sReq').replace(/\*/g, ' ').split(' ');
-          let requiredNumber = item[requirement];
+          const requiredNumber = item[requirement];
           if (statisticName[0] === 'Boss_Kills') statisticName[0] = 'BossKills';
           if (statisticName[0] === 'Regions' || statisticName[0] === 'Maps' || statisticName[0] === 'BossKills') statisticName.unshift('Character');
           statisticName = statisticName.join('.').replace(/_/g, ' ');
           return player.$statistics.getStat(statisticName) >= requiredNumber;
+
         }
         return false;
       }) : false;
