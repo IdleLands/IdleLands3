@@ -47,7 +47,7 @@ export class EventHandler {
 
     _.each(_.keys(allEvents), evtName => {
       const weight = allEvents[evtName].WEIGHT;
-      if(!weight || weight <= 0) return;
+      if(isNaN(weight)) return;
 
       const modWeight = StatCalculator.stat(player, `${evtName}Chance`, weight);
       if(modWeight <= 0) return;
