@@ -91,7 +91,8 @@ export class Equipment {
     silver: 1,
     power: 1,
     aegis: 1,
-    glowing: 1
+    glowing: 1,
+    salvage: 1
   };
 
   constructor(opts) {
