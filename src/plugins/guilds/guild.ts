@@ -162,7 +162,7 @@ export class Guild {
   }
 
   hasBuilt(building: string) {
-    return this.buildings.currentlyBuilt[building];
+    return _(this.buildings.currentlyBuilt.sm).concat(this.buildings.currentlyBuilt.md, this.buildings.currentlyBuilt.lg).includes(building);
   }
 
   resetBuildings() {

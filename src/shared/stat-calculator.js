@@ -46,7 +46,7 @@ export const ALL_STATS = BASE_STATS.concat(SPECIAL_STATS).concat(ATTACK_STATS);
 export class StatCalculator {
 
   static _reduction(stat, args = [], baseValue = 0) {
-    return baseValue + this._baseStat(args[0], stat);
+    return baseValue + this._baseStat(args[0], stat, baseValue);
   }
 
   static _secondPassFunctions(player, stat) {
@@ -61,11 +61,11 @@ export class StatCalculator {
       .value();
   }
 
-  static _baseStat(player, stat) {
+  static _baseStat(player, stat, baseValue) {
     return this.classStat(player, stat)
          + this.guildStat(player, stat)
          + this.effectStat(player, stat)
-         + this.regionStat(player, stat)
+         + this.regionStat(player, stat, baseValue)
          + this.equipmentStat(player, stat)
          + this.professionStat(player, stat)
          + this.achievementStat(player, stat)
@@ -79,10 +79,10 @@ export class StatCalculator {
     return boost;
   }
 
-  static regionStat(player, stat) {
-    const region = Regions[player.region];
+  static regionStat(player, stat, baseValue) {
+    const region = Regions[player.mapRegion];
     if(!region || !region[stat]) return 0;
-    return region[stat](player);
+    return region[stat](player, baseValue);
   }
 
   static equipmentStat(player, stat) {
@@ -159,7 +159,7 @@ export class StatCalculator {
     }
 
     let mods = 0;
-    const baseValue = baseValueMod + this._baseStat(player, stat);
+    const baseValue = baseValueMod + this._baseStat(player, stat, baseValueMod);
 
     const functions = this._secondPassFunctions(player, stat);
     _.each(functions, func => {

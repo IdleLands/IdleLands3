@@ -6,6 +6,7 @@ import { MessageCategories } from '../../../shared/adventure-log';
 import { XPForsake } from './XPForsake';
 import { GoldForsake } from './GoldForsake';
 
+export const WEIGHT = 0;
 const MIN_GOLD = 5000;
 const INCOME_PERCENT = 10;
 

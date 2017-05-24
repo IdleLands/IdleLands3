@@ -10,6 +10,8 @@ import { MessageCategories } from '../../../shared/adventure-log';
 
 import { SETTINGS } from '../../../static/settings';
 
+export const WEIGHT = 0;
+
 // Create a party
 export class GuildParty extends Event {
   static WEIGHT = 0;
