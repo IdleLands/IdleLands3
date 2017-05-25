@@ -2,22 +2,74 @@
 
 ## Table of Contents
 
-1. [Chimera Dragon](#chimera-dragon)
-2. [Corgi](#corgi)
-3. [Digipet](#digipet)
-4. [Dolphin](#dolphin)
-5. [Ghostly Shield](#ghostly-shield)
-6. [Ghostly Sword](#ghostly-sword)
-7. [Goat](#goat)
-8. [Golden Floating Broom](#golden-floating-broom)
-9. [Minitaur](#minitaur)
-10. [Moose](#moose)
-11. [Octopus](#octopus)
-12. [Parrot](#parrot)
-13. [Pet Rock](#pet-rock)
-14. [Raven](#raven)
-15. [Spellbook](#spellbook)
+1. [Ascend'o'tron](#ascendotron)
+2. [Chimera Dragon](#chimera-dragon)
+3. [Corgi](#corgi)
+4. [Digipet](#digipet)
+5. [Dolphin](#dolphin)
+6. [Ghostly Fisticuffs](#ghostly-fisticuffs)
+7. [Ghostly Shield](#ghostly-shield)
+8. [Ghostly Sword](#ghostly-sword)
+9. [Goat](#goat)
+10. [Golden Floating Broom](#golden-floating-broom)
+11. [Minitaur](#minitaur)
+12. [Moose](#moose)
+13. [Octopus](#octopus)
+14. [Parrot](#parrot)
+15. [Pet Rock](#pet-rock)
+16. [Raven](#raven)
+17. [Spellbook](#spellbook)
+18. [Walk'o'tron](#walkotron)
+19. [Wolf'o'tron](#wolfotron)
 
+---
+
+## Ascend'o'tron
+
+### Cost
+1,000,000,000 gold
+
+### Category
+Protector
+
+### Description
+Unlocked by becoming a master of ascension.
+
+### Gear Slots
+
+### Special Stats
+
+### Unlock Requirements
+#### Achievements
+* Ascended (tier 5)
+
+### Upgrades
+Upgrade/Cost|Tier 1
+---:|:---:
+maxLevel|1
+Cost|0
+maxItemScore|0
+Cost|0
+inventory|1
+Cost|0
+goldStorage|0
+Cost|0
+battleJoinPercent|0
+Cost|0
+itemFindTimeDuration|0
+Cost|0
+itemSellMultiplier|0
+Cost|0
+itemFindBonus|0
+Cost|0
+itemFindRangeMultiplier|0
+Cost|0
+xpPerGold|0
+Cost|0
+salvage|0
+Cost|0
+
+###### [\[top\]](#idlelands-pets)
 ---
 
 ## Chimera Dragon
@@ -265,6 +317,73 @@ xpPerGold|30|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---
 salvage|75|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---
+
+###### [\[top\]](#idlelands-pets)
+---
+
+## Ghostly Fisticuffs
+
+### Cost
+1,000,000,000 gold
+
+### Category
+Combat
+
+### Description
+Unlocked by becoming an expert of the spirit.
+
+### Gear Slots
+* finger: 6
+* neck: 1
+* charm: 1
+* mainhand: 1
+* offhand: 1
+
+### Special Stats
+* str: 10,000
+* con: 10,000
+* int: 10,000
+* dex: 10,000
+* agi: 10,000
+* hpregen: 2,000
+* mpregen: 2,000
+* damageReduction: 1,000
+* glowing: 1
+* dance: 1
+* offense: 3
+* defense: 3
+* vorpal: 1
+* crit: 2
+
+### Unlock Requirements
+#### Achievements
+* Spiritualist (tier 1)
+
+### Upgrades
+Upgrade/Cost|Tier 1
+---:|:---:
+maxLevel|500
+Cost|0
+maxItemScore|0
+Cost|0
+inventory|25
+Cost|0
+goldStorage|0
+Cost|0
+battleJoinPercent|100
+Cost|0
+itemFindTimeDuration|0
+Cost|0
+itemSellMultiplier|0
+Cost|0
+itemFindBonus|0
+Cost|0
+itemFindRangeMultiplier|0
+Cost|0
+xpPerGold|1
+Cost|0
+salvage|0
+Cost|0
 
 ###### [\[top\]](#idlelands-pets)
 ---
@@ -528,8 +647,8 @@ itemFindRangeMultiplier|0|0.05|0.1|0.2|0.35
 Cost|0|50,000|100,000|200,000|350,000
 xpPerGold|100|---|---|---|---
 Cost|0|---|---|---|---
-salvage|0|---|---|---|---
-Cost|50|---|---|---|---
+salvage|50|---|---|---|---
+Cost|0|---|---|---|---
 
 ###### [\[top\]](#idlelands-pets)
 ---
@@ -967,3 +1086,99 @@ xpPerGold|0|---|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---|---
 salvage|0|---|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---|---
+
+###### [\[top\]](#idlelands-pets)
+---
+
+## Walk'o'tron
+
+### Cost
+1,000,000,000 gold
+
+### Category
+Protector
+
+### Description
+Unlocked by becoming a master of walking.
+
+### Gear Slots
+
+### Special Stats
+
+### Unlock Requirements
+#### Achievements
+* Walker (tier 7)
+
+### Upgrades
+Upgrade/Cost|Tier 1
+---:|:---:
+maxLevel|1
+Cost|0
+maxItemScore|0
+Cost|0
+inventory|1
+Cost|0
+goldStorage|0
+Cost|0
+battleJoinPercent|0
+Cost|0
+itemFindTimeDuration|0
+Cost|0
+itemSellMultiplier|0
+Cost|0
+itemFindBonus|0
+Cost|0
+itemFindRangeMultiplier|0
+Cost|0
+xpPerGold|0
+Cost|0
+salvage|0
+Cost|0
+
+###### [\[top\]](#idlelands-pets)
+---
+
+## Wolf'o'tron
+
+### Cost
+1,000,000,000 gold
+
+### Category
+Protector
+
+### Description
+Unlocked by becoming a master of wolves.
+
+### Gear Slots
+
+### Special Stats
+
+### Unlock Requirements
+#### Achievements
+* Wolfmaster (tier 1)
+
+### Upgrades
+Upgrade/Cost|Tier 1
+---:|:---:
+maxLevel|1
+Cost|0
+maxItemScore|0
+Cost|0
+inventory|1
+Cost|0
+goldStorage|0
+Cost|0
+battleJoinPercent|0
+Cost|0
+itemFindTimeDuration|0
+Cost|0
+itemSellMultiplier|0
+Cost|0
+itemFindBonus|0
+Cost|0
+itemFindRangeMultiplier|0
+Cost|0
+xpPerGold|0
+Cost|0
+salvage|0
+Cost|0
