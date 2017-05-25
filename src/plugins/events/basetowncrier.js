@@ -24,5 +24,10 @@ export const SystemTownCrierMessages = [
     message: 'Found a bug? Can you reproduce a bug I can\'t? Great! Get ILP or Gold for giving me some reproduction steps!',
     link: 'https://github.com/IdleLands/IdleLands/wiki/Bug-Bounties',
     origin: 'system'
+  },
+  {
+    message: 'Want to join our external discord? Come check it out!',
+    link: 'https://discord.gg/USwJW4y',
+    origin: 'system'
   }
 ];
