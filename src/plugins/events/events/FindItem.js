@@ -83,8 +83,7 @@ export class FindItem extends Event {
 
     if(response === 'Pet') {
       const pet = player.$pets.activePet;
-      if(pet.inventoryFull()) return Event.feedback(player, 'Pet inventory full.');
-      pet.addToInventory(item);
+      pet.findItem(item);
       const eventText = this._parseText('%player gave a fancy %item to %pet!', player, { item: item.fullname });
       this.emitMessage({ affected: [player], eventText, category: MessageCategories.ITEM });
     }
