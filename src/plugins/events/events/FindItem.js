@@ -12,19 +12,21 @@ export const WEIGHT = 306;
 export class FindItem extends Event {
   static WEIGHT = WEIGHT;
 
-  static disposeOfItem(player, item) {
+  static disposeOfItem(player, item, isOld = false) {
 
     const playerItem = player.equipment[item.type];
     const text = playerItem && playerItem.score > item.score ? 'weak' : 'strong';
 
+    const acrossText = isOld ? 'had' : 'came across';
+
     if(player.$personalities.isActive('Salvager') && player.hasGuild) {
-      let message = `%player came across %item, but it was too ${text} for %himher, but it was unsalvageable.`;
+      let message = `%player ${acrossText} %item, but it was too ${text} for %himher, but it was unsalvageable.`;
       const salvageResult = player.getSalvageValues(item);
       const { wood, clay, stone, astralium } = salvageResult;
 
       if(wood > 0 || clay > 0 || stone > 0 || astralium > 0) {
         player.incrementSalvageStatistics(salvageResult);
-        message = `%player came across %item, but it was too ${text} for %himher, so %she salvaged it for %wood wood, %clay clay, %stone stone, and %astralium astralium.`;
+        message = `%player ${acrossText} %item, but it was too ${text} for %himher, so %she salvaged it for %wood wood, %clay clay, %stone stone, and %astralium astralium.`;
       }
 
       const parsedMessage = this._parseText(message, player, { wood, clay, stone, astralium, item: item.fullname });
@@ -32,7 +34,7 @@ export class FindItem extends Event {
 
       return;
     }
-    const message = `%player came across %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
+    const message = `%player ${acrossText} %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
     const gold = player.sellItem(item);
     const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
     player.$statistics.incrementStat('Character.Item.Unequippable');
@@ -88,6 +90,8 @@ export class FindItem extends Event {
     }
 
     if(response === 'Yes') {
+      const oldItem = player.equipment[item.type];
+      this.disposeOfItem(player, oldItem);
       player.equip(item);
       this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.ITEM });
     }
