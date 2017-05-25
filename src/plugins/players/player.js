@@ -783,6 +783,10 @@ export class Player extends Character {
 
     this.$personalities.turnAllOff(this);
 
+    if(this.party) {
+      this.party.playerLeave(this);
+    }
+
     this.recalculateStats();
     this._checkAchievements();
     this.update();
