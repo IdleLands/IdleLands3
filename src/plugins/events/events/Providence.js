@@ -170,15 +170,18 @@ export class Providence extends Event {
       gold: Event.chance.integer({ min: goldMin, max: goldMax })
     };
 
+    const clearChance = Math.min(50, 5 + (fortuneTellerLevel * 2));
+    const newChance = Math.min(80, 30 + fortuneTellerLevel);
+
     baseMessage = `${baseMessage} ${this.doBasicProvidencing(player, providenceData).trim()}`;
 
-    if(player.equipment.providence && Event.chance.bool({ likelihood: this.probabilities.clearProvidence })) {
+    if(player.equipment.providence && Event.chance.bool({ likelihood: clearChance })) {
       player.equipment.providence = null;
       delete player.equipment.providence;
 
       baseMessage = `${baseMessage} Providence cleared!`;
 
-    } else if(!player.equipment.providence && Event.chance.bool({ likelihood: this.probabilities.newProvidence })) {
+    } else if(!player.equipment.providence && Event.chance.bool({ likelihood: newChance })) {
       player.equipment.providence = this.generateProvidenceItem(
         Math.round(player.level/10),
         fortuneTellerLevel,
