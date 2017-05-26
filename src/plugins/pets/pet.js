@@ -117,11 +117,11 @@ export class Pet extends Character {
 
     if(!item) {
       item = ItemGenerator.generateItem(null, this.$_scale.itemFindBonus, this.level);
-    }
 
-    if(!this.canEquipScore(item)) {
-      this.sellItem(item);
-      return;
+      if(!this.canEquipScore(item)) {
+        this.sellItem(item);
+        return;
+      }
     }
 
     if(this.smart.equip && this.canEquip(item)) {
