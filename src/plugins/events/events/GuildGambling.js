@@ -58,7 +58,6 @@ export class GuildGambling extends Event {
       cost *= 2;
       multiplier *= 2;
       odds /= 2;
-      player.$statistics.incrementStat('Character.Gamble.DoubleDown');
     }
 
     if(player.gold < cost || _.isNaN(cost) || cost < 0) return Event.feedback(player, 'You do not have enough gold!');
@@ -81,7 +80,11 @@ export class GuildGambling extends Event {
       odds += 10;
       player.$statistics.incrementStat('Character.Gamble.CheatSuccess');
     }
-
+    
+    if(isDoubleDown) {
+      player.$statistics.incrementStat('Character.Gamble.DoubleDown');
+    }
+      
     let message = '';
 
     if(Event.chance.bool({ likelihood: odds })) {
