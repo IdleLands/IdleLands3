@@ -38,7 +38,7 @@ export class GuildGambling extends Event {
     const message = `Would you like to gamble ${cost.toLocaleString()} gold at a ${multiplier}x rate with ${odds}% chance to win?`;
     const extraData = { multiplier, cost, odds };
 
-    player.addChoice({ id, message, extraData, event: 'Gambling', choices: ['Yes', 'No', 'Double Down', 'Cheat'] });
+    player.addChoice({ id, message, extraData, event: 'GuildGambling', choices: ['Yes', 'No', 'Double Down', 'Cheat'] });
 
     return [player];
   }
