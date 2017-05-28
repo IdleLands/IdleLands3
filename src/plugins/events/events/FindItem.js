@@ -90,7 +90,9 @@ export class FindItem extends Event {
 
     if(response === 'Yes') {
       const oldItem = player.equipment[item.type];
-      this.disposeOfItem(player, oldItem);
+      if(oldItem) {
+        this.disposeOfItem(player, oldItem);
+      }
       player.equip(item);
       this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.ITEM });
     }
