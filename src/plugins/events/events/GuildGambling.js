@@ -58,12 +58,15 @@ export class GuildGambling extends Event {
       cost *= 2;
       multiplier *= 2;
       odds /= 2;
+      player.$statistics.incrementStat('Character.Gamble.DoubleDown');
     }
+
+    if(player.gold < cost || _.isNaN(cost) || cost < 0) return Event.feedback(player, 'You do not have enough gold!');
 
     const isCheat = response === 'Cheat';
     const getCaughtChance = Math.max(15, 50 - (tavernLevel/5));
 
-    if(Event.chance.bool({ likelihood: getCaughtChance })) {
+    if(isCheat && Event.chance.bool({ likelihood: getCaughtChance })) {
       let cheatMessage = '%player got caught cheating and lost some XP and Gold as a punishment!';
       cheatMessage = this._parseText(cheatMessage, player);
       this.emitMessage({ affected: [player], eventText: cheatMessage, category: MessageCategories.GOLD });
@@ -77,12 +80,6 @@ export class GuildGambling extends Event {
     if(isCheat) {
       odds += 10;
       player.$statistics.incrementStat('Character.Gamble.CheatSuccess');
-    }
-
-    if(player.gold < cost || _.isNaN(cost) || cost < 0) return Event.feedback(player, 'You do not have enough gold!');
-
-    if(isDoubleDown) {
-      player.$statistics.incrementStat('Character.Gamble.DoubleDown');
     }
 
     let message = '';
