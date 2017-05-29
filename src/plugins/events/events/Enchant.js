@@ -16,7 +16,7 @@ export class Enchant extends Event {
   
   static getBlowupItem(item, enchantLevel) {
     const r = (div) => Math.floor(Event.chance.integer({ min: -enchantLevel * 10, max: enchantLevel * 10 }) / div);
-    const stats = { str: r(2), dex: r(2), con: r(3), int: r(0.5), agi: r(1), luk: r(-1), sentimentality: 1000 };
+    const stats = { str: r(2), dex: r(2), con: r(3), int: r(0.5), agi: r(1), luk: r(-1), sentimentality: enchantLevel * 1000 };
     stats.type = item.type;
 
     const junks = [
