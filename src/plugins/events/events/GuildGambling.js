@@ -70,6 +70,8 @@ export class GuildGambling extends Event {
       cheatMessage = this._parseText(cheatMessage, player);
       this.emitMessage({ affected: [player], eventText: cheatMessage, category: MessageCategories.GOLD });
       player.$statistics.incrementStat('Character.Gamble.CheatFail');
+      
+      player.gainGold(-cost, false);
 
       XPForsake.operateOn(player, '%player got caught cheating and lost %xp xp!');
       GoldForsake.operateOn(player, '%player got caught cheating and lost %gold gold!');
