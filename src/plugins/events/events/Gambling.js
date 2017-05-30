@@ -44,6 +44,8 @@ export class Gambling extends Event {
 
     if(player.gold < cost || _.isNaN(cost) || cost < 0) return Event.feedback(player, 'You do not have enough gold!');
 
+    player.gainGold(-cost, false);
+    
     if(isDoubleDown) {
       player.$statistics.incrementStat('Character.Gamble.DoubleDown');
     }
@@ -60,7 +62,6 @@ export class Gambling extends Event {
       }
       message = `%player got lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%${isDoubleDown ? ' (Double Down)': ''}. %She came out ahead with ${winnings.toLocaleString()} gold!`;
     } else {
-      player.gainGold(-cost, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Lose', cost);
       player.$statistics.incrementStat('Character.Gamble.LoseTimes');
       if(isDoubleDown) {
