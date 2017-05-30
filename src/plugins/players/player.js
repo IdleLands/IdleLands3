@@ -762,7 +762,7 @@ export class Player extends Character {
     this.generateBaseEquipment();
 
     _.each(this.$pets.$pets, pet => {
-      if(pet.category === 'Protector') return;
+      if(pet.$category === 'Protector') return;
       pet.unequipAll();
       pet.inventory = [];
     });
