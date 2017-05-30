@@ -61,7 +61,9 @@ export class GuildGambling extends Event {
     }
 
     if(player.gold < cost || _.isNaN(cost) || cost < 0) return Event.feedback(player, 'You do not have enough gold!');
-
+    
+    player.gainGold(-cost, false);
+    
     const isCheat = response === 'Cheat';
     const getCaughtChance = Math.max(15, 50 - (tavernLevel/5));
 
@@ -71,8 +73,6 @@ export class GuildGambling extends Event {
       this.emitMessage({ affected: [player], eventText: cheatMessage, category: MessageCategories.GOLD });
       player.$statistics.incrementStat('Character.Gamble.CheatFail');
       
-      player.gainGold(-cost, false);
-
       XPForsake.operateOn(player, '%player got caught cheating and lost %xp xp!');
       GoldForsake.operateOn(player, '%player got caught cheating and lost %gold gold!');
       return;
@@ -99,7 +99,6 @@ export class GuildGambling extends Event {
       }
       message = `%player got lucky and bet ${cost.toLocaleString()} gold against the odds of ${odds}%${isDoubleDown ? ' (Double Down)': ''}. %She came out ahead with ${winnings.toLocaleString()} gold!`;
     } else {
-      player.gainGold(-cost, false);
       player.$statistics.incrementStat('Character.Gold.Gamble.Lose', cost);
       player.$statistics.incrementStat('Character.Gamble.LoseTimes');
       if(isDoubleDown) {
