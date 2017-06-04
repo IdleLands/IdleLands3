@@ -77,6 +77,16 @@ export class Enchant extends Event {
   
   static guildEnchant(player) {
     const item = this.pickValidItem(player);
+    
+    if(!item) {
+      const enchantTotal = _.sumBy(_.values(player.equipment), 'enchantLevel');
+      if(enchantTotal < 100) return [];
+
+      const eventText = this._parseText('%player attempted to enchant %hisher gear, but it failed!', player);
+      this.emitMessage({ affected: [player], eventText, category: MessageCategories.ITEM });
+      player.$statistics.incrementStat('Character.Item.OverEnchant');
+      return [];
+    }
 
     const enchantressLevel = player.guild.buildings.levels.Enchantress || 0;
     const enchantressName = player.guild.getProperty('Enchantress', 'Name');
