@@ -93,10 +93,7 @@ export class Spell {
 
   cast({ damage, targets, message, applyEffect, applyEffectDuration, applyEffectPotency, applyEffectName, applyEffectExtra, messageData = {} }) {
 
-    this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
-
     damage = Math.round(damage);
-    this.caster[`_${this.stat}`][this.oper](this.cost);
 
     messageData.spellName = this.tier.name;
 
@@ -141,6 +138,16 @@ export class Spell {
   }
 
   preCast() {}
+
+  postCast() {
+    this.caster.$battle.tryIncrement(this.caster, `Combat.Utilize.${this.element}`);
+    this.caster[`_${this.stat}`][this.oper](this.cost);
+  }
+
+  startCast() {
+    this.preCast();
+    this.postCast();
+  }
 
   dealDamage(target, damage) {
     return this.caster.$battle.dealDamage(target, damage, this.caster);

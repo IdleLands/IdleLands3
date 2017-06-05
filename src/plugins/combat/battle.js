@@ -177,7 +177,7 @@ export class Battle {
     }
 
     const spellRef = new spell(player);
-    spellRef.preCast();
+    spellRef.startCast();
   }
 
   validAttacks(player) {
