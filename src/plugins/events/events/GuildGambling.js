@@ -29,7 +29,7 @@ export class GuildGambling extends Event {
     const multiplierMax = Math.max(multiplierMin + 0.1, 1 + (0.1 * Math.floor(tavernLevel/5)));
 
     const oddsMin = Math.min(20, 5 + (0.2 * Math.floor(tavernLevel/15)));
-    const oddsMax = Math.min(75, 25 + (0.3 * Math.floor(tavernLevel/7)));
+    const oddsMax = Math.min(75, 25 + (Math.floor(tavernLevel/3)));
 
     const id = Event.chance.guid();
     const multiplier = this.chance.floating({ fixed: 2, min: multiplierMin, max: multiplierMax });
