@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { VenomCoating as VenomCoatingEffect } from '../effects/VenomCoating';
 
 export class VenomCoating extends Spell {
+  static description = 'Applies Venom and Poison effects to an ally\'s weapon.';
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'venom coating',    spellPower: 1,  weight: 25, cost: 200,   profession: 'Archer', level: 15 },

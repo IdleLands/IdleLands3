@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class AntimagicArrow extends Spell {
+  static description = 'An attack that reduces the target\'s mp.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [

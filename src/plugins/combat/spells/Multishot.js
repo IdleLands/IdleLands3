@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class Multishot extends Spell {
+  static description = 'An attack that hits multiple times.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [

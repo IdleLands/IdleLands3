@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { DEXLoss } from '../effects/DEXLoss';
 
 export class SmokeBomb extends Spell {
+  static description = 'Throws a bomb that reduces DEX of all enemies.';
   static element = SpellType.DEBUFF;
   static tiers = [
     { name: 'smoke bomb',       spellPower: 1,  weight: 25, cost: 100,   profession: 'Archer', level: 5 },

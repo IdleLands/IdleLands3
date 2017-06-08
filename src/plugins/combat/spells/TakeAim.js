@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class TakeAim extends Spell {
+  static description = 'Restores a set amount of Focus to the caster.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'take aim',      spellPower: 35, weight: 30, cost: 50,   level: 7,   profession: 'Archer' },

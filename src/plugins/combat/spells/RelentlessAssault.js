@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { RelentlessAssault as RelentlessAssaultEffect } from '../effects/RelentlessAssault';
 
 export class RelentlessAssault extends Spell {
+  static description = 'Performs two additional Attacks per round, costing 25 Focus each round for 10 rounds.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [

@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { ATTACK_STATS } from '../../../shared/stat-calculator';
 
 export class Shattershot extends Spell {
+  static description = 'An attack that applies random debuffs to the target.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
