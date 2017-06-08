@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class Cleave extends Spell {
+  static description = 'An attack that consumes all Rage to deal massive damage.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'cleave',  spellPower: 1, weight: 30, cost: 0,  level: 50,  profession: 'Barbarian' }
