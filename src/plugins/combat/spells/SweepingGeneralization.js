@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class SweepingGeneralization extends Spell {
+  static description = 'A spell that uses STR and DEX to attack all enemies.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'sweeping generalization', spellPower: 1.0, weight: 35, cost: 50, profession: 'Generalist', level: 5 },

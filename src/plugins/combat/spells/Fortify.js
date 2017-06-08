@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { PhysicalStatBoost } from '../effects/PhysicalStatBoost';
 
 export class Fortify extends Spell {
+  static description = 'A buff that increases STR, DEX and AGI of an ally.';
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'fortify',          spellPower: 10, weight: 25, cost: 200,  profession: 'Generalist', level: 15 },
