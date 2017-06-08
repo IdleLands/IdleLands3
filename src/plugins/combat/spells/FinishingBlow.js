@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class FinishingBlow extends Spell {
+  static description = 'A combo attack that follows Wombo Combo, Savage Stab, or Heartbleed.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [

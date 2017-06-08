@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { Heartbleed as HeartbleedEffect } from '../effects/Heartbleed';
 
 export class Heartbleed extends Spell {
+  static description = 'A combo attack that follows Chain Stab. Applies a debuff to the target that deals damage every turn.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [

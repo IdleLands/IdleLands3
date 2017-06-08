@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class WomboCombo extends Spell {
+  static description = 'A three-hit combo attack that follows Chain Stab or Heartbleed.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [

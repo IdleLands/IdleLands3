@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class FadeAway extends Spell {
+  static description = 'Restores Stamina.';
   static element = SpellType.PHYSICAL;
   static stat = 'special';
   static tiers = [
