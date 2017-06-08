@@ -7,6 +7,7 @@ import { DEXBoostValue } from '../effects/DEXBoostValue';
 import { AGIBoostValue } from '../effects/AGIBoostValue';
 
 export class ThereIsNoEscape extends Spell {
+  static description = 'A buff that increases DEX and AGI of all allies.';
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'There Is No Escape', spellPower: 15, weight: 25, cost: 200,   profession: 'Bard', level: 1 },

@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { LitanyOfPain as LitanyOfPainEffect } from '../effects/LitanyOfPain';
 
 export class LitanyOfPain extends Spell {
+  static description = 'A debuff that deals damage to an enemy every turn.';
   static element = SpellType.DEBUFF;
   static tiers = [
     { name: 'Litany of Pain',        spellPower: 1, weight: 25, cost: 200,   profession: 'Bard', level: 1 },

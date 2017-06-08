@@ -7,6 +7,7 @@ import { CONBoostValue } from '../effects/CONBoostValue';
 import { LUKBoostValue } from '../effects/LUKBoostValue';
 
 export class LightFromTheStars extends Spell {
+  static description = 'A buff that increases CON and LUK of all allies.';
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'Light From The Stars',   spellPower: 15, weight: 25, cost: 200,   profession: 'Bard', level: 1,

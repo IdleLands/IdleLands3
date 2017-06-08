@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { PercentageHPHeal } from '../effects/PercentageHPHeal';
 
 export class PaleMoonlight extends Spell {
+  static description = 'A buff that heals all allies every turn.';
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'Through the Pale Moonlight',        spellPower: 3,   weight: 25, cost: 200,   profession: 'Bard', level: 1 },
