@@ -170,7 +170,8 @@ export class StatCalculator {
 
     _.each(festivals, festival => {
       if(!festival.bonuses[stat]) return;
-      mods += festival.bonuses[stat] * (baseValue || 1);
+      if(stat === 'salvage') mods += festival.bonuses[stat];
+      else mods += festival.bonuses[stat] * (baseValue || 1);
     });
 
     return doRound ? Math.floor(baseValue + mods) : baseValue + mods;
