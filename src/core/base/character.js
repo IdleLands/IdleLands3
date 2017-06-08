@@ -172,7 +172,6 @@ export class Character {
   }
 
   canEquip(item, rangeBoostMultiplier = 1, useCheckRangeMultiplier = true) {
-    const player = this;
     const myItem = this.equipment[item.type];
     const checkScore = item.score;
     const myScore = myItem ? myItem.score : -1000;
@@ -183,19 +182,19 @@ export class Character {
       checkRangeMultiplier = 0;
     }
 
-    const metRequirements = (player.isPlayer) ? _(item)
+    const metRequirements = (this.isPlayer) ? _(item)
       .keys()
       .filter(stat => _.includes(stat, 'Req'))
       .every(requirement => {
         if (requirement.startsWith('a')) {
           const name = _(requirement).trimStart().replace('aReq', '').replace(/_/g, ' ');
           const tier = item[requirement];
-          return player.$achievements.hasAchievement(name) && player.$achievements.hasAchievementAtTier(name, tier);
+          return this.$achievements.hasAchievement(name) && this.$achievements.hasAchievementAtTier(name, tier);
 
         } else if (requirement.startsWith('c')) {
           const name = _(requirement).trimStart().replace('cReq', '').replace(/_/g, ' ');
           const number = item[requirement];
-          return player.$collectibles.hasTotalCollectibleAtNumber(name, number);
+          return this.$collectibles.hasTotalCollectibleAtNumber(name, number);
 
         } else if (requirement.startsWith('s')) {
           let statisticName = _(requirement).trimStart().replace('sReq', '').replace(/\*/g, ' ').split(' ');
@@ -203,7 +202,7 @@ export class Character {
           if (statisticName[0] === 'Boss_Kills') statisticName[0] = 'BossKills';
           if (statisticName[0] === 'Regions' || statisticName[0] === 'Maps' || statisticName[0] === 'BossKills') statisticName.unshift('Character');
           statisticName = statisticName.join('.').replace(/_/g, ' ');
-          return player.$statistics.getStat(statisticName) >= requiredNumber;
+          return this.$statistics.getStat(statisticName) >= requiredNumber;
 
         }
         return false;
