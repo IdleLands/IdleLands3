@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class DebuffTouch extends Spell {
+  static description = 'A debuff that may apply Poison, Prone and Venom effects.';
   static element = SpellType.DEBUFF;
   static tiers = [
     { name: 'poisontouch',  spellPower: 1, weight: 30, cost: 500,   level: 15,  profession: 'Necromancer' },

@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { AllStatsDown } from '../effects/AllStatsDown';
 
 export class Siphon extends Spell {
+  static description = 'A spell that uses INT to deal damage and heal the caster, with a debuff that decreases the target\'s STR, DEX, AGI, LUK, INT and CON.';
   static element = SpellType.DEBUFF;
   static tiers = [
     { name: 'siphon',      spellPower: 2, weight: 30, cost: 100,   level: 1,   profession: 'Necromancer' },
