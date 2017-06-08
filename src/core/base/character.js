@@ -188,17 +188,17 @@ export class Character {
       .filter(stat => _.includes(stat, 'Req'))
       .every(requirement => {
         if (requirement.startsWith('a')) {
-          const name = _(requirement).trimStart('aReq').replace(/_/g, ' ');
+          const name = _(requirement).trimStart().replace('aReq', '').replace(/_/g, ' ');
           const tier = item[requirement];
           return player.$achievements.hasAchievement(name) && player.$achievements.hasAchievementAtTier(name, tier);
 
         } else if (requirement.startsWith('c')) {
-          const name = _(requirement).trimStart('cReq').replace(/_/g, ' ');
+          const name = _(requirement).trimStart().replace('cReq', '').replace(/_/g, ' ');
           const number = item[requirement];
           return player.$collectibles.hasTotalCollectibleAtNumber(name, number);
 
         } else if (requirement.startsWith('s')) {
-          let statisticName = _(requirement).trimStart('sReq').replace(/\*/g, ' ').split(' ');
+          let statisticName = _(requirement).trimStart().replace('sReq', '').replace(/\*/g, ' ').split(' ');
           const requiredNumber = item[requirement];
           if (statisticName[0] === 'Boss_Kills') statisticName[0] = 'BossKills';
           if (statisticName[0] === 'Regions' || statisticName[0] === 'Maps' || statisticName[0] === 'BossKills') statisticName.unshift('Character');

@@ -205,7 +205,8 @@ export class Pet extends Character {
   }
 
   canEquipScore(item) {
-    return item.score < this.liveStats.itemFindRange && item.score > 0;
+    const itemRequirements = _(item).keys().filter(stat => _.includes(stat, 'Req')).value().length;
+    return item.score < this.liveStats.itemFindRange && item.score > 0 && itemRequirements <= 0;
   }
 
   canEquip(item) {
