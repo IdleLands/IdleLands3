@@ -272,7 +272,7 @@ export class Character {
       this.$statistics.incrementStat('Character.Item.Sell');
     }
 
-    const gold = this.gainGold(value);
-    return Math.min(maxValue, gold);
+    const gold = this.gainGold(Math.min(maxValue, value));
+    return gold;
   }
 }
