@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { Prone as BluntHitEffect } from '../effects/Prone';
 
 export class BluntHit extends Spell {
+  static description = 'An attack that stuns the target for one turn.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'blunt hit',  spellPower: 1, weight: 10, cost: 300,  level: 15,  profession: 'Fighter' }

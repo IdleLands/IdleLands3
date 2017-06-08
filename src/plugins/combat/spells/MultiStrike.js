@@ -2,6 +2,7 @@
 import { Spell, SpellType } from '../spell';
 
 export class MultiStrike extends Spell {
+  static description = 'An attack that hits multiple times.';
   static element = SpellType.PHYSICAL;
   static tiers = [
     { name: 'double strike', spellPower: 2, weight: 40, cost: 100,   level: 1,  profession: 'Fighter' },
