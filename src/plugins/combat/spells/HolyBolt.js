@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class HolyBolt extends Spell {
+  static description = 'A spell that uses INT to deal damage.';
   static element = SpellType.HOLY;
   static tiers = [
     { name: 'holy bolt',      spellPower: 3, weight: 40, cost: 10,   level: 1,  profession: 'Cleric' },

@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class CureGroup extends Spell {
+  static description = 'A spell that heals all allies.';
   static element = SpellType.HEAL;
   static tiers = [
     { name: 'cure group',       spellPower: 0.5, weight: 40, cost: 50,    level: 30,  profession: 'Cleric' },
