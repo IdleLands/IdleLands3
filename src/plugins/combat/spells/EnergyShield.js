@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { DamageReductionPercentBoost } from '../effects/DamageReductionPercentBoost';
 
 export class EnergyShield extends Spell {
+  static description = 'A buff that reduces damage taken by an ally.';
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'energy shield',      spellPower: 5,   weight: 25, cost: 400,  profession: 'Mage', level: 5 },

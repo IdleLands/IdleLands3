@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class EnergyMissile extends Spell {
+  static description = 'A spell that uses INT to deal damage.';
   static element = SpellType.ENERGY;
   static tiers = [
     { name: 'energy missile', spellPower: 3, weight: 40, cost: 10,   level: 1,  profession: 'Mage' },

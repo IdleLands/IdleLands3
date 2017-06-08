@@ -6,6 +6,7 @@ import { Spell, SpellType } from '../spell';
 import { INTBoost } from '../effects/INTBoost';
 
 export class MageIntelligence extends Spell {
+  static description = 'A buff that increases INT of an ally.';
   static element = SpellType.BUFF;
   static tiers = [
     { name: 'magic intelligence',    spellPower: 15,  weight: 25, cost: 200,   profession: 'Mage', level: 15 },

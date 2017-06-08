@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { Frostbite as FrostbiteEffect } from '../effects/Frostbite';
 
 export class Frostbite extends Spell {
+  static description = 'A spell that causes an enemy to be frostbitten on some turns.';
   static element = SpellType.ICE;
   static tiers = [
     { name: 'frostbite',  spellPower: 1, weight: 40, cost: 300,  level: 15,  profession: 'Mage' },

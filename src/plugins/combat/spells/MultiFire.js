@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class MultiFire extends Spell {
+  static description = 'A spell that hits multiple times.';
   static element = SpellType.FIRE;
   static tiers = [
     { name: 'double fire',    spellPower: 2,  weight: 40, cost: 250,  level: 25,  profession: 'Mage' },
