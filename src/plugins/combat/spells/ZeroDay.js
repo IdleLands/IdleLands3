@@ -5,6 +5,7 @@ import { Spell, SpellType } from '../spell';
 import { ZeroDay as ZeroDayEffect } from '../effects/ZeroDay';
 
 export class ZeroDay extends Spell {
+  static description = 'A spell that increases the damage that an enemy takes.';
   static element = SpellType.DIGITAL;
   static stat = 'special';
   static tiers = [

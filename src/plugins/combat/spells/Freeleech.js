@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Spell, SpellType } from '../spell';
 
 export class Freeleech extends Spell {
+  static description = 'A spell that steals Bandwidth from all enemies.';
   static element = SpellType.DIGITAL;
   static stat = 'special';
   static tiers = [
