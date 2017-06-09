@@ -30,22 +30,22 @@
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-smoke bomb ([SmokeBomb 1](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 5 |  | 
-take aim ([TakeAim 1](../src/plugins/combat/spells/TakeAim.js)) | Physical | 7 |  | 
-venom coating ([VenomCoating 1](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 15 |  | 
-double shot ([Multishot 1](../src/plugins/combat/spells/Multishot.js)) | Physical | 25 |  | 
-shattershot ([Shattershot 1](../src/plugins/combat/spells/Shattershot.js)) | Physical | 25 |  | 
-anti-magic arrow ([AntimagicArrow 1](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 30 |  | 
-smoke grenade ([SmokeBomb 2](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 35 |  | 
-relentless assault ([RelentlessAssault 1](../src/plugins/combat/spells/RelentlessAssault.js)) | Physical | 50 |  | 
-triple shot ([Multishot 2](../src/plugins/combat/spells/Multishot.js)) | Physical | 55 |  | 
-venom slathering ([VenomCoating 2](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 55 |  | 
-anti-magic burst ([AntimagicArrow 2](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 65 |  | 
-shatterblast ([Shattershot 2](../src/plugins/combat/spells/Shattershot.js)) | Physical | 65 |  | 
-trance focus ([TakeAim 2](../src/plugins/combat/spells/TakeAim.js)) | Physical | 65 |  | 
-quadruple shot ([Multishot 3](../src/plugins/combat/spells/Multishot.js)) | Physical | 85 |  | 
-smoke missile ([SmokeBomb 3](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 85 |  | 
-anti-magic blast ([AntimagicArrow 3](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 100 |  | Ivory Arrow
+smoke bomb ([SmokeBomb 1](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 5 | Throws a bomb that reduces DEX of all enemies. | 
+take aim ([TakeAim 1](../src/plugins/combat/spells/TakeAim.js)) | Physical | 7 | Restores a set amount of Focus to the caster. | 
+venom coating ([VenomCoating 1](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 15 | Applies Venom and Poison effects to an ally's weapon. | 
+double shot ([Multishot 1](../src/plugins/combat/spells/Multishot.js)) | Physical | 25 | An attack that hits multiple times. | 
+shattershot ([Shattershot 1](../src/plugins/combat/spells/Shattershot.js)) | Physical | 25 | An attack that applies random debuffs to the target. | 
+anti-magic arrow ([AntimagicArrow 1](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 30 | An attack that reduces the target's mp. | 
+smoke grenade ([SmokeBomb 2](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 35 | Throws a bomb that reduces DEX of all enemies. | 
+relentless assault ([RelentlessAssault 1](../src/plugins/combat/spells/RelentlessAssault.js)) | Physical | 50 | Performs two additional Attacks per round, costing 25 Focus each round for 10 rounds. | 
+triple shot ([Multishot 2](../src/plugins/combat/spells/Multishot.js)) | Physical | 55 | An attack that hits multiple times. | 
+venom slathering ([VenomCoating 2](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 55 | Applies Venom and Poison effects to an ally's weapon. | 
+anti-magic burst ([AntimagicArrow 2](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 65 | An attack that reduces the target's mp. | 
+shatterblast ([Shattershot 2](../src/plugins/combat/spells/Shattershot.js)) | Physical | 65 | An attack that applies random debuffs to the target. | 
+trance focus ([TakeAim 2](../src/plugins/combat/spells/TakeAim.js)) | Physical | 65 | Restores a set amount of Focus to the caster. | 
+quadruple shot ([Multishot 3](../src/plugins/combat/spells/Multishot.js)) | Physical | 85 | An attack that hits multiple times. | 
+smoke missile ([SmokeBomb 3](../src/plugins/combat/spells/SmokeBomb.js)) | Debuff | 85 | Throws a bomb that reduces DEX of all enemies. | 
+anti-magic blast ([AntimagicArrow 3](../src/plugins/combat/spells/AntimagicArrow.js)) | Physical | 100 | An attack that reduces the target's mp. | Ivory Arrow
 
 
 ## Barbarian
@@ -55,7 +55,7 @@ Name | Element | Level | Description | Required Collectibles
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
 berserk ([Berserk 1](../src/plugins/combat/spells/Berserk.js)) | Physical | 1 | A spell that increases Rage by a set amount. | 
 crazy ([Berserk 2](../src/plugins/combat/spells/Berserk.js)) | Physical | 35 | A spell that increases Rage by a set amount. | 
-cleave ([Cleave 1](../src/plugins/combat/spells/Cleave.js)) | Physical | 50 |  | 
+cleave ([Cleave 1](../src/plugins/combat/spells/Cleave.js)) | Physical | 50 | An attack that consumes all Rage to deal massive damage. | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | A simple attack that uses STR to deal damage. | 
 out of control ([Berserk 3](../src/plugins/combat/spells/Berserk.js)) | Physical | 75 | A spell that increases Rage by a set amount. | 
 
@@ -64,18 +64,18 @@ out of control ([Berserk 3](../src/plugins/combat/spells/Berserk.js)) | Physical
 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
-Light From The Stars ([LightFromTheStars 1](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 1 |  | Soaked Sitar
-Litany of Pain ([LitanyOfPain 1](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 1 |  | 
-Our Hearts Ignite ([OurHeartsIgnite 1](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 1 |  | 
-There Is No Escape ([ThereIsNoEscape 1](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 1 |  | 
-Through the Pale Moonlight ([PaleMoonlight 1](../src/plugins/combat/spells/PaleMoonlight.js)) | Buff | 1 |  | 
+Light From The Stars ([LightFromTheStars 1](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 1 | A buff that increases CON and LUK of all allies. | Soaked Sitar
+Litany of Pain ([LitanyOfPain 1](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 1 | A debuff that deals damage to an enemy every turn. | 
+Our Hearts Ignite ([OurHeartsIgnite 1](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 1 | A buff that increases STR and INT of all allies. | 
+There Is No Escape ([ThereIsNoEscape 1](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 1 | A buff that increases DEX and AGI of all allies. | 
+Through the Pale Moonlight ([PaleMoonlight 1](../src/plugins/combat/spells/PaleMoonlight.js)) | Buff | 1 | A buff that heals all allies every turn. | 
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-Hymn of Torment ([LitanyOfPain 2](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 50 |  | 
-Our Hearts Blaze ([OurHeartsIgnite 2](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 50 |  | 
-Purity From The Stars ([LightFromTheStars 2](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 50 |  | Soaked Sitar
-Shining Bright Against the Night ([PaleMoonlight 2](../src/plugins/combat/spells/PaleMoonlight.js)) | Buff | 50 |  | 
-You Shant Get Away ([ThereIsNoEscape 2](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 50 |  | 
-Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 100 |  | Ancient Lute
+Hymn of Torment ([LitanyOfPain 2](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 50 | A debuff that deals damage to an enemy every turn. | 
+Our Hearts Blaze ([OurHeartsIgnite 2](../src/plugins/combat/spells/OurHeartsIgnite.js)) | Buff | 50 | A buff that increases STR and INT of all allies. | 
+Purity From The Stars ([LightFromTheStars 2](../src/plugins/combat/spells/LightFromTheStars.js)) | Buff | 50 | A buff that increases CON and LUK of all allies. | Soaked Sitar
+Shining Bright Against the Night ([PaleMoonlight 2](../src/plugins/combat/spells/PaleMoonlight.js)) | Buff | 50 | A buff that heals all allies every turn. | 
+You Shant Get Away ([ThereIsNoEscape 2](../src/plugins/combat/spells/ThereIsNoEscape.js)) | Buff | 50 | A buff that increases DEX and AGI of all allies. | 
+Chant of Obliteration ([LitanyOfPain 3](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 100 | A debuff that deals damage to an enemy every turn. | Ancient Lute
 
 
 ## Beatomancer
@@ -90,30 +90,30 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A s
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-bit ([Bit 1](../src/plugins/combat/spells/Bit.js)) | Digital | 1 |  | 
-byte ([Byte 1](../src/plugins/combat/spells/Byte.js)) | Digital | 1 |  | 
-flip the bit ([FlipTheBit 1](../src/plugins/combat/spells/FlipTheBit.js)) | Digital | 1 |  | 
-freeleech ([Freeleech 1](../src/plugins/combat/spells/Freeleech.js)) | Digital | 1 |  | 
-kilobit ([Bit 2](../src/plugins/combat/spells/Bit.js)) | Digital | 8 |  | 
-kilobyte ([Byte 2](../src/plugins/combat/spells/Byte.js)) | Digital | 8 |  | 
-single-channel RAM ([DownloadRAM 1](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 8 |  | 
-dual-channel RAM ([DownloadRAM 2](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 16 |  | 
-megabit ([Bit 3](../src/plugins/combat/spells/Bit.js)) | Digital | 16 |  | 
-megabyte ([Byte 3](../src/plugins/combat/spells/Byte.js)) | Digital | 16 |  | 
-DoS ([DoS 1](../src/plugins/combat/spells/DoS.js)) | Digital | 32 |  | 
-gigabit ([Bit 4](../src/plugins/combat/spells/Bit.js)) | Digital | 32 |  | 
-gigabyte ([Byte 4](../src/plugins/combat/spells/Byte.js)) | Digital | 32 |  | 
-triple-channel RAM ([DownloadRAM 3](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 32 |  | 
-zero-day threat ([ZeroDay 1](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 32 |  | 
-DDoS ([DoS 2](../src/plugins/combat/spells/DoS.js)) | Digital | 64 |  | 
-quad-channel RAM ([DownloadRAM 4](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 64 |  | 
-terabit ([Bit 5](../src/plugins/combat/spells/Bit.js)) | Digital | 64 |  | 
-terabyte ([Byte 5](../src/plugins/combat/spells/Byte.js)) | Digital | 64 |  | 
-zero-day attack ([ZeroDay 2](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 64 |  | 
-persistent DDoS ([DoS 3](../src/plugins/combat/spells/DoS.js)) | Digital | 128 |  | Gauntlet
-petabit ([Bit 6](../src/plugins/combat/spells/Bit.js)) | Digital | 128 |  | Steel Flower
-petabyte ([Byte 6](../src/plugins/combat/spells/Byte.js)) | Digital | 128 |  | Giant Sized Flask
-zero-day assault ([ZeroDay 3](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 128 |  | Vial of Liquid Fate
+bit ([Bit 1](../src/plugins/combat/spells/Bit.js)) | Digital | 1 | A spell that uses INT to deal damage. | 
+byte ([Byte 1](../src/plugins/combat/spells/Byte.js)) | Digital | 1 | A spell that uses INT to deal damage to an enemy and heal the caster. | 
+flip the bit ([FlipTheBit 1](../src/plugins/combat/spells/FlipTheBit.js)) | Digital | 1 | A spell that reverses the target's current HP and MP values | 
+freeleech ([Freeleech 1](../src/plugins/combat/spells/Freeleech.js)) | Digital | 1 | A spell that steals Bandwidth from all enemies. | 
+kilobit ([Bit 2](../src/plugins/combat/spells/Bit.js)) | Digital | 8 | A spell that uses INT to deal damage. | 
+kilobyte ([Byte 2](../src/plugins/combat/spells/Byte.js)) | Digital | 8 | A spell that uses INT to deal damage to an enemy and heal the caster. | 
+single-channel RAM ([DownloadRAM 1](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 8 | A spell that increases the caster's STR, DEX and AGI and decreases the caster's INT. | 
+dual-channel RAM ([DownloadRAM 2](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 16 | A spell that increases the caster's STR, DEX and AGI and decreases the caster's INT. | 
+megabit ([Bit 3](../src/plugins/combat/spells/Bit.js)) | Digital | 16 | A spell that uses INT to deal damage. | 
+megabyte ([Byte 3](../src/plugins/combat/spells/Byte.js)) | Digital | 16 | A spell that uses INT to deal damage to an enemy and heal the caster. | 
+DoS ([DoS 1](../src/plugins/combat/spells/DoS.js)) | Digital | 32 | A spell that causes an enemy to drop packets on some rounds, ending their turn. | 
+gigabit ([Bit 4](../src/plugins/combat/spells/Bit.js)) | Digital | 32 | A spell that uses INT to deal damage. | 
+gigabyte ([Byte 4](../src/plugins/combat/spells/Byte.js)) | Digital | 32 | A spell that uses INT to deal damage to an enemy and heal the caster. | 
+triple-channel RAM ([DownloadRAM 3](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 32 | A spell that increases the caster's STR, DEX and AGI and decreases the caster's INT. | 
+zero-day threat ([ZeroDay 1](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 32 | A spell that increases the damage that an enemy takes. | 
+DDoS ([DoS 2](../src/plugins/combat/spells/DoS.js)) | Digital | 64 | A spell that causes an enemy to drop packets on some rounds, ending their turn. | 
+quad-channel RAM ([DownloadRAM 4](../src/plugins/combat/spells/DownloadRAM.js)) | Digital | 64 | A spell that increases the caster's STR, DEX and AGI and decreases the caster's INT. | 
+terabit ([Bit 5](../src/plugins/combat/spells/Bit.js)) | Digital | 64 | A spell that uses INT to deal damage. | 
+terabyte ([Byte 5](../src/plugins/combat/spells/Byte.js)) | Digital | 64 | A spell that uses INT to deal damage to an enemy and heal the caster. | 
+zero-day attack ([ZeroDay 2](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 64 | A spell that increases the damage that an enemy takes. | 
+persistent DDoS ([DoS 3](../src/plugins/combat/spells/DoS.js)) | Digital | 128 | A spell that causes an enemy to drop packets on some rounds, ending their turn. | Gauntlet
+petabit ([Bit 6](../src/plugins/combat/spells/Bit.js)) | Digital | 128 | A spell that uses INT to deal damage. | Steel Flower
+petabyte ([Byte 6](../src/plugins/combat/spells/Byte.js)) | Digital | 128 | A spell that uses INT to deal damage to an enemy and heal the caster. | Giant Sized Flask
+zero-day assault ([ZeroDay 3](../src/plugins/combat/spells/ZeroDay.js)) | Digital | 128 | A spell that increases the damage that an enemy takes. | Vial of Liquid Fate
 
 
 ## Cleric
@@ -121,24 +121,24 @@ zero-day assault ([ZeroDay 3](../src/plugins/combat/spells/ZeroDay.js)) | Digita
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-cure ([Cure 1](../src/plugins/combat/spells/Cure.js)) | Heal | 1 |  | 
-holy bolt ([HolyBolt 1](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 1 |  | 
-boar strength ([ClericStrength 1](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 15 |  | 
-divine bolt ([HolyBolt 2](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 25 |  | 
-heal ([Cure 2](../src/plugins/combat/spells/Cure.js)) | Heal | 25 |  | 
-revive ([Revive 1](../src/plugins/combat/spells/Revive.js)) | Heal | 25 |  | 
-cure group ([CureGroup 1](../src/plugins/combat/spells/CureGroup.js)) | Heal | 30 |  | 
-demon strength ([ClericStrength 2](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 30 |  | 
-celestial bolt ([HolyBolt 3](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 55 |  | 
-heal group ([CureGroup 2](../src/plugins/combat/spells/CureGroup.js)) | Heal | 55 |  | 
-dragon strength ([ClericStrength 3](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 60 |  | 
-restore ([Cure 3](../src/plugins/combat/spells/Cure.js)) | Heal | 65 |  | 
-resurrect ([Revive 2](../src/plugins/combat/spells/Revive.js)) | Heal | 65 |  | 
-tranquility ([Tranquility 1](../src/plugins/combat/spells/Tranquility.js)) | Buff | 75 |  | 
-restore group ([CureGroup 3](../src/plugins/combat/spells/CureGroup.js)) | Heal | 95 |  | 
-titan strength ([ClericStrength 4](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 95 |  | 
-revitalize ([Cure 4](../src/plugins/combat/spells/Cure.js)) | Heal | 115 |  | Strand of Fate
-revitalize group ([CureGroup 4](../src/plugins/combat/spells/CureGroup.js)) | Heal | 145 |  | Gauntlet
+cure ([Cure 1](../src/plugins/combat/spells/Cure.js)) | Heal | 1 | A spell that heals an ally. | 
+holy bolt ([HolyBolt 1](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 1 | A spell that uses INT to deal damage. | 
+boar strength ([ClericStrength 1](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 15 | A buff that increases an ally's STR | 
+divine bolt ([HolyBolt 2](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 25 | A spell that uses INT to deal damage. | 
+heal ([Cure 2](../src/plugins/combat/spells/Cure.js)) | Heal | 25 | A spell that heals an ally. | 
+revive ([Revive 1](../src/plugins/combat/spells/Revive.js)) | Heal | 25 | A spell that revives a dead ally. | 
+cure group ([CureGroup 1](../src/plugins/combat/spells/CureGroup.js)) | Heal | 30 | A spell that heals all allies. | 
+demon strength ([ClericStrength 2](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 30 | A buff that increases an ally's STR | 
+celestial bolt ([HolyBolt 3](../src/plugins/combat/spells/HolyBolt.js)) | Holy | 55 | A spell that uses INT to deal damage. | 
+heal group ([CureGroup 2](../src/plugins/combat/spells/CureGroup.js)) | Heal | 55 | A spell that heals all allies. | 
+dragon strength ([ClericStrength 3](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 60 | A buff that increases an ally's STR | 
+restore ([Cure 3](../src/plugins/combat/spells/Cure.js)) | Heal | 65 | A spell that heals an ally. | 
+resurrect ([Revive 2](../src/plugins/combat/spells/Revive.js)) | Heal | 65 | A spell that revives a dead ally. | 
+tranquility ([Tranquility 1](../src/plugins/combat/spells/Tranquility.js)) | Buff | 75 | A buff that massively reduces damage taken by all targets for two turns. | 
+restore group ([CureGroup 3](../src/plugins/combat/spells/CureGroup.js)) | Heal | 95 | A spell that heals all allies. | 
+titan strength ([ClericStrength 4](../src/plugins/combat/spells/ClericStrength.js)) | Buff | 95 | A buff that increases an ally's STR | 
+revitalize ([Cure 4](../src/plugins/combat/spells/Cure.js)) | Heal | 115 | A spell that heals an ally. | Strand of Fate
+revitalize group ([CureGroup 4](../src/plugins/combat/spells/CureGroup.js)) | Heal | 145 | A spell that heals all allies. | Gauntlet
 
 
 ## Clockborg
@@ -167,10 +167,10 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A s
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-double strike ([MultiStrike 1](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 1 |  | 
-blunt hit ([BluntHit 1](../src/plugins/combat/spells/BluntHit.js)) | Physical | 15 |  | 
+double strike ([MultiStrike 1](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 1 | An attack that hits multiple times. | 
+blunt hit ([BluntHit 1](../src/plugins/combat/spells/BluntHit.js)) | Physical | 15 | An attack that stuns the target for one turn. | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | A simple attack that uses STR to deal damage. | 
-triple strike ([MultiStrike 2](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 50 |  | 
+triple strike ([MultiStrike 2](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 50 | An attack that hits multiple times. | 
 assault ([Attack 3](../src/plugins/combat/spells/Attack.js)) | Physical | 100 | A simple attack that uses STR to deal damage. | Broken Katana
 
 
@@ -179,18 +179,18 @@ assault ([Attack 3](../src/plugins/combat/spells/Attack.js)) | Physical | 100 | 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-sweeping generalization ([SweepingGeneralization 1](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 5 |  | 
-energy barrier ([EnergyWall 1](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 15 |  | 
-fortify ([Fortify 1](../src/plugins/combat/spells/Fortify.js)) | Buff | 15 |  | 
+sweeping generalization ([SweepingGeneralization 1](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 5 | A spell that uses STR and DEX to attack all enemies. | 
+energy barrier ([EnergyWall 1](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 15 | A buff that reduces damage taken by an ally. | 
+fortify ([Fortify 1](../src/plugins/combat/spells/Fortify.js)) | Buff | 15 | A buff that increases STR, DEX and AGI of an ally. | 
 treatment ([Treatment 1](../src/plugins/combat/spells/Treatment.js)) | Buff | 20 |  | 
-energy barricade ([EnergyWall 2](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 45 |  | 
-greater fortify ([Fortify 2](../src/plugins/combat/spells/Fortify.js)) | Buff | 45 |  | 
-broad generalization ([SweepingGeneralization 2](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 50 |  | 
+energy barricade ([EnergyWall 2](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 45 | A buff that reduces damage taken by an ally. | 
+greater fortify ([Fortify 2](../src/plugins/combat/spells/Fortify.js)) | Buff | 45 | A buff that increases STR, DEX and AGI of an ally. | 
+broad generalization ([SweepingGeneralization 2](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 50 | A spell that uses STR and DEX to attack all enemies. | 
 greater treatment ([Treatment 2](../src/plugins/combat/spells/Treatment.js)) | Buff | 60 |  | 
-ultimate fortify ([Fortify 3](../src/plugins/combat/spells/Fortify.js)) | Buff | 90 |  | 
-energy wall ([EnergyWall 3](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 95 |  | 
+ultimate fortify ([Fortify 3](../src/plugins/combat/spells/Fortify.js)) | Buff | 90 | A buff that increases STR, DEX and AGI of an ally. | 
+energy wall ([EnergyWall 3](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 95 | A buff that reduces damage taken by an ally. | 
 ultimate treatment ([Treatment 3](../src/plugins/combat/spells/Treatment.js)) | Buff | 120 |  | Doctor's Floating Device
-energy greatwall ([EnergyWall 4](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 165 |  | Jar of Magic Dust
+energy greatwall ([EnergyWall 4](../src/plugins/combat/spells/EnergyWall.js)) | Buff | 165 | A buff that reduces damage taken by an ally. | Jar of Magic Dust
 
 
 ## Jester
@@ -206,25 +206,25 @@ strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 90 | A 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-energy missile ([EnergyMissile 1](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 1 |  | 
-energy shield ([EnergyShield 1](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 5 |  | 
-frostbite ([Frostbite 1](../src/plugins/combat/spells/Frostbite.js)) | Ice | 15 |  | 
-magic intelligence ([MageIntelligence 1](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 15 |  | 
-double fire ([MultiFire 1](../src/plugins/combat/spells/MultiFire.js)) | Fire | 25 |  | 
-energy blast ([EnergyMissile 2](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 25 |  | 
-energy buckler ([EnergyShield 2](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 25 |  | 
-magic brilliance ([MageIntelligence 2](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 30 |  | 
-thunderstrike ([Thunderstrike 1](../src/plugins/combat/spells/Thunderstrike.js)) | Thunder | 35 |  | 
-triple fire ([MultiFire 2](../src/plugins/combat/spells/MultiFire.js)) | Fire | 55 |  | 
-arcane intelligence ([MageIntelligence 3](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 60 |  | 
-astral flare ([EnergyMissile 3](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 65 |  | 
-cold snap ([Frostbite 2](../src/plugins/combat/spells/Frostbite.js)) | Ice | 65 |  | 
-energy towershield ([EnergyShield 3](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 65 |  | 
-quadruple fire ([MultiFire 3](../src/plugins/combat/spells/MultiFire.js)) | Fire | 85 |  | 
-thunderstorm ([Thunderstrike 2](../src/plugins/combat/spells/Thunderstrike.js)) | Thunder | 85 |  | 
-arcane brilliance ([MageIntelligence 4](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 95 |  | 
-energy omegashield ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 125 |  | Jar of Magic Dust
-fire star ([MultiFire 4](../src/plugins/combat/spells/MultiFire.js)) | Fire | 185 |  | Bucket of Lava
+energy missile ([EnergyMissile 1](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 1 | A spell that uses INT to deal damage. | 
+energy shield ([EnergyShield 1](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 5 | A buff that reduces damage taken by an ally. | 
+frostbite ([Frostbite 1](../src/plugins/combat/spells/Frostbite.js)) | Ice | 15 | A spell that causes an enemy to be frostbitten on some turns. | 
+magic intelligence ([MageIntelligence 1](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 15 | A buff that increases INT of an ally. | 
+double fire ([MultiFire 1](../src/plugins/combat/spells/MultiFire.js)) | Fire | 25 | A spell that hits multiple times. | 
+energy blast ([EnergyMissile 2](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 25 | A spell that uses INT to deal damage. | 
+energy buckler ([EnergyShield 2](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 25 | A buff that reduces damage taken by an ally. | 
+magic brilliance ([MageIntelligence 2](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 30 | A buff that increases INT of an ally. | 
+thunderstrike ([Thunderstrike 1](../src/plugins/combat/spells/Thunderstrike.js)) | Thunder | 35 | Summons a storm cloud that deals damage to an enemy after a number of rounds. | 
+triple fire ([MultiFire 2](../src/plugins/combat/spells/MultiFire.js)) | Fire | 55 | A spell that hits multiple times. | 
+arcane intelligence ([MageIntelligence 3](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 60 | A buff that increases INT of an ally. | 
+astral flare ([EnergyMissile 3](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 65 | A spell that uses INT to deal damage. | 
+cold snap ([Frostbite 2](../src/plugins/combat/spells/Frostbite.js)) | Ice | 65 | A spell that causes an enemy to be frostbitten on some turns. | 
+energy towershield ([EnergyShield 3](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 65 | A buff that reduces damage taken by an ally. | 
+quadruple fire ([MultiFire 3](../src/plugins/combat/spells/MultiFire.js)) | Fire | 85 | A spell that hits multiple times. | 
+thunderstorm ([Thunderstrike 2](../src/plugins/combat/spells/Thunderstrike.js)) | Thunder | 85 | Summons a storm cloud that deals damage to an enemy after a number of rounds. | 
+arcane brilliance ([MageIntelligence 4](../src/plugins/combat/spells/MageIntelligence.js)) | Buff | 95 | A buff that increases INT of an ally. | 
+energy omegashield ([EnergyShield 4](../src/plugins/combat/spells/EnergyShield.js)) | Buff | 125 | A buff that reduces damage taken by an ally. | Jar of Magic Dust
+fire star ([MultiFire 4](../src/plugins/combat/spells/MultiFire.js)) | Fire | 185 | A spell that hits multiple times. | Bucket of Lava
 
 
 ## MagicalMonster
@@ -232,14 +232,14 @@ fire star ([MultiFire 4](../src/plugins/combat/spells/MultiFire.js)) | Fire | 18
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-double prod ([MultiStrike 1](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 15 |  | Fighter's Manual
-energy prod ([EnergyMissile 1](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 15 |  | Mage's Tome
-mini cure ([Cure 1](../src/plugins/combat/spells/Cure.js)) | Heal | 15 |  | Cleric's Text
-sweepo generalizo ([SweepingGeneralization 1](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 15 |  | Generalist's Guidebook
-Song of Hurt ([LitanyOfPain 1](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 25 |  | Ancient Lute
+double prod ([MultiStrike 1](../src/plugins/combat/spells/MultiStrike.js)) | Physical | 15 | An attack that hits multiple times. | Fighter's Manual
+energy prod ([EnergyMissile 1](../src/plugins/combat/spells/EnergyMissile.js)) | Energy | 15 | A spell that uses INT to deal damage. | Mage's Tome
+mini cure ([Cure 1](../src/plugins/combat/spells/Cure.js)) | Heal | 15 | A spell that heals an ally. | Cleric's Text
+sweepo generalizo ([SweepingGeneralization 1](../src/plugins/combat/spells/SweepingGeneralization.js)) | Physical | 15 | A spell that uses STR and DEX to attack all enemies. | Generalist's Guidebook
+Song of Hurt ([LitanyOfPain 1](../src/plugins/combat/spells/LitanyOfPain.js)) | Debuff | 25 | A debuff that deals damage to an enemy every turn. | Ancient Lute
 second-old ([DayOldBread 1](../src/plugins/combat/spells/DayOldBread.js)) | Physical | 30 |  | Funny Fungus
-colander ([Siphon 1](../src/plugins/combat/spells/Siphon.js)) | Debuff | 35 |  | Evil Pebble
-venom layer ([VenomCoating 1](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 35 |  | Feathered Cap
+colander ([Siphon 1](../src/plugins/combat/spells/Siphon.js)) | Debuff | 35 | A spell that uses INT to deal damage and heal the caster, with a debuff that decreases the target's STR, DEX, AGI, LUK, INT and CON. | Evil Pebble
+venom layer ([VenomCoating 1](../src/plugins/combat/spells/VenomCoating.js)) | Buff | 35 | Applies Venom and Poison effects to an ally's weapon. | Feathered Cap
 
 
 ## Monster
@@ -254,16 +254,16 @@ attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A s
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-siphon ([Siphon 1](../src/plugins/combat/spells/Siphon.js)) | Debuff | 1 |  | 
-drain ([Siphon 2](../src/plugins/combat/spells/Siphon.js)) | Debuff | 15 |  | 
-poisontouch ([DebuffTouch 1](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 15 |  | 
+siphon ([Siphon 1](../src/plugins/combat/spells/Siphon.js)) | Debuff | 1 | A spell that uses INT to deal damage and heal the caster, with a debuff that decreases the target's STR, DEX, AGI, LUK, INT and CON. | 
+drain ([Siphon 2](../src/plugins/combat/spells/Siphon.js)) | Debuff | 15 | A spell that uses INT to deal damage and heal the caster, with a debuff that decreases the target's STR, DEX, AGI, LUK, INT and CON. | 
+poisontouch ([DebuffTouch 1](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 15 | A debuff that may apply Poison, Prone and Venom effects. | 
 summon ([Summon 1](../src/plugins/combat/spells/Summon.js)) | Physical | 25 |  | 
-deteriorate ([Siphon 3](../src/plugins/combat/spells/Siphon.js)) | Debuff | 35 |  | 
-stuntouch ([DebuffTouch 2](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 35 |  | 
-venomtouch ([DebuffTouch 3](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 55 |  | 
-wither ([Siphon 4](../src/plugins/combat/spells/Siphon.js)) | Debuff | 75 |  | 
-bonecraft ([Bonecraft 1](../src/plugins/combat/spells/Bonecraft.js)) | Heal | 80 |  | Necronomicon
-deathtouch ([DebuffTouch 4](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 85 |  | Forbidden Cleric's Text
+deteriorate ([Siphon 3](../src/plugins/combat/spells/Siphon.js)) | Debuff | 35 | A spell that uses INT to deal damage and heal the caster, with a debuff that decreases the target's STR, DEX, AGI, LUK, INT and CON. | 
+stuntouch ([DebuffTouch 2](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 35 | A debuff that may apply Poison, Prone and Venom effects. | 
+venomtouch ([DebuffTouch 3](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 55 | A debuff that may apply Poison, Prone and Venom effects. | 
+wither ([Siphon 4](../src/plugins/combat/spells/Siphon.js)) | Debuff | 75 | A spell that uses INT to deal damage and heal the caster, with a debuff that decreases the target's STR, DEX, AGI, LUK, INT and CON. | 
+bonecraft ([Bonecraft 1](../src/plugins/combat/spells/Bonecraft.js)) | Heal | 80 | A spell that reanimates a dead target to fight for the caster's party. | Necronomicon
+deathtouch ([DebuffTouch 4](../src/plugins/combat/spells/DebuffTouch.js)) | Debuff | 85 | A debuff that may apply Poison, Prone and Venom effects. | Forbidden Cleric's Text
 
 
 ## Pirate
@@ -287,23 +287,23 @@ explosive vomit ([Retch 3](../src/plugins/combat/spells/Retch.js)) | Physical | 
 Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
-opening strike ([OpeningStrike 1](../src/plugins/combat/spells/OpeningStrike.js)) | Physical | 1 |  | 
-backstab ([Backstab 1](../src/plugins/combat/spells/Backstab.js)) | Physical | 8 |  | 
-chain stab ([ChainStab 1](../src/plugins/combat/spells/ChainStab.js)) | Physical | 8 |  | 
-fade away ([FadeAway 1](../src/plugins/combat/spells/FadeAway.js)) | Physical | 10 |  | 
-heartbleed ([Heartbleed 1](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 15 |  | 
+opening strike ([OpeningStrike 1](../src/plugins/combat/spells/OpeningStrike.js)) | Physical | 1 | An attack that uses STR and DEX to deal damage. | 
+backstab ([Backstab 1](../src/plugins/combat/spells/Backstab.js)) | Physical | 8 | A combo attack that follows Opening Strike. | 
+chain stab ([ChainStab 1](../src/plugins/combat/spells/ChainStab.js)) | Physical | 8 | A combo attack that follows Opening Strike, Backstab or Chain Stab. | 
+fade away ([FadeAway 1](../src/plugins/combat/spells/FadeAway.js)) | Physical | 10 | Restores Stamina. | 
+heartbleed ([Heartbleed 1](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 15 | A combo attack that follows Chain Stab. Applies a debuff to the target that deals damage every turn. | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 25 | A simple attack that uses STR to deal damage. | 
-wombo combo ([WomboCombo 1](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 25 |  | 
-finishing blow ([FinishingBlow 1](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 38 |  | 
+wombo combo ([WomboCombo 1](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 25 | A three-hit combo attack that follows Chain Stab or Heartbleed. | 
+finishing blow ([FinishingBlow 1](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 38 | A combo attack that follows Wombo Combo, Savage Stab, or Heartbleed. | 
 savage stab ([SavageStab 1](../src/plugins/combat/spells/SavageStab.js)) | Physical | 45 |  | 
-shadowstep ([FadeAway 2](../src/plugins/combat/spells/FadeAway.js)) | Physical | 50 |  | 
-opening strike ([OpeningStrike 2](../src/plugins/combat/spells/OpeningStrike.js)) | Physical | 61 |  | 
-backstab ([Backstab 2](../src/plugins/combat/spells/Backstab.js)) | Physical | 68 |  | 
-chain stab ([ChainStab 2](../src/plugins/combat/spells/ChainStab.js)) | Physical | 68 |  | 
-heartbleed ([Heartbleed 2](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 75 |  | 
-wombo combo ([WomboCombo 2](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 85 |  | 
-vanish from sight ([FadeAway 3](../src/plugins/combat/spells/FadeAway.js)) | Physical | 90 |  | 
-finishing blow ([FinishingBlow 2](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 98 |  | 
+shadowstep ([FadeAway 2](../src/plugins/combat/spells/FadeAway.js)) | Physical | 50 | Restores Stamina. | 
+opening strike ([OpeningStrike 2](../src/plugins/combat/spells/OpeningStrike.js)) | Physical | 61 | An attack that uses STR and DEX to deal damage. | 
+backstab ([Backstab 2](../src/plugins/combat/spells/Backstab.js)) | Physical | 68 | A combo attack that follows Opening Strike. | 
+chain stab ([ChainStab 2](../src/plugins/combat/spells/ChainStab.js)) | Physical | 68 | A combo attack that follows Opening Strike, Backstab or Chain Stab. | 
+heartbleed ([Heartbleed 2](../src/plugins/combat/spells/Heartbleed.js)) | Physical | 75 | A combo attack that follows Chain Stab. Applies a debuff to the target that deals damage every turn. | 
+wombo combo ([WomboCombo 2](../src/plugins/combat/spells/WomboCombo.js)) | Physical | 85 | A three-hit combo attack that follows Chain Stab or Heartbleed. | 
+vanish from sight ([FadeAway 3](../src/plugins/combat/spells/FadeAway.js)) | Physical | 90 | Restores Stamina. | 
+finishing blow ([FinishingBlow 2](../src/plugins/combat/spells/FinishingBlow.js)) | Physical | 98 | A combo attack that follows Wombo Combo, Savage Stab, or Heartbleed. | 
 savage stab ([SavageStab 2](../src/plugins/combat/spells/SavageStab.js)) | Physical | 105 |  | Thief's Locket
 
 
