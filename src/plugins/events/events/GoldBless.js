@@ -23,7 +23,7 @@ export class GoldBless extends Event {
       value = baseGold;
     }
 
-    const goldMod = player.gainGold(value);
+    let goldMod = player.gainGold(value);
 
     let diminishingReturnsMultiplier;
     if(useDiminishingReturns) {
