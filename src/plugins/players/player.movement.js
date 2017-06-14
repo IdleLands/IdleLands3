@@ -103,7 +103,10 @@ export class PlayerMovement {
         Logger.error('PlayerMovement', new Error(`forceEvent ${forceEvent} does not exist at ${player.x}, ${player.y} in ${player.map}`));
         return;
       }
+      if (!player.forceEvent) player.forceEvent = { steps: 0, decrementer: 0 };
       Events[forceEvent].operateOn(player, tile.object.properties);
+      player.forceEvent.steps++;
+      if (player.forceEvent.steps > 500) player.forceEvent.steps = 500;
     }
 
     if(!type || !this[`handleTile${type}`] || ignoreIf === type) return;

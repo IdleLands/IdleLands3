@@ -10,7 +10,7 @@ export const WEIGHT = 216;
 export class GoldBless extends Event {
   static WEIGHT = WEIGHT;
 
-  static operateOn(player) {
+  static operateOn(player, useDiminishingReturns = false) {
     if(player.party && Event.chance.bool({ likelihood: 70 })) {
       GoldBlessParty.operateOn(player);
       return player.party.members;
@@ -24,9 +24,20 @@ export class GoldBless extends Event {
     }
 
     const goldMod = player.gainGold(value);
-    const eventText = this.eventText('blessGold', player, { gold: goldMod });
 
-    this.emitMessage({ affected: [player], eventText: `${eventText} [+${goldMod.toLocaleString()} gold]`, category: MessageCategories.GOLD });
+    let diminishingReturnsMultiplier;
+    if(useDiminishingReturns) {
+      if(player.forceEvent.steps > 400) diminishingReturnsMultiplier = 0.05;
+      else if(player.forceEvent.steps > 300) diminishingReturnsMultiplier = 0.1;
+      else if(player.forceEvent.steps > 200) diminishingReturnsMultiplier = 0.25;
+      else if(player.forceEvent.steps > 100) diminishingReturnsMultiplier = 0.5;
+    }
+    if (diminishingReturnsMultiplier) goldMod = Math.round(goldMod * diminishingReturnsMultiplier);
+
+    const eventText = this.eventText('blessGold', player, { gold: goldMod });
+    const diminishingReturnsText = diminishingReturnsMultiplier ? ' (-' + ((1 - diminishingReturnsMultiplier) * 100) + '%)' : '';
+
+    this.emitMessage({ affected: [player], eventText: `${eventText} [+${goldMod.toLocaleString()}${diminishingReturnsText} gold]`, category: MessageCategories.GOLD });
 
     return [player];
   }

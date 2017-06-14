@@ -434,6 +434,15 @@ export class Player extends Character {
 
     this.mapPath = tile.path;
 
+    if(this.forceEvent) {
+      this.forceEvent.decrementer--;
+      if(this.forceEvent.decrementer <= 0) {
+        this.forceEvent.steps--;
+        if (this.forceEvent.steps < 0) this.forceEvent.steps = 0;
+        this.forceEvent.decrementer = 240;
+      }
+    }
+
     Logger.silly('Player:Move', `${this.name} handling tile`);
     this.$playerMovement.handleTile(this, tile);
     Logger.silly('Player:Move', `${this.name} handled tile`);
