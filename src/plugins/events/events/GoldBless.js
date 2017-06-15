@@ -23,7 +23,7 @@ export class GoldBless extends Event {
       value = baseGold;
     }
 
-    let goldMod = player.gainGold(value);
+    let goldMod = value; 
 
     let diminishingReturnsMultiplier;
     if(useDiminishingReturns) {
@@ -34,6 +34,7 @@ export class GoldBless extends Event {
     }
     if (diminishingReturnsMultiplier) goldMod = Math.round(goldMod * diminishingReturnsMultiplier);
 
+    goldMod = player.gainGold(goldMod); // gainGold modifies goldMod. Use result to get accurate event text.
     const eventText = this.eventText('blessGold', player, { gold: goldMod });
     const diminishingReturnsText = diminishingReturnsMultiplier ? ' (-' + ((1 - diminishingReturnsMultiplier) * 100) + '%)' : '';
 
