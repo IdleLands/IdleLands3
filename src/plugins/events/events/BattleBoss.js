@@ -109,6 +109,8 @@ export class BattleBoss extends Event {
         });
       }
     }
+    
+    if(!player.party) return [];
 
     const affected = player.party.players;
 
