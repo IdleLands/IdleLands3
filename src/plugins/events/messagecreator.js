@@ -24,7 +24,7 @@ class AllDomains {
     }
 
     const canLowercase = !_.includes(['deity'], normalizedFunct);
-    let chosenItem = _.sample(StringAssets[normalizedFunct]);
+    let chosenItem = _.sample(StringAssets[normalizedFunct]) || this.placeholder();
     if(canLowercase) {
       chosenItem = normalizedFunct === funct ? chosenItem.toLowerCase() : _.capitalize(chosenItem);
     }
