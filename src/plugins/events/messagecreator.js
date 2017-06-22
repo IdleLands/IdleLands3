@@ -49,7 +49,7 @@ class AllDomains {
   static party(props, cache, partyData) {
     const { funct, cacheNum } = props[0];
     if(funct === 'member') {
-      return partyData.players[cacheNum].fullname;
+      return partyData.players[cacheNum] ? partyData.players[cacheNum].fullname : this.placeholder();
     }
     return this.placeholder();
   }
