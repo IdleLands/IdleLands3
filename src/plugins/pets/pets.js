@@ -75,6 +75,8 @@ export class Pets {
   addNewPet(player, type, name) {
     if(this.earnedPetData[type]) return;
     if(!name || !name.trim() || name.length > 20) return;
+    
+    if(!petdata[type]) return;
 
     const cost = petdata[type].cost;
     if(player.gold < cost) return;
