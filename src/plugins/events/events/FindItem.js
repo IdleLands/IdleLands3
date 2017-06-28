@@ -19,6 +19,10 @@ export class FindItem extends Event {
 
     const acrossText = isOld ? 'had' : 'came across';
 
+    if (!isOld) {
+      player.$statistics.incrementStat('Character.Item.Unequippable');
+    }
+      
     if(player.$personalities.isActive('Salvager') && player.hasGuild) {
       let message = `%player ${acrossText} %item, but it was too ${text} for %himher, but it was unsalvageable.`;
       const salvageResult = player.getSalvageValues(item);
@@ -37,7 +41,6 @@ export class FindItem extends Event {
     const message = `%player ${acrossText} %item, but it was too ${text} for %himher, so %she sold it for %gold gold.`;
     const gold = player.sellItem(item);
     const parsedMessage = this._parseText(message, player, { gold, item: item.fullname });
-    player.$statistics.incrementStat('Character.Item.Unequippable');
     this.emitMessage({ affected: [player], eventText: parsedMessage, category: MessageCategories.ITEM });
   }
 
@@ -91,7 +94,7 @@ export class FindItem extends Event {
     if(response === 'Yes') {
       const oldItem = player.equipment[item.type];
       if(oldItem) {
-        this.disposeOfItem(player, oldItem);
+        this.disposeOfItem(player, oldItem, true);
       }
       player.equip(item);
       this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.ITEM });
