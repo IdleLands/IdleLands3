@@ -21,9 +21,10 @@ export class GuildGambling extends Event {
     if(tavernLevel === 0) return;
 
     const MOD_INCOME_PERCENT = INCOME_PERCENT + Math.floor(tavernLevel / 5);
+    const MAX_GOLD = Math.min(player.gold / MOD_INCOME_PERCENT, tavernlevel * 200000);
 
     if(player.gold < MIN_GOLD * MOD_INCOME_PERCENT) return;
-    const cost = this.chance.integer({ min: MIN_GOLD, max: player.gold / MOD_INCOME_PERCENT });
+    const cost = this.chance.integer({ min: MIN_GOLD, max: MAX_GOLD });
 
     const multiplierMin = Math.max(1, 1 + (0.05 * Math.floor(tavernLevel/10)));
     const multiplierMax = Math.max(multiplierMin + 0.1, 1 + (0.1 * Math.floor(tavernLevel/5)));
