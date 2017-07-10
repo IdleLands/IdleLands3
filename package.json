@@ -85,7 +85,7 @@
     "eslint": "^2.13.1",
     "eslint-config-kellyirc": "^3.1.0",
     "nodemon": "^1.11.0",
-    "ts-node": "^2.1.0",
+    "ts-node": "2.1.0",
     "typescript": "^2.2.1"
   }
 }
