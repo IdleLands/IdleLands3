@@ -38,95 +38,124 @@ export class PlayerLoad {
     this.premiumDb = premiumDb;
   }
 
-  async loadPremium(player) {
+  async loadPremium(player, debug = false) {
     if(!player.premiumLink) {
       const premObj = constitute(Premium);
       premObj.init({ _id: player.name, ilp: 0, oneTimeItemsPurchased: {}, purchaseHistory: [] });
-      await this.premiumDb.savePremium(premObj);
+      if(debug) console.log('[start] savePremium: ' + player.name);
+      await this.premiumDb.savePremium(premObj, debug);
+      if(debug) console.log('[end] savePremium: ' + player.name);
       player.premiumLink = player.name;
       player.$premium = premObj;
     } else {
-      player.$premium = await this.premiumDb.getPremium(player.name);
+      if(debug) console.log('[start] getPremium: ' + player.name);
+      player.$premium = await this.premiumDb.getPremium(player.name, debug);
+      if(debug) console.log('[end] getPremium: ' + player.name);
     }
   }
 
-  async loadPets(player) {
+  async loadPets(player, debug = false) {
     if(!player.petsLink) {
       const petsObj = constitute(Pets);
       petsObj.init({ _id: player.name, activePetId: '', earnedPets: [], earnedPetData: {} });
-      await this.petsDb.savePets(petsObj);
+      if(debug) console.log('[start] savePets: ' + player.name);
+      await this.petsDb.savePets(petsObj, debug);
+      if(debug) console.log('[end] savePets: ' + player.name);
       player.petsLink = player.name;
       player.$pets = petsObj;
     } else {
-      player.$pets = await this.petsDb.getPets(player.name);
+      if(debug) console.log('[start] getPets: ' + player.name);
+      player.$pets = await this.petsDb.getPets(player.name, debug);
+      if(debug) console.log('[end] getPets: ' + player.name);
     }
   }
 
-  async loadStatistics(player) {
+  async loadStatistics(player, debug = false) {
     if(!player.statisticsLink) {
       const statisticsObj = constitute(Statistics);
       statisticsObj.init({ _id: player.name, stats: {} });
-      await this.statisticsDb.saveStatistics(statisticsObj);
+      if(debug) console.log('[start] saveStatistics: ' + player.name);
+      await this.statisticsDb.saveStatistics(statisticsObj, debug);
+      if(debug) console.log('[end] saveStatistics: ' + player.name);
       player.statisticsLink = player.name;
       player.$statistics = statisticsObj;
     } else {
-      player.$statistics = await this.statisticsDb.getStatistics(player.name);
+      if(debug) console.log('[start] getStatistics: ' + player.name);
+      player.$statistics = await this.statisticsDb.getStatistics(player.name, debug);
+      if(debug) console.log('[end] getStatistics: ' + player.name);
     }
   }
 
-  async loadAchievements(player) {
+  async loadAchievements(player, debug = false) {
     if(!player.achievementsLink) {
       const achievementsObj = constitute(Achievements);
       achievementsObj.init({ _id: player.name, achievements: {}, uniqueAchievements: 0 });
-      await this.achievementsDb.saveAchievements(achievementsObj);
+      if(debug) console.log('[start] saveAchievements: ' + player.name);
+      await this.achievementsDb.saveAchievements(achievementsObj, debug);
+      if(debug) console.log('[end] saveAchievements: ' + player.name);
       player.achievementsLink = player.name;
       player.achievementsLink = player.name;
       player.$achievements = achievementsObj;
     } else {
-      player.$achievements = await this.achievementsDb.getAchievements(player.name);
+      if(debug) console.log('[start] getAchievements: ' + player.name);
+      player.$achievements = await this.achievementsDb.getAchievements(player.name, debug);
+      if(debug) console.log('[end] getAchievements: ' + player.name);
     }
   }
 
-  async loadPersonalities(player) {
+  async loadPersonalities(player, debug = false) {
     if(!player.personalitiesLink) {
       const personalitiesObj = constitute(Personalities);
       personalitiesObj.init({ _id: player.name, activePersonalities: {}, earnedPersonalities: [] });
-      await this.personalitiesDb.savePersonalities(personalitiesObj);
+      if(debug) console.log('[start] savePersonalities: ' + player.name);
+      await this.personalitiesDb.savePersonalities(personalitiesObj, debug);
+      if(debug) console.log('[end] savePersonalities: ' + player.name);
       player.personalitiesLink = player.name;
       player.$personalities = personalitiesObj;
     } else {
-      player.$personalities = await this.personalitiesDb.getPersonalities(player.name);
+      if(debug) console.log('[start] getPersonalities: ' + player.name);
+      player.$personalities = await this.personalitiesDb.getPersonalities(player.name, debug);
+      if(debug) console.log('[end] getPersonalities: ' + player.name);
     }
   }
 
-  async loadCollectibles(player) {
+  async loadCollectibles(player, debug = false) {
     if(!player.collectiblesLink) {
       const collectiblesObj = constitute(Collectibles);
       collectiblesObj.init({ _id: player.name, collectibles: {} });
-      await this.collectiblesDb.saveCollectibles(collectiblesObj);
+      if(debug) console.log('[start] saveCollectibles: ' + player.name);
+      await this.collectiblesDb.saveCollectibles(collectiblesObj, debug);
+      if(debug) console.log('[end] saveCollectibles: ' + player.name);
       player.collectiblesLink = player.name;
       player.$collectibles = collectiblesObj;
     } else {
-      player.$collectibles = await this.collectiblesDb.getCollectibles(player.name);
+      if(debug) console.log('[start] getCollectibles: ' + player.name);
+      player.$collectibles = await this.collectiblesDb.getCollectibles(player.name, debug);
+      if(debug) console.log('[end] getCollectibles: ' + player.name);
     }
   }
 
   async loadPlayer(playerId) {
-
     const playerObj = await this.playerDb.getPlayer({ _id: playerId });
 
     try {
       const player = constitute(Player);
       player.init(playerObj);
 
+      let debug = false;
+      if(player.name === 'Great Character Name') debug = true;
+      if(debug) console.log('Loading player data for: ' + player.name);
+
       await Promise.all([
-        this.loadStatistics(player),
-        this.loadAchievements(player),
-        this.loadPersonalities(player),
-        this.loadCollectibles(player),
-        this.loadPets(player),
-        this.loadPremium(player)
+        this.loadStatistics(player, debug),
+        this.loadAchievements(player, debug),
+        this.loadPersonalities(player, debug),
+        this.loadCollectibles(player, debug),
+        this.loadPets(player, debug),
+        this.loadPremium(player, debug)
       ]);
+
+      if(debug) console.log('All player data loaded for: ' + player.name);
 
       player.$personalities.checkPersonalities(player);
 
@@ -141,6 +170,8 @@ export class PlayerLoad {
 
       player.isOnline = true;
       player.recalculateStats();
+
+      if(debug) console.log('Player fully loaded: ' + player.name);
 
       return player;
     } catch(e) {

@@ -31,7 +31,10 @@ PlayerEmitter.on('player:semilogin', ({ playerName, fromIp }) => {
 
 PlayerEmitter.on('player:login', async ({ playerName, fromIp }) => {
   const player = await GameState.getInstance().addPlayer(playerName);
-  if(!player) return;
+  if(!player) {
+    console.log('No player found while trying to login: ' + playerName);
+    return;
+  }
   migrate(player);
   handleIp(player, fromIp);
   player.$shard = process.env.INSTANCE_NUMBER;
