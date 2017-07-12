@@ -42,7 +42,7 @@ export class PersonalitiesDb {
     const personalities = db.$$collections.personalities;
 
     return new Promise((resolve, reject) => {
-      personalities.findOneAndUpdate({ _id: personalitiesObject._id }, 
+      personalities.updateOne({ _id: personalitiesObject._id }, 
         { $set: {
           activePersonalities: personalitiesObject.activePersonalities ,
           earnedPersonalities: personalitiesObject.earnedPersonalities

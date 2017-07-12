@@ -42,7 +42,7 @@ export class PetsDb {
     const pets = db.$$collections.pets;
 
     return new Promise((resolve, reject) => {
-      pets.findOneAndUpdate({ _id: petsObject._id },
+      pets.updateOne({ _id: petsObject._id },
         { $set: {
           activePetId: petsObject.activePetId,
           earnedPetData: petsObject.earnedPetData,

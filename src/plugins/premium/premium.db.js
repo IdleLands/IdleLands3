@@ -42,7 +42,7 @@ export class PremiumDb {
     const premiums = db.$$collections.premiums;
 
     return new Promise((resolve, reject) => {
-      premiums.findOneAndUpdate(
+      premiums.updateOne(
         { _id: premiumObject._id },
         { $set: {
           ilp: premiumObject.ilp,

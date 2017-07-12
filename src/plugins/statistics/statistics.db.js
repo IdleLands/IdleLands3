@@ -42,7 +42,7 @@ export class StatisticsDb {
     const statistics = db.$$collections.statistics;
 
     return new Promise((resolve, reject) => {
-      statistics.findOneAndUpdate({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }, (err) => {
+      statistics.updateOne({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }, (err) => {
 
         if(err) {
           return reject(err);
