@@ -14,10 +14,9 @@ export class PersonalitiesDb {
     this.dbWrapper = DbWrapper;
   }
 
-  async getPersonalities(id, debug = false) {
+  async getPersonalities(id) {
     const db = await this.dbWrapper.connectionPromise();
     const personalities = db.$$collections.personalities;
-    if(debug) console.log('[mid] getPersonalities db connection established');
 
     return new Promise((resolve, reject) => {
       personalities.find({ _id: id }).limit(1).next((err, doc) => {
@@ -38,10 +37,9 @@ export class PersonalitiesDb {
     });
   }
 
-  async savePersonalities(personalitiesObject, debug = false) {
+  async savePersonalities(personalitiesObject) {
     const db = await this.dbWrapper.connectionPromise();
     const personalities = db.$$collections.personalities;
-    if(debug) console.log('[mid] savePersonalities db connection established');
 
     return new Promise((resolve, reject) => {
       personalities.updateOne({ _id: personalitiesObject._id }, 

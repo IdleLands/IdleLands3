@@ -14,10 +14,9 @@ export class StatisticsDb {
     this.dbWrapper = DbWrapper;
   }
 
-  async getStatistics(id, debug = false) {
+  async getStatistics(id) {
     const db = await this.dbWrapper.connectionPromise();
     const statistics = db.$$collections.statistics;
-    if(debug) console.log('[mid] getStatistics db connection established');
 
     return new Promise((resolve, reject) => {
       statistics.find({ _id: id }).limit(1).next((err, doc) => {
@@ -38,10 +37,9 @@ export class StatisticsDb {
     });
   }
 
-  async saveStatistics(statsObject, debug = false) {
+  async saveStatistics(statsObject) {
     const db = await this.dbWrapper.connectionPromise();
     const statistics = db.$$collections.statistics;
-    if(debug) console.log('[mid] saveStatistics db connection established');
 
     return new Promise((resolve, reject) => {
       statistics.updateOne({ _id: statsObject._id }, { $set: { stats: statsObject.stats } }, { upsert: true }, (err) => {

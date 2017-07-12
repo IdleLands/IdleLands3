@@ -14,10 +14,9 @@ export class PremiumDb {
     this.dbWrapper = DbWrapper;
   }
 
-  async getPremium(id, debug = false) {
+  async getPremium(id) {
     const db = await this.dbWrapper.connectionPromise();
     const premiums = db.$$collections.premiums;
-    if(debug) console.log('[mid] getPremium db connection established');
 
     return new Promise((resolve, reject) => {
       premiums.find({ _id: id }).limit(1).next((err, doc) => {
@@ -38,10 +37,9 @@ export class PremiumDb {
     });
   }
 
-  async savePremium(premiumObject, debug = false) {
+  async savePremium(premiumObject) {
     const db = await this.dbWrapper.connectionPromise();
     const premiums = db.$$collections.premiums;
-    if(debug) console.log('[mid] savePremium db connection established');
 
     return new Promise((resolve, reject) => {
       premiums.updateOne(

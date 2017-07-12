@@ -14,10 +14,9 @@ export class CollectiblesDb {
     this.dbWrapper = DbWrapper;
   }
 
-  async getCollectibles(id, debug = false) {
+  async getCollectibles(id) {
     const db = await this.dbWrapper.connectionPromise();
     const collectibles = db.$$collections.collectibles;
-    if(debug) console.log('[mid] getCollectibles db connection established');
 
     return new Promise((resolve, reject) => {
       collectibles.find({ _id: id }).limit(1).next((err, doc) => {
@@ -38,10 +37,9 @@ export class CollectiblesDb {
     });
   }
 
-  async saveCollectibles(collectiblesObject, debug = false) {
+  async saveCollectibles(collectiblesObject) {
     const db = await this.dbWrapper.connectionPromise();
     const collectibles = db.$$collections.collectibles;
-    if(debug) console.log('[mid] saveCollectibles db connection established');
 
     return new Promise((resolve, reject) => {
       collectibles.updateOne({ _id: collectiblesObject._id }, { $set: {

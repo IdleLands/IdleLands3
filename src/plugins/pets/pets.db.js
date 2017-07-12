@@ -14,10 +14,9 @@ export class PetsDb {
     this.dbWrapper = DbWrapper;
   }
 
-  async getPets(id, debug = false) {
+  async getPets(id) {
     const db = await this.dbWrapper.connectionPromise();
     const pets = db.$$collections.pets;
-    if(debug) console.log('[mid] getPets db connection established');
 
     return new Promise((resolve, reject) => {
       pets.find({ _id: id }).limit(1).next((err, doc) => {
@@ -38,10 +37,9 @@ export class PetsDb {
     });
   }
 
-  async savePets(petsObject, debug = false) {
+  async savePets(petsObject) {
     const db = await this.dbWrapper.connectionPromise();
     const pets = db.$$collections.pets;
-    if(debug) console.log('[mid] savePets db connection established');
 
     return new Promise((resolve, reject) => {
       pets.updateOne({ _id: petsObject._id },
