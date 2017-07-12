@@ -78,7 +78,13 @@ export class PlayerLoad {
     if(!player.achievementsLink) {
       const achievementsObj = constitute(Achievements);
       achievementsObj.init({ _id: player.name, achievements: {}, uniqueAchievements: 0 });
-      await this.achievementsDb.saveAchievements(achievementsObj);
+      let debug = false;
+      if(player.name === 'Great Character Name') {
+        debug = true;
+        console.log('[start] saveAchievements: ' + player.name);
+      }
+      await this.achievementsDb.saveAchievements(achievementsObj, debug);
+      if(debug) console.log('[end] saveAchievements: ' + player.name);
       player.achievementsLink = player.name;
       player.achievementsLink = player.name;
       player.$achievements = achievementsObj;
