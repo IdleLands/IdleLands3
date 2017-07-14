@@ -43,6 +43,24 @@ export const Regions = {
     shopQuality: () => 7,
     TownCrierChance: (player, baseValue) => baseValue*3
   },
+  'Desert Town': {
+    shopPriceMultiplier: () => 1.5,
+    shopSlots: () => 4,
+    shopQuality: () => 1.2,
+    TownCrierChance: (player, baseValue) => baseValue*3
+  },
+  'Tree Town': {
+    shopPriceMultiplier: () => 1.5,
+    shopSlots: () => 4,
+    shopQuality: () => 1.4,
+    TownCrierChance: (player, baseValue) => baseValue*3
+  },
+  'Cliff Town': {
+    shopPriceMultiplier: () => 2.1,
+    shopSlots: () => 5,
+    shopQuality: () => 2.3,
+    TownCrierChance: (player, baseValue) => baseValue*3
+  },  
   'Guild Hall': {
     shopPriceMultiplier:  (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? 1 + (Math.floor(player.guild.buildings.levels.GuildShop/3) * 0.5) : 0,
     shopSlots:            (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? 1 + Math.floor(player.guild.buildings.levels.GuildShop/10) : 0,
@@ -51,7 +69,6 @@ export const Regions = {
     GuildGamblingChance:  (player) => player.hasGuild && player.guild.hasBuilt('Tavern') ? player.guild.buildings.levels.Tavern*3 : 0,
     GuildPartyChance:     (player) => player.hasGuild && player.guild.hasBuilt('Tavern') ? player.guild.buildings.levels.Tavern*9 : 0
   },
-
   'Dangerous Cave Area': {
     BattleChance:       (player, baseValue) => baseValue*1.2,
     BattlePvPChance:    (player, baseValue) => baseValue*1.2
