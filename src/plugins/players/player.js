@@ -373,14 +373,7 @@ export class Player extends Character {
       const followTarget = party.getFollowTarget(this);
 
       if((!this.$playerMovement.canEnterTile(this, tile) || (followTarget && followTarget.map !== this.map))) {
-        this.$partyStepsLeft = this.$partyStepsLeft || 3;
-
-        if(this.$partyStepsLeft <= 0) {
-          this.party.playerLeave(this);
-          this.$partyStepsLeft = 0;
-        }
-
-        this.$partyStepsLeft--;
+        this.party.playerLeave(this);
       }
     };
 
