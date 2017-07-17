@@ -244,16 +244,6 @@ export class PlayerMovement {
   }
 
   static pickRandomTile(player, weight) {
-    if(!player.stepCooldown) player.stepCooldown = 0;
-
-    if(player.party) {
-      const party = player.party;
-      const follow = party.getFollowTarget(player);
-
-      if(follow && follow.map === player.map) {
-        return this.pickFollowTile(player, follow);
-      }
-    }
     const indexes = [0, 1, 2, 3, 4, 5, 6, 7];
 
     if(weight.length === 0 && !player.party) {
@@ -289,6 +279,30 @@ export class PlayerMovement {
 
     return weight;
 
+  }
+
+  static partyTileCheck(player, tile) {
+    const party = player.party;
+    if(!party) return;
+    const followTarget = party.getFollowTarget(player);
+
+    if(!this.canEnterTile(player, tile)) {
+      if(player.$partyStepsLeft) player.$partyStepsLeft = undefined;
+      return;
+    }
+    
+    if(followTarget && followTarget.map !== player.map) {
+      player.$partyStepsLeft = (player.$partyStepsLeft === undefined) ? 3 : player.$partyStepsLeft;
+      if (player.$partyStepsLeft <= 0) {
+        player.$partyStepsLeft = undefined;
+        return;
+      }
+      player.$partyStepsLeft--;
+      return true;
+    }
+
+    if(player.$partyStepsLeft) player.$partyStepsLeft = undefined;
+    return true;
   }
 
   static _doTeleport(player, { map, x, y, toLoc }) {

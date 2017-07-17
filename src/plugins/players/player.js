@@ -360,39 +360,41 @@ export class Player extends Character {
   }
 
   moveAction() {
-
     const weight = this.$playerMovement.getInitialWeight(this);
+    const party = this.party;
+    let index, newLoc, dir, tile;
 
-    let [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
-    let tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+    if(!this.stepCooldown) this.stepCooldown = 0;
 
-    const partyTileCheck = (tile) => {
-      const party = this.party;
-      if(!party) return;
+    if(party) {
+      const follow = party.getFollowTarget(this);
+      if(follow) {
+        [index, newLoc, dir] = this.$playerMovement.pickFollowTile(this, follow);
+        tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-      const followTarget = party.getFollowTarget(this);
-
-      if((!this.$playerMovement.canEnterTile(this, tile) || (followTarget && followTarget.map !== this.map))) {
-        this.party.playerLeave(this);
+        if(!this.$playerMovement.partyTileCheck(this, tile)) {
+          this.party.playerLeave(this);
+          tile = null;
+        }
       }
-    };
-
-    partyTileCheck(tile);
-
-    let attempts = 1;
-    while(!this.$playerMovement.canEnterTile(this, tile)) {
-      if(attempts > 8) {
-        Logger.error('Player', new Error(`Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`));
-        break;
-      }
-      weight[index] = 0;
+    }
+    
+    if(!tile) {
       [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
       tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
 
-      partyTileCheck(tile);
-
-      attempts++;
-      Logger.silly('Player:Move', `${this.name} doing tile enter check again ${attempts}`);
+      let attempts = 1;
+      while(!this.$playerMovement.canEnterTile(this, tile)) {
+        if (attempts > 8) {
+          Logger.error('Player', new Error(`Player ${this.name} is position locked at ${this.x}, ${this.y} in ${this.map}`));
+          break;
+        }
+        weight[index] = 0;
+        [index, newLoc, dir] = this.$playerMovement.pickRandomTile(this, weight);
+        tile = this.$playerMovement.getTileAt(this.map, newLoc.x, newLoc.y);
+        attempts++;
+        Logger.silly('Player:Move', `${this.name} doing tile enter check again ${attempts}`);
+      }
     }
 
     if(!tile.terrain) {
