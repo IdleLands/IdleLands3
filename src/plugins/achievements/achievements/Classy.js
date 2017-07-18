@@ -70,7 +70,24 @@ export class Classy extends Achievement {
 
         topMax = required;
         professionalAchievement.tier = tier;
+
+        if(tier >= 5) {
+          professionalAchievement.rewards.push({ type: 'gender', gender: `${prof}-green` });
+        }
       });
+
+      const classSteps = player.$statistics.getStat(`Character.ProfessionSteps.${prof}`);
+
+      const stepAchievement = {
+        tier: 1,
+        name: `Stepper: ${prof}`,
+        type: AchievementTypes.PROGRESS,
+        rewards: [{ type: 'gender', gender: `${prof}-red`}, { type: 'gender', gender: `${prof}-blue`}]
+      };
+
+      if(classSteps > 1000000) {
+        baseAchievements.push(stepAchievement);
+      }
 
       if(professionalAchievement.rewards.length > 0) {
         professionalAchievement.desc = `You've been a ${prof} ${topMax} times. Get title(s) and stats for it!`;
