@@ -50,6 +50,17 @@ export class Achievements {
     return PREMIUM_TIERS[_.maxBy(tiers, tier => PREMIUM_TIERS[tier])];
   }
 
+  genders() {
+    return _(this.achievements)
+      .values()
+      .map(achi => achi.rewards)
+      .flattenDeep()
+      .compact()
+      .filter(reward => reward.type === 'gender')
+      .map(reward => reward.gender)
+      .value();
+  }
+
   petAttributes() {
     return _(this.achievements)
       .values()
