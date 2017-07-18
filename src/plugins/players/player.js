@@ -450,7 +450,8 @@ export class Player extends Character {
     const incrementStats = [
       'Character.Steps',
       `Character.Terrains.${tile.terrain}`,
-      `Character.Regions.${tile.region}`
+      `Character.Regions.${tile.region}`,
+      `Character.ProfessionSteps.${this.professionName}`
     ];
 
     if(!_.includes(this.map, 'Guild Base -')) {
