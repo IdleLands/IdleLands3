@@ -319,8 +319,8 @@ export class Player extends Character {
 
   get validGenders() {
     return SETTINGS.validGenders
-      .concat(this.$achievements.genders())
-      .concat(_.get(this.$premium, 'genders', []));
+      .concat(_.get(this.$premium, 'genders', []))
+      .concat(this.$achievements.genders());
   }
 
   changeGender(newGender) {

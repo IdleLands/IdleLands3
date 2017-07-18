@@ -72,7 +72,7 @@ export class Classy extends Achievement {
         professionalAchievement.tier = tier;
 
         if(tier >= 5) {
-          professionalAchievement.rewards.push({ type: 'gender', gender: `${prof}-green` });
+          professionalAchievement.rewards.push({ type: 'gender', gender: `${prof}-blue` });
         }
       });
 
@@ -83,7 +83,7 @@ export class Classy extends Achievement {
         name: `Stepper: ${prof}`,
         type: AchievementTypes.PROGRESS,
         desc: `You've been a ${prof} and walked around for a while. Now you can look like one!`,
-        rewards: [{ type: 'gender', gender: `${prof}-red`}, { type: 'gender', gender: `${prof}-blue`}]
+        rewards: [{ type: 'gender', gender: `${prof}-red`}, { type: 'gender', gender: `${prof}-green`}]
       };
 
       if(classSteps > 1000000) {
