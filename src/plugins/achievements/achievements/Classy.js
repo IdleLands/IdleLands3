@@ -82,6 +82,7 @@ export class Classy extends Achievement {
         tier: 1,
         name: `Stepper: ${prof}`,
         type: AchievementTypes.PROGRESS,
+        desc: `You've been a ${prof} and walked around for a while. Now you can look like one!`,
         rewards: [{ type: 'gender', gender: `${prof}-red`}, { type: 'gender', gender: `${prof}-blue`}]
       };
 
