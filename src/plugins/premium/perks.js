@@ -83,5 +83,80 @@ export const perks = [
 
   { name: 'Gender: Boss Monster', cost: 300,
     description: 'Unlock the Boss Monster gender.',
-    oneTimeData: { gender: 'boss monster' } }
+    oneTimeData: { gender: 'boss monster' } },
+
+  { name: 'Gender: Fighter (Gold)', cost: 25000,
+    description: 'Unlock the Fighter (Gold) gender.',
+    requireAchievement: 'Classy: Fighter',
+    oneTimeData: { gender: 'Fighter-gold' } },
+
+  { name: 'Gender: Mage (Gold)', cost: 25000,
+    description: 'Unlock the Mage (Gold) gender.',
+    requireAchievement: 'Classy: Mage',
+    oneTimeData: { gender: 'Mage-gold' } },
+
+  { name: 'Gender: Cleric (Gold)', cost: 25000,
+    description: 'Unlock the Cleric (Gold) gender.',
+    requireAchievement: 'Classy: Cleric',
+    oneTimeData: { gender: 'Cleric-gold' } },
+
+  { name: 'Gender: Generalist (Gold)', cost: 25000,
+    description: 'Unlock the Generalist (Gold) gender.',
+    requireAchievement: 'Classy: Generalist',
+    oneTimeData: { gender: 'Generalist-gold' } },
+
+  { name: 'Gender: Jester (Gold)', cost: 25000,
+    description: 'Unlock the Jester (Gold) gender.',
+    requireAchievement: 'Classy: Jester',
+    oneTimeData: { gender: 'Jester-gold' } },
+
+  { name: 'Gender: Rogue (Gold)', cost: 25000,
+    description: 'Unlock the Rogue (Gold) gender.',
+    requireAchievement: 'Classy: Rogue',
+    oneTimeData: { gender: 'Rogue-gold' } },
+
+  { name: 'Gender: Archer (Gold)', cost: 25000,
+    description: 'Unlock the Archer (Gold) gender.',
+    requireAchievement: 'Classy: Archer',
+    oneTimeData: { gender: 'Archer-gold' } },
+
+  { name: 'Gender: Pirate (Gold)', cost: 25000,
+    description: 'Unlock the Pirate (Gold) gender.',
+    requireAchievement: 'Classy: Pirate',
+    oneTimeData: { gender: 'Pirate-gold' } },
+
+  { name: 'Gender: Monster (Gold)', cost: 25000,
+    description: 'Unlock the Monster (Gold) gender.',
+    requireAchievement: 'Classy: Monster',
+    oneTimeData: { gender: 'Monster-gold' } },
+
+  { name: 'Gender: MagicalMonster (Gold)', cost: 25000,
+    description: 'Unlock the MagicalMonster (Gold) gender.',
+    requireAchievement: 'Classy: MagicalMonster',
+    oneTimeData: { gender: 'MagicalMonster-gold' } },
+
+  { name: 'Gender: Barbarian (Gold)', cost: 25000,
+    description: 'Unlock the Barbarian (Gold) gender.',
+    requireAchievement: 'Classy: Barbarian',
+    oneTimeData: { gender: 'Barbarian-gold' } },
+
+  { name: 'Gender: Bard (Gold)', cost: 25000,
+    description: 'Unlock the Bard (Gold) gender.',
+    requireAchievement: 'Classy: Bard',
+    oneTimeData: { gender: 'Bard-gold' } },
+
+  { name: 'Gender: SandwichArtist (Gold)', cost: 25000,
+    description: 'Unlock the SandwichArtist (Gold) gender.',
+    requireAchievement: 'Classy: SandwichArtist',
+    oneTimeData: { gender: 'SandwichArtist-gold' } },
+
+  { name: 'Gender: Necromancer (Gold)', cost: 25000,
+    description: 'Unlock the Necromancer (Gold) gender.',
+    requireAchievement: 'Classy: Necromancer',
+    oneTimeData: { gender: 'Necromancer-gold' } },
+
+  { name: 'Gender: Bitomancer (Gold)', cost: 25000,
+    description: 'Unlock the Bitomancer (Gold) gender.',
+    requireAchievement: 'Classy: Bitomancer',
+    oneTimeData: { gender: 'Bitomancer-gold' } }
 ];
