@@ -76,7 +76,7 @@ export class Premium {
   cantBuy(player, item) {
     if(this.ilp < item.cost) return 'You do not have enough ILP to buy that.';
     if(this.hasBought(item)) return 'You have already bought that upgrade.';
-    if(item.requireAchievement && !player.$achievements.hasAchievement(item.requireAchievement)) `You need the ${item.requireAchievement} achievement to buy that!`;
+    if(item.requireAchievement && !player.$achievements.hasAchievement(item.requireAchievement)) return `You need the ${item.requireAchievement} achievement to buy that!`;
     if(GameState.getInstance().hasFestival(player.name) && item.festivalData) return 'You already have an ongoing festival.';
   }
 
