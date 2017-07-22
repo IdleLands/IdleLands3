@@ -66,11 +66,11 @@ export class DbWrapper {
 
       MongoClient.connect(connectionString, {
         native_parser: true,
-        server: {
-          poolSize: 10, auto_reconnect: true, socketOptions: {
-            keepAlive: 1, connectTimeoutMS: 120000, socketTimeoutMS: 120000
-          }
-        }
+        poolSize: 10,
+        autoReconnect: true,
+        keepAlive: 1,
+        connectTimeoutMS: 120000,
+        socketTimeoutMS: 120000
       }, async(err, db) => {
 
         if(err) {
