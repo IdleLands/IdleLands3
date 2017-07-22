@@ -66,7 +66,7 @@ export class GuildBase extends Map {
   buildBuilding(building: string, size: string, slot: number, instance: GuildBuilding) {
     const { startCoords, signpostLoc, tiles } = this.buildings[size][slot];
 
-    let tileIndexes = [];
+    const tileIndexes = [];
     const tileCoords = [];
 
     const dimensions = this.dimensions[size];
@@ -132,7 +132,7 @@ export class GuildBase extends Map {
       if(_.isObject(tile)) _.merge(newObj, tile);
 
       this.map.layers[2].objects.push(newObj);
-    })
+    });
   }
 
   buildTransmitObject() {

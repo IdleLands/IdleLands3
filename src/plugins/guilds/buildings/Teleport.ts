@@ -21,7 +21,7 @@ export class Teleport extends GuildBuilding {
     if(!teleLoc) teleLoc = 'norkos';
 
     const f = {
-      name: `Guild Teleport`,
+      name: 'Guild Teleport',
       gid: 30,
       type: 'Teleport',
       properties: {

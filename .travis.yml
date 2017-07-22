@@ -7,5 +7,6 @@ node_js:
 #  - scripts/deploy.sh
 
 script:
+   - npm run test
    - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./scripts/compile.sh; fi'
    - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/deploy.sh; fi'

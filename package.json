@@ -11,7 +11,7 @@
     "start:battletest": "cross-env BATTLE_DEBUG=1 nodemon --exec \"ts-node src/index.js\"",
     "start:prod": "cross-env NODE_ENV=production ALLOW_LOCAL=1 EXT_CHAT=0 INSTANCE_NUMBER=0 nodemon --ext js,ts --exec \"ts-node src/index.js\"",
     "test": "npm run test:local",
-    "test:lint": "eslint --quiet src/** test/plugins/**",
+    "test:lint": "eslint --quiet src/**/*.js test/plugins/**/*.js",
     "test:local": "npm run test:lint",
     "test:client": "ts-node src/test/client/client",
     "generate:all": "npm run generate:guilddoc && npm run generate:spelldoc && npm run generate:classdoc && npm run generate:apidoc && npm run generate:effectdoc && npm run generate:petdoc",

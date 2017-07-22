@@ -404,7 +404,7 @@ export class Player extends Character {
     }
 
     this.lastDir = dir === 5 ? null : dir;
-    const oldLoc = {x: this.x, y: this.y}; 
+    const oldLoc = { x: this.x, y: this.y };
     this.x = newLoc.x;
     this.y = newLoc.y;
 
@@ -413,13 +413,13 @@ export class Player extends Character {
     Logger.silly('Player:Move', `${this.name} doing validation`);
 
     if(!mapInstance || this.x <= 0 || this.y <= 0 || this.y > mapInstance.height || this.x > mapInstance.width) {
-      const customPayload = {player: this, oldLoc: oldLoc, nextTile: [index, newLoc, dir]};
+      const customPayload = { player: this, oldLoc: oldLoc, nextTile: [index, newLoc, dir] };
       if (party) {
         customPayload.party = this.party.buildTransmitObject();
       }
       Logger.error('PlayerMovement',
                    new Error(`Out of bounds for ${this.name} at ${this.mapRegion} on ${this.map}: ${this.x}, ${this.y}. Old ${oldLoc.x}, ${oldLoc.y}`),
-                   {custom: customPayload}
+                   { custom: customPayload }
                   );
       this.moveToStart();
     }
