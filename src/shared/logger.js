@@ -1,13 +1,19 @@
 
 import * as _ from 'lodash';
 
-import * as rollbar from 'rollbar';
+import * as Rollbar from 'rollbar';
 
 const rollbarToken = process.env.ROLLBAR_ACCESS_TOKEN;
 const isQuiet = process.env.QUIET;
 
+let rollbar = null;
+
 if(rollbarToken) {
-  rollbar.init(rollbarToken);
+  rollbar = new Rollbar({
+    accessToken: rollbarToken,
+    handleUncaughtExceptions: true,
+    handleUnhandledRejections: true
+  });
 }
 
 export class Logger {
@@ -27,11 +33,11 @@ export class Logger {
         console.error('PAYLOAD', payload);
       }
 
-      if(rollbarToken) {
+      if(rollbarToken && rollbar) {
         if(payload) {
-          rollbar.handleErrorWithPayloadData(error, payload, resolve);
+          rollbar.error(error, null, payload, resolve);
         } else {
-          rollbar.handleError(error, resolve);
+          rollbar.error(error, resolve);
         }
       }
     });
@@ -54,17 +60,3 @@ export class Logger {
     }
   }
 }
-
-process.on('uncaughtException', err => {
-  Logger.error('PROCESS:BAD:EXCEPTION', err)
-    .then(() => {
-      process.exit(2);
-    });
-});
-
-process.on('unhandledRejection', err => {
-  Logger.error('PROCESS:BAD:REJECTION', err)
-    .then(() => {
-      process.exit(1);
-    });
-});
