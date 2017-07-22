@@ -102,7 +102,7 @@ export class PlayerLoad {
   async loadCollectibles(player) {
     if(!player.collectiblesLink) {
       const collectiblesObj = constitute(Collectibles);
-      collectiblesObj.init({ _id: player.name, collectibles: {} });
+      collectiblesObj.init({ _id: player.name, collectibles: {}, uniqueCollectibles: 0 });
       await this.collectiblesDb.saveCollectibles(collectiblesObj);
       player.collectiblesLink = player.name;
       player.$collectibles = collectiblesObj;
