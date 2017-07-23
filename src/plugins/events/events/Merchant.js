@@ -76,6 +76,7 @@ export class Merchant extends Event {
 
     if(response === 'Yes') {
       player.equip(item);
+      item._wasEquipped = true;
       this.emitMessage({ affected: [player], eventText: choice.extraData.eventText, category: MessageCategories.GOLD });
     }
 
