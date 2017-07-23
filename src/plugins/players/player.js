@@ -816,7 +816,7 @@ export class Player extends Character {
 
     GameState.getInstance().addFestival({
       name: `${this.name}'s Ascension`,
-      message: `${this.name} has ascended! +${ascBonus*100}% XP/Gold for everyone for 24 hours!`,
+      message: `${this.name} has ascended! +${(ascBonus*100).toFixed(0)}% XP/Gold for everyone for 24 hours!`,
       startedBy: this.name,
       hourDuration: 24,
       bonuses: {
