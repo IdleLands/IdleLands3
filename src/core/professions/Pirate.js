@@ -19,7 +19,12 @@ export class Pirate extends Profession {
   static baseIntPerLevel = 1;
 
   static classStats = {
-    str: (target, baseValue) => target.$personalities && target.$personalities.isActive('Drunk') ? baseValue / 2 : 0
+    str: (target, baseValue) => {
+      const getsDrunkBonus = this.$ownerRef && this.$ownerRef.$personalities.isActive('Drunk')
+                          || this.$personalities && this.$personalities.isActive('Drunk');
+
+      return getsDrunkBonus ? baseValue / 2 : 0;
+    }
   }
 
   static setupSpecial(target) {
