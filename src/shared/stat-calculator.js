@@ -278,7 +278,10 @@ export class StatCalculator {
     const baseValue = (player.level+1) * SETTINGS.reductionDefaults.itemFindRange;
     const reducedValue = this.stat(player, 'itemFindRange', baseValue, false);
 
-    return Math.floor(reducedValue * this.itemFindRangeMultiplier(player));
+    const calcValue = Math.floor(reducedValue * this.itemFindRangeMultiplier(player));
+
+    if(player.$ownerRef) return Math.min(player.$ownerRef.liveStats.itemFindRange, calcValue);
+    return calcValue;
   }
 
   static itemFindRangeMultiplier(player) {
