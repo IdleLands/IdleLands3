@@ -240,6 +240,14 @@ export class PlayerMovement {
   }
 
   static pickFollowTile(player, target) {
+    if (!target.x || !target.y) {
+      const payload = { player: player.buildTransmitObject(), target: target.buildTransmitObject(), party: player.party.buildTransmitObject() };
+      Logger.error('PlayerMovement', 
+                   new Error(`${player.name} in ${player.map} @ ${player.x},${player.y} is following invalid target ${target.name} to ${target.x},${target.y}.`),
+                   {custom: payload}
+                  );
+    }
+    // TODO: Do we need a non-zero index?
     return [0, { x: target.x, y: target.y }, target.lastDir];
   }
 
