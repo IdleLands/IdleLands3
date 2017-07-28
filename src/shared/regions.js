@@ -43,7 +43,7 @@ export const Regions = {
     shopQuality: () => 7,
     TownCrierChance: (player, baseValue) => baseValue*3
   },
-  'Desert Town': {,
+  'Desert Town': {
     shopPriceMultiplier: () => 1.5,
     shopSlots: () => 4,
     shopQuality: () => 1.2,
