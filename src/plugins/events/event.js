@@ -21,7 +21,7 @@ export class Event {
   static t1stats = ['str', 'int', 'con'];
   static t2stats = ['luk'];
 
-  static invalidItemTypes = ['providence', 'trinket'];
+  static invalidItemTypes = ['providence', 'trinket', 'soul'];
 
   static _parseText(message, player, extra) {
     return MessageParser.stringFormat(message, player, extra);

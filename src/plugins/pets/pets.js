@@ -177,7 +177,29 @@ export class Pets {
     if(!this.earnedPetData[newPetType]) return;
     this.activePetId = newPetType;
     player.__updatePetActive();
+
+    this.updatePlayerPetSoulSync(player);
     this.save();
+  }
+
+  updatePlayerPetSoulSync(player) {
+    const pet = this.activePet;
+    if(!pet) return;
+
+    if(player.ascensionLevel < 3) return;
+
+    const baseItem = {
+      type: 'soul',
+      itemClass: 'idle'
+    };
+
+    _.extend(baseItem, pet.equipment.soul[0] || {});
+
+    baseItem.name = `${pet.name}'s Soul`;
+
+    player.equipment.soul = baseItem;
+
+    player._updateEquipment();
   }
 
   togglePetSmartSetting(setting) {
@@ -442,6 +464,10 @@ export class Pets {
     
     if(item.type === 'providence') {
       return 'Providences are gifts from the gods, you cannot forsake them like this.';
+    }
+
+    if(item.type === 'soul') {
+      return 'How dare you?';
     }
 
     if(item.isNothing) {
