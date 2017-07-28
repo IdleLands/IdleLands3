@@ -33,7 +33,7 @@ export class GuildGambling extends Event {
     const oddsMax = Math.min(75, 25 + (Math.floor(tavernLevel/3)));
 
     const id = Event.chance.guid();
-    const multiplier = this.chance.floating({ fixed: 2, min: multiplierMin, max: multiplierMax });
+    const multiplier = this.chance.floating({ fixed: 2, min: Math.min(3, multiplierMin), max: Math.min(5, multiplierMax) });
     const odds = this.chance.integer({ min: oddsMin, max: oddsMax });
 
     const message = `Would you like to gamble ${cost.toLocaleString()} gold at a ${multiplier}x rate with ${odds}% chance to win?`;

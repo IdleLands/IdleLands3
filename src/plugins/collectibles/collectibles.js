@@ -40,10 +40,6 @@ export class Collectibles {
 
     _.extend(this, opts);
 
-    if(_.isUndefined(this.uniqueCollectibles)) {
-      this.save();
-    }
-
     if(!this.priorCollectibles) {
       this.priorCollectibles = {};
     }
