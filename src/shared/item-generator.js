@@ -65,23 +65,32 @@ export class ItemGenerator extends Generator {
 
     return itemClass;
   }
-  
-  static generateItem(type, bonus = 0, genLevel = 0) {
-    if(!type) {
-      type = _.sample(this.types);
-    }
 
-    const baseItem = _.sample(ObjectAssets[type]);
-    const itemInst = new Equipment(baseItem);
+  static modifyItemBasedOn(item, bonus = 0, genLevel) {
+    const itemInst = new Equipment(item);
 
     this.addPropertiesToItem(itemInst, bonus);
     this.tryToVectorize(itemInst, genLevel);
 
     itemInst._baseScore = itemInst.score;
-    itemInst.type = type;
+    itemInst.type = item.type;
     itemInst.itemClass = this.getItemClass(itemInst);
     itemInst.score;
     return this.cleanUpItem(itemInst);
+  }
+
+  static chooseBaseItem(type) {
+    if(!type) {
+      type = _.sample(this.types);
+    }
+
+    const baseItem = _.sample(ObjectAssets[type]);
+    return baseItem;
+  }
+  
+  static generateItem(type, bonus = 0, genLevel = 0) {
+    const baseItem = this.chooseBaseItem(type);
+    return this.modifyItemBasedOn(baseItem, bonus, genLevel);
   }
 
   static addPropertiesToItem(item, bonus = 0) {

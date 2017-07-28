@@ -97,7 +97,6 @@ export class Guild {
     _.each(_.keys(Buildings), building => this.buildings.levels[building] = this.buildings.levels[building] || 0);
 
     this.buildBase();
-    this.recalculateStats();
   }
 
   recalculateStats() {

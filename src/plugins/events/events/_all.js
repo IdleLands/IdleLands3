@@ -6,6 +6,7 @@ export { FindItem } from './FindItem';
 export { Gambling } from './Gambling';
 export { GoldBless } from './GoldBless';
 export { GoldForsake } from './GoldForsake';
+export { GuildForge } from './GuildForge';
 export { GuildGambling } from './GuildGambling';
 export { GuildParty } from './GuildParty';
 export { ItemBless } from './ItemBless';
