@@ -148,7 +148,7 @@ export class ItemGenerator extends Generator {
 
     const validKeys = _(item)
       .omitBy((val, prop) => {
-        return _.includes(['enchantLevel', 'foundAt', '_calcScore', '_baseScore', 'vector', 'dropPercent', 'damageReductionPercent'], prop)
+        return _.includes(['enchantLevel', 'foundAt', '_calcScore', '_baseScore', 'vector', 'dropPercent', 'damageReduction', 'damageReductionPercent'], prop)
             || _.includes(prop, 'Req')
             || _.isNotWritable(item, prop)
             || val === 0
