@@ -141,7 +141,7 @@ export const primus = (() => {
     }));
 
     spark.on('error', e => {
-      Logger.error('Spark', e);
+      Logger.error(`Spark:${spark.playerName}`, e);
     });
 
     setTimeout(() => {
