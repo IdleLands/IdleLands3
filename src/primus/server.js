@@ -90,7 +90,7 @@ export const primus = (() => {
   const allSocketFunctions = getAllSocketFunctions(normalizedPath);
   const allSocketRequires = _.map(allSocketFunctions, require);
 
-  primus.use('emit', Emit);
+  primus.plugin('emit', Emit);
 
   chatSetup(primus);
 
