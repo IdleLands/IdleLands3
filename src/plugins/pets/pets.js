@@ -193,7 +193,7 @@ export class Pets {
       itemClass: 'idle'
     };
 
-    _.extend(baseItem, pet.equipment.soul[0] || {});
+    _.extend(baseItem, _.cloneDeep(pet.equipment.soul[0]) || {});
 
     baseItem.name = `${pet.name}'s Soul`;
     delete baseItem.itemFindRangeMultiplier;
