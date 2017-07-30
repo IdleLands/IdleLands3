@@ -196,6 +196,9 @@ export class Pets {
     _.extend(baseItem, pet.equipment.soul[0] || {});
 
     baseItem.name = `${pet.name}'s Soul`;
+    delete baseItem.itemFindRangeMultiplier;
+    delete baseItem.itemValueMultiplier;
+    delete baseItem.itemFindRange;
 
     player.equipment.soul = baseItem;
 
