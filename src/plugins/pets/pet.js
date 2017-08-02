@@ -142,9 +142,9 @@ export class Pet extends Character {
       // try smart sell first
       if(this.smart.sell) {
         const compareItem = _.minBy(this.inventory, '_calcScore');
-
+       
         // something in inventory is worse than the current sell item
-        if(compareItem.score < sellItem.score) {
+        if(compareItem && sellItem && compareItem.score < sellItem.score) {
           sellItem = compareItem;
           this.addToInventory(item);
           this.removeFromInventory(sellItem);
