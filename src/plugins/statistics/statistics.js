@@ -29,14 +29,14 @@ export class Statistics {
     if(!_.isObject(val) && !_.isFinite(val) || _.isNaN(val)) {
       val = 0;
       this.setStat(stat, 0);
-      Logger.error('Statistics', new Error(`Someone has infinity or NaN for ${stat}. Fix it!`));
+      Logger.error('Statistics', new Error(`${this._id} has infinity or NaN for ${stat}. Fix it!`));
     }
     return val;
   }
 
   _addStat(stat, value = 1) {
     if(!_.isFinite(value)) {
-      Logger.error('Statistics', new Error(`Someone is attempting to add a non-finite number to ${stat}. Fix it!`));
+      Logger.error('Statistics', new Error(`${this._id} is attempting to add a non-finite number (${value}) to ${stat}. Fix it!`));
       return;
     }
     let val = _.get(this.stats, stat, 0);
@@ -48,7 +48,7 @@ export class Statistics {
 
   setStat(stat, value = 1) {
     if(!_.isFinite(value) || !_.isNumber(value)) {
-      Logger.error('Statistics', new Error(`Someone is attempting to set a non-finite number to ${stat}. Fix it!`));
+      Logger.error('Statistics', new Error(`${this._id} is attempting to set a non-finite number (${value}) to ${stat}. Fix it!`));
       return;
     }
     _.set(this.stats, stat, value);
