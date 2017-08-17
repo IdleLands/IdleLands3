@@ -13,9 +13,12 @@ export class Spiritualist extends Achievement {
 
     if(!_.every(requiredPets, req => {
       const foundPet = pets.earnedPetData[req];
+      // Do we have the pet?
       if(!foundPet || !foundPet.scaleLevel || !foundPet.$scale || !foundPet.scaleLevel) return false;
-      if(foundPet.scaleLevel.maxLevel !== foundPet.$scale.maxLevel[foundPet.$scale.maxLevel.length - 1]) return false;
-      if(foundPet.level !== foundPet._level.maximum) return false;
+      // Is Max Level fully upgraded?
+      if(foundPet.scaleLevel.maxLevel !== foundPet.$scale.maxLevel.length - 1) return false;
+      // Is the pet at max level?
+      if(foundPet.level !== foundPet.$scale.maxLevel[foundPet.scaleLevel.maxLevel]) return false;
       return true;
     })) return [];
 
