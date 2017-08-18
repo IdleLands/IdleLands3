@@ -253,6 +253,16 @@ export class PlayerMovement {
 
   static pickRandomTile(player, weight) {
     const indexes = [0, 1, 2, 3, 4, 5, 6, 7];
+    const weights = weight;
+    
+    let useIndexes = [];
+    let useWeights = [];
+    
+    for(let i = 0; i < weights.length; i++) {
+      if(weights[i] === 0) continue;
+      useWeights.push(weights[i]);
+      useIndexes.push(indexes[i]);
+    }
 
     if(weight.length === 0 && !player.party) {
       Logger.error('PlayerMovement', new Error(`${player.name} in ${player.map} @ ${player.x},${player.y} is unable to move due to no weights.`));
@@ -260,7 +270,7 @@ export class PlayerMovement {
 
     let randomIndex;
     try {
-      randomIndex = chance.weighted(indexes, weight);
+      randomIndex = chance.weighted(useIndexes, useWeights);
     } catch(e) {
       player.moveToStart();
       Logger.error('PlayerMovement', new Error('Chance.weighted failed. RIP'));
