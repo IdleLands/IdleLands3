@@ -29,7 +29,7 @@ export class Pets {
     this.earnedPets = [];
     this.earnedPetData = {};
     this.activePetId = '';
-    this.$pets = [];
+    this.$pets = {};
     _.extend(this, opts);
   }
 
@@ -38,7 +38,7 @@ export class Pets {
   }
 
   get activePet() {
-    return _.find(this.$pets, { $petId: this.activePetId });
+    return this.$pets[this.activePetId];
   }
 
   _updateSimplePetInfo(petType, key, value) {
@@ -104,7 +104,7 @@ export class Pets {
     this.activePetId = type;
 
     this.earnedPetData[type] = pet.buildSaveObject();
-    this.$pets.push(pet);
+    this.$pets[pet.$petId] = pet;
 
     this.save();
     player.save();
@@ -119,7 +119,7 @@ export class Pets {
       this._setupPetData(petName, petData, myPetData, player);
     });
 
-    this.$pets = _.map(_.values(this.earnedPetData), d => {
+    this.$pets = _.mapValues(this.earnedPetData, d => {
       const pet = new Pet();
       pet.init(d);
       this._syncGear(pet);
@@ -265,7 +265,7 @@ export class Pets {
     const item = _.find(pet.inventory, { id: itemId });
     if(!item) return 'Item does not exist.';
 
-    const otherPet = _.find(this.$pets, { $petId: petId });
+    const otherPet = this.$pets[petId];
     if(!otherPet) return 'You do not have that pet!';
 
     if(otherPet.$petId === pet.$petId) return 'You cannot give it to the same pet!';
@@ -521,7 +521,7 @@ export class Pets {
     if(!player.$premium.canConsume('renameTagPet')) return 'You do not have a pet rename tag!';
     player.$premium.consume(player, 'renameTagPet');
 
-    const pet = _.find(this.$pets, { $petId: petId });
+    const pet = this.$pets[petId];
     pet.name = petName;
 
     this._updateSimplePetInfo(petId, 'petName', petName);

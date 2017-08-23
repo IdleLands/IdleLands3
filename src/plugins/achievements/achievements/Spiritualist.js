@@ -9,12 +9,12 @@ export class Spiritualist extends Achievement {
     const requiredPets = ['Ghostly Shield', 'Ghostly Sword', 'Spellbook'];
     const pets = player.$pets;
 
-    if(!pets || !pets.earnedPetData) return [];
+    if(!pets || !pets.$pets) return [];
 
     if(!_.every(requiredPets, req => {
-      const foundPet = pets.earnedPetData[req];
+      const foundPet = pets.$pets[req];
       // Do we have the pet?
-      if(!foundPet || !foundPet.scaleLevel || !foundPet.$scale || !foundPet.scaleLevel) return false;
+      if(!foundPet || !foundPet.scaleLevel || !foundPet.$scale) return false;
       // Is Max Level fully upgraded?
       if(foundPet.scaleLevel.maxLevel !== foundPet.$scale.maxLevel.length - 1) return false;
       // Is the pet at max level?
