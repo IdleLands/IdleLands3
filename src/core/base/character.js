@@ -23,8 +23,10 @@ export class Character {
     if(!this._hp)      this._hp = { minimum: 0, maximum: 20, __current: 20 };
     if(!this._mp)      this._mp = { minimum: 0, maximum: 0, __current: 0 };
     if(!this._xp)      this._xp = { minimum: 0, maximum: this.levelUpXpCalc(1), __current: 0 };
-    if(!this._level)   this._level = { minimum: 0, maximum: SETTINGS.maxLevel, __current: this.levelSet || 1 };
+    if(!this._level)   this._level = { minimum: 1, maximum: SETTINGS.maxLevel, __current: this.levelSet || 1 };
     if(!this._special) this._special = { minimum: 0, maximum: 0, __current: 0 };
+    
+    this._level.minimum = 1;
 
     if(this._level.maximum < SETTINGS.maxLevel) {
       this._level.maximum = SETTINGS.maxLevel;
