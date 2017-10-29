@@ -413,9 +413,10 @@ export class Player extends Character {
     Logger.silly('Player:Move', `${this.name} doing validation`);
 
     if(!mapInstance || this.x <= 0 || this.y <= 0 || this.y > mapInstance.height || this.x > mapInstance.width) {
-      const customPayload = { player: this.buildTransmitObject(), oldLoc: oldLoc, nextTile: [index, newLoc, dir] };
+      const custom
+      = { player: this.buildTransmitObject(), oldLoc: oldLoc, nextTile: [index, newLoc, dir] };
       if (party) {
-        customPayload.party = this.party.buildTransmitObject();
+        customPayload.party = this.party ? this.party.buildTransmitObject() : null;
       }
       Logger.error('PlayerMovement',
                    new Error(`Out of bounds for ${this.name} at ${this.mapRegion} on ${this.map}: ${this.x}, ${this.y}. Old ${oldLoc.x}, ${oldLoc.y}`),
