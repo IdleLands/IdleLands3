@@ -60,7 +60,13 @@ export const Regions = {
     shopSlots: () => 5,
     shopQuality: () => 2.3,
     TownCrierChance: (player, baseValue) => baseValue*3
-  },  
+  }, 
+  'Mountain Town': {
+    shopPriceMultiplier: () => 3.1,
+    shopSlots: () => 4,
+    shopQuality: () => 3.2,
+    TownCrierChance: (player, baseValue) => baseValue*3
+  }, 
   'Guild Hall': {
     shopPriceMultiplier:  (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? 1 + (Math.floor(player.guild.buildings.levels.GuildShop/3) * 0.5) : 0,
     shopSlots:            (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? 1 + Math.floor(player.guild.buildings.levels.GuildShop/10) : 0,
