@@ -29,5 +29,10 @@ export const SystemTownCrierMessages = [
     message: 'Want to join our external discord? Come check it out!',
     link: 'https://discord.gg/USwJW4y',
     origin: 'system'
+  },
+  {
+    message: 'Interested in what Seiyria has been up to lately? Check out Land of the Rair!',
+    link: 'http://rair.land',
+    origin: 'system'
   }
 ];
