@@ -107,7 +107,7 @@ class Settings {
     }
   };
 
-  externalChat = 'irc';
+  externalChat = 'discord';
 
   chatConfig = {
     irc: {
