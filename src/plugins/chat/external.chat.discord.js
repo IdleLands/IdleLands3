@@ -50,7 +50,7 @@ export class ExternalChatMechanism {
         return;
       }
 
-      if(message.channel.id !== process.env.DISCORD_CHANNEL_ID) return;
+      if(message.channel.id !== process.env.DISCORD_CHANNEL_ID || message.author.username === 'IdleLandsChat') return;
 
       const messageObject = {
         text: message.content,
