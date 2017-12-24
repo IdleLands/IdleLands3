@@ -62,6 +62,7 @@ export class ItemGenerator extends Generator {
     || _.includes(item.name.toLowerCase(), 'idling')) itemClass = 'idle';
     if(item.score >= 15000)                           itemClass = 'godly';
     if(item.score >= 100000)                          itemClass = 'goatly';
+    if(item.score >= 1000000)                         itemClass = 'omega';
 
     return itemClass;
   }
