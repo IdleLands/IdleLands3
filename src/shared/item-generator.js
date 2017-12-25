@@ -57,10 +57,9 @@ export class ItemGenerator extends Generator {
   
   static getItemClass(item) {
     let itemClass = 'basic';
-    if(item.name.toLowerCase() !== item.name)         itemClass = 'pro';
-    if(_.includes(item.name.toLowerCase(), 'idle')
-    || _.includes(item.name.toLowerCase(), 'idling')) itemClass = 'idle';
-    if(item.score >= 15000)                           itemClass = 'godly';
+    if(item.score >= 5000)                            itemClass = 'pro';
+    if(item.score >= 25000)                           itemClass = 'idle';
+    if(item.score >= 50000)                           itemClass = 'godly';
     if(item.score >= 100000)                          itemClass = 'goatly';
     if(item.score >= 1000000)                         itemClass = 'omega';
 
