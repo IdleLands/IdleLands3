@@ -11,7 +11,7 @@ export class Bonecraft extends Spell {
   ];
 
   static shouldCast(caster) {
-    return this.$canTarget.anyBonecraftable(caster);
+    return false; // this.$canTarget.anyBonecraftable(caster);
   }
 
   determineTargets() {
