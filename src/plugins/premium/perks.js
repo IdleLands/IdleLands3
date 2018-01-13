@@ -24,11 +24,31 @@ export const perks = [
     description: 'Give the world +10% to combat stats for 1 day.',
     festivalDuration: 24,
     festivalData: { str: 0.1, dex: 0.1, con: 0.1, int: 0.1, agi: 0.1 } },
+  
+  { name: '+10% Combat (1 week)', cost: 7000,
+    description: 'Give the world +10% to combat stats for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { str: 0.1, dex: 0.1, con: 0.1, int: 0.1, agi: 0.1 } },
 
   { name: '+20% Luck (1 day)', cost: 5000,
     description: 'Give the world +20% luck for 1 day.',
     festivalDuration: 24,
     festivalData: { luk: 0.2 } },
+  
+  { name: '+20% Luck (1 week)', cost: 25000,
+    description: 'Give the world +20% luck for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { luk: 0.2 } },
+  
+  { name: 'Effects (1 day)', cost: 1400,
+    description: ' Give the world gold(250), xp(2), glowing(1), crit(1), damageReduction(250), and hpregen(25) for 1 day.',
+    festivalDuration: 24,
+    festivalData: { gold: 250, xp: 2, glowing: 1, crit: 1, damageReduction:250, hpregen: 25 } },
+  
+  { name: 'Effects (1 week)', cost: 7000,
+    description: ' Give the world gold(250), xp(2), glowing(1), crit(1), damageReduction(250), and hpregen(25) for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { gold: 250, xp: 2, glowing: 1, crit: 1, damageReduction:250, hpregen: 25 } },
 
   { name: '+30% Salvage (1 day)', cost: 3500,
     description: 'Give the world +30% salvage for 1 day.',
@@ -43,6 +63,11 @@ export const perks = [
   { name: '+100% Salvage (1 day)', cost: 12000,
     description: 'Give the world +100% salvage for 1 day.',
     festivalDuration: 24,
+    festivalData: { salvage: 10 } },
+  
+  { name: '+100% Salvage (1 week)', cost: 60000,
+    description: 'Give the world +100% salvage for 1 week.',
+    festivalDuration: 24 * 7,
     festivalData: { salvage: 10 } },
 
   { name: 'Teleport: Norkos', cost: 3000,
@@ -60,6 +85,10 @@ export const perks = [
   { name: 'Teleport: Frigri', cost: 3000,
     description: 'Teleport to Frigri.',
     teleportData: { toLoc: 'frigri' } },
+  
+  { name: 'Teleport: Homlet', cost: 5000,
+    description: 'Teleport to Homlet.',
+    teleportData: { toLoc: 'homlet' } },
 
   { name: 'Teleport: Astral Control Room', cost: 1000,
     description: 'Teleport to the Astral Control Room.',
