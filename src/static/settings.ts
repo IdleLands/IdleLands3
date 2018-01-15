@@ -265,7 +265,11 @@ class Settings {
     145: 'BlueBitomancer',
     146: 'RedBitomancer',
     147: 'GreenBitomancer',
-    149: 'GoldBitomancer'
+    149: 'GoldBitomancer',
+    150: 'GambleShrine',
+    151: 'GreenBoss',
+    152: 'BlueBoss',
+    153: 'GoldBoss'
   };
 
   revGidMap: any = {};

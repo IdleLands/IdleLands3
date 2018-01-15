@@ -41,12 +41,12 @@ export const perks = [
     festivalData: { luk: 0.2 } },
   
   { name: 'Effects (1 day)', cost: 1400,
-    description: ' Give the world +1% gold, +1% XP, +1% crit, +1% HP, and 1% MP for 1 day.',
+    description: ' Give the world +1% gold, +1% XP, +1% critical chance, +1% HP, and 1% MP for 1 day.',
     festivalDuration: 24,
     festivalData: { gold: 0.1, xp: 0.1, crit: 0.1, hp: 0.1, mp: 0.1 } },
   
   { name: 'Effects (1 week)', cost: 7000,
-    description: ' Give the world +1% gold, +1% XP, +1% crit, +1% HP, and 1% MP for 1 week.',
+    description: ' Give the world +1% gold, +1% XP, +1% critical chance, +1% HP, and 1% MP for 1 week.',
     festivalDuration: 24 * 7,
     festivalData: { gold: 0.1, xp: 0.1, crit: 0.1, hp: 0.1, mp: 0.1 } },
 
@@ -113,6 +113,10 @@ export const perks = [
   { name: 'Gender: Boss Monster', cost: 300,
     description: 'Unlock the Boss Monster gender.',
     oneTimeData: { gender: 'boss monster' } },
+  
+  { name: 'Gender: Gold Boss Monster', cost: 5000,
+    description: 'Unlock the Gold Boss Monster gender.',
+    oneTimeData: { gender: 'Boss-gold' } },
 
   { name: 'Gender: Fighter (Gold)', cost: 25000,
     description: 'Unlock the Fighter (Gold) gender.',
