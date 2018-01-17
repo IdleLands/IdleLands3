@@ -43,12 +43,12 @@ export const perks = [
   { name: 'Effects (1 day)', cost: 1400,
     description: ' Give the world +1% gold, +1% XP, +1% critical chance, +1% HP, and 1% MP for 1 day.',
     festivalDuration: 24,
-    festivalData: { gold: 0.1, xp: 0.1, crit: 0.1, hp: 0.1, mp: 0.1 } },
+    festivalData: { gold: 0.01, xp: 0.01, crit: 0.01, hp: 0.01, mp: 0.01 } },
   
   { name: 'Effects (1 week)', cost: 7000,
     description: ' Give the world +1% gold, +1% XP, +1% critical chance, +1% HP, and 1% MP for 1 week.',
     festivalDuration: 24 * 7,
-    festivalData: { gold: 0.1, xp: 0.1, crit: 0.1, hp: 0.1, mp: 0.1 } },
+    festivalData: { gold: 0.01, xp: 0.01, crit: 0.01, hp: 0.01, mp: 0.01 } },
 
   { name: '+30% Salvage (1 day)', cost: 3500,
     description: 'Give the world +30% salvage for 1 day.',
