@@ -29,7 +29,7 @@ export class Levelable extends Achievement {
     }
 
     if(tier > 100) {
-      rewards.push({ type: 'title', title: 'Milennial', deathMessage: '%player oversaw many generations before finally crumbling into dust.' });
+      rewards.push({ type: 'title', title: 'Millennial', deathMessage: '%player oversaw many generations before finally crumbling into dust.' });
     }
 
     return [{
