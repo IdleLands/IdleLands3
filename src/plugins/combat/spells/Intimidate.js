@@ -12,7 +12,7 @@ export class Intimidate extends Spell {
   ];
 
   static shouldCast(caster) {
-    return caster._special.gtePercent(25) && return this.$canTarget.enemyWithoutEffect(caster, 'Intimidate');
+    return caster._special.gtePercent(25) && this.$canTarget.enemyWithoutEffect(caster, 'Intimidate');
   }
   
   determineTargets() {
