@@ -30,21 +30,21 @@ export class ExternalChatMechanism {
     this.client.on('message', ((message) => {
 
       if(_.startsWith(message.content, '!player')) {
-        const player = encodeURIComponent(message.content.substring(message.content.indexOf(' ')));
+        const player = encodeURIComponent(message.content.substring(message.content.indexOf(' ')).trim());
         if(!player) return;
         message.reply(`http://global.idle.land/players/${player}`);
         return;
       }
 
       if(_.startsWith(message.content, '!map')) {
-        const map = encodeURIComponent(message.content.substring(message.content.indexOf(' ')));
+        const map = encodeURIComponent(message.content.substring(message.content.indexOf(' ')).trim());
         if(!map) return;
         message.reply(`http://global.idle.land/maps?map=${map}`);
         return;
       }
 
       if(_.startsWith(message.content, '!guild')) {
-        const guild = encodeURIComponent(message.content.substring(message.content.indexOf(' ')));
+        const guild = encodeURIComponent(message.content.substring(message.content.indexOf(' ')).trim());
         if(!guild) return;
         message.reply(`http://global.idle.land/guilds/${guild}`);
         return;
