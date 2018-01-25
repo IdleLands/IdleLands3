@@ -24,11 +24,31 @@ export const perks = [
     description: 'Give the world +10% to combat stats for 1 day.',
     festivalDuration: 24,
     festivalData: { str: 0.1, dex: 0.1, con: 0.1, int: 0.1, agi: 0.1 } },
+  
+  { name: '+10% Combat (1 week)', cost: 7000,
+    description: 'Give the world +10% to combat stats for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { str: 0.1, dex: 0.1, con: 0.1, int: 0.1, agi: 0.1 } },
 
   { name: '+20% Luck (1 day)', cost: 5000,
     description: 'Give the world +20% luck for 1 day.',
     festivalDuration: 24,
     festivalData: { luk: 0.2 } },
+  
+  { name: '+20% Luck (1 week)', cost: 25000,
+    description: 'Give the world +20% luck for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { luk: 0.2 } },
+  
+  { name: 'Effects (1 day)', cost: 1400,
+    description: ' Give the world +1% gold, +1% XP, +1% critical chance, +1% HP, and 1% MP for 1 day.',
+    festivalDuration: 24,
+    festivalData: { gold: 0.01, xp: 0.01, crit: 0.01, hp: 0.01, mp: 0.01 } },
+  
+  { name: 'Effects (1 week)', cost: 7000,
+    description: ' Give the world +1% gold, +1% XP, +1% critical chance, +1% HP, and 1% MP for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { gold: 0.01, xp: 0.01, crit: 0.01, hp: 0.01, mp: 0.01 } },
 
   { name: '+30% Salvage (1 day)', cost: 3500,
     description: 'Give the world +30% salvage for 1 day.',
@@ -43,6 +63,11 @@ export const perks = [
   { name: '+100% Salvage (1 day)', cost: 12000,
     description: 'Give the world +100% salvage for 1 day.',
     festivalDuration: 24,
+    festivalData: { salvage: 10 } },
+  
+  { name: '+100% Salvage (1 week)', cost: 60000,
+    description: 'Give the world +100% salvage for 1 week.',
+    festivalDuration: 24 * 7,
     festivalData: { salvage: 10 } },
 
   { name: 'Teleport: Norkos', cost: 3000,
@@ -60,6 +85,10 @@ export const perks = [
   { name: 'Teleport: Frigri', cost: 3000,
     description: 'Teleport to Frigri.',
     teleportData: { toLoc: 'frigri' } },
+  
+  { name: 'Teleport: Homlet', cost: 5000,
+    description: 'Teleport to Homlet.',
+    teleportData: { toLoc: 'homlet' } },
 
   { name: 'Teleport: Astral Control Room', cost: 1000,
     description: 'Teleport to the Astral Control Room.',
@@ -84,6 +113,10 @@ export const perks = [
   { name: 'Gender: Boss Monster', cost: 300,
     description: 'Unlock the Boss Monster gender.',
     oneTimeData: { gender: 'boss monster' } },
+  
+  { name: 'Gender: Gold Boss Monster', cost: 5000,
+    description: 'Unlock the Gold Boss Monster gender.',
+    oneTimeData: { gender: 'Boss-gold' } },
 
   { name: 'Gender: Fighter (Gold)', cost: 25000,
     description: 'Unlock the Fighter (Gold) gender.',

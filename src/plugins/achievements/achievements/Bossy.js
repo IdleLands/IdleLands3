@@ -33,6 +33,14 @@ export class Bossy extends Achievement {
     if(tier >= 6) {
       rewards.push({ type: 'petattr', petattr: 'a goblin head on a spear' });
     }
+    
+    if(tier >= 15) {
+      rewards.push({ type: 'gender', gender: `Boss-green` });
+    }
+    
+    if(tier >= 30) {
+      rewards.push({ type: 'gender', gender: `Boss-blue` });
+    }
 
     return [{
       tier,

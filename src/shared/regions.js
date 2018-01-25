@@ -40,7 +40,7 @@ export const Regions = {
   'Astral Town': {
     shopPriceMultiplier: () => 10,
     shopSlots: () => 5,
-    shopQuality: () => 7,
+    shopQuality: () => 10,
     TownCrierChance: (player, baseValue) => baseValue*3
   },
   'Desert Town': {
@@ -65,6 +65,12 @@ export const Regions = {
     shopPriceMultiplier: () => 3.1,
     shopSlots: () => 4,
     shopQuality: () => 3.2,
+    TownCrierChance: (player, baseValue) => baseValue*3
+  },
+  Alehaven: {
+    shopPriceMultiplier: () => 3.5,
+    shopSlots: () => 8,
+    shopQuality: () => 6.1,
     TownCrierChance: (player, baseValue) => baseValue*3
   }, 
   'Guild Hall': {
