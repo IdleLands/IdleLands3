@@ -30,13 +30,17 @@ export class GameState {
     this.playerTimeouts = {};
 
     Logger.info('GameState', 'Creating world.');
-    this.world = constitute(World);
+    this.loadWorld();
 
     Logger.info('GameState', 'Loading festivals.');
     this.festivalContainer = constitute(Festivals);
 
     Logger.info('GameState', 'Loading guilds.');
     this.guilds = constitute(Guilds);
+  }
+
+  loadWorld() {
+    this.world = constitute(World);
   }
 
   hasGuild(guildName) {

@@ -1,6 +1,5 @@
 
 import { GameState } from '../../core/game-state';
-import { GMCommands } from './commands';
 import { Logger } from '../../shared/logger';
 
 export const event = 'plugin:gm:updateassets';
@@ -23,7 +22,7 @@ export const socket = (socket) => {
         return;
       }
 
-      process.exit(0);
+      GameState.getInstance().loadWorld();
     });
   };
 
