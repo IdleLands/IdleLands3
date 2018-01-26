@@ -35,17 +35,21 @@ export class Anniversary extends Achievement {
     }];
     
     rewards.push({ type: 'petattr', petattr: 'a handful of confetti' });
+    rewards.push({ type: 'title', title: 'Wise', deathMessage: '%player may be wise, but %heshe was not smart enough to avoid an untimely death.' });
     
     if(tier >= 2) {
       rewards.push({ type: 'petattr', petattr: 'two handfuls of confetti' });
       rewards.push({ type: 'gender', gender: `veteran male` });
       rewards.push({ type: 'gender', gender: `veteran female` });
+      rewards.push({ type: 'title', title: 'Revered', deathMessage: 'All of Idliathlia mourns the loss of %player.' });
+      
     }
     
     if(tier >= 3) {
       rewards.push({ type: 'petattr', petattr: 'a thousand-yard stare' });
       rewards.push({ type: 'gender', gender: `angry bear` });
       rewards.push({ type: 'gender', gender: `veteran glowcloud` });
+      rewards.push({ type: 'title', title: 'Legend', deathMessage: 'The legendary %player finally shuffled off this mortal coil.' });
     }
     
     return [{
