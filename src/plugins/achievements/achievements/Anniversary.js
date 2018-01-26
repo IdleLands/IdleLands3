@@ -41,8 +41,7 @@ export class Anniversary extends Achievement {
       rewards.push({ type: 'petattr', petattr: 'two handfuls of confetti' });
       rewards.push({ type: 'gender', gender: `veteran male` });
       rewards.push({ type: 'gender', gender: `veteran female` });
-      rewards.push({ type: 'title', title: 'Revered', deathMessage: 'All of Idliathlia mourns the loss of %player.' });
-      
+      rewards.push({ type: 'title', title: 'Revered', deathMessage: 'All of Idliathlia mourns the loss of %player.' });      
     }
     
     if(tier >= 3) {
