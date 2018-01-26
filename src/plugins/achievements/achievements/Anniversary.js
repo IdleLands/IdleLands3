@@ -38,14 +38,15 @@ export class Anniversary extends Achievement {
     
     rewards.push({ type: 'petattr', petattr: 'a handful of confetti' });
     rewards.push({ type: 'title', title: 'Wise', deathMessage: '%player may be wise, but %heshe was not smart enough to avoid an untimely death.' });
-    GameState.getInstance().addFestival({
+    
+    GameState.getInstance().addFestival({  
       name: `${this.name}'s ${tier} Year Anniversary`,
-      message: `${this.name} has taken ${tier} year(s) worth of steps! +${(ascBonus*100).toFixed(0)}% XP/Gold for everyone for 24 hours!`,
+      message: `${this.name} has taken ${tier} year(s) worth of steps! +${tier * 100}% Item Find Range and +${tier * 25}% more gold for everyone for 24 hours!`,
       startedBy: this.name,
       hourDuration: 24,
       bonuses: {
-        xp: ascBonus,
-        gold: ascBonus
+        itemFindRangeMultiplier: tier * 1,
+        gold: tier * 0.25
       }
 });
     
@@ -66,7 +67,7 @@ export class Anniversary extends Achievement {
     return [{
       tier,
       name: 'Anniversary',
-      desc: `Gain +${tier * 100} Bonus XP (added every time XP is gained) and +${tier} STR/CON/DEX/AGI/INT/LUK for taking ${tier} year(s) worth of steps.`,
+      desc: `Gain +(${tier} * 100}) Bonus XP (added every time XP is gained) and +${tier} STR/CON/DEX/AGI/INT/LUK for taking ${tier} year(s) worth of steps.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];
