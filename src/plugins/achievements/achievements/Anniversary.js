@@ -48,7 +48,7 @@ export class Anniversary extends Achievement {
         itemFindRangeMultiplier: tier * 1,
         gold: tier * 0.25
       }
-});
+    });
     
     if(tier >= 2) {
       rewards.push({ type: 'petattr', petattr: 'two handfuls of confetti' });
