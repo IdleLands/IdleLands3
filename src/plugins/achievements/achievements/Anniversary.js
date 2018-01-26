@@ -1,3 +1,5 @@
+import { GameState } from '../../core/game-state';
+
 import { Achievement, AchievementTypes } from '../achievement';
 
 export class Anniversary extends Achievement {
@@ -36,6 +38,16 @@ export class Anniversary extends Achievement {
     
     rewards.push({ type: 'petattr', petattr: 'a handful of confetti' });
     rewards.push({ type: 'title', title: 'Wise', deathMessage: '%player may be wise, but %heshe was not smart enough to avoid an untimely death.' });
+    GameState.getInstance().addFestival({
+      name: `${this.name}'s ${tier} Year Anniversary`,
+      message: `${this.name} has taken ${tier} year(s) worth of steps! +${(ascBonus*100).toFixed(0)}% XP/Gold for everyone for 24 hours!`,
+      startedBy: this.name,
+      hourDuration: 24,
+      bonuses: {
+        xp: ascBonus,
+        gold: ascBonus
+      }
+});
     
     if(tier >= 2) {
       rewards.push({ type: 'petattr', petattr: 'two handfuls of confetti' });
@@ -54,7 +66,7 @@ export class Anniversary extends Achievement {
     return [{
       tier,
       name: 'Anniversary',
-      desc: `Gain +${tier * 100} Bonus XP (added every time XP is gained) and +%{tier}% STR/CON/DEX/AGI/INT/LUK for taking +%{tier} year(s) worth of steps.`,
+      desc: `Gain +${tier * 100} Bonus XP (added every time XP is gained) and +${tier} STR/CON/DEX/AGI/INT/LUK for taking ${tier} year(s) worth of steps.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];
