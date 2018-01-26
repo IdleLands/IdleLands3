@@ -38,10 +38,14 @@ export class Anniversary extends Achievement {
     
     if(tier >= 2) {
       rewards.push({ type: 'petattr', petattr: 'two handfuls of confetti' });
+      rewards.push({ type: 'gender', gender: `veteran male` });
+      rewards.push({ type: 'gender', gender: `veteran female` });
     }
     
     if(tier >= 3) {
       rewards.push({ type: 'petattr', petattr: 'a thousand-yard stare' });
+      rewards.push({ type: 'gender', gender: `angry bear` });
+      rewards.push({ type: 'gender', gender: `veteran glowcloud` });
     }
     
     return [{
