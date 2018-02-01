@@ -35,11 +35,11 @@ export class Bossy extends Achievement {
     }
     
     if(tier >= 15) {
-      rewards.push({ type: 'gender', gender: `Boss-green` });
+      rewards.push({ type: 'gender', gender: `green boss monster` });
     }
     
     if(tier >= 30) {
-      rewards.push({ type: 'gender', gender: `Boss-blue` });
+      rewards.push({ type: 'gender', gender: `blue boss monster` });
     }
 
     return [{

@@ -207,31 +207,39 @@ export class MessageParser {
     switch(replace) {
       case '%hisher': {
         switch(gender) {
-          case 'male':    return 'his';
-          case 'female':  return 'her';
-          default:        return 'their';
+          case 'male':           return 'his';
+          case 'veteran male':   return 'his';
+          case 'female':         return 'her';
+          case 'veteran female': return 'her';
+          default:               return 'their';
         }
       }
       case '%hishers': {
         switch(gender) {
-          case 'male':    return 'his';
-          case 'female':  return 'hers';
-          default:        return 'theirs';
+          case 'male':           return 'his';
+          case 'veteran male':   return 'his';
+          case 'female':         return 'hers';
+          case 'veteran female': return 'hers';
+          default:               return 'theirs';
         }
       }
       case '%himher': {
         switch(gender) {
-          case 'male':    return 'him';
-          case 'female':  return 'her';
-          default:        return 'them';
+          case 'male':           return 'him';
+          case 'veteran male':   return 'him';
+          case 'female':         return 'her';
+          case 'veteran female': return 'her';
+          default:               return 'them';
         }
       }
       case '%she':
       case '%heshe': {
         switch(gender) {
-          case 'male':    return 'he';
-          case 'female':  return 'she';
-          default:        return 'they';
+          case 'male':           return 'he';
+          case 'veteran male':   return 'he';
+          case 'female':         return 'she';
+          case 'veteran female': return 'she';
+          default:               return 'they';
         }
       }
     }

@@ -269,7 +269,11 @@ class Settings {
     150: 'GambleShrine',
     151: 'GreenBoss',
     152: 'BlueBoss',
-    153: 'GoldBoss'
+    153: 'GoldBoss',
+    154: 'GreenMale',
+    155: 'RedFemale',
+    156: 'VeteranBear',
+    157: 'VeteranGlowcloud'
   };
 
   revGidMap: any = {};

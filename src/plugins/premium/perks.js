@@ -116,7 +116,7 @@ export const perks = [
   
   { name: 'Gender: Gold Boss Monster', cost: 5000,
     description: 'Unlock the Gold Boss Monster gender.',
-    oneTimeData: { gender: 'Boss-gold' } },
+    oneTimeData: { gender: 'gold boss monster' } },
 
   { name: 'Gender: Fighter (Gold)', cost: 25000,
     description: 'Unlock the Fighter (Gold) gender.',
