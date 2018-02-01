@@ -73,7 +73,7 @@ export class Anniversary extends Achievement {
     return [{
       tier,
       name: 'Anniversary',
-      desc: `Gain +(${tier} * 100}) Bonus XP (added every time XP is gained) and +${tier} STR/CON/DEX/AGI/INT/LUK for taking ${tier} year(s) worth of steps.`,
+      desc: `Gain +(${tier} * 100}) Bonus XP (added every time XP is gained) and +${tier}% STR/CON/DEX/AGI/INT/LUK for taking ${tier} year(s) worth of steps.`,
       type: AchievementTypes.EXPLORE,
       rewards
     }];
