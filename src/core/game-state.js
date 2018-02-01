@@ -40,6 +40,10 @@ export class GameState {
   }
 
   loadWorld() {
+    if(this.world) {
+      this.world.load();
+      return;
+    }
     this.world = constitute(World);
   }
 

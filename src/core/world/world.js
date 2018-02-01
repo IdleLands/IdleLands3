@@ -9,6 +9,10 @@ import * as Spells from '../../plugins/combat/spells/_all';
 
 export class World {
   constructor() {
+    this.load();
+  }
+  
+  load() {
     this.maps = {};
     this.uniqueRegions = [];
 
