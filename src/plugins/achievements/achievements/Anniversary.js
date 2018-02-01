@@ -39,6 +39,8 @@ export class Anniversary extends Achievement {
     rewards.push({ type: 'petattr', petattr: 'a handful of confetti' });
     rewards.push({ type: 'title', title: 'Wise', deathMessage: '%player may be wise, but %heshe was not smart enough to avoid an untimely death.' });
     
+    player.permanentAchievements = player.permanentAchievements || {};
+    
     if(!player.permanentAchievements['Anniversary'+tier]) {
       player.permanentAchievements['Anniversary'+tier] = true;
 
