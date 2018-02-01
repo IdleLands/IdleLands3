@@ -39,17 +39,19 @@ export class Anniversary extends Achievement {
     rewards.push({ type: 'petattr', petattr: 'a handful of confetti' });
     rewards.push({ type: 'title', title: 'Wise', deathMessage: '%player may be wise, but %heshe was not smart enough to avoid an untimely death.' });
     
-    GameState.getInstance().addFestival({  
-      name: `${this.name}'s ${tier} Year Anniversary`,
-      message: `${this.name} has taken ${tier} year(s) worth of steps! +${tier * 100}% Item Find Range and +${tier * 25}% more gold for everyone for 24 hours!`,
-      startedBy: this.name,
-      hourDuration: 24,
-      bonuses: {
-        itemFindRangeMultiplier: tier * 1,
-        gold: tier * 0.25
-      }
-    });
+    if(!player.permanentAchievements['Anniversary'+tier]) = true {
     
+      GameState.getInstance().addFestival({  
+        name: `${this.name}'s ${tier} Year Anniversary`,
+        message: `${this.name} has taken ${tier} year(s) worth of steps! +${tier * 100}% Item Find Range and +${tier * 25}% more gold for everyone for 24 hours!`,
+        startedBy: this.name,
+        hourDuration: 24,
+        bonuses: {
+         itemFindRangeMultiplier: tier * 1,
+         gold: tier * 0.25
+       }
+     });
+    };
     if(tier >= 2) {
       rewards.push({ type: 'petattr', petattr: 'two handfuls of confetti' });
       rewards.push({ type: 'gender', gender: `veteran male` });
