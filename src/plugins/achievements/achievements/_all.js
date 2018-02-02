@@ -2,6 +2,7 @@
 export { Achiever } from './Achiever';
 export { Affirmer } from './Affirmer';
 export { Ancient } from './Ancient';
+export { Anniversary } from './Anniversary';
 export { Ascended } from './Ascended';
 export { Bossy } from './Bossy';
 export { Boxer } from './Boxer';
