@@ -45,9 +45,9 @@ export class Anniversary extends Achievement {
       player.permanentAchievements['Anniversary'+tier] = true;
 
       GameState.getInstance().addFestival({  
-        name: `${this.name}'s ${tier} Year Anniversary`,
-        message: `${this.name} has taken ${tier} year(s) worth of steps! +${tier * 100}% Item Find Range and +${tier * 25}% more gold for everyone for 24 hours!`,
-        startedBy: this.name,
+        name: `${player.name}'s ${tier} Year Anniversary`,
+        message: `${player.name} has taken ${tier} year(s) worth of steps! +${tier * 100}% Item Find Range and +${tier * 25}% more gold for everyone for 24 hours!`,
+        startedBy: player.name,
         hourDuration: 24,
         bonuses: {
          itemFindRangeMultiplier: tier * 1,
