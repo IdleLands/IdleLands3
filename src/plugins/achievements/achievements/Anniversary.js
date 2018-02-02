@@ -1,4 +1,4 @@
-import { GameState } from '../../core/game-state';
+import { GameState } from '../../../core/game-state';
 
 import { Achievement, AchievementTypes } from '../achievement';
 
