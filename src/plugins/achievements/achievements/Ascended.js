@@ -8,7 +8,7 @@ export class Ascended extends Achievement {
 
     if(totalAscensions < 1) return [];
 
-    return [{
+    const rewards = [{
       tier: totalAscensions,
       name: 'Ascended',
       desc: `Gain bonuses for ascending ${totalAscensions} times.`,
@@ -30,5 +30,19 @@ export class Ascended extends Achievement {
         xpDisplay: `+${totalAscensions * 5}%`
       }]
     }];
+    
+    if(totalAscensions >= 5) {
+      rewards.push({ type: 'title', title: 'Arisen', deathMessage: '%player may some day arise from the dead, but not today.' });
+    }
+    
+    if(totalAscensions >= 10) {
+      rewards.push({ type: 'title', title: 'Rerisen', deathMessage: 'The Cleric didn\'t do a good job of casting reraise on %player.' });
+    }
+    
+    if(totalAscensions >= 15) {
+      rewards.push({ type: 'title', title: 'True', deathMessage: '%player led a true blue life until now. Now %heshe is just blue.' });
+    }
+    
+    return rewards;
   }
 }
