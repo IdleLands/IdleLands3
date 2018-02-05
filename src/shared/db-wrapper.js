@@ -29,7 +29,10 @@ const statisticIndexes = [
   { 'stats.Character.Movement.Drunk': -1 },
   { 'stats.Character.Terrains.Acid': -1 },
   { 'stats.Combat.Give.Overkill': -1 },
-  { 'stats.Character.Movement.Solo': -1 }
+  { 'stats.Character.Movement.Solo': -1 },
+  { 'stats.Character.Ascension.Gold': -1 },
+  { 'stats.Character.Ascension.ItemScore': -1 },
+  { 'stats.Character.Ascension.CollectiblesFound': -1 }
 ];
 
 const achievementIndexes = [
