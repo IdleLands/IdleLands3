@@ -37,7 +37,7 @@ class Settings {
     merchantItemGeneratorBonus: 5
   };
 
-  validGenders = ['male', 'female', 'not a bear', 'glowcloud', 'astronomical entity'];
+  validGenders = ['male', 'female', 'not a bear', 'glowcloud', 'astronomical entity', 'soap'];
 
   validPetAttributes = [
     'a top hat',
@@ -273,7 +273,8 @@ class Settings {
     154: 'GreenMale',
     155: 'RedFemale',
     156: 'VeteranBear',
-    157: 'VeteranGlowcloud'
+    157: 'VeteranGlowcloud',
+    158: 'Soap'
   };
 
   revGidMap: any = {};
