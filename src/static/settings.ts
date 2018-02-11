@@ -274,7 +274,12 @@ class Settings {
     155: 'RedFemale',
     156: 'VeteranBear',
     157: 'VeteranGlowcloud',
-    158: 'Soap'
+    158: 'Soap',
+    159: 'RuinedTombstone',
+    160: 'Armoire',
+    161: 'Bookcase',
+    162: 'Bookshelf',
+    163: 'HangingSign'
   };
 
   revGidMap: any = {};
