@@ -43,6 +43,12 @@ export const Regions = {
     shopQuality: () => 10,
     TownCrierChance: (player, baseValue) => baseValue*3
   },
+  'Astral Boardwalk': {
+    shopPriceMultiplier: () => 10,
+    shopSlots: () => 5,
+    shopQuality: () => 10,
+    TownCrierChance: (player, baseValue) => baseValue*3
+  },
   'Desert Town': {
     shopPriceMultiplier: () => 1.5,
     shopSlots: () => 4,
