@@ -19,7 +19,7 @@ export class Mapceptional extends Achievement {
       { name: 'The Elemental Plane -3', rewards: { con: 750 } },
       { name: 'Merchant\'s Guild', rewards: { con: 250 } },
       { name: 'Cabran Falls', rewards: { con: 250 } },
-      { name: 'The North Pole', rewards: { con: 500 } },
+      { name: 'North Pole', rewards: { con: 500 } },
       { name: 'Dungeon of Love -1', rewards: { con: 500 } }
     ];
 
