@@ -17,7 +17,10 @@ export class Mapceptional extends Achievement {
       { name: 'Fate Pools -2', rewards: { con: 50 } },
       { name: 'The Astral Plane', rewards: { con: 1000 } },
       { name: 'The Elemental Plane -3', rewards: { con: 750 } },
-      { name: 'Merchant\'s Guild', rewards: { con: 250 } }
+      { name: 'Merchant\'s Guild', rewards: { con: 250 } },
+      { name: 'Cabran Falls', rewards: { con: 250 } },
+      { name: 'The North Pole', rewards: { con: 500 } },
+      { name: 'Dungeon of Love -1', rewards: { con: 500 } }
     ];
 
     return _.compact(_.map(validMaps, mapData => {
