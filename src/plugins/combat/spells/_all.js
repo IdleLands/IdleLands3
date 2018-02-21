@@ -33,6 +33,7 @@ export { Frostbite } from './Frostbite';
 export { GrogDance } from './GrogDance';
 export { Heartbleed } from './Heartbleed';
 export { HolyBolt } from './HolyBolt';
+export { Intimidate } from './Intimidate';
 export { LightFromTheStars } from './LightFromTheStars';
 export { LitanyOfPain } from './LitanyOfPain';
 export { MageIntelligence } from './MageIntelligence';
