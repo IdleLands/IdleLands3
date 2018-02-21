@@ -36,7 +36,7 @@ export class Intimidate extends Spell {
     _.each(targets, target => {
 
       super.cast({
-        damage,
+        damage: 0,
         message,
         applyEffect: IntimidateEffect,
         targets: [target]
