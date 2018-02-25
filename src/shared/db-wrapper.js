@@ -101,7 +101,7 @@ export class DbWrapper {
           db.collection('players').updateMany({}, { $set: { isOnline: false } });
         }
 
-        db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 1800 }, _.noop);
+        db.collection('battles').createIndex({ happenedAt: 1 }, { expireAfterSeconds: 450 }, _.noop);
 
         db.collection('guilds').createIndex({ name: 1 }, { unique: true }, _.noop);
         db.collection('guilds').createIndex({ tag: 1 }, { unique: true }, _.noop);
