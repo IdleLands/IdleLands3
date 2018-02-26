@@ -19,6 +19,7 @@ export const SPECIAL_STATS_BASE = [
   { name: 'vorpal',          desc: '+10% critical chance.', enchantMax: 1 },
   { name: 'glowing',         desc: '+5% to all physical combat rolls. Stacks intensity.', enchantMax: 1 },
   { name: 'sentimentality',  desc: '+1 score. Stacks intensity.', enchantMax: 500 },
+  { name: 'vitriol',         desc: '-1 score. Stacks intensity.', enchantMax: 500 },
   { name: 'hp',              desc: '+1 hp. Stacks intensity.', enchantMax: 2000 },
   { name: 'mp',              desc: '+1 mp. Stacks intensity.', enchantMax: 2000 },
   { name: 'hpregen',         desc: 'Regenerate HP every combat round. Stacks intensity.', enchantMax: 100 },
