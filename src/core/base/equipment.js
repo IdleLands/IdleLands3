@@ -38,7 +38,6 @@ export class Equipment {
     damageReductionPercent: 1000,
     gold: 0.5,
     sentimentality: 1,
-    vitriol: -1,
     dance: 100,
     defense: 100,
     offense: 100,
