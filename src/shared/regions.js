@@ -85,7 +85,10 @@ export const Regions = {
     shopQuality:          (player) => player.hasGuild && player.guild.hasBuilt('GuildShop') ? player.guild.buildings.levels.GuildShop/5 : 0,
     TownCrierChance:      (player, baseValue) => baseValue*2,
     GuildGamblingChance:  (player) => player.hasGuild && player.guild.hasBuilt('Tavern') ? 3 : 0,
-    GuildPartyChance:     (player) => player.hasGuild && player.guild.hasBuilt('Tavern') ? 9 : 0
+    GuildPartyChance:     (player) => player.hasGuild && player.guild.hasBuilt('Tavern') ? 9 : 0,
+    GoldBlessPartyChance: (player, baseValue) => baseValue*1.05,
+    BattleChance:         (player, baseValue) => baseValue*0,
+    BattlePvPChance:      (player, baseValue) => baseValue*0    
   },
   'Dangerous Cave Area': {
     BattleChance:       (player, baseValue) => baseValue*1.2,
