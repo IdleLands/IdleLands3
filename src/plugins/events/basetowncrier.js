@@ -31,8 +31,8 @@ export const SystemTownCrierMessages = [
     origin: 'system'
   },
   {
-    message: 'Interested in what Seiyria has been up to lately? Check out Land of the Rair!',
-    link: 'http://rair.land',
+    message: 'Interested in what Seiyria has been up to lately? Check out Land of the Rair! It\'s not an idle game, but rather is a fully playable (alpha) MORPG.',
+    link: 'https://rair.land',
     origin: 'system'
   }
 ];
