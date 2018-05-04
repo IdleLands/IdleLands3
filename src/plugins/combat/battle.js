@@ -254,7 +254,7 @@ export class Battle {
 
         _.each(party.players, p => {
           this.tryIncrement(p, 'Combat.Win');
-          let gainedXp = Math.max(1, Math.round(p._xp.maximum * (levelDiff / 30)));
+          let gainedXp = Math.max(1, Math.round(p._xp.maximum * (levelDiff / 2)));
           if(compareLevel < level - 5) gainedXp = 0;
 
           const modXp = p.gainXp(gainedXp);
