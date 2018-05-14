@@ -23,7 +23,7 @@ export class Bloodthirsty extends Personality {
   }
 
   static hasEarned(player) {
-    return player.$statistics.getStat('Character.Event.Battle') >= 500
+    return player.$statistics.getStat('Character.Event.Battle') >= 50
         && player.$statistics.getStat('Character.Event.BattlePvP') >= 50
         && player.$statistics.getStat('Combat.Win') >= 50;
   }
