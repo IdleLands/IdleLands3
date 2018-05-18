@@ -101,5 +101,11 @@ export const Regions = {
   'Norkos Fisheries Area': {
     BattleChance:       (player, baseValue) => baseValue*1.2,
     BattlePvPChance:    (player, baseValue) => baseValue*1.2
+  },
+  'King\'s Treasure Room': {
+    PartyChance:        (player, baseValue) => baseValue*0
+  },
+  'Chamber of Ascension': {
+    PartyChance:        (player, baseValue) => baseValue*0
   }
 };
