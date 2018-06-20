@@ -11,16 +11,19 @@
 7. [Ghostly Shield](#ghostly-shield)
 8. [Ghostly Sword](#ghostly-sword)
 9. [Goat](#goat)
-10. [Golden Floating Broom](#golden-floating-broom)
-11. [Minitaur](#minitaur)
-12. [Moose](#moose)
-13. [Octopus](#octopus)
-14. [Parrot](#parrot)
-15. [Pet Rock](#pet-rock)
-16. [Raven](#raven)
-17. [Spellbook](#spellbook)
-18. [Walk'o'tron](#walkotron)
-19. [Wolf'o'tron](#wolfotron)
+10. [Gold'o'tron](#goldotron)
+11. [Golden Floating Broom](#golden-floating-broom)
+12. [Minitaur](#minitaur)
+13. [Moose](#moose)
+14. [Octopus](#octopus)
+15. [Parrot](#parrot)
+16. [Pet Rock](#pet-rock)
+17. [Pineapple'o'tron](#pineappleotron)
+18. [Raven](#raven)
+19. [Spellbook](#spellbook)
+20. [Talking Spirit Wisp](#talking-spirit-wisp)
+21. [Walk'o'tron](#walkotron)
+22. [Wolf'o'tron](#wolfotron)
 
 ---
 
@@ -75,7 +78,7 @@ Cost|0
 ## Chimera Dragon
 
 ### Cost
-50,000 gold
+250,000 gold
 
 ### Category
 Combat
@@ -142,7 +145,7 @@ Cost|0|---|---|---|---|---|---
 ## Corgi
 
 ### Cost
-25,000 gold
+5,000 gold
 
 ### Category
 Hybrid
@@ -197,7 +200,7 @@ Cost|0|---|---|---|---|---|---|---
 ## Digipet
 
 ### Cost
-1,500,000 gold
+250,000,000 gold
 
 ### Category
 Hybrid
@@ -221,6 +224,7 @@ Unlocked by doing the digital dance.
 * dance: 1
 * deadeye: 1
 * lethal: 1
+* salvage: 2
 * sentimentality: 100,000
 * str: 200
 * dex: 200
@@ -271,7 +275,7 @@ Cost|0|---
 ## Dolphin
 
 ### Cost
-15,000 gold
+1,000,000 gold
 
 ### Category
 Non-Combat
@@ -282,6 +286,8 @@ Unlocked by finding some watery delicacies.
 ### Gear Slots
 
 ### Special Stats
+* salvage: 3
+* luk: 500
 
 ### Unlock Requirements
 #### Statistics
@@ -391,7 +397,7 @@ Cost|0
 ## Ghostly Shield
 
 ### Cost
-200,000 gold
+50,000,000 gold
 
 ### Category
 Combat
@@ -465,7 +471,7 @@ Cost|0|---|---|---|---|---|---|---|---|---
 ## Ghostly Sword
 
 ### Cost
-200,000 gold
+50,000,000 gold
 
 ### Category
 Combat
@@ -545,7 +551,7 @@ Cost|0|---|---|---|---|---|---|---|---|---
 ## Goat
 
 ### Cost
-500,000 gold
+500,000,000 gold
 
 ### Category
 Non-Combat
@@ -557,6 +563,7 @@ Unlocked by becoming a purveyor of natural resources.
 
 ### Special Stats
 * luk: 300
+* salvage: 4
 
 ### Unlock Requirements
 #### Statistics
@@ -597,6 +604,54 @@ Cost|0|---|---|---|---|---
 ###### [\[top\]](#idlelands-pets)
 ---
 
+## Gold'o'tron
+
+### Cost
+100,000,000,000 gold
+
+### Category
+Protector
+
+### Description
+Unlocked by becoming a master of money.
+
+### Gear Slots
+
+### Special Stats
+
+### Unlock Requirements
+#### Achievements
+* Golden (tier 7)
+
+### Upgrades
+Upgrade/Cost|Tier 1
+---:|:---:
+maxLevel|1
+Cost|0
+maxItemScore|0
+Cost|0
+inventory|1
+Cost|0
+goldStorage|0
+Cost|0
+battleJoinPercent|0
+Cost|0
+itemFindTimeDuration|0
+Cost|0
+itemSellMultiplier|0
+Cost|0
+itemFindBonus|0
+Cost|0
+itemFindRangeMultiplier|0
+Cost|0
+xpPerGold|0
+Cost|0
+salvage|0
+Cost|0
+
+###### [\[top\]](#idlelands-pets)
+---
+
 ## Golden Floating Broom
 
 ### Cost
@@ -619,6 +674,7 @@ Unlocked by helping out.
 * con: 1,000
 * glowing: 10
 * gold: 100
+* salvage: 1
 
 ### Unlock Requirements
 #### Statistics
@@ -656,7 +712,7 @@ Cost|0|---|---|---|---
 ## Minitaur
 
 ### Cost
-50,000 gold
+250,000 gold
 
 ### Category
 Combat
@@ -728,7 +784,7 @@ Cost|0|---|---|---|---|---
 ## Moose
 
 ### Cost
-45,000 gold
+50,000 gold
 
 ### Category
 Combat
@@ -787,7 +843,7 @@ Cost|0|---|---|---|---|---|---
 ## Octopus
 
 ### Cost
-80,000 gold
+10,000,000 gold
 
 ### Category
 Combat
@@ -800,6 +856,7 @@ Unlocked by observing the rules of the sea.
 * offhand: 4
 
 ### Special Stats
+* salvage: 8
 * int: 1,200
 * str: 1,200
 * con: 1,200
@@ -844,7 +901,7 @@ Cost|0|---|---|---|---|---|---|---
 ## Parrot
 
 ### Cost
-30,000 gold
+75,000 gold
 
 ### Category
 Hybrid
@@ -858,11 +915,12 @@ Unlocked by getting some booty.
 * legs: 1
 
 ### Special Stats
+* salvage: 1
 * crit: 5
 * int: 500
-* str: 100
-* dex: 100
-* luk: 50
+* str: 500
+* dex: 500
+* luk: 500
 
 ### Unlock Requirements
 #### Collectibles
@@ -906,7 +964,7 @@ Cost|0|---|---|---|---|---|---
 ## Pet Rock
 
 ### Cost
-5,000 gold
+1,000 gold
 
 ### Category
 Hybrid
@@ -955,10 +1013,58 @@ Cost|0|---|---|---|---|---|---|---|---|---|---
 ###### [\[top\]](#idlelands-pets)
 ---
 
+## Pineapple'o'tron
+
+### Cost
+1,000,000,000 gold
+
+### Category
+Protector
+
+### Description
+Unlocked by becoming a master of polarization.
+
+### Gear Slots
+
+### Special Stats
+
+### Unlock Requirements
+#### Statistics
+* Character.Event.Switcheroo: 500
+
+### Upgrades
+Upgrade/Cost|Tier 1
+---:|:---:
+maxLevel|1
+Cost|0
+maxItemScore|0
+Cost|0
+inventory|1
+Cost|0
+goldStorage|0
+Cost|0
+battleJoinPercent|0
+Cost|0
+itemFindTimeDuration|900
+Cost|0
+itemSellMultiplier|0
+Cost|0
+itemFindBonus|0
+Cost|0
+itemFindRangeMultiplier|0
+Cost|0
+xpPerGold|0
+Cost|0
+salvage|0
+Cost|0
+
+###### [\[top\]](#idlelands-pets)
+---
+
 ## Raven
 
 ### Cost
-35,000 gold
+100,000 gold
 
 ### Category
 Hybrid
@@ -972,10 +1078,11 @@ Unlocked by keeping an eye out for shiny things.
 * hands: 1
 
 ### Special Stats
-* deadeye: 1
-* venom: 1
-* poison: 1
+* deadeye: 2
+* venom: 2
+* poison: 2
 * int: 500
+* gold: 1,000
 
 ### Unlock Requirements
 #### Collectibles
@@ -1021,7 +1128,7 @@ Cost|0|---|---|---|---|---|---|---|---|---|---
 ## Spellbook
 
 ### Cost
-150,000 gold
+50,000,000 gold
 
 ### Category
 Combat
@@ -1086,6 +1193,62 @@ xpPerGold|0|---|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---|---
 salvage|0|---|---|---|---|---|---|---|---|---
 Cost|0|---|---|---|---|---|---|---|---|---
+
+###### [\[top\]](#idlelands-pets)
+---
+
+## Talking Spirit Wisp
+
+### Cost
+1 gold
+
+### Category
+Hybrid
+
+### Description
+Unlocked by doing nothing useful.
+
+### Gear Slots
+
+### Special Stats
+* str: 5,000
+* con: 5,000
+* dex: 5,000
+* agi: 5,000
+* int: 5,000
+* luk: 5,000
+* gold: 2,000
+* salvage: 5
+
+### Unlock Requirements
+#### Achievements
+* Camper (tier 1)
+
+### Upgrades
+Upgrade/Cost|Tier 1
+---:|:---:
+maxLevel|1,000
+Cost|0
+maxItemScore|0
+Cost|0
+inventory|0
+Cost|0
+goldStorage|0
+Cost|0
+battleJoinPercent|0
+Cost|0
+itemFindTimeDuration|0
+Cost|0
+itemSellMultiplier|0
+Cost|0
+itemFindBonus|0
+Cost|0
+itemFindRangeMultiplier|0
+Cost|0
+xpPerGold|1
+Cost|0
+salvage|100
+Cost|0
 
 ###### [\[top\]](#idlelands-pets)
 ---
@@ -1170,7 +1333,7 @@ goldStorage|0
 Cost|0
 battleJoinPercent|0
 Cost|0
-itemFindTimeDuration|0
+itemFindTimeDuration|900
 Cost|0
 itemSellMultiplier|0
 Cost|0

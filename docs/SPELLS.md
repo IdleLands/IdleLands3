@@ -54,9 +54,11 @@ Name | Element | Level | Description | Required Collectibles
 ---- | ------- | ----- | ----------- | ---------------------
 attack ([Attack 1](../src/plugins/combat/spells/Attack.js)) | Physical | 1 | A simple attack that uses STR to deal damage. | 
 berserk ([Berserk 1](../src/plugins/combat/spells/Berserk.js)) | Physical | 1 | A spell that increases Rage by a set amount. | 
+intimidate ([Intimidate 1](../src/plugins/combat/spells/Intimidate.js)) | Debuff | 1 | A spell that costs rage to make an enemy vulnerable to crits. | 
 crazy ([Berserk 2](../src/plugins/combat/spells/Berserk.js)) | Physical | 35 | A spell that increases Rage by a set amount. | 
 cleave ([Cleave 1](../src/plugins/combat/spells/Cleave.js)) | Physical | 50 | An attack that consumes all Rage to deal massive damage. | 
 strike ([Attack 2](../src/plugins/combat/spells/Attack.js)) | Physical | 50 | A simple attack that uses STR to deal damage. | 
+terrorize ([Intimidate 2](../src/plugins/combat/spells/Intimidate.js)) | Debuff | 50 | A spell that costs rage to make an enemy vulnerable to crits. | 
 out of control ([Berserk 3](../src/plugins/combat/spells/Berserk.js)) | Physical | 75 | A spell that increases Rage by a set amount. | 
 
 

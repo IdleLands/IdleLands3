@@ -22,6 +22,7 @@ plugin:gm:setlevel | targetName, targetLevel | Mod only. Set a players level.
 plugin:gm:teleport | targetName, teleData | Mod only. Teleport a user to a location.
 plugin:gm:toggleachievement | targetName, achievement | Mod only. Toggle a permanent achievement for the target.
 plugin:gm:togglemod | targetName | Mod only. Toggle moderator status for the target.
+plugin:gm:updateassets |  | Mod only. Update the assets then reboot.
 plugin:guild:building:build | buildingName, slot | Build a building in the guild.
 plugin:guild:building:movebase | newBase | Move the guild to a new place.
 plugin:guild:building:updateprop | buildingName, propName, propValue | Update a building property.

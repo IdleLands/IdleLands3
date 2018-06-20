@@ -260,7 +260,7 @@ Cost Per Level (compounding)
 
 Wood|Clay|Stone|Astralium|Gold
 :---:|:---:|:---:|:---:|:---:
-100|50|250|100|350000
+500|250|1500|2500|350000
 
 
 ###### [\[top\]](#idlelands-guild-basesbuildings)
