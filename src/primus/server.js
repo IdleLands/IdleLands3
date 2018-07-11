@@ -68,7 +68,7 @@ export const primus = (() => {
 
   Logger.important('Server', 'Express started.');
 
-  const primus = new Primus(server, { iknowhttpsisbetter: true, parser: 'JSON', transformer: 'websockets' });
+  const primus = new Primus(server, { parser: 'JSON', transformer: 'websockets' });
 
 // load socket functions
   const normalizedPath = require('path').join(__dirname, '..');
