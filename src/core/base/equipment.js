@@ -116,6 +116,8 @@ export class Equipment {
   }
 
   get score() {
+    if(this.isNothing) return 0;
+    
     let ret = 0;
     _.each(Equipment.multipliers, (mult, attr) => {
       if(!this[attr]) return;
