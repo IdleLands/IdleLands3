@@ -113,7 +113,9 @@ export class Character {
 
   get itemScore() {
     return _.reduce(_.flatten(_.values(this.equipment)), (prev, cur) => {
-      return prev + cur.score;
+      const newScore = cur.score;
+      if(newScore <= 0) return prev;
+      return prev + newScore;
     }, 0);
   }
 
