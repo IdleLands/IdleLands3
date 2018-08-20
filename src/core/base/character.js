@@ -115,6 +115,7 @@ export class Character {
     return _.reduce(_.flatten(_.values(this.equipment)), (prev, cur) => {
       const newScore = cur.score;
       if(newScore <= 0) return prev;
+      if(cur.type === 'soul' || cur.type === 'providence' || cur.type === 'trinket') return prev;
       return prev + newScore;
     }, 0);
   }
