@@ -215,6 +215,7 @@ export class Pet extends Character {
 
   shouldEquip(item) {
     const compareItem = _.minBy(this.equipment[item.type], '_calcScore');
+    if(!item || !compareItem) return false;
     return item.score > compareItem.score ? compareItem : false;
   }
 
