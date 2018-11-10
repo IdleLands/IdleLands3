@@ -17,7 +17,7 @@ export class Unaware extends Achievement {
     
       const tiers = [
         { required: 1,    tier: 1, title: 'Unaware', bonusRewards: { type: 'petattr', petattr: 'a portable hole' } },
-        { required: 2,    tier: 2, title: 'Clumsy', bonusRewards: { desc: 'Gain a second title for falling into ${(totalFalls).toLocaleString()} holes.`, deathMessage: '%player took a long fall down a deep hole.' } },
+        { required: 2,    tier: 2, title: 'Clumsy', bonusRewards: { desc: 'Gain a second title for falling into ${(totalFalls).toLocaleString()} holes.', deathMessage: '%player took a long fall down a deep hole.' } },
       ];
 
     return [baseAchievements];
