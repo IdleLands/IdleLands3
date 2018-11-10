@@ -8,29 +8,18 @@ export class Unaware extends Achievement {
 
     if(totalFalls < 250) return [];
 
-    const baseReward = {
+    const baseAchievements = [{
       tier: 1,
       name: 'Unaware',
-      desc: `Gain a special title for falling into ${(250).toLocaleString()} holes.`,
-      type: AchievementTypes.EXPLORE,
-      rewards: [{
-        type: 'title',
-        title: 'Unaware'
-      }, {
-        type: 'petattr',
-        petattr: 'a portable hole'
-      }
-    };
+      desc: `Gain a special title for falling into ${(totalFalls).toLocaleString()} holes.`,
+      type: AchievementTypes.EXPLORE
+    }];
+    
+      const tiers = [
+        { required: 1,    tier: 1, title: 'Unaware', bonusRewards: { type: 'petattr', petattr: 'a portable hole' } },
+        { required: 2,    tier: 2, title: 'Clumsy', bonusRewards: { desc: 'Gain a second title for falling into ${(totalFalls).toLocaleString()} holes.`, deathMessage: '%player took a long fall down a deep hole.' } },
+      ];
 
-    if(totalFalls >= 500) {
-      baseReward.rewards.push({
-        type: 'title',
-        title: 'Clumsy',
-        desc: `Gain a second title for falling into ${(500).toLocaleString()} holes.`,
-        deathMessage: '%player took a long fall down a deep hole.'
-      });
-    }
-
-    return [baseReward];
+    return [baseAchievements];
   }
 }
