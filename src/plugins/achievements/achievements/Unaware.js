@@ -4,9 +4,9 @@ import { Achievement, AchievementTypes } from '../achievement';
 export class Unaware extends Achievement {
   static achievementData(player) {
 
-    const totalfalls = player.$statistics.getStat('Character.Movement.Fall');
+    const totalFalls = player.$statistics.getStat('Character.Movement.Fall');
 
-    if(totalCamps < 250) return [];
+    if(totalFalls < 250) return [];
 
     const baseReward = {
       tier: 1,
@@ -26,7 +26,6 @@ export class Unaware extends Achievement {
       baseReward.rewards.push({
         type: 'title',
         title: 'Clumsy',
-        tier: 2,
         desc: `Gain a second title for falling into ${(500).toLocaleString()} holes.`,
         deathMessage: '%player took a long fall down a deep hole.'
       });
