@@ -10,6 +10,11 @@ export const perks = [
     festivalDuration: 24 * 7,
     festivalData: { xp: 0.15 } },
 
+  { name: '+60% XP (1 week)', cost: 125000,
+    description: 'Give the world +60% XP for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { xp: 0.60 } },
+  
   { name: '+10% Item Find (1 day)', cost: 3000,
     description: 'Give the world +10% Item Find for 1 day.',
     festivalDuration: 24,
@@ -19,6 +24,11 @@ export const perks = [
     description: 'Give the world +10% Item Find for 1 week.',
     festivalDuration: 24 * 7,
     festivalData: { itemFindRangeMultiplier: 0.10 } },
+
+  { name: '+40% Item Find (1 week)', cost: 75000,
+    description: 'Give the world +40% Item Find for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { itemFindRangeMultiplier: 0.40 } },
 
   { name: '+10% Combat (1 day)', cost: 1400,
     description: 'Give the world +10% to combat stats for 1 day.',
@@ -30,6 +40,11 @@ export const perks = [
     festivalDuration: 24 * 7,
     festivalData: { str: 0.1, dex: 0.1, con: 0.1, int: 0.1, agi: 0.1 } },
 
+  { name: '+40% Combat (1 week)', cost: 35000,
+    description: 'Give the world +40% to combat stats for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { str: 0.4, dex: 0.4, con: 0.4, int: 0.4, agi: 0.4 } },
+
   { name: '+20% Luck (1 day)', cost: 5000,
     description: 'Give the world +20% luck for 1 day.',
     festivalDuration: 24,
@@ -39,6 +54,11 @@ export const perks = [
     description: 'Give the world +20% luck for 1 week.',
     festivalDuration: 24 * 7,
     festivalData: { luk: 0.2 } },
+
+  { name: '+80% Luck (1 week)', cost: 125000,
+    description: 'Give the world +80% luck for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { luk: 0.8 } },
   
   { name: 'Effects (1 day)', cost: 1400,
     description: ' Give the world +1% gold, +1% XP, +1% critical chance, +1% HP, and 1% MP for 1 day.',
@@ -69,6 +89,11 @@ export const perks = [
     description: 'Give the world +100% salvage for 1 week.',
     festivalDuration: 24 * 7,
     festivalData: { salvage: 10 } },
+
+  { name: '+400% Salvage (1 week)', cost: 300000,
+    description: 'Give the world +400% salvage for 1 week.',
+    festivalDuration: 24 * 7,
+    festivalData: { salvage: 40 } },
 
   { name: 'Teleport: Norkos', cost: 3000,
     description: 'Teleport to Norkos.',
