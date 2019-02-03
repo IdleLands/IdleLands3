@@ -1,0 +1,92 @@
+{
+  "name": "idlelands",
+  "version": "1.0.0",
+  "description": "An idling game of epic proportions",
+  "main": "src/index.js",
+  "scripts": {
+    "postinstall": "npm run install:assets",
+    "install:assets": "node install-assets",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon --ext js,ts --exec \"ts-node src/index.js\"",
+    "start:battletest": "cross-env BATTLE_DEBUG=1 nodemon --exec \"ts-node src/index.js\"",
+    "start:prod": "cross-env NODE_ENV=production ALLOW_LOCAL=1 EXT_CHAT=0 INSTANCE_NUMBER=0 nodemon --ext js,ts --exec \"ts-node src/index.js\"",
+    "test": "npm run test:local",
+    "test:lint": "eslint --quiet src/**/*.js test/plugins/**/*.js",
+    "test:local": "npm run test:lint",
+    "test:client": "ts-node src/test/client/client",
+    "generate:all": "npm run generate:guilddoc && npm run generate:spelldoc && npm run generate:classdoc && npm run generate:apidoc && npm run generate:effectdoc && npm run generate:petdoc",
+    "generate:effectdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-effectdoc",
+    "generate:spelldoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-spelldoc",
+    "generate:classdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-classdoc",
+    "generate:petdoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-petdoc",
+    "generate:apidoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-apidoc",
+    "generate:guilddoc": "cross-env NO_START_GAME=1 ts-node src/_ext-npm/generate-guilddoc",
+    "gitfix": "git add docs && git add CHANGELOG.md",
+    "gen:items": "node test/gen/items",
+    "prerelease": "npm run test && npm run generate:all",
+    "release": "standard-version --no-verify",
+    "build:dist": "tsc"
+  },
+  "engines": {
+    "node": "8.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IdleLands/IdleLands.git"
+  },
+  "author": "Kyle Kemp <kyle@seiyria.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IdleLands/IdleLands/issues"
+  },
+  "homepage": "https://github.com/IdleLands/IdleLands#readme",
+  "ava": {
+    "files": [
+      "test/**/*.spec.js",
+      "!test/client/**"
+    ],
+    "source": [
+      "src/**/*.js"
+    ]
+  },
+  "dependencies": {
+    "chance": "^1.0.3",
+    "compression": "^1.6.2",
+    "constitute": "^1.6.2",
+    "discord.js": "^11.2.1",
+    "dotenv": "^2.0.0",
+    "download-github-repo": "^0.1.3",
+    "eventemitter2": "^1.0.3",
+    "eventemitter3": "^2.0.3",
+    "express": "^4.14.0",
+    "finalhandler": "^0.5.0",
+    "jsonwebtoken": "^7.0.1",
+    "lodash": "^4.13.1",
+    "minimist": "^1.2.0",
+    "mongodb": "^2.1.18",
+    "node-cleanup": "^2.1.2",
+    "node-redis-pubsub": "^1.0.2",
+    "node-schedule": "^1.2.0",
+    "primus": "^7.1.0",
+    "primus-emit": "^1.0.0",
+    "restricted-number": "^1.1.0",
+    "rollbar": "2.1.0",
+    "serve-static": "^1.11.1",
+    "squelch-client": "^0.19.0",
+    "standard-version": "^4.0.0",
+    "ws": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.8",
+    "ava": "^0.15.2",
+    "babel-eslint": "^7.1.1",
+    "bithound": "^1.7.0",
+    "conventional-changelog-cli": "^1.3.1",
+    "cross-env": "^3.0.0",
+    "eslint": "^2.13.1",
+    "eslint-config-kellyirc": "^3.1.0",
+    "nodemon": "^1.11.0",
+    "ts-node": "2.1.0",
+    "typescript": "2.3.3"
+  }
+}
